@@ -1,0 +1,81 @@
+线程 Runnable
+
+class MyRunnable implements Runnable{	   
+    @Override
+    public void run(){
+    	System.out.println("线程运行");
+    } 
+}
+
+public class a {
+	public static void main(String[] args) {
+		MyRunnable mr = new MyRunnable();
+		new Thread(mr).start();
+		}
+	}
+------------------------------------------------------
+线程 改写Thread run()
+
+class MyThread extends Thread {    
+    @Override
+    public void run() {
+     System.out.println("线程运行");
+    }
+}
+
+public class TheadDemo {
+    public  static void main(String[] args) {      
+     new MyThread().start();
+    }
+}
+---------------------------------------------------
+线程 另类改写Thread run()
+
+public class a {
+	public static void main(String[] args) {		
+		ThreadDemo T1=new ThreadDemo();
+		Thread t = new Thread (T1, "zbcthread");
+		//Thread(Runnable对象，名字),
+		//然后Thread对象运行内部start()函数，
+		//start()函数调用Runnable对象的run()函数
+        t.start (); 
+		}
+}
+
+class ThreadDemo extends Thread { 	   
+	public void run() {	    
+	            System.out.println("让线程跑一会");          
+	         }
+}
+
+
+----------------------------------------------------
+线程 Callable FutureTask 网上粘贴
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
+ 
+class MyThread implements Callable<String>{	// 线程的主体类
+ 
+	@Override
+	public String call() throws Exception {	// 多线程要执行的功能应该在run()方法中进行定义
+		for(int i = 0; i < 10; i++) {
+			System.out.println("卖票，ticket = " + i);
+		}
+		return "线程执行完毕";
+	}
+}
+ 
+public class Main {
+ 
+	public static void main(String[] args) throws Exception {
+		FutureTask<String> task = new FutureTask<>(new MyThread());
+		new Thread(task).start();
+		System.out.println("[线程返回数据]:  " + task.get());
+		
+	}
+}
+
+----------------------------------------------------------------------------
+锁
+synchronized

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+<!-- Latest compiled and minified Locales -->
+<script
+	src="https://unpkg.com/bootstrap-table@1.15.3/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+	
+	
+	
+</head>
+<body>
+	
+	<h1>ModelAndView</h1>
+	<p><a href="Void/some.do">发起请求</a></p>
+
+	<div>
+		<table id="BTtable"></table>
+	</div>
+
+
+
+
+<script>
+	$('#BTtable').bootstrapTable({
+		url:"http://localhost:8080/zbc/Void/some.do",
+		columns:[
+			{title:"ID",field:"a1"},
+			{title:"name",field:"a2"}	
+		],
+		
+	    sortName: 'a2',
+	    sortOrder: 'desc',
+	})
+		
+</script>
+
+
+
+
+
+</body>
+</html>

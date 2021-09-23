@@ -1,0 +1,90 @@
+int[] a1= new int[]{1,2,3};
+int[] a1= {1,2,3};
+int a2[]= {2,4,5};
+
+ArrayList  list = new ArrayList<Integer>();
+ArrayList<Integer>  list = new ArrayList();
+
+
+
+-----------------------------------------------------
+public class aaa1 {
+	public static void main(String[] args) {
+		b b1=new b();
+		b1.getx();
+	}
+}
+
+class a{
+	int x=1;
+	void getx(){
+		System.out.println(this.x);
+	}
+}
+
+class b extends a{
+	int x=2;
+}
+-----                  -------------                      -------------------
+public class a 
+{
+	public static void main(String[] args) 
+	{
+	b b1=new b(3);
+	b1.getx();
+	}
+}
+
+class c
+{
+	int x=1;
+	
+	c(int y){
+		this.x=y;
+	}
+
+	void getx() 
+	{
+		System.out.println(x);
+	}
+}
+
+class b extends c
+{
+	int x=2;
+	b(int y){
+		super(y);
+	}
+
+}
+-----          --------         --------            ---             -------
+
+class a{
+	int x=10;
+	void f() {
+		x=x+1;
+		System.out.println(x);
+	}
+	
+}
+
+class b extends a{
+	
+	void g() {		
+		x=x+2;
+		System.out.println(x);
+		System.out.println(super.x);
+	}
+	
+}
+
+public class aaa111{
+	public static void main(String [] args)
+	   {
+		b b1=new b();
+		b1.g();
+		b1.f();
+	   }	
+}
+---------------------------------------------------------------
+通过Fu x=new Zi()创建对象，如何取到Zi类中的属性？

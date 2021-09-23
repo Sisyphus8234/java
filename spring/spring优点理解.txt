@@ -1,0 +1,11 @@
+一个调用对象，比如control层，要调用其他对象，因此有属性是其他被调用对象（比如dao层）
+------------------------------
+在没有spring时，采用
+private UserDao userdao=new UserMybatisDao();
+UserDao是接口，UserMybatisDao是实现类。
+如果业务变化UserMybatisDao变化，类名也变，那么代码new UserMybatisDao()就需要修改
+-------------------------------
+使用spring后，
+@Autowired
+private UserDao userdao
+这么写，代码就不需要变化

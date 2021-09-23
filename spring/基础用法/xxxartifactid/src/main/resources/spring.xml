@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<!-- scope属性：作用域，常用取值可以是singleton或prototype， 默认是前者，表示“单例”，后者表示“非单例” -->
+	<!-- lazy-init属性：是否懒加载，取值可以使用布尔值，默认值为false -->
+	<!-- init-method属性：生命周期方法的初始化方法的名称 -->
+	<!-- destroy-method属性：生命周期方法的销毁方法的名称 -->
+	<bean id="car" class="xxxpackage.Car" scope="singleton"
+		lazy-init="true" init-method="init" destroy-method="destroy"></bean>
+
+
+	<bean id="userDaoFactory" class="xxxpackage.UserDaoFactory"></bean>
+	<bean id="userDao" class="xxxpackage.UserDao"
+		factory-bean="userDaoFactory" factory-method="newInstance"></bean>
+	<!-- 在配置时，需要先配置UserDaoFactory，使得Spring能创建出工厂类UserDaoFactory的对象，然后，在配置UserDao时，通过factory-bean以指定工厂： -->
+
+
+	<bean id="sampleBean" class="xxxpackage.SampleBean">
+
+		<property name="name" value="Frank"></property>
+		<!-- 通过set方式为属性注入值 spring自动把"name"首字母大写，并拼接"set" -->
+
+		<property name="skills">
+			<list>
+				<value>JavaSE</value>
+				<value>MySQL</value>
+				<value>Spring</value>
+			</list>
+		</property>
+
+		<property name="cities">
+			<set>
+				<value>Beijing</value>
+				<value>Shanghai</value>
+				<value>Guangzhou</value>
+				<value>Hangzhou</value>
+				<value>Shenzhen</value>
+			</set>
+		</property>
+
+		<property name="numbers">
+			<array>
+				<value>9</value>
+				<value>5</value>
+				<value>2</value>
+				<value>7</value>
+			</array>
+		</property>
+
+		<!-- ref属性：当属性的值是另一个Bean时，使用ref属性来配置，取值就是那个Bean的id -->
+		<property name="conf3" ref="conf2"></property>
+
+	</bean>
+
+	<!-- util:properties节点：专门用于读取.properties配置文件的，其本身相当于一个bean节点，被加载后，就是一个Properties对象 -->
+	<!-- location属性：需要读取的配置文件的位置 -->
+	<util:properties id="conf2"
+		location="classpath:conf1.properties"></util:properties>
+
+	<!-- 通过构造方法注入属性值 -->
+	<bean id="user" class="xxxpackage.User">
+		<!-- constructor-arg节点：配置构造方法中的参数 -->
+		<!-- index属性：当前配置的是构造方法中的第几个参数 -->
+		<constructor-arg index="0" value="Kate"></constructor-arg>
+		<constructor-arg index="1" value="Shanghai"></constructor-arg>
+		<constructor-arg index="2" value="26"></constructor-arg>
+	</bean>
+
+	<!-- Spring 表达式 -->
+	<!-- 当需要注入值时，可以通过Spring表达式获取另一个Bean中的某个属性的值 -->
+	<bean id="sampleBean1" class="xxxpackage.SampleBean1">
+		<property name="name" value="#{sampleBean.name}"></property>
+		<!-- ？？？value="#{sampleBean.name}"中，如果name属性是private，则要有getName方法；若为public，不需getName方法 -->
+	</bean>
+
+
+
+
+</beans>

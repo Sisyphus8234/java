@@ -1,0 +1,11 @@
+修改conf文件夹下的logging.properties文件,将控制台输出的编码修改为GBK：
+
+java.util.logging.ConsoleHandler.level = FINE
+java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
+java.util.logging.ConsoleHandler.encoding = GBK
+
+
+
+bin目录下
+启动 start.bat(或者不加.bat)
+关闭 shutdown.bat(或者不加.bat）

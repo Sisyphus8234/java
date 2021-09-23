@@ -1,0 +1,16 @@
+1.xxx类.class文件中不加package关键字，在当前.java文件的目录，可以 输入javac xxx类.java 编译，输入 java xxx类 运行
+
+2.xxx类.class文件中加package xxx包; ，在当前.java文件的目录，可以 输入javac xxx类.java 编译，不能运行
+必须要把xxx类.class文件放入xxx包（文件夹）中，在xxx包所在目录，输入 java xxx包.xxx类 运行
+
+
+第2种情况，也可以《在java文件目录》输入javac -d . xxx类.java 编译(自动创建包目录）
+
+编译时可以附加：
+-encoding UTF-8
+
+-classpath ".;E:\cp\lib\*"
+cmd 运行编译好的class文件时，java -classpath "xxx" xxx类，-classpath要放在这个位置
+
+运行jar
+java -cp .;xxx.jar xxx主类
