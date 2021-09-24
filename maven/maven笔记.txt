@@ -58,7 +58,7 @@ mvn source:jar 打包源代码
 
 Maven命令行运行java
 mvn clean compile   先编译代码
-mvn exec:java -Dexec.mainClass="com.wushi.MainClass"    通过exec指令执行mainClass
+mvn exec:java -Dexec.mainClass="com.wushi.MainClass"    通过exec指令执行mainClass ?在子模块下?
 #需要传递参数的话，通过-D指令
 mvn exec:java -Dexec.mainClass="com.wushi.MainClass" -Dexec.args="arg0 arg1 arg2"
 #需要传递classpath的运行时依赖
