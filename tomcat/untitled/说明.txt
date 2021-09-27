@@ -1,0 +1,5 @@
+1.classes文件夹放class文件
+2.把WEB-INF上一级文件夹（web）放到tomcat的webapps文件夹
+3.启动tomcat后，WEB-INF上一级文件夹就是项目名，http://127.0.0.1:8080/ 加项目名访问
+
+不需要改tomcat配置
