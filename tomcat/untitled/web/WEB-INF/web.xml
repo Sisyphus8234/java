@@ -11,6 +11,6 @@
     
     <servlet-mapping>
         <servlet-name>xxxname</servlet-name>
-        <url-pattern>/xxxurl</url-pattern> <!--前面必须带/斜杠-->
+        <url-pattern>/x</url-pattern> <!--前面必须带/斜杠-->
     </servlet-mapping>
 </web-app>
