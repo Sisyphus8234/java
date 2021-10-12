@@ -68,15 +68,42 @@
 
 
     <!--改变编译路径-->
+    <!--    <build>-->
+    <!--        <sourceDirectory>src/main/java</sourceDirectory>-->
+    <!--        <resources>-->
+    <!--            <resource>-->
+    <!--                <directory>src/main/resources</directory>-->
+    <!--            </resource>-->
+    <!--        </resources>-->
+    <!--        <outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>-->
+    <!--        <testOutputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</testOutputDirectory>-->
+    <!--    </build>-->
+
+    <!--mvn package时，依赖一起打包到lib文件夹-->
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-        <outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
-        <testOutputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</testOutputDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
+
 
 </project>
