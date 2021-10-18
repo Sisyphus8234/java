@@ -14,3 +14,10 @@ cmd 运行编译好的class文件时，java -classpath "xxx" xxx类，-classpath
 
 运行jar
 java -cp .;xxx.jar xxx主类
+
+
+解包
+jar xf xxx.jar
+
+打包多个
+jar cf xxx生成的包.jar xxx包1 xxx包2 xxx包3
