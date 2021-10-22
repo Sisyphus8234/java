@@ -21,3 +21,6 @@ jar xf xxx.jar
 
 打包多个
 jar cf xxx生成的包.jar xxx包1 xxx包2 xxx包3
+
+打包指定MANIFEST.MF
+jar cfm MANIFEST.MF xxx.jar *.class
