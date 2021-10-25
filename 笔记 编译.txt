@@ -22,5 +22,10 @@ jar xf xxx.jar
 打包多个
 jar cf xxx生成的包.jar xxx包1 xxx包2 xxx包3
 
-打包指定MANIFEST.MF
-jar cfm MANIFEST.MF xxx.jar *.class
+打包时指定MANIFEST.MF
+jar cfm xxx.jar MANIFEST.MF *.class
+
+MANIFEST.MF文件内容(最后一行要加回车)
+Main-Class: Mainclass
+Class-Path: jna-platform-5.9.0.jar jna-5.9.0.jar
+
