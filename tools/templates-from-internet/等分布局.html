@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 1000px;
+				border: 1px solid red;
+				height: 400px;
+				margin: 0 auto;
+				overflow: hidden;
+
+			}
+			.wrapper{
+				margin-right: -20px;
+				border: 1px solid black;
+				height: 400px;
+			}
+			.wrapper>div{
+				width: calc(25% - 20px);
+				background-color: pink;
+				height: 100%;
+				float: left;
+				margin-right: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="wrapper">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</body>
+</html>
