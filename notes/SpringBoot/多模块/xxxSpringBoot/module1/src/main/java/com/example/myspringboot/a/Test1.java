@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
-import comb.test2;
+import comb.testmodule2;
 
 @Controller
 public class Test1 {
     @RequestMapping(value = "/string")
     @ResponseBody
     public String string(){
-        return new test2().f();
+        return new testmodule2().f();
     }
 
     @RequestMapping(value = "/map")
@@ -25,6 +25,12 @@ public class Test1 {
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("a","xxxxxxx");
         return map;
+    }
+
+    @RequestMapping(value = "/string2")
+
+    public String string2(){
+        return "test";
     }
 
 

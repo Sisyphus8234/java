@@ -24,7 +24,7 @@ public class UserController {
      * @param password
      * @return
      */
-    @RequestMapping("login")
+    @RequestMapping("loginurl")
     public String login(String username, String password) {
 
         Subject subject = SecurityUtils.getSubject();
@@ -39,7 +39,7 @@ public class UserController {
             e.printStackTrace();
             System.out.println("密码错误!");
         }
-        return "redirect:/login.html";
+        return "login";
     }
 
 
