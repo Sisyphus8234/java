@@ -8,12 +8,36 @@
 <h1>用户登录</h1>
 
 
-<form action="/bbb/user/loginurl" method="post">
+<form id="form1" action="" name="user/loginurl" method="post">
     用户名:<input type="text" name="username" > <br/>
     密码  : <input type="text" name="password"> <br>
 
     <input type="submit" value="登录">
 </form>
+
+<script>
+    var path1=window.document.location.href;
+    console.log(path1);
+    // http://127.0.0.1:11111/project/xxx
+
+    var path2=window.document.location.pathname;
+    console.log(path2);
+    // /project/xxx
+
+    var pos=path1.indexOf(path2);
+    var path3=path1.substring(0,pos);
+    console.log(path3);
+    // http://127.0.0.1:11111
+
+    var project_name = path2.split("/")[1];
+    console.log(project_name);
+    // project
+
+    var form1=document.getElementById("form1");
+
+    form1.action=path3+"/"+project_name+"/"+form1.name;
+
+</script>
 
 </body>
 </html>
