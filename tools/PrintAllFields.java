@@ -35,11 +35,11 @@ public class PrintAllFields {
         for (Field field : fields) {
             field.setAccessible(true);
             try {
-
-                if(field.get(obj).getClass().isArray() == true){
-                    System.out.println(name + "===>" + field.getName() + ":" +Arrays.toString((Object[]) field.get(obj)));
-                    continue;
-                }
+                //新增field.get(obj)!=null，不知道有没有问题
+//                if(field.get(obj)!=null && field.get(obj).getClass().isArray() == true){
+//                    System.out.println(name + "===>" + field.getName() + ":" +Arrays.toString((Object[]) field.get(obj)));
+//                    continue;
+//                }
 
                 System.out.println(name + "===>" + field.getName() + ":" + field.get(obj));
 
