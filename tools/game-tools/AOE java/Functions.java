@@ -1,36 +1,25 @@
-import java.awt.AWTException;
-import java.awt.MouseInfo;
-import java.awt.Robot;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Functions {
 	
 	public static Robot robot;
-	static {		
+	static {
+
+		System.out.println("Functions类加载");
+
 		try {
 			robot=new Robot();
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("Robot创建完成");
 	}
-	
-	public static void run(String s) {
-		
-		switch(s) {
-		
-		case "AOE":
-			AOE();
-			break;	
-
-			}
-	
-		}
-	
 
 
-	
+	@ListenMouseKeyboard(value=192,immediately=true)
 	public static void AOE(){
 		try {
 			Thread.sleep(60);
@@ -38,21 +27,18 @@ public class Functions {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		int x =MouseInfo.getPointerInfo().getLocation().x;
+
+		int x = MouseInfo.getPointerInfo().getLocation().x;
 		int y =MouseInfo.getPointerInfo().getLocation().y;
-		
+
 		robot.mouseMove(281, 641);
-		
+
 		robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 		robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-		
+
 		robot.mouseMove(x, y);
 
-		}
-	
-	
-	
+	}
 
 
 }

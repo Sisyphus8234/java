@@ -33,24 +33,16 @@ public class KeyboardHook {
 
 				if (nCode==0 & wParam.intValue()==256) {
 					
-					if(info.flags==16) {System.out.print("这是由系统按下的");}
-					System.out.println(info.vkCode);
-					
-					switch(info.vkCode){
-					
-					
-					
-					case 192:
-						
-						Mainclass.task("AOE",true);
-						
-						break;
-						
+					if(info.flags==16) {System.out.print("(由程序按下的)");}
+					System.out.println("键盘键"+info.vkCode);
+
+
+					if(Controller.map1.containsKey(info.vkCode) && info.flags!=16){
+						Controller.task(Controller.map1.get(info.vkCode));
 					}
-					
-					
-					
 				}
+
+
 				Pointer ptr = info.getPointer();
 				long peer = Pointer.nativeValue(ptr);
 				return lib.CallNextHookEx(hhk, nCode, wParam, new LPARAM(peer));
