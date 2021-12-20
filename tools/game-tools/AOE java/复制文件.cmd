@@ -7,14 +7,12 @@ rmdir /s/q out
 mkdir out
 
 :: /e复制目录和子目录，包括空的 /y强制复制
-xcopy /e/y ..\..\M_K_listener\src\main\java out
+xcopy /e/y ..\..\M_K_listener\src\main\java out\
 
-xcopy /y Functions.java out
+xcopy /y Functions.java out\
 
-mkdir lib out
 xcopy /e lib out\lib\
 
-mkdir META-INF
 xcopy /e META-INF\ out\META-INF\
 
-xcopy 编译打包运行.bat out
+xcopy 编译打包运行.bat out\
