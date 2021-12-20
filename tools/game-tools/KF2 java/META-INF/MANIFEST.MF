@@ -1,2 +1,0 @@
-Main-Class: MainClass
-Class-Path: lib\jna-platform-5.9.0.jar lib\jna-5.9.0.jar

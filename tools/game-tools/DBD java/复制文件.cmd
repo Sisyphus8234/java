@@ -10,9 +10,3 @@ mkdir out
 xcopy /e/y ..\..\M_K_listener\src\main\java out\
 
 xcopy /y Functions.java out\
-
-xcopy /e lib out\lib\
-
-xcopy /e META-INF\ out\META-INF\
-
-xcopy 编译打包运行.bat out\
