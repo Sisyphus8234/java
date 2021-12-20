@@ -63,7 +63,24 @@ public class Controller {
 				u111.immediately = k111.immediately();
 				map1.put(k111.value(), u111);
 			}
+
+			//处理重复注解
+			if (method.isAnnotationPresent(ListenMouseKeyboards.class)) {
+				method.setAccessible(true);
+				ListenMouseKeyboards ks111 = method.getAnnotation(ListenMouseKeyboards.class);
+
+				for(ListenMouseKeyboard k111 : ks111.value()){
+					System.out.println("已扫描方法"+method.getName());
+					Utiliy u111 = new Utiliy();
+					u111.method1 = method;
+					u111.immediately = k111.immediately();
+					map1.put(k111.value(), u111);
+				}
+
+
+			}
 		}
+		System.out.println(map1);
 	}
 	
 		
