@@ -47,39 +47,29 @@ public class Functions {
 
 
 	@ListenMouseKeyboard(value=50,immediately=true)
-	private static void KF21() {
+	private static void KF2_1() {
 		// TODO Auto-generated method stub
 		handgan =true;
-
-
 	}
 
+	@ListenMouseKeyboard(value=69,immediately=true)
 	@ListenMouseKeyboard(value=81,immediately=true)
-	private static void KF22() {
+	private static void KF2_2() {
 		// TODO Auto-generated method stub
 		handgan =false;
 		leftbuttom =false;
 	}
 
-	@ListenMouseKeyboard(value=69,immediately=true)
-	private static void KF22_1() {
-		// TODO Auto-generated method stub
-		KF22();
-	}
-
-
 	@ListenMouseKeyboard(value=513,immediately=true)
-	private static void KF23() {
+	private static void KF2_3() {
 		// TODO Auto-generated method stub
 		leftbuttom =true;
-
 	}
 
 	@ListenMouseKeyboard(value=514,immediately=true)
-	private static void KF24() {
+	private static void KF2_4() {
 		// TODO Auto-generated method stub
 		leftbuttom =false;
-
 	}
 
 
