@@ -2,7 +2,7 @@ CLASSPATH
 .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
 
 JAVA_HOME
-D:\Java\jdk1.8.0_301
+D:\Java\jdk1.8.0_311
 
 Path添加
 %JAVA_HOME%\bin
