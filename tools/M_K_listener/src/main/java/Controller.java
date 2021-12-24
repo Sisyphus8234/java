@@ -13,7 +13,7 @@ public class Controller {
 	
 	static void setJFrame() {
 		// 窗口界面
-		JFrame jframe = new JFrame("M_K_listener");
+		JFrame jframe = new JFrame();
 		jframe.setSize(300, 200);
 		jframe.setLocationRelativeTo(null);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
