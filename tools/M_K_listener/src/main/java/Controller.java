@@ -8,32 +8,33 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Controller {
+
 	
-	
-	
-	
-	static void setJframe() { 
+	static void setJFrame() {
 		// 窗口界面
 		JFrame jframe = new JFrame("M_K_listener");
 		jframe.setSize(300, 200);
-		jframe.setLocation(550, 250);
+		jframe.setLocationRelativeTo(null);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JLabel field = new JLabel();
-		field.setBounds(30, 20, 400, 100);
-		field.setText("后台监听鼠标键盘已开启");
 		jframe.setLayout(null);
-		JButton button = new JButton("关闭");
-		jframe.add(field);
-		jframe.add(button);
-		button.setBounds(60, 120, 150, 30);
-		button.addActionListener(new ActionListener() {
+		jframe.setResizable(false);
+		jframe.setVisible(true);
+
+		JLabel jlabel = new JLabel("后台监听鼠标键盘已开启",JLabel.CENTER);
+		jlabel.setSize(200,75);
+		jlabel.setLocation((jframe.getContentPane().getSize().width - jlabel.getSize().width) / 2,0);
+		jframe.add(jlabel);
+
+		JButton jbutton = new JButton("关闭");
+		jbutton.setSize(150,70);
+		jbutton.setLocation((jframe.getContentPane().getSize().width-jbutton.getSize().width)/2, 70);
+		jbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		jframe.setLayout(null);
-		jframe.setResizable(true);
-		jframe.setVisible(true);
+		jframe.add(jbutton);
+
 	}
 
 	public static Map<Integer, Utiliy> map1=new HashMap<Integer,Utiliy>();
@@ -103,7 +104,7 @@ public class Controller {
 	
 	public Controller(Class class1) {
 		
-		setJframe();
+		setJFrame();
 
 		scanFunctions(class1);
 
