@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 public class Functions {
 	
 	public static Robot robot;
-	public static boolean handgan =false;
+	public static boolean handgan_knife =false;
 	public static boolean leftbuttom =false;
 
 	static {
@@ -32,7 +32,7 @@ public class Functions {
 						e.printStackTrace();
 					}
 
-					if(handgan&&leftbuttom){
+					if(handgan_knife &&leftbuttom){
 
 						System.out.println("连点");
 						robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
@@ -45,21 +45,21 @@ public class Functions {
 	}
 
 
-
+	@ListenMouseKeyboard(value=69,immediately=true)
 	@ListenMouseKeyboard(value=50,immediately=true)
 	private static void KF2_1() {
 		// TODO Auto-generated method stub
-		handgan =true;
+		handgan_knife =true;
 	}
 
-	@ListenMouseKeyboard(value=69,immediately=true)
 	@ListenMouseKeyboard(value=81,immediately=true)
 	private static void KF2_2() {
 		// TODO Auto-generated method stub
-		handgan =false;
+		handgan_knife =false;
 		leftbuttom =false;
 	}
 
+	@ListenMouseKeyboard(value=69,immediately=true)
 	@ListenMouseKeyboard(value=513,immediately=true)
 	private static void KF2_3() {
 		// TODO Auto-generated method stub
