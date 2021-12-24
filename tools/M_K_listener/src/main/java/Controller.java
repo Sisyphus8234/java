@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
@@ -27,6 +28,7 @@ public class Controller {
 
 		JButton jbutton = new JButton("关闭");
 		jbutton.setSize(150,70);
+		jbutton.setBackground(Color.white);
 		jbutton.setLocation((jframe.getContentPane().getSize().width-jbutton.getSize().width)/2, 70);
 		jbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
