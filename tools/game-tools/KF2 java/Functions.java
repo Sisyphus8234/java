@@ -50,20 +50,24 @@ public class Functions {
 	private static void KF2_1() {
 		// TODO Auto-generated method stub
 		handgan_knife =true;
+		System.out.println("-------------------------------------------------------handgan_knife =true");
 	}
 
 	@ListenMouseKeyboard(value=81,immediately=true)
+	@ListenMouseKeyboard(value=27,immediately=true)
 	private static void KF2_2() {
 		// TODO Auto-generated method stub
 		handgan_knife =false;
 		leftbuttom =false;
 	}
 
+
 	@ListenMouseKeyboard(value=69,immediately=true)
 	@ListenMouseKeyboard(value=513,immediately=true)
 	private static void KF2_3() {
 		// TODO Auto-generated method stub
 		leftbuttom =true;
+		System.out.println("-------------------------------------------------------leftbuttom =true");
 	}
 
 	@ListenMouseKeyboard(value=514,immediately=true)
@@ -71,10 +75,6 @@ public class Functions {
 		// TODO Auto-generated method stub
 		leftbuttom =false;
 	}
-
-
-
-
 
 
 }
