@@ -3,7 +3,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 
-@Repeatable(ListenMouseKeyboards.class)
+@Repeatable(value = ListenMouseKeyboards.class)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ListenMouseKeyboard {
 	
