@@ -44,7 +44,6 @@ public class Functions {
 			}}.start();
 	}
 
-
 	@ListenMouseKeyboard(value=69,immediately=true)
 	@ListenMouseKeyboard(value=50,immediately=true)
 	private static void KF2_1() {
@@ -61,8 +60,6 @@ public class Functions {
 		leftbuttom =false;
 	}
 
-
-	@ListenMouseKeyboard(value=69,immediately=true)
 	@ListenMouseKeyboard(value=513,immediately=true)
 	private static void KF2_3() {
 		// TODO Auto-generated method stub
@@ -75,6 +72,5 @@ public class Functions {
 		// TODO Auto-generated method stub
 		leftbuttom =false;
 	}
-
 
 }
