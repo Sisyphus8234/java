@@ -1,0 +1,11 @@
+找到tomcat  conf目录下的server.xml，在host节点中加入如下配置，如下：
+
+<Host ....>
+    ....
+    <!--加入下面这句话-->      
+    <Context docBase="myweb" path="/test" debug="0"  reloadable="true"/>   
+</Host>
+
+docbase是web应用和本地路径，path是tomcat访问这个应用的URL路径
+
+?注意：如果path="/test"，而html页面里，静态资源路径前面没有/test，静态资源会报404错误
