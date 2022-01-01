@@ -33,12 +33,12 @@ public class MouseHook {
 			public LRESULT callback(int nCode, WPARAM wParam, MSLLHOOKSTRUCT info) {
 
 				
-				if(nCode==0 & wParam.intValue()!=512 & wParam.intValue()!=522) {
+				if(nCode==0 & wParam.intValue()!=512) {
 					if(info.flags==1) {System.out.print("(由程序按下的)");}
 					System.out.println("鼠标键"+wParam);
 
-				if(Controller.map1.containsKey(wParam.intValue()) && info.flags!=1){
-					Controller.task(Controller.map1.get(wParam.intValue()));
+				if(Controller.map1.containsKey(wParam.intValue()+"_") && info.flags!=1){
+					Controller.task(Controller.map1.get(wParam.intValue()+"_"));
 				}
 				}
 

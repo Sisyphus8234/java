@@ -9,7 +9,8 @@ public @interface ListenMouseKeyboard {
 	
 	
 	int value();
-	boolean immediately();
+	boolean immediately() default true;
+	String wParam_intValue() default "";
 	
 }
 

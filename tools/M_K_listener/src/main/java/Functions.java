@@ -38,7 +38,7 @@ public class Functions {
 
 
 	//按下键盘空格键触发
-	@ListenMouseKeyboard(value=32,immediately=true)
+	@ListenMouseKeyboard(value=32,wParam_intValue = "256",immediately=true)
 	private static void sample2() {
 		// TODO Auto-generated method stub
 		System.out.println("程序模拟鼠标右键一次");

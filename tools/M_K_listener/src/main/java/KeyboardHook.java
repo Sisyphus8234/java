@@ -31,14 +31,16 @@ public class KeyboardHook {
 			public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {
 
 
-				if (nCode==0 & wParam.intValue()==256) {
+				if (nCode==0) {
 					
 					if(info.flags==16) {System.out.print("(由程序按下的)");}
 					System.out.println("键盘键"+info.vkCode);
 
-
-					if(Controller.map1.containsKey(info.vkCode) && info.flags!=16){
-						Controller.task(Controller.map1.get(info.vkCode));
+					if(Controller.map1.containsKey(info.vkCode+"_") && info.flags!=16){
+						Controller.task(Controller.map1.get(info.vkCode+"_"));
+					}
+					else if(Controller.map1.containsKey(info.vkCode+"_"+wParam.intValue()) && info.flags!=16){
+						Controller.task(Controller.map1.get(info.vkCode+"_"+wParam.intValue()));
 					}
 				}
 

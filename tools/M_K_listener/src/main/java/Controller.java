@@ -39,7 +39,7 @@ public class Controller {
 
 	}
 
-	public static Map<Integer, Utiliy> map1=new HashMap<Integer,Utiliy>();
+	public static Map<String, Utiliy> map1=new HashMap<String,Utiliy>();
 
 	public static void scanFunctions(Class class1) {
 
@@ -64,7 +64,7 @@ public class Controller {
 				Utiliy u111 = new Utiliy();
 				u111.method1 = method;
 				u111.immediately = k111.immediately();
-				map1.put(k111.value(), u111);
+				map1.put(k111.value()+"_"+k111.wParam_intValue(), u111);
 			}
 
 			//处理重复注解
@@ -77,7 +77,7 @@ public class Controller {
 					Utiliy u111 = new Utiliy();
 					u111.method1 = method;
 					u111.immediately = k111.immediately();
-					map1.put(k111.value(), u111);
+					map1.put(k111.value()+"_"+k111.wParam_intValue(), u111);
 				}
 
 
