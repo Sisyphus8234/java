@@ -1,12 +1,16 @@
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
 
 public class Functions {
 	
 	public static Robot robot;
 	public static boolean handgan_knife =false;
 	public static boolean leftbuttom =false;
+
+	public static boolean w_pressed = false;
+	public static boolean autorun=false;
 
 	static {
 
@@ -72,5 +76,45 @@ public class Functions {
 		// TODO Auto-generated method stub
 		leftbuttom =false;
 	}
+
+	@ListenMouseKeyboard(value=162,wParam_intValue = "256",immediately=true)
+	private static void KF2_5() {
+		robot.keyRelease(KeyEvent.VK_SHIFT);
+		robot.keyPress(KeyEvent.VK_SHIFT);
+	}
+
+
+//	@ListenMouseKeyboard(value=87,wParam_intValue = "256",immediately=true)
+//	private static void KF2_5() {
+//		// TODO Auto-generated method stub
+//		w_pressed =true;
+//
+//	}
+//
+//	@ListenMouseKeyboard(value=87,wParam_intValue = "257",immediately=true)
+//	private static void KF2_6() {
+//		// TODO Auto-generated method stub
+//		if(autorun ==true){
+//			robot.keyRelease(KeyEvent.VK_SHIFT);
+//			autorun =false;
+//		}
+//		w_pressed =false;
+//
+//	}
+//
+//	@ListenMouseKeyboard(value=160,wParam_intValue = "257",immediately=true)
+//	private static void KF2_7() {
+//		// TODO Auto-generated method stub
+//		if(w_pressed ==true && autorun ==false){
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			robot.keyPress(KeyEvent.VK_SHIFT);
+//			autorun=true;
+//		}
+//	}
+
 
 }
