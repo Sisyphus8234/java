@@ -37,7 +37,7 @@ public class MouseHook {
 					if(info.flags==1) {System.out.print("(由程序执行的)");}
 					System.out.println("鼠标键"+wParam);
 
-				if(Controller.map1.containsKey(wParam.intValue()+"_") && info.flags!=1){
+				if(Controller.map1.containsKey(wParam.intValue()+"_256") && info.flags!=1){
 					Controller.task(Controller.map1.get(wParam.intValue()+"_256"));
 				}
 				}
