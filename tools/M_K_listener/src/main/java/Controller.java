@@ -55,6 +55,10 @@ public class Controller {
 			System.out.println("创建Functions实例对象失败");
 			System.exit(0);
 		}
+
+		Map<Boolean,String> map2=new HashMap<Boolean,String>();
+		map2.put(true,"256");
+		map2.put(false,"257");
 		for (Method method : methods) {
 			if (method.isAnnotationPresent(ListenMouseKeyboard.class)) {
 				method.setAccessible(true);
@@ -64,7 +68,7 @@ public class Controller {
 				Utiliy u111 = new Utiliy();
 				u111.method1 = method;
 				u111.immediately = k111.immediately();
-				map1.put(k111.value()+"_"+k111.wParam_intValue(), u111);
+				map1.put(k111.value()+"_"+map2.get(k111.pressed()), u111);
 			}
 
 			//处理重复注解
@@ -77,7 +81,7 @@ public class Controller {
 					Utiliy u111 = new Utiliy();
 					u111.method1 = method;
 					u111.immediately = k111.immediately();
-					map1.put(k111.value()+"_"+k111.wParam_intValue(), u111);
+					map1.put(k111.value()+"_"+map2.get(k111.pressed()), u111);
 				}
 
 

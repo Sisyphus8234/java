@@ -77,14 +77,14 @@ public class Functions {
 		leftbuttom =false;
 	}
 
-	@ListenMouseKeyboard(value=49,wParam_intValue = "256",immediately=true)
-	@ListenMouseKeyboard(value=162,wParam_intValue = "256",immediately=true)
+	@ListenMouseKeyboard(value=49,pressed = true,immediately=true)
+	@ListenMouseKeyboard(value=162,pressed = true,immediately=true)
 	private static void KF2_5() {
 		robot.keyRelease(KeyEvent.VK_SHIFT);
 		robot.keyPress(KeyEvent.VK_SHIFT);
 	}
 
-	@ListenMouseKeyboard(value=160,wParam_intValue = "256",immediately=true)
+	@ListenMouseKeyboard(value=160,pressed = true,immediately=true)
 	private static void KF2_6() {
 		robot.keyRelease(KeyEvent.VK_SHIFT);
 		robot.keyPress(KeyEvent.VK_SHIFT);

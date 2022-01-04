@@ -10,7 +10,7 @@ public @interface ListenMouseKeyboard {
 	
 	int value();
 	boolean immediately() default true;
-	String wParam_intValue() default "256";
+	boolean pressed() default true;
 	
 }
 
