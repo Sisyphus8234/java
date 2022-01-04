@@ -33,7 +33,7 @@ public class KeyboardHook {
 
 				if (nCode==0) {
 					
-					if(info.flags==16 || info.flags==144) {System.out.print("(由程序按下的)");}
+					if(info.flags==16 || info.flags==144) {System.out.print("(由程序执行的)");}
 					System.out.println("键盘键"+info.vkCode);
 
 					if(Controller.map1.containsKey(info.vkCode+"_"+wParam.intValue()) && (info.flags!=16 && info.flags!=144)){
