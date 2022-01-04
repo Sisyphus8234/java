@@ -36,10 +36,7 @@ public class KeyboardHook {
 					if(info.flags==16 || info.flags==144) {System.out.print("(由程序按下的)");}
 					System.out.println("键盘键"+info.vkCode);
 
-					if(Controller.map1.containsKey(info.vkCode+"_") && (info.flags!=16 && info.flags!=144)){
-						Controller.task(Controller.map1.get(info.vkCode+"_"));
-					}
-					else if(Controller.map1.containsKey(info.vkCode+"_"+wParam.intValue()) && info.flags!=16){
+					if(Controller.map1.containsKey(info.vkCode+"_"+wParam.intValue()) && (info.flags!=16 && info.flags!=144)){
 						Controller.task(Controller.map1.get(info.vkCode+"_"+wParam.intValue()));
 					}
 				}
