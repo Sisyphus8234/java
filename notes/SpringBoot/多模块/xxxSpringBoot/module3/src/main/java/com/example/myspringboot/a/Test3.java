@@ -7,19 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
-import comb.test2;
-
 @Controller
-public class Test1 {
-    @RequestMapping(value = "/string")
-    @ResponseBody
-    public String string(){
-        return new test2().f();
-    }
+public class Test3 {
 
-    @RequestMapping(value = "/map")
+    @RequestMapping(value = "/map1")
     @ResponseBody
-    public Map<String,Object> map(){
+    public Map<String,Object> map1(){
         Map<String,Object> map=new HashMap<String, Object>();
         map.put("a","xxxxxxx");
         return map;

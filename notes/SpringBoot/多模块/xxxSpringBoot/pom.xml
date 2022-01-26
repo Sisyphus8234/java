@@ -6,7 +6,8 @@
     <modules>
         <module>module1</module>
         <module>module2</module>
-    </modules>
+		<module>module3</module>
+	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
