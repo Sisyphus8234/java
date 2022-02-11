@@ -9,9 +9,9 @@ public class aaa {
         byte[] b = new byte[1024];
         while ((is.read(b)) != -1) {
             fos.write(b);
-            fos.close();
         }
         is.close();
+        fos.close();
 
     }
 }
