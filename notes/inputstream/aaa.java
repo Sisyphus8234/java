@@ -6,7 +6,10 @@ public class aaa {
 
         InputStream is = new FileInputStream("a.txt");
         FileOutputStream fos = new FileOutputStream("b.txt");
-        byte[] b = new byte[1024];
+
+        byte[] b = new byte[is.available()];
+        System.out.println(is.available());
+
         while ((is.read(b)) != -1) {
             fos.write(b);
         }
