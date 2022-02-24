@@ -1,4 +1,6 @@
-public class aaadomain {
+package aaa;
+
+public class aaaDomain {
     public void setName(String name) {
         this.name = name;
     }
