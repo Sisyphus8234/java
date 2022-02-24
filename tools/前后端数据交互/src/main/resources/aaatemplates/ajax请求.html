@@ -9,6 +9,13 @@
 <body>
     <button id="btn1" type="button">ajax请求</button>
 
+    <form id="uploadForm" enctype="multipart/form-data">
+        文件:<input type="file" name="file" multiple="multiple"/><br>
+    </form>
+
+
+    <button id="btn2" type="button">发文件</button>
+
     <script th:src="@{/jquery-3.6.0.min.js}"></script>
 
     <script type="text/javascript">
@@ -17,6 +24,8 @@
         // function Object1(){
         //     this.name2 = "翠花";
         // }
+
+
 
         var data1=JSON.stringify({
                 "name": "小甜甜",
@@ -40,10 +49,32 @@
                         },
                     error:function () {
                         alert("error");                        
-                        } 
-                
+                        }
                 });
         	});
+
+            $("#btn2").click(function(){
+                var formData = new FormData($('#uploadForm')[0]);
+
+                $.ajax({
+                    url:"http://127.0.0.1:80/aaa/e",
+                    type:"POST",
+                    //必填
+                    contentType:false,
+                    processData:false,
+                    headers:{
+                    },
+                    data:formData,
+
+                    success:function(){
+                        alert("success");
+                    },
+                    error:function () {
+                        alert("error");
+                    }
+                });
+            });
+
         });
     </script>
 </body>
