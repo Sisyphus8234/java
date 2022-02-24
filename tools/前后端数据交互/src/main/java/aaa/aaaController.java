@@ -1,10 +1,7 @@
 package aaa;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 //RestController = Controller + ResponseBody
 @Controller
@@ -32,5 +29,13 @@ public class aaaController {
     public aaaDomain return_json() {
         System.out.println("-----------------------------------------return_json()");
         return new aaaDomain();
+    }
+
+    @ResponseBody
+    @RequestMapping("/d")
+    public String receive_json(@RequestBody aaaDomain aaaDomain1) {
+        System.out.println(aaaDomain1.getName());
+        System.out.println(aaaDomain1.getAaaDomain2().getName2());
+        return "success";
     }
 }

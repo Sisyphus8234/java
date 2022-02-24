@@ -12,17 +12,29 @@
     <script th:src="@{/jquery-3.6.0.min.js}"></script>
 
     <script type="text/javascript">
+        var list1=[1,2,3];
+        var dict1={"name2":"翠花"};
+        // function Object1(){
+        //     this.name2 = "翠花";
+        // }
+
+        var data1=JSON.stringify({
+                "name": "小甜甜",
+                "aaaDomain2":dict1,
+            });
+
         $(document).ready(function(){
         	$("#btn1").click(function(){
         		$.ajax({
-                    url:"http://127.0.0.1:8080/aaa/b",
-                    type:"GET",
+                    url:"http://127.0.0.1:80/aaa/d",
+                    type:"POST",
+                    contentType:"application/json",
+                    // contentType:"application/json;charset=UTF-8",
+                    // dataType : "json",
                     headers:{
-                        // aaa:"bbb",
-                        },
-                    data:{
-
                     },
+                    data:data1,
+
                     success:function(){
                         alert("success");
                         },
