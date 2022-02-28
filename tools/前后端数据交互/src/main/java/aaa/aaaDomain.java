@@ -14,11 +14,11 @@ public class aaaDomain {
         this.name = name;
     }
 
-    public aaa.aaaDomain2 getAaaDomain2() {
+    public aaaDomain2 getAaaDomain2() {
         return aaaDomain2;
     }
 
-    public void setAaaDomain2(aaa.aaaDomain2 aaaDomain2) {
+    public void setAaaDomain2(aaaDomain2 aaaDomain2) {
         this.aaaDomain2 = aaaDomain2;
     }
 }
