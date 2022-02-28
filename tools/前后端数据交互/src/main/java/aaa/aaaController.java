@@ -18,13 +18,13 @@ public class aaaController {
     @GetMapping("/a")
     public String return_html() {
         System.out.println("-----------------------------------------return_html()");
-        return "/ajax请求";
+        return "/aaa/ajax请求";
     }
 
     @GetMapping("/b")
     public String return_html2() {
         System.out.println("-----------------------------------------return_html2()");
-        return "/bbb";
+        return "/aaa/非js请求";
     }
 
     @ResponseBody
