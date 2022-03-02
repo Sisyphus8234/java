@@ -36,6 +36,7 @@ public class aaaController {
 
     @ResponseBody
     @RequestMapping("/d")
+    //对于@RequestBody，get请求不加，post请求加
     public String receive_json(@RequestBody aaaDomain aaaDomain1) {
         System.out.println(aaaDomain1.getName());
         System.out.println(aaaDomain1.getAaaDomain2().getName2());

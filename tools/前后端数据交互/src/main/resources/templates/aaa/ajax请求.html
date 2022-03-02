@@ -24,10 +24,14 @@
         // function Object1(){
         //     this.name2 = "翠花";
         // }
+
+        //post请求时，作为有效载荷，格式应为data='{"x":"x","x":[],"x":{}}'
         var data1=JSON.stringify({
             "name": "小甜甜",
             "aaaDomain2":dict1,
         })
+
+        //get请求时，作为查询字符串，格式应为data={"x":"x","x":"[]","x":"{}"}
         var data2=({
             "pageSize":"10",
             "pageNum":"1",
