@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dftx.sdwan.mapper.FiberLineMapper">
+    <resultMap id="BaseResultMap" type="com.dftx.sdwan.domain.FiberLine">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="map_id" jdbcType="INTEGER" property="mapId"/>
+        <result column="fiber_total" jdbcType="INTEGER" property="fiberTotal"/>
+        <result column="fiber_remain" jdbcType="INTEGER" property="fiberRemain"/>
+        <result column="fiber_length" jdbcType="DECIMAL" property="fiberLength"/>
+        <result column="lay_method" jdbcType="INTEGER" property="layMethod"/>
+        <result column="fiber_own" jdbcType="INTEGER" property="fiberOwn"/>
+        <result column="tube_own" jdbcType="INTEGER" property="tubeOwn"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="remaining_status" jdbcType="INTEGER" property="remainingStatus"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="del_flag" jdbcType="INTEGER" property="delFlag"/>
+    </resultMap>
+    
+    <resultMap type="com.dftx.sdwan.domain.vo.FiberLineVo" id="VoResultMap">
+    	<id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="map_id" jdbcType="INTEGER" property="mapId"/>
+        <result column="fiber_total" jdbcType="INTEGER" property="fiberTotal"/>
+        <result column="fiber_remain" jdbcType="INTEGER" property="fiberRemain"/>
+        <result column="fiber_length" jdbcType="DECIMAL" property="fiberLength"/>
+        <result column="lay_method" jdbcType="INTEGER" property="layMethod"/>
+        <result column="fiber_own" jdbcType="INTEGER" property="fiberOwn"/>
+        <result column="tube_own" jdbcType="INTEGER" property="tubeOwn"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="remaining_status" jdbcType="INTEGER" property="remainingStatus"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="del_flag" jdbcType="INTEGER" property="delFlag"/>
+        <collection property="fiberLinePoints" ofType="com.dftx.sdwan.domain.FiberLinePoint" >
+        	<id column="pid" jdbcType="INTEGER" property="id"/>
+	        <result column="pname" jdbcType="VARCHAR" property="name"/>
+	        <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+	        <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+	        <result column="sort" jdbcType="INTEGER" property="sort"/>
+	        <result column="line_id" jdbcType="INTEGER" property="lineId"/>
+	        <result column="station_id" jdbcType="INTEGER" property="stationId"/>
+	        <result column="pcreate_by" jdbcType="VARCHAR" property="createBy"/>
+	        <result column="pcreate_time" jdbcType="TIMESTAMP" property="createTime"/>
+	        <result column="pupdate_by" jdbcType="VARCHAR" property="updateBy"/>
+	        <result column="pupdate_time" jdbcType="TIMESTAMP" property="updateTime"/>
+	        <result column="pdel_flag" jdbcType="INTEGER" property="delFlag"/>
+        </collection>
+        <collection property="fiberAttachments" ofType="com.dftx.sdwan.domain.FiberAttachment">
+        	<id column="aid" jdbcType="INTEGER" property="id"/>
+	        <result column="aname" jdbcType="VARCHAR" property="name"/>
+	        <result column="belong_entity" jdbcType="INTEGER" property="belongEntity"/>
+	        <result column="related_id" jdbcType="INTEGER" property="relatedId"/>
+	        <result column="file_path" jdbcType="VARCHAR" property="filePath"/>
+	        <result column="file_type" jdbcType="VARCHAR" property="fileType"/>
+	        <result column="file_size" jdbcType="INTEGER" property="fileSize"/>
+	        <result column="acreate_by" jdbcType="VARCHAR" property="createBy"/>
+	        <result column="acreate_time" jdbcType="TIMESTAMP" property="createTime"/>
+	        <result column="aupdate_by" jdbcType="VARCHAR" property="updateBy"/>
+	        <result column="aupdate_time" jdbcType="TIMESTAMP" property="updateTime"/>
+	        <result column="adel_flag" jdbcType="INTEGER" property="delFlag"/>
+        </collection>
+    </resultMap>
+    
+    <resultMap type="com.dftx.sdwan.domain.vo.FiberLineVo" id="PagenationVoResultMap">
+    	<id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="map_id" jdbcType="INTEGER" property="mapId"/>
+        <result column="fiber_total" jdbcType="INTEGER" property="fiberTotal"/>
+        <result column="fiber_remain" jdbcType="INTEGER" property="fiberRemain"/>
+        <result column="fiber_length" jdbcType="DECIMAL" property="fiberLength"/>
+        <result column="lay_method" jdbcType="INTEGER" property="layMethod"/>
+        <result column="fiber_own" jdbcType="INTEGER" property="fiberOwn"/>
+        <result column="tube_own" jdbcType="INTEGER" property="tubeOwn"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="remaining_status" jdbcType="INTEGER" property="remainingStatus"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="del_flag" jdbcType="INTEGER" property="delFlag"/>
+
+<!--aaa-->
+        <association property="aaaDomain" javaType="com.dftx.sdwan.aaa.aaaDomain">
+            <result column="name" jdbcType="INTEGER" property="stringPath"/>
+        </association>
+
+        <collection property="fiberLinePoints" ofType="com.dftx.sdwan.domain.FiberLinePoint" column="id" select="com.dftx.sdwan.mapper.FiberLinePointMapper.selectBylineId">
+        	<id column="id" jdbcType="INTEGER" property="id"/>
+	        <result column="name" jdbcType="VARCHAR" property="name"/>
+	        <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+	        <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+	        <result column="sort" jdbcType="INTEGER" property="sort"/>
+	        <result column="line_id" jdbcType="INTEGER" property="lineId"/>
+	        <result column="station_id" jdbcType="INTEGER" property="stationId"/>
+	        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+	        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+	        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+	        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+	        <result column="del_flag" jdbcType="INTEGER" property="delFlag"/>
+        </collection>
+        <collection property="fiberAttachments" ofType="com.dftx.sdwan.domain.FiberAttachment" column="id" select="com.dftx.sdwan.mapper.FiberAttachmentMapper.selectLineAttachByLineId">
+        	<id column="id" jdbcType="INTEGER" property="id"/>
+	        <result column="name" jdbcType="VARCHAR" property="name"/>
+	        <result column="belong_entity" jdbcType="INTEGER" property="belongEntity"/>
+	        <result column="related_id" jdbcType="INTEGER" property="relatedId"/>
+	        <result column="file_path" jdbcType="VARCHAR" property="filePath"/>
+	        <result column="file_type" jdbcType="VARCHAR" property="fileType"/>
+	        <result column="file_size" jdbcType="INTEGER" property="fileSize"/>
+	        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+	        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+	        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+	        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+	        <result column="del_flag" jdbcType="INTEGER" property="delFlag"/>
+        </collection>
+<!--        aaa-->
+        <collection property="fiberStations" ofType="com.dftx.sdwan.domain.FiberStation" column="id" select="com.dftx.sdwan.mapper.FiberStationMapper.selectByLineId">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+            <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+            <result column="map_id" jdbcType="INTEGER" property="mapid"/>
+            <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+            <result column="del_flag" jdbcType="INTEGER" property="delFlag"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, map_id, fiber_total, fiber_remain, fiber_length, lay_method, fiber_own,
+    tube_own, remark, remaining_status, create_by, create_time, update_by, update_time,
+    del_flag
+    </sql>
+
+    <select id="selectVoBycondition" parameterType="com.dftx.sdwan.domain.FiberLine" resultMap="VoResultMap">
+    	SELECT
+			tfl.id,
+			tfl.name,
+			tfl.map_id,
+			tfl.fiber_total,
+			tfl.fiber_remain,
+			tfl.fiber_length,
+			tfl.lay_method,
+			tfl.fiber_own,
+		    tfl.tube_own,
+		    tfl.remark,
+		    tfl.remaining_status,
+		    tfl.create_by,
+		    tfl.create_time,
+		    tfl.update_by,
+		    tfl.update_time,
+		    tfl.del_flag,
+		    
+		    tflp.id pid, 
+		    tflp.name pname, 
+		    longitude, 
+		    latitude, 
+		    sort, 
+		    line_id, 
+		    station_id, 
+		    tflp.create_by pcreate_by, 
+		    tflp.create_time pcreate_time,
+    		tflp.update_by pupdate_by, 
+    		tflp.update_time pupdate_time, 
+    		tflp.del_flag pdel_flag,
+    		
+    		tfa.id aid, 
+    		tfa.name aname, 
+    		belong_entity, 
+    		related_id, 
+    		file_path, 
+    		file_type, 
+    		file_size, 
+    		tfa.create_by acreate_by,
+    		tfa.create_time acreate_time, 
+    		tfa.update_by aupdate_by, 
+    		tfa.update_time aupdate_time,
+    		tfa.del_flag adel_flag
+    		
+		FROM
+			t_fiber_line tfl
+		INNER JOIN t_fiber_line_point tflp ON tfl.id = tflp.line_id
+		AND tfl.del_flag = 0
+		AND tflp.del_flag = 0
+		LEFT JOIN t_fiber_attachment tfa ON tfl.id = tfa.related_id AND tfa.belong_entity  = 0 AND tfa.del_flag = 0
+		<where>
+			<if test="remainingStatus != null">
+	            and tfl.remaining_status = #{remainingStatus,jdbcType=INTEGER}
+	        </if>
+            <if test="id != null ">
+                and tfl.id = #{id,jdbcType=INTEGER}
+            </if>
+	        <if test="name != null and name != '' ">
+	            and tfl.name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+	        </if>
+	        <if test="updateBy != null and updateBy != '' ">
+                and if(
+                tfl.update_by is not null,
+                tfl.update_by like CONCAT('%',#{updateBy,jdbcType=VARCHAR},'%'),
+                tfl.create_by like CONCAT('%',#{updateBy,jdbcType=VARCHAR},'%')
+	        </if>
+		</where>
+    </select>
+
+<!--    aaa-->
+<!--    <select id="selectPageVoBycondition" parameterType="com.dftx.sdwan.domain.FiberLine" resultMap="PagenationVoResultMap">-->
+<!--    	SELECT-->
+<!--			tfl.id,-->
+<!--			tfl.name,-->
+<!--			tfl.map_id,-->
+<!--			tfl.fiber_total,-->
+<!--			tfl.fiber_remain,-->
+<!--			tfl.fiber_length,-->
+<!--			tfl.lay_method,-->
+<!--			tfl.fiber_own,-->
+<!--		    tfl.tube_own,-->
+<!--		    tfl.remark,-->
+<!--		    tfl.remaining_status,-->
+<!--		    tfl.create_by,-->
+<!--		    tfl.create_time,-->
+<!--		    tfl.update_by,-->
+<!--		    tfl.update_time,-->
+<!--		    tfl.del_flag,-->
+<!--		    -->
+<!--		    tflp.id pid, -->
+<!--		    tflp.name pname, -->
+<!--		    longitude, -->
+<!--		    latitude, -->
+<!--		    sort, -->
+<!--		    line_id, -->
+<!--		    station_id, -->
+<!--		    tflp.create_by pcreate_by, -->
+<!--		    tflp.create_time pcreate_time,-->
+<!--    		tflp.update_by pupdate_by, -->
+<!--    		tflp.update_time pupdate_time, -->
+<!--    		tflp.del_flag pdel_flag,-->
+<!--    		-->
+<!--    		tfa.id aid, -->
+<!--    		tfa.name aname, -->
+<!--    		belong_entity, -->
+<!--    		related_id, -->
+<!--    		file_path, -->
+<!--    		file_type, -->
+<!--    		file_size, -->
+<!--    		tfa.create_by acreate_by,-->
+<!--    		tfa.create_time acreate_time, -->
+<!--    		tfa.update_by aupdate_by, -->
+<!--    		tfa.update_time aupdate_time,-->
+<!--    		tfa.del_flag adel_flag-->
+<!--    		-->
+<!--		FROM-->
+<!--			t_fiber_line tfl-->
+<!--		INNER JOIN t_fiber_line_point tflp ON tfl.id = tflp.line_id-->
+<!--		AND tfl.del_flag = 0-->
+<!--		AND tflp.del_flag = 0-->
+<!--		LEFT JOIN t_fiber_attachment tfa ON tfl.id = tfa.related_id AND tfa.belong_entity  = 0 AND tfa.del_flag = 0-->
+<!--		<where>-->
+<!--			<if test="remainingStatus != null and remainingStatus != '' ">-->
+<!--	            and tfl.remaining_status = #{remainingStatus,jdbcType=INTEGER}-->
+<!--	        </if>-->
+<!--	        <if test="name != null and name != '' ">-->
+<!--	            and tfl.name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')-->
+<!--	        </if>-->
+<!--	        <if test="updateBy != null and updateBy != '' ">-->
+<!--	            and tfl.update_by like CONCAT('%',#{updateBy,jdbcType=VARCHAR},'%')-->
+<!--	        </if>-->
+<!--		</where>-->
+<!--    </select>-->
+    <select id="selectPageVoBycondition" parameterType="com.dftx.sdwan.domain.FiberLine" resultMap="PagenationVoResultMap">
+        SELECT
+        tfl.id,
+        tfl.name,
+        tfl.map_id,
+        tfl.fiber_total,
+        tfl.fiber_remain,
+        tfl.fiber_length,
+        tfl.lay_method,
+        tfl.fiber_own,
+        tfl.tube_own,
+        tfl.remark,
+        tfl.remaining_status,
+        tfl.create_by,
+        tfl.create_time,
+        tfl.update_by,
+        tfl.update_time,
+        tfl.del_flag
+
+        FROM
+        t_fiber_line tfl
+
+        <where>
+            tfl.del_flag=0
+            <if test="remainingStatus != null ">
+                and tfl.remaining_status = #{remainingStatus,jdbcType=INTEGER}
+            </if>
+            <if test="id != null ">
+                and tfl.id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="name != null and name != '' ">
+                and tfl.name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="updateBy != null and updateBy != '' ">
+                and if(
+                tfl.update_by is not null,
+                tfl.update_by like CONCAT('%',#{updateBy,jdbcType=VARCHAR},'%'),
+                tfl.create_by like CONCAT('%',#{updateBy,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>
