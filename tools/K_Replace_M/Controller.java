@@ -45,19 +45,22 @@ public class Controller {
             e.printStackTrace();
         }
         robot.mousePress(mouseKey);
-        robot.mouseRelease(mouseKey);
-
-        robot.keyPress(modKey);
-    }
-
-    public static void mouseWheel(int speed, int modKey) {
         robot.keyRelease(modKey);
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        robot.mouseRelease(mouseKey);
+        robot.keyPress(modKey);
+    }
+
+    public static void mouseWheel(int speed, int modKey) {
+        robot.keyRelease(modKey);
+
         robot.mouseWheel(speed);
+
+        robot.keyPress(modKey);
     }
 
 
@@ -96,6 +99,10 @@ public class Controller {
         JIntellitype.getInstance().registerHotKey(18, mod2, (int) 'A');
         JIntellitype.getInstance().registerHotKey(19, mod2, (int) 'W');
         JIntellitype.getInstance().registerHotKey(20, mod2, (int) 'S');
+
+
+        JIntellitype.getInstance().registerHotKey(21, 0, (int) '9');
+        JIntellitype.getInstance().registerHotKey(22, 0, (int) '0');
 
         // 添加热键监听器
         JIntellitype.getInstance().addHotKeyListener(new HotkeyListener() {
@@ -151,6 +158,14 @@ public class Controller {
                         break;
                     case 20:
                         mouseWheel(3, KeyEvent.VK_ALT);
+                        break;
+                    case 21:
+                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        break;
+                    case 22:
+                        robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
+                        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
                         break;
 
 
