@@ -15,11 +15,6 @@ public class Controller {
     public static int mod1 = JIntellitype.MOD_SHIFT;
     public static int mod2 = JIntellitype.MOD_ALT;
 
-//    public static long leftButton=0;
-//    public static long rightButton=0;
-//    public static long wheelUp=0;
-//    public static long wheelDown=0;
-
     public static void mouseMove1(String direction) {
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
@@ -77,18 +72,18 @@ public class Controller {
         JIntellitype.getInstance().registerHotKey(9, mod1, (int) 'W');
         JIntellitype.getInstance().registerHotKey(10, mod1, (int) 'S');
 
-//        JIntellitype.getInstance().registerHotKey(1, mod2, (int) 'I');
-//        JIntellitype.getInstance().registerHotKey(2, mod2, (int) 'J');
-//        JIntellitype.getInstance().registerHotKey(3, mod2, (int) 'K');
-//        JIntellitype.getInstance().registerHotKey(4, mod2, (int) 'L');
-//
-//        JIntellitype.getInstance().registerHotKey(5, mod2, (int) 'Q');
-//        JIntellitype.getInstance().registerHotKey(6, mod2, (int) 'E');
-//
-//        JIntellitype.getInstance().registerHotKey(7, mod2, (int) 'D');
-//        JIntellitype.getInstance().registerHotKey(8, mod2, (int) 'A');
-//        JIntellitype.getInstance().registerHotKey(9, mod2, (int) 'W');
-//        JIntellitype.getInstance().registerHotKey(10, mod2, (int) 'S');
+        JIntellitype.getInstance().registerHotKey(1, mod2, (int) 'I');
+        JIntellitype.getInstance().registerHotKey(2, mod2, (int) 'J');
+        JIntellitype.getInstance().registerHotKey(3, mod2, (int) 'K');
+        JIntellitype.getInstance().registerHotKey(4, mod2, (int) 'L');
+
+        JIntellitype.getInstance().registerHotKey(5, mod2, (int) 'Q');
+        JIntellitype.getInstance().registerHotKey(6, mod2, (int) 'E');
+
+        JIntellitype.getInstance().registerHotKey(11, mod2, (int) 'D');
+        JIntellitype.getInstance().registerHotKey(12, mod2, (int) 'A');
+        JIntellitype.getInstance().registerHotKey(13, mod2, (int) 'W');
+        JIntellitype.getInstance().registerHotKey(14, mod2, (int) 'S');
 
         // 添加热键监听器
         JIntellitype.getInstance().addHotKeyListener(new HotkeyListener() {
@@ -125,6 +120,19 @@ public class Controller {
                         break;
                     case 10:
                         mouseWheel(3, KeyEvent.VK_SHIFT);
+                        break;
+
+                    case 11:
+                        mouseClick(MouseEvent.BUTTON1_DOWN_MASK, KeyEvent.VK_ALT);
+                        break;
+                    case 12:
+                        mouseClick(MouseEvent.BUTTON3_DOWN_MASK, KeyEvent.VK_ALT);
+                        break;
+                    case 13:
+                        mouseWheel(-3, KeyEvent.VK_ALT);
+                        break;
+                    case 14:
+                        mouseWheel(3, KeyEvent.VK_ALT);
                         break;
 
 
