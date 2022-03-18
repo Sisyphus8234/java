@@ -1,0 +1,2 @@
+Main-Class: MainClass
+Class-Path: lib\jintellitype-1.4.0.jar

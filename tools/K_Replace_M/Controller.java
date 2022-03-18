@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class MainClass {
+public class Controller {
 
     public static Robot robot;
 
-    public static int s = 24;
+    public static int s = 26;
     public static int ss = 3;
 
     public static int mod1 = JIntellitype.MOD_SHIFT;
@@ -54,8 +54,9 @@ public class MainClass {
     }
 
 
-    public static void main(String[] strings) {
+    public static void run() {
 
+        MyJFrame.setJFrame();
 
         try {
             robot = new Robot();
