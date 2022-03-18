@@ -9,11 +9,13 @@ public class Controller {
 
     public static Robot robot;
 
-    public static int s = 26;
-    public static int ss = 3;
+    public static int s = 27;
+    public static int ss = 6;
+    public static int delay = 60;
 
     public static int mod1 = JIntellitype.MOD_SHIFT;
     public static int mod2 = JIntellitype.MOD_ALT;
+
 
     public static void mouseMove1(String direction) {
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
@@ -37,15 +39,25 @@ public class Controller {
 
     public static void mouseClick(int mouseKey, int modKey) {
         robot.keyRelease(modKey);
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         robot.mousePress(mouseKey);
         robot.mouseRelease(mouseKey);
+
         robot.keyPress(modKey);
     }
 
     public static void mouseWheel(int speed, int modKey) {
         robot.keyRelease(modKey);
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         robot.mouseWheel(speed);
-        robot.keyPress(modKey);
     }
 
 
