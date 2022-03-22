@@ -122,7 +122,8 @@ public class Controller {
         JIntellitype.getInstance().registerHotKey(2, 0, 113);
         JIntellitype.getInstance().registerHotKey(3, 0, 114);
         JIntellitype.getInstance().registerHotKey(4, 0, 115);
-        JIntellitype.getInstance().registerHotKey(5, 0, 27);
+        JIntellitype.getInstance().registerHotKey(5, 0, 116);
+        JIntellitype.getInstance().registerHotKey(101, 0, 27);
 
 
         new Thread() {
@@ -241,7 +242,7 @@ public class Controller {
 //                        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
 //                        break;
                     case 1:
-                    case 5:
+                    case 101:
 //                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
 ////                        try {
 ////                            Thread.sleep(20);
@@ -266,15 +267,21 @@ public class Controller {
                         taskList1.add("rightMouseClick");
                         break;
                     case 3:
+                        robot.keyRelease(KeyEvent.VK_ENTER);
+                        robot.keyPress(KeyEvent.VK_ENTER);
+                        robot.keyRelease(KeyEvent.VK_ENTER);
+                        break;
+                    case 4:
                         robot.keyRelease(KeyEvent.VK_BACK_SPACE);
                         robot.keyPress(KeyEvent.VK_BACK_SPACE);
                         robot.keyRelease(KeyEvent.VK_BACK_SPACE);
                         break;
-                    case 4:
+                    case 5:
                         robot.keyRelease(KeyEvent.VK_DELETE);
                         robot.keyPress(KeyEvent.VK_DELETE);
                         robot.keyRelease(KeyEvent.VK_DELETE);
                         break;
+
 
                 }
             }
