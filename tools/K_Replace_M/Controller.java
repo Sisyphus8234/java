@@ -151,8 +151,14 @@ public class Controller {
                     switch (task1){
                         case "leftMouseClick":
                             System.out.println("start task: "+task1+" "+(++int1));
-                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                            try {
+                                Robot robot1=new Robot();
+//                                robot1.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                                robot1.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                                robot1.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                            } catch (AWTException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case "rightMouseClick":
                             System.out.println("start task: "+task1+" "+(++int1));
