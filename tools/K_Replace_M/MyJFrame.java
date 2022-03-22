@@ -14,6 +14,8 @@ public class MyJFrame {
         jframe.setLayout(null);
         jframe.setResizable(false);
         jframe.setVisible(true);
+        //窗口置顶
+        jframe.setAlwaysOnTop(true);
 
         JLabel jlabel = new JLabel("键盘代替鼠标",JLabel.CENTER);
         jlabel.setSize(200,75);

@@ -4,14 +4,29 @@ import com.melloware.jintellitype.JIntellitype;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
 
     public static Robot robot;
+    static {
+        try {
+            robot = new Robot();
+            System.out.println("robot ready");
+        } catch (AWTException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
 
     public static int s = 27;
     public static int ss = 6;
     public static int delay = 60;
+
+    public static boolean boolean1 = false;
+
+    public static List<String> taskList1=new ArrayList();
 
     public static int mod1 = JIntellitype.MOD_SHIFT;
     public static int mod2 = JIntellitype.MOD_ALT;
@@ -68,11 +83,7 @@ public class Controller {
 
         MyJFrame.setJFrame();
 
-        try {
-            robot = new Robot();
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
+
 
 //        JIntellitype.getInstance().registerHotKey(1, mod1, (int) 'I');
 //        JIntellitype.getInstance().registerHotKey(2, mod1, (int) 'J');
@@ -108,6 +119,49 @@ public class Controller {
         JIntellitype.getInstance().registerHotKey(2, 0, 113);
         JIntellitype.getInstance().registerHotKey(3, 0, 114);
         JIntellitype.getInstance().registerHotKey(4, 0, 115);
+        JIntellitype.getInstance().registerHotKey(5, 0, 27);
+
+
+        new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(70);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    String task1="";
+                    if(taskList1.size()>0) {
+
+                        try {
+                            task1=taskList1.get(0);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        taskList1.remove(0);
+                    }
+
+
+                    switch (task1){
+                        case "leftMouseClick":
+                            System.out.println("start task: "+task1);
+                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                            break;
+                        case "rightMouseClick":
+                            System.out.println("start task: "+task1);
+                            robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
+                            robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
+                            break;
+                    }
+                    task1="";
+
+                }
+            }
+        }.start();
 
 
         // 添加热键监听器
@@ -174,20 +228,39 @@ public class Controller {
 //                        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
 //                        break;
                     case 1:
-                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    case 5:
+//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+////                        try {
+////                            Thread.sleep(20);
+////                        } catch (InterruptedException e) {
+////                            e.printStackTrace();
+////                        }
+//                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+////                        try {
+////                            Thread.sleep(20);
+////                        } catch (InterruptedException e) {
+////                            e.printStackTrace();
+////                        }
+//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+////                        try {
+////                            Thread.sleep(60);
+////                        } catch (InterruptedException e) {
+////                            e.printStackTrace();
+////                        }
+                        taskList1.add("leftMouseClick");
                         break;
                     case 2:
-                        robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
-                        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
+                        taskList1.add("rightMouseClick");
                         break;
                     case 3:
+                        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
                         robot.keyPress(KeyEvent.VK_BACK_SPACE);
-                        robot.mouseRelease(KeyEvent.VK_BACK_SPACE);
+                        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
                         break;
                     case 4:
+                        robot.keyRelease(KeyEvent.VK_DELETE);
                         robot.keyPress(KeyEvent.VK_DELETE);
-                        robot.mouseRelease(KeyEvent.VK_DELETE);
+                        robot.keyRelease(KeyEvent.VK_DELETE);
                         break;
 
                 }
