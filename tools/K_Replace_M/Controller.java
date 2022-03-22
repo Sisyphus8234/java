@@ -153,7 +153,6 @@ public class Controller {
                             System.out.println("start task: "+task1+" "+(++int1));
                             try {
                                 Robot robot1=new Robot();
-//                                robot1.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                                 robot1.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                                 robot1.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                             } catch (AWTException e) {
@@ -162,8 +161,13 @@ public class Controller {
                             break;
                         case "rightMouseClick":
                             System.out.println("start task: "+task1+" "+(++int1));
-                            robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
-                            robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
+                            try {
+                                Robot robot1=new Robot();
+                                robot1.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
+                                robot1.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
+                            } catch (AWTException e) {
+                                e.printStackTrace();
+                            }
                             break;
                     }
                     task1="";
