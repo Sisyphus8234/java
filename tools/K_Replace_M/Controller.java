@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Controller {
@@ -25,6 +26,8 @@ public class Controller {
     public static int delay = 60;
 
     public static boolean boolean1 = false;
+
+    public static int int1=0;
 
     public static List<String> taskList1=new ArrayList();
 
@@ -147,12 +150,12 @@ public class Controller {
 
                     switch (task1){
                         case "leftMouseClick":
-                            System.out.println("start task: "+task1);
+                            System.out.println("start task: "+task1+" "+(++int1));
                             robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                             robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                             break;
                         case "rightMouseClick":
-                            System.out.println("start task: "+task1);
+                            System.out.println("start task: "+task1+" "+(++int1));
                             robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
                             robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
                             break;
