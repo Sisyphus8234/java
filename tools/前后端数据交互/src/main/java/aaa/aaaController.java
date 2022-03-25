@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.Map;
 
 //RestController = Controller + ResponseBody
 @Controller
@@ -40,6 +41,13 @@ public class aaaController {
     public String receive_json(@RequestBody aaaDomain aaaDomain1) {
         System.out.println(aaaDomain1.getName());
         System.out.println(aaaDomain1.getAaaDomain2().getName2());
+        return "success";
+    }
+
+    @ResponseBody
+    @RequestMapping("/d2")
+    public String receive_json2(@RequestBody Map<String,String> data) {
+        System.out.println(data);
         return "success";
     }
 
