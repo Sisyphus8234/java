@@ -15,4 +15,8 @@ Method[] m =stuClass .getDeclaredMethods();
 
 Method[] methods = xxxClass.getDeclaredMethods();
 
+method.getAnnotatedReturnType().getType().getTypeName()
+
+method.invoke(???);
+
 Field[] fields=excelDomainClass.getFields();
