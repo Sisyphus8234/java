@@ -88,20 +88,7 @@ public class b
 
 
 ---------------------------------------------------------
-反射： 
-第一种
-Student stu1 = new Student();
-Class stuClass = stu1.getClass();
-第二种
-Student stu1 = new Student();
-Class stuClass2 = Student.class;
-第三种
-Class stuClass3 = Class.forName("com.Student") 
 
-import java.lang.reflect.Method;
-Method[] m =stuClass .getDeclaredMethods();
-
---------------------------------------------------------
 super 调用父类的构造函数
 this 调用自己的其他构造函数
 

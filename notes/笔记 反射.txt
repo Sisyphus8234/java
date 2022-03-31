@@ -1,0 +1,18 @@
+反射： 
+第一种
+Student stu1 = new Student();
+Class stuClass = stu1.getClass();
+第二种
+Student stu1 = new Student();
+Class stuClass2 = Student.class;
+第三种
+Class stuClass3 = Class.forName("com.Student") 
+
+import java.lang.reflect.Method;
+Method[] m =stuClass .getDeclaredMethods();
+
+--------------------------------------------------------
+
+Method[] methods = xxxClass.getDeclaredMethods();
+
+Field[] fields=excelDomainClass.getFields();
