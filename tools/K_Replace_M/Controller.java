@@ -118,11 +118,11 @@ public class Controller {
 //        JIntellitype.getInstance().registerHotKey(21, 0, (int) '9');
 //        JIntellitype.getInstance().registerHotKey(22, 0, (int) '0');
 
-        JIntellitype.getInstance().registerHotKey(1, 0, 112 );
-        JIntellitype.getInstance().registerHotKey(2, 0, 113);
-        JIntellitype.getInstance().registerHotKey(3, 0, 114);
-        JIntellitype.getInstance().registerHotKey(4, 0, 115);
-        JIntellitype.getInstance().registerHotKey(5, 0, 116);
+        JIntellitype.getInstance().registerHotKey(2, 0, 112 );
+        JIntellitype.getInstance().registerHotKey(3, 0, 113);
+        JIntellitype.getInstance().registerHotKey(4, 0, 114);
+        JIntellitype.getInstance().registerHotKey(5, 0, 115);
+//        JIntellitype.getInstance().registerHotKey(5, 0, 116);
         JIntellitype.getInstance().registerHotKey(101, 0, 27);
 
 
