@@ -1,0 +1,15 @@
+快捷键
+Ctrl+Alt+L 格式化
+Ctrl+F12 显示类结构
+左下角Structure按钮
+Edit--Find--Find in Files
+Ctrl+H 层次结构
+
+Ctrl+Shift+F9 重新编译？
+
+插件
+Free MyBatis Tool
+JRebel and XRebel
+SonarLint
+IDE Eval Reset
+POJO to JSON
