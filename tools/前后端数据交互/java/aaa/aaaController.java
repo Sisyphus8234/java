@@ -16,17 +16,17 @@ import java.util.Map;
 @RequestMapping("/aaa")
 public class aaaController {
 
-    @GetMapping("/a")
-    public String return_html() {
-        System.out.println("-----------------------------------------return_html()");
-        return "/aaa/ajax请求";
-    }
+    // @GetMapping("/a")
+    // public String return_html() {
+    //     System.out.println("-----------------------------------------return_html()");
+    //     return "/aaa/ajax请求";
+    // }
 
-    @GetMapping("/b")
-    public String return_html2() {
-        System.out.println("-----------------------------------------return_html2()");
-        return "/aaa/非js请求";
-    }
+    // @GetMapping("/b")
+    // public String return_html2() {
+    //     System.out.println("-----------------------------------------return_html2()");
+    //     return "/aaa/非js请求";
+    // }
 
     @ResponseBody
     @GetMapping("/c")
