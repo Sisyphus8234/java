@@ -315,4 +315,22 @@
         </where>
     </select>
 
+    <insert id="insertGetId" parameterType="com.dftx.sdwan.domain.FiberLine">
+        insert into t_fiber_line (id, name, map_id,
+        fiber_total, fiber_remain, fiber_length,
+        lay_method, fiber_own, tube_own,
+        remark, remaining_status, create_by,
+        create_time, update_by, update_time,
+        del_flag)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{mapId,jdbcType=INTEGER},
+        #{fiberTotal,jdbcType=INTEGER}, #{fiberRemain,jdbcType=INTEGER}, #{fiberLength,jdbcType=DECIMAL},
+        #{layMethod,jdbcType=INTEGER}, #{fiberOwn,jdbcType=INTEGER}, #{tubeOwn,jdbcType=INTEGER},
+        #{remark,jdbcType=VARCHAR}, #{remainingStatus,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+        #{delFlag,jdbcType=INTEGER})
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
 </mapper>
