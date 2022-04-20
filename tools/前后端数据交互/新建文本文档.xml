@@ -1,0 +1,6 @@
+<if test="infoCode!=null and infoCode !=''">
+  and info_code like CONCAT('%',#{infoCode,jdbcType=VARCHAR},'%')
+</if>
+<if test="processStatus!=null">
+  and process_status = #{processStatus,jdbcType=INTEGER})
+</if>
