@@ -4,10 +4,13 @@ CLASSPATH
 
 JAVA_HOME
 D:\Java\jdk1.8.0_311
+(貌似不需要配置,其他程序调用java才需要???)
+
 
 Path添加
 %JAVA_HOME%\bin
 %JAVA_HOME%\jre\bin
+(貌似不需要配置???)
 
 MAVEN_HOME
 D:\maven\apache-maven-3.8.1
