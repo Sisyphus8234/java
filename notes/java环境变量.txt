@@ -1,5 +1,6 @@
 CLASSPATH
 .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
+(1.5之后不用再设置classpath???)
 
 JAVA_HOME
 D:\Java\jdk1.8.0_311
