@@ -4,6 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Functions {
+
+	public static boolean Jna=false;
+
+	public static boolean jintellitype=true;
 	
 	public static Robot robot;
 	static {
@@ -47,5 +51,10 @@ public class Functions {
 
 	}
 
+	@JintellitypeListen(identifier =1,modifier = 0,keycode = 32)
+	private static void sample3() {
+		// TODO Auto-generated method stub
+		System.out.println("Jintellitype监听到了空格");
+	}
 
 }

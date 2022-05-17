@@ -23,36 +23,43 @@ public class Controller {
 
 		ScanFunction.run(class1,mapJna,mapJintellitype);
 
-		//mouse
-		new Thread() {
-			@Override
-			public void run() {
-            
-			MouseHook mouseHook =new MouseHook();
-			mouseHook.run();
-            
-            }}.start();
-            
-            
-        //keyboard    
-        new Thread() {
-            @Override
-    		public void run() {            
-            
-            KeyboardHook keyboardHook=new KeyboardHook();
-            keyboardHook.run();
-                
-        }}.start();
+		if(Functions.Jna==true) {
+			//mouse
+			new Thread() {
+				@Override
+				public void run() {
 
-		//Jintellitype
-		new Thread() {
-			@Override
-			public void run() {
+					MouseHook mouseHook = new MouseHook();
+					mouseHook.run();
 
-				JintellitypeRegisterAndListener jintellitypeRegisterAndListener =new JintellitypeRegisterAndListener();
-				jintellitypeRegisterAndListener.run();
+				}
+			}.start();
 
-			}}.start();
+
+			//keyboard
+			new Thread() {
+				@Override
+				public void run() {
+
+					KeyboardHook keyboardHook = new KeyboardHook();
+					keyboardHook.run();
+
+				}
+			}.start();
+		}
+
+		if(Functions.jintellitype==true) {
+			//Jintellitype
+			new Thread() {
+				@Override
+				public void run() {
+
+					JintellitypeRegisterAndListener jintellitypeRegisterAndListener = new JintellitypeRegisterAndListener();
+					jintellitypeRegisterAndListener.run();
+
+				}
+			}.start();
+		}
         
 	}
 

@@ -59,7 +59,7 @@ public class ScanFunction {
                 Utiliy u111 = new Utiliy();
                 u111.method1 = method;
                 u111.immediately = j111.immediately();
-                mapJna.put(j111.identifier()+"_"+j111.modifier()+"_"+j111.modifier(), u111);
+                mapJintellitype.put(j111.identifier()+"_"+j111.modifier()+"_"+j111.keycode(), u111);
             }
 
             //处理重复
@@ -72,7 +72,7 @@ public class ScanFunction {
                     Utiliy u111 = new Utiliy();
                     u111.method1 = method;
                     u111.immediately = j111.immediately();
-                    mapJna.put(j111.identifier()+"_"+j111.modifier()+"_"+j111.modifier(), u111);
+                    mapJintellitype.put(j111.identifier()+"_"+j111.modifier()+"_"+j111.keycode(), u111);
                 }
             }
 
@@ -81,6 +81,7 @@ public class ScanFunction {
 
         }
         System.out.println(mapJna);
+        System.out.println(mapJintellitype);
 
     }
 }
