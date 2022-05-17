@@ -39,7 +39,7 @@ public class Controller {
 
 	}
 
-	public static Map<String, Utiliy> map1=new HashMap<String,Utiliy>();
+	public static Map<String, Utiliy> mapJna=new HashMap<String,Utiliy>();
 
 	public static void scanFunctions(Class class1) {
 
@@ -56,9 +56,9 @@ public class Controller {
 			System.exit(0);
 		}
 
-		Map<Boolean,String> map2=new HashMap<Boolean,String>();
-		map2.put(true,"256");
-		map2.put(false,"257");
+		Map<Boolean,String> map1=new HashMap<Boolean,String>();
+		map1.put(true,"256");
+		map1.put(false,"257");
 		for (Method method : methods) {
 			if (method.isAnnotationPresent(ListenMouseKeyboard.class)) {
 				method.setAccessible(true);
@@ -68,7 +68,7 @@ public class Controller {
 				Utiliy u111 = new Utiliy();
 				u111.method1 = method;
 				u111.immediately = k111.immediately();
-				map1.put(k111.value()+"_"+map2.get(k111.press()), u111);
+				mapJna.put(k111.value()+"_"+map1.get(k111.press()), u111);
 			}
 
 			//处理重复注解
@@ -81,13 +81,13 @@ public class Controller {
 					Utiliy u111 = new Utiliy();
 					u111.method1 = method;
 					u111.immediately = k111.immediately();
-					map1.put(k111.value()+"_"+map2.get(k111.press()), u111);
+					mapJna.put(k111.value()+"_"+map1.get(k111.press()), u111);
 				}
 
 
 			}
 		}
-		System.out.println(map1);
+		System.out.println(mapJna);
 	}
 	
 		
