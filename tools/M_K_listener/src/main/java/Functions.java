@@ -5,9 +5,9 @@ import java.awt.event.MouseEvent;
 
 public class Functions {
 
-	public static boolean Jna=false;
+	public static boolean Jna=true;
 
-	public static boolean jintellitype=true;
+	public static boolean jintellitype=false;
 	
 	public static Robot robot;
 	static {
