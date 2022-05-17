@@ -50,7 +50,8 @@ public class Functions {
 		robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
 
 	}
-
+	
+	//按下键盘空格键触发
 	@JintellitypeListen(identifier =1,modifier = 0,keycode = 32)
 	private static void sample3() {
 		// TODO Auto-generated method stub
