@@ -68,7 +68,7 @@ public class Controller {
 				Utiliy u111 = new Utiliy();
 				u111.method1 = method;
 				u111.immediately = k111.immediately();
-				map1.put(k111.value()+"_"+map2.get(k111.pressed()), u111);
+				map1.put(k111.value()+"_"+map2.get(k111.press()), u111);
 			}
 
 			//处理重复注解
@@ -81,7 +81,7 @@ public class Controller {
 					Utiliy u111 = new Utiliy();
 					u111.method1 = method;
 					u111.immediately = k111.immediately();
-					map1.put(k111.value()+"_"+map2.get(k111.pressed()), u111);
+					map1.put(k111.value()+"_"+map2.get(k111.press()), u111);
 				}
 
 

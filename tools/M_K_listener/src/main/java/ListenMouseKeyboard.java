@@ -10,7 +10,7 @@ public @interface ListenMouseKeyboard {
 	
 	int value();
 	boolean immediately() default true;
-	boolean pressed() default true;
+	boolean press() default true;
 	
 }
 
