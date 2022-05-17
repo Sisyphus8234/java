@@ -22,6 +22,16 @@ public class Do
 	            task(task_list);
 	    }}}.start();
     }
+
+	public void task(Utiliy u1) {
+		if(u1.immediately==true) {
+			//立即执行功能
+			this.what_at_once(u1.method1);
+		}else if(u1.immediately==false){
+			//放入队列执行
+			this.task_list.add(u1.method1);
+		}
+	}
 	
 	
     public void what_at_once(Method m1) {

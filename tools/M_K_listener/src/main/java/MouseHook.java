@@ -38,7 +38,7 @@ public class MouseHook {
 					System.out.println("鼠标键"+wParam);
 
 				if(Controller.mapJna.containsKey(wParam.intValue()+"_256") && info.flags!=1){
-					Controller.task(Controller.mapJna.get(wParam.intValue()+"_256"));
+					Controller.do1.task(Controller.mapJna.get(wParam.intValue()+"_256"));
 				}
 				}
 

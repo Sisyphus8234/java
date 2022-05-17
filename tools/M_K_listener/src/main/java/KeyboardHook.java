@@ -37,7 +37,7 @@ public class KeyboardHook {
 					System.out.println("键盘键"+info.vkCode);
 
 					if(Controller.mapJna.containsKey(info.vkCode+"_"+wParam.intValue()) && (info.flags!=16 && info.flags!=144)){
-						Controller.task(Controller.mapJna.get(info.vkCode+"_"+wParam.intValue()));
+						Controller.do1.task(Controller.mapJna.get(info.vkCode+"_"+wParam.intValue()));
 					}
 				}
 
