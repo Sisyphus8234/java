@@ -44,13 +44,13 @@ public class Controller {
                 
         }}.start();
 
-		//mouse
+		//Jintellitype
 		new Thread() {
 			@Override
 			public void run() {
 
-				... mouseHook =new MouseHook();
-				mouseHook.run();
+				JintellitypeRegisterAndListener jintellitypeRegisterAndListener =new JintellitypeRegisterAndListener();
+				jintellitypeRegisterAndListener.run();
 
 			}}.start();
         
