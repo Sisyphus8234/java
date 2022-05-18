@@ -23,20 +23,42 @@ public class Functions {
 		System.out.println("Robot创建完成");
 	}
 
+	public static boolean space =false;
 
-	
+	static {
 
-	//按下鼠标左键触发
-	@ListenMouseKeyboard(value=513,immediately=true)
-	private static void sample1() {
-		System.out.println("程序模拟键盘依次按下h，i");
-		// TODO Auto-generated method stub
-		robot.keyPress(KeyEvent.VK_H);
-		robot.keyRelease(KeyEvent.VK_H);
+		new Thread() {
+		@Override
+		public void run() {
+			while (true) {
 
-		robot.keyPress(KeyEvent.VK_I);
-		robot.keyRelease(KeyEvent.VK_I);
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
+				if (space == true) {
+					System.out.println("按下space");
+					robot.keyPress(KeyEvent.VK_SPACE);
+				}
+			}
 
 		}
+	}.start();
+	}
+
+
+	@ListenMouseKeyboard(value=522)
+	private static void sample1() {
+		space=true;
+		}
+
+	@ListenMouseKeyboard(value=32)
+	private static void sample2() {
+		space=false;
+//		robot.keyRelease(KeyEvent.VK_SPACE);
+//		robot.keyPress(KeyEvent.VK_SPACE);
+	}
+
 }
