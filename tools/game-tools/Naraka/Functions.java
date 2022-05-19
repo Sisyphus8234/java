@@ -53,15 +53,15 @@ public class Functions {
 	}
 
 
-	@ListenMouseKeyboard(value=32)
+	@ListenMouseKeyboard(value=32,intercept = true)
 	private static void space() {
 		if(temp1==true){
-		robot.keyRelease((int)'L');
-		robot.keyPress((int)'L');
+		robot.keyRelease(KeyEvent.VK_SPACE);
+		robot.keyPress(KeyEvent.VK_SPACE);
 		temp1=false;
 		}
 	}
-	@ListenMouseKeyboard(value=32,press = false)
+	@ListenMouseKeyboard(value=32,press = false,intercept = true)
 	private static void space2() {
 		temp1=true;
 	}
