@@ -20,9 +20,17 @@ public class ScanFunction {
             System.exit(0);
         }
 
-        Map<Boolean,String> map1=new HashMap<Boolean,String>();
+        //按下还是松开,鼠标不适用
+        Map<Boolean,String> map1=new HashMap();
         map1.put(true,"256");
         map1.put(false,"257");
+
+        //是否是用户输入
+        Map<Boolean,String> map2=new HashMap();
+        map2.put(true,"userInput");
+        map2.put(false,"!userInput");
+
+
         for (Method method : methods) {
 
             if (method.isAnnotationPresent(ListenMouseKeyboard.class)) {
@@ -33,7 +41,7 @@ public class ScanFunction {
                 Utiliy u111 = new Utiliy();
                 u111.method1 = method;
                 u111.immediately = k111.immediately();
-                mapJna.put(k111.value()+"_"+map1.get(k111.press()), u111);
+                mapJna.put(k111.value()+"_"+map1.get(k111.press())+"_"+map2.get(k111.userInput()), u111);
             }
 
             //处理重复注解
@@ -46,7 +54,7 @@ public class ScanFunction {
                     Utiliy u111 = new Utiliy();
                     u111.method1 = method;
                     u111.immediately = k111.immediately();
-                    mapJna.put(k111.value()+"_"+map1.get(k111.press()), u111);
+                    mapJna.put(k111.value()+"_"+map1.get(k111.press())+"_"+map2.get(k111.userInput()), u111);
                 }
             }
 

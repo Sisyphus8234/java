@@ -37,8 +37,14 @@ public class MouseHook {
 					if(info.flags==1) {System.out.print("(由程序执行的)");}
 					System.out.println("鼠标键"+wParam);
 
-				if(Controller.mapJna.containsKey(wParam.intValue()+"_256") && info.flags!=1){
-					Controller.do1.task(Controller.mapJna.get(wParam.intValue()+"_256"));
+					String userInput="userInput";
+					if(info.flags==1){
+						userInput="!userInput";
+					}
+					String taskCode=wParam.intValue()+"_256"+"_"+userInput;
+
+				if(Controller.mapJna.containsKey(taskCode)){
+					Controller.do1.task(Controller.mapJna.get(taskCode));
 				}
 				}
 
