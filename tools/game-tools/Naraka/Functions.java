@@ -23,42 +23,43 @@ public class Functions {
 		System.out.println("Robot创建完成");
 	}
 
-	public static boolean space =false;
+	public static boolean temp1 =true;
 
-	static {
+//	static {
+//
+//		new Thread() {
+//		@Override
+//		public void run() {
+//			while (true) {
+//
+//				try {
+//					Thread.sleep(200);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//
+//				if (space == true) {
+//					System.out.println("按下space");
+//					robot.keyPress(KeyEvent.VK_SPACE);
+//				}
+//			}
+//
+//		}
+//	}.start();
+//	}
 
-		new Thread() {
-		@Override
-		public void run() {
-			while (true) {
-
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-
-				if (space == true) {
-					System.out.println("按下space");
-					robot.keyPress(KeyEvent.VK_SPACE);
-				}
-			}
-
-		}
-	}.start();
-	}
-
-
-	@ListenMouseKeyboard(value=522)
-	private static void sample1() {
-		space=true;
-		}
 
 	@ListenMouseKeyboard(value=32)
+	private static void sample1() {
+		if(temp1==true){
+		robot.keyRelease(KeyEvent.VK_L);
+		robot.keyPress(KeyEvent.VK_L);
+		temp1=false;}
+		}
+
+	@ListenMouseKeyboard(value=32,press = false)
 	private static void sample2() {
-		space=false;
-//		robot.keyRelease(KeyEvent.VK_SPACE);
-//		robot.keyPress(KeyEvent.VK_SPACE);
+		temp1=true;
 	}
 
 }
