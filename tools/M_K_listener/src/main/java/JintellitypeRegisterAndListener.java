@@ -13,12 +13,11 @@ public class JintellitypeRegisterAndListener {
 
         int i=1;
         Map<Integer,String> map1=new HashMap();
-
-
         for(String s1:Controller.mapJintellitype.keySet()){
             String[] temp1 = s1.split("_");
-            JIntellitype.getInstance().registerHotKey(Integer.parseInt(temp1[0]),Integer.parseInt(temp1[1]),Integer.parseInt(temp1[2]));
-            map1.put(Integer.parseInt(temp1[0]),s1);
+            JIntellitype.getInstance().registerHotKey(i,Integer.parseInt(temp1[0]),Integer.parseInt(temp1[1]));
+            map1.put(i,s1);
+            i++;
         }
         Set<Integer> set1=map1.keySet();
 
