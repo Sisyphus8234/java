@@ -26,10 +26,10 @@ public class Do
 	public void task(Utiliy u1) {
 		if(u1.immediately==true) {
 			//立即执行功能
-			this.what_at_once(u1.method1);
+			this.what_at_once(u1.method);
 		}else if(u1.immediately==false){
 			//放入队列执行
-			this.task_list.add(u1.method1);
+			this.task_list.add(u1.method);
 		}
 	}
 	

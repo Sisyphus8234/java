@@ -43,9 +43,13 @@ public class MouseHook {
 					}
 					String taskCode=wParam.intValue()+"_256"+"_"+userInput;
 
-				if(Controller.mapJna.containsKey(taskCode)){
-					Controller.do1.task(Controller.mapJna.get(taskCode));
-				}
+					if(Controller.mapJna.containsKey(taskCode)){
+						Utiliy utiliy1=Controller.mapJna.get(taskCode);
+						Controller.do1.task(utiliy1);
+						if(utiliy1.intercept==true){
+							return new LRESULT(1);
+						}
+					}
 				}
 
 				Pointer ptr = info.getPointer();

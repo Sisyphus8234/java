@@ -43,7 +43,11 @@ public class KeyboardHook {
 					String taskCode=info.vkCode+"_"+wParam.intValue()+"_"+userInput;
 
 					if(Controller.mapJna.containsKey(taskCode)){
-						Controller.do1.task(Controller.mapJna.get(taskCode));
+						Utiliy utiliy1=Controller.mapJna.get(taskCode);
+						Controller.do1.task(utiliy1);
+						if(utiliy1.intercept==true){
+							return new LRESULT(1);
+						}
 					}
 				}
 

@@ -39,8 +39,9 @@ public class ScanFunction {
 
                 System.out.println("已扫描方法"+method.getName());
                 Utiliy u111 = new Utiliy();
-                u111.method1 = method;
+                u111.method = method;
                 u111.immediately = k111.immediately();
+                u111.intercept=k111.intercept();
                 mapJna.put(k111.value()+"_"+map1.get(k111.press())+"_"+map2.get(k111.userInput()), u111);
             }
 
@@ -52,8 +53,9 @@ public class ScanFunction {
                 for(ListenMouseKeyboard k111 : ks111.value()){
                     System.out.println("已扫描方法"+method.getName());
                     Utiliy u111 = new Utiliy();
-                    u111.method1 = method;
+                    u111.method = method;
                     u111.immediately = k111.immediately();
+                    u111.intercept=k111.intercept();
                     mapJna.put(k111.value()+"_"+map1.get(k111.press())+"_"+map2.get(k111.userInput()), u111);
                 }
             }
@@ -65,7 +67,7 @@ public class ScanFunction {
 
                 System.out.println("已扫描方法"+method.getName());
                 Utiliy u111 = new Utiliy();
-                u111.method1 = method;
+                u111.method = method;
                 u111.immediately = j111.immediately();
                 mapJintellitype.put(j111.modifier()+"_"+j111.keycode(), u111);
             }
@@ -78,7 +80,7 @@ public class ScanFunction {
                 for(JintellitypeListen j111 : js111.value()){
                     System.out.println("已扫描方法"+method.getName());
                     Utiliy u111 = new Utiliy();
-                    u111.method1 = method;
+                    u111.method = method;
                     u111.immediately = j111.immediately();
                     mapJintellitype.put(j111.modifier()+"_"+j111.keycode(), u111);
                 }
