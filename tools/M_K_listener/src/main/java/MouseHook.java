@@ -41,10 +41,10 @@ public class MouseHook {
 					if(info.flags==1){
 						userInput="!userInput";
 					}
-					String taskCode=wParam.intValue()+"_256"+"_"+userInput;
+					String inputCode=wParam.intValue()+"_256"+"_"+userInput;
 
-					if(Controller.mapJna.containsKey(taskCode)){
-						Utiliy utiliy1=Controller.mapJna.get(taskCode);
+					if(Controller.mapJna.containsKey(inputCode)){
+						Utiliy utiliy1=Controller.mapJna.get(inputCode);
 						Controller.do1.task(utiliy1);
 						if(utiliy1.intercept==true){
 							return new LRESULT(1);

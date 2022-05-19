@@ -40,10 +40,10 @@ public class KeyboardHook {
 					if(info.flags==16 || info.flags==144){
 						userInput="!userInput";
 					}
-					String taskCode=info.vkCode+"_"+wParam.intValue()+"_"+userInput;
+					String inputCode=info.vkCode+"_"+wParam.intValue()+"_"+userInput;
 
-					if(Controller.mapJna.containsKey(taskCode)){
-						Utiliy utiliy1=Controller.mapJna.get(taskCode);
+					if(Controller.mapJna.containsKey(inputCode)){
+						Utiliy utiliy1=Controller.mapJna.get(inputCode);
 						Controller.do1.task(utiliy1);
 						if(utiliy1.intercept==true){
 							return new LRESULT(1);
