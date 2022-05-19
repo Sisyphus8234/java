@@ -27,6 +27,7 @@ public class Functions {
 
 	public static boolean temp1 =true;
 	public static boolean temp2 =false;
+	public static boolean temp3 =false;
 
 	static {
 
@@ -34,18 +35,30 @@ public class Functions {
 		@Override
 		public void run() {
 			while (true) {
-
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				try {Thread.sleep(50);} catch (InterruptedException e) {e.printStackTrace();}
 
 				if (temp2 == true) {
-
 					robot.keyRelease(KeyEvent.VK_E);
 					robot.keyPress(KeyEvent.VK_E);
+					robot.keyRelease(KeyEvent.VK_E);
+					try {Thread.sleep(100);} catch (InterruptedException e) {e.printStackTrace();}
 				}
+
+				if (temp3 == true) {
+					try {Thread.sleep(10);} catch (InterruptedException e) {e.printStackTrace();}
+					robot.keyRelease(KeyEvent.VK_ALT);
+
+					robot.keyPress(KeyEvent.VK_ALT);
+
+					try {Thread.sleep(20);} catch (InterruptedException e) {e.printStackTrace();}
+					robot.keyRelease(KeyEvent.VK_ALT);
+
+
+					try {Thread.sleep(90);} catch (InterruptedException e) {e.printStackTrace();}
+
+				}
+
+
 			}
 
 		}
@@ -56,6 +69,7 @@ public class Functions {
 	@ListenMouseKeyboard(value=32,intercept = true)
 	private static void space() {
 		if(temp1==true){
+			System.out.println("程序按下space");
 		robot.keyRelease(KeyEvent.VK_SPACE);
 		robot.keyPress(KeyEvent.VK_SPACE);
 		temp1=false;
@@ -77,6 +91,23 @@ public class Functions {
 	private static void e2(){
 		temp2=false;
 	}
+
+	//振刀
+//	@ListenMouseKeyboard(value = 513)
+	private static void zhendao(){
+		temp3=true;
+	}
+
+//	@ListenMouseKeyboard(value = 524)
+	private static void zhendao2(){
+		temp3=false;
+	}
+
+
+
+
+
+
 
 
 }
