@@ -95,10 +95,9 @@ public class Functions extends IFunctions {
 
 //                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
                     if (temp1 == true) {
-                        System.out.println(1234);
                         robot.keyRelease(KeyEvent.VK_SPACE);
                         robot.keyPress(KeyEvent.VK_SPACE);
-                        pause(5000);
+                        pause(500);
                     }
                     else{
                         t1.suspend();
@@ -190,11 +189,13 @@ public class Functions extends IFunctions {
         robot.keyRelease(KeyEvent.VK_TAB);
         robot.keyPress(KeyEvent.VK_TAB);
         robot.keyRelease(KeyEvent.VK_TAB);
-        pause(50);
-//        robot.mouseMove(1600,1200);
-        robot.keyPress(KeyEvent.VK_1);
-        robot.keyRelease(KeyEvent.VK_1);
-        pause(50);
+        pause(40);
+        robot.mouseMove(1794,622);
+//        pause(1000);
+        robot.mousePress(MouseEvent.BUTTON1_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_MASK);
+
+        pause(40);
         robot.keyPress(KeyEvent.VK_TAB);
         robot.keyRelease(KeyEvent.VK_TAB);
     }
@@ -245,7 +246,13 @@ public class Functions extends IFunctions {
     //0
     @ListenMouseKeyboard(value = 48)
     private static void TotalDelay(){
-        changeDelay("TotalDelay", 5L);
+        changeDelay("BaseDelay", 5L);
+    }
+
+    @ListenMouseKeyboard(value = 81)
+    private static void test(){
+        robot.keyPress(KeyEvent.VK_1);
+        robot.keyRelease(KeyEvent.VK_1);
     }
 
 }
