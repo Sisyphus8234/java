@@ -8,8 +8,9 @@ public class Functions extends IFunctions {
             @Override
             public void myFunction(){
                 while (true) {
-                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
+                    pause(Long.parseLong(Config.prop.getProperty("BaseDelay")));
                     //todo
+                    System.out.println("todo");
                 }
 
             }
