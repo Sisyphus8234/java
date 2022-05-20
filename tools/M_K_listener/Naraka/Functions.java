@@ -172,7 +172,20 @@ public class Functions extends IFunctions {
         robot.keyRelease(KeyEvent.VK_E);
     }
 
-
+    //换武器 G
+    @ListenMouseKeyboard(value = 71, intercept = true)
+    private static void g() {
+        robot.keyRelease(KeyEvent.VK_TAB);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_TAB);
+        pause(50);
+//        robot.mouseMove(1600,1200);
+        robot.keyPress(KeyEvent.VK_1);
+        robot.keyRelease(KeyEvent.VK_1);
+        pause(50);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_TAB);
+    }
 
     //振刀
     @ListenMouseKeyboard(value = 523)
@@ -185,5 +198,28 @@ public class Functions extends IFunctions {
         temp3 = false;
     }
 
+    public static boolean ctrl=false;
+    @ListenMouseKeyboard(value = 162)
+    private static void ctrl(){
+        ctrl=true;
+    }
+    @ListenMouseKeyboard(value = 162,press = false)
+    private static void ctrl2(){
+        ctrl=false;
+    }
+
+
+    private static void changeDelay(String s1,Long l1){
+        if(ctrl==false){
+        Config.write(s1,""+(Long.parseLong(Config.prop.getProperty("TotalDelay"))+l1));}
+        else{
+            Config.write(s1,""+(Long.parseLong(Config.prop.getProperty("TotalDelay"))-l1));
+        }
+    }
+
+    @ListenMouseKeyboard(value = 48)
+    private static void TotalDelay(){
+        changeDelay("TotalDelay", 5L);
+    }
 
 }
