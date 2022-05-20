@@ -177,7 +177,6 @@ public class Functions extends IFunctions {
     //拉人 T
     @ListenMouseKeyboard(value = 84, intercept = true)
     private static void t() {
-        robot.keyRelease(KeyEvent.VK_E);
         robot.keyPress(KeyEvent.VK_E);
     }
     @ListenMouseKeyboard(value = 84, press = false, intercept = true)
@@ -247,7 +246,6 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 48)
     private static void TotalDelay(){
         changeDelay("TotalDelay", 5L);
-
     }
 
 }
