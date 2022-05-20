@@ -1,7 +1,9 @@
 import com.melloware.jintellitype.JIntellitype;
 
-import java.awt.AWTException;
-import java.awt.Robot;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Date;
@@ -226,11 +228,26 @@ public class Functions extends IFunctions {
         else{
             Config.write(s1,""+(Long.parseLong(Config.prop.getProperty("TotalDelay"))-l1));
         }
+        setClipboardString(Config.prop.toString());
     }
 
+    /**
+     * 把文本设置到剪贴板（复制）
+     */
+    private static void setClipboardString(String text) {
+        // 获取系统剪贴板
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        // 封装文本内容
+        Transferable trans = new StringSelection(text);
+        // 把文本内容设置到系统剪贴板
+        clipboard.setContents(trans, null);
+    }
+
+    //0
     @ListenMouseKeyboard(value = 48)
     private static void TotalDelay(){
         changeDelay("TotalDelay", 5L);
+
     }
 
 }
