@@ -97,7 +97,7 @@ public class Functions extends IFunctions {
                     if (temp1 == true) {
                         robot.keyRelease(KeyEvent.VK_SPACE);
                         robot.keyPress(KeyEvent.VK_SPACE);
-                        pause(500);
+                        pause(450);
                     }
                     else{
                         t1.suspend();
@@ -244,15 +244,15 @@ public class Functions extends IFunctions {
     }
 
     //0
-    @ListenMouseKeyboard(value = 48)
+//    @ListenMouseKeyboard(value = 48)
     private static void TotalDelay(){
         changeDelay("BaseDelay", 5L);
     }
 
-    @ListenMouseKeyboard(value = 81)
-    private static void test(){
-        robot.keyPress(KeyEvent.VK_1);
-        robot.keyRelease(KeyEvent.VK_1);
-    }
+//    @ListenMouseKeyboard(value = 81)
+//    private static void test(){
+//        robot.keyPress(KeyEvent.VK_1);
+//        robot.keyRelease(KeyEvent.VK_1);
+//    }
 
 }
