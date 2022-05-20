@@ -10,3 +10,7 @@ mkdir out
 xcopy /e/y ..\..\M_K_listener\src\main\java out\
 
 xcopy /y Functions.java out\
+
+xcopy /e/y ..\..\M_K_listener\Config.properties
+
+xcopy /y Config.properties out\

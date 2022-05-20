@@ -22,7 +22,7 @@ public class IFunctions {
         System.out.println("Robot创建完成");
     }
 
-    private static void pause(long millis) {
+    public static void pause(long millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -30,9 +30,13 @@ public class IFunctions {
         }
     }
 
-    static class CreateThread{
-        public void myFunction(){};
-        public CreateThread(){
+    static class CreateThread {
+        public void myFunction() {
+        }
+
+        ;
+
+        public CreateThread() {
             new Thread() {
                 @Override
                 public void run() {

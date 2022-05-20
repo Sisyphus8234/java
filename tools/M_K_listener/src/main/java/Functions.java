@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 public class Functions extends IFunctions {
 
 	static {
-        new createThread(){
+        new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
