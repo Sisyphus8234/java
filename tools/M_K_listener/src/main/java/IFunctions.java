@@ -30,9 +30,9 @@ public class IFunctions {
         }
     }
 
-    static class createThread{
+    static class CreateThread{
         public void myFunction(){};
-        public createThread(){
+        public CreateThread(){
             new Thread() {
                 @Override
                 public void run() {
