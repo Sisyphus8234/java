@@ -3,6 +3,19 @@ import java.awt.event.MouseEvent;
 
 public class Functions extends IFunctions {
 
+	static {
+        new createThread(){
+            @Override
+            public void myFunction(){
+                while (true) {
+                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
+                    //todo
+                }
+
+            }
+        };
+	}
+
     //按下鼠标左键触发
     @ListenMouseKeyboard(value = 513, immediately = true)
     private static void sample1() {

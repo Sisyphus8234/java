@@ -30,15 +30,18 @@ public class IFunctions {
         }
     }
 
-    static {
-        new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
-                    //todo
+    static class createThread{
+        public void myFunction(){};
+        public createThread(){
+            new Thread() {
+                @Override
+                public void run() {
+                    myFunction();
                 }
-            }
-        }.start();
+            }.start();
+        }
     }
+
 }
+
+
