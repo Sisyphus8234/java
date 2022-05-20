@@ -83,7 +83,8 @@ public class Functions extends IFunctions {
 //		}.start();
 //	}
     public static Thread t1;
-
+    public static Thread t2;
+//    public static Thread t3;
     static {
         t1=new CreateThread() {
             @Override
@@ -104,12 +105,11 @@ public class Functions extends IFunctions {
             }
         }.thread;
 
-        new CreateThread(){
+        t2=new CreateThread(){
             @Override
             public void myFunction() {
                 while (true) {
 //                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
-
 					if (temp2 == true) {
 						robot.keyRelease(KeyEvent.VK_E);
 						robot.keyPress(KeyEvent.VK_E);
@@ -123,9 +123,13 @@ public class Functions extends IFunctions {
 						pause(50);
 						robot.keyRelease(KeyEvent.VK_ALT);
 					}
+
+					if(temp2==false&&temp3==false){
+					    t2.suspend();
+                    }
 				}
 			}
-        };
+        }.thread;
     }
 
     @ListenMouseKeyboard(value = 32, intercept = true)
@@ -161,6 +165,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 69, intercept = true)
     private static void e() {
         temp2 = true;
+        t2.resume();
     }
     @ListenMouseKeyboard(value = 69, press = false, intercept = true)
     private static void e2() {
@@ -197,8 +202,8 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 523)
     private static void zhendao() {
         temp3 = true;
+        t2.resume();
     }
-
     @ListenMouseKeyboard(value = 524)
     private static void zhendao2() {
         temp3 = false;
