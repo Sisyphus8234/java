@@ -31,18 +31,17 @@ public class IFunctions {
     }
 
     static class CreateThread {
+        public Thread thread;
         public void myFunction() {
-        }
-
-        ;
-
+        };
         public CreateThread() {
-            new Thread() {
+            thread = new Thread() {
                 @Override
                 public void run() {
                     myFunction();
                 }
-            }.start();
+            };
+            thread.start();
         }
     }
 

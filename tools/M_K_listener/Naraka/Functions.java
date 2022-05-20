@@ -82,28 +82,33 @@ public class Functions extends IFunctions {
 //			}
 //		}.start();
 //	}
+    public static Thread t1;
 
     static {
-        new CreateThread() {
+        t1=new CreateThread() {
             @Override
             public void myFunction() {
                 while (true) {
-                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
+
+//                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
                     if (temp1 == true) {
+                        System.out.println(1234);
                         robot.keyRelease(KeyEvent.VK_SPACE);
                         robot.keyPress(KeyEvent.VK_SPACE);
-                        pause(500);
+                        pause(5000);
+                    }
+                    else{
+                        t1.suspend();
                     }
                 }
-
             }
-        };
+        }.thread;
 
         new CreateThread(){
             @Override
             public void myFunction() {
                 while (true) {
-                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
+//                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
 
 					if (temp2 == true) {
 						robot.keyRelease(KeyEvent.VK_E);
@@ -126,6 +131,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 32, intercept = true)
     private static void space() {
         temp1 = true;
+        t1.resume();
     }
 
     @ListenMouseKeyboard(value = 32, intercept = true, press = false)

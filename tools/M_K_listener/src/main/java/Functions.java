@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 public class Functions extends IFunctions {
 
 	static {
-        new CreateThread(){
+        Thread t1=new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
@@ -13,7 +13,7 @@ public class Functions extends IFunctions {
                 }
 
             }
-        };
+        }.thread;
 	}
 
     //按下鼠标左键触发
