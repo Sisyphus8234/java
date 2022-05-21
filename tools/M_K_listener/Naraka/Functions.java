@@ -13,80 +13,11 @@ public class Functions extends IFunctions {
     public static boolean temp1 = false;
     public static boolean temp2 = false;
     public static boolean temp3 = false;
-    public static Date time1 = new Date();
 
-//    static {
-//
-//		new Thread() {
-//			@Override
-//			public void run() {
-//				while (true) {
-//					try {
-//						Thread.sleep(35);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//
-//					if (temp2 == true) {
-//						robot.keyRelease(KeyEvent.VK_E);
-//						robot.keyPress(KeyEvent.VK_E);
-//						robot.keyRelease(KeyEvent.VK_E);
-//						try {
-//							Thread.sleep(200);
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-//					}
-//
-//					if (temp3 == true) {
-////					try {Thread.sleep(10);} catch (InterruptedException e) {e.printStackTrace();}
-//						robot.keyRelease(KeyEvent.VK_ALT);
-//
-//						robot.keyPress(KeyEvent.VK_ALT);
-//
-//						try {
-//							Thread.sleep(50);
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-//						robot.keyRelease(KeyEvent.VK_ALT);
-//
-//
-//					}
-//
-//
-//				}
-//
-//			}
-//		}.start();
-//
-//		new Thread() {
-//			@Override
-//			public void run() {
-//				while (true) {
-//					try {
-//						Thread.sleep(35);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//
-//					if (temp1 == true) {
-//						robot.keyRelease(KeyEvent.VK_SPACE);
-//						robot.keyPress(KeyEvent.VK_SPACE);
-//
-//						try {
-//							Thread.sleep(500);
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-//					}
-//				}
-//			}
-//		}.start();
-//	}
+
     public static Thread t1;
     public static Thread t2;
-//    public static Thread t3;
+
     static {
         t1=new CreateThread() {
             @Override
@@ -116,18 +47,20 @@ public class Functions extends IFunctions {
 						robot.keyPress(KeyEvent.VK_E);
 						robot.keyRelease(KeyEvent.VK_E);
 						pause(200);
-					}
-
-					if (temp3 == true) {
-						robot.keyRelease(KeyEvent.VK_ALT);
-						robot.keyPress(KeyEvent.VK_ALT);
-						pause(50);
-						robot.keyRelease(KeyEvent.VK_ALT);
-					}
-
-					if(temp2==false&&temp3==false){
-					    t2.suspend();
+					}else{
+                        t2.suspend();
                     }
+//
+//					if (temp3 == true) {
+//						robot.keyRelease(KeyEvent.VK_ALT);
+//						robot.keyPress(KeyEvent.VK_ALT);
+//						pause(50);
+//						robot.keyRelease(KeyEvent.VK_ALT);
+//					}
+
+//					if(temp2==false&&temp3==false){
+//					    t2.suspend();
+//                    }
 				}
 			}
         }.thread;
@@ -201,15 +134,15 @@ public class Functions extends IFunctions {
     }
 
     //振刀
-    @ListenMouseKeyboard(value = 523)
-    private static void zhendao() {
-        temp3 = true;
-        t2.resume();
-    }
-    @ListenMouseKeyboard(value = 524)
-    private static void zhendao2() {
-        temp3 = false;
-    }
+//    @ListenMouseKeyboard(value = 523)
+//    private static void zhendao() {
+//        temp3 = true;
+//        t2.resume();
+//    }
+//    @ListenMouseKeyboard(value = 524)
+//    private static void zhendao2() {
+//        temp3 = false;
+//    }
 
     public static boolean ctrl=false;
     @ListenMouseKeyboard(value = 162)
@@ -224,9 +157,9 @@ public class Functions extends IFunctions {
 
     private static void changeDelay(String s1,Long l1){
         if(ctrl==false){
-        Config.write(s1,""+(Long.parseLong(Config.prop.getProperty("TotalDelay"))+l1));}
+        Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))+l1));}
         else{
-            Config.write(s1,""+(Long.parseLong(Config.prop.getProperty("TotalDelay"))-l1));
+            Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))-l1));
         }
         setClipboardString(Config.prop.toString());
     }
@@ -244,7 +177,7 @@ public class Functions extends IFunctions {
     }
 
     //0
-//    @ListenMouseKeyboard(value = 48)
+    @ListenMouseKeyboard(value = 48)
     private static void TotalDelay(){
         changeDelay("BaseDelay", 5L);
     }
