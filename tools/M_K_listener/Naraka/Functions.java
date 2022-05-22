@@ -1,12 +1,9 @@
-import com.melloware.jintellitype.JIntellitype;
-
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.Date;
 
 public class Functions extends IFunctions {
 
@@ -60,17 +57,7 @@ public class Functions extends IFunctions {
 					else{
                         t2.suspend();
                     }
-//
-//					if (temp3 == true) {
-//						robot.keyRelease(KeyEvent.VK_ALT);
-//						robot.keyPress(KeyEvent.VK_ALT);
-//						pause(50);
-//						robot.keyRelease(KeyEvent.VK_ALT);
-//					}
 
-//					if(temp2==false&&temp3==false){
-//					    t2.suspend();
-//                    }
 				}
 			}
         }.thread;
@@ -89,22 +76,6 @@ public class Functions extends IFunctions {
         temp1 = false;
     }
 
-//	@ListenMouseKeyboard(value=32,intercept = true)
-//	private static void space() {
-//
-//		if(temp1==true&&new Date().getTime()-time1.getTime()>=400){
-//			System.out.println("程序按下space");
-//		robot.keyRelease(KeyEvent.VK_SPACE);
-//		robot.keyPress(KeyEvent.VK_SPACE);
-//		temp1=false;
-//time1=new Date();
-//
-//		}
-//	}
-//	@ListenMouseKeyboard(value=32,press = false,intercept = true)
-//	private static void space2() {
-//		temp1=true;
-//	}
 
 
     //拾取物品
@@ -145,16 +116,6 @@ public class Functions extends IFunctions {
         robot.keyRelease(KeyEvent.VK_TAB);
     }
 
-    //振刀
-//    @ListenMouseKeyboard(value = 523)
-//    private static void zhendao() {
-//        temp3 = true;
-//        t2.resume();
-//    }
-//    @ListenMouseKeyboard(value = 524)
-//    private static void zhendao2() {
-//        temp3 = false;
-//    }
 
     public static boolean ctrl=false;
     @ListenMouseKeyboard(value = 162)
