@@ -28,7 +28,7 @@ public class Functions extends IFunctions {
                     if (temp1 == true) {
                         robot.keyRelease(KeyEvent.VK_SPACE);
                         robot.keyPress(KeyEvent.VK_SPACE);
-                        pause(450);
+                        pause(400);
                     }
                     else{
                         t1.suspend();
@@ -47,7 +47,17 @@ public class Functions extends IFunctions {
 						robot.keyPress(KeyEvent.VK_E);
 						robot.keyRelease(KeyEvent.VK_E);
 						pause(200);
-					}else{
+					}else if(temp3==true){
+                        robot.keyRelease(KeyEvent.VK_5);
+                        robot.keyPress(KeyEvent.VK_5);
+                        robot.keyRelease(KeyEvent.VK_5);
+                        pause(20);
+                        robot.keyRelease(KeyEvent.VK_4);
+                        robot.keyPress(KeyEvent.VK_4);
+                        robot.keyRelease(KeyEvent.VK_4);
+                        pause(300);
+                    }
+					else{
                         t2.suspend();
                     }
 //
@@ -70,6 +80,8 @@ public class Functions extends IFunctions {
     private static void space() {
         temp1 = true;
         t1.resume();
+
+        temp3=false;
     }
 
     @ListenMouseKeyboard(value = 32, intercept = true, press = false)
@@ -182,10 +194,28 @@ public class Functions extends IFunctions {
         changeDelay("BaseDelay", 5L);
     }
 
+    @ListenMouseKeyboard(value = 52,intercept = true)
+    @ListenMouseKeyboard(value = 53,intercept = true)
+    private static void yao(){
+        temp3=true;
+        t2.resume();
+    }
+
+//    @ListenMouseKeyboard(value = 18)
+//    private static void yao2(){
+//        System.out.println(1234);
+//        temp3=false;
+//    }
+
+
 //    @ListenMouseKeyboard(value = 81)
 //    private static void test(){
 //        robot.keyPress(KeyEvent.VK_1);
 //        robot.keyRelease(KeyEvent.VK_1);
 //    }
+
+
+
+
 
 }
