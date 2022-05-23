@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 public class Config {
@@ -9,10 +7,10 @@ public class Config {
     public static Properties prop=new Properties();
 
     static {
-        read();
+        init();
     }
 
-    public static void read() {
+    public static void init() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
             prop.load(br);
@@ -21,6 +19,9 @@ public class Config {
         }
     }
 
+    public static String read(String s1) {
+        return prop.getProperty(s1);
+    }
 
     public static void write(String s1,String s2) {
 
