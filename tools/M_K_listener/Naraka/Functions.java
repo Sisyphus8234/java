@@ -152,7 +152,7 @@ public class Functions extends IFunctions {
     }
 
     //9
-    @ListenMouseKeyboard(value = 47)
+    @ListenMouseKeyboard(value = 57)
     private static void TotalDelay(){
         changeProp("SpaceDelay", 50L);
         spaceDelay=Long.parseLong(Config.read("SpaceDelay"));
