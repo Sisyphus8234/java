@@ -46,7 +46,7 @@ public class Functions extends IFunctions {
 						robot.keyRelease(KeyEvent.VK_E);
 						robot.keyPress(KeyEvent.VK_E);
 						robot.keyRelease(KeyEvent.VK_E);
-						pause(200);
+						pause(EDelay);
 					}else if(temp3==true){
                         pause(300);
                         robot.keyRelease(KeyEvent.VK_5);
@@ -167,6 +167,7 @@ public class Functions extends IFunctions {
         spaceDelay=Long.parseLong(Config.read("EDelay"));
     }
 
+    //4,5
     @ListenMouseKeyboard(value = 52)
     @ListenMouseKeyboard(value = 53)
     private static void yao(){
