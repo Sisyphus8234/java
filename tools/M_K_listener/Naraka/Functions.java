@@ -47,6 +47,7 @@ public class Functions extends IFunctions {
 						robot.keyRelease(KeyEvent.VK_E);
 						pause(200);
 					}else if(temp3==true){
+                        pause(300);
                         robot.keyRelease(KeyEvent.VK_5);
                         robot.keyPress(KeyEvent.VK_5);
                         robot.keyRelease(KeyEvent.VK_5);
@@ -54,7 +55,7 @@ public class Functions extends IFunctions {
                         robot.keyRelease(KeyEvent.VK_4);
                         robot.keyPress(KeyEvent.VK_4);
                         robot.keyRelease(KeyEvent.VK_4);
-                        pause(300);
+
                     }
 					else{
                         t2.suspend();
@@ -158,8 +159,8 @@ public class Functions extends IFunctions {
         spaceDelay=Long.parseLong(Config.read("SpaceDelay"));
     }
 
-    @ListenMouseKeyboard(value = 52,intercept = true)
-    @ListenMouseKeyboard(value = 53,intercept = true)
+    @ListenMouseKeyboard(value = 52)
+    @ListenMouseKeyboard(value = 53)
     private static void yao(){
         temp3=true;
         t2.resume();
