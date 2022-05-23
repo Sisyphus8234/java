@@ -15,6 +15,8 @@ public class Functions extends IFunctions {
     public static Thread t1;
     public static Thread t2;
 
+    public static Long spaceDelay=Long.parseLong(Config.read("SpaceDelay"));
+
     static {
         t1=new CreateThread() {
             @Override
@@ -25,7 +27,7 @@ public class Functions extends IFunctions {
                     if (temp1 == true) {
                         robot.keyRelease(KeyEvent.VK_SPACE);
                         robot.keyPress(KeyEvent.VK_SPACE);
-                        pause(400);
+                        pause(spaceDelay);
                     }
                     else{
                         t1.suspend();
@@ -128,7 +130,7 @@ public class Functions extends IFunctions {
     }
 
 
-    private static void changeDelay(String s1,Long l1){
+    private static void changeProp(String s1,Long l1){
         if(ctrl==false){
         Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))+l1));}
         else{
@@ -149,10 +151,11 @@ public class Functions extends IFunctions {
         clipboard.setContents(trans, null);
     }
 
-    //0
-    @ListenMouseKeyboard(value = 48)
+    //9
+    @ListenMouseKeyboard(value = 47)
     private static void TotalDelay(){
-        changeDelay("BaseDelay", 5L);
+        changeProp("SpaceDelay", 50L);
+        spaceDelay=Long.parseLong(Config.read("SpaceDelay"));
     }
 
     @ListenMouseKeyboard(value = 52,intercept = true)
