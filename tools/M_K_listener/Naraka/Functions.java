@@ -16,6 +16,7 @@ public class Functions extends IFunctions {
     public static Thread t2;
 
     public static Long spaceDelay=Long.parseLong(Config.read("SpaceDelay"));
+    public static Long EDelay=Long.parseLong(Config.read("EDelay"));
 
     static {
         t1=new CreateThread() {
@@ -131,7 +132,7 @@ public class Functions extends IFunctions {
     }
 
 
-    private static void changeProp(String s1,Long l1){
+    private static void writeProp(String s1,Long l1){
         if(ctrl==false){
         Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))+l1));}
         else{
@@ -154,9 +155,16 @@ public class Functions extends IFunctions {
 
     //9
     @ListenMouseKeyboard(value = 57)
-    private static void TotalDelay(){
-        changeProp("SpaceDelay", 50L);
+    private static void SpaceDelay(){
+        writeProp("SpaceDelay", 50L);
         spaceDelay=Long.parseLong(Config.read("SpaceDelay"));
+    }
+
+    //8
+    @ListenMouseKeyboard(value = 56)
+    private static void EDelay(){
+        writeProp("EDelay", 50L);
+        spaceDelay=Long.parseLong(Config.read("EDelay"));
     }
 
     @ListenMouseKeyboard(value = 52)
