@@ -3,13 +3,15 @@ import java.awt.event.MouseEvent;
 
 public class Functions extends IFunctions {
 
+    public static Long baseDelay=Long.parseLong(Config.read("BaseDelay"));
+
     public static Thread t1;
 	static {
         t1=new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
-                    pause(Long.parseLong(Config.prop.getProperty("BaseDelay")));
+                    pause(baseDelay);
                     //todo
                     System.out.println("todo");
                 }
