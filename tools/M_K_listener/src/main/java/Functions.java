@@ -3,8 +3,9 @@ import java.awt.event.MouseEvent;
 
 public class Functions extends IFunctions {
 
+    public static Thread t1;
 	static {
-        Thread t1=new CreateThread(){
+        t1=new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
