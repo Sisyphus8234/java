@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -8,7 +9,12 @@ public class Functions extends IFunctions {
     public static boolean temp1 = false;
     public static boolean temp2 = false;
 
+    public static boolean temp3 = false;
+    public static int y1 = 0;
+    public static int y2 = 0;
+
     public static Thread t1;
+    public static Thread t2;
 
     static {
         t1 = new CreateThread() {
@@ -33,6 +39,26 @@ public class Functions extends IFunctions {
             }
         }.thread;
         t1.suspend();
+
+
+//        t2 = new CreateThread() {
+//            @Override
+//            public void myFunction() {
+//                while (true) {
+//                    if(temp3==true){
+//                    y1 = (int) MouseInfo.getPointerInfo().getLocation().getY();
+//                    pause(500);
+//                    y2 = (int) MouseInfo.getPointerInfo().getLocation().getY();
+//                    robot.mouseWheel((int)((y2-y1)*0.1));
+//                    }else if(temp3==false){
+//                        t2.suspend();
+//                    }
+//                }
+//
+//            }
+//        }.thread;
+//        t2.suspend();
+
     }
 
 
@@ -88,6 +114,41 @@ public class Functions extends IFunctions {
     public static void f9() {
         robot.mouseWheel(6);
     }
+
+    @ListenMouseKeyboard(value = 192,intercept = true)
+    public static void f10() {
+
+        temp3=true;
+//        t2.resume();
+    }
+
+
+    @ListenMouseKeyboard(value = 192,intercept = true,press = false)
+    public static void f11() {
+        temp3=false;
+    }
+
+    @ListenMouseKeyboard(value = 49,intercept = true)
+    public static void f12() {
+        if(temp3==true){
+            robot.mouseWheel(-5);
+        }else {
+            robot.keyPress(KeyEvent.VK_1);
+        }
+    }
+
+    @ListenMouseKeyboard(value = 50,intercept = true)
+    public static void f13() {
+        if(temp3==true){
+            robot.mouseWheel(5);
+        }else {
+            robot.keyPress(KeyEvent.VK_2);
+        }
+    }
+
+
+
+
 
 
 
