@@ -131,7 +131,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 49,intercept = true)
     public static void f12() {
         if(temp3==true){
-            robot.mouseWheel(-5);
+            robot.mouseWheel(5);
         }else {
             robot.keyPress(KeyEvent.VK_1);
         }
@@ -140,7 +140,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 50,intercept = true)
     public static void f13() {
         if(temp3==true){
-            robot.mouseWheel(5);
+            robot.mouseWheel(-5);
         }else {
             robot.keyPress(KeyEvent.VK_2);
         }
