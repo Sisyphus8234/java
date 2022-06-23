@@ -92,7 +92,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 57)
     private static void adjustTime1(){
         writeProp("Time1", 50L);
-        time1=Long.parseLong(Config.read("SpaceDelay"));
+        time1=Long.parseLong(Config.read("Time1"));
     }
 
 }
