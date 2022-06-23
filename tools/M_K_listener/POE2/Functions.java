@@ -79,6 +79,7 @@ public class Functions extends IFunctions {
     private static void f3() {
         // TODO Auto-generated method stub
         t1.suspend();
+        t2.suspend();
 
     }
 
