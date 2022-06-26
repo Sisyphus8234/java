@@ -16,12 +16,14 @@ public class Functions extends IFunctions {
 
     public static Thread t1;
     public static Thread t2;
+    public static Thread t3;
 	static {
         t1=new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
                         robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
+                        pause(50);
                         robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
                         pause(time1);
 
@@ -42,6 +44,19 @@ public class Functions extends IFunctions {
             }
         }.thread;
         t2.suspend();
+
+        t3=new CreateThread(){
+            @Override
+            public void myFunction(){
+                while (true) {
+                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    pause(200);
+
+                }
+            }
+        }.thread;
+        t3.suspend();
 	}
 
 
@@ -54,32 +69,66 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 87, immediately = true, intercept = true)
     private static void f2() {
+        robot.keyPress(KeyEvent.VK_E);
+        robot.keyRelease(KeyEvent.VK_E);
 
-        temp2 = new Date().getTime();
-//        t1.suspend();
-//        t2.resume();
+        pause(50);
+
+        robot.keyPress(KeyEvent.VK_W);
+        robot.keyRelease(KeyEvent.VK_W);
+
+        robot.keyPress(KeyEvent.VK_5);
+        robot.keyRelease(KeyEvent.VK_5);
+
+        pause(50);
+
+        robot.keyPress(KeyEvent.VK_Q);
+        robot.keyRelease(KeyEvent.VK_Q);
+
+        pause(50);
+
+        robot.keyPress(KeyEvent.VK_5);
+        robot.keyRelease(KeyEvent.VK_5);
 
     }
 
-//    @ListenMouseKeyboard(value = 513, immediately = true)
+
+    @ListenMouseKeyboard(value = 513, immediately = true,userInput = true)
     @ListenMouseKeyboard(value = 82, immediately = true)
-    @ListenMouseKeyboard(value = 32, immediately = true)
+//    @ListenMouseKeyboard(value = 32, immediately = true)
     private static void f3() {
         // TODO Auto-generated method stub
         t1.suspend();
         t2.suspend();
-
     }
+
+
+    @ListenMouseKeyboard(value = 49,intercept = false)
+    @ListenMouseKeyboard(value = 91,intercept = true)
+    private static void F4(){
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        t3.resume();
+    }
+    @ListenMouseKeyboard(value = 49,press = false,intercept = false)
+    @ListenMouseKeyboard(value = 91,press = false,intercept = true)
+    private static void F5(){
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        t3.suspend();
+    }
+
+
 
 
     public static boolean ctrl=false;
     @ListenMouseKeyboard(value = 162)
     private static void ctrl(){
         ctrl=true;
+
     }
     @ListenMouseKeyboard(value = 162,press = false)
     private static void ctrl2(){
         ctrl=false;
+
     }
 
 
