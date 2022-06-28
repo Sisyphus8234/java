@@ -4,7 +4,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.Date;
 import java.util.HashMap;
 
 public class Functions extends IFunctions {
@@ -174,21 +173,25 @@ public class Functions extends IFunctions {
 
 //    ---------------------------------------------------
     public static boolean trade = false;
-    public static Integer count = 0;
+
+    public static Integer count1 = 0;
+    public static Integer count2 = 0;
+
+
     public static HashMap<Integer, String> map1=new HashMap<>();
     static {
         map1.put(0,"头");
         map1.put(1,"胸");
-        map1.put(2,"腰带");
-
-        map1.put(3,"手套");
-        map1.put(4,"鞋");
+        map1.put(2,"手套");
+        map1.put(3,"鞋");
+        map1.put(4,"腰带");
         map1.put(5,"戒指");
         map1.put(6,"戒指");
         map1.put(7,"饰品");
 
 
-        map1.put(99,"!未鉴定|物品等级:[0-5][0-9]|!稀有");
+        map1.put(100,"物品等级:[0-5][0-9]|普通|魔法|传奇");
+        map1.put(101,"!未鉴定");
     }
     public static void t0(Integer integer){
 if(trade==true){
@@ -216,7 +219,7 @@ if(trade==true){
     @ListenMouseKeyboard(value = 112,intercept = true)
     private static void lock1(){
         trade=true;
-        count = 0;
+        count2 = 0;
 
         int x = MouseInfo.getPointerInfo().getLocation().x;
         int y =MouseInfo.getPointerInfo().getLocation().y;
@@ -228,17 +231,19 @@ if(trade==true){
         robot.mouseMove(x,y);
     }
 
+    @ListenMouseKeyboard(value = 27,intercept = false)
     @ListenMouseKeyboard(value = 113,intercept = true)
     private static void lock2(){
         trade=false;
     }
 
-
-
-
     @ListenMouseKeyboard(value = 50,intercept = true)
     private static void t1(){
-        t0(99);
+        t0(count1+100);
+        count1++;
+        if(count1>=2){
+            count1=0;
+        }
 
         if(trade==false){
         robot.keyPress(KeyEvent.VK_2);
@@ -249,8 +254,11 @@ if(trade==true){
     @ListenMouseKeyboard(value = 51,intercept = true)
     private static void t2(){
 
-        t0(count);
-        count++;
+        t0(count2);
+        count2++;
+        if(count2>=8){
+            count2=0;
+        }
 
         if(trade==false){
             robot.keyPress(KeyEvent.VK_3);
