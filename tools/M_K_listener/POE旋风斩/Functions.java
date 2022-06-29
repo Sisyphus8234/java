@@ -8,6 +8,12 @@ import java.util.HashMap;
 
 public class Functions extends IFunctions {
 
+    @ListenBar(off = true)
+    public static Integer on1=74;
+
+    @ListenBar(off = false)
+    public static Integer on2=75;
+
     public static Long time1=Long.parseLong(Config.read("Time1"));
     public static Long time2 = Long.parseLong(Config.read("Time2"));
 
@@ -264,8 +270,6 @@ if(trade==true){
             robot.keyPress(KeyEvent.VK_3);
             robot.keyRelease(KeyEvent.VK_3);}
     }
-
-
 
 
 }
