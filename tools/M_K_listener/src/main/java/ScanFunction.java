@@ -1,11 +1,10 @@
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ScanFunction {
-    public static void run(Class class1,Map<String, Utiliy> mapJna,Map<String, Utiliy> mapJintellitype){
-
-
+    public static void run(Class class1,Map<String, Utiliy> mapJna,Map<String, Utiliy> mapJintellitype,Map<Integer, String> mapListenBar){
 
 
         //Class<Functions> classFunctions = Functions.class;
@@ -92,6 +91,25 @@ public class ScanFunction {
         }
         System.out.println(mapJna);
         System.out.println(mapJintellitype);
+
+
+        Field[] fields=class1.getDeclaredFields();
+
+        for(Field field:fields){
+            if(field.isAnnotationPresent(ListenBar.class)){
+                ListenBar listenBar =field.getAnnotation(ListenBar.class);
+                try {
+                    if(listenBar.off()==true){
+                        mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"off");
+                    }else {
+                        mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"on");
+                    }
+                }catch (Exception e){}
+
+            }
+        }
+
+        System.out.println(mapListenBar);
 
     }
 }

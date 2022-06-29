@@ -32,10 +32,16 @@ public class MouseHook {
 			@Override
 			public LRESULT callback(int nCode, WPARAM wParam, MSLLHOOKSTRUCT info) {
 
+
 				
 				if(nCode==0 & wParam.intValue()!=512) {
 					if(info.flags==1) {System.out.print("(由程序执行的)");}
 					System.out.println("鼠标键"+wParam);
+
+					//开关相关
+					if(Controller.listehSwitch==false){
+						return null;
+					}
 
 					String userInput="userInput";
 					if(info.flags==1){

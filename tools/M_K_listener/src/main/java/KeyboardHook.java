@@ -30,11 +30,26 @@ public class KeyboardHook {
 			@Override
 			public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {
 
-
 				if (nCode==0) {
-					
+
+
+
 					if(info.flags==16 || info.flags==144) {System.out.print("(由程序执行的)");}
 					System.out.println("键盘键"+info.vkCode);
+
+					//开关相关
+					if(Controller.mapListenBar.containsKey(info.vkCode)){
+						System.out.println(Controller.mapListenBar.get(info.vkCode));
+						if(Controller.mapListenBar.get(info.vkCode).equals("off")){
+							Controller.listehSwitch=false;
+						}else if(Controller.mapListenBar.get(info.vkCode).equals("on")){
+							Controller.listehSwitch=true;
+						}
+					}
+					if(Controller.listehSwitch==false){
+						return null;
+					}
+
 
 					String userInput="userInput";
 					if(info.flags==16 || info.flags==144){

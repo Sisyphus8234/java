@@ -10,8 +10,12 @@ import javax.swing.JLabel;
 
 public class Controller {
 
+	public static boolean listehSwitch=true;
+
 	public static Map<String, Utiliy> mapJna=new HashMap<String,Utiliy>();
 	public static Map<String, Utiliy> mapJintellitype=new HashMap<String,Utiliy>();
+
+	public static Map<Integer, String> mapListenBar=new HashMap<Integer,String>();
 	
 	public static long refreshtime=3000;
 
@@ -21,7 +25,7 @@ public class Controller {
 		
 		MyJFrame.run();
 
-		ScanFunction.run(class1,mapJna,mapJintellitype);
+		ScanFunction.run(class1,mapJna,mapJintellitype,mapListenBar);
 
 		if(Functions.Jna==true) {
 			//mouse
