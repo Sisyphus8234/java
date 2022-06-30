@@ -9,18 +9,13 @@ import java.util.HashMap;
 public class Functions extends IFunctions {
 
     @ListenBar(off = true)
-    public static Integer on1=74;
+    public static Integer on1=189;
 
     @ListenBar(off = false)
-    public static Integer on2=75;
+    public static Integer on2=187;
 
     public static Long time1=Long.parseLong(Config.read("Time1"));
     public static Long time2 = Long.parseLong(Config.read("Time2"));
-
-    public static long temp1=0;
-    public static long temp2=0;
-
-
 
 
     public static Thread t1;
@@ -45,8 +40,8 @@ public class Functions extends IFunctions {
             @Override
             public void myFunction(){
                 while (true) {
-                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     pause(time2);
 
                 }
@@ -67,49 +62,114 @@ public class Functions extends IFunctions {
         }.thread;
         t3.suspend();
 
-
-
 	}
+
+
+    public static boolean trade = false;
+
+    public static Integer count1 = 0;
+    public static Integer count2 = 0;
+
+
+    public static HashMap<Integer, String> map1=new HashMap<>();
+    static {
+        map1.put(0,"头");
+        map1.put(1,"胸");
+        map1.put(2,"手套");
+        map1.put(3,"鞋");
+        map1.put(4,"腰带");
+        map1.put(5,"戒指");
+        map1.put(6,"戒指");
+        map1.put(7,"饰品");
+
+
+        map1.put(100,"物品等级:[0-5][0-9]|普通|魔法|传奇");
+        map1.put(101,"!未鉴定");
+    }
+    public static void t0(Integer integer){
+        if(trade==true){
+            setClipboardString(map1.get(integer));
+
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_F);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_F);
+
+            pause(50);
+
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_V);
+
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_V);
+
+        }
+
+
+    };
+
+
+    @ListenMouseKeyboard(value = 112,intercept = true)
+    private static void lock1(){
+        trade=true;
+        count2 = 0;
+
+        int x = MouseInfo.getPointerInfo().getLocation().x;
+        int y =MouseInfo.getPointerInfo().getLocation().y;
+        robot.mouseMove(427,105);
+        pause(50);
+        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+        pause(50);
+        robot.mouseMove(x,y);
+    }
+
+    @ListenMouseKeyboard(value = 27,intercept = false)
+    @ListenMouseKeyboard(value = 113,intercept = true)
+    private static void lock2(){
+        trade=false;
+    }
+
+    @ListenMouseKeyboard(value = 50,intercept = true)
+    private static void t1(){
+        t0(count1+100);
+        count1++;
+        if(count1>=2){
+            count1=0;
+        }
+
+        if(trade==false){
+            robot.keyPress(KeyEvent.VK_2);
+            robot.keyRelease(KeyEvent.VK_2);}
+
+    }
+
+    @ListenMouseKeyboard(value = 51,intercept = true)
+    private static void t2(){
+
+        t0(count2);
+        count2++;
+        if(count2>=8){
+            count2=0;
+        }
+
+        if(trade==false){
+            robot.keyPress(KeyEvent.VK_3);
+            robot.keyRelease(KeyEvent.VK_3);}
+    }
+
 
 
     @ListenMouseKeyboard(value = 84, immediately = true, intercept = true)
     private static void f1() {
         t1.resume();
         t2.resume();
-
     }
-
-    @ListenMouseKeyboard(value = 87, immediately = true, intercept = true)
-    private static void f2() {
-        robot.keyPress(KeyEvent.VK_E);
-        robot.keyRelease(KeyEvent.VK_E);
-
-        pause(50);
-
-        robot.keyPress(KeyEvent.VK_W);
-        robot.keyRelease(KeyEvent.VK_W);
-
-        robot.keyPress(KeyEvent.VK_5);
-        robot.keyRelease(KeyEvent.VK_5);
-
-        pause(50);
-
-        robot.keyPress(KeyEvent.VK_Q);
-        robot.keyRelease(KeyEvent.VK_Q);
-
-        pause(50);
-
-        robot.keyPress(KeyEvent.VK_5);
-        robot.keyRelease(KeyEvent.VK_5);
-
-    }
-
 
     @ListenMouseKeyboard(value = 513, immediately = true,userInput = true)
     @ListenMouseKeyboard(value = 82, immediately = true)
 //    @ListenMouseKeyboard(value = 32, immediately = true)
     private static void f3() {
-        // TODO Auto-generated method stub
         t1.suspend();
         t2.suspend();
     }
@@ -177,99 +237,39 @@ public class Functions extends IFunctions {
         time2=Long.parseLong(Config.read("Time2"));
     }
 
-//    ---------------------------------------------------
-    public static boolean trade = false;
-
-    public static Integer count1 = 0;
-    public static Integer count2 = 0;
 
 
-    public static HashMap<Integer, String> map1=new HashMap<>();
-    static {
-        map1.put(0,"头");
-        map1.put(1,"胸");
-        map1.put(2,"手套");
-        map1.put(3,"鞋");
-        map1.put(4,"腰带");
-        map1.put(5,"戒指");
-        map1.put(6,"戒指");
-        map1.put(7,"饰品");
+
+    //基础功能
+    //---------------------------------------------------------------
+    //各职业
 
 
-        map1.put(100,"物品等级:[0-5][0-9]|普通|魔法|传奇");
-        map1.put(101,"!未鉴定");
-    }
-    public static void t0(Integer integer){
-if(trade==true){
-        setClipboardString(map1.get(integer));
 
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_F);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_F);
-
-        pause(50);
-
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_V);
-
-}
-
-
-    };
-
-
-    @ListenMouseKeyboard(value = 112,intercept = true)
-    private static void lock1(){
-        trade=true;
-        count2 = 0;
-
-        int x = MouseInfo.getPointerInfo().getLocation().x;
-        int y =MouseInfo.getPointerInfo().getLocation().y;
-        robot.mouseMove(427,105);
-        pause(50);
-        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-        pause(50);
-        robot.mouseMove(x,y);
-    }
-
-    @ListenMouseKeyboard(value = 27,intercept = false)
-    @ListenMouseKeyboard(value = 113,intercept = true)
-    private static void lock2(){
-        trade=false;
-    }
-
-    @ListenMouseKeyboard(value = 50,intercept = true)
-    private static void t1(){
-        t0(count1+100);
-        count1++;
-        if(count1>=2){
-            count1=0;
-        }
-
-        if(trade==false){
-        robot.keyPress(KeyEvent.VK_2);
-        robot.keyRelease(KeyEvent.VK_2);}
-
-    }
-
-    @ListenMouseKeyboard(value = 51,intercept = true)
-    private static void t2(){
-
-        t0(count2);
-        count2++;
-        if(count2>=8){
-            count2=0;
-        }
-
-        if(trade==false){
-            robot.keyPress(KeyEvent.VK_3);
-            robot.keyRelease(KeyEvent.VK_3);}
-    }
+//    @ListenMouseKeyboard(value = 87, immediately = true, intercept = true)
+//    private static void f2() {
+//        robot.keyPress(KeyEvent.VK_E);
+//        robot.keyRelease(KeyEvent.VK_E);
+//
+//        pause(50);
+//
+//        robot.keyPress(KeyEvent.VK_W);
+//        robot.keyRelease(KeyEvent.VK_W);
+//
+//        robot.keyPress(KeyEvent.VK_5);
+//        robot.keyRelease(KeyEvent.VK_5);
+//
+//        pause(50);
+//
+//        robot.keyPress(KeyEvent.VK_Q);
+//        robot.keyRelease(KeyEvent.VK_Q);
+//
+//        pause(50);
+//
+//        robot.keyPress(KeyEvent.VK_5);
+//        robot.keyRelease(KeyEvent.VK_5);
+//
+//    }
 
 
 }
