@@ -40,8 +40,9 @@ public class Functions extends IFunctions {
             @Override
             public void myFunction(){
                 while (true) {
-                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     pause(time2);
 
                 }
@@ -53,6 +54,7 @@ public class Functions extends IFunctions {
             @Override
             public void myFunction(){
                 while (true) {
+                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     pause(200);
@@ -124,10 +126,18 @@ public class Functions extends IFunctions {
         robot.mouseMove(x,y);
     }
 
-    @ListenMouseKeyboard(value = 27,intercept = false)
+
     @ListenMouseKeyboard(value = 113,intercept = true)
     private static void lock2(){
         trade=false;
+    }
+
+    @ListenMouseKeyboard(value = 27,intercept = false)
+    private static void esc(){
+        trade=false;
+        t1.suspend();
+        t2.suspend();
+        t3.suspend();
     }
 
     @ListenMouseKeyboard(value = 50,intercept = true)
@@ -235,6 +245,11 @@ public class Functions extends IFunctions {
     private static void adjustTime2(){
         writeProp("Time2", 50L);
         time2=Long.parseLong(Config.read("Time2"));
+    }
+
+    @ListenMouseKeyboard(value = 44)
+    private static void exit(){
+        System.exit(0);
     }
 
 
