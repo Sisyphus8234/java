@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Functions extends IFunctions {
 
     @ListenBar(off = true)
-    public static Integer on1=189;
+    public static Integer on1=8;
 
     @ListenBar(off = false)
     public static Integer on2=187;
@@ -118,7 +118,7 @@ public class Functions extends IFunctions {
 
         int x = MouseInfo.getPointerInfo().getLocation().x;
         int y =MouseInfo.getPointerInfo().getLocation().y;
-        robot.mouseMove(427,105);
+        robot.mouseMove(491,105);
         pause(50);
         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
@@ -133,6 +133,7 @@ public class Functions extends IFunctions {
     }
 
     @ListenMouseKeyboard(value = 27,intercept = false)
+    @ListenMouseKeyboard(value = 192,intercept = false)
     private static void esc(){
         trade=false;
         t1.suspend();
@@ -186,7 +187,6 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(value = 49,intercept = false)
-    @ListenMouseKeyboard(value = 91,intercept = true)
     private static void F4(){
         robot.keyPress(KeyEvent.VK_CONTROL);
         t3.resume();
