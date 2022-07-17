@@ -12,7 +12,7 @@ public class Functions extends IFunctions {
     public static Integer on1=8;
 
     @ListenBar(off = false)
-    public static Integer on2=187;
+    public static Integer on2=120;
 
     public static Long time1=Long.parseLong(Config.read("Time1"));
     public static Long time2 = Long.parseLong(Config.read("Time2"));
@@ -57,7 +57,7 @@ public class Functions extends IFunctions {
                     robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                    pause(200);
+                    pause(110);
 
                 }
             }
@@ -82,15 +82,20 @@ public class Functions extends IFunctions {
         map1.put(4,"腰带");
         map1.put(5,"戒指");
         map1.put(6,"戒指");
-        map1.put(7,"饰品");
+        map1.put(7,"护身符");
 
+
+
+//        map1.put(100,"\"物品等级: [0-5][0-9]|普通|魔法|传奇|\"!未鉴定\"\"");
 
         map1.put(100,"物品等级:[0-5][0-9]|普通|魔法|传奇");
         map1.put(101,"!未鉴定");
+        map1.put(102,"\"物品等级: ([6][0-9]|[7][0-4])\"");
     }
-    public static void t0(Integer integer){
+    public static void t0(Integer integer,String s){
         if(trade==true){
-            setClipboardString(map1.get(integer));
+
+            setClipboardString(map1.get(integer)+s);
 
             robot.keyPress(KeyEvent.VK_CONTROL);
             robot.keyPress(KeyEvent.VK_F);
@@ -114,6 +119,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 112,intercept = true)
     private static void lock1(){
         trade=true;
+        count1 = 0;
         count2 = 0;
 
         int x = MouseInfo.getPointerInfo().getLocation().x;
@@ -123,6 +129,26 @@ public class Functions extends IFunctions {
         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
         pause(50);
+        robot.mouseMove(x,y);
+    }
+
+    @ListenMouseKeyboard(value = 114,intercept = true)
+    @ListenMouseKeyboard(value = 89,intercept = true)
+    private static void 回城卷轴(){
+
+        robot.keyPress(192);
+        robot.keyRelease(192);
+
+        int x = MouseInfo.getPointerInfo().getLocation().x;
+        int y =MouseInfo.getPointerInfo().getLocation().y;
+        robot.mouseMove(1295,824);
+        pause(50);
+        robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
+        pause(50);
+
+        robot.keyPress(192);
+        robot.keyRelease(192);
         robot.mouseMove(x,y);
     }
 
@@ -143,9 +169,9 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 50,intercept = true)
     private static void t1(){
-        t0(count1+100);
+        t0(count1+100,"");
         count1++;
-        if(count1>=2){
+        if(count1>=3){
             count1=0;
         }
 
@@ -158,7 +184,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 51,intercept = true)
     private static void t2(){
 
-        t0(count2);
+        t0(count2,"");
         count2++;
         if(count2>=8){
             count2=0;
@@ -169,13 +195,41 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_3);}
     }
 
+    @ListenMouseKeyboard(value = 53,intercept = true)
+    private static void t3(){
 
+        t0(count2," 物品等级:\\s([6][0-9]|[7][0-4])");
+        count2++;
+        if(count2>=8){
+            count2=0;
+        }
 
-    @ListenMouseKeyboard(value = 84, immediately = true, intercept = true)
-    private static void f1() {
-        t1.resume();
-        t2.resume();
+        if(trade==false){
+            robot.keyPress(KeyEvent.VK_5);
+            robot.keyRelease(KeyEvent.VK_5);}
     }
+
+    @ListenMouseKeyboard(value = 54,intercept = true)
+    private static void t4(){
+
+        t0(count2," 物品等级:\\s([8-9][0-9]|[7][5-9])");
+        count2++;
+        if(count2>=8){
+            count2=0;
+        }
+
+        if(trade==false){
+            robot.keyPress(KeyEvent.VK_6);
+            robot.keyRelease(KeyEvent.VK_6);}
+    }
+
+
+
+//    @ListenMouseKeyboard(value = 84, immediately = true, intercept = true)
+//    private static void 自动左键连点并且右键连点() {
+//        t1.resume();
+//        t2.resume();
+//    }
 
     @ListenMouseKeyboard(value = 513, immediately = true,userInput = true)
     @ListenMouseKeyboard(value = 82, immediately = true)
@@ -183,6 +237,24 @@ public class Functions extends IFunctions {
     private static void f3() {
         t1.suspend();
         t2.suspend();
+    }
+
+
+
+    public static Integer 水银药剂 = 0;
+    public static HashMap<Integer,Integer> 水银药剂map=new HashMap<>();
+    static {
+        水银药剂map.put(0,KeyEvent.VK_3);
+        水银药剂map.put(1,KeyEvent.VK_4);
+        水银药剂map.put(2,KeyEvent.VK_5);
+    }
+    @ListenMouseKeyboard(value = 52, intercept = true)
+    private static void 喝水银药剂() {
+        robot.keyPress(水银药剂map.get(水银药剂));
+        robot.keyRelease(水银药剂map.get(水银药剂));
+        水银药剂++;
+        if(水银药剂>=3){水银药剂=0;}
+
     }
 
 
@@ -247,9 +319,17 @@ public class Functions extends IFunctions {
         time2=Long.parseLong(Config.read("Time2"));
     }
 
-    @ListenMouseKeyboard(value = 44)
-    private static void exit(){
-        System.exit(0);
+
+    @ListenMouseKeyboard(value = 190)
+    private static void 下一页(){
+        int x = MouseInfo.getPointerInfo().getLocation().x;
+        int y =MouseInfo.getPointerInfo().getLocation().y;
+        robot.mouseMove(536,180);
+        pause(50);
+        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+        pause(50);
+        robot.mouseMove(x,y);
     }
 
 
@@ -258,6 +338,14 @@ public class Functions extends IFunctions {
     //基础功能
     //---------------------------------------------------------------
     //各职业
+
+    @ListenMouseKeyboard(value = 69)
+    @ListenMouseKeyboard(value = 87)
+    private static void 按we放g() {
+//        pause(50);
+        robot.keyPress(KeyEvent.VK_G);
+        robot.keyRelease(KeyEvent.VK_G);
+    }
 
 
 
