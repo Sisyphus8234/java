@@ -308,27 +308,11 @@ public class Functions extends IFunctions {
         // 把文本内容设置到系统剪贴板
         clipboard.setContents(trans, null);
     }
-    @ListenMouseKeyboard(value = 57)
-    private static void adjustTime1(){
-        writeProp("Time1", 50L);
-        time1=Long.parseLong(Config.read("Time1"));
-    }
-    @ListenMouseKeyboard(value = 56)
-    private static void adjustTime2(){
-        writeProp("Time2", 50L);
-        time2=Long.parseLong(Config.read("Time2"));
-    }
-
-    @ListenMouseKeyboard(value = 55)
-    private static void adjustTime3(){
-        writeProp("Time3", 50L);
-        time3=Long.parseLong(Config.read("Time3"));
-    }
-
-
-
-
-
+//    @ListenMouseKeyboard(value = 57)
+//    private static void adjustTime1(){
+//        writeProp("Time1", 50L);
+//        time1=Long.parseLong(Config.read("Time1"));
+//    }
 
 
 
