@@ -4,6 +4,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Functions extends IFunctions {
@@ -13,6 +14,9 @@ public class Functions extends IFunctions {
 
     @ListenBar(off = false)
     public static Integer on2=120;
+
+    @ListenBar(threadList = true)
+    public static ArrayList<Thread> threadList=new ArrayList<>();
 
     public static Long time1=Long.parseLong(Config.read("Time1"));
     public static Long time2 = Long.parseLong(Config.read("Time2"));
@@ -66,6 +70,10 @@ public class Functions extends IFunctions {
             }
         }.thread;
         t3.suspend();
+
+        threadList.add(t1);
+        threadList.add(t2);
+        threadList.add(t3);
 
 	}
 
@@ -277,6 +285,19 @@ public class Functions extends IFunctions {
         robot.keyPress(192);
         robot.keyRelease(192);
         robot.mouseMove(x,y);
+    }
+
+    @ListenMouseKeyboard(value = 32,press = true,intercept = true)
+    private static void 捡东西前原地站立(){
+        robot.keyPress(KeyEvent.VK_SHIFT);
+        robot.keyPress(KeyEvent.VK_F);
+    }
+    @ListenMouseKeyboard(value = 32,press = false,intercept = true)
+    private static void 捡东西(){
+        robot.keyRelease(KeyEvent.VK_F);
+        robot.keyRelease(KeyEvent.VK_SHIFT);
+        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
     }
 
 
