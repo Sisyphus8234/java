@@ -16,33 +16,35 @@ public class Functions extends IFunctions {
 
     public static Long time1=Long.parseLong(Config.read("Time1"));
     public static Long time2 = Long.parseLong(Config.read("Time2"));
+    public static Long time3 = Long.parseLong(Config.read("Time3"));
 
 
     public static Thread t1;
     public static Thread t2;
     public static Thread t3;
 	static {
+	    //连点右键
         t1=new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
                         robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
-//                        pause(50);
+                        //pause(50);
                         robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
                         pause(time1);
-
                 }
             }
         }.thread;
         t1.suspend();
 
+        //连点左键
         t2=new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
                     robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                    //robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     pause(time2);
 
                 }
@@ -50,6 +52,7 @@ public class Functions extends IFunctions {
         }.thread;
         t2.suspend();
 
+        //ctrl时的连点左键
         t3=new CreateThread(){
             @Override
             public void myFunction(){
@@ -57,7 +60,7 @@ public class Functions extends IFunctions {
                     robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                    pause(110);
+                    pause(time3);
 
                 }
             }
@@ -315,6 +318,13 @@ public class Functions extends IFunctions {
         writeProp("Time2", 50L);
         time2=Long.parseLong(Config.read("Time2"));
     }
+
+    @ListenMouseKeyboard(value = 55)
+    private static void adjustTime3(){
+        writeProp("Time3", 50L);
+        time3=Long.parseLong(Config.read("Time3"));
+    }
+
 
 
 
