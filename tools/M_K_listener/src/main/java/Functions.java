@@ -14,6 +14,9 @@ public class Functions extends IFunctions {
     @ListenBar(threadList = true)
     public static ArrayList<Thread> threadList=new ArrayList<>();
 
+    @ListenBar(off = true)
+    public static int stop =189;
+
     public static Thread t1;
 	static {
         t1=new CreateThread(){
