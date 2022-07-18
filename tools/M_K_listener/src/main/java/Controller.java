@@ -1,16 +1,12 @@
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class Controller {
 
 	public static boolean listehSwitch=true;
+
+	public static ArrayList<Thread> threadList=new ArrayList<Thread>();
 
 	public static Map<String, Utiliy> mapJna=new HashMap<String,Utiliy>();
 	public static Map<String, Utiliy> mapJintellitype=new HashMap<String,Utiliy>();
@@ -25,7 +21,7 @@ public class Controller {
 		
 		MyJFrame.run();
 
-		ScanFunction.run(class1,mapJna,mapJintellitype,mapListenBar);
+		ScanFunction.run(class1,mapJna,mapJintellitype,mapListenBar,threadList);
 
 		if(Functions.Jna==true) {
 			//mouse

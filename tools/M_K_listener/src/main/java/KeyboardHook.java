@@ -41,6 +41,9 @@ public class KeyboardHook {
 					if(Controller.mapListenBar.containsKey(info.vkCode)){
 						System.out.println(Controller.mapListenBar.get(info.vkCode));
 						if(Controller.mapListenBar.get(info.vkCode).equals("off")){
+							for(Thread thread:Controller.threadList){
+								thread.suspend();
+							}
 							Controller.listehSwitch=false;
 						}else if(Controller.mapListenBar.get(info.vkCode).equals("on")){
 							Controller.listehSwitch=true;

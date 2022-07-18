@@ -4,10 +4,15 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Functions extends IFunctions {
 
     public static Long time1=Long.parseLong(Config.read("Time1"));
+
+    @ListenBar(threadList = true)
+    public static ArrayList<Thread> threadList=new ArrayList<>();
 
     public static Thread t1;
 	static {
@@ -22,6 +27,9 @@ public class Functions extends IFunctions {
 
             }
         }.thread;
+
+        System.out.println(t1);
+        threadList.add(t1);
 	}
 
     //按下鼠标左键触发

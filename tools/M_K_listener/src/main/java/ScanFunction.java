@@ -1,10 +1,13 @@
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScanFunction {
-    public static void run(Class class1,Map<String, Utiliy> mapJna,Map<String, Utiliy> mapJintellitype,Map<Integer, String> mapListenBar){
+    public static void run(Class class1, Map<String, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<Thread> threadList){
 
 
         //Class<Functions> classFunctions = Functions.class;
@@ -99,17 +102,26 @@ public class ScanFunction {
             if(field.isAnnotationPresent(ListenBar.class)){
                 ListenBar listenBar =field.getAnnotation(ListenBar.class);
                 try {
-                    if(listenBar.off()==true){
+                    if(listenBar.off()==true&&listenBar.threadList()!=true){
                         mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"off");
                     }else {
                         mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"on");
                     }
                 }catch (Exception e){}
 
+                try{
+                    if(listenBar.threadList()==true){
+                        threadList.addAll((List<Thread>)field.get(class1));
+                    }
+                }catch (Exception e){}
             }
+
         }
 
         System.out.println(mapListenBar);
+        System.out.println(threadList);
+
+
 
     }
 }

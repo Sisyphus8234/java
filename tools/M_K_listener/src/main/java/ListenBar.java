@@ -11,6 +11,8 @@ public @interface ListenBar {
 
 	boolean off() default true;
 
+	boolean threadList() default false;
+
 
 }
 
