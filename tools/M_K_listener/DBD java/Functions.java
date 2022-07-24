@@ -4,6 +4,12 @@ import java.awt.event.KeyEvent;
 
 public class Functions extends IFunctions{
 
+	@ListenBar(off = false)
+	public static int on =36;
+
+	@ListenBar()
+	public static int off =35;
+
 	
 	@ListenMouseKeyboard(value=516,immediately=true)
 	private static void DBD1() {
