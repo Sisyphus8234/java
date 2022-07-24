@@ -89,8 +89,8 @@ public class Functions extends IFunctions {
         map1.put(3,"鞋");
         map1.put(4,"腰带");
         map1.put(5,"戒指");
-        map1.put(6,"戒指");
-        map1.put(7,"护身符");
+//        map1.put(6,"戒指");
+        map1.put(6,"护身符");
 
 //        map1.put(100,"\"物品等级: [0-5][0-9]|普通|魔法|传奇|\"!未鉴定\"\"");
         map1.put(100,"物品等级:[0-5][0-9]|普通|魔法|传奇");
@@ -170,7 +170,7 @@ public class Functions extends IFunctions {
 
         在搜索框粘贴(count2,"");
         count2++;
-        if(count2>=8){
+        if(count2>=7){
             count2=0;
         }
 
@@ -287,18 +287,23 @@ public class Functions extends IFunctions {
         robot.mouseMove(x,y);
     }
 
-    @ListenMouseKeyboard(value = 32,press = true,intercept = true)
-    private static void 捡东西前原地站立(){
-        robot.keyPress(KeyEvent.VK_SHIFT);
-        robot.keyPress(KeyEvent.VK_F);
-    }
-    @ListenMouseKeyboard(value = 32,press = false,intercept = true)
-    private static void 捡东西(){
-        robot.keyRelease(KeyEvent.VK_F);
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-    }
+//    public static boolean 捡东西=true;
+//    @ListenMouseKeyboard(value = 32,press = true,intercept = true)
+//    private static void 捡东西前原地站立(){
+//        if(捡东西==true){
+//        robot.keyPress(KeyEvent.VK_SHIFT);
+//        robot.keyPress(KeyEvent.VK_F);
+//        robot.keyRelease(KeyEvent.VK_F);
+//        robot.keyRelease(KeyEvent.VK_SHIFT);
+//        捡东西=false;
+//        }
+//    }
+//    @ListenMouseKeyboard(value = 32,press = false,intercept = true)
+//    private static void 捡东西(){
+//        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//        捡东西=true;
+//    }
 
 
     public static boolean ctrl=false;
