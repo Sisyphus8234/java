@@ -2,24 +2,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
-public class Functions {
-	
-	public static Robot robot;
-	static {
-
-		System.out.println("Functions类加载");
-
-		try {
-			robot=new Robot();
-		} catch (AWTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Robot创建完成");
-	}
-
-
-	
+public class Functions extends IFunctions{
 
 	
 	@ListenMouseKeyboard(value=516,immediately=true)
