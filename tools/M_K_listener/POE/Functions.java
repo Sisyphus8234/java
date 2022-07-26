@@ -225,21 +225,21 @@ public class Functions extends IFunctions {
 
 
 
-//    public static Integer 水银药剂 = 0;
-//    public static HashMap<Integer,Integer> 水银药剂map=new HashMap<>();
-//    static {
-//        水银药剂map.put(0,KeyEvent.VK_3);
-//        水银药剂map.put(1,KeyEvent.VK_4);
-//        水银药剂map.put(2,KeyEvent.VK_5);
-//    }
-//    @ListenMouseKeyboard(value = 52, intercept = true)
-//    private static void 喝水银药剂() {
-//        robot.keyPress(水银药剂map.get(水银药剂));
-//        robot.keyRelease(水银药剂map.get(水银药剂));
-//        水银药剂++;
-//        if(水银药剂>=3){水银药剂=0;}
-//
-//    }
+    public static Integer 水银药剂 = 0;
+    public static HashMap<Integer,Integer> 水银药剂map=new HashMap<>();
+    static {
+        水银药剂map.put(0,KeyEvent.VK_5);
+        水银药剂map.put(1,KeyEvent.VK_4);
+        水银药剂map.put(2,KeyEvent.VK_3);
+    }
+    @ListenMouseKeyboard(value = 52, intercept = true)
+    private static void 喝水银药剂() {
+        robot.keyPress(水银药剂map.get(水银药剂));
+        robot.keyRelease(水银药剂map.get(水银药剂));
+        水银药剂++;
+        if(水银药剂>=3){水银药剂=0;}
+
+    }
 
 
     @ListenMouseKeyboard(value = 49,intercept = false)
