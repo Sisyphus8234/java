@@ -7,6 +7,12 @@ import java.awt.event.MouseEvent;
 
 public class Functions extends IFunctions {
 
+    @ListenBar(off = false)
+    public static int on=36;
+
+    @ListenBar
+    public static int off=35;
+
     public static boolean temp1 = false;
     public static boolean temp2 = false;
     public static boolean temp3 = false;
@@ -48,11 +54,11 @@ public class Functions extends IFunctions {
 						robot.keyRelease(KeyEvent.VK_E);
 						pause(EDelay);
 					}else if(temp3==true){
-                        pause(300);
+//                        pause(300);
                         robot.keyRelease(KeyEvent.VK_5);
                         robot.keyPress(KeyEvent.VK_5);
                         robot.keyRelease(KeyEvent.VK_5);
-                        pause(20);
+                        pause(100);
                         robot.keyRelease(KeyEvent.VK_4);
                         robot.keyPress(KeyEvent.VK_4);
                         robot.keyRelease(KeyEvent.VK_4);
@@ -72,6 +78,7 @@ public class Functions extends IFunctions {
         temp1 = true;
         t1.resume();
 
+//        t2.suspend();
         temp3=false;
     }
 
@@ -168,8 +175,9 @@ public class Functions extends IFunctions {
     }
 
     //4,5
-    @ListenMouseKeyboard(value = 52)
-    @ListenMouseKeyboard(value = 53)
+//    @ListenMouseKeyboard(value = 52,press = false)
+//    @ListenMouseKeyboard(value = 53,press = false)
+    @ListenMouseKeyboard(value = 192,press = false,intercept = true)
     private static void yao(){
         temp3=true;
         t2.resume();
