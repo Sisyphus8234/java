@@ -32,12 +32,12 @@ public class Functions extends IFunctions{
 		robot.keyRelease(KeyEvent.VK_F);
 		}
 
-	@ListenMouseKeyboard(value=70,immediately=true,userInput = false)
-	@ListenMouseKeyboard(value=70,immediately=true)
-	private static void 修机2() {
-		// TODO Auto-generated method stub
-		robot.keyRelease(KeyEvent.VK_SHIFT);
-		}
+//	@ListenMouseKeyboard(value=70,immediately=true,userInput = false)
+//	@ListenMouseKeyboard(value=70,immediately=true)
+//	private static void 修机2() {
+//		// TODO Auto-generated method stub
+//		robot.keyRelease(KeyEvent.VK_SHIFT);
+//		}
 
 	@ListenMouseKeyboard(value=192,immediately=true)
 	private static void 点血网() {
