@@ -4,6 +4,8 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Functions extends IFunctions {
 
@@ -12,6 +14,9 @@ public class Functions extends IFunctions {
 
     @ListenBar
     public static int off=35;
+
+    @ListenBar(threadList = true)
+    public static ArrayList l1=new ArrayList();
 
     public static boolean temp1 = false;
     public static boolean temp2 = false;
@@ -71,6 +76,8 @@ public class Functions extends IFunctions {
 				}
 			}
         }.thread;
+        l1.add(t1);
+        l1.add(t2);
     }
 
     @ListenMouseKeyboard(value = 32, intercept = true)
@@ -181,6 +188,17 @@ public class Functions extends IFunctions {
     private static void yao(){
         temp3=true;
         t2.resume();
+    }
+
+    @ListenMouseKeyboard(value = 162,press = true,intercept = true)
+    private static void 短闪1(){
+        robot.keyRelease(KeyEvent.VK_SPACE);
+        robot.keyPress(KeyEvent.VK_SPACE);
+    }
+
+    @ListenMouseKeyboard(value = 162,press = false,intercept = true)
+    private static void 短闪2(){
+        robot.keyRelease(KeyEvent.VK_SPACE);
     }
 
 //    @ListenMouseKeyboard(value = 18)
