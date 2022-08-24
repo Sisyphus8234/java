@@ -1,0 +1,7 @@
+https://3.jetbra.in/
+
+下载jetbra.zip
+
+自动:
+运行scripts下2个vbs任意一个
+打开idea,粘贴网站的激活码
