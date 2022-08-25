@@ -1,1 +1,1 @@
-https://github.com/Link-Kou/intellij-mybaitslog
+MyBatis Log Free
