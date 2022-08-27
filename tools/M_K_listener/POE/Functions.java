@@ -22,10 +22,12 @@ public class Functions extends IFunctions {
     public static Long time2 = Long.parseLong(Config.read("Time2"));
     public static Long time3 = Long.parseLong(Config.read("Time3"));
 
+    public static boolean temp1=false;
 
     public static Thread t1;
     public static Thread t2;
     public static Thread t3;
+    public static Thread t4;
 	static {
 	    //连点右键
         t1=new CreateThread(){
@@ -56,7 +58,7 @@ public class Functions extends IFunctions {
         }.thread;
         t2.suspend();
 
-        //ctrl时的连点左键
+        //按ctrl并连点左键
         t3=new CreateThread(){
             @Override
             public void myFunction(){
@@ -71,9 +73,30 @@ public class Functions extends IFunctions {
         }.thread;
         t3.suspend();
 
+        //e键走路放e
+        t4=new CreateThread(){
+            @Override
+            public void myFunction(){
+                while (true) {
+                    if(temp1==true){
+                    robot.keyRelease(KeyEvent.VK_E);
+                    robot.keyPress(KeyEvent.VK_E);
+                    robot.keyRelease(KeyEvent.VK_E);
+                    robot.keyPress(KeyEvent.VK_G);
+                    robot.keyRelease(KeyEvent.VK_G);
+                    pause(2000);}
+                    else {
+                        t4.suspend();
+                    }
+                }
+            }
+        }.thread;
+        t4.suspend();
+
         threadList.add(t1);
         threadList.add(t2);
         threadList.add(t3);
+        threadList.add(t4);
 
 	}
 
@@ -91,6 +114,7 @@ public class Functions extends IFunctions {
         map1.put(5,"戒指");
 //        map1.put(6,"戒指");
         map1.put(6,"护身符");
+        map1.put(7,"武器|格挡几率");
 
 //        map1.put(100,"\"物品等级: [0-5][0-9]|普通|魔法|传奇|\"!未鉴定\"\"");
         map1.put(100,"物品等级:[0-5][0-9]|普通|魔法|传奇");
@@ -170,7 +194,7 @@ public class Functions extends IFunctions {
 
         在搜索框粘贴(count2,"");
         count2++;
-        if(count2>=7){
+        if(count2>=8){
             count2=0;
         }
 
@@ -215,13 +239,12 @@ public class Functions extends IFunctions {
 //        t2.resume();
 //    }
 
-    @ListenMouseKeyboard(value = 513, immediately = true,userInput = true)
-    @ListenMouseKeyboard(value = 82, immediately = true)
-//    @ListenMouseKeyboard(value = 32, immediately = true)
-    private static void 结束连点左键和连点右键() {
-        t1.suspend();
-        t2.suspend();
-    }
+//    @ListenMouseKeyboard(value = 513, immediately = true,userInput = true)
+//    @ListenMouseKeyboard(value = 82, immediately = true)
+//    private static void 结束连点左键和连点右键() {
+//        t1.suspend();
+//        t2.suspend();
+//    }
 
 
 
@@ -258,7 +281,7 @@ public class Functions extends IFunctions {
     private static void 市集下一页(){
         int x = MouseInfo.getPointerInfo().getLocation().x;
         int y =MouseInfo.getPointerInfo().getLocation().y;
-        robot.mouseMove(536,180);
+        robot.mouseMove(541,177);
         pause(50);
         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
@@ -346,13 +369,49 @@ public class Functions extends IFunctions {
     //---------------------------------------------------------------
     //各职业
 
+
+
+
+//    @ListenMouseKeyboard(value = 69,intercept = true)
+//    private static void 按e放r走路并放e() {
+//        robot.keyPress(KeyEvent.VK_R);
+//        temp1=true;
+//        t4.resume();
+//
+//
+//    }
     @ListenMouseKeyboard(value = 69)
     @ListenMouseKeyboard(value = 87)
     private static void 召唤魔侍魔卫放骨制战甲() {
-//        pause(50);
         robot.keyPress(KeyEvent.VK_G);
         robot.keyRelease(KeyEvent.VK_G);
     }
+
+    public static boolean temp2=false;
+    @ListenMouseKeyboard(value = 69,intercept = true,press = false)
+    private static void 按住e() {
+        if(temp2==true){
+            robot.keyRelease(KeyEvent.VK_E);
+        }
+    }
+    @ListenMouseKeyboard(value = 513)
+    @ListenMouseKeyboard(value = 82)
+    private static void 结束e() {
+        temp2=true;
+        robot.keyRelease(KeyEvent.VK_E);
+    }
+    @ListenMouseKeyboard(value = 514)
+    @ListenMouseKeyboard(value = 82,press = false)
+    private static void 结束e2() {
+        temp2=false;
+    }
+
+
+//    @ListenMouseKeyboard(value =69 ,press = false,intercept = true)
+//    private static void 按e放r走路并放e2() {
+//        robot.keyRelease(KeyEvent.VK_R);
+//        temp1=false;
+//    }
 
 
 
