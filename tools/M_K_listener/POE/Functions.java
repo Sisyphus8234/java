@@ -415,18 +415,18 @@ public class Functions extends IFunctions {
     private static void 持续按e和g和q() {
         temp1=false;
         temp3=true;
-        robot.keyPress(KeyEvent.VK_E);
-        robot.keyRelease(KeyEvent.VK_E);
-        robot.keyPress(KeyEvent.VK_G);
-        robot.keyRelease(KeyEvent.VK_G);
+//        robot.keyPress(KeyEvent.VK_E);
+//        robot.keyRelease(KeyEvent.VK_E);
+//        robot.keyPress(KeyEvent.VK_G);
+//        robot.keyRelease(KeyEvent.VK_G);
         t4.resume();
     }
     @ListenMouseKeyboard(value = 69)
     private static void 持续按e和g() {
         temp1=false;
         temp3=false;
-        robot.keyPress(KeyEvent.VK_G);
-        robot.keyRelease(KeyEvent.VK_G);
+//        robot.keyPress(KeyEvent.VK_G);
+//        robot.keyRelease(KeyEvent.VK_G);
         t4.resume();
     }
     @ListenMouseKeyboard(value = 513)
