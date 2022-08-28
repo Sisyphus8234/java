@@ -23,6 +23,8 @@ public class Functions extends IFunctions {
     public static Long time3 = Long.parseLong(Config.read("Time3"));
 
     public static boolean temp1=false;
+    public static boolean temp2=false;
+    public static boolean temp3=false;
 
     public static Thread t1;
     public static Thread t2;
@@ -73,21 +75,30 @@ public class Functions extends IFunctions {
         }.thread;
         t3.suspend();
 
-        //e键走路放e
+        //持续按e和g和q
         t4=new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
-                    if(temp1==true){
-                    robot.keyRelease(KeyEvent.VK_E);
-                    robot.keyPress(KeyEvent.VK_E);
-                    robot.keyRelease(KeyEvent.VK_E);
-                    robot.keyPress(KeyEvent.VK_G);
-                    robot.keyRelease(KeyEvent.VK_G);
-                    pause(2000);}
-                    else {
-                        t4.suspend();
+                    if(temp1==false) {
+                        robot.keyRelease(KeyEvent.VK_E);
+                        robot.keyPress(KeyEvent.VK_E);
+                        robot.keyRelease(KeyEvent.VK_E);
+                        if(temp3==true){
+                        robot.keyRelease(KeyEvent.VK_Q);
+                        robot.keyPress(KeyEvent.VK_Q);
+                        robot.keyRelease(KeyEvent.VK_Q);
+                        }
+                        robot.keyRelease(KeyEvent.VK_G);
+                        robot.keyPress(KeyEvent.VK_G);
+                        robot.keyRelease(KeyEvent.VK_G);
+                        pause(300);
                     }
+                    else{
+                        t4.suspend();
+
+                    }
+
                 }
             }
         }.thread;
@@ -372,45 +383,61 @@ public class Functions extends IFunctions {
 
 
 
-//    @ListenMouseKeyboard(value = 69,intercept = true)
-//    private static void 按e放r走路并放e() {
-//        robot.keyPress(KeyEvent.VK_R);
-//        temp1=true;
-//        t4.resume();
-//
-//
+
+//    @ListenMouseKeyboard(value = 69)
+//    @ListenMouseKeyboard(value = 87)
+//    private static void 召唤魔侍魔卫放骨制战甲() {
+//        robot.keyPress(KeyEvent.VK_G);
+//        robot.keyRelease(KeyEvent.VK_G);
 //    }
-    @ListenMouseKeyboard(value = 69)
-    @ListenMouseKeyboard(value = 87)
-    private static void 召唤魔侍魔卫放骨制战甲() {
+//
+//    public static boolean temp2=false;
+//    @ListenMouseKeyboard(value = 69,intercept = true,press = false)
+//    private static void 按住e() {
+//        if(temp2==true){
+//            robot.keyRelease(KeyEvent.VK_E);
+//        }
+//    }
+//    @ListenMouseKeyboard(value = 513)
+//    @ListenMouseKeyboard(value = 82)
+//    private static void 结束e() {
+//        temp2=true;
+//        robot.keyRelease(KeyEvent.VK_E);
+//    }
+//    @ListenMouseKeyboard(value = 514)
+//    @ListenMouseKeyboard(value = 82,press = false)
+//    private static void 结束e2() {
+//        temp2=false;
+//    }
+
+
+    @ListenMouseKeyboard(value = 81)
+    private static void 持续按e和g和q() {
+        temp1=false;
+        temp3=true;
+        robot.keyPress(KeyEvent.VK_E);
+        robot.keyRelease(KeyEvent.VK_E);
         robot.keyPress(KeyEvent.VK_G);
         robot.keyRelease(KeyEvent.VK_G);
+        t4.resume();
     }
-
-    public static boolean temp2=false;
-    @ListenMouseKeyboard(value = 69,intercept = true,press = false)
-    private static void 按住e() {
-        if(temp2==true){
-            robot.keyRelease(KeyEvent.VK_E);
-        }
+    @ListenMouseKeyboard(value = 69)
+    private static void 持续按e和g() {
+        temp1=false;
+        temp3=false;
+        robot.keyPress(KeyEvent.VK_G);
+        robot.keyRelease(KeyEvent.VK_G);
+        t4.resume();
     }
     @ListenMouseKeyboard(value = 513)
+    @ListenMouseKeyboard(value = 516)
     @ListenMouseKeyboard(value = 82)
-    private static void 结束e() {
-        temp2=true;
-        robot.keyRelease(KeyEvent.VK_E);
+    private static void 取消() {
+        temp1=true;
     }
-    @ListenMouseKeyboard(value = 514)
-    @ListenMouseKeyboard(value = 82,press = false)
-    private static void 结束e2() {
-        temp2=false;
-    }
-
-
-//    @ListenMouseKeyboard(value =69 ,press = false,intercept = true)
-//    private static void 按e放r走路并放e2() {
-//        robot.keyRelease(KeyEvent.VK_R);
-//        temp1=false;
+//    @ListenMouseKeyboard(value = 514)
+//    @ListenMouseKeyboard(value = 82,press = false)
+//    private static void 取消2() {
 //    }
 
 
