@@ -1,0 +1,5 @@
+<where>
+    <if test="query.pickingNum!=null and query.pickingNum!=''">
+        and locate(#{query.pickingNum},p.picking_num)
+    </if>
+</where>
