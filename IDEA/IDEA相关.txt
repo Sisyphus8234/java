@@ -12,3 +12,4 @@ JRebel and XRebel
 SonarLint
 IDE Eval Reset
 POJO to JSON
+RoboPOJOGenerator
