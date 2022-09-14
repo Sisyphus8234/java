@@ -54,9 +54,9 @@ public class Functions extends IFunctions {
                 while (true) {
 //                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
 					if (temp2 == true) {
-						robot.keyRelease(KeyEvent.VK_E);
-						robot.keyPress(KeyEvent.VK_E);
-						robot.keyRelease(KeyEvent.VK_E);
+						robot.keyRelease(KeyEvent.VK_T);
+						robot.keyPress(KeyEvent.VK_T);
+//						robot.keyRelease(KeyEvent.VK_T);
 						pause(EDelay);
 					}else if(temp3==true){
 //                        pause(300);
@@ -91,31 +91,36 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 32, intercept = true, press = false)
     private static void space2() {
+//        robot.keyRelease(KeyEvent.VK_SPACE);
         temp1 = false;
     }
 
+    @ListenMouseKeyboard(value = 81,press = false)
+    private static void q() {
+        robot.keyRelease(KeyEvent.VK_T);
+    }
 
 
     //拾取物品
-    @ListenMouseKeyboard(value = 69, intercept = true)
+    @ListenMouseKeyboard(value = 84, intercept = true)
     private static void e() {
         temp2 = true;
         t2.resume();
     }
-    @ListenMouseKeyboard(value = 69, press = false, intercept = true)
+    @ListenMouseKeyboard(value = 84, press = false, intercept = true)
     private static void e2() {
         temp2 = false;
     }
 
-    //拉人 T
-    @ListenMouseKeyboard(value = 84, intercept = true)
-    private static void t() {
-        robot.keyPress(KeyEvent.VK_E);
-    }
-    @ListenMouseKeyboard(value = 84, press = false, intercept = true)
-    private static void t2() {
-        robot.keyRelease(KeyEvent.VK_E);
-    }
+//    //拉人 T
+//    @ListenMouseKeyboard(value = 84, intercept = true)
+//    private static void t() {
+//        robot.keyPress(KeyEvent.VK_E);
+//    }
+//    @ListenMouseKeyboard(value = 84, press = false, intercept = true)
+//    private static void t2() {
+//        robot.keyRelease(KeyEvent.VK_E);
+//    }
 
     //换武器 G
     @ListenMouseKeyboard(value = 71, intercept = true)
@@ -181,13 +186,13 @@ public class Functions extends IFunctions {
 //        spaceDelay=Long.parseLong(Config.read("EDelay"));
 //    }
 
-    @ListenMouseKeyboard(value = 192,press = false,intercept = true)
+    @ListenMouseKeyboard(value = 67,press = false,intercept = true)
     private static void yao(){
         temp3=true;
         t2.resume();
     }
 
-    @ListenMouseKeyboard(value = 162,press = true,intercept = true)
+    @ListenMouseKeyboard(value = 160,press = true,intercept = true)
     private static void 短闪1(){
         robot.keyRelease(KeyEvent.VK_SPACE);
         robot.keyPress(KeyEvent.VK_SPACE);
