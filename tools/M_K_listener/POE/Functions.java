@@ -18,62 +18,28 @@ public class Functions extends IFunctions {
     @ListenBar(threadList = true)
     public static ArrayList<Thread> threadList=new ArrayList<>();
 
-    public static Long time1=Long.parseLong(Config.read("Time1"));
-    public static Long time2 = Long.parseLong(Config.read("Time2"));
-    public static Long time3 = Long.parseLong(Config.read("Time3"));
 
     public static boolean temp1=false;
     public static boolean temp2=false;
-    public static boolean temp3=false;
 
     public static Thread t1;
-    public static Thread t2;
-    public static Thread t3;
     public static Thread t4;
 	static {
-	    //连点右键
-        t1=new CreateThread(){
+
+        //按ctrl并连点左键
+        t1 =new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
-                        robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
-                        //pause(50);
-                        robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
-                        pause(time1);
+                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    pause(110);
+
                 }
             }
         }.thread;
         t1.suspend();
-
-        //连点左键
-        t2=new CreateThread(){
-            @Override
-            public void myFunction(){
-                while (true) {
-                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                    //robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                    pause(time2);
-
-                }
-            }
-        }.thread;
-        t2.suspend();
-
-        //按ctrl并连点左键
-        t3=new CreateThread(){
-            @Override
-            public void myFunction(){
-                while (true) {
-                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                    pause(time3);
-
-                }
-            }
-        }.thread;
-        t3.suspend();
 
         //持续按e和g和q
         t4=new CreateThread(){
@@ -84,7 +50,7 @@ public class Functions extends IFunctions {
                         robot.keyRelease(KeyEvent.VK_E);
                         robot.keyPress(KeyEvent.VK_E);
                         robot.keyRelease(KeyEvent.VK_E);
-                        if(temp3==true){
+                        if(temp2 ==true){
                         robot.keyRelease(KeyEvent.VK_Q);
                         robot.keyPress(KeyEvent.VK_Q);
                         robot.keyRelease(KeyEvent.VK_Q);
@@ -105,8 +71,6 @@ public class Functions extends IFunctions {
         t4.suspend();
 
         threadList.add(t1);
-        threadList.add(t2);
-        threadList.add(t3);
         threadList.add(t4);
 
 	}
@@ -152,8 +116,20 @@ public class Functions extends IFunctions {
         }
     };
 
+    /**
+     * 把文本设置到剪贴板（复制）
+     */
+    private static void setClipboardString(String text) {
+        // 获取系统剪贴板
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        // 封装文本内容
+        Transferable trans = new StringSelection(text);
+        // 把文本内容设置到系统剪贴板
+        clipboard.setContents(trans, null);
+    }
 
-    //F1
+
+    //f1
     @ListenMouseKeyboard(value = 112,intercept = true)
     private static void 按xxx开始处理成套装备模式(){
         trade=true;
@@ -170,20 +146,14 @@ public class Functions extends IFunctions {
         robot.mouseMove(x,y);
     }
 
+    //f2
     @ListenMouseKeyboard(value = 113,intercept = true)
+    //esc
+    @ListenMouseKeyboard(value = 27)
+    //`
+    @ListenMouseKeyboard(value = 192)
     private static void 按xxx结束处理成套装备模式(){
         trade=false;
-    }
-
-    //esc
-    //`
-    @ListenMouseKeyboard(value = 27,intercept = false)
-    @ListenMouseKeyboard(value = 192,intercept = false)
-    private static void 按xxx结束所有(){
-        trade=false;
-        t1.suspend();
-        t2.suspend();
-        t3.suspend();
     }
 
     @ListenMouseKeyboard(value = 50,intercept = true)
@@ -242,23 +212,6 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_6);}
     }
 
-
-
-//    @ListenMouseKeyboard(value = 84, immediately = true, intercept = true)
-//    private static void 自动左键连点并且右键连点() {
-//        t1.resume();
-//        t2.resume();
-//    }
-
-//    @ListenMouseKeyboard(value = 513, immediately = true,userInput = true)
-//    @ListenMouseKeyboard(value = 82, immediately = true)
-//    private static void 结束连点左键和连点右键() {
-//        t1.suspend();
-//        t2.suspend();
-//    }
-
-
-
 //    public static Integer 水银药剂 = 0;
 //    public static HashMap<Integer,Integer> 水银药剂map=new HashMap<>();
 //    static {
@@ -279,12 +232,12 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 49,intercept = false)
     private static void ctrl加左键连点(){
         robot.keyPress(KeyEvent.VK_CONTROL);
-        t3.resume();
+        t1.resume();
     }
     @ListenMouseKeyboard(value = 49,press = false,intercept = false)
     private static void 退出ctrl加左键连点(){
         robot.keyRelease(KeyEvent.VK_CONTROL);
-        t3.suspend();
+        t1.suspend();
     }
 
 
@@ -301,7 +254,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 114,intercept = true)
+    //y
     @ListenMouseKeyboard(value = 89,intercept = true)
     private static void 回城卷轴(){
 
@@ -321,151 +274,36 @@ public class Functions extends IFunctions {
         robot.mouseMove(x,y);
     }
 
-//    public static boolean 捡东西=true;
-//    @ListenMouseKeyboard(value = 32,press = true,intercept = true)
-//    private static void 捡东西前原地站立(){
-//        if(捡东西==true){
-//        robot.keyPress(KeyEvent.VK_SHIFT);
-//        robot.keyPress(KeyEvent.VK_F);
-//        robot.keyRelease(KeyEvent.VK_F);
-//        robot.keyRelease(KeyEvent.VK_SHIFT);
-//        捡东西=false;
-//        }
-//    }
-//    @ListenMouseKeyboard(value = 32,press = false,intercept = true)
-//    private static void 捡东西(){
-//        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-//        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//        捡东西=true;
-//    }
-
-
-    public static boolean ctrl=false;
-    @ListenMouseKeyboard(value = 162)
-    private static void ctrl(){
-        ctrl=true;
-    }
-    @ListenMouseKeyboard(value = 162,press = false)
-    private static void ctrl2(){
-        ctrl=false;
-    }
-    private static void writeProp(String s1,Long l1){
-        if(ctrl==false){
-            Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))+l1));}
-        else{
-            Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))-l1));
-        }
-        setClipboardString(Config.prop.toString());
-    }
-    /**
-     * 把文本设置到剪贴板（复制）
-     */
-    private static void setClipboardString(String text) {
-        // 获取系统剪贴板
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        // 封装文本内容
-        Transferable trans = new StringSelection(text);
-        // 把文本内容设置到系统剪贴板
-        clipboard.setContents(trans, null);
-    }
-//    @ListenMouseKeyboard(value = 57)
-//    private static void adjustTime1(){
-//        writeProp("Time1", 50L);
-//        time1=Long.parseLong(Config.read("Time1"));
-//    }
-
-
-
     //基础功能
     //---------------------------------------------------------------
     //各职业
 
-
-
-
-
-//    @ListenMouseKeyboard(value = 69)
-//    @ListenMouseKeyboard(value = 87)
-//    private static void 召唤魔侍魔卫放骨制战甲() {
-//        robot.keyPress(KeyEvent.VK_G);
-//        robot.keyRelease(KeyEvent.VK_G);
-//    }
-//
-//    public static boolean temp2=false;
-//    @ListenMouseKeyboard(value = 69,intercept = true,press = false)
-//    private static void 按住e() {
-//        if(temp2==true){
-//            robot.keyRelease(KeyEvent.VK_E);
-//        }
-//    }
-//    @ListenMouseKeyboard(value = 513)
-//    @ListenMouseKeyboard(value = 82)
-//    private static void 结束e() {
-//        temp2=true;
-//        robot.keyRelease(KeyEvent.VK_E);
-//    }
-//    @ListenMouseKeyboard(value = 514)
-//    @ListenMouseKeyboard(value = 82,press = false)
-//    private static void 结束e2() {
-//        temp2=false;
-//    }
-
-
+    //q
     @ListenMouseKeyboard(value = 81)
     private static void 持续按e和g和q() {
         temp1=false;
-        temp3=true;
-//        robot.keyPress(KeyEvent.VK_E);
-//        robot.keyRelease(KeyEvent.VK_E);
-//        robot.keyPress(KeyEvent.VK_G);
-//        robot.keyRelease(KeyEvent.VK_G);
+        temp2 =true;
+
         t4.resume();
     }
+
+    //e
     @ListenMouseKeyboard(value = 69)
     private static void 持续按e和g() {
         temp1=false;
-        temp3=false;
-//        robot.keyPress(KeyEvent.VK_G);
-//        robot.keyRelease(KeyEvent.VK_G);
+        temp2 =false;
+
         t4.resume();
     }
+
+    //左键
+    //右键
+    //r
     @ListenMouseKeyboard(value = 513)
     @ListenMouseKeyboard(value = 516)
     @ListenMouseKeyboard(value = 82)
     private static void 取消() {
         temp1=true;
     }
-//    @ListenMouseKeyboard(value = 514)
-//    @ListenMouseKeyboard(value = 82,press = false)
-//    private static void 取消2() {
-//    }
-
-
-
-//    @ListenMouseKeyboard(value = 87, immediately = true, intercept = true)
-//    private static void f2() {
-//        robot.keyPress(KeyEvent.VK_E);
-//        robot.keyRelease(KeyEvent.VK_E);
-//
-//        pause(50);
-//
-//        robot.keyPress(KeyEvent.VK_W);
-//        robot.keyRelease(KeyEvent.VK_W);
-//
-//        robot.keyPress(KeyEvent.VK_5);
-//        robot.keyRelease(KeyEvent.VK_5);
-//
-//        pause(50);
-//
-//        robot.keyPress(KeyEvent.VK_Q);
-//        robot.keyRelease(KeyEvent.VK_Q);
-//
-//        pause(50);
-//
-//        robot.keyPress(KeyEvent.VK_5);
-//        robot.keyRelease(KeyEvent.VK_5);
-//
-//    }
-
 
 }
