@@ -23,7 +23,9 @@ public class Functions extends IFunctions {
     public static boolean temp2=false;
 
     public static Thread t1;
-    public static Thread t4;
+    public static Thread t2;
+    public static Thread t3;
+
 	static {
 
         //按ctrl并连点左键
@@ -42,7 +44,7 @@ public class Functions extends IFunctions {
         t1.suspend();
 
         //持续按e和g和q
-        t4=new CreateThread(){
+        t2 =new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
@@ -61,17 +63,61 @@ public class Functions extends IFunctions {
                         pause(300);
                     }
                     else{
-                        t4.suspend();
+                        t2.suspend();
 
                     }
 
                 }
             }
         }.thread;
-        t4.suspend();
+        t2.suspend();
+
+        //取消保留后放技能
+        t3 =new CreateThread(){
+            @Override
+            public void myFunction(){
+                while (true) {
+                    t3.suspend();
+                    robot.keyPress(KeyEvent.VK_A);
+                    robot.keyRelease(KeyEvent.VK_A);
+                    robot.keyPress(KeyEvent.VK_S);
+                    robot.keyRelease(KeyEvent.VK_S);
+                    robot.keyPress(KeyEvent.VK_D);
+                    robot.keyRelease(KeyEvent.VK_D);
+                    robot.keyPress(KeyEvent.VK_4);
+                    robot.keyRelease(KeyEvent.VK_4);
+                    pause(100);
+                    robot.keyPress(KeyEvent.VK_W);
+                    robot.keyRelease(KeyEvent.VK_W);
+                    pause(550);
+                    robot.keyPress(KeyEvent.VK_T);
+                    robot.keyRelease(KeyEvent.VK_T);
+                    pause(650);
+
+                    robot.keyPress(KeyEvent.VK_A);
+                    robot.keyRelease(KeyEvent.VK_A);
+                    robot.keyPress(KeyEvent.VK_S);
+                    robot.keyRelease(KeyEvent.VK_S);
+                    robot.keyPress(KeyEvent.VK_D);
+                    robot.keyRelease(KeyEvent.VK_D);
+
+                    pause(800);
+
+                    robot.keyPress(KeyEvent.VK_A);
+                    robot.keyRelease(KeyEvent.VK_A);
+                    robot.keyPress(KeyEvent.VK_S);
+                    robot.keyRelease(KeyEvent.VK_S);
+                    robot.keyPress(KeyEvent.VK_D);
+                    robot.keyRelease(KeyEvent.VK_D);
+
+
+                }
+            }
+        }.thread;
+
 
         threadList.add(t1);
-        threadList.add(t4);
+        threadList.add(t2);
 
 	}
 
@@ -284,7 +330,7 @@ public class Functions extends IFunctions {
         temp1=false;
         temp2 =true;
 
-        t4.resume();
+        t2.resume();
     }
 
     //e
@@ -293,7 +339,7 @@ public class Functions extends IFunctions {
         temp1=false;
         temp2 =false;
 
-        t4.resume();
+        t2.resume();
     }
 
     //左键
@@ -304,6 +350,12 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 82)
     private static void 取消() {
         temp1=true;
+    }
+
+    //c
+    @ListenMouseKeyboard(value = 67,intercept = true)
+    private static void 取消保留技能后放技能() {
+        t3.resume();
     }
 
 }
