@@ -22,9 +22,11 @@ public class Functions extends IFunctions {
     public static boolean temp1=false;
     public static boolean temp2=false;
 
+
     public static Thread t1;
     public static Thread t2;
     public static Thread t3;
+    public static Thread t4;
 
 	static {
 
@@ -101,7 +103,7 @@ public class Functions extends IFunctions {
                     robot.keyPress(KeyEvent.VK_D);
                     robot.keyRelease(KeyEvent.VK_D);
 
-                    pause(800);
+                    pause(1950-100-550-650);
 
                     robot.keyPress(KeyEvent.VK_A);
                     robot.keyRelease(KeyEvent.VK_A);
@@ -115,9 +117,32 @@ public class Functions extends IFunctions {
             }
         }.thread;
 
+        //自动循环喝药
+        t4 =new CreateThread(){
+            @Override
+            public void myFunction(){
+                Integer temp1=1;
+                HashMap<Integer,Integer> temp2=new HashMap<>();
+                temp2.put(1,49);
+                temp2.put(2,51);
+//                temp2.put(3,51);
+                while (true) {
+                    robot.keyPress(temp2.get(temp1));
+                    robot.keyRelease(temp2.get(temp1));
+                    temp1++;
+                    if(temp1>=3){
+                        temp1=1;
+                    }
+                    pause(1000);
+                }
+            }
+        }.thread;
+        t4.suspend();
 
         threadList.add(t1);
         threadList.add(t2);
+        threadList.add(t3);
+        threadList.add(t4);
 
 	}
 
@@ -204,13 +229,12 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 50,intercept = true)
     private static void 整套装备预筛选(){
+        if(trade==true){
         在搜索框粘贴(count1+100,"");
         count1++;
         if(count1>=3){
             count1=0;
-        }
-
-        if(trade==false){
+        }}else{
             robot.keyPress(KeyEvent.VK_2);
             robot.keyRelease(KeyEvent.VK_2);}
 
@@ -219,13 +243,12 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 51,intercept = true)
     private static void 顺序获取整套装备(){
 
+        if(trade==true){
         在搜索框粘贴(count2,"");
         count2++;
         if(count2>=8){
             count2=0;
-        }
-
-        if(trade==false){
+        }}else{
             robot.keyPress(KeyEvent.VK_3);
             robot.keyRelease(KeyEvent.VK_3);}
     }
@@ -352,10 +375,24 @@ public class Functions extends IFunctions {
         temp1=true;
     }
 
-    //c
-    @ListenMouseKeyboard(value = 67,intercept = true)
+    //v
+    @ListenMouseKeyboard(value = 86,intercept = true)
     private static void 取消保留技能后放技能() {
         t3.resume();
     }
+
+
+    //space
+    @ListenMouseKeyboard(value = 32,intercept = true)
+    private static void 自动循环喝药() {
+        t4.resume();
+    }
+
+    //esc
+    @ListenMouseKeyboard(value = 27)
+    private static void esc() {
+        t4.suspend();
+    }
+
 
 }
