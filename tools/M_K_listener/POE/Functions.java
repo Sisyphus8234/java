@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Functions extends IFunctions {
 
     @ListenBar(off = false)
-    public static Integer on2=36;
+    public static Integer on2=188;
 
     @ListenBar(off = true)
     public static Integer on1=8;
@@ -51,10 +51,14 @@ public class Functions extends IFunctions {
             public void myFunction(){
                 while (true) {
                     if(temp1==false) {
+//                        robot.keyRelease(KeyEvent.VK_E);
+//                        robot.keyPress(KeyEvent.VK_E);
+//                        robot.keyRelease(KeyEvent.VK_E);
+                        if(temp2 ==true){
                         robot.keyRelease(KeyEvent.VK_E);
                         robot.keyPress(KeyEvent.VK_E);
                         robot.keyRelease(KeyEvent.VK_E);
-                        if(temp2 ==true){
+
                         robot.keyRelease(KeyEvent.VK_Q);
                         robot.keyPress(KeyEvent.VK_Q);
                         robot.keyRelease(KeyEvent.VK_Q);
@@ -133,7 +137,7 @@ public class Functions extends IFunctions {
                     if(temp1>=3){
                         temp1=1;
                     }
-                    pause(1000);
+                    pause(1100);
                 }
             }
         }.thread;
@@ -352,6 +356,9 @@ public class Functions extends IFunctions {
     private static void 持续按e和g和q() {
         temp1=false;
         temp2 =true;
+
+//        robot.keyPress(KeyEvent.VK_E);
+//        robot.keyRelease(KeyEvent.VK_E);
 
         t2.resume();
     }
