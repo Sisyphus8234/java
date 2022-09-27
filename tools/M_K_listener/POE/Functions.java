@@ -27,6 +27,8 @@ public class Functions extends IFunctions {
     public static Thread t2;
     public static Thread t3;
     public static Thread t4;
+    public static Thread t5;
+    public static Thread t6;
 
 	static {
 
@@ -142,6 +144,29 @@ public class Functions extends IFunctions {
             }
         }.thread;
         t4.suspend();
+
+
+        //旋风斩
+//        t5 =new CreateThread(){
+//            @Override
+//            public void myFunction(){
+//                while (true) {
+//                    if(temp3==true) {
+//                        robot.keyPress(KeyEvent.VK_W);
+//                        robot.keyRelease(KeyEvent.VK_W);
+//                    }
+//                    else{
+//                        t2.suspend();
+//
+//                    }
+//
+//                }
+//            }
+//        }.thread;
+//        t5.suspend();
+
+
+
 
         threadList.add(t1);
         threadList.add(t2);
@@ -285,21 +310,25 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_6);}
     }
 
-//    public static Integer 水银药剂 = 0;
-//    public static HashMap<Integer,Integer> 水银药剂map=new HashMap<>();
-//    static {
-//        水银药剂map.put(0,KeyEvent.VK_5);
-//        水银药剂map.put(1,KeyEvent.VK_4);
-//        水银药剂map.put(2,KeyEvent.VK_3);
-//    }
-//    @ListenMouseKeyboard(value = 52, intercept = true)
-//    private static void 喝水银药剂() {
-//        robot.keyPress(水银药剂map.get(水银药剂));
-//        robot.keyRelease(水银药剂map.get(水银药剂));
-//        水银药剂++;
-//        if(水银药剂>=3){水银药剂=0;}
-//
-//    }
+
+
+    public static Integer 水银药剂 = 0;
+    public static HashMap<Integer,Integer> 水银药剂map=new HashMap<>();
+    static {
+        水银药剂map.put(0,KeyEvent.VK_5);
+        水银药剂map.put(1,KeyEvent.VK_4);
+        水银药剂map.put(2,KeyEvent.VK_3);
+    }
+    @ListenMouseKeyboard(value = 52, intercept = true)
+    private static void 喝水银药剂() {
+        robot.keyPress(水银药剂map.get(水银药剂));
+        robot.keyRelease(水银药剂map.get(水银药剂));
+        水银药剂++;
+        if(水银药剂>=3){水银药剂=0;}
+
+    }
+
+
 
 
     @ListenMouseKeyboard(value = 49,intercept = false)
@@ -349,56 +378,89 @@ public class Functions extends IFunctions {
 
     //基础功能
     //---------------------------------------------------------------
-    //各职业
+    //死灵
 
-    //q
-    @ListenMouseKeyboard(value = 81)
-    private static void 持续按e和g和q() {
-        temp1=false;
-        temp2 =true;
+//    //q
+//    @ListenMouseKeyboard(value = 81)
+//    private static void 持续按e和g和q() {
+//        temp1=false;
+//        temp2 =true;
+//
+////        robot.keyPress(KeyEvent.VK_E);
+////        robot.keyRelease(KeyEvent.VK_E);
+//
+//        t2.resume();
+//    }
+//
+//    //e
+//    @ListenMouseKeyboard(value = 69)
+//    private static void 持续按e和g() {
+//        temp1=false;
+//        temp2 =false;
+//
+//        t2.resume();
+//    }
+//
+//    //左键
+//    //右键
+//    //r
+//    @ListenMouseKeyboard(value = 513)
+//    @ListenMouseKeyboard(value = 516)
+//    @ListenMouseKeyboard(value = 82)
+//    private static void 取消() {
+//        temp1=true;
+//    }
+//
+//    //v
+//    @ListenMouseKeyboard(value = 86,intercept = true)
+//    private static void 取消保留技能后放技能() {
+//        t3.resume();
+//    }
+//
+//
+//    //space
+//    @ListenMouseKeyboard(value = 32,intercept = true)
+//    private static void 自动循环喝药() {
+//        t4.resume();
+//    }
+//
+//    //esc
+//    @ListenMouseKeyboard(value = 27)
+//    private static void esc() {
+//        t4.suspend();
+//    }
 
-//        robot.keyPress(KeyEvent.VK_E);
-//        robot.keyRelease(KeyEvent.VK_E);
 
-        t2.resume();
+//-----------------------------------------------------------
+    //野蛮人
+
+//    public static boolean temp3 =false;
+    //e
+    @ListenMouseKeyboard(value = 69)
+    private static void 旋风斩战吼() {
+       robot.keyPress(KeyEvent.VK_W);
     }
 
     //e
-    @ListenMouseKeyboard(value = 69)
-    private static void 持续按e和g() {
-        temp1=false;
-        temp2 =false;
-
-        t2.resume();
+    @ListenMouseKeyboard(value = 69,press = false)
+    private static void 旋风斩战吼2() {
+        robot.keyRelease(KeyEvent.VK_W);
     }
 
-    //左键
-    //右键
-    //r
-    @ListenMouseKeyboard(value = 513)
-    @ListenMouseKeyboard(value = 516)
-    @ListenMouseKeyboard(value = 82)
-    private static void 取消() {
-        temp1=true;
+    //q
+    @ListenMouseKeyboard(value = 81)
+    private static void q() {
+        robot.keyPress(KeyEvent.VK_2);
+        robot.keyRelease(KeyEvent.VK_2);
+
+        robot.keyPress(KeyEvent.VK_G);
+        robot.keyRelease(KeyEvent.VK_G);
     }
 
-    //v
-    @ListenMouseKeyboard(value = 86,intercept = true)
-    private static void 取消保留技能后放技能() {
-        t3.resume();
-    }
-
-
-    //space
-    @ListenMouseKeyboard(value = 32,intercept = true)
-    private static void 自动循环喝药() {
-        t4.resume();
-    }
-
-    //esc
-    @ListenMouseKeyboard(value = 27)
-    private static void esc() {
-        t4.suspend();
+    @ListenMouseKeyboard(value = 70)
+    private static void f() {
+        robot.keyPress(KeyEvent.VK_E);
+        robot.keyPress(KeyEvent.VK_W);
     }
 
 
