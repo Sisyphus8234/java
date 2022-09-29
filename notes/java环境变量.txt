@@ -3,7 +3,7 @@ CLASSPATH
 (1.5之后不用再设置classpath???)
 
 JAVA_HOME
-E:\Java\jdk1.8.0_311
+E:\java\jdk1.8.0_311
 (貌似不需要配置,其他程序调用java才需要???)
 
 
