@@ -1,8 +1,18 @@
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Functions extends IFunctions {
+
+    @ListenBar(off = false)
+    public static Integer on=36;
+
+    @ListenBar(off = true)
+    public static Integer off=35;
+
+    @ListenBar(threadList = true)
+    public static List<Thread> threadList=new ArrayList<>();
 
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
 
@@ -39,6 +49,7 @@ public class Functions extends IFunctions {
             }
         }.thread;
         t1.suspend();
+        threadList.add(t1);
 
 
 //        t2 = new CreateThread() {
@@ -131,7 +142,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 49,intercept = true)
     public static void f12() {
         if(temp3==true){
-            robot.mouseWheel(5);
+            robot.mouseWheel(3);
         }else {
             robot.keyPress(KeyEvent.VK_1);
         }
@@ -140,7 +151,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 50,intercept = true)
     public static void f13() {
         if(temp3==true){
-            robot.mouseWheel(-5);
+            robot.mouseWheel(-3);
         }else {
             robot.keyPress(KeyEvent.VK_2);
         }
