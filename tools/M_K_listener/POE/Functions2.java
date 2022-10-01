@@ -7,8 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Functions extends IFunctions {
-
+public class Functions2 extends IFunctions {
     @ListenBar(off = false)
     public static Integer on2=188;
 
@@ -30,7 +29,7 @@ public class Functions extends IFunctions {
     public static Thread t5;
     public static Thread t6;
 
-	static {
+    static {
 
         //按ctrl并连点左键
         t1 =new CreateThread(){
@@ -57,13 +56,13 @@ public class Functions extends IFunctions {
 //                        robot.keyPress(KeyEvent.VK_E);
 //                        robot.keyRelease(KeyEvent.VK_E);
                         if(temp2 ==true){
-                        robot.keyRelease(KeyEvent.VK_E);
-                        robot.keyPress(KeyEvent.VK_E);
-                        robot.keyRelease(KeyEvent.VK_E);
+                            robot.keyRelease(KeyEvent.VK_E);
+                            robot.keyPress(KeyEvent.VK_E);
+                            robot.keyRelease(KeyEvent.VK_E);
 
-                        robot.keyRelease(KeyEvent.VK_Q);
-                        robot.keyPress(KeyEvent.VK_Q);
-                        robot.keyRelease(KeyEvent.VK_Q);
+                            robot.keyRelease(KeyEvent.VK_Q);
+                            robot.keyPress(KeyEvent.VK_Q);
+                            robot.keyRelease(KeyEvent.VK_Q);
                         }
                         robot.keyRelease(KeyEvent.VK_G);
                         robot.keyPress(KeyEvent.VK_G);
@@ -173,7 +172,7 @@ public class Functions extends IFunctions {
         threadList.add(t3);
         threadList.add(t4);
 
-	}
+    }
 
 
     public static boolean trade = false;
@@ -259,11 +258,11 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 50,intercept = true)
     private static void 整套装备预筛选(){
         if(trade==true){
-        在搜索框粘贴(count1+100,"");
-        count1++;
-        if(count1>=3){
-            count1=0;
-        }}else{
+            在搜索框粘贴(count1+100,"");
+            count1++;
+            if(count1>=3){
+                count1=0;
+            }}else{
             robot.keyPress(KeyEvent.VK_2);
             robot.keyRelease(KeyEvent.VK_2);}
 
@@ -273,11 +272,11 @@ public class Functions extends IFunctions {
     private static void 顺序获取整套装备(){
 
         if(trade==true){
-        在搜索框粘贴(count2,"");
-        count2++;
-        if(count2>=8){
-            count2=0;
-        }}else{
+            在搜索框粘贴(count2,"");
+            count2++;
+            if(count2>=8){
+                count2=0;
+            }}else{
             robot.keyPress(KeyEvent.VK_3);
             robot.keyRelease(KeyEvent.VK_3);}
     }
@@ -382,5 +381,55 @@ public class Functions extends IFunctions {
 
 
 
+//    死灵
 
+    //q
+    @ListenMouseKeyboard(value = 81)
+    private static void 持续按e和g和q() {
+        temp1=false;
+        temp2 =true;
+
+ //        robot.keyPress(KeyEvent.VK_E);
+ //        robot.keyRelease(KeyEvent.VK_E);
+
+        t2.resume();
+    }
+
+    //e
+    @ListenMouseKeyboard(value = 69)
+    private static void 持续按e和g() {
+        temp1=false;
+        temp2 =false;
+
+        t2.resume();
+    }
+
+    //左键
+    //右键
+    //r
+    @ListenMouseKeyboard(value = 513)
+    @ListenMouseKeyboard(value = 516)
+    @ListenMouseKeyboard(value = 82)
+    private static void 取消() {
+        temp1=true;
+    }
+
+    //v
+    @ListenMouseKeyboard(value = 86,intercept = true)
+    private static void 取消保留技能后放技能() {
+        t3.resume();
+    }
+
+
+    //space
+    @ListenMouseKeyboard(value = 32,intercept = true)
+    private static void 自动循环喝药() {
+        t4.resume();
+    }
+
+    //esc
+    @ListenMouseKeyboard(value = 27)
+    private static void esc() {
+        t4.suspend();
+    }
 }
