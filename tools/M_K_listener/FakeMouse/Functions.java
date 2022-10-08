@@ -6,10 +6,10 @@ import java.util.List;
 public class Functions extends IFunctions {
 
     @ListenBar(off = false)
-    public static Integer on=36;
+    public static Integer on=44;
 
     @ListenBar(off = true)
-    public static Integer off=35;
+    public static Integer off=19;
 
     @ListenBar(threadList = true)
     public static List<Thread> threadList=new ArrayList<>();
