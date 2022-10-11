@@ -20,5 +20,7 @@ public class MyStream {
         Stream<String> s2=l1.stream().filter(unit -> unit.startsWith("a"));
         s2.forEach(unit -> System.out.println(unit));
 
+        Boolean b=l1.stream().anyMatch(u ->u.startsWith("a"));
+
     }
 }
