@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class MyStream {
@@ -21,6 +22,9 @@ public class MyStream {
         s2.forEach(unit -> System.out.println(unit));
 
         Boolean b=l1.stream().anyMatch(u ->u.startsWith("a"));
+
+        Optional<String> o1=l1.stream().filter(u ->u.startsWith("a")).findFirst();
+        o1.get();
 
     }
 }
