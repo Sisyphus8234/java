@@ -21,8 +21,11 @@ public class MyStream {
         Stream<String> s2=l1.stream().filter(unit -> unit.startsWith("a"));
         s2.forEach(unit -> System.out.println(unit));
 
+
+        //判断List里有没有
         Boolean b=l1.stream().anyMatch(u ->u.startsWith("a"));
 
+        //找到List里第一个符合条件的
         Optional<String> o1=l1.stream().filter(u ->u.startsWith("a")).findFirst();
         o1.get();
 
