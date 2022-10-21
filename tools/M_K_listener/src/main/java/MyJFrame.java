@@ -43,7 +43,7 @@ public class MyJFrame {
             SystemTray tray = SystemTray.getSystemTray();
             //创建托盘图标：1.显示图标Image 2.停留提示text 3.弹出菜单popupMenu 4.创建托盘图标实例
             //1.创建Image图像
-            Image image = Toolkit.getDefaultToolkit().getImage("resources/1.png");
+            Image image = Toolkit.getDefaultToolkit().getImage("1.png");
             //2.停留提示text
             String text = "MySystemTray";
             //3.弹出菜单popupMenu

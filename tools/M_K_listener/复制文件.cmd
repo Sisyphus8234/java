@@ -12,7 +12,8 @@ mkdir out
 :: /e复制目录和子目录，包括空的 /y强制复制
 xcopy /e/y src\main\java out\
 
-xcopy /y resources\* out\
+xcopy /y Config.properties out\
+xcopy /y 1.png out\
 
 xcopy /y %input%\Functions.java out\
 

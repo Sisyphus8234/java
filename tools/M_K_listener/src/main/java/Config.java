@@ -3,7 +3,7 @@ import java.util.Properties;
 
 public class Config {
 
-    public static String filePath = "resources/Config.properties";
+    public static String filePath = "Config.properties";
     public static Properties prop=new Properties();
 
     static {
