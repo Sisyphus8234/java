@@ -180,7 +180,7 @@ public class Functions extends IFunctions {
             robot.keyPress(KeyEvent.VK_ALT);
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_TAB);
-            pause(50);
+//            pause(50);
             robot.keyRelease(KeyEvent.VK_ALT);
             robot.keyRelease(KeyEvent.VK_SHIFT);
             robot.keyRelease(KeyEvent.VK_TAB);
