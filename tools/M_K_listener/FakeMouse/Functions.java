@@ -157,10 +157,42 @@ public class Functions extends IFunctions {
         }
     }
 
+    //功能:切屏
+    //侧键
+    @ListenMouseKeyboard(value = 523,intercept = true)
+    public static void f14() {
+        robot.keyPress(KeyEvent.VK_ALT);
+        robot.keyPress(KeyEvent.VK_TAB);
+        pause(50);
+        robot.keyRelease(KeyEvent.VK_ALT);
+        robot.keyRelease(KeyEvent.VK_TAB);
+    }
 
+    @ListenMouseKeyboard(value = 524,intercept = true)
+    public static void f15() {
+    }
 
+    public static boolean button =false;
+    @ListenMouseKeyboard(value = 513)
+    @ListenMouseKeyboard(value = 516)
+    public static void f16() {
+        if(button ==true){
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_TAB);
+            pause(50);
+            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+            robot.keyRelease(KeyEvent.VK_TAB);
+        }
 
-
+        button =true;
+    }
+    @ListenMouseKeyboard(value = 514)
+    @ListenMouseKeyboard(value = 517)
+    public static void f17() {
+        button =false;
+    }
 
 
 
