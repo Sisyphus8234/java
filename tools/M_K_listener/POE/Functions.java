@@ -24,14 +24,8 @@ public class Functions extends IFunctions {
 
 
     public static Thread t1;
-    public static Thread t2;
-    public static Thread t3;
-    public static Thread t4;
-    public static Thread t5;
-    public static Thread t6;
 
 	static {
-
         //按ctrl并连点左键
         t1 =new CreateThread(){
             @Override
@@ -47,131 +41,8 @@ public class Functions extends IFunctions {
         }.thread;
         t1.suspend();
 
-        //持续按e和g和q
-        t2 =new CreateThread(){
-            @Override
-            public void myFunction(){
-                while (true) {
-                    if(temp1==false) {
-//                        robot.keyRelease(KeyEvent.VK_E);
-//                        robot.keyPress(KeyEvent.VK_E);
-//                        robot.keyRelease(KeyEvent.VK_E);
-                        if(temp2 ==true){
-                        robot.keyRelease(KeyEvent.VK_E);
-                        robot.keyPress(KeyEvent.VK_E);
-                        robot.keyRelease(KeyEvent.VK_E);
-
-                        robot.keyRelease(KeyEvent.VK_Q);
-                        robot.keyPress(KeyEvent.VK_Q);
-                        robot.keyRelease(KeyEvent.VK_Q);
-                        }
-                        robot.keyRelease(KeyEvent.VK_G);
-                        robot.keyPress(KeyEvent.VK_G);
-                        robot.keyRelease(KeyEvent.VK_G);
-                        pause(300);
-                    }
-                    else{
-                        t2.suspend();
-
-                    }
-
-                }
-            }
-        }.thread;
-        t2.suspend();
-
-        //取消保留后放技能
-        t3 =new CreateThread(){
-            @Override
-            public void myFunction(){
-                while (true) {
-                    t3.suspend();
-                    robot.keyPress(KeyEvent.VK_A);
-                    robot.keyRelease(KeyEvent.VK_A);
-                    robot.keyPress(KeyEvent.VK_S);
-                    robot.keyRelease(KeyEvent.VK_S);
-                    robot.keyPress(KeyEvent.VK_D);
-                    robot.keyRelease(KeyEvent.VK_D);
-                    robot.keyPress(KeyEvent.VK_4);
-                    robot.keyRelease(KeyEvent.VK_4);
-                    pause(100);
-                    robot.keyPress(KeyEvent.VK_W);
-                    robot.keyRelease(KeyEvent.VK_W);
-                    pause(550);
-                    robot.keyPress(KeyEvent.VK_T);
-                    robot.keyRelease(KeyEvent.VK_T);
-                    pause(650);
-
-                    robot.keyPress(KeyEvent.VK_A);
-                    robot.keyRelease(KeyEvent.VK_A);
-                    robot.keyPress(KeyEvent.VK_S);
-                    robot.keyRelease(KeyEvent.VK_S);
-                    robot.keyPress(KeyEvent.VK_D);
-                    robot.keyRelease(KeyEvent.VK_D);
-
-                    pause(1950-100-550-650);
-
-                    robot.keyPress(KeyEvent.VK_A);
-                    robot.keyRelease(KeyEvent.VK_A);
-                    robot.keyPress(KeyEvent.VK_S);
-                    robot.keyRelease(KeyEvent.VK_S);
-                    robot.keyPress(KeyEvent.VK_D);
-                    robot.keyRelease(KeyEvent.VK_D);
-
-
-                }
-            }
-        }.thread;
-
-        //自动循环喝药
-        t4 =new CreateThread(){
-            @Override
-            public void myFunction(){
-                Integer temp1=1;
-                HashMap<Integer,Integer> temp2=new HashMap<>();
-                temp2.put(1,49);
-                temp2.put(2,51);
-//                temp2.put(3,51);
-                while (true) {
-                    robot.keyPress(temp2.get(temp1));
-                    robot.keyRelease(temp2.get(temp1));
-                    temp1++;
-                    if(temp1>=3){
-                        temp1=1;
-                    }
-                    pause(1100);
-                }
-            }
-        }.thread;
-        t4.suspend();
-
-
-        //旋风斩
-//        t5 =new CreateThread(){
-//            @Override
-//            public void myFunction(){
-//                while (true) {
-//                    if(temp3==true) {
-//                        robot.keyPress(KeyEvent.VK_W);
-//                        robot.keyRelease(KeyEvent.VK_W);
-//                    }
-//                    else{
-//                        t2.suspend();
-//
-//                    }
-//
-//                }
-//            }
-//        }.thread;
-//        t5.suspend();
-
-
-
 
         threadList.add(t1);
-        threadList.add(t2);
-        threadList.add(t3);
-        threadList.add(t4);
 
 	}
 

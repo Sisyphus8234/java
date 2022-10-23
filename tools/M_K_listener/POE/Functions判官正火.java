@@ -7,7 +7,8 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Functions1 extends IFunctions {
+public class Functions判官正火 extends IFunctions {
+
     @ListenBar(off = false)
     public static Integer on2=188;
 
@@ -25,12 +26,8 @@ public class Functions1 extends IFunctions {
     public static Thread t1;
     public static Thread t2;
     public static Thread t3;
-    public static Thread t4;
-    public static Thread t5;
-    public static Thread t6;
 
-    static {
-
+	static {
         //按ctrl并连点左键
         t1 =new CreateThread(){
             @Override
@@ -46,32 +43,23 @@ public class Functions1 extends IFunctions {
         }.thread;
         t1.suspend();
 
-        //持续按e和g和q
+
         t2 =new CreateThread(){
             @Override
             public void myFunction(){
                 while (true) {
-                    if(temp1==false) {
-//                        robot.keyRelease(KeyEvent.VK_E);
-//                        robot.keyPress(KeyEvent.VK_E);
-//                        robot.keyRelease(KeyEvent.VK_E);
-                        if(temp2 ==true){
-                            robot.keyRelease(KeyEvent.VK_E);
-                            robot.keyPress(KeyEvent.VK_E);
-                            robot.keyRelease(KeyEvent.VK_E);
 
-                            robot.keyRelease(KeyEvent.VK_Q);
-                            robot.keyPress(KeyEvent.VK_Q);
-                            robot.keyRelease(KeyEvent.VK_Q);
+                    if(running==true) {
+                        if(放陷阱==true){
+                            放陷阱=false;
+                            pause(200);
+                        }else{
+                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                            pause(140);
                         }
-                        robot.keyRelease(KeyEvent.VK_G);
-                        robot.keyPress(KeyEvent.VK_G);
-                        robot.keyRelease(KeyEvent.VK_G);
-                        pause(300);
-                    }
-                    else{
+                    }else {
                         t2.suspend();
-
                     }
 
                 }
@@ -79,100 +67,12 @@ public class Functions1 extends IFunctions {
         }.thread;
         t2.suspend();
 
-        //取消保留后放技能
-        t3 =new CreateThread(){
-            @Override
-            public void myFunction(){
-                while (true) {
-                    t3.suspend();
-                    robot.keyPress(KeyEvent.VK_A);
-                    robot.keyRelease(KeyEvent.VK_A);
-                    robot.keyPress(KeyEvent.VK_S);
-                    robot.keyRelease(KeyEvent.VK_S);
-                    robot.keyPress(KeyEvent.VK_D);
-                    robot.keyRelease(KeyEvent.VK_D);
-                    robot.keyPress(KeyEvent.VK_4);
-                    robot.keyRelease(KeyEvent.VK_4);
-                    pause(100);
-                    robot.keyPress(KeyEvent.VK_W);
-                    robot.keyRelease(KeyEvent.VK_W);
-                    pause(550);
-                    robot.keyPress(KeyEvent.VK_T);
-                    robot.keyRelease(KeyEvent.VK_T);
-                    pause(650);
-
-                    robot.keyPress(KeyEvent.VK_A);
-                    robot.keyRelease(KeyEvent.VK_A);
-                    robot.keyPress(KeyEvent.VK_S);
-                    robot.keyRelease(KeyEvent.VK_S);
-                    robot.keyPress(KeyEvent.VK_D);
-                    robot.keyRelease(KeyEvent.VK_D);
-
-                    pause(1950-100-550-650);
-
-                    robot.keyPress(KeyEvent.VK_A);
-                    robot.keyRelease(KeyEvent.VK_A);
-                    robot.keyPress(KeyEvent.VK_S);
-                    robot.keyRelease(KeyEvent.VK_S);
-                    robot.keyPress(KeyEvent.VK_D);
-                    robot.keyRelease(KeyEvent.VK_D);
-
-
-                }
-            }
-        }.thread;
-
-        //自动循环喝药
-        t4 =new CreateThread(){
-            @Override
-            public void myFunction(){
-                Integer temp1=1;
-                HashMap<Integer,Integer> temp2=new HashMap<>();
-                temp2.put(1,49);
-                temp2.put(2,51);
-//                temp2.put(3,51);
-                while (true) {
-                    robot.keyPress(temp2.get(temp1));
-                    robot.keyRelease(temp2.get(temp1));
-                    temp1++;
-                    if(temp1>=3){
-                        temp1=1;
-                    }
-                    pause(1100);
-                }
-            }
-        }.thread;
-        t4.suspend();
-
-
-        //旋风斩
-//        t5 =new CreateThread(){
-//            @Override
-//            public void myFunction(){
-//                while (true) {
-//                    if(temp3==true) {
-//                        robot.keyPress(KeyEvent.VK_W);
-//                        robot.keyRelease(KeyEvent.VK_W);
-//                    }
-//                    else{
-//                        t2.suspend();
-//
-//                    }
-//
-//                }
-//            }
-//        }.thread;
-//        t5.suspend();
-
-
-
 
         threadList.add(t1);
         threadList.add(t2);
-        threadList.add(t3);
-        threadList.add(t4);
 
-    }
+
+	}
 
 
     public static boolean trade = false;
@@ -258,11 +158,11 @@ public class Functions1 extends IFunctions {
     @ListenMouseKeyboard(value = 50,intercept = true)
     private static void 整套装备预筛选(){
         if(trade==true){
-            在搜索框粘贴(count1+100,"");
-            count1++;
-            if(count1>=3){
-                count1=0;
-            }}else{
+        在搜索框粘贴(count1+100,"");
+        count1++;
+        if(count1>=3){
+            count1=0;
+        }}else{
             robot.keyPress(KeyEvent.VK_2);
             robot.keyRelease(KeyEvent.VK_2);}
 
@@ -272,11 +172,11 @@ public class Functions1 extends IFunctions {
     private static void 顺序获取整套装备(){
 
         if(trade==true){
-            在搜索框粘贴(count2,"");
-            count2++;
-            if(count2>=8){
-                count2=0;
-            }}else{
+        在搜索框粘贴(count2,"");
+        count2++;
+        if(count2>=8){
+            count2=0;
+        }}else{
             robot.keyPress(KeyEvent.VK_3);
             robot.keyRelease(KeyEvent.VK_3);}
     }
@@ -379,28 +279,30 @@ public class Functions1 extends IFunctions {
     //---------------------------------------------------------------
 
 
-    //野蛮人
+    public static boolean running=false;
+    public static boolean 放陷阱=false;
+    public static Point point;
 
-    //v
-    @ListenMouseKeyboard(value = 86,intercept = true)
-    private static void f() {
-        robot.keyRelease(KeyEvent.VK_E);
-        robot.keyPress(KeyEvent.VK_E);
-        robot.keyRelease(KeyEvent.VK_W);
-        robot.keyPress(KeyEvent.VK_W);
-        robot.keyRelease(KeyEvent.VK_F);
-        robot.keyPress(KeyEvent.VK_F);
-        robot.keyRelease(KeyEvent.VK_G);
-        robot.keyPress(KeyEvent.VK_G);
+
+    @ListenMouseKeyboard(value = 32,intercept = true)
+    private static void 奔跑(){
+        running=true;
+        t2.resume();
     }
 
-    //e
+    @ListenMouseKeyboard(value = 82)
+    @ListenMouseKeyboard(value = 513)
+    private static void 奔跑2(){
+        running=false;
+    }
+
     @ListenMouseKeyboard(value = 69)
-    private static void f2() {
-        robot.keyRelease(KeyEvent.VK_E);
-        robot.keyRelease(KeyEvent.VK_W);
-        robot.keyRelease(KeyEvent.VK_F);
-        robot.keyRelease(KeyEvent.VK_G);
+    @ListenMouseKeyboard(value = 81)
+    @ListenMouseKeyboard(value = 516)
+    private static void 放技能(){
+            放陷阱=true;
+
     }
+
 
 }

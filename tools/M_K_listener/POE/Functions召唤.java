@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Functions2 extends IFunctions {
+public class Functions召唤 extends IFunctions {
     @ListenBar(off = false)
     public static Integer on2=188;
 
@@ -143,29 +143,6 @@ public class Functions2 extends IFunctions {
             }
         }.thread;
         t4.suspend();
-
-
-        //旋风斩
-//        t5 =new CreateThread(){
-//            @Override
-//            public void myFunction(){
-//                while (true) {
-//                    if(temp3==true) {
-//                        robot.keyPress(KeyEvent.VK_W);
-//                        robot.keyRelease(KeyEvent.VK_W);
-//                    }
-//                    else{
-//                        t2.suspend();
-//
-//                    }
-//
-//                }
-//            }
-//        }.thread;
-//        t5.suspend();
-
-
-
 
         threadList.add(t1);
         threadList.add(t2);
