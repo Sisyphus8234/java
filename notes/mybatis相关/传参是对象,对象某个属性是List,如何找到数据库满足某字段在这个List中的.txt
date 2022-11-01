@@ -1,0 +1,6 @@
+            <if test="pickingOutIdList!=null and !pickingOutIdList.isEmpty()">
+                and po.id in
+                <foreach collection="pickingOutIdList" item="param"  open="(" close=")" separator=",">
+                    #{param}
+                </foreach>
+            </if>
