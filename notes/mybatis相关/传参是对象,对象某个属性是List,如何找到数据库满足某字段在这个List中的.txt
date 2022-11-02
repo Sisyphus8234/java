@@ -4,3 +4,5 @@
                     #{param}
                 </foreach>
             </if>
+			
+			collection="pickingOutIdList",此为对象中的属性名

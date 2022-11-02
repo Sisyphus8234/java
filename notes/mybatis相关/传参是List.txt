@@ -1,0 +1,9 @@
+        <foreach collection="idList" item="param"  open="(" close=")" separator=",">
+            #{param}
+        </foreach>
+		
+		
+		
+		
+		
+		collection="idList",此是xxxmapper.java文件中的参数名,应该要加@Param
