@@ -1,6 +1,14 @@
-        <foreach collection="idList" item="param"  open="(" close=")" separator=",">
-            #{param}
-        </foreach>
+        <choose>
+            <when test="idList!=null and idList.size()>0">
+                and t1.picking_out_id in
+                <foreach collection="idList" item="param"  open="(" close=")" separator=",">
+                    #{param}
+                </foreach>
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
 		
 		
 		
