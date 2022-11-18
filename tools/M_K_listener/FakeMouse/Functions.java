@@ -160,6 +160,7 @@ public class Functions extends IFunctions {
     //功能:切屏
     //侧键
     @ListenMouseKeyboard(value = 523,intercept = true)
+    @ListenMouseKeyboard(value = 91,intercept = true)
     public static void f16() {
         if(leftBotton !=true) {
             robot.keyPress(KeyEvent.VK_ALT);
@@ -176,6 +177,7 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_TAB);
         }
     }
+    @ListenMouseKeyboard(value = 91,press = false,intercept = true)
     @ListenMouseKeyboard(value = 524,intercept = true)
     public static void f17() {
     }
