@@ -160,6 +160,7 @@ public class Functions extends IFunctions {
     //功能:切屏
     //侧键
     @ListenMouseKeyboard(value = 523,intercept = true)
+    @ListenMouseKeyboard(value = 93,intercept = true)
     @ListenMouseKeyboard(value = 91,intercept = true)
     public static void f16() {
         if(leftBotton !=true) {
@@ -178,6 +179,7 @@ public class Functions extends IFunctions {
         }
     }
     @ListenMouseKeyboard(value = 91,press = false,intercept = true)
+    @ListenMouseKeyboard(value = 93,press = false,intercept = true)
     @ListenMouseKeyboard(value = 524,intercept = true)
     public static void f17() {
     }
