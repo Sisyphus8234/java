@@ -1,21 +1,13 @@
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.Array;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Functions extends IFunctions {
 
     @ListenBar(off = false)
-    public static int on=36;
+    public static int on = 36;
 
     @ListenBar
-    public static int off=35;
+    public static int off = 35;
 
 
     static {
@@ -23,38 +15,52 @@ public class Functions extends IFunctions {
     }
 
 
+    private static Long time = 30L;
 
-    private static Long time=30L;
-@ListenMouseKeyboard(value = 88)
-@ListenMouseKeyboard(value = 50)
-private void f5(){
 
-    robot.keyPress(KeyEvent.VK_ALT);
-    pause(time);
+    public static boolean attack = false;
 
-    robot.keyPress(KeyEvent.VK_S);
-    pause(time);
-    robot.keyRelease(KeyEvent.VK_S);
+    //滚轮
+    @ListenMouseKeyboard(value = 522)
+    private void f6() {
+        attack = true;
+    }
 
-    pause(time);
+    @ListenMouseKeyboard(value = 88)
+    @ListenMouseKeyboard(value = 50)
+    private void f5() {
 
-    robot.keyPress(KeyEvent.VK_W);
-    pause(time);
-    robot.keyRelease(KeyEvent.VK_W);
+        robot.keyPress(KeyEvent.VK_ALT);
+        pause(time);
+        robot.keyRelease(KeyEvent.VK_ALT);
+        robot.keyPress(KeyEvent.VK_S);
+        pause(time);
+        robot.keyRelease(KeyEvent.VK_S);
 
-//    pause(time);
+        pause(time);
 
-    robot.keyPress(KeyEvent.VK_SHIFT);
-    pause(time);
-    robot.keyRelease(KeyEvent.VK_SHIFT);
-    robot.keyRelease(KeyEvent.VK_ALT);
-//        robot.keyRelease(KeyEvent.VK_SPACE);
+        robot.keyPress(KeyEvent.VK_W);
+        pause(time);
+        robot.keyRelease(KeyEvent.VK_W);
 
-}
+
+        if (attack == false) {
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            pause(time);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        } else {
+            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+            pause(time);
+            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+            attack = false;
+        }
+
+
+    }
 
     @ListenMouseKeyboard(value = 90)
     @ListenMouseKeyboard(value = 49)
-    private void f2(){
+    private void f2() {
 
         robot.keyPress(KeyEvent.VK_A);
         pause(time);
@@ -66,17 +72,23 @@ private void f5(){
         pause(time);
         robot.keyRelease(KeyEvent.VK_D);
 
-        pause(time);
-        robot.keyPress(KeyEvent.VK_SHIFT);
-        pause(time);
-        robot.keyRelease(KeyEvent.VK_SHIFT);
+        if (attack == false) {
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            pause(time);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        } else {
+            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+            pause(time);
+            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+            attack = false;
+        }
 
 
     }
 
     @ListenMouseKeyboard(value = 67)
     @ListenMouseKeyboard(value = 51)
-    private void f3(){
+    private void f3() {
 
         robot.keyPress(KeyEvent.VK_D);
         pause(time);
@@ -87,18 +99,24 @@ private void f5(){
         robot.keyPress(KeyEvent.VK_A);
         pause(time);
         robot.keyRelease(KeyEvent.VK_A);
-        pause(time);
-
-        robot.keyPress(KeyEvent.VK_SHIFT);
-        pause(time);
-        robot.keyRelease(KeyEvent.VK_SHIFT);
 
 
+        if (attack == false) {
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            pause(time);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+        } else {
+            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+            pause(time);
+            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+            attack = false;
+        }
 
     }
 
+
     @ListenMouseKeyboard(value = 9)
-    private void f4(){
+    private void f4() {
 
         robot.keyPress(KeyEvent.VK_A);
         pause(time);
@@ -118,19 +136,12 @@ private void f5(){
         robot.keyRelease(KeyEvent.VK_W);
 
 
-
-
         pause(time);
         robot.keyPress(KeyEvent.VK_SHIFT);
         pause(time);
         robot.keyRelease(KeyEvent.VK_SHIFT);
 
-//        robot.keyRelease(KeyEvent.VK_SPACE);
-
     }
-
-
-
 
 
 }
