@@ -143,5 +143,12 @@ public class Functions extends IFunctions {
 
     }
 
+    @ListenMouseKeyboard(value = 71)
+    private void f7() {
+
+robot.keyRelease(KeyEvent.VK_F);
+robot.keyPress(KeyEvent.VK_F);
+
+    }
 
 }
