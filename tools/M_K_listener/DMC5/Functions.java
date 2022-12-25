@@ -22,6 +22,7 @@ public class Functions extends IFunctions {
 
     //滚轮
     @ListenMouseKeyboard(value = 522)
+    @ListenMouseKeyboard(value = 72)
     private void f6() {
         attack = true;
     }
@@ -50,8 +51,10 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_SHIFT);
         } else {
             robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+            robot.keyPress(KeyEvent.VK_J);
             pause(time);
             robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+            robot.keyRelease(KeyEvent.VK_J);
             attack = false;
         }
 
@@ -78,8 +81,10 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_SHIFT);
         } else {
             robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+            robot.keyPress(KeyEvent.VK_J);
             pause(time);
             robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+            robot.keyRelease(KeyEvent.VK_J);
             attack = false;
         }
 
@@ -107,8 +112,10 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_SHIFT);
         } else {
             robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+            robot.keyPress(KeyEvent.VK_J);
             pause(time);
             robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+            robot.keyRelease(KeyEvent.VK_J);
             attack = false;
         }
 
