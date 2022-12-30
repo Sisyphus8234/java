@@ -17,7 +17,7 @@ public class Functions extends IFunctions{
 		// TODO Auto-generated method stub
 		robot.keyRelease(KeyEvent.VK_SHIFT);
 		robot.keyPress(KeyEvent.VK_SHIFT);
-		robot.keyRelease(KeyEvent.VK_F);
+		// robot.keyRelease(KeyEvent.VK_F);
 		}
 
 	@ListenMouseKeyboard(value=71,immediately=true)
