@@ -39,6 +39,7 @@ public class Functions extends IFunctions{
 //		}
 
 	@ListenMouseKeyboard(value=192,immediately=true)
+	@ListenMouseKeyboard(value=191,immediately=true)
 	private static void 点血网() {
 		robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
 		robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
