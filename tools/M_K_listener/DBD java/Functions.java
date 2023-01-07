@@ -45,4 +45,11 @@ public class Functions extends IFunctions{
 		robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 	}
 
+
+	@ListenMouseKeyboard(value=84,immediately=true)
+	private static void 能力键1() {
+		robot.keyRelease(KeyEvent.VK_E);
+		robot.keyPress(KeyEvent.VK_E);
+	}
+
 }
