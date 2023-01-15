@@ -15,8 +15,8 @@ public class Functions extends IFunctions{
 	@ListenMouseKeyboard(value=516,immediately=true)
 	private static void 奔跑() {
 		// TODO Auto-generated method stub
-		robot.keyRelease(KeyEvent.VK_SPACE);
-		robot.keyPress(KeyEvent.VK_SPACE);
+		robot.keyRelease(KeyEvent.VK_SHIFT);
+		robot.keyPress(KeyEvent.VK_SHIFT);
 		// robot.keyRelease(KeyEvent.VK_F);
 		}
 
@@ -48,8 +48,8 @@ public class Functions extends IFunctions{
 
 	@ListenMouseKeyboard(value=84,immediately=true)
 	private static void 能力键1() {
-		robot.keyRelease(KeyEvent.VK_SHIFT);
-		robot.keyPress(KeyEvent.VK_SHIFT);
+		robot.keyRelease(KeyEvent.VK_SPACE);
+		robot.keyPress(KeyEvent.VK_SPACE);
 	}
 
 }
