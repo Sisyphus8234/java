@@ -157,13 +157,17 @@ public class Functions extends IFunctions {
         }
     }
 
+
+
+
+    public static boolean leftBotton =false;
+    public static boolean rightBotton =false;
+
     //功能:切屏
-    //侧键
-    @ListenMouseKeyboard(value = 523,intercept = true)
-    @ListenMouseKeyboard(value = 93,intercept = true)
-    @ListenMouseKeyboard(value = 91,intercept = true)
+    @ListenMouseKeyboard(value = 513)
     public static void f16() {
-        if(leftBotton !=true) {
+        leftBotton =true;
+        if(rightBotton ==true) {
             robot.keyPress(KeyEvent.VK_ALT);
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_TAB);
@@ -171,25 +175,7 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_ALT);
             robot.keyRelease(KeyEvent.VK_SHIFT);
             robot.keyRelease(KeyEvent.VK_TAB);
-        }else {
-            robot.keyPress(KeyEvent.VK_ALT);
-            robot.keyPress(KeyEvent.VK_TAB);
-            robot.keyRelease(KeyEvent.VK_ALT);
-            robot.keyRelease(KeyEvent.VK_TAB);
         }
-    }
-    @ListenMouseKeyboard(value = 91,press = false,intercept = true)
-    @ListenMouseKeyboard(value = 93,press = false,intercept = true)
-    @ListenMouseKeyboard(value = 524,intercept = true)
-    public static void f17() {
-    }
-
-
-    public static boolean leftBotton =false;
-    @ListenMouseKeyboard(value = 513)
-    public static void f14() {
-        leftBotton =true;
-
     }
 
     @ListenMouseKeyboard(value = 514)
@@ -197,7 +183,45 @@ public class Functions extends IFunctions {
         leftBotton =false;
     }
 
+    @ListenMouseKeyboard(value = 516)
+    public static void f16_2() {
+        rightBotton =true;
+        if(leftBotton ==true) {
+            System.out.println("---------------------");
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_TAB);
+
+            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+            robot.keyRelease(KeyEvent.VK_TAB);
+        }
+
+    }
+
+    @ListenMouseKeyboard(value = 517)
+    public static void f19() {
+        rightBotton =false;
+    }
 
 
 
+    @ListenMouseKeyboard(value = 93,intercept = true)
+    @ListenMouseKeyboard(value = 91,intercept = true)
+    public static void f16_3() {
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_TAB);
+
+            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+            robot.keyRelease(KeyEvent.VK_TAB);
+
+    }
+
+
+    @ListenMouseKeyboard(value = 91,press = false,intercept = true)
+    @ListenMouseKeyboard(value = 93,press = false,intercept = true)
+    public static void f17() {
+    }
 }
