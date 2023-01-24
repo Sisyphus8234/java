@@ -187,7 +187,6 @@ public class Functions extends IFunctions {
     public static void f16_2() {
         rightBotton =true;
         if(leftBotton ==true) {
-            System.out.println("---------------------");
             robot.keyPress(KeyEvent.VK_ALT);
             robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_TAB);
@@ -207,7 +206,10 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(value = 93,intercept = true)
-    @ListenMouseKeyboard(value = 91,intercept = true)
+
+    //win
+//    @ListenMouseKeyboard(value = 91,intercept = true)
+
     public static void f16_3() {
             robot.keyPress(KeyEvent.VK_ALT);
             robot.keyPress(KeyEvent.VK_SHIFT);
