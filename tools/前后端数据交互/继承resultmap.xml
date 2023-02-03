@@ -1,0 +1,13 @@
+    <resultMap id="AssRepVo" type="com.dftx.market.info.domain.vo.AssRepVo" extends="BaseResultMap">
+        <result property="managerId" column="manager_id"/>
+        <result property="managerName" column="manager_name"/>
+        <result property="infoCode" column="info_code"/>
+        <result property="productType" column="product_type"/>
+        <result property="tenderType" column="tender_type"/>
+        <result property="tenderTime" column="tender_time"/>
+        <collection property="projectGroupList" ofType="com.dftx.market.info.domain.vo.AssRepUVo">
+            <result column="user_id_distinct" jdbcType="INTEGER" property="userId"/>
+            <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+            <result column="phonenumber" jdbcType="VARCHAR" property="phonenumber"/>
+        </collection>
+    </resultMap>
