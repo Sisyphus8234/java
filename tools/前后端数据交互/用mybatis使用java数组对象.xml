@@ -1,0 +1,6 @@
+        <foreach collection="list" item="item" separator="union">
+            select
+            #{item.pickingOutId} as picking_out_id,
+            #{item.storeHouse} as storeHouse,
+            #{item.deleted} as deleted
+        </foreach>
