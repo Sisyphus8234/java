@@ -1,0 +1,23 @@
+if(!list3.stream().anyMatch(
+        (u ->
+                u.getMaterialManageId().equals(u1.getMaterialId())
+                &&u.getBrand().equals(u1.getBrand())
+                &&u.getSupplyCompany().equals(u1.getSupplyCompany())
+        )
+
+
+)){
+
+}  	
+
+
+
+//找到符合id的第一个对象,对象的children扩增
+OutStockManageVo outStockManageVo=list3.stream().filter(
+        (u ->
+                u.getMaterialManageId().equals(u1.getMaterialId())
+                        &&u.getBrand().equals(u1.getBrand())
+                        &&u.getSupplyCompany().equals(u1.getSupplyCompany()))
+
+
+).findFirst().get();
