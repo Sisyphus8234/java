@@ -14,3 +14,6 @@ IDE Eval Reset
 POJO to JSON
 RoboPOJOGenerator
 CamelCase
+
+设置
+文件-设置-编辑器-常规-自动换行
