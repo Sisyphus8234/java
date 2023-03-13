@@ -1,0 +1,35 @@
+    <resultMap id="selectDetailDetail" type="com.dftx.stock.domain.vo.SecondTierOfOutStockManageVo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <collection property="children" ofType="com.dftx.stock.domain.vo.OutStockManageMaterialVo" column="id" select="selectDetailDetailSon"></collection>
+        <collection property="supplyCompany" ofType="java.lang.String" column="id" select="selectDetailDetailSon2"></collection>
+        <collection property="brand" ofType="java.lang.String" column="id" select="selectDetailDetailSon3"></collection>
+    </resultMap>
+    <select id="selectDetailDetail" resultMap="selectDetailDetail">
+        select t1.id,t1.material_manage_id materialManageId,t3.code,t3.name,t3.spec,t3.unit,t1.outbound_count totalFetchCount,t1.department_id departmentId,t1.department department,t1.out_storehouse storehouse
+        from out_stock t1
+        left join material_manage t3 on t1.material_manage_id=t3.id and t3.deleted=0
+        where t1.deleted=0
+          and t1.picking_out_id=#{id}
+    </select>
+    <select id="selectDetailDetailSon" resultType="com.dftx.stock.domain.vo.OutStockManageMaterialVo">
+        select t1.id,t1.supply_company supplyCompany,t1.batch,t1.available_count availableCount,t1.predict_delivery predictDelivery,t1.predict_delivery separatedFetchCount,
+               concat(t2.weighted_average,'') weightedAverage
+        from out_stock_sub t1
+        left join out_stock_sub_unit_price t2 on t2.out_stock_sub_id=t1.id and t2.deleted=0
+        where t1.deleted=0
+          and t1.out_stock_id=#{id}
+    </select>
+    <select id="selectDetailDetailSon2" resultType="java.lang.String">
+        select any_value(t1.supply_company) supplyCompany
+        from out_stock_sub t1
+        where t1.deleted=0
+          and t1.out_stock_id=#{id}
+        group by t1.supply_company
+    </select>
+    <select id="selectDetailDetailSon3" resultType="java.lang.String">
+        select any_value(t1.brand)
+        from out_stock_sub t1
+        where t1.deleted=0
+          and t1.out_stock_id=#{id}
+        group by t1.brand
+    </select>
