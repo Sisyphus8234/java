@@ -1,0 +1,11 @@
+        <choose>
+            <when test="idList!=null and idList.size()>0">
+                and id in
+                <foreach collection="idList" item="param"  open="(" close=")" separator=",">
+                    #{param}
+                </foreach>
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
