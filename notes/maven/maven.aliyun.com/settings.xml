@@ -1,0 +1,8 @@
+<mirrors>
+  <mirror>
+    <id>ali</id>
+    <name>ali Maven</name>
+    <mirrorOf>central</mirrorOf>
+    <url>https://maven.aliyun.com/repository/public/</url>
+  </mirror>
+</mirrors>
