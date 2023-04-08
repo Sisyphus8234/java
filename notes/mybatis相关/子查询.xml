@@ -1,5 +1,5 @@
     <resultMap id="selectDetailDetail" type="com.dftx.stock.domain.vo.SecondTierOfOutStockManageVo">
-        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="id" property="id" jdbcType="INTEGER" />
         <collection property="children" ofType="com.dftx.stock.domain.vo.OutStockManageMaterialVo" column="id" select="selectDetailDetailSon"></collection>
         <collection property="supplyCompany" ofType="java.lang.String" column="id" select="selectDetailDetailSon2"></collection>
         <collection property="brand" ofType="java.lang.String" column="id" select="selectDetailDetailSon3"></collection>
