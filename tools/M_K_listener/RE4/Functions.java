@@ -14,10 +14,12 @@ public class Functions extends IFunctions {
     public static List<Thread> list=new ArrayList<>();
 
     static Boolean temp1=false;
+    static Boolean temp2=false;
+    static Boolean temp3=false;
     static Thread t1;
+    static Thread t2;
 
     static {
-
         t1=new CreateThread() {
             @Override
             public void myFunction() {
@@ -27,7 +29,7 @@ public class Functions extends IFunctions {
                         robot.keyPress(KeyEvent.VK_F);
                         pause(10);
                         robot.keyRelease(KeyEvent.VK_F);
-                        pause(120);
+                        pause(110);
                     }
                     else{
                         t1.suspend();
@@ -35,12 +37,36 @@ public class Functions extends IFunctions {
                 }
             }
         }.thread;
-list.add(t1);
+
+        t2=new CreateThread() {
+            @Override
+            public void myFunction() {
+                while (true) {
+                    if (temp2 == true) {
+                        robot.mousePress(MouseEvent.BUTTON1_MASK);
+                        pause(120);
+                        robot.mouseRelease(MouseEvent.BUTTON1_MASK);
+                        pause(10);
+                    }
+                    else{
+                        t2.suspend();
+                    }
+                }
+            }
+        }.thread;
+
+
+
+
+        list.add(t1);
+        list.add(t2);
     }
 
     @ListenMouseKeyboard(value = 523)
     private static void 侧键() {
         temp1 = true;
+        robot.keyRelease(KeyEvent.VK_SHIFT);
+        robot.keyPress(KeyEvent.VK_SHIFT);
         t1.resume();
     }
 
@@ -50,9 +76,30 @@ list.add(t1);
     @ListenMouseKeyboard(value = 27)
     private static void f() {
         temp1 = false;
+        robot.keyRelease(KeyEvent.VK_SHIFT);
+    }
+
+    @ListenMouseKeyboard(value = 513)
+    private static void 左键连点() {
+        if(temp3==true){
+        temp2 = true;
+        t2.resume();}
+    }
+
+    @ListenMouseKeyboard(value = 514)
+    private static void 左键连点1() {
+        temp2 = false;
     }
 
 
+    @ListenMouseKeyboard(value = 187)
+    private static void 连点开关() {
+        temp3 = true;
+    }
 
+    @ListenMouseKeyboard(value = 189)
+    private static void 连点开关1() {
+        temp3 = false;
+    }
 
 }
