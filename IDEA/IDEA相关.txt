@@ -9,12 +9,13 @@ Ctrl+Shift+F9 重新编译？
 插件
 Free MyBatis Tool
 JRebel and XRebel
+POJO to JSON
+String Manipulation
+
+CamelCase
+RoboPOJOGenerator
 SonarLint
 IDE Eval Reset
-POJO to JSON
-RoboPOJOGenerator
-queryExpReportBenefit
-CamelCase
 
 设置
 文件-设置-编辑器-常规-自动换行
