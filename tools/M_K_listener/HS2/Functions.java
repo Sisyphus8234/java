@@ -111,30 +111,30 @@ public class Functions extends IFunctions {
         Integer value=getValue();
 
         setValue(value+sliderChange);
-        pause(50);
+
         CTRLCOrV(KeyEvent.VK_V);
-        pause(50);
+
         pointInput=MouseInfo.getPointerInfo().getLocation();
         robot.mouseMove(pointUser.x, pointUser.y);
 
     }
 
     public static void CTRLCOrV(Integer COrV){
-
+        pause(50);
         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 
         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-        pause(100);
+        pause(50);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(COrV);
-        pause(100);
+        pause(50);
         robot.keyRelease(COrV);
         robot.keyRelease(KeyEvent.VK_CONTROL);
 
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
 
-
+        pause(50);
     }
 
 }
