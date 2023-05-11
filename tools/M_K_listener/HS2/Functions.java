@@ -1,4 +1,8 @@
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -14,13 +18,14 @@ public class Functions extends IFunctions {
     @ListenBar(threadList = true)
     public static List<Thread> list=new ArrayList<>();
 
-    static Boolean temp1=false;
+    public static Integer valueOriginal;
 
-    public static Point pointOriginal;
     public static Point pointUser;
-    public static Point pointSlider;
+    public static Point pointInput;
 
-    public static int sliderChange=1;
+    public static int sliderChange=4;
+
+    public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
     static {
 
@@ -28,87 +33,108 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 81,intercept = true)
     private static void q() {
-        pointSlider=MouseInfo.getPointerInfo().getLocation();
+        pointInput=MouseInfo.getPointerInfo().getLocation();
     }
 
     @ListenMouseKeyboard(value = 69,intercept = true)
     @ListenMouseKeyboard(value = 87,intercept = true)
     private static void e_w() {
-robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        pointInput=MouseInfo.getPointerInfo().getLocation();
 
-robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-        pause(100);
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_C);
-        pause(100);
-        robot.keyRelease(KeyEvent.VK_C);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
+        CTRLCOrV(KeyEvent.VK_C);
+        valueOriginal=getValue();
 
     }
 
     @ListenMouseKeyboard(value = 82,intercept = true)
     @ListenMouseKeyboard(value = 83,intercept = true)
-
     private static void r_s() {
-        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-
-        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-        pause(100);
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        pause(100);
-        robot.keyRelease(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.mouseMove(pointInput.x, pointInput.y);
+        setValue(valueOriginal);
+        CTRLCOrV(KeyEvent.VK_V);
+        robot.mouseMove(pointUser.x, pointUser.y);
     }
 
-//    @ListenMouseKeyboard(value = 87,intercept = true)
-//    private static void w() {
-//        pointUser=MouseInfo.getPointerInfo().getLocation();
-//        robot.mouseMove(pointSlider.x, pointSlider.y);
-//        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-//    }
-//
-//    @ListenMouseKeyboard(value = 83,intercept = true)
-//    private static void s() {
-//        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//        pointSlider=MouseInfo.getPointerInfo().getLocation();
-//        robot.mouseMove(pointUser.x, pointUser.y);
-//    }
+
 
     @ListenMouseKeyboard(value = 65,intercept = true)
     private static void a() {
-        pointUser=MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(pointSlider.x, pointSlider.y);
-        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-        pause(100);
-        robot.mouseMove(pointSlider.x-sliderChange, pointSlider.y );
-        pointSlider=MouseInfo.getPointerInfo().getLocation();
-        pause(100);
-        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-        pointSlider=MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(pointUser.x, pointUser.y);
+
+        changeValue(-sliderChange);
+
+
 
     }
 
     @ListenMouseKeyboard(value = 68,intercept = true)
     private static void d() {
-        pointUser=MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(pointSlider.x, pointSlider.y);
-        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-        pause(100);
-        robot.mouseMove(pointSlider.x+sliderChange, pointSlider.y );
-        pointSlider=MouseInfo.getPointerInfo().getLocation();
-        pause(100);
-        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-        pointSlider=MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(pointUser.x, pointUser.y);
+        changeValue(sliderChange);
+
     }
 
+
+
+    public static Integer getValue(){
+
+
+        Integer value=null;
+        // 检查剪贴板中是否有文本内容
+        if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+            try {
+                // 获取剪贴板内容
+                System.out.println(clipboard.getData(DataFlavor.stringFlavor));
+                value = Integer.valueOf((String) clipboard.getData(DataFlavor.stringFlavor));
+                System.out.println("获取原始值: " + value);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return value;
+    }
+
+    public static void setValue(Integer value){
+
+
+        // 封装文本内容
+        Transferable trans = new StringSelection(String.valueOf(value));
+        // 把文本内容设置到系统剪贴板
+        clipboard.setContents(trans, null);
+
+        System.out.println("加之前的值: " + value);
+    }
+
+    public static void changeValue(Integer sliderChange){
+
+        pointUser=MouseInfo.getPointerInfo().getLocation();
+        robot.mouseMove(pointInput.x, pointInput.y);
+
+        Integer value=getValue();
+
+        setValue(value+sliderChange);
+        pause(50);
+        CTRLCOrV(KeyEvent.VK_V);
+        pause(50);
+        pointInput=MouseInfo.getPointerInfo().getLocation();
+        robot.mouseMove(pointUser.x, pointUser.y);
+
+    }
+
+    public static void CTRLCOrV(Integer COrV){
+
+        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+
+        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+        pause(100);
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(COrV);
+        pause(100);
+        robot.keyRelease(COrV);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+
+    }
 
 }
