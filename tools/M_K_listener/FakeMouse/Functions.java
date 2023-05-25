@@ -144,18 +144,26 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 49,intercept = true)
     public static void 快捷键1() {
         if(temp3==true){
-            robot.keyPress(KeyEvent.VK_CONTROL);
+//            robot.keyPress(KeyEvent.VK_CONTROL);
+//            robot.keyPress(KeyEvent.VK_ALT);
+//            robot.keyPress(KeyEvent.VK_HOME);
+//            pause(100);
+//            robot.keyRelease(KeyEvent.VK_CONTROL);
+//            robot.keyRelease(KeyEvent.VK_ALT);
+//            robot.keyRelease(KeyEvent.VK_HOME);
+//            pause(100);
+//            robot.keyPress(KeyEvent.VK_ALT);
+//            robot.keyPress(KeyEvent.VK_TAB);
+//            pause(50);
+//            robot.keyRelease(KeyEvent.VK_ALT);
+//            robot.keyRelease(KeyEvent.VK_TAB);
+
             robot.keyPress(KeyEvent.VK_ALT);
-            robot.keyPress(KeyEvent.VK_HOME);
-            pause(100);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.keyRelease(KeyEvent.VK_ALT);
-            robot.keyRelease(KeyEvent.VK_HOME);
-            pause(100);
-            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_TAB);
-            pause(50);
+
             robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
             robot.keyRelease(KeyEvent.VK_TAB);
         }else {
             robot.keyPress(KeyEvent.VK_1);
@@ -165,14 +173,14 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 50,intercept = true)
     public static void 快捷键2() {
         if(temp3==true){
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_ALT);
-            robot.keyPress(KeyEvent.VK_HOME);
-            pause(100);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.keyRelease(KeyEvent.VK_ALT);
-            robot.keyRelease(KeyEvent.VK_HOME);
-            pause(100);
+//            robot.keyPress(KeyEvent.VK_CONTROL);
+//            robot.keyPress(KeyEvent.VK_ALT);
+//            robot.keyPress(KeyEvent.VK_HOME);
+//            pause(100);
+//            robot.keyRelease(KeyEvent.VK_CONTROL);
+//            robot.keyRelease(KeyEvent.VK_ALT);
+//            robot.keyRelease(KeyEvent.VK_HOME);
+//            pause(100);
             robot.keyPress(KeyEvent.VK_WINDOWS);
             robot.keyPress(KeyEvent.VK_D);
             pause(50);
