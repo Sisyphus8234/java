@@ -139,24 +139,49 @@ public class Functions extends IFunctions {
         temp3=false;
     }
 
+
+
     @ListenMouseKeyboard(value = 49,intercept = true)
-    public static void f12() {
+    public static void 快捷键1() {
         if(temp3==true){
-            robot.mouseWheel(3);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_HOME);
+            pause(100);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_HOME);
+            pause(100);
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_TAB);
+            pause(50);
+            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_TAB);
         }else {
             robot.keyPress(KeyEvent.VK_1);
         }
     }
 
     @ListenMouseKeyboard(value = 50,intercept = true)
-    public static void f13() {
+    public static void 快捷键2() {
         if(temp3==true){
-            robot.mouseWheel(-3);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_HOME);
+            pause(100);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_HOME);
+            pause(100);
+            robot.keyPress(KeyEvent.VK_WINDOWS);
+            robot.keyPress(KeyEvent.VK_D);
+            pause(50);
+            robot.keyRelease(KeyEvent.VK_WINDOWS);
+            robot.keyRelease(KeyEvent.VK_D);
         }else {
             robot.keyPress(KeyEvent.VK_2);
         }
     }
-
 
 
 
