@@ -74,11 +74,13 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(value = 27, intercept = true)
+    @ListenMouseKeyboard(value = 523, intercept = true)
     public static void f() {
         t1.resume();
     }
 
     @ListenMouseKeyboard(value = 27, press = false, intercept = true)
+    @ListenMouseKeyboard(value = 524, intercept = true)
     public static void f2() {
         temp2 = true;
     }
@@ -116,15 +118,7 @@ public class Functions extends IFunctions {
         robot.keyRelease(KeyEvent.VK_DELETE);
     }
 
-    @ListenMouseKeyboard(value = 33,intercept = true)
-    public static void f8() {
-        robot.mouseWheel(-6);
-    }
 
-    @ListenMouseKeyboard(value = 34,intercept = true)
-    public static void f9() {
-        robot.mouseWheel(6);
-    }
 
     @ListenMouseKeyboard(value = 192,intercept = true)
     public static void f10() {
