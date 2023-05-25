@@ -3,4 +3,5 @@
 cd /d "%~dp0"
 
 set /p MyJavaPath=<MyJavaPath.txt
-start  %MyJavaPath%\javaw -jar run.jar
+
+start  %MyJavaPath%javaw -jar run.jar
