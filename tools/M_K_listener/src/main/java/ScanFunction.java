@@ -1,17 +1,14 @@
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ScanFunction {
     public static void run(Class class1, Map<String, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<Thread> threadList){
 
 
         //Class<Functions> classFunctions = Functions.class;
-        Method[] methods = class1.getDeclaredMethods();
+        Method[] methods = class1.getMethods();
 
 
         try {
@@ -96,15 +93,17 @@ public class ScanFunction {
         System.out.println(mapJintellitype);
 
 
-        Field[] fields=class1.getDeclaredFields();
+        Field[] fieldsChild=class1.getDeclaredFields();
+        Field[] fieldsParent=class1.getSuperclass().getDeclaredFields();
+        Field[] fieldsChildAndParent = mergeFields(fieldsChild, fieldsParent);
 
-        for(Field field:fields){
+        for(Field field:fieldsChildAndParent){
             if(field.isAnnotationPresent(ListenBar.class)){
                 ListenBar listenBar =field.getAnnotation(ListenBar.class);
                 try {
                     if(listenBar.off()==true&&listenBar.threadList()!=true){
                         mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"off");
-                    }else {
+                    }else if(listenBar.off()==false&&listenBar.threadList()!=true){
                         mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"on");
                     }
                 }catch (Exception e){}
@@ -123,5 +122,13 @@ public class ScanFunction {
 
 
 
+    }
+
+    private static Field[] mergeFields(Field[] arr1, Field[] arr2) {
+        int length1 = arr1.length;
+        int length2 = arr2.length;
+        Field[] merged = Arrays.copyOf(arr1, length1 + length2);  // 创建一个新数组，长度为两个数组之和
+        System.arraycopy(arr2, 0, merged, length1, length2);  // 将 arr2 数组的元素复制到 merged 数组中
+        return merged;
     }
 }

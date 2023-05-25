@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Functions extends IFunctions {
 
-    @ListenBar(off = false)
-    public static Integer on=44;
+    // @ListenBar(off = false)
+    // public static Integer on=44;
 
-    @ListenBar(off = true)
-    public static Integer off=19;
+    // @ListenBar(off = true)
+    // public static Integer off=19;
 
-    @ListenBar(threadList = true)
-    public static List<Thread> threadList=new ArrayList<>();
+    // @ListenBar(threadList = true)
+    // public static List<Thread> threadList=new ArrayList<>();
 
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
 

@@ -1,5 +1,7 @@
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IFunctions {
 
@@ -8,6 +10,15 @@ public class IFunctions {
     public static boolean jintellitype = false;
 
     public static Robot robot;
+
+    @ListenBar(off = false)
+    public static Integer on=33;
+
+    @ListenBar(off = true)
+    public static Integer off=34;
+
+    @ListenBar(threadList = true)
+    public static List<Thread> threadList=new ArrayList<>();
 
     static {
 
