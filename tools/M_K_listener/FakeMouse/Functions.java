@@ -1,7 +1,5 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Functions extends IFunctions {
 
@@ -19,7 +17,8 @@ public class Functions extends IFunctions {
     public static boolean temp1 = false;
     public static boolean temp2 = false;
 
-    public static boolean temp3 = false;
+    public static boolean 波浪键按住 = false;
+    public static Integer 切换次数 = 0;
     public static int y1 = 0;
     public static int y2 = 0;
 
@@ -52,23 +51,46 @@ public class Functions extends IFunctions {
         threadList.add(t1);
 
 
-//        t2 = new CreateThread() {
-//            @Override
-//            public void myFunction() {
-//                while (true) {
-//                    if(temp3==true){
-//                    y1 = (int) MouseInfo.getPointerInfo().getLocation().getY();
-//                    pause(500);
-//                    y2 = (int) MouseInfo.getPointerInfo().getLocation().getY();
-//                    robot.mouseWheel((int)((y2-y1)*0.1));
-//                    }else if(temp3==false){
-//                        t2.suspend();
-//                    }
-//                }
-//
-//            }
-//        }.thread;
-//        t2.suspend();
+        t2 = new CreateThread() {
+            @Override
+            public void myFunction() {
+                while (true) {
+                        if (切换次数 > 0) {
+                            robot.keyPress(KeyEvent.VK_ALT);
+                            robot.keyPress(KeyEvent.VK_TAB);
+                            robot.keyRelease(KeyEvent.VK_TAB);
+                            robot.keyRelease(KeyEvent.VK_ALT);
+                            pause(100);
+                        }
+
+
+                        robot.keyPress(KeyEvent.VK_ALT);
+                        robot.keyPress(KeyEvent.VK_TAB);
+
+                        robot.keyRelease(KeyEvent.VK_TAB);
+                        if (切换次数 > 0) {
+
+                            for (Integer i = 0; i < 切换次数; i++) {
+                                pause(100);
+                                robot.keyPress(KeyEvent.VK_RIGHT);
+                                pause(100);
+                                robot.keyRelease(KeyEvent.VK_RIGHT);
+//                                System.out.println("----执行了右箭头");
+
+                            }
+
+                        }
+
+                        robot.keyRelease(KeyEvent.VK_ALT);
+                        切换次数+=1;
+                        t2.suspend();
+
+
+                }
+
+            }
+        }.thread;
+        t2.suspend();
 
     }
 
@@ -121,52 +143,74 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(value = 192,intercept = true)
-    public static void f10() {
+    public static void 波浪键0() {
 
-        temp3=true;
+        波浪键按住 =true;
+        切换次数=0;
 //        t2.resume();
+
     }
 
 
     @ListenMouseKeyboard(value = 192,intercept = true,press = false)
-    public static void f11() {
-        temp3=false;
+    public static void 波浪键1() {
+        System.out.println("-------------------");
+        波浪键按住 =false;
+//        切换次数=0;
+//        System.out.println("切换次数=0-------------------");
+
     }
 
 
 
-    @ListenMouseKeyboard(value = 49,intercept = true)
-    public static void 快捷键1() {
-        if(temp3==true){
-//            robot.keyPress(KeyEvent.VK_CONTROL);
-//            robot.keyPress(KeyEvent.VK_ALT);
-//            robot.keyPress(KeyEvent.VK_HOME);
-//            pause(100);
-//            robot.keyRelease(KeyEvent.VK_CONTROL);
-//            robot.keyRelease(KeyEvent.VK_ALT);
-//            robot.keyRelease(KeyEvent.VK_HOME);
-//            pause(100);
+    @ListenMouseKeyboard(value = 9,intercept = true)
+    public static void tab键() {
+
+
+        if(波浪键按住 ==true) {
+
+
+            t2.resume();
+
+//            if (切换次数 > 0) {
+//                robot.keyPress(KeyEvent.VK_ALT);
+//                robot.keyPress(KeyEvent.VK_TAB);
+//                robot.keyRelease(KeyEvent.VK_TAB);
+//                robot.keyRelease(KeyEvent.VK_ALT);
+//                pause(100);
+//            }
+//
+//
 //            robot.keyPress(KeyEvent.VK_ALT);
 //            robot.keyPress(KeyEvent.VK_TAB);
-//            pause(50);
-//            robot.keyRelease(KeyEvent.VK_ALT);
+//
 //            robot.keyRelease(KeyEvent.VK_TAB);
+//            if (切换次数 > 0) {
+//
+//            for (Integer i = 0; i < 切换次数; i++) {
+//                pause(100);
+//                robot.keyPress(KeyEvent.VK_RIGHT);
+//                pause(100);
+//                robot.keyRelease(KeyEvent.VK_RIGHT);
+//                System.out.println("----执行了右箭头");
+//
+//            }
+//
+//            }
+//
+//            robot.keyRelease(KeyEvent.VK_ALT);
+//            切换次数+=1;
 
-            robot.keyPress(KeyEvent.VK_ALT);
-            robot.keyPress(KeyEvent.VK_SHIFT);
-            robot.keyPress(KeyEvent.VK_TAB);
-
-            robot.keyRelease(KeyEvent.VK_ALT);
-            robot.keyRelease(KeyEvent.VK_SHIFT);
-            robot.keyRelease(KeyEvent.VK_TAB);
         }else {
-            robot.keyPress(KeyEvent.VK_1);
+            robot.keyPress(KeyEvent.VK_TAB);
         }
     }
 
+
+
     @ListenMouseKeyboard(value = 50,intercept = true)
-    public static void 快捷键2() {
-        if(temp3==true){
+    public static void 数字2() {
+        if(波浪键按住 ==true){
 //            robot.keyPress(KeyEvent.VK_CONTROL);
 //            robot.keyPress(KeyEvent.VK_ALT);
 //            robot.keyPress(KeyEvent.VK_HOME);
@@ -175,6 +219,7 @@ public class Functions extends IFunctions {
 //            robot.keyRelease(KeyEvent.VK_ALT);
 //            robot.keyRelease(KeyEvent.VK_HOME);
 //            pause(100);
+
             robot.keyPress(KeyEvent.VK_WINDOWS);
             robot.keyPress(KeyEvent.VK_D);
             pause(50);
@@ -196,11 +241,11 @@ public class Functions extends IFunctions {
         leftBotton =true;
         if(rightBotton ==true) {
             robot.keyPress(KeyEvent.VK_ALT);
-//            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_TAB);
 
             robot.keyRelease(KeyEvent.VK_ALT);
-//            robot.keyRelease(KeyEvent.VK_SHIFT);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
             robot.keyRelease(KeyEvent.VK_TAB);
         }
     }
