@@ -196,11 +196,11 @@ public class Functions extends IFunctions {
         leftBotton =true;
         if(rightBotton ==true) {
             robot.keyPress(KeyEvent.VK_ALT);
-            robot.keyPress(KeyEvent.VK_SHIFT);
+//            robot.keyPress(KeyEvent.VK_SHIFT);
             robot.keyPress(KeyEvent.VK_TAB);
 
             robot.keyRelease(KeyEvent.VK_ALT);
-            robot.keyRelease(KeyEvent.VK_SHIFT);
+//            robot.keyRelease(KeyEvent.VK_SHIFT);
             robot.keyRelease(KeyEvent.VK_TAB);
         }
     }
