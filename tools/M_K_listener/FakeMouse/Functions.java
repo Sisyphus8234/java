@@ -58,9 +58,10 @@ public class Functions extends IFunctions {
                         if (切换次数 > 0) {
                             robot.keyPress(KeyEvent.VK_ALT);
                             robot.keyPress(KeyEvent.VK_TAB);
+                            pause(50);
                             robot.keyRelease(KeyEvent.VK_TAB);
                             robot.keyRelease(KeyEvent.VK_ALT);
-                            pause(100);
+                            pause(200);
                         }
 
 
@@ -68,6 +69,7 @@ public class Functions extends IFunctions {
                         robot.keyPress(KeyEvent.VK_TAB);
 
                         robot.keyRelease(KeyEvent.VK_TAB);
+                        pause(100);
                         if (切换次数 > 0) {
 
                             for (Integer i = 0; i < 切换次数; i++) {
