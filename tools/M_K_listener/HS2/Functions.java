@@ -62,7 +62,7 @@ public class Functions extends IFunctions {
                     }
                     whichCloth++;
                     if (whichCloth >= 3) {
-                        pause(100);
+                        pause(200);
                         robot.mouseWheel(1);
                         pause(200);
                         whichCloth = 0;
@@ -73,7 +73,13 @@ public class Functions extends IFunctions {
                     robot.mouseMove(pointForTryClothOriginal.x, pointForTryClothOriginal.y);
 
 
+
+
+                    if(temp0==false){
                     this.thread.suspend();
+                    }else {
+                        pause(600);
+                    }
 
 
                 }
@@ -220,7 +226,14 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 72,intercept = true)
     public static void h() {
+
         t1.resume();
+        temp0=true;
+    }
+
+    @ListenMouseKeyboard(value = 72,press = false,intercept = true)
+    public static void h1() {
+        temp0=false;
     }
 
 
