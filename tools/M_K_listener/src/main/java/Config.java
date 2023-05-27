@@ -23,6 +23,10 @@ public class Config {
         return prop.getProperty(s1);
     }
 
+    public static String read(String s1,String defaultValue) {
+        return prop.getProperty(s1,defaultValue);
+    }
+
     public static void write(String s1,String s2) {
 
         try {
