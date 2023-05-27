@@ -27,18 +27,23 @@ public class Functions extends IFunctions {
 
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
+    public static Point cloth0;
+    public static Point cloth1;
+    public static Point cloth2;
+    public static Integer whichCloth;
+
     static {
 
     }
 
     @ListenMouseKeyboard(value = 81,intercept = true)
-    private static void q() {
+    public static void q() {
         pointInput=MouseInfo.getPointerInfo().getLocation();
     }
 
     @ListenMouseKeyboard(value = 69,intercept = true)
     @ListenMouseKeyboard(value = 87,intercept = true)
-    private static void e_w() {
+    public static void e_w() {
         pointInput=MouseInfo.getPointerInfo().getLocation();
 
         CTRLCOrV(KeyEvent.VK_C);
@@ -48,7 +53,7 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 82,intercept = true)
     @ListenMouseKeyboard(value = 83,intercept = true)
-    private static void r_s() {
+    public static void r_s() {
         robot.mouseMove(pointInput.x, pointInput.y);
         setValue(valueOriginal);
         CTRLCOrV(KeyEvent.VK_V);
@@ -58,7 +63,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(value = 65,intercept = true)
-    private static void a() {
+    public static void a() {
 
         changeValue(-sliderChange);
 
@@ -67,7 +72,7 @@ public class Functions extends IFunctions {
     }
 
     @ListenMouseKeyboard(value = 68,intercept = true)
-    private static void d() {
+    public static void d() {
         changeValue(sliderChange);
 
     }
@@ -136,5 +141,40 @@ public class Functions extends IFunctions {
 
         pause(50);
     }
+
+    @ListenMouseKeyboard(value = 74,intercept = true)
+    public static void j() {
+        cloth0 =MouseInfo.getPointerInfo().getLocation();
+    }
+    @ListenMouseKeyboard(value = 75,intercept = true)
+    public static void k() {
+        cloth1 =MouseInfo.getPointerInfo().getLocation();
+    }
+    @ListenMouseKeyboard(value = 76,intercept = true)
+    public static void l() {
+        cloth2 =MouseInfo.getPointerInfo().getLocation();
+    }
+
+    @ListenMouseKeyboard(value = 72,intercept = true)
+    public static void h() {
+
+
+
+        switch (whichCloth){
+            case 0:
+                robot.mouseMove(cloth0.x, cloth0.y);
+        break;
+            case 1:
+                robot.mouseMove(cloth1.x, cloth0.y);
+        break;
+            case 2:
+                robot.mouseMove(cloth2.x, cloth0.y);
+        }
+        pause(100);
+        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+    }
+
+
 
 }

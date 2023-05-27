@@ -8,7 +8,16 @@ public class ScanFunction {
 
 
         //Class<Functions> classFunctions = Functions.class;
-        Method[] methods = class1.getMethods();
+        Class classForTraverseMethod;
+        classForTraverseMethod=class1;
+        Method[] methods=new Method[0];
+        while (true){
+            methods=mergeFields(methods,classForTraverseMethod.getDeclaredMethods());
+            if(classForTraverseMethod.isInstance(new IFunctions())){
+                break;
+            };
+            classForTraverseMethod=classForTraverseMethod.getSuperclass();
+        }
 
 
         try {
@@ -93,11 +102,24 @@ public class ScanFunction {
         System.out.println(mapJintellitype);
 
 
-        Field[] fieldsChild=class1.getDeclaredFields();
-        Field[] fieldsParent=class1.getSuperclass().getDeclaredFields();
-        Field[] fieldsChildAndParent = mergeFields(fieldsChild, fieldsParent);
+//        Field[] fieldsChild=class1.getDeclaredFields();
+//        Field[] fieldsParent=class1.getSuperclass().getDeclaredFields();
+//        Field[] fieldsChildAndParent = mergeFields(fieldsChild, fieldsParent);
 
-        for(Field field:fieldsChildAndParent){
+        Class classForTraverseField;
+        classForTraverseField=class1;
+        Field[] fields=new Field[0];
+        while (true){
+
+            fields=mergeFields(fields,classForTraverseField.getDeclaredFields());
+            if(classForTraverseField.isInstance(new IFunctions())){
+                break;
+            };
+            classForTraverseField=classForTraverseField.getSuperclass();
+        }
+
+
+        for(Field field:fields){
             if(field.isAnnotationPresent(ListenBar.class)){
                 ListenBar listenBar =field.getAnnotation(ListenBar.class);
                 try {
@@ -117,17 +139,17 @@ public class ScanFunction {
 
         }
 
-        System.out.println(mapListenBar);
-        System.out.println(threadList);
+        System.out.println("开关键: "+mapListenBar);
+        System.out.println("开关控制的线程: "+threadList);
 
 
 
     }
 
-    private static Field[] mergeFields(Field[] arr1, Field[] arr2) {
+    private static <T> T[] mergeFields(T[] arr1, T[] arr2) {
         int length1 = arr1.length;
         int length2 = arr2.length;
-        Field[] merged = Arrays.copyOf(arr1, length1 + length2);  // 创建一个新数组，长度为两个数组之和
+        T[] merged = Arrays.copyOf(arr1, length1 + length2);  // 创建一个新数组，长度为两个数组之和
         System.arraycopy(arr2, 0, merged, length1, length2);  // 将 arr2 数组的元素复制到 merged 数组中
         return merged;
     }

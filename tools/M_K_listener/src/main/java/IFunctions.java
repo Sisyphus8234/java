@@ -53,6 +53,8 @@ public class IFunctions {
                 }
             };
             thread.start();
+            thread.suspend();
+            threadList.add(thread);
         }
     }
 
