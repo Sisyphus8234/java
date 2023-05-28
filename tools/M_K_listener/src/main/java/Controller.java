@@ -17,11 +17,11 @@ public class Controller {
 
 	public static Do do1=new Do(refreshtime);
 	
-	public Controller(Class class1) {
+	public Controller(Class myFunctionClass,Class baseFunctionClass) {
 		
 		MyJFrame.run();
 
-		ScanFunction.run(class1,mapJna,mapJintellitype,mapListenBar,threadList);
+		ScanFunction.run(myFunctionClass,baseFunctionClass,mapJna,mapJintellitype,mapListenBar,threadList);
 
 		if(Functions.Jna==true) {
 			//mouse

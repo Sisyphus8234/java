@@ -4,16 +4,16 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class ScanFunction {
-    public static void run(Class class1, Map<String, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<Thread> threadList){
+    public static void run(Class myFunctionClass,Class baseFunctionClass, Map<String, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<Thread> threadList){
 
 
         //Class<Functions> classFunctions = Functions.class;
         Class classForTraverseMethod;
-        classForTraverseMethod=class1;
+        classForTraverseMethod=myFunctionClass;
         Method[] methods=new Method[0];
         while (true){
             methods=mergeFields(methods,classForTraverseMethod.getDeclaredMethods());
-            if(classForTraverseMethod.isInstance(new IFunctions())){
+            if(classForTraverseMethod.isInstance(baseFunctionClass)){
                 break;
             };
             classForTraverseMethod=classForTraverseMethod.getSuperclass();
@@ -21,7 +21,7 @@ public class ScanFunction {
 
 
         try {
-            Do.obj1 = class1.newInstance();
+            Do.obj1 = myFunctionClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("创建Functions实例对象失败");
@@ -107,12 +107,12 @@ public class ScanFunction {
 //        Field[] fieldsChildAndParent = mergeFields(fieldsChild, fieldsParent);
 
         Class classForTraverseField;
-        classForTraverseField=class1;
+        classForTraverseField=myFunctionClass;
         Field[] fields=new Field[0];
         while (true){
 
             fields=mergeFields(fields,classForTraverseField.getDeclaredFields());
-            if(classForTraverseField.isInstance(new IFunctions())){
+            if(classForTraverseField.isInstance(baseFunctionClass)){
                 break;
             };
             classForTraverseField=classForTraverseField.getSuperclass();
@@ -124,15 +124,15 @@ public class ScanFunction {
                 ListenBar listenBar =field.getAnnotation(ListenBar.class);
                 try {
                     if(listenBar.off()==true&&listenBar.threadList()!=true){
-                        mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"off");
+                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),"off");
                     }else if(listenBar.off()==false&&listenBar.threadList()!=true){
-                        mapListenBar.put(Integer.parseInt(field.get(class1).toString()),"on");
+                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),"on");
                     }
                 }catch (Exception e){}
 
                 try{
                     if(listenBar.threadList()==true){
-                        threadList.addAll((List<Thread>)field.get(class1));
+                        threadList.addAll((List<Thread>)field.get(myFunctionClass));
                     }
                 }catch (Exception e){}
             }
