@@ -123,9 +123,9 @@ public class ScanFunction {
             if(field.isAnnotationPresent(ListenBar.class)){
                 ListenBar listenBar =field.getAnnotation(ListenBar.class);
                 try {
-                    if(listenBar.off()==true&&listenBar.threadList()!=true){
+                    if(listenBar.off()==true&&listenBar.threadList()!=true&&!mapListenBar.containsValue("off")){
                         mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),"off");
-                    }else if(listenBar.off()==false&&listenBar.threadList()!=true){
+                    }else if(listenBar.off()==false&&listenBar.threadList()!=true&&!mapListenBar.containsValue("on")){
                         mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),"on");
                     }
                 }catch (Exception e){}
