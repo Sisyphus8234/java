@@ -3,11 +3,11 @@ import java.awt.event.MouseEvent;
 
 public class Functions extends IFunctions {
 
-    // @ListenBar(off = false)
-    // public static Integer on=44;
-
-    // @ListenBar(off = true)
-    // public static Integer off=19;
+//     @ListenBar(off = false)
+//     public static Integer on=44;
+//
+//     @ListenBar(off = true)
+//     public static Integer off=19;
 
     // @ListenBar(threadList = true)
     // public static List<Thread> threadList=new ArrayList<>();
@@ -18,6 +18,8 @@ public class Functions extends IFunctions {
     public static boolean temp2 = false;
 
     public static boolean 波浪键按住 = false;
+    public static boolean 波浪键按住期间做了什么 = false;
+    public static boolean 波浪键功能执行了 = false;
     public static Integer 切换次数 = 0;
     public static int y1 = 0;
     public static int y2 = 0;
@@ -147,6 +149,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 192,intercept = true)
     public static void 波浪键0() {
 
+        波浪键按住期间做了什么=false;
         波浪键按住 =true;
         切换次数=0;
 //        t2.resume();
@@ -156,10 +159,37 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 192,intercept = true,press = false)
     public static void 波浪键1() {
-        System.out.println("-------------------");
+
         波浪键按住 =false;
-//        切换次数=0;
-//        System.out.println("切换次数=0-------------------");
+
+        if(波浪键按住期间做了什么==false) {
+            if (波浪键功能执行了 == false) {
+                robot.keyPress(KeyEvent.VK_CONTROL);
+                robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.VK_1);
+//                pause(100);
+
+                robot.keyRelease(KeyEvent.VK_1);
+                pause(100);
+                robot.keyRelease(KeyEvent.VK_CONTROL);
+                robot.keyRelease(KeyEvent.VK_SHIFT);
+
+                波浪键功能执行了 = true;
+            }else {
+                robot.keyPress(KeyEvent.VK_CONTROL);
+                robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.VK_0);
+//                pause(100);
+
+                robot.keyRelease(KeyEvent.VK_0);
+                pause(100);
+                robot.keyRelease(KeyEvent.VK_CONTROL);
+                robot.keyRelease(KeyEvent.VK_SHIFT);
+                波浪键功能执行了 = false;
+            }
+
+        }
+
 
     }
 
@@ -170,6 +200,7 @@ public class Functions extends IFunctions {
 
 
         if(波浪键按住 ==true) {
+            波浪键按住期间做了什么=true;
 
 
             t2.resume();
@@ -208,11 +239,32 @@ public class Functions extends IFunctions {
         }
     }
 
-
+//    @ListenMouseKeyboard(value = 49,intercept = true)
+//    public static void 数字1() {
+//        if(波浪键按住 ==true){
+//
+//            波浪键按住期间做了什么=true;
+//
+//            robot.keyPress(KeyEvent.VK_CONTROL);
+//            robot.keyPress(KeyEvent.VK_SHIFT);
+//            robot.keyPress(KeyEvent.VK_0);
+//            pause(50);
+//            robot.keyRelease(KeyEvent.VK_CONTROL);
+//            robot.keyRelease(KeyEvent.VK_SHIFT);
+//            robot.keyRelease(KeyEvent.VK_0);
+//
+//
+//
+//        }else{
+//
+//            robot.keyPress(KeyEvent.VK_1);
+//        }
+//    }
 
     @ListenMouseKeyboard(value = 50,intercept = true)
     public static void 数字2() {
         if(波浪键按住 ==true){
+            波浪键按住期间做了什么=true;
 //            robot.keyPress(KeyEvent.VK_CONTROL);
 //            robot.keyPress(KeyEvent.VK_ALT);
 //            robot.keyPress(KeyEvent.VK_HOME);
