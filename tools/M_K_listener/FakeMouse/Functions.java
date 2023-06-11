@@ -157,37 +157,53 @@ public class Functions extends IFunctions {
     }
 
 
+//     @ListenMouseKeyboard(value = 192,intercept = true,press = false)
+//     public static void 波浪键1() {
+
+//         波浪键按住 =false;
+
+//         if(波浪键按住期间做了什么==false) {
+//             if (波浪键功能执行了 == false) {
+//                 robot.keyPress(KeyEvent.VK_CONTROL);
+//                 robot.keyPress(KeyEvent.VK_SHIFT);
+//                 robot.keyPress(KeyEvent.VK_1);
+// //                pause(100);
+
+//                 robot.keyRelease(KeyEvent.VK_1);
+//                 pause(100);
+//                 robot.keyRelease(KeyEvent.VK_CONTROL);
+//                 robot.keyRelease(KeyEvent.VK_SHIFT);
+
+//                 波浪键功能执行了 = true;
+//             }else {
+//                 robot.keyPress(KeyEvent.VK_CONTROL);
+//                 robot.keyPress(KeyEvent.VK_SHIFT);
+//                 robot.keyPress(KeyEvent.VK_0);
+// //                pause(100);
+
+//                 robot.keyRelease(KeyEvent.VK_0);
+//                 pause(100);
+//                 robot.keyRelease(KeyEvent.VK_CONTROL);
+//                 robot.keyRelease(KeyEvent.VK_SHIFT);
+//                 波浪键功能执行了 = false;
+//             }
+
+//         }
+
+
+//     }
+
     @ListenMouseKeyboard(value = 192,intercept = true,press = false)
     public static void 波浪键1() {
 
         波浪键按住 =false;
 
-        if(波浪键按住期间做了什么==false) {
-            if (波浪键功能执行了 == false) {
-                robot.keyPress(KeyEvent.VK_CONTROL);
-                robot.keyPress(KeyEvent.VK_SHIFT);
-                robot.keyPress(KeyEvent.VK_1);
-//                pause(100);
+        if(波浪键按住期间做了什么==true) {
 
-                robot.keyRelease(KeyEvent.VK_1);
-                pause(100);
-                robot.keyRelease(KeyEvent.VK_CONTROL);
-                robot.keyRelease(KeyEvent.VK_SHIFT);
 
-                波浪键功能执行了 = true;
-            }else {
-                robot.keyPress(KeyEvent.VK_CONTROL);
-                robot.keyPress(KeyEvent.VK_SHIFT);
-                robot.keyPress(KeyEvent.VK_0);
-//                pause(100);
-
-                robot.keyRelease(KeyEvent.VK_0);
-                pause(100);
-                robot.keyRelease(KeyEvent.VK_CONTROL);
-                robot.keyRelease(KeyEvent.VK_SHIFT);
-                波浪键功能执行了 = false;
-            }
-
+        }else{
+            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
+            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
         }
 
 
