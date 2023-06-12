@@ -37,6 +37,7 @@ public class MouseHook {
 				if(nCode==0 & wParam.intValue()!=512) {
 					if(info.flags==1) {System.out.print("(由程序执行的)");}
 					System.out.println("鼠标键"+wParam);
+					System.out.println(info.mouseData);
 
 					//开关相关
 					if(Controller.listehSwitch==false){
@@ -47,10 +48,14 @@ public class MouseHook {
 					if(info.flags==1){
 						userInput="!userInput";
 					}
-					String inputCode=wParam.intValue()+"_256"+"_"+userInput;
+//					String inputCode=wParam.intValue()+"_256"+"_"+userInput;
+					InputInfo inputInfo =new InputInfo();
+					inputInfo.value=wParam.intValue();
+					inputInfo.userInput=userInput;
+					inputInfo.mouseData=info.mouseData;
 
-					if(Controller.mapJna.containsKey(inputCode)){
-						Utiliy utiliy1=Controller.mapJna.get(inputCode);
+					if(Controller.mapJna.containsKey(inputInfo)){
+						Utiliy utiliy1=Controller.mapJna.get(inputInfo);
 						Controller.do1.task(utiliy1);
 						if(utiliy1.intercept==true){
 							return new LRESULT(1);

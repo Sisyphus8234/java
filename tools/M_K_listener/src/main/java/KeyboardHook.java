@@ -58,10 +58,14 @@ public class KeyboardHook {
 					if(info.flags==16 || info.flags==144){
 						userInput="!userInput";
 					}
-					String inputCode=info.vkCode+"_"+wParam.intValue()+"_"+userInput;
+//					String inputCode=info.vkCode+"_"+wParam.intValue()+"_"+userInput;
+					InputInfo inputInfo =new InputInfo();
+					inputInfo.value=info.vkCode;
+					inputInfo.press=wParam.intValue();
+					inputInfo.userInput=userInput;
 
-					if(Controller.mapJna.containsKey(inputCode)){
-						Utiliy utiliy1=Controller.mapJna.get(inputCode);
+					if(Controller.mapJna.containsKey(inputInfo)){
+						Utiliy utiliy1=Controller.mapJna.get(inputInfo);
 						Controller.do1.task(utiliy1);
 						if(utiliy1.intercept==true){
 							return new LRESULT(1);

@@ -7,12 +7,13 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ListenMouseKeyboard {
 	
-	
+	int keyboardOrMouse();
 	int value();
 	boolean immediately() default true;
 	boolean press() default true;
 	boolean userInput() default true;
 	boolean intercept() default false;
+	int mouseData() default 0;
 
 }
 

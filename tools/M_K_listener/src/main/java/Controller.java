@@ -8,7 +8,7 @@ public class Controller {
 
 	public static ArrayList<Thread> threadList=new ArrayList<Thread>();
 
-	public static Map<String, Utiliy> mapJna=new HashMap<String,Utiliy>();
+	public static Map<InputInfo, Utiliy> mapJna=new HashMap<>();
 	public static Map<String, Utiliy> mapJintellitype=new HashMap<String,Utiliy>();
 
 	public static Map<Integer, String> mapListenBar=new HashMap<Integer,String>();

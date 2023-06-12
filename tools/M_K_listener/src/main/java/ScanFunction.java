@@ -1,10 +1,9 @@
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
 public class ScanFunction {
-    public static void run(Class myFunctionClass,Class baseFunctionClass, Map<String, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<Thread> threadList){
+    public static void run(Class myFunctionClass, Class baseFunctionClass, Map<InputInfo, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<Thread> threadList){
 
 
         //Class<Functions> classFunctions = Functions.class;
@@ -29,9 +28,9 @@ public class ScanFunction {
         }
 
         //按下还是松开,鼠标不适用
-        Map<Boolean,String> map1=new HashMap();
-        map1.put(true,"256");
-        map1.put(false,"257");
+        Map<Boolean,Integer> map1=new HashMap();
+        map1.put(true,256);
+        map1.put(false,257);
 
         //是否是用户输入
         Map<Boolean,String> map2=new HashMap();
@@ -50,7 +49,11 @@ public class ScanFunction {
                 u111.method = method;
                 u111.immediately = k111.immediately();
                 u111.intercept=k111.intercept();
-                mapJna.put(k111.value()+"_"+map1.get(k111.press())+"_"+map2.get(k111.userInput()), u111);
+                InputInfo inputInfo =new InputInfo();
+                inputInfo.value=k111.value();
+                inputInfo.press=map1.get(k111.press());
+                inputInfo.userInput=map2.get(k111.userInput());
+                mapJna.put(inputInfo, u111);
             }
 
             //处理重复注解
@@ -64,7 +67,11 @@ public class ScanFunction {
                     u111.method = method;
                     u111.immediately = k111.immediately();
                     u111.intercept=k111.intercept();
-                    mapJna.put(k111.value()+"_"+map1.get(k111.press())+"_"+map2.get(k111.userInput()), u111);
+                    InputInfo inputInfo =new InputInfo();
+                    inputInfo.value=k111.value();
+                    inputInfo.press=map1.get(k111.press());
+                    inputInfo.userInput=map2.get(k111.userInput());
+                    mapJna.put(inputInfo, u111);
                 }
             }
 
