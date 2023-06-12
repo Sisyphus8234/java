@@ -24,6 +24,8 @@ public class InputInfo {
                 return value == other.value && press==other.press && userInput== other.userInput;
             case 1:
                 return value == other.value  && userInput== other.userInput;
+            case 2:
+                return value == other.value  && userInput== other.userInput&&mouseData== other.mouseData;
             default:
                 return false;
         }
@@ -37,8 +39,10 @@ public class InputInfo {
                 return Objects.hash(value, press, userInput);
             case 1:
                 return Objects.hash(value, userInput);
+            case 2:
+                return Objects.hash(value, userInput, mouseData);
             default:
-                return Objects.hash(value, press, userInput,mouseData);
+                return Objects.hash(value, press, userInput, mouseData);
         }
 
     }
