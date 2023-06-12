@@ -99,45 +99,45 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 27, intercept = true)
-    @ListenMouseKeyboard(value = 523, intercept = true)
+    @ListenMouseKeyboard(value = 27, intercept = true,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 523, intercept = true,keyboardOrMouse=1)
     public static void f() {
         t1.resume();
     }
 
-    @ListenMouseKeyboard(value = 27, press = false, intercept = true)
-    @ListenMouseKeyboard(value = 524, intercept = true)
+    @ListenMouseKeyboard(value = 27, press = false, intercept = true,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 524, intercept = true,keyboardOrMouse = 1)
     public static void f2() {
         temp2 = true;
     }
 
-    @ListenMouseKeyboard(value = 112, intercept = true)
+    @ListenMouseKeyboard(value = 112, intercept = true,keyboardOrMouse = 0)
     public static void f3() {
         robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
 
     }
 
-    @ListenMouseKeyboard(value = 112,press = false, intercept = true)
+    @ListenMouseKeyboard(value = 112,press = false, intercept = true,keyboardOrMouse = 0)
     public static void f4() {
 
         robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
     }
 
-    @ListenMouseKeyboard(value = 113,intercept = true)
+    @ListenMouseKeyboard(value = 113,intercept = true,keyboardOrMouse = 0)
     public static void f5() {
         robot.keyRelease(KeyEvent.VK_ENTER);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
-    @ListenMouseKeyboard(value = 114,intercept = true)
+    @ListenMouseKeyboard(value = 114,intercept = true,keyboardOrMouse = 0)
     public static void f6() {
         robot.keyRelease(KeyEvent.VK_BACK_SPACE);
         robot.keyPress(KeyEvent.VK_BACK_SPACE);
         robot.keyRelease(KeyEvent.VK_BACK_SPACE);
     }
 
-    @ListenMouseKeyboard(value = 115,intercept = true)
+    @ListenMouseKeyboard(value = 115,intercept = true,keyboardOrMouse = 0)
     public static void f7() {
         robot.keyRelease(KeyEvent.VK_DELETE);
         robot.keyPress(KeyEvent.VK_DELETE);
@@ -146,7 +146,7 @@ public class Functions extends IFunctions {
 
 
 
-    @ListenMouseKeyboard(value = 192,intercept = true)
+    @ListenMouseKeyboard(value = 192,intercept = true,keyboardOrMouse = 0)
     public static void 波浪键0() {
 
         波浪键按住期间做了什么=false;
@@ -193,7 +193,7 @@ public class Functions extends IFunctions {
 
 //     }
 
-    @ListenMouseKeyboard(value = 192,intercept = true,press = false)
+    @ListenMouseKeyboard(value = 192,intercept = true,press = false,keyboardOrMouse = 0)
     public static void 波浪键1() {
 
         波浪键按住 =false;
@@ -211,7 +211,7 @@ public class Functions extends IFunctions {
 
 
 
-    @ListenMouseKeyboard(value = 9,intercept = true)
+    @ListenMouseKeyboard(value = 9,intercept = true,keyboardOrMouse = 0)
     public static void tab键() {
 
 
@@ -277,7 +277,7 @@ public class Functions extends IFunctions {
 //        }
 //    }
 
-    @ListenMouseKeyboard(value = 50,intercept = true)
+    @ListenMouseKeyboard(value = 50,intercept = true,keyboardOrMouse = 0)
     public static void 数字2() {
         if(波浪键按住 ==true){
             波浪键按住期间做了什么=true;
@@ -306,7 +306,7 @@ public class Functions extends IFunctions {
     public static boolean rightBotton =false;
 
     //功能:切屏
-    @ListenMouseKeyboard(value = 513)
+    @ListenMouseKeyboard(value = 513,keyboardOrMouse = 1)
     public static void f16() {
         leftBotton =true;
         if(rightBotton ==true) {
@@ -320,12 +320,12 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(value = 514)
+    @ListenMouseKeyboard(value = 514,keyboardOrMouse = 1)
     public static void f15() {
         leftBotton =false;
     }
 
-    @ListenMouseKeyboard(value = 516)
+    @ListenMouseKeyboard(value = 516,keyboardOrMouse = 1)
     public static void f16_2() {
         rightBotton =true;
         if(leftBotton ==true) {
@@ -340,14 +340,14 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(value = 517)
+    @ListenMouseKeyboard(value = 517,keyboardOrMouse = 1)
     public static void f19() {
         rightBotton =false;
     }
 
 
 
-    @ListenMouseKeyboard(value = 93,intercept = true)
+    @ListenMouseKeyboard(value = 93,intercept = true,keyboardOrMouse = 0)
 
     //win
 //    @ListenMouseKeyboard(value = 91,intercept = true)
@@ -365,7 +365,7 @@ public class Functions extends IFunctions {
 
 
 //    @ListenMouseKeyboard(value = 91,press = false,intercept = true)
-    @ListenMouseKeyboard(value = 93,press = false,intercept = true)
+    @ListenMouseKeyboard(value = 93,press = false,intercept = true,keyboardOrMouse = 0)
     public static void f17() {
     }
 }
