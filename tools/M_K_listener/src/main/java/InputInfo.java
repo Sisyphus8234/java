@@ -19,7 +19,7 @@ public class InputInfo {
         }
         InputInfo other = (InputInfo) obj; // 将obj强制转换为当前类的类型
         // 根据类的属性进行相等性比较
-        switch (keyboardOrMouse){
+        switch (other.keyboardOrMouse){
             case 0:
                 return value == other.value && press==other.press && userInput== other.userInput;
             case 1:
@@ -34,17 +34,7 @@ public class InputInfo {
 
     @Override
     public int hashCode() {
-        switch (keyboardOrMouse){
-            case 0:
-                return Objects.hash(value, press, userInput);
-            case 1:
-                return Objects.hash(value, userInput);
-            case 2:
-                return Objects.hash(value, userInput, mouseData);
-            default:
-                return Objects.hash(value, press, userInput, mouseData);
-        }
-
+        return Objects.hash(value, userInput);
     }
 
 
