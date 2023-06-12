@@ -36,7 +36,7 @@ public class Functions extends IFunctions {
 	}
 
     //按下鼠标左键触发
-    @ListenMouseKeyboard(value = 513, immediately = true)
+    @ListenMouseKeyboard(value = 513, immediately = true,keyboardOrMouse = 1)
     private static void sample1() {
         System.out.println("程序模拟键盘依次按下h，i");
         // TODO Auto-generated method stub
@@ -49,7 +49,7 @@ public class Functions extends IFunctions {
     }
 
     //按下键盘空格键触发
-    @ListenMouseKeyboard(value = 32, immediately = true)
+    @ListenMouseKeyboard(value = 32, immediately = true,keyboardOrMouse = 0)
     private static void sample2() {
         // TODO Auto-generated method stub
         System.out.println("程序模拟鼠标右键一次");
@@ -68,11 +68,11 @@ public class Functions extends IFunctions {
 
 
     public static boolean ctrl=false;
-    @ListenMouseKeyboard(value = 162)
+    @ListenMouseKeyboard(value = 162,keyboardOrMouse = 0)
     private static void ctrl(){
         ctrl=true;
     }
-    @ListenMouseKeyboard(value = 162,press = false)
+    @ListenMouseKeyboard(value = 162,press = false,keyboardOrMouse = 0)
     private static void ctrl2(){
         ctrl=false;
     }
@@ -100,7 +100,7 @@ public class Functions extends IFunctions {
     }
 
     //9
-    @ListenMouseKeyboard(value = 57)
+    @ListenMouseKeyboard(value = 57,keyboardOrMouse = 0)
     private static void adjustTime1(){
         writeProp("Time1", 50L);
         time1=Long.parseLong(Config.read("Time1"));
