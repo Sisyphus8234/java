@@ -41,22 +41,26 @@ public class IFunctions {
         }
     }
 
-    static class CreateThread {
-        public Thread thread;
-        public void myFunction() {
-        };
-        public CreateThread() {
-            thread = new Thread() {
-                @Override
-                public void run() {
-                    myFunction();
-                }
-            };
-            thread.start();
-            thread.suspend();
-            threadList.add(thread);
-        }
-    }
+//    class CreateThread {
+//        public Thread thread;
+//        public void myFunction() {
+//        };
+//        public CreateThread() {
+//            thread = new Thread() {
+//                @Override
+//                public void run() {
+//                    myFunction();
+//                }
+//            };
+//            thread.start();
+//            try {
+//                thread.wait();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            threadList.add(thread);
+//        }
+//    }
 
 }
 
