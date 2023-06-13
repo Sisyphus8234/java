@@ -4,7 +4,7 @@ import java.util.Properties;
 public class Config {
 
     public static String filePath = "Config.properties";
-    public static Properties prop=new Properties();
+    private static Properties prop=new Properties();
 
     static {
         init();
@@ -20,7 +20,7 @@ public class Config {
     }
 
     public static String read(String s1) {
-        return prop.getProperty(s1);
+        return read(s1,null);
     }
 
     public static String read(String s1,String defaultValue) {
