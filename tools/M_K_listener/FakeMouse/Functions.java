@@ -54,7 +54,7 @@ public class Functions extends IFunctions {
                         temp1 =true;
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     } else if (temp2 ==true) {
-                        System.out.println("222222222222222");
+
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         temp1=false;
                         temp2 =false;
@@ -107,22 +107,22 @@ public class Functions extends IFunctions {
             }
         };
 
-        t3 = new MyThread() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (MouseInfo.getPointerInfo().getLocation().x!=x) {
-                        滚轮变成左键=true;
-//                        System.out.println("滚轮变成左键=true");
-                    } else if (MouseInfo.getPointerInfo().getLocation().x==x) {
-                        滚轮变成左键=false;
-//                        System.out.println("滚轮变成左键=false");
-                    }
-                    pause(100);
-                }
-            }
-        };
-        t3.myResume();
+//        t3 = new MyThread() {
+//            @Override
+//            public void run() {
+//                while (true) {
+//                    if (MouseInfo.getPointerInfo().getLocation().x!=x) {
+//                        滚轮变成左键=true;
+//
+//                    } else if (MouseInfo.getPointerInfo().getLocation().x==x) {
+//                        滚轮变成左键=false;
+//
+//                    }
+//                    pause(100);
+//                }
+//            }
+//        };
+//        t3.myResume();
 
 //        t4 = new MyThread() {
 //            @Override
