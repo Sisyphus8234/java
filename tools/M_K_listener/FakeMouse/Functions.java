@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 
 public class Functions extends IFunctions {
 
@@ -25,43 +26,51 @@ public class Functions extends IFunctions {
     public static int y1 = 0;
     public static int y2 = 0;
 
-    public static Thread t1;
-    public static Thread t2;
-    public static Thread t3;
-    public static Thread t4;
+    public static MyThread t1;
+    public static MyThread t2;
+    public static MyThread t3;
+    public static MyThread t4;
+    public static MyThread t5;
 
     public static int x= Integer.parseInt(Config.read("x"));
     public static int y= Integer.parseInt(Config.read("y"));
 
-    public static boolean 滚轮变成左键=false;
+    public static boolean 滚轮变成左键=true;
     public static int 滚轮次数 =0;
     public static int 滚轮方向 =1;
+    public static Long time= new Date().getTime();
+
+    public static Point point=new Point();
 
     static {
-        t1 = new CreateThread() {
+
+
+
+        t1 = new MyThread() {
             @Override
-            public void myFunction() {
+            public void run() {
                 while (true) {
                     if (temp1 == false) {
-                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                         temp1 =true;
+                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     } else if (temp2 ==true) {
+                        System.out.println("222222222222222");
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         temp1=false;
                         temp2 =false;
-                        t1.suspend();
+                        t1.mySuspend();
                     }
                     pause(baseDelay);
                 }
 
             }
-        }.thread;
+        };
 
 
 
-        t2 = new CreateThread() {
+        t2 = new MyThread() {
             @Override
-            public void myFunction() {
+            public void run() {
                 while (true) {
                         if (切换次数 > 0) {
                             robot.keyPress(KeyEvent.VK_ALT);
@@ -93,59 +102,80 @@ public class Functions extends IFunctions {
 
                         robot.keyRelease(KeyEvent.VK_ALT);
                         切换次数+=1;
-                        t2.suspend();
+                        t2.mySuspend();
                 }
             }
-        }.thread;
+        };
 
-        t3 = new CreateThread() {
+        t3 = new MyThread() {
             @Override
-            public void myFunction() {
+            public void run() {
                 while (true) {
-                    if (MouseInfo.getPointerInfo().getLocation().x==0) {
+                    if (MouseInfo.getPointerInfo().getLocation().x!=x) {
                         滚轮变成左键=true;
-                        System.out.println("滚轮变成左键=true");
+//                        System.out.println("滚轮变成左键=true");
                     } else if (MouseInfo.getPointerInfo().getLocation().x==x) {
                         滚轮变成左键=false;
-                        System.out.println("滚轮变成左键=false");
+//                        System.out.println("滚轮变成左键=false");
                     }
                     pause(100);
                 }
             }
-        }.thread;
-        t3.resume();
+        };
+        t3.myResume();
 
-        t4 = new CreateThread() {
-            @Override
-            public void myFunction() {
-                while (true) {
-                    if(滚轮次数>0) {
-                        if (滚轮变成左键 == false) {
-                            robot.mouseWheel(滚轮方向);
-                        } else {
-                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                            pause(50);
-                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        }
-                        滚轮次数--;
-                        pause(baseDelay);
-                    }else {
-                        t4.suspend();
-                    }
-                }
-            }
-        }.thread;
+//        t4 = new MyThread() {
+//            @Override
+//            public void run() {
+//                while (true) {
+//
+//                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+//                            pause(50);
+//                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//                            pause(1000);
+//
+//
+//
+//                        t4.mySuspend();
+//
+//
+//
+//
+//                }
+//            }
+//        };
+//
+//        t5 = new MyThread() {
+//            @Override
+//            public void run() {
+//                while (true) {
+//
+//                    if(滚轮次数>0) {
+//                        robot.mouseMove(point.x,point.y);
+//
+//                            robot.mouseWheel(滚轮方向);
+//
+//
+//
+//                        滚轮次数-=1;
+//                        pause(200);
+//                    }else {
+//                        t4.mySuspend();
+//                    }
+//                }
+//            }
+//        };
     }
 
 
     @ListenMouseKeyboard(value = 27, intercept = true,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 523, intercept = true,keyboardOrMouse=1)
+//    @ListenMouseKeyboard(value = 523, intercept = true,keyboardOrMouse=1)
     public static void esc和侧键按下() {
-        t1.resume();
+        t1.myResume();
     }
 
     @ListenMouseKeyboard(value = 27, press = false, intercept = true,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 524, intercept = true,keyboardOrMouse = 1)
+//    @ListenMouseKeyboard(value = 524, intercept = true,keyboardOrMouse = 1)
     public static void esc和侧键松开() {
         temp2 = true;
     }
@@ -189,7 +219,7 @@ public class Functions extends IFunctions {
         波浪键按住期间做了什么=false;
         波浪键按住 =true;
         切换次数=0;
-//        t2.resume();
+//        t2.myResume();
     }
 
 
@@ -255,7 +285,7 @@ public class Functions extends IFunctions {
             波浪键按住期间做了什么=true;
 
 
-            t2.resume();
+            t2.myResume();
 
 //            if (切换次数 > 0) {
 //                robot.keyPress(KeyEvent.VK_ALT);
@@ -398,16 +428,41 @@ public class Functions extends IFunctions {
     public static void 菜单键松开() {
     }
 
-    @ListenMouseKeyboard(value = 522,intercept = true,keyboardOrMouse = 2,mouseData = -7864320)
-    public static void 鼠标滚轮下() {
-        滚轮方向=1;
-        滚轮次数++;
-        t4.resume();
-    }
-    @ListenMouseKeyboard(value = 522,intercept = true,keyboardOrMouse = 2,mouseData = 7864320)
-    public static void 鼠标滚轮上() {
-        滚轮方向=-1;
-        滚轮次数++;
-        t4.resume();
-    }
+//    @ListenMouseKeyboard(value = 522,intercept = true,keyboardOrMouse = 2,mouseData = -7864320)
+//    public static void 鼠标滚轮下() {
+//        滚轮方向=1;
+//
+//        if(滚轮变成左键==true) {
+////            滚轮次数++;
+//            if(t1.state.equals("myResume")){
+//                temp2=true;
+//            }else {
+//                t4.myResume();
+//            }
+//
+//
+//
+//        }else {
+//            滚轮次数++;
+//            t5.myResume();
+//        }
+//    }
+//    @ListenMouseKeyboard(value = 522,intercept = true,keyboardOrMouse = 2,mouseData = 7864320)
+//    public static void 鼠标滚轮上() {
+//        滚轮方向=-1;
+//        if(滚轮变成左键==true){
+//
+//        t1.myResume();
+//        }else{
+//            滚轮次数++;
+//            t5.myResume();
+//        }
+//    }
+
+//    @ListenMouseKeyboard(value = 523,intercept = true,keyboardOrMouse = 1)
+//    public static void 侧键() {
+//        point=MouseInfo.getPointerInfo().getLocation();
+//        System.out.println(point);
+//    }
+
 }

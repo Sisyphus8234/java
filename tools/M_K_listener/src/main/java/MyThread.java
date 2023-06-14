@@ -1,5 +1,5 @@
 public class MyThread extends Thread {
-    public String state;
+    public String state="";
     public MyThread(){
         super();
         this.start();
@@ -22,7 +22,7 @@ public class MyThread extends Thread {
     }
 
     public void myResume(){
-        suspend();
+        resume();
         state="resume";
     }
 
