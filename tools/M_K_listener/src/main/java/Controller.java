@@ -6,7 +6,7 @@ public class Controller {
 
 	public static boolean listehSwitch=true;
 
-	public static ArrayList<Thread> threadList=new ArrayList<Thread>();
+	public static ArrayList<MyThread> threadList=new ArrayList<>();
 
 	public static Map<InputInfo, Utiliy> mapJna=new HashMap<>();
 	public static Map<String, Utiliy> mapJintellitype=new HashMap<String,Utiliy>();

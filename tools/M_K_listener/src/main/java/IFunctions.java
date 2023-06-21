@@ -18,7 +18,7 @@ public class IFunctions {
     public static Integer off=34;
 
     @ListenBar(threadList = true)
-    public static List<Thread> threadList=new ArrayList<>();
+    public static List<MyThread> threadList=new ArrayList<>();
 
     static {
 

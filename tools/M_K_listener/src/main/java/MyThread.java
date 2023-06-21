@@ -2,9 +2,9 @@ public class MyThread extends Thread {
     public String state="";
     public MyThread(){
         super();
-        this.start();
+        this.myStart();
         IFunctions.threadList.add(this);
-        this.suspend();
+        this.mySuspend();
     }
 
 

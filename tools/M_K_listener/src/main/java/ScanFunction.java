@@ -3,7 +3,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class ScanFunction {
-    public static void run(Class myFunctionClass, Class baseFunctionClass, Map<InputInfo, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<Thread> threadList){
+    public static void run(Class myFunctionClass, Class baseFunctionClass, Map<InputInfo, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<MyThread> threadList){
 
 
         //Class<Functions> classFunctions = Functions.class;
@@ -143,7 +143,7 @@ public class ScanFunction {
 
                 try{
                     if(listenBar.threadList()==true){
-                        threadList.addAll((List<Thread>)field.get(myFunctionClass));
+                        threadList.addAll((List<MyThread>)field.get(myFunctionClass));
                     }
                 }catch (Exception e){}
             }
