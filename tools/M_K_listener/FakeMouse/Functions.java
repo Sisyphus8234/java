@@ -169,14 +169,14 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(value = 27, intercept = true,keyboardOrMouse = 0)
-//    @ListenMouseKeyboard(value = 523, intercept = true,keyboardOrMouse=1)
-    public static void esc和侧键按下() {
+    @ListenMouseKeyboard(value = 93,intercept = true,keyboardOrMouse = 0)
+    public static void esc和菜单键() {
         t1.myResume();
     }
 
     @ListenMouseKeyboard(value = 27, press = false, intercept = true,keyboardOrMouse = 0)
-//    @ListenMouseKeyboard(value = 524, intercept = true,keyboardOrMouse = 1)
-    public static void esc和侧键松开() {
+    @ListenMouseKeyboard(value = 93,press = false,intercept = true,keyboardOrMouse = 0)
+    public static void esc和菜单键1() {
         temp2 = true;
     }
 
@@ -413,20 +413,20 @@ public class Functions extends IFunctions {
 
 
 
-    @ListenMouseKeyboard(value = 93,intercept = true,keyboardOrMouse = 0)
-    public static void 菜单键按下() {
-            robot.keyPress(KeyEvent.VK_ALT);
-            robot.keyPress(KeyEvent.VK_SHIFT);
-            robot.keyPress(KeyEvent.VK_TAB);
+//    @ListenMouseKeyboard(value = 93,intercept = true,keyboardOrMouse = 0)
+//    public static void 菜单键按下() {
+//            robot.keyPress(KeyEvent.VK_ALT);
+//            robot.keyPress(KeyEvent.VK_SHIFT);
+//            robot.keyPress(KeyEvent.VK_TAB);
+//
+//            robot.keyRelease(KeyEvent.VK_ALT);
+//            robot.keyRelease(KeyEvent.VK_SHIFT);
+//            robot.keyRelease(KeyEvent.VK_TAB);
+//    }
 
-            robot.keyRelease(KeyEvent.VK_ALT);
-            robot.keyRelease(KeyEvent.VK_SHIFT);
-            robot.keyRelease(KeyEvent.VK_TAB);
-    }
-
-    @ListenMouseKeyboard(value = 93,press = false,intercept = true,keyboardOrMouse = 0)
-    public static void 菜单键松开() {
-    }
+//    @ListenMouseKeyboard(value = 93,press = false,intercept = true,keyboardOrMouse = 0)
+//    public static void 菜单键松开() {
+//    }
 
 //    @ListenMouseKeyboard(value = 522,intercept = true,keyboardOrMouse = 2,mouseData = -7864320)
 //    public static void 鼠标滚轮下() {
