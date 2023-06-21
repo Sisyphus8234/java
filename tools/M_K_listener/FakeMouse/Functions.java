@@ -17,6 +17,7 @@ public class Functions extends IFunctions {
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
 
     public static boolean temp1 = false;
+
     public static boolean temp2 = false;
 
     public static boolean 波浪键按住 = false;
@@ -50,14 +51,14 @@ public class Functions extends IFunctions {
             @Override
             public void run() {
                 while (true) {
-                    if (temp1 == false) {
-                        temp1 =true;
+                    if (temp2 == false) {
+                        temp2 =true;
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                    } else if (temp2 ==true) {
+                    } else if (temp1 ==false) {
 
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        temp1=false;
                         temp2 =false;
+//                        temp2 =false;
                         t1.mySuspend();
                     }
                     pause(baseDelay);
@@ -171,13 +172,14 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 27, intercept = true,keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 93,intercept = true,keyboardOrMouse = 0)
     public static void esc和菜单键() {
+        temp1 =true;
         t1.myResume();
     }
 
     @ListenMouseKeyboard(value = 27, press = false, intercept = true,keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 93,press = false,intercept = true,keyboardOrMouse = 0)
     public static void esc和菜单键1() {
-        temp2 = true;
+        temp1 = false;
     }
 
     @ListenMouseKeyboard(value = 112, intercept = true,keyboardOrMouse = 0)
