@@ -9,21 +9,21 @@ public class MyThread extends Thread {
 
 
     public void myStart(){
+        state="on";
         start();
-        state="start";
 
 
     }
 
 
     public void mySuspend(){
+        state="off";
         suspend();
-        state="suspend";
     }
 
     public void myResume(){
+        state="on";
         resume();
-        state="resume";
     }
 
 }
