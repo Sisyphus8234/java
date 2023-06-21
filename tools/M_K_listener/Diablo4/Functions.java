@@ -5,13 +5,9 @@ import java.util.Date;
 
 public class Functions extends IFunctions {
 
-
-
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
-
     public static boolean temp1 = false;
     public static boolean temp2 = false;
-
 
 
     public static MyThread t1;
@@ -24,36 +20,29 @@ public class Functions extends IFunctions {
             public void run() {
                 while (true) {
                     if(temp2!=true){
-                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                    pause(baseDelay);
+                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                        pause(baseDelay);
                     }
                     else
                      {
                          robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        t1.mySuspend();
+                         this.mySuspend();
                     }
-
                 }
-
             }
         };
-
-
-
-
 
     }
 
 
     @ListenMouseKeyboard(value = 71, intercept = true,keyboardOrMouse = 0)
-
     public static void g() {
+        temp2=false;
         t1.myResume();
     }
 
     @ListenMouseKeyboard(value = 72 , intercept = true,keyboardOrMouse = 0)
-
     public static void h() {
         temp2 = true;
     }
