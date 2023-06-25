@@ -3,10 +3,10 @@ import java.awt.event.MouseEvent;
 public class Functions extends IFunctions {
 
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
+    public static boolean t1Temp = false;
     public static boolean 右键或者1234在t1运行时按下 = false;
     public static boolean 之前已经有右键或者1234在t1运行时按下 = false;
-    public static boolean t1Temp = false;
-    public static boolean isRelease = true;
+    public static boolean 暂停t1时是否松开左键 = true;
 
 
     public static MyThread t1;
@@ -26,10 +26,10 @@ public class Functions extends IFunctions {
                     }
                     else
                      {
-                         if(isRelease ==true){
+                         if(暂停t1时是否松开左键 ==true){
                          robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);}
                          this.mySuspend();
-                         isRelease =true;
+                         暂停t1时是否松开左键 =true;
                          pause(baseDelay);
                     }
                 }
@@ -60,7 +60,7 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 87 ,keyboardOrMouse = 0)
     public static void w() {
-        isRelease =false;
+        暂停t1时是否松开左键 =false;
         t1Temp = false;
     }
 
