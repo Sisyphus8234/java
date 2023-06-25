@@ -3,8 +3,9 @@ import java.awt.event.MouseEvent;
 public class Functions extends IFunctions {
 
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
-    public static boolean temp1 = false;
-    public static boolean temp2 = false;
+    public static boolean 右键或者1234在t1运行时按下 = false;
+    public static boolean 之前已经有右键或者1234在t1运行时按下 = false;
+    public static boolean t1Temp = false;
     public static boolean isRelease = true;
 
 
@@ -17,7 +18,7 @@ public class Functions extends IFunctions {
             @Override
             public void run() {
                 while (true) {
-                    if(temp2==true){
+                    if(t1Temp ==true){
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 
@@ -43,7 +44,7 @@ public class Functions extends IFunctions {
     public static void e() {
 
 //        if(temp2==false){
-            temp2=true;
+            t1Temp =true;
             t1.myResume();
 //        }else {
 //            temp2 = false;
@@ -54,13 +55,13 @@ public class Functions extends IFunctions {
 //    @ListenMouseKeyboard(value = 82 , intercept = true,keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 514 ,keyboardOrMouse = 1)
     public static void 左键() {
-        temp2 = false;
+        t1Temp = false;
     }
 
     @ListenMouseKeyboard(value = 87 ,keyboardOrMouse = 0)
     public static void w() {
         isRelease =false;
-        temp2 = false;
+        t1Temp = false;
     }
 
     @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = 1)
@@ -69,10 +70,17 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 51 ,keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 52 ,keyboardOrMouse = 0)
     public static void 右键() {
-        if(temp2==true){
-            temp1=true;
+        if(右键或者1234在t1运行时按下==true){
+            之前已经有右键或者1234在t1运行时按下=true;
+        }else {
+            之前已经有右键或者1234在t1运行时按下=false;
         }
-        temp2 = false;
+
+        if(t1.state.equals("on")){
+            右键或者1234在t1运行时按下 =true;
+        }
+        t1Temp = false;
+
     }
 
     @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = 1)
@@ -81,11 +89,12 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 51 ,press = false,keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = 0)
     public static void 右键1() {
-        if(temp1==true){
-            temp2 = true;
+        if(右键或者1234在t1运行时按下 ==true&&之前已经有右键或者1234在t1运行时按下==false){
+            t1Temp = true;
             t1.myResume();
+            右键或者1234在t1运行时按下 =false;
         }
-        temp1=false;
+
     }
 
 
