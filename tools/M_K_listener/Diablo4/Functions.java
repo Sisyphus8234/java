@@ -70,11 +70,13 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 51 ,keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 52 ,keyboardOrMouse = 0)
     public static void 右键() {
-        if(右键或者1234在t1运行时按下==true){
-            之前已经有右键或者1234在t1运行时按下=true;
-        }else {
-            之前已经有右键或者1234在t1运行时按下=false;
-        }
+//        if(右键或者1234在t1运行时按下==true){
+//            之前已经有右键或者1234在t1运行时按下=true;
+//        }else {
+//            之前已经有右键或者1234在t1运行时按下=false;
+//        }
+
+//        暂停t1时是否松开左键 =false;
 
         if(t1.state.equals("on")){
             右键或者1234在t1运行时按下 =true;
@@ -89,7 +91,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 51 ,press = false,keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = 0)
     public static void 右键1() {
-        if(右键或者1234在t1运行时按下 ==true&&之前已经有右键或者1234在t1运行时按下==false){
+        if(右键或者1234在t1运行时按下 ==true){
             t1Temp = true;
             t1.myResume();
             右键或者1234在t1运行时按下 =false;
