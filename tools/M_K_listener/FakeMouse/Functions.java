@@ -214,6 +214,13 @@ public class Functions extends IFunctions {
         robot.keyRelease(KeyEvent.VK_DELETE);
     }
 
+    @ListenMouseKeyboard(value = 113,press = false,intercept = true,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 114,press = false,intercept = true,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 115,press = false,intercept = true,keyboardOrMouse = 0)
+    public static void 松开() {
+
+    }
+
 
 
     @ListenMouseKeyboard(value = 192,intercept = true,keyboardOrMouse = 0)
