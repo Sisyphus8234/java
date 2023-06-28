@@ -46,6 +46,11 @@ public class KeyboardHook {
 							}
 							Controller.listehSwitch=false;
 						}else if(Controller.mapListenBar.get(info.vkCode).equals("on")){
+							for(MyThread thread:Controller.threadList){
+								if(thread.defaultState.equals("on")){
+									thread.myResume();
+								}
+							}
 							Controller.listehSwitch=true;
 						}
 					}
