@@ -24,20 +24,27 @@ public class Functions extends IFunctions {
 
                     if(t1Temp ==true){
 
-//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        if(攻击型加移动==true) {
+
+                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                            robot.keyPress(KeyEvent.VK_5);
+                            robot.keyRelease(KeyEvent.VK_5);
+
+                        }else {
+                            robot.keyPress(KeyEvent.VK_G);
+                            robot.keyRelease(KeyEvent.VK_G);
+                        }
+
+
                         pause(baseDelay);
 
                     }
                     else
                      {
-//                         if (暂停t1时是否松开左键 == true) {
-//                             robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//                         }
-//                         暂停t1时是否松开左键 = false;
+
                          pause(baseDelay);
-//                         this.mySuspend();
+
                     }
                 }
             }
@@ -82,22 +89,29 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 69, intercept = true,keyboardOrMouse = 0)
     public static void e() {
         攻击型加移动=true;
-
-//        if(temp2==false){
-            t1Temp =true;
-            t1.myResume();
-
-
-//        }else {
-//            temp2 = false;
-//            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//        }
+        t1Temp =true;
+        t1.myResume();
     }
 
-//    @ListenMouseKeyboard(value = 514 ,keyboardOrMouse = 1)
-//    public static void 左键() {
-//        t1Temp = false;
-//    }
+    @ListenMouseKeyboard(value = 82, intercept = true,keyboardOrMouse = 0)
+    public static void R() {
+        攻击型加移动=false;
+        t1Temp =true;
+        t1.myResume();
+    }
+
+
+    @ListenMouseKeyboard(value = 523,keyboardOrMouse = 1)
+    public static void a() {
+        攻击型加移动=false;
+    }
+
+    @ListenMouseKeyboard(value = 524,keyboardOrMouse = 1)
+    public static void a1() {
+        攻击型加移动=true;
+    }
+
+
 
     @ListenMouseKeyboard(value = 514 ,keyboardOrMouse = 1)
     @ListenMouseKeyboard(value = 87 ,keyboardOrMouse = 0)
