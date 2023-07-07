@@ -1,5 +1,7 @@
 Comparator<OutStockManageMaterialVo> comparator= Comparator.comparing(OutStockManageMaterialVo::getBatch);
 list.sort(comparator);
+或
+Collections.sort(list,comparator);
 
 倒序:
 list.sort(comparator.reversed());
