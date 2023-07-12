@@ -103,7 +103,7 @@ public class Functions extends IFunctions {
 
                     if (t3Temp == true) {
                         robot.mouseWheel(滚轮方向);
-                        pause(50);
+                        pause(35);
                     } else {
                         this.mySuspend();
                     }
@@ -324,7 +324,7 @@ public class Functions extends IFunctions {
 
             t3Temp = false;
         } else {
-            robot.keyPress(KeyEvent.VK_1);
+            robot.keyRelease(KeyEvent.VK_1);
         }
     }
 
@@ -350,7 +350,7 @@ public class Functions extends IFunctions {
             t3Temp = false;
 
         } else {
-            robot.keyPress(KeyEvent.VK_2);
+            robot.keyRelease(KeyEvent.VK_2);
         }
     }
 
