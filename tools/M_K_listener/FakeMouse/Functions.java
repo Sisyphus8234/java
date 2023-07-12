@@ -301,6 +301,16 @@ public class Functions extends IFunctions {
         t3Temp=false;
     }
 
+    @ListenMouseKeyboard(value = 162,intercept = true,keyboardOrMouse = 0)
+    public static void 键盘键162() {
+
+    }
+
+    @ListenMouseKeyboard(value = 162,intercept = true,keyboardOrMouse = 0,press = false)
+    public static void 键盘键162_1() {
+
+    }
+
 
 
 }
