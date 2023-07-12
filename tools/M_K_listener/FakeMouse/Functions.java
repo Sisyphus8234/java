@@ -103,7 +103,7 @@ public class Functions extends IFunctions {
 
                     if (t3Temp == true) {
                         robot.mouseWheel(滚轮方向);
-                        pause(35);
+                        pause(50);
                     } else {
                         this.mySuspend();
                     }
