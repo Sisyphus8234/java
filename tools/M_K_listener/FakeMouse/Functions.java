@@ -32,6 +32,8 @@ public class Functions extends IFunctions {
 
     public static Point point = new Point();
 
+    public static int WhichProgram = Integer.parseInt(Config.read("WhichProgram"));
+
     static {
 
 
@@ -278,9 +280,9 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 106, intercept = true, keyboardOrMouse = 0)
     public static void 数字键盘星号() {
         robot.keyPress(KeyEvent.VK_WINDOWS);
-        robot.keyPress(KeyEvent.VK_5);
+        robot.keyPress(WhichProgram);
         pause(50);
-        robot.keyRelease(KeyEvent.VK_5);
+        robot.keyRelease(WhichProgram);
         robot.keyRelease(KeyEvent.VK_WINDOWS);
 
     }
