@@ -275,6 +275,15 @@ public class Functions extends IFunctions {
         rightBotton = false;
     }
 
+    @ListenMouseKeyboard(value = 106, intercept = true, keyboardOrMouse = 0)
+    public static void 数字键盘星号() {
+        robot.keyPress(KeyEvent.VK_WINDOWS);
+        robot.keyPress(KeyEvent.VK_5);
+        pause(50);
+        robot.keyRelease(KeyEvent.VK_5);
+        robot.keyRelease(KeyEvent.VK_WINDOWS);
+
+    }
 
     @ListenMouseKeyboard(value = 107, intercept = true, keyboardOrMouse = 0)
     public static void 数字键盘减号() {
