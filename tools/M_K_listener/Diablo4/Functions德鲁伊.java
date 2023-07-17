@@ -30,42 +30,26 @@ public class Functions德鲁伊 extends IFunctions {
 
                         if(攻击型加移动==true) {
 
-                            robot.keyPress(KeyEvent.VK_D);
-                            robot.keyRelease(KeyEvent.VK_D);
-
-
-
-                            if(b0==true) {
-
-                                robot.keyPress(KeyEvent.VK_G);
-                                robot.keyRelease(KeyEvent.VK_G);
-
-
-                            }
+//                            robot.keyPress(KeyEvent.VK_D);
+//                            robot.keyRelease(KeyEvent.VK_D);
 
 
                             robot.keyPress(KeyEvent.VK_5);
                             robot.keyRelease(KeyEvent.VK_5);
 
+                            if(b0==true) {
 
-
-
-
-
-
-//                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-
-
-
+                                robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                                robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//                                robot.keyPress(KeyEvent.VK_G);
+//                                robot.keyRelease(KeyEvent.VK_G);
+                            }
 
                         }else {
-
-//                            robot.keyPress(KeyEvent.VK_G);
-//                            robot.keyRelease(KeyEvent.VK_G);
-
-                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-
+                            robot.keyPress(KeyEvent.VK_G);
+                            robot.keyRelease(KeyEvent.VK_G);
+//                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+//                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         }
 
 
@@ -143,10 +127,11 @@ public class Functions德鲁伊 extends IFunctions {
         t1Temp =true;
         t1.myResume();
 
-        time=new Date();
+//        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+//        robot.keyRelease(KeyEvent.VK_G);
+//        robot.keyPress(KeyEvent.VK_G);
 
-        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 
     }
 
@@ -187,6 +172,8 @@ public class Functions德鲁伊 extends IFunctions {
     public static void w() {
         暂停t1时是否松开左键 =false;
         t1Temp = false;
+
+//        robot.keyRelease(KeyEvent.VK_G);
 
     }
 
