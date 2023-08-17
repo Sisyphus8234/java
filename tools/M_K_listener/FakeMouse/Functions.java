@@ -134,6 +134,7 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 27, intercept = true, keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 93, intercept = true, keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 523, intercept = true, keyboardOrMouse = 1)
     public static void esc和菜单键() {
         temp1 = true;
         t1.myResume();
@@ -141,6 +142,7 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 27, press = false, intercept = true, keyboardOrMouse = 0)
     @ListenMouseKeyboard(value = 93, press = false, intercept = true, keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 524, intercept = true, keyboardOrMouse = 1)
     public static void esc和菜单键1() {
         temp1 = false;
     }
@@ -224,10 +226,10 @@ public class Functions extends IFunctions {
 
 
             robot.keyPress(KeyEvent.VK_WINDOWS);
-            robot.keyPress(KeyEvent.VK_D);
+            robot.keyPress(WhichProgram);
             pause(50);
             robot.keyRelease(KeyEvent.VK_WINDOWS);
-            robot.keyRelease(KeyEvent.VK_D);
+            robot.keyRelease(WhichProgram);
         } else {
             robot.keyPress(KeyEvent.VK_3);
         }
@@ -376,27 +378,27 @@ public class Functions extends IFunctions {
         ctrl按下 = false;
     }
 
-    @ListenMouseKeyboard(value = 522, intercept = true, keyboardOrMouse = 2, mouseData = -7864320)
-    public static void 滚轮() {
+//    @ListenMouseKeyboard(value = 522, intercept = true, keyboardOrMouse = 2, mouseData = -7864320)
+//    public static void 滚轮() {
+//
+//
+//        if (ctrl按下 == false) {
+//            滚轮方向 = 1;
+//            滚轮次数++;
+//            t4.myResume();
+//        }
+//
+//    }
 
-
-        if (ctrl按下 == false) {
-            滚轮方向 = 1;
-            滚轮次数++;
-            t4.myResume();
-        }
-
-    }
-
-    @ListenMouseKeyboard(value = 522, intercept = true, keyboardOrMouse = 2, mouseData = 7864320)
-    public static void 滚轮_1() {
-
-        if (ctrl按下 == false) {
-            滚轮方向 = -1;
-            滚轮次数++;
-            t4.myResume();
-        }
-    }
+//    @ListenMouseKeyboard(value = 522, intercept = true, keyboardOrMouse = 2, mouseData = 7864320)
+//    public static void 滚轮_1() {
+//
+//        if (ctrl按下 == false) {
+//            滚轮方向 = -1;
+//            滚轮次数++;
+//            t4.myResume();
+//        }
+//    }
 
 
 }
