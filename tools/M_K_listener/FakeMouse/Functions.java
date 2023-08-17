@@ -226,10 +226,10 @@ public class Functions extends IFunctions {
 
 
             robot.keyPress(KeyEvent.VK_WINDOWS);
-            robot.keyPress(KeyEvent.VK_5);
+            robot.keyPress(WhichProgram);
             pause(50);
             robot.keyRelease(KeyEvent.VK_WINDOWS);
-            robot.keyRelease(KeyEvent.VK_5);
+            robot.keyRelease(WhichProgram);
         } else {
             robot.keyPress(KeyEvent.VK_3);
         }
