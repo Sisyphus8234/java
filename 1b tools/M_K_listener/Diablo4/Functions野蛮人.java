@@ -1,8 +1,7 @@
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Random;
-
-import static java.awt.event.KeyEvent.VK_Q;
 
 public class Functions野蛮人 extends Functions公共 {
 
@@ -20,6 +19,7 @@ public class Functions野蛮人 extends Functions公共 {
 
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = true;
+
     public static Random r = new Random();
     public static int i = 0;
 
@@ -27,6 +27,9 @@ public class Functions野蛮人 extends Functions公共 {
     public static MyThread t1;
     public static MyThread t2;
     public static MyThread t3;
+    public static MyThread t4;
+
+    public static 筛选装备_野蛮人 筛选装备_野蛮人=new 筛选装备_野蛮人();
 
     static {
         t1 = new MyThread("on") {
@@ -101,51 +104,86 @@ public class Functions野蛮人 extends Functions公共 {
         };
 
 
-//        t3 = new MyThread("on") {
+        new MyThread("on") {
+            @Override
+            public void run() {
+                while (true) {
+                    if (t1Temp == true) {
+                        robot.keyPress(KeyEvent.VK_V);
+                        robot.keyRelease(KeyEvent.VK_V);
+                    } else {
+                    }
+                    pause(baseDelay);
+
+                }
+            }
+        };
+
+        t4=new MyThread("off"){
+            @Override
+            public void run() {
+                while (true) {
+                    int x= (int) MouseInfo.getPointerInfo().getLocation().getX();
+                    int y= (int) MouseInfo.getPointerInfo().getLocation().getY();
+
+                    筛选装备.run(x,y,robot,筛选装备_野蛮人, 筛选装备_野蛮人.要的词缀, 筛选装备_野蛮人.不要的词缀,筛选装备_野蛮人.有效词条要求);
+
+                    this.mySuspend();
+                }
+            }
+        };
+
+
+
+//        t4=new MyThread("off"){
 //            @Override
 //            public void run() {
 //                while (true) {
+//                    int x= (int) MouseInfo.getPointerInfo().getLocation().getX();
+//                    int y= (int) MouseInfo.getPointerInfo().getLocation().getY();
 //
-//                    if (t1Temp == true && 是否核心技能 == true) {
-//                        robot.keyPress(KeyEvent.VK_4);
-//                        robot.keyRelease(KeyEvent.VK_4);
-//                    } else {
+//                    String pythonScript = "C:\\Users\\aaa\\Desktop\\python_project\\get_words_of_picture.py"; // 替换为实际的Python脚本路径
+//                    String pythonInterpreter = "C:\\Users\\aaa\\.conda\\envs\\paddle_env\\python.exe"; // Python解释器
+//                    String arg1 = String.valueOf(x-437); // 传递给方法的参数
+//                    String arg2 = String.valueOf(91); // 传递给方法的参数
+//                    String arg3 = "390"; // 传递给方法的参数
+//                    String arg4 = "736"; // 传递给方法的参数
+//                    try {
+//                        ProcessBuilder processBuilder = new ProcessBuilder(
+//                                pythonInterpreter, pythonScript, arg1, arg2,arg3,arg4);
+//                        Process process = processBuilder.start();
+//
+//                        InputStream inputStream = process.getInputStream();
+//                        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+//                        BufferedReader reader = new BufferedReader(inputStreamReader);
+//                        String result="";
+//                        String line;
+//                        while ((line = reader.readLine()) != null) {
+//                            System.out.println(line); // 输出Python方法的返回值
+//                            result=line;
+//                        }
+//
+//                        int exitCode = process.waitFor();
+//                        System.out.println("Python process exited with code " + exitCode);
+//
+//                        if(result.equals("False")){
+//                            robot.keyPress(VK_SPACE);
+//                            robot.keyRelease(VK_SPACE);
+//
+//                            System.out.println("------------------------------space");
+//                        }
+//
+//
+//
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
 //                    }
-//                    pause(300);
-//
+//                    this.mySuspend();
 //                }
 //            }
 //        };
 
-//        new MyThread("off") {
-//            @Override
-//            public void run() {
-//                while (true) {
-//
-//                    pixelColor = robot.getPixelColor(1318, 965);
-////                    System.out.println(pixelColor);
-////                    200,128,55
-//                    if(pixelColor.getRed()+
-//                    pixelColor.getGreen()+
-//                    pixelColor.getBlue()>=333
-//
-//                    )
-//
-////                    Math.abs(pixelColor.getRed()-237)<=10
-////                    &&Math.abs(pixelColor.getGreen()-28)<=10
-////                    &&Math.abs(pixelColor.getBlue()-36)<=10
-//                    {
-//
-//是否核心技能=true;
-//                    }else {
-//                        是否核心技能=false;
-//                    }
-//
-//
-//                    pause(200);
-//                }
-//            }
-//        };
+
 
     }
 
@@ -272,6 +310,25 @@ public class Functions野蛮人 extends Functions公共 {
 //    public static void 侧键1() {
 //        是否核心技能 = true;
 //    }
+
+    @ListenMouseKeyboard(value = 112,keyboardOrMouse = 0,intercept = true)
+    public static void 图像识别_装备(){
+        筛选装备.是否筛选装备 =true;
+        筛选装备.鼠标是否回到原点 =true;
+        t4.myResume();
+    }
+
+    @ListenMouseKeyboard(value = 114,keyboardOrMouse = 0,intercept = true)
+    public static void 图像识别_装备1(){
+        筛选装备.是否筛选装备 =true;
+        筛选装备.鼠标是否回到原点 =false;
+        t4.myResume();
+    }
+
+    @ListenMouseKeyboard(value = 113,keyboardOrMouse = 0,intercept = true)
+    public static void 图像识别_装备_终止(){
+        筛选装备.是否筛选装备 =false;
+    }
 
 
 }
