@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Random;
@@ -6,7 +5,12 @@ import java.util.Random;
 public class Functions野蛮人 extends Functions公共 {
 
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
-//    public static Long weight = Long.parseLong(Config.read("Weight"));
+    public static Long baseDelayT1 = Long.parseLong(Config.read("BaseDelay"))+120;
+    public static Long baseDelayT1_1 = Long.parseLong(Config.read("BaseDelay"))-30;
+    public static Long baseDelayT3 = Long.parseLong(Config.read("BaseDelay"))*2;
+
+
+
     public static boolean t1Temp = false;
     public static boolean t2Temp = false;
     public static boolean 用哪个基础技能 = true;
@@ -25,67 +29,99 @@ public class Functions野蛮人 extends Functions公共 {
 
 
     public static MyThread t1;
+    public static MyThread t1_1;
     public static MyThread t2;
     public static MyThread t3;
     public static MyThread t4;
 
-    public static 筛选装备_野蛮人 筛选装备_野蛮人=new 筛选装备_野蛮人();
+    public static 筛选装备_野蛮人 筛选装备_野蛮人 = new 筛选装备_野蛮人();
 
+
+    public static void fTemp(){
+        pixelColor = robot.getPixelColor(1318, 965);
+//                    System.out.println(pixelColor);
+//                    200,128,55
+//                            32,35,39
+//                            if (pixelColor.getRed() +
+//                                    pixelColor.getGreen() +
+//                                    pixelColor.getBlue() >= 260
+//                            ) {
+//                                robot.keyPress(KeyEvent.VK_4);
+//                                robot.keyRelease(KeyEvent.VK_4);
+//                            }
+        if (pixelColor.getRed() +
+                pixelColor.getGreen() +
+                pixelColor.getBlue() < 130
+        ) {
+        }else {
+            robot.keyPress(KeyEvent.VK_4);
+            robot.keyRelease(KeyEvent.VK_4);
+        }
+    }
     static {
         t1 = new MyThread("on") {
             @Override
             public void run() {
                 while (true) {
                     if (t1Temp == true) {
-
-//                        if(随机用哪个基础技能==true) {
-//                            用哪个基础技能 = r.nextBoolean();
-//                        }else {
-//                            用哪个基础技能=false;
-//                        }
                         if (是否基础技能 == true) {
-
                             robot.keyPress(KeyEvent.VK_5);
                             robot.keyRelease(KeyEvent.VK_5);
+                        }
+                        if (是否核心技能) {
+                            fTemp();
+                        }
+                        if (是否基础技能 == true) {
                             robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                             robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-
-
-//                            if (用哪个基础技能==true) {
-
-//                            } else {
-//                                robot.keyPress(KeyEvent.VK_9);
-//                                robot.keyRelease(KeyEvent.VK_9);
-//                            }
-
                         }
-                        if(是否核心技能) {
-
-                            pixelColor = robot.getPixelColor(1318, 965);
-//                    System.out.println(pixelColor);
-//                    200,128,55
-                            if(pixelColor.getRed()+
-                                    pixelColor.getGreen()+
-                                    pixelColor.getBlue()>=270
-
-                            ){
-
-
-                                robot.keyPress(KeyEvent.VK_4);
-                                robot.keyRelease(KeyEvent.VK_4);}
+                        if (是否核心技能) {
+                            fTemp();
                         }
-
-
-
 
                     } else {
-//                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
 
                     }
                     pause(baseDelay);
                 }
             }
         };
+
+//        t1_1=new MyThread("on") {
+//            @Override
+//            public void run() {
+//                while (true) {
+//                    if (t1Temp == true) {
+//                        if (是否核心技能) {
+//                            pixelColor = robot.getPixelColor(1318, 965);
+////                    System.out.println(pixelColor);
+////                    200,128,55
+////                            32,35,39
+////                            if (pixelColor.getRed() +
+////                                    pixelColor.getGreen() +
+////                                    pixelColor.getBlue() >= 260
+////                            ) {
+////                                robot.keyPress(KeyEvent.VK_4);
+////                                robot.keyRelease(KeyEvent.VK_4);
+////                            }
+//                            if (pixelColor.getRed() +
+//                                    pixelColor.getGreen() +
+//                                    pixelColor.getBlue() < 130
+//                            ) {
+//                            }else {
+//                                robot.keyPress(KeyEvent.VK_4);
+//                                robot.keyRelease(KeyEvent.VK_4);
+//                            }
+//                        }
+//
+//                    } else {
+//                    }
+//                    pause(baseDelayT1_1);
+//                }
+//            }
+//        };
+
+
 
 
         t2 = new MyThread("on") {
@@ -104,7 +140,7 @@ public class Functions野蛮人 extends Functions公共 {
         };
 
 
-        new MyThread("on") {
+        t3=new MyThread("on") {
             @Override
             public void run() {
                 while (true) {
@@ -113,26 +149,21 @@ public class Functions野蛮人 extends Functions公共 {
                         robot.keyRelease(KeyEvent.VK_V);
                     } else {
                     }
-                    pause(baseDelay);
+                    pause(baseDelayT3);
 
                 }
             }
         };
 
-        t4=new MyThread("off"){
+        t4 = new MyThread("off") {
             @Override
             public void run() {
                 while (true) {
-                    int x= (int) MouseInfo.getPointerInfo().getLocation().getX();
-                    int y= (int) MouseInfo.getPointerInfo().getLocation().getY();
-
-                    筛选装备.run(x,y,robot,筛选装备_野蛮人, 筛选装备_野蛮人.要的词缀, 筛选装备_野蛮人.不要的词缀,筛选装备_野蛮人.有效词条要求);
-
+                    筛选装备.run( robot, 筛选装备_野蛮人, 筛选装备_野蛮人.要的词缀, 筛选装备_野蛮人.不要的词缀, 筛选装备_野蛮人.有效词条要求);
                     this.mySuspend();
                 }
             }
         };
-
 
 
 //        t4=new MyThread("off"){
@@ -184,7 +215,6 @@ public class Functions野蛮人 extends Functions公共 {
 //        };
 
 
-
     }
 
 //    @ListenMouseKeyboard(value = 82, intercept = true,keyboardOrMouse = 0)
@@ -232,15 +262,15 @@ public class Functions野蛮人 extends Functions公共 {
     @ListenMouseKeyboard(value = 523, keyboardOrMouse = 1)
     @ListenMouseKeyboard(value = 70, keyboardOrMouse = 0)
     public static void 侧键_f() {
-        t1Temp=false;
-        t2Temp=true;
+        t1Temp = false;
+        t2Temp = true;
     }
 
     @ListenMouseKeyboard(value = 524, keyboardOrMouse = 1)
     @ListenMouseKeyboard(value = 70, keyboardOrMouse = 0, press = false)
     public static void 侧键_f_1() {
         t1Temp = true;
-        t2Temp=false;
+        t2Temp = false;
     }
 
 
@@ -279,12 +309,11 @@ public class Functions野蛮人 extends Functions公共 {
     }
 
 
-
     @ListenMouseKeyboard(value = 192, keyboardOrMouse = 0, intercept = true)
 
     @ListenMouseKeyboard(value = 516, keyboardOrMouse = 1)
     public static void 右键() {
-        是否核心技能=true;
+        是否核心技能 = true;
         是否基础技能 = false;
     }
 
@@ -311,23 +340,23 @@ public class Functions野蛮人 extends Functions公共 {
 //        是否核心技能 = true;
 //    }
 
-    @ListenMouseKeyboard(value = 112,keyboardOrMouse = 0,intercept = true)
-    public static void 图像识别_装备(){
-        筛选装备.是否筛选装备 =true;
-        筛选装备.鼠标是否回到原点 =true;
+    @ListenMouseKeyboard(value = 112, keyboardOrMouse = 0, intercept = true)
+    public static void 图像识别_装备() {
+        筛选装备.是否筛选装备 = true;
+        筛选装备.鼠标是否回到原点 = true;
         t4.myResume();
     }
 
-    @ListenMouseKeyboard(value = 114,keyboardOrMouse = 0,intercept = true)
-    public static void 图像识别_装备1(){
-        筛选装备.是否筛选装备 =true;
-        筛选装备.鼠标是否回到原点 =false;
+    @ListenMouseKeyboard(value = 114, keyboardOrMouse = 0, intercept = true)
+    public static void 图像识别_装备1() {
+        筛选装备.是否筛选装备 = true;
+        筛选装备.鼠标是否回到原点 = false;
         t4.myResume();
     }
 
-    @ListenMouseKeyboard(value = 113,keyboardOrMouse = 0,intercept = true)
-    public static void 图像识别_装备_终止(){
-        筛选装备.是否筛选装备 =false;
+    @ListenMouseKeyboard(value = 113, keyboardOrMouse = 0, intercept = true)
+    public static void 图像识别_装备_终止() {
+        筛选装备.是否筛选装备 = false;
     }
 
 
