@@ -128,7 +128,6 @@ public class 筛选装备 {
             筛选逻辑参数.自定要求是否满足=true;
             筛选逻辑参数.所有要求满足=false;
             筛选逻辑参数.装备种类="";
-            筛选逻辑参数.装备种类已判定=false;
 
             List<String> result = new ArrayList<>();
             List<String> 需求词条 = new ArrayList<>();
@@ -379,9 +378,6 @@ public class 筛选装备 {
         boolean 自定要求是否满足;
         boolean 所有要求满足;
         String 装备种类;
-        boolean 装备种类已判定;
-
-
     }
 
 }
