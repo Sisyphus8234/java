@@ -1,3 +1,5 @@
+package base;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.User32;
@@ -93,7 +95,7 @@ public class KeyboardHook {
 		MSG msg = new MSG();
 		lib.GetMessage(msg, null, 0, 0);
 
-		System.out.println("KeyboardHook run 方法结束");
+		System.out.println("base.KeyboardHook run 方法结束");
 	}
 
 	

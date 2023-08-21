@@ -9,10 +9,14 @@ set OutDir=%input%Out
 :: rmdir /s/q %OutDir%
 :: mkdir %OutDir%
 
-:: /e复制目录和子目录，包括空的 /y强制复制 /i表示如果目标目录不存在，将会被创建。
-xcopy /e/y/i src\main\java %OutDir%\
 
-xcopy /y Config.properties %OutDir%\
-xcopy /y 1.png %OutDir%\
+::/Y 表示强制复制
+::/E 表示复制子文件夹和文件。
+::/C 允许继续复制，即使出现错误。
+::/I 如果目标不存在并且是一个目录，则会创建它。
+::/H 包括隐藏文件和系统文件。
+::/K 保留源文件夹的只读属性。
 
-xcopy /y/i %input% %OutDir%
+xcopy /e/y/i main %OutDir%\ /EXCLUDE:exclude.txt
+
+xcopy /y/e/i %input% %OutDir%\custom

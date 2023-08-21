@@ -1,3 +1,7 @@
+package custom;
+
+import base.*;
+
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;

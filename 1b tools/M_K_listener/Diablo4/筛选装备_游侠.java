@@ -1,3 +1,5 @@
+package custom;
+
 import java.util.List;
 
 public class 筛选装备_游侠 extends 筛选装备_子类 {

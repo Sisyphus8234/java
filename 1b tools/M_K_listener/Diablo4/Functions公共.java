@@ -1,7 +1,12 @@
+package custom;
+
+import base.IFunctions;
+import base.MyThread;
+
 import java.awt.*;
 import static java.awt.event.KeyEvent.*;
 
-public class Functions公共 extends IFunctions{
+public class Functions公共 extends IFunctions {
     public static Color pixelColor;
 
     static {

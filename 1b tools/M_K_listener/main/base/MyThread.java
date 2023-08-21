@@ -1,3 +1,5 @@
+package base;
+
 public class MyThread extends Thread {
     public String defaultState="off";
     public String state="";

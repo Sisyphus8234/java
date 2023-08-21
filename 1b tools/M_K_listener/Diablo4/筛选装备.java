@@ -1,3 +1,7 @@
+package custom;
+
+import base.IFunctions;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -69,7 +73,7 @@ public class 筛选装备 {
 
 
     public static void voice() {
-        String audioFilePath = "yy.wav"; // 替换为你的音频文件路径
+        String audioFilePath = "custom/yy.wav"; // 替换为你的音频文件路径
 
         try {
             File audioFile = new File(audioFilePath);

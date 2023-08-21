@@ -1,3 +1,9 @@
+package custom;
+
+import base.Config;
+import base.ListenMouseKeyboard;
+import base.MyThread;
+import custom.Functions公共;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Random;

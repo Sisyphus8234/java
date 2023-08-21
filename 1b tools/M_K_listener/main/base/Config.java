@@ -1,9 +1,11 @@
+package base;
+
 import java.io.*;
 import java.util.Properties;
 
 public class Config {
 
-    public static String filePath = "Config.properties";
+    public static String filePath = "custom/Config.properties";
     private static Properties prop=new Properties();
 
     static {

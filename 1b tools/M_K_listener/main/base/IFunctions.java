@@ -1,3 +1,5 @@
+package base;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.util.ArrayList;

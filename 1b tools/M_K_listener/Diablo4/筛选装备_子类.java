@@ -1,3 +1,5 @@
+package custom;
+
 import java.util.List;
 
 public abstract class 筛选装备_子类 {
