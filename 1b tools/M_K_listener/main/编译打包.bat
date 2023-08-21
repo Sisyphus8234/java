@@ -8,15 +8,15 @@ set /p MyJavaPath=<MyJavaPath.txt
 rmdir /s/q classfiles
 mkdir classfiles
 
-%MyJavaPath%javac -d .\classfiles *.java -encoding UTF-8 -cp ".;.\lib\*"
+%MyJavaPath%javac -d .\classfiles base\*.java custom\*.java -encoding UTF-8 -cp ".;.\lib\*"
 
 del run.jar
 
 cd classfiles
 IF "%MyJavaPath%"=="" (
-    jar cfm ..\run.jar ..\META-INF\MANIFEST.MF *.class
+    jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class custom\*.class
 ) ELSE (
-    ..\%MyJavaPath%jar cfm ..\run.jar ..\META-INF\MANIFEST.MF *.class
+    ..\%MyJavaPath%jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class custom\*.class
 )
 
 :: cd ..
