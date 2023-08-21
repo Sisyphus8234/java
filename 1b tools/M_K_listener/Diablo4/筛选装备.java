@@ -28,6 +28,9 @@ public class 筛选装备 {
 
     public static boolean 是否筛选装备 = false;
     public static boolean 鼠标是否回到原点 = true;
+    public static String folderName="OutPicture";
+    public static String outPictureName="screenshot";
+    public static String outTextName="output";
 
     static {
         装备种类.put(0, "只看数值");
@@ -53,10 +56,10 @@ public class 筛选装备 {
             BufferedImage screenshot = robot.createScreenCapture(screenRect);
 
             // 保存图像为文件
-            File output = new File("OutPicture/screenshot.png");
+            File output = new File(folderName+"/"+outPictureName+".png");
             ImageIO.write(screenshot, "png", output);
 
-            File output1 = new File("OutPicture/screenshot" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".png");
+            File output1 = new File(folderName+"/"+outPictureName+LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".png");
             ImageIO.write(screenshot, "png", output1);
 
         } catch (Exception e) {
@@ -96,6 +99,7 @@ public class 筛选装备 {
     }
 
     public static void run(Robot robot, 筛选装备_子类 筛选装备_子类, String[] 要的词缀, String[] 不要的词缀, int 需求词条要求数量) {
+
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
 
@@ -105,6 +109,11 @@ public class 筛选装备 {
 
         int tempx = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int tempy = (int) MouseInfo.getPointerInfo().getLocation().getY();
+
+        File directory = new File(folderName);
+        if (!directory.exists()) {
+            directory.mkdirs(); // 创建目标文件夹及其父文件夹（如果不存在）
+        }
 
         while (是否筛选装备 == true) {
             boolean 是否报错 = false;
@@ -148,7 +157,7 @@ public class 筛选装备 {
 
             try {
                 // 构建命令
-                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir OutPicture/screenshot.png --use_angle_cls false --use_gpu false");
+                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir "+folderName+"/"+outPictureName+".png --use_angle_cls false --use_gpu false");
 
                 // 设置工作目录（可选）
                 // processBuilder.directory(new File("path_to_working_directory"));
@@ -306,7 +315,7 @@ public class 筛选装备 {
             }
 
             // 将内容保存到文件
-            String fileName = "OutPicture/output"+LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"))+".txt";
+            String fileName = folderName+"/"+outTextName+LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"))+".txt";
             try {
                 FileWriter writer = new FileWriter(fileName);
                 writer.write(output);
