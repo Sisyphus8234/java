@@ -4,24 +4,15 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class Functions extends IFunctions {
-
-    public static Long time1=Long.parseLong(Config.read("Time1"));
-
-    @ListenBar(threadList = true)
-    public static ArrayList<Thread> threadList=new ArrayList<>();
-
-    @ListenBar(off = true)
-    public static int stop =189;
-
+    public static Long time1 = Long.parseLong(Config.read("Time1"));
     public static Thread t1;
-	static {
-        t1=new CreateThread(){
+
+    static {
+        t1 = new MyThread() {
             @Override
-            public void myFunction(){
+            public void run() {
                 while (true) {
                     pause(time1);
                     //todo
@@ -29,14 +20,11 @@ public class Functions extends IFunctions {
                 }
 
             }
-        }.thread;
-
-        System.out.println(t1);
-        threadList.add(t1);
-	}
+        };
+    }
 
     //按下鼠标左键触发
-    @ListenMouseKeyboard(value = 513, immediately = true,keyboardOrMouse = 1)
+    @ListenMouseKeyboard(value = 513, immediately = true, keyboardOrMouse = 1)
     private static void sample1() {
         System.out.println("程序模拟键盘依次按下h，i");
         // TODO Auto-generated method stub
@@ -49,7 +37,7 @@ public class Functions extends IFunctions {
     }
 
     //按下键盘空格键触发
-    @ListenMouseKeyboard(value = 32, immediately = true,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 32, immediately = true, keyboardOrMouse = 0)
     private static void sample2() {
         // TODO Auto-generated method stub
         System.out.println("程序模拟鼠标右键一次");
@@ -65,28 +53,6 @@ public class Functions extends IFunctions {
         System.out.println("Jintellitype监听到了空格");
     }
 
-
-
-    public static boolean ctrl=false;
-    @ListenMouseKeyboard(value = 162,keyboardOrMouse = 0)
-    private static void ctrl(){
-        ctrl=true;
-    }
-    @ListenMouseKeyboard(value = 162,press = false,keyboardOrMouse = 0)
-    private static void ctrl2(){
-        ctrl=false;
-    }
-
-
-    private static void writeProp(String s1,Long l1){
-        if(ctrl==false){
-            Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))+l1));}
-        else{
-            Config.write(s1,""+(Long.parseLong(Config.prop.getProperty(s1))-l1));
-        }
-        setClipboardString(Config.prop.toString());
-    }
-
     /**
      * 把文本设置到剪贴板（复制）
      */
@@ -97,13 +63,6 @@ public class Functions extends IFunctions {
         Transferable trans = new StringSelection(text);
         // 把文本内容设置到系统剪贴板
         clipboard.setContents(trans, null);
-    }
-
-    //9
-    @ListenMouseKeyboard(value = 57,keyboardOrMouse = 0)
-    private static void adjustTime1(){
-        writeProp("Time1", 50L);
-        time1=Long.parseLong(Config.read("Time1"));
     }
 
 }
