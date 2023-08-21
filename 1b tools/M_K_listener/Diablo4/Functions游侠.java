@@ -132,7 +132,7 @@ public class Functions游侠 extends Functions公共 {
             @Override
             public void run() {
                 while (true) {
-                    筛选装备.run( robot, 筛选装备_游侠, 筛选装备_游侠.要的词缀, 筛选装备_游侠.不要的词缀, 筛选装备_游侠.有效词条要求);
+                    筛选装备.run( robot, 筛选装备_游侠);
                     this.mySuspend();
                 }
             }

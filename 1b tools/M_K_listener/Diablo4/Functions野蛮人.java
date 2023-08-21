@@ -165,7 +165,7 @@ public class Functions野蛮人 extends Functions公共 {
             @Override
             public void run() {
                 while (true) {
-                    筛选装备.run( robot, 筛选装备_野蛮人, 筛选装备_野蛮人.要的词缀, 筛选装备_野蛮人.不要的词缀, 筛选装备_野蛮人.有效词条要求);
+                    筛选装备.run( robot, 筛选装备_野蛮人);
                     this.mySuspend();
                 }
             }

@@ -7,7 +7,22 @@ public class 筛选装备_游侠 extends 筛选装备_子类 {
             , "生命上限", "物理伤害", "对近距敌人的伤害", "敌人的伤害减免", "总护甲", "%伤害", "使用双持武器", "毒素灌注", "所有灌注技能", "被灌注的技能",
              "能量", "暴击伤害", "对受陷阱技能影响敌人", "对中毒敌人","-----毒素伤害","----持续性伤害","恶意","幸运一击几率"};
     public String[] 不要的词缀 = {"受伤状态下的伤害减免", "对受伤敌人的暴击几率", "被灌注技能的暴击伤害", "能量上限","对中毒敌人的伤害减免"};
-    public int 有效词条要求 = 3;
+    public int 需求词条数量_要求 = 3;
+
+    @Override
+    public String[] 要的词缀() {
+        return 要的词缀;
+    }
+
+    @Override
+    public String[] 不要的词缀() {
+        return 不要的词缀;
+    }
+
+    @Override
+    public int 需求词条数量_要求() {
+        return 需求词条数量_要求;
+    }
 
     @Override
     public void 装备分类(List<String> result, 筛选装备.筛选逻辑参数 筛选逻辑参数, String 预类别) {

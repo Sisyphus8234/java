@@ -102,7 +102,9 @@ public class 筛选装备 {
         }
     }
 
-    public static void run(Robot robot, 筛选装备_子类 筛选装备_子类, String[] 要的词缀, String[] 不要的词缀, int 需求词条要求数量) {
+    public static void run(Robot robot, 筛选装备_子类 筛选装备_子类) {
+
+
 
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
@@ -122,9 +124,9 @@ public class 筛选装备 {
         while (是否筛选装备 == true) {
             boolean 是否报错 = false;
             筛选逻辑参数 筛选逻辑参数=new 筛选逻辑参数();
-            筛选逻辑参数.要的词缀=要的词缀;
-            筛选逻辑参数.不要的词缀=不要的词缀;
-            筛选逻辑参数.需求词条要求数量=需求词条要求数量;
+            筛选逻辑参数.要的词缀=筛选装备_子类.要的词缀();
+            筛选逻辑参数.不要的词缀=筛选装备_子类.不要的词缀();
+            筛选逻辑参数.需求词条数量_要求 =筛选装备_子类.需求词条数量_要求();
 
             筛选逻辑参数.数值优秀=false;
             筛选逻辑参数.需求词条数量=0;
@@ -254,7 +256,7 @@ public class 筛选装备 {
                     筛选装备_子类.自定筛选(筛选逻辑参数);
                 }else{
                     筛选逻辑(筛选逻辑参数);
-                    if(筛选逻辑参数.需求词条数量>=筛选逻辑参数.需求词条要求数量){
+                    if(筛选逻辑参数.需求词条数量>=筛选逻辑参数.需求词条数量_要求){
                         筛选逻辑参数.需求词条数量是否满足=true;
                     }
 
@@ -377,7 +379,7 @@ public class 筛选装备 {
         String[] 不要的词缀;
         Integer 需求词条数量;
         List<String> 需求词条;
-        int 需求词条要求数量;
+        Integer 需求词条数量_要求;
         Boolean 需求词条数量是否满足;
         boolean 自定要求是否满足;
         boolean 所有要求满足;
