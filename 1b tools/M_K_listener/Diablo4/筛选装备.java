@@ -115,8 +115,8 @@ public class 筛选装备 {
         while (是否筛选装备 == true) {
             boolean 是否报错 = false;
             筛选逻辑参数 筛选逻辑参数 = new 筛选逻辑参数();
-            筛选逻辑参数.要的词缀 = 筛选装备_子类.要的词缀();
-            筛选逻辑参数.不要的词缀 = 筛选装备_子类.不要的词缀();
+            筛选逻辑参数.要的词缀_容器 = 筛选装备_子类.要的词缀();
+            筛选逻辑参数.不要的词缀_容器 = 筛选装备_子类.不要的词缀();
             筛选逻辑参数.装备种类 = 装备种类.未定种类;
             筛选逻辑参数.initPrimitiveDataType(筛选装备_子类.需求词条数量_要求(),筛选装备_子类.数值大于多少算优秀());
 
@@ -235,7 +235,7 @@ public class 筛选装备 {
 //                System.out.println(是词缀的部分);
 
 
-                筛选逻辑参数.是词缀的部分 = 是词缀的部分;
+                筛选逻辑参数.是词缀的部分_容器 = 是词缀的部分;
                 筛选逻辑参数.需求词条 = 需求词条;
 
 
@@ -335,7 +335,7 @@ public class 筛选装备 {
     }
 
     public static void 筛选逻辑(筛选逻辑参数 筛选逻辑参数) {
-        for (String s : 筛选逻辑参数.是词缀的部分) {
+        for (String s : 筛选逻辑参数.是词缀的部分_容器) {
             if (s.contains("每秒伤害") || s.contains("护甲值")) {
 
                 Pattern pattern = Pattern.compile("([+-]{1})(\\d+)");
@@ -355,10 +355,10 @@ public class 筛选装备 {
                     筛选逻辑参数.数值优秀 = true;
                 }
             }
-            for (String s1 : 筛选逻辑参数.要的词缀) {
+            for (String s1 : 筛选逻辑参数.要的词缀_容器) {
                 boolean 要的词缀是否包含不要的词缀 = false;
                 if (s.contains(s1)) {
-                    for (String s2 : 筛选逻辑参数.不要的词缀) {
+                    for (String s2 : 筛选逻辑参数.不要的词缀_容器) {
                         if (s.contains(s2)) {
                             要的词缀是否包含不要的词缀 = true;
                             break;
@@ -379,11 +379,11 @@ public class 筛选装备 {
     }
 
     static class 筛选逻辑参数 {
-        List<String> 是词缀的部分;
+        List<String> 是词缀的部分_容器;
         int 数值;
         boolean 数值优秀;
-        String[] 要的词缀;
-        String[] 不要的词缀;
+        String[] 要的词缀_容器;
+        String[] 不要的词缀_容器;
         int 需求词条数量;
         List<String> 需求词条;
         int 需求词条数量_要求;

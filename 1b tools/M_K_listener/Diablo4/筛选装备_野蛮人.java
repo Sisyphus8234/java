@@ -63,7 +63,7 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     @Override
     public void 自定筛选(筛选装备.筛选逻辑参数 筛选逻辑参数) {
         筛选逻辑参数.自定要求是否满足=false;
-        for (String s : 筛选逻辑参数.是词缀的部分) {
+        for (String s : 筛选逻辑参数.是词缀的部分_容器) {
             if(s.contains("移动速度")){
                 筛选逻辑参数.自定要求是否满足=true;
             }
