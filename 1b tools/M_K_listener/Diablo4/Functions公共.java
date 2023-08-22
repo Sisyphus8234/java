@@ -36,7 +36,7 @@ public class Functions公共 extends IFunctions {
         };
     }
 
-    @ListenMouseKeyboard(value = 86, keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 88, keyboardOrMouse = 0)
     public static void 扔装备() {
         Point point=MouseInfo.getPointerInfo().getLocation();
         robot.mousePress(BUTTON1_DOWN_MASK);
