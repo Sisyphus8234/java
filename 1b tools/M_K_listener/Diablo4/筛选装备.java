@@ -172,16 +172,18 @@ public class 筛选装备 {
                 while ((line = reader.readLine()) != null) {
 
                     System.out.println(line);
-                    output = output + line + "\n";
+
 
                     // 找到元组开始的位置和结束的位置
                     int tupleStartIndex = line.indexOf('(');
-                    int tupleEndIndex = line.indexOf(')');
+                    int tupleEndIndex = line.lastIndexOf(')');
 
                     if (tupleStartIndex != -1 && tupleEndIndex != -1) {
                         // 提取元组部分
                         String tuple = line.substring(tupleStartIndex + 1, tupleEndIndex);
 
+                        System.out.println("---------------------------------------------------tuple");
+                        System.out.println(tuple);
                         // 切分元组，取得文本部分
                         String[] tupleParts = tuple.split(",");
 
@@ -191,6 +193,10 @@ public class 筛选装备 {
                             // 去掉单引号，获得最终的文本
                             String extractedText = textPart.replaceAll("'", "").trim();
                             result.add(extractedText);
+
+                            output = output + line + "\n";
+
+
 
                             if (extractedText.contains("戒指")) {
                                 预类别 = "戒指";
@@ -235,14 +241,14 @@ public class 筛选装备 {
 
 
                 List<String> 是词缀的部分 = result.subList(物品强度索引 + 1, 装备时损失属性索引);
-                System.out.println(是词缀的部分);
+//                System.out.println(是词缀的部分);
 
 
                 筛选逻辑参数.是词缀的部分 = 是词缀的部分;
                 筛选逻辑参数.需求词条 = 需求词条;
 
 
-                System.out.println(筛选逻辑参数.装备种类);
+
                 if (筛选逻辑参数.装备种类.equals(装备种类.自定要求)) {
                     筛选装备_子类.自定筛选(筛选逻辑参数);
                 } else {
@@ -278,16 +284,18 @@ public class 筛选装备 {
             }
 
             voice();
-            System.out.println("-----需求词条: " + 需求词条);
-            System.out.println("-----需求词条数量: " + 筛选逻辑参数.需求词条数量);
-            System.out.println("-----数值优秀: " + 筛选逻辑参数.数值优秀);
-            System.out.println("-----预类别: " + 预类别);
-            System.out.println("-----装备种类: " + 筛选逻辑参数.装备种类);
-            System.out.println("-----自定要求是否满足: " + 筛选逻辑参数.自定要求是否满足);
-            System.out.println("-----所有要求满足: " + 筛选逻辑参数.所有要求满足);
+//            System.out.println("-----需求词条: " + 需求词条);
+//            System.out.println("-----需求词条数量: " + 筛选逻辑参数.需求词条数量);
+//            System.out.println("-----数值: " + 筛选逻辑参数.数值);
+//            System.out.println("-----数值优秀: " + 筛选逻辑参数.数值优秀);
+//            System.out.println("-----预类别: " + 预类别);
+//            System.out.println("-----装备种类: " + 筛选逻辑参数.装备种类);
+//            System.out.println("-----自定要求是否满足: " + 筛选逻辑参数.自定要求是否满足);
+//            System.out.println("-----所有要求满足: " + 筛选逻辑参数.所有要求满足);
 
             output = output + ("-----需求词条: " + 需求词条) + "\n" +
                     ("-----需求词条数量: " + 筛选逻辑参数.需求词条数量) + "\n" +
+                    ("-----数值: " + 筛选逻辑参数.数值) + "\n" +
                     ("-----数值优秀: " + 筛选逻辑参数.数值优秀) + "\n" +
                     ("-----预类别: " + 预类别) + "\n" +
                     ("-----装备种类: " + 筛选逻辑参数.装备种类) + "\n" +
@@ -348,11 +356,11 @@ public class 筛选装备 {
                 int number = Integer.parseInt(matcher.group(2)); // 数字
 
                 if (sign.equals("-")) {
-                    number = -number;
+                    筛选逻辑参数.数值 = -number;
                 }
 
 
-                if (number >= 筛选逻辑参数.数值大于多少算优秀) {
+                if (筛选逻辑参数.数值 >= 筛选逻辑参数.数值大于多少算优秀) {
                     筛选逻辑参数.数值优秀 = true;
                 }
             }
@@ -381,13 +389,14 @@ public class 筛选装备 {
 
     static class 筛选逻辑参数 {
         List<String> 是词缀的部分;
+        int 数值;
         Boolean 数值优秀;
         String[] 要的词缀;
         String[] 不要的词缀;
-        Integer 需求词条数量;
+        int 需求词条数量;
         List<String> 需求词条;
-        Integer 需求词条数量_要求;
-        Boolean 需求词条数量是否满足;
+        int 需求词条数量_要求;
+        boolean 需求词条数量是否满足;
         boolean 自定要求是否满足;
         boolean 所有要求满足;
         装备种类 装备种类;
