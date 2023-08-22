@@ -11,9 +11,9 @@ import java.io.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.awt.event.KeyEvent.VK_SPACE;
 
@@ -28,20 +28,12 @@ public class 筛选装备 {
     public static int 纵向数量 = 3;
     public static float 单个宽度 = (float) 宽度 / (float) 横向数量;
     public static float 单个高度 = (float) 高度 / (float) 纵向数量;
-    public static HashMap<Integer, String> 装备种类 = new HashMap<>();
-
     public static boolean 是否筛选装备 = false;
     public static boolean 鼠标是否回到原点 = true;
-    public static String folderName="OutPicture";
-    public static String outPictureName="screenshot";
-    public static String outTextName="output";
+    public static String folderName = "OutPicture";
+    public static String outPictureName = "screenshot";
+    public static String outTextName = "output";
 
-    static {
-        装备种类.put(0, "只看数值");
-        装备种类.put(1, "只看属性");
-        装备种类.put(2, "看数值或看属性");
-        装备种类.put(3, "自定要求");
-    }
 
     public static void savePicture(int x, int y, Robot robot) {
 
@@ -60,10 +52,10 @@ public class 筛选装备 {
             BufferedImage screenshot = robot.createScreenCapture(screenRect);
 
             // 保存图像为文件
-            File output = new File(folderName+"/"+outPictureName+".png");
+            File output = new File(folderName + "/" + outPictureName + ".png");
             ImageIO.write(screenshot, "png", output);
 
-            File output1 = new File(folderName+"/"+outPictureName+LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".png");
+            File output1 = new File(folderName + "/" + outPictureName + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".png");
             ImageIO.write(screenshot, "png", output1);
 
         } catch (Exception e) {
@@ -105,11 +97,10 @@ public class 筛选装备 {
     public static void run(Robot robot, 筛选装备_子类 筛选装备_子类) {
 
 
-
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
 
-        String output="";
+        String output = "";
         int x轴第几个 = (int) (Math.floor((x - 左线) / 单个宽度));
         int y轴第几个 = (int) (Math.floor((y - 上线) / 单个高度));
 
@@ -123,17 +114,18 @@ public class 筛选装备 {
 
         while (是否筛选装备 == true) {
             boolean 是否报错 = false;
-            筛选逻辑参数 筛选逻辑参数=new 筛选逻辑参数();
-            筛选逻辑参数.要的词缀=筛选装备_子类.要的词缀();
-            筛选逻辑参数.不要的词缀=筛选装备_子类.不要的词缀();
-            筛选逻辑参数.需求词条数量_要求 =筛选装备_子类.需求词条数量_要求();
+            筛选逻辑参数 筛选逻辑参数 = new 筛选逻辑参数();
+            筛选逻辑参数.要的词缀 = 筛选装备_子类.要的词缀();
+            筛选逻辑参数.不要的词缀 = 筛选装备_子类.不要的词缀();
+            筛选逻辑参数.需求词条数量_要求 = 筛选装备_子类.需求词条数量_要求();
+            筛选逻辑参数.数值大于多少算优秀 = 筛选装备_子类.数值大于多少算优秀();
 
-            筛选逻辑参数.数值优秀=false;
-            筛选逻辑参数.需求词条数量=0;
-            筛选逻辑参数.需求词条数量是否满足=false;
-            筛选逻辑参数.自定要求是否满足=true;
-            筛选逻辑参数.所有要求满足=false;
-            筛选逻辑参数.装备种类="";
+            筛选逻辑参数.数值优秀 = false;
+            筛选逻辑参数.需求词条数量 = 0;
+            筛选逻辑参数.需求词条数量是否满足 = false;
+            筛选逻辑参数.自定要求是否满足 = true;
+            筛选逻辑参数.所有要求满足 = false;
+            筛选逻辑参数.装备种类 = 装备种类.未定种类;
 
             List<String> result = new ArrayList<>();
             List<String> 需求词条 = new ArrayList<>();
@@ -162,7 +154,7 @@ public class 筛选装备 {
 
             try {
                 // 构建命令
-                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir "+folderName+"/"+outPictureName+".png --use_angle_cls false --use_gpu false");
+                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + folderName + "/" + outPictureName + ".png --use_angle_cls false --use_gpu false");
 
                 // 设置工作目录（可选）
                 // processBuilder.directory(new File("path_to_working_directory"));
@@ -180,7 +172,7 @@ public class 筛选装备 {
                 while ((line = reader.readLine()) != null) {
 
                     System.out.println(line);
-                    output=output+line+"\n";
+                    output = output + line + "\n";
 
                     // 找到元组开始的位置和结束的位置
                     int tupleStartIndex = line.indexOf('(');
@@ -201,9 +193,9 @@ public class 筛选装备 {
                             result.add(extractedText);
 
                             if (extractedText.contains("戒指")) {
-                                预类别="戒指";
+                                预类别 = "戒指";
                             } else if (extractedText.contains("护符")) {
-                                预类别="护符";
+                                预类别 = "护符";
                             }
 
 //                            筛选装备_子类.装备分类(extractedText, 筛选逻辑参数,预类别);
@@ -222,7 +214,7 @@ public class 筛选装备 {
                     }
                 }
 
-                筛选装备_子类.装备分类(result, 筛选逻辑参数,预类别);
+                筛选装备_子类.装备分类(result, 筛选逻辑参数, 预类别);
 
                 switch (预类别) {
                     case "戒指":
@@ -246,35 +238,36 @@ public class 筛选装备 {
                 System.out.println(是词缀的部分);
 
 
-
-                筛选逻辑参数.是词缀的部分=是词缀的部分;
-                筛选逻辑参数.需求词条=需求词条;
+                筛选逻辑参数.是词缀的部分 = 是词缀的部分;
+                筛选逻辑参数.需求词条 = 需求词条;
 
 
                 System.out.println(筛选逻辑参数.装备种类);
-                if (筛选逻辑参数.装备种类.equals(装备种类.get(3))) {
+                if (筛选逻辑参数.装备种类.equals(装备种类.自定要求)) {
                     筛选装备_子类.自定筛选(筛选逻辑参数);
-                }else{
+                } else {
                     筛选逻辑(筛选逻辑参数);
-                    if(筛选逻辑参数.需求词条数量>=筛选逻辑参数.需求词条数量_要求){
-                        筛选逻辑参数.需求词条数量是否满足=true;
-                    }
 
-                    if (筛选逻辑参数.装备种类.equals(装备种类.get(0))) {
-                        if(筛选逻辑参数.数值优秀){
-                            筛选逻辑参数.所有要求满足=true;
+                    if (筛选逻辑参数.装备种类.equals(装备种类.只看数值)) {
+                        if (筛选逻辑参数.数值优秀) {
+                            筛选逻辑参数.所有要求满足 = true;
                         }
-                    }else if(筛选逻辑参数.装备种类.equals(装备种类.get(1))){
-                        if(筛选逻辑参数.需求词条数量是否满足){
-                            筛选逻辑参数.所有要求满足=true;
+                    } else if (筛选逻辑参数.装备种类.equals(装备种类.只看属性)) {
+                        if (筛选逻辑参数.需求词条数量是否满足) {
+                            筛选逻辑参数.所有要求满足 = true;
                         }
-                    }else if(筛选逻辑参数.装备种类.equals(装备种类.get(2))){
-                        if(筛选逻辑参数.数值优秀||筛选逻辑参数.需求词条数量是否满足){
-                            筛选逻辑参数.所有要求满足=true;
+                    } else if (筛选逻辑参数.装备种类.equals(装备种类.看数值或看属性)) {
+                        if (筛选逻辑参数.数值优秀 || 筛选逻辑参数.需求词条数量是否满足) {
+                            筛选逻辑参数.所有要求满足 = true;
                         }
-                    }else {
-                        if(筛选逻辑参数.数值优秀||筛选逻辑参数.需求词条数量是否满足){
-                            筛选逻辑参数.所有要求满足=true;
+                    }else if (筛选逻辑参数.装备种类.equals(装备种类.看数值且看属性)) {
+                        if (筛选逻辑参数.数值优秀 && 筛选逻辑参数.需求词条数量是否满足) {
+                            筛选逻辑参数.所有要求满足 = true;
+                        }
+                    }
+                    else {
+                        if (筛选逻辑参数.数值优秀 || 筛选逻辑参数.需求词条数量是否满足) {
+                            筛选逻辑参数.所有要求满足 = true;
                         }
                     }
                 }
@@ -293,14 +286,14 @@ public class 筛选装备 {
             System.out.println("-----自定要求是否满足: " + 筛选逻辑参数.自定要求是否满足);
             System.out.println("-----所有要求满足: " + 筛选逻辑参数.所有要求满足);
 
-            output=output+("-----需求词条: " + 需求词条)+"\n"+
-            ("-----需求词条数量: " + 筛选逻辑参数.需求词条数量)+"\n"+
-            ("-----数值优秀: " + 筛选逻辑参数.数值优秀)+"\n"+
-            ("-----预类别: " + 预类别)+"\n"+
-            ("-----装备种类: " + 筛选逻辑参数.装备种类)+"\n"+
-            ("-----自定要求是否满足: " + 筛选逻辑参数.自定要求是否满足)+"\n"+
-            ("-----所有要求满足: " + 筛选逻辑参数.所有要求满足)+"\n"+
-            ("===============================================================================")+"\n";
+            output = output + ("-----需求词条: " + 需求词条) + "\n" +
+                    ("-----需求词条数量: " + 筛选逻辑参数.需求词条数量) + "\n" +
+                    ("-----数值优秀: " + 筛选逻辑参数.数值优秀) + "\n" +
+                    ("-----预类别: " + 预类别) + "\n" +
+                    ("-----装备种类: " + 筛选逻辑参数.装备种类) + "\n" +
+                    ("-----自定要求是否满足: " + 筛选逻辑参数.自定要求是否满足) + "\n" +
+                    ("-----所有要求满足: " + 筛选逻辑参数.所有要求满足) + "\n" +
+                    ("===============================================================================") + "\n";
 
             tempx = (int) MouseInfo.getPointerInfo().getLocation().getX();
             tempy = (int) MouseInfo.getPointerInfo().getLocation().getY();
@@ -320,7 +313,7 @@ public class 筛选装备 {
             }
 
             // 将内容保存到文件
-            String fileName = folderName+"/"+outTextName+LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"))+".txt";
+            String fileName = folderName + "/" + outTextName + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".txt";
             try {
                 FileWriter writer = new FileWriter(fileName);
                 writer.write(output);
@@ -329,7 +322,6 @@ public class 筛选装备 {
             } catch (IOException e) {
                 System.out.println("保存文件时出现错误：" + e.getMessage());
             }
-
 
 
             x轴第几个--;
@@ -343,36 +335,51 @@ public class 筛选装备 {
         }
     }
 
-//    public static void 筛选逻辑(List<String> 是词缀的部分, AtomicReference<Boolean> 数值优秀, String[] 要的词缀, String[] 不要的词缀, AtomicReference<Integer> 需求词条数量,
-//                                List<String> 需求词条,int 需求词条要求数量,AtomicReference<Boolean> 需求词条数量是否满足, boolean arg1, boolean arg2) {
-
     public static void 筛选逻辑(筛选逻辑参数 筛选逻辑参数) {
         for (String s : 筛选逻辑参数.是词缀的部分) {
-                if (s.contains("每秒伤害") || s.contains("护甲值")) {
-                    if (s.contains("+")) {
-                        筛选逻辑参数.数值优秀=true;
-                    }
+            if (s.contains("每秒伤害") || s.contains("护甲值")) {
+
+                Pattern pattern = Pattern.compile("([+-]{1})(\\d+)");
+                Matcher matcher = pattern.matcher(s);
+
+                matcher.find();
+
+                String sign = matcher.group(1); // 符号
+                int number = Integer.parseInt(matcher.group(2)); // 数字
+
+                if (sign.equals("-")) {
+                    number = -number;
                 }
-                for (String s1 : 筛选逻辑参数.要的词缀) {
-                    boolean 要的词缀是否包含不要的词缀 = false;
-                    if (s.contains(s1)) {
-                        for (String s2 : 筛选逻辑参数.不要的词缀) {
-                            if (s.contains(s2)) {
-                                要的词缀是否包含不要的词缀 = true;
-                                break;
-                            }
-                        }
-                        if (要的词缀是否包含不要的词缀 == false) {
-                            筛选逻辑参数.需求词条数量++;
-                            筛选逻辑参数.需求词条.add(s);
+
+
+                if (number >= 筛选逻辑参数.数值大于多少算优秀) {
+                    筛选逻辑参数.数值优秀 = true;
+                }
+            }
+            for (String s1 : 筛选逻辑参数.要的词缀) {
+                boolean 要的词缀是否包含不要的词缀 = false;
+                if (s.contains(s1)) {
+                    for (String s2 : 筛选逻辑参数.不要的词缀) {
+                        if (s.contains(s2)) {
+                            要的词缀是否包含不要的词缀 = true;
                             break;
                         }
                     }
+                    if (要的词缀是否包含不要的词缀 == false) {
+                        筛选逻辑参数.需求词条数量++;
+                        筛选逻辑参数.需求词条.add(s);
+                        break;
+                    }
                 }
+            }
+            if (筛选逻辑参数.需求词条数量 >= 筛选逻辑参数.需求词条数量_要求) {
+                筛选逻辑参数.需求词条数量是否满足 = true;
+            }
         }
 
     }
-    static class 筛选逻辑参数{
+
+    static class 筛选逻辑参数 {
         List<String> 是词缀的部分;
         Boolean 数值优秀;
         String[] 要的词缀;
@@ -383,7 +390,17 @@ public class 筛选装备 {
         Boolean 需求词条数量是否满足;
         boolean 自定要求是否满足;
         boolean 所有要求满足;
-        String 装备种类;
+        装备种类 装备种类;
+        int 数值大于多少算优秀;
+    }
+
+    enum 装备种类 {
+        只看数值,
+        只看属性,
+        看数值或看属性,
+        看数值且看属性,
+        自定要求,
+        未定种类,
     }
 
 }

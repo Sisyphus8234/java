@@ -10,4 +10,5 @@ public abstract class 筛选装备_子类 {
     public abstract String[] 要的词缀();
     public abstract String[] 不要的词缀();
     public abstract int 需求词条数量_要求();
+    public abstract int 数值大于多少算优秀();
 }
