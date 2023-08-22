@@ -36,7 +36,8 @@ public class KeyboardHook {
 
 
 
-					if(info.flags==16 || info.flags==144) {System.out.print("(由程序执行的)");}
+//					if(info.flags==16 || info.flags==144) {System.out.print("(由程序执行的)");}
+					if(info.flags!=0 && info.flags!=128) {System.out.print("(由程序执行的)");}
 					System.out.println("键盘键"+info.vkCode);
 
 					//开关相关
@@ -62,7 +63,8 @@ public class KeyboardHook {
 
 
 					String userInput="userInput";
-					if(info.flags==16 || info.flags==144){
+//					if(info.flags==16 || info.flags==144){
+					if(info.flags!=0 && info.flags!=128){
 						userInput="!userInput";
 					}
 //					String inputCode=info.vkCode+"_"+wParam.intValue()+"_"+userInput;
