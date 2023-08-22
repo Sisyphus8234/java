@@ -175,8 +175,6 @@ public class 筛选装备 {
                         // 提取元组部分
                         String tuple = line.substring(tupleStartIndex + 1, tupleEndIndex);
 
-                        System.out.println("---------------------------------------------------tuple");
-                        System.out.println(tuple);
                         // 切分元组，取得文本部分
                         String[] tupleParts = tuple.split(",");
 
