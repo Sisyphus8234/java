@@ -396,14 +396,14 @@ public class 筛选装备 {
         int 数值大于多少算优秀;
 
         public void initPrimitiveDataType(int 需求词条数量_要求,int 数值大于多少算优秀){
-            数值优秀=false;
-            需求词条数量=0;
-            需求词条数量_要求=需求词条数量_要求;
-            需求词条数量是否满足=false;
-            自定要求是否满足=true;
-            所有要求满足=false;
-            数值大于多少算优秀=数值大于多少算优秀;
-            数值=数值大于多少算优秀-1;
+            this.数值优秀=false;
+            this.需求词条数量=0;
+            this.需求词条数量_要求=需求词条数量_要求;
+            this.需求词条数量是否满足=false;
+            this.自定要求是否满足=true;
+            this.所有要求满足=false;
+            this.数值大于多少算优秀=数值大于多少算优秀;
+            this.数值=数值大于多少算优秀-1;
         }
     }
 
