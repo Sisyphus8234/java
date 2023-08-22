@@ -6,11 +6,14 @@ import base.MyThread;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import static java.awt.event.KeyEvent.*;
+
 public class Functions游侠 extends Functions公共 {
 
 //    public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
     public static Long baseDelay = 200L;
     public static boolean t1Temp = false;
+    public static boolean t1Temp1 = false;
     public static boolean t2Temp = false;
 
     public static boolean 右键或者1234在t1运行时按下 = false;
@@ -66,13 +69,21 @@ public class Functions游侠 extends Functions公共 {
                     if (t1Temp == true) {
 
                         if(是否基础技能) {
-                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                             robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        }
+                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 
-                        robot.keyPress(KeyEvent.VK_5);
+                        }
                         robot.keyRelease(KeyEvent.VK_5);
+                        robot.keyPress(KeyEvent.VK_5);
+
+                        t1Temp1=true;
+
                     } else {
+                        if(t1Temp1==true){
+                        robot.keyRelease(KeyEvent.VK_5);
+                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        t1Temp1=false;
+                        }
                     }
                     pause(baseDelay);
                 }
@@ -120,6 +131,8 @@ public class Functions游侠 extends Functions公共 {
                     if (t1Temp == true ) {
                         robot.keyPress(KeyEvent.VK_1);
                         robot.keyRelease(KeyEvent.VK_1);
+//                        robot.keyPress(VK_4);
+//                        robot.keyRelease(VK_4);
                     } else {
                     }
                     pause(1000);
@@ -140,16 +153,20 @@ public class Functions游侠 extends Functions公共 {
 
     }
 
-//    @ListenMouseKeyboard(value = 82, intercept = true,keyboardOrMouse = 0)
-//    public static void r() {
-//
-//        t1Temp =true;
-//        t1.myResume();
-//
-//    }
-//    @ListenMouseKeyboard(value = 82,press = false, intercept = true,keyboardOrMouse = 0)
-//    public static void r1() {
-//    }
+
+
+    @ListenMouseKeyboard(value = 513, keyboardOrMouse = 1)
+    @ListenMouseKeyboard(value = 87, keyboardOrMouse = 0)
+    public static void w() {
+
+        暂停t1时是否松开左键 = false;
+//        t1Temp1=false;
+        t1Temp = false;
+
+        t2Temp = false;
+    }
+
+
 
     @ListenMouseKeyboard(value = 69, intercept = true, keyboardOrMouse = 0)
     public static void e() {
@@ -167,6 +184,9 @@ public class Functions游侠 extends Functions公共 {
 
     @ListenMouseKeyboard(value = 82, intercept = true, keyboardOrMouse = 0)
     public static void R() {
+//        robot.keyRelease(VK_5);
+//        robot.keyRelease(BUTTON1_DOWN_MASK);
+
         t1Temp = false;
         t2Temp = true;
     }
@@ -187,17 +207,7 @@ public class Functions游侠 extends Functions公共 {
     }
 
 
-    @ListenMouseKeyboard(value = 514, keyboardOrMouse = 1)
-    @ListenMouseKeyboard(value = 87, keyboardOrMouse = 0)
-    public static void w() {
-        暂停t1时是否松开左键 = false;
-        t1Temp = false;
-        t2Temp = false;
 
-//                robot.keyRelease(KeyEvent.VK_G);
-
-
-    }
 
     //    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = 1)
     @ListenMouseKeyboard(value = 49, keyboardOrMouse = 0)
@@ -234,12 +244,11 @@ public class Functions游侠 extends Functions公共 {
 
     }
 
-    @ListenMouseKeyboard(value = 52, keyboardOrMouse = 0)
-    public static void 四() {
-        t1Temp = false;
-        t2Temp = true;
-
-    }
+//    @ListenMouseKeyboard(value = 52, keyboardOrMouse = 0)
+//    public static void 四() {
+//        t1Temp = false;
+//        t2Temp = true;
+//    }
 
 
     @ListenMouseKeyboard(value = 192, keyboardOrMouse = 0, intercept = true)
