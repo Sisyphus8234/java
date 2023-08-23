@@ -27,7 +27,7 @@ public class Functions德鲁伊 extends IFunctions {
     public static MyThread t3;
 
     static {
-        t1 = new MyThread("on") {
+        t1 = new MyThread(MyThread.State.on) {
             @Override
             public void run() {
                 while (true) {
@@ -92,7 +92,7 @@ public class Functions德鲁伊 extends IFunctions {
 //            }
 //        };
 
-        t3 = new MyThread("on") {
+        t3 = new MyThread(MyThread.State.on) {
             @Override
             public void run() {
                 while (true) {
@@ -115,7 +115,7 @@ public class Functions德鲁伊 extends IFunctions {
 
     }
 
-//    @ListenMouseKeyboard(value = 82, intercept = true,keyboardOrMouse = 0)
+//    @ListenMouseKeyboard(value = 82, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    public static void r() {
 //
 //攻击型加移动=false;
@@ -123,11 +123,11 @@ public class Functions德鲁伊 extends IFunctions {
 //        t1.myResume();
 //
 //    }
-//    @ListenMouseKeyboard(value = 82,press = false, intercept = true,keyboardOrMouse = 0)
+//    @ListenMouseKeyboard(value = 82,press = false, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    public static void r1() {
 //    }
 
-    @ListenMouseKeyboard(value = 69, intercept = true,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 69, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e() {
         攻击型加移动=true;
         t1Temp =true;
@@ -141,7 +141,7 @@ public class Functions德鲁伊 extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(value = 82, intercept = true,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 82, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void R() {
         攻击型加移动=false;
         t1Temp =true;
@@ -149,32 +149,32 @@ public class Functions德鲁伊 extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 523,keyboardOrMouse = 1)
+    @ListenMouseKeyboard(value = 523,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void a() {
         攻击型加移动=false;
     }
 
-    @ListenMouseKeyboard(value = 524,keyboardOrMouse = 1)
+    @ListenMouseKeyboard(value = 524,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void a1() {
         攻击型加移动=true;
     }
 
-    @ListenMouseKeyboard(value = 192,keyboardOrMouse = 0,intercept = true)
-    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = 1)
+    @ListenMouseKeyboard(value = 192,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,intercept = true)
+    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
         b0=false;
     }
 
-    @ListenMouseKeyboard(value = 192,keyboardOrMouse = 0,press = false,intercept = true)
-    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = 1)
+    @ListenMouseKeyboard(value = 192,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,press = false,intercept = true)
+    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
         b0=true;
     }
 
 
 
-    @ListenMouseKeyboard(value = 514 ,keyboardOrMouse = 1)
-    @ListenMouseKeyboard(value = 87 ,keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 514 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(value = 87 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w() {
         暂停t1时是否松开左键 =false;
         t1Temp = false;
@@ -183,12 +183,12 @@ public class Functions德鲁伊 extends IFunctions {
 
     }
 
-//    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = 1)
-    @ListenMouseKeyboard(value = 49 ,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 50 ,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 51 ,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 52 ,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 70 ,keyboardOrMouse = 0)
+//    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(value = 49 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 50 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 51 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 52 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 70 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1234() {
 //        if(右键或者1234在t1运行时按下==true){
 //            之前已经有右键或者1234在t1运行时按下=true;
@@ -205,12 +205,12 @@ public class Functions德鲁伊 extends IFunctions {
 
     }
 
-//    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = 1)
-    @ListenMouseKeyboard(value = 49 ,press = false,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 50 ,press = false,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 51 ,press = false,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = 0)
-    @ListenMouseKeyboard(value = 70 ,press = false,keyboardOrMouse = 0)
+//    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(value = 49 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 50 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 51 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 70 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f12341() {
         if(右键或者1234在t1运行时按下 ==true){
             t1Temp = true;

@@ -12,7 +12,7 @@ public class Functions公共 extends IFunctions {
     public static Color pixelColor;
 
     static {
-        new MyThread("off") {
+        new MyThread(MyThread.State.off) {
             @Override
             public void run() {
                 while (true) {
@@ -36,7 +36,7 @@ public class Functions公共 extends IFunctions {
         };
     }
 
-    @ListenMouseKeyboard(value = 88, keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 88, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 扔装备() {
         Point point=MouseInfo.getPointerInfo().getLocation();
         robot.mousePress(BUTTON1_DOWN_MASK);
