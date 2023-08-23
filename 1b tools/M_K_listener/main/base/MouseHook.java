@@ -42,7 +42,7 @@ public class MouseHook {
 					System.out.println(info.mouseData);
 
 					//开关相关
-					if(Controller.listehSwitch==false){
+					if(Controller.listenSwitch ==false){
 						return null;
 					}
 

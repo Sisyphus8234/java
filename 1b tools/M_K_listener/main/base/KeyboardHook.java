@@ -49,17 +49,17 @@ public class KeyboardHook {
 							for(MyThread thread:Controller.threadList){
 								thread.mySuspend();
 							}
-							Controller.listehSwitch=false;
+							Controller.listenSwitch =false;
 						}else if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.on)){
 							for(MyThread thread:Controller.threadList){
 								if(thread.defaultState==MyThread.State.on){
 									thread.myResume();
 								}
 							}
-							Controller.listehSwitch=true;
+							Controller.listenSwitch =true;
 						}
 					}
-					if(Controller.listehSwitch==false){
+					if(Controller.listenSwitch ==false){
 						return null;
 					}
 
