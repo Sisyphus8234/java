@@ -4,8 +4,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import static base.Controller.*;
+
 public class ScanFunction {
-    public static void run(Class myFunctionClass, Class baseFunctionClass, Map<InputInfo, Utiliy> mapJna, Map<String, Utiliy> mapJintellitype, Map<Integer, String> mapListenBar, ArrayList<MyThread> threadList){
+    public static void run(Class myFunctionClass, Class baseFunctionClass){
 
 
         //Class<Functions> classFunctions = Functions.class;
@@ -29,15 +31,15 @@ public class ScanFunction {
             System.exit(0);
         }
 
-        //按下还是松开,鼠标不适用
-        Map<Boolean,Integer> map1=new HashMap();
-        map1.put(true,256);
-        map1.put(false,257);
+//        //按下还是松开,鼠标不适用
+//        Map<Boolean,Integer> map1=new HashMap();
+//        map1.put(true,256);
+//        map1.put(false,257);
 
-        //是否是用户输入
-        Map<Boolean,String> map2=new HashMap();
-        map2.put(true,"userInput");
-        map2.put(false,"!userInput");
+//        //是否是用户输入
+//        Map<Boolean,String> map2=new HashMap();
+//        map2.put(true,"userInput");
+//        map2.put(false,"!userInput");
 
 
         for (Method method : methods) {
@@ -53,8 +55,8 @@ public class ScanFunction {
                 u111.intercept=k111.intercept();
                 InputInfo inputInfo =new InputInfo();
                 inputInfo.value=k111.value();
-                inputInfo.press=map1.get(k111.press());
-                inputInfo.userInput=map2.get(k111.userInput());
+                inputInfo.press=k111.press();
+                inputInfo.userInput=k111.userInput();
                 inputInfo.keyboardOrMouse=k111.keyboardOrMouse();
                 inputInfo.mouseData= k111.mouseData();
                 mapJna.put(inputInfo, u111);
@@ -73,8 +75,8 @@ public class ScanFunction {
                     u111.intercept=k111.intercept();
                     InputInfo inputInfo =new InputInfo();
                     inputInfo.value=k111.value();
-                    inputInfo.press=map1.get(k111.press());
-                    inputInfo.userInput=map2.get(k111.userInput());
+                    inputInfo.press=k111.press();
+                    inputInfo.userInput=k111.userInput();
                     inputInfo.keyboardOrMouse=k111.keyboardOrMouse();
                     inputInfo.mouseData= k111.mouseData();
                     mapJna.put(inputInfo, u111);
@@ -136,10 +138,10 @@ public class ScanFunction {
             if(field.isAnnotationPresent(ListenBar.class)){
                 ListenBar listenBar =field.getAnnotation(ListenBar.class);
                 try {
-                    if(listenBar.off()==true&&listenBar.threadList()!=true&&!mapListenBar.containsValue("off")){
-                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),"off");
-                    }else if(listenBar.off()==false&&listenBar.threadList()!=true&&!mapListenBar.containsValue("on")){
-                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),"on");
+                    if(listenBar.onOrOff()==ListenBar.OnOrOff.off&&listenBar.threadList()!=true){
+                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),ListenBar.OnOrOff.off);
+                    }else if(listenBar.onOrOff()==ListenBar.OnOrOff.on&&listenBar.threadList()!=true){
+                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),ListenBar.OnOrOff.on);
                     }
                 }catch (Exception e){}
 
@@ -166,4 +168,5 @@ public class ScanFunction {
         System.arraycopy(arr2, 0, merged, length1, length2);  // 将 arr2 数组的元素复制到 merged 数组中
         return merged;
     }
+
 }

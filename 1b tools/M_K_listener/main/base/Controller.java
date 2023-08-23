@@ -11,11 +11,9 @@ public class Controller {
 	public static boolean listehSwitch=true;
 
 	public static ArrayList<MyThread> threadList=new ArrayList<>();
-
 	public static Map<InputInfo, Utiliy> mapJna=new HashMap<>();
-	public static Map<String, Utiliy> mapJintellitype=new HashMap<String,Utiliy>();
-
-	public static Map<Integer, String> mapListenBar=new HashMap<Integer,String>();
+	public static Map<String, Utiliy> mapJintellitype=new HashMap<>();
+	public static Map<Integer, Integer> mapListenBar=new HashMap<>();
 	
 	public static long refreshtime=3000;
 
@@ -25,7 +23,7 @@ public class Controller {
 		
 		MyJFrame.run();
 
-		ScanFunction.run(myFunctionClass,baseFunctionClass,mapJna,mapJintellitype,mapListenBar,threadList);
+		ScanFunction.run(myFunctionClass,baseFunctionClass);
 
 		if(Functions.Jna==true) {
 			//mouse

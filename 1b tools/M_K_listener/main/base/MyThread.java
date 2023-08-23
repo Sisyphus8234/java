@@ -1,25 +1,31 @@
 package base;
 
 public class MyThread extends Thread {
-    public String defaultState="off";
-    public String state="";
+
+    public static class State{
+        public static final int on=1;
+
+        public static final int off=2;
+    }
+    public int defaultState=State.off;
+    public int state;
     public MyThread(){
         super();
         this.myStart();
         IFunctions.threadList.add(this);
     }
 
-    public MyThread(String defaultState){
+    public MyThread(int defaultState){
         this();
         this.defaultState=defaultState;
-        if(this.defaultState.equals("off")){
+        if(this.defaultState==State.off){
             this.mySuspend();
         }
     }
 
 
     public void myStart(){
-        state="on";
+        state=State.on;
         start();
 
 
@@ -27,12 +33,12 @@ public class MyThread extends Thread {
 
 
     public void mySuspend(){
-        state="off";
+        state=State.off;
         suspend();
     }
 
     public void myResume(){
-        state="on";
+        state=State.on;
         resume();
     }
 

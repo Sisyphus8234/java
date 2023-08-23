@@ -18,9 +18,9 @@ public class MouseHook {
 	
 	private HHOOK hhk;
 	private LowLevelMouseProc mouseHook;
-	
+	InputInfo inputInfo =new InputInfo();
 
-
+	private Utiliy utiliy;
 
 	public void run() {
 		
@@ -46,20 +46,25 @@ public class MouseHook {
 						return null;
 					}
 
-					String userInput="userInput";
-					if(info.flags==1){
-						userInput="!userInput";
-					}
-//					String inputCode=wParam.intValue()+"_256"+"_"+userInput;
-					InputInfo inputInfo =new InputInfo();
+
+
+//					InputInfo inputInfo =new InputInfo();
+					inputInfo.resetProperty();
 					inputInfo.value=wParam.intValue();
-					inputInfo.userInput=userInput;
 					inputInfo.mouseData=info.mouseData;
 
+
+					if(info.flags==1){
+						inputInfo.userInput=false;
+					}else {
+						inputInfo.userInput=true;
+					}
+					inputInfo.press=true;
+
 					if(Controller.mapJna.containsKey(inputInfo)){
-						Utiliy utiliy1=Controller.mapJna.get(inputInfo);
-						Controller.do1.task(utiliy1);
-						if(utiliy1.intercept==true){
+						utiliy=Controller.mapJna.get(inputInfo);
+						Controller.do1.task(utiliy);
+						if(utiliy.intercept==true){
 							return new LRESULT(1);
 						}
 					}

@@ -13,10 +13,10 @@ public class IFunctions {
 
     public static Robot robot;
 
-    @ListenBar(off = false)
+    @ListenBar(onOrOff = ListenBar.OnOrOff.on)
     public static Integer on=33;
 
-    @ListenBar(off = true)
+    @ListenBar(onOrOff = ListenBar.OnOrOff.off)
     public static Integer off=34;
 
     @ListenBar(threadList = true)

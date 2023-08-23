@@ -6,9 +6,18 @@ public class InputInfo {
 
     int keyboardOrMouse;
     int value;
-    int press;
-    String userInput;
+    boolean press;
+    boolean userInput;
     int mouseData;
+
+    public void resetProperty(){
+        this.keyboardOrMouse=0;
+        this.value=0;
+        this.press=true;
+        this.userInput=true;
+        this.mouseData=0;
+
+    }
 
 
     @Override
@@ -22,11 +31,11 @@ public class InputInfo {
         InputInfo other = (InputInfo) obj; // 将obj强制转换为当前类的类型
         // 根据类的属性进行相等性比较
         switch (other.keyboardOrMouse){
-            case 0:
+            case ListenMouseKeyboard.KeyboardOrMouse.Keyboard:
                 return value == other.value && press==other.press && userInput== other.userInput;
-            case 1:
+            case ListenMouseKeyboard.KeyboardOrMouse.Mouse:
                 return value == other.value  && userInput== other.userInput;
-            case 2:
+            case ListenMouseKeyboard.KeyboardOrMouse.MouseWithMouseData:
                 return value == other.value  && userInput== other.userInput&&mouseData== other.mouseData;
             default:
                 return false;

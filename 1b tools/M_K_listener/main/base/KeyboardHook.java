@@ -14,20 +14,22 @@ import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 
 import com.sun.jna.platform.win32.WinUser.MSG;
 
- 
+
 /** Sample implementation of a low-level keyboard hook on W32. */
 public class KeyboardHook {
 
-	
+
 	private HHOOK hhk;
 	private LowLevelKeyboardProc keyboardHook;
-	
-	
+	private InputInfo inputInfo =new InputInfo();
+	private Utiliy utiliy =new Utiliy();
+
+
 	public void run() {
-		
+
 		final User32 lib = User32.INSTANCE;
 		HMODULE hMod = Kernel32.INSTANCE.GetModuleHandle(null);
-		
+
 		keyboardHook = new LowLevelKeyboardProc() {
 			@Override
 			public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {
@@ -37,20 +39,20 @@ public class KeyboardHook {
 
 
 //					if(info.flags==16 || info.flags==144) {System.out.print("(由程序执行的)");}
-					if(info.flags!=0 && info.flags!=128) {System.out.print("(由程序执行的)");}
+					if(info.flags==0 || info.flags==128){}else{System.out.print("(由程序执行的)");}
 					System.out.println("键盘键"+info.vkCode);
 
 					//开关相关
 					if(Controller.mapListenBar.containsKey(info.vkCode)){
 						System.out.println(Controller.mapListenBar.get(info.vkCode));
-						if(Controller.mapListenBar.get(info.vkCode).equals("off")){
+						if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.off)){
 							for(MyThread thread:Controller.threadList){
 								thread.mySuspend();
 							}
 							Controller.listehSwitch=false;
-						}else if(Controller.mapListenBar.get(info.vkCode).equals("on")){
+						}else if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.on)){
 							for(MyThread thread:Controller.threadList){
-								if(thread.defaultState.equals("on")){
+								if(thread.defaultState==MyThread.State.on){
 									thread.myResume();
 								}
 							}
@@ -61,22 +63,25 @@ public class KeyboardHook {
 						return null;
 					}
 
-
-					String userInput="userInput";
-//					if(info.flags==16 || info.flags==144){
-					if(info.flags!=0 && info.flags!=128){
-						userInput="!userInput";
-					}
-//					String inputCode=info.vkCode+"_"+wParam.intValue()+"_"+userInput;
-					InputInfo inputInfo =new InputInfo();
+					inputInfo.resetProperty();
 					inputInfo.value=info.vkCode;
-					inputInfo.press=wParam.intValue();
-					inputInfo.userInput=userInput;
+
+//					if(info.flags==16 || info.flags==144){
+					if(info.flags==0 || info.flags==128){
+						inputInfo.userInput=true;
+					}else {
+						inputInfo.userInput=false;
+					}
+					if(wParam.intValue()==256){
+						inputInfo.press=true;
+					}else {
+						inputInfo.press=false;
+					}
 
 					if(Controller.mapJna.containsKey(inputInfo)){
-						Utiliy utiliy1=Controller.mapJna.get(inputInfo);
-						Controller.do1.task(utiliy1);
-						if(utiliy1.intercept==true){
+						utiliy =Controller.mapJna.get(inputInfo);
+						Controller.do1.task(utiliy);
+						if(utiliy.intercept==true){
 							return new LRESULT(1);
 						}
 					}
@@ -100,6 +105,6 @@ public class KeyboardHook {
 		System.out.println("base.KeyboardHook run 方法结束");
 	}
 
-	
-	
+
+
 }
