@@ -5,7 +5,9 @@ import base.ListenMouseKeyboard;
 import base.MyThread;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+
+import static java.awt.event.InputEvent.*;
+import static java.awt.event.KeyEvent.*;
 
 
 
@@ -33,37 +35,6 @@ public class Functions游侠 extends Functions公共 {
 
 
     static {
-//        t1 = new MyThread(MyThread.State.on) {
-//            @Override
-//            public void run() {
-//                while (true) {
-//
-//                    if (t1Temp == true) {
-//                        if (攻击型加移动 == true) {
-//                            if (是否连点左键 == true) {
-//                                robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-//                                robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//                            }
-//                            robot.keyPress(KeyEvent.VK_5);
-//                            robot.keyRelease(KeyEvent.VK_5);
-//
-//                        } else {
-////                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//                            robot.keyPress(KeyEvent.VK_G);
-//                            robot.keyRelease(KeyEvent.VK_G);
-//                        }
-//
-//                        pause(baseDelay);
-//
-//                    } else {
-//
-////                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//                        pause(baseDelay);
-//
-//                    }
-//                }
-//            }
-//        };
 
         t1 = new MyThread(MyThread.State.on) {
             @Override
@@ -72,19 +43,19 @@ public class Functions游侠 extends Functions公共 {
                     if (t1Temp == true) {
 
                         if(是否基础技能) {
-                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                            robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                            robot.mouseRelease(BUTTON1_DOWN_MASK);
+                            robot.mousePress(BUTTON1_DOWN_MASK);
 
                         }
-                        robot.keyRelease(KeyEvent.VK_5);
-                        robot.keyPress(KeyEvent.VK_5);
+                        robot.keyRelease(VK_5);
+                        robot.keyPress(VK_5);
 
                         t1Temp1=true;
 
                     } else {
                         if(t1Temp1==true){
-                        robot.keyRelease(KeyEvent.VK_5);
-                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        robot.keyRelease(VK_5);
+                        robot.mouseRelease(BUTTON1_DOWN_MASK);
                         t1Temp1=false;
                         }
                     }
@@ -99,8 +70,8 @@ public class Functions游侠 extends Functions公共 {
                 while (true) {
 //
                     if (t2Temp == true) {
-                        robot.keyPress(KeyEvent.VK_G);
-                        robot.keyRelease(KeyEvent.VK_G);
+                        robot.keyPress(VK_G);
+                        robot.keyRelease(VK_G);
                     }
                     pause(baseDelay);
 
@@ -114,8 +85,8 @@ public class Functions游侠 extends Functions公共 {
             public void run() {
                 while (true) {
                     if (t1Temp == true) {
-                        robot.keyPress(KeyEvent.VK_V);
-                        robot.keyRelease(KeyEvent.VK_V);
+                        robot.keyPress(VK_V);
+                        robot.keyRelease(VK_V);
                     } else {
                     }
                     pause(baseDelay);

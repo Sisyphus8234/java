@@ -18,7 +18,7 @@ public class Controller {
 
 	public static Do do1=new Do(refreshtime);
 	
-	public Controller(Class myFunctionClass,Class baseFunctionClass) {
+	public static void run(Class myFunctionClass,Class baseFunctionClass) {
 		
 		MyJFrame.run();
 
