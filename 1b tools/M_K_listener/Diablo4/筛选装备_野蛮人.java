@@ -32,7 +32,7 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     }
 
     @Override
-    public void 装备分类(List<String> result, 筛选装备.筛选逻辑参数 筛选逻辑参数, String 预类别) {
+    public void 装备分类(List<String> result, 筛选装备.筛选逻辑参数 筛选逻辑参数) {
         for(String extractedText:result) {
             if (extractedText.contains("双手锤")) {
                 筛选逻辑参数.装备种类 = (筛选装备.装备种类.只看数值);
@@ -54,7 +54,7 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
             }
         }
 
-        if(预类别.equals("戒指")||预类别.equals("护符")){
+        if(筛选逻辑参数.预类别== 筛选装备.预类别.戒指||筛选逻辑参数.预类别==筛选装备.预类别.护符){
             筛选逻辑参数.装备种类=(筛选装备.装备种类.只看属性);
         }
     }

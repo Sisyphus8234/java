@@ -120,10 +120,8 @@ public class 筛选装备 {
             筛选逻辑参数.装备种类 = 装备种类.未定种类;
             筛选逻辑参数.initPrimitiveDataType(筛选装备_子类.需求词条数量_要求(),筛选装备_子类.数值大于多少算优秀());
 
-            List<String> result = new ArrayList<>();
+            List<String> 图片解析出的所有词条 = new ArrayList<>();
             List<String> 需求词条 = new ArrayList<>();
-
-            String 预类别 = "";
 
             int 物品强度索引 = 0;
             int 物品强度索引temp = 0;
@@ -183,16 +181,16 @@ public class 筛选装备 {
 
                             // 去掉单引号，获得最终的文本
                             String extractedText = textPart.replaceAll("'", "").trim();
-                            result.add(extractedText);
+                            图片解析出的所有词条.add(extractedText);
 
                             output = output + line + "\n";
 
 
 
                             if (extractedText.contains("戒指")) {
-                                预类别 = "戒指";
+                                筛选逻辑参数.预类别=预类别.戒指;
                             } else if (extractedText.contains("护符")) {
-                                预类别 = "护符";
+                                筛选逻辑参数.预类别=预类别.护符;
                             }
 
 //                            筛选装备_子类.装备分类(extractedText, 筛选逻辑参数,预类别);
@@ -211,15 +209,12 @@ public class 筛选装备 {
                     }
                 }
 
-                筛选装备_子类.装备分类(result, 筛选逻辑参数, 预类别);
+                筛选装备_子类.装备分类(图片解析出的所有词条, 筛选逻辑参数);
 
-                switch (预类别) {
-                    case "戒指":
-                        物品强度索引 += 2;
-                        break;
-                    case "护符":
-                        物品强度索引 += 1;
-                        break;
+                if(筛选逻辑参数.预类别==预类别.戒指){
+                    物品强度索引+=2;
+                }else if(筛选逻辑参数.预类别==预类别.护符){
+                    物品强度索引 += 1;
                 }
 
                 // 等待命令执行完成
@@ -231,7 +226,7 @@ public class 筛选装备 {
                 inputStream.close();
 
 
-                List<String> 是词缀的部分 = result.subList(物品强度索引 + 1, 装备时损失属性索引);
+                List<String> 是词缀的部分 = 图片解析出的所有词条.subList(物品强度索引 + 1, 装备时损失属性索引);
 //                System.out.println(是词缀的部分);
 
 
@@ -285,7 +280,7 @@ public class 筛选装备 {
                     ("-----需求词条数量: " + 筛选逻辑参数.需求词条数量) + "\n" +
                     ("-----数值: " + 筛选逻辑参数.数值) + "\n" +
                     ("-----数值优秀: " + 筛选逻辑参数.数值优秀) + "\n" +
-                    ("-----预类别: " + 预类别) + "\n" +
+                    ("-----预类别: " + 预类别.values()) + "\n" +
                     ("-----装备种类: " + 筛选逻辑参数.装备种类) + "\n" +
                     ("-----所有要求满足: " + 筛选逻辑参数.所有要求满足) + "\n" +
                     ("===============================================================================") + "\n";
@@ -387,6 +382,7 @@ public class 筛选装备 {
         boolean 所有要求满足;
         装备种类 装备种类;
         int 数值大于多少算优秀;
+        预类别 预类别;
 
         public void initPrimitiveDataType(int 需求词条数量_要求,int 数值大于多少算优秀){
             this.数值优秀=false;
@@ -396,6 +392,7 @@ public class 筛选装备 {
             this.所有要求满足=false;
             this.数值大于多少算优秀=数值大于多少算优秀;
             this.数值=数值大于多少算优秀-1;
+            this.预类别=预类别.其他;
         }
     }
 
@@ -406,6 +403,14 @@ public class 筛选装备 {
         看数值且看属性,
         自定要求,
         未定种类,
+    }
+
+    enum 预类别{
+        戒指("戒指"),护符("护符"),其他("其他");
+        public String value;
+        预类别(String value) {
+            this.value=value;
+        }
     }
 
 }
