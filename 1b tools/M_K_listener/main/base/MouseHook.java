@@ -15,11 +15,9 @@ import com.sun.jna.platform.win32.WinUser.MSLLHOOKSTRUCT;
 
 
 public class MouseHook {
-	
 	private HHOOK hhk;
 	private LowLevelMouseProc mouseHook;
-	InputInfo inputInfo =new InputInfo();
-
+	private InputInfo inputInfo =new InputInfo();
 	private Utiliy utiliy;
 
 	public void run() {
