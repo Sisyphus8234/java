@@ -39,8 +39,9 @@ public class KeyboardHook {
 
 
 //					if(info.flags==16 || info.flags==144) {System.out.print("(由程序执行的)");}
-					if(info.flags==0 || info.flags==128){}else{System.out.print("(由程序执行的)");}
+					if(info.flags==0 ||info.flags==1||info.flags==32|| info.flags==128||info.flags==129){}else{System.out.print("(由程序执行的)");}
 					System.out.println("键盘键"+info.vkCode);
+					System.out.println("info.flags"+info.flags);
 
 					//开关相关
 					if(Controller.mapListenBar.containsKey(info.vkCode)){
@@ -67,7 +68,7 @@ public class KeyboardHook {
 					inputInfo.value=info.vkCode;
 
 //					if(info.flags==16 || info.flags==144){
-					if(info.flags==0 || info.flags==128){
+					if(info.flags==0 ||info.flags==1||info.flags==32|| info.flags==128||info.flags==129){
 						inputInfo.userInput=true;
 					}else {
 						inputInfo.userInput=false;
