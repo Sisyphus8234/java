@@ -13,12 +13,15 @@ import com.sun.jna.platform.win32.WinUser.LowLevelMouseProc;
 import com.sun.jna.platform.win32.WinUser.MSG;
 import com.sun.jna.platform.win32.WinUser.MSLLHOOKSTRUCT;
 
+import static base.Controller.printKey;
+
 
 public class MouseHook {
 	private HHOOK hhk;
 	private LowLevelMouseProc mouseHook;
 	private InputInfo inputInfo =new InputInfo();
 	private Utiliy utiliy;
+	private StringBuilder printText=new StringBuilder();
 
 	public void run() {
 		
@@ -35,16 +38,22 @@ public class MouseHook {
 
 				
 				if(nCode==0 & wParam.intValue()!=512) {
-					if(info.flags==1) {System.out.print("(由程序执行的)");}
-					System.out.println("鼠标键"+wParam);
-					System.out.println(info.mouseData);
+
+
+					if(printKey==true) {
+						if (info.flags==1) {
+							printText.append("由程序执行的");
+						}
+						printText.append("\n").append("鼠标键").append(wParam);
+						printText.append("\n").append("info.mouseData").append(info.mouseData);
+						System.out.println(printText);
+					}
+
 
 					//开关相关
 					if(Controller.listenSwitch ==false){
 						return null;
 					}
-
-
 
 //					InputInfo inputInfo =new InputInfo();
 					inputInfo.resetProperty();

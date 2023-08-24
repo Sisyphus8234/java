@@ -14,6 +14,8 @@ import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 
 import com.sun.jna.platform.win32.WinUser.MSG;
 
+import static base.Controller.printKey;
+
 
 /** Sample implementation of a low-level keyboard hook on W32. */
 public class KeyboardHook {
@@ -21,6 +23,7 @@ public class KeyboardHook {
 	private LowLevelKeyboardProc keyboardHook;
 	private InputInfo inputInfo =new InputInfo();
 	private Utiliy utiliy =new Utiliy();
+	private StringBuilder printText=new StringBuilder();
 
 	public void run() {
 
@@ -34,11 +37,16 @@ public class KeyboardHook {
 				if (nCode==0) {
 
 
+					if(printKey==true) {
+						if (info.flags == 0 || info.flags == 1 || info.flags == 32 || info.flags == 128 || info.flags == 129) {
+						} else {
+							printText.append("由程序执行的");
+						}
+						printText.append("\n").append("键盘键").append(info.vkCode);
+						printText.append("\n").append("info.flags").append(info.flags);
+						System.out.println(printText);
+					}
 
-//					if(info.flags==16 || info.flags==144) {System.out.print("(由程序执行的)");}
-					if(info.flags==0 ||info.flags==1||info.flags==32|| info.flags==128||info.flags==129){}else{System.out.print("(由程序执行的)");}
-					System.out.println("键盘键"+info.vkCode);
-					System.out.println("info.flags"+info.flags);
 
 					//开关相关
 					if(Controller.mapListenBar.containsKey(info.vkCode)){
