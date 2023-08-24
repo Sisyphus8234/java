@@ -38,12 +38,14 @@ public class KeyboardHook {
 
 
 					if(printKey==true) {
+						printText.setLength(0);
+						printText.append("--------------------").append("\n");
 						if (info.flags == 0 || info.flags == 1 || info.flags == 32 || info.flags == 128 || info.flags == 129) {
 						} else {
-							printText.append("由程序执行的");
+							printText.append("(由程序执行的) ");
 						}
-						printText.append("\n").append("键盘键").append(info.vkCode);
-						printText.append("\n").append("info.flags").append(info.flags);
+						printText.append("键盘键 ").append(info.vkCode);
+						printText.append("\n").append("info.flags ").append(info.flags);
 						System.out.println(printText);
 					}
 

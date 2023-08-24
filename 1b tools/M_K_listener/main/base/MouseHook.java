@@ -41,11 +41,14 @@ public class MouseHook {
 
 
 					if(printKey==true) {
+						printText.setLength(0);
+						printText.append("--------------------").append("\n");
 						if (info.flags==1) {
-							printText.append("由程序执行的");
+							printText.append("(由程序执行的) ");
 						}
-						printText.append("\n").append("鼠标键").append(wParam);
-						printText.append("\n").append("info.mouseData").append(info.mouseData);
+						printText.append("鼠标键 ").append(wParam);
+						printText.append("\n").append("info.flags ").append(info.flags);
+						printText.append("\n").append("info.mouseData ").append(info.mouseData);
 						System.out.println(printText);
 					}
 
