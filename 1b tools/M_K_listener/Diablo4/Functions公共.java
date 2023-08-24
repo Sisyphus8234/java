@@ -67,5 +67,16 @@ public class Functions公共 extends IFunctions {
         自动喝药=false;
     }
 
+    @ListenMouseKeyboard(note = "`",value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 人物详情() {
+        robot.keyPress(VK_C);
+        robot.keyRelease(VK_C);
+        Point point=MouseInfo.getPointerInfo().getLocation();
+        robot.mouseMove(1355,264);
+        robot.mousePress(BUTTON1_DOWN_MASK);
+        robot.mouseRelease(BUTTON1_DOWN_MASK);
+        robot.mouseMove(point.x,point.y);
+    }
+
 
 }

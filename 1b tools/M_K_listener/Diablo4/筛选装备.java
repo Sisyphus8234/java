@@ -339,6 +339,8 @@ public class 筛选装备 {
 
                 if (sign.equals("-")) {
                     筛选逻辑参数.数值 = -number;
+                }else {
+                    筛选逻辑参数.数值=number;
                 }
 
 
