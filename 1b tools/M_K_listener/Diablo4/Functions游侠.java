@@ -103,10 +103,10 @@ public class Functions游侠 extends Functions公共 {
                 while (true) {
 
                     if (t1Temp == true ) {
-                        robot.keyPress(KeyEvent.VK_1);
-                        robot.keyRelease(KeyEvent.VK_1);
-//                        robot.keyPress(VK_4);
-//                        robot.keyRelease(VK_4);
+                        robot.keyPress(KeyEvent.VK_6);
+                        robot.keyRelease(KeyEvent.VK_6);
+                        robot.keyPress(VK_7);
+                        robot.keyRelease(VK_7);
                     } else {
                     }
                     pause(1000);

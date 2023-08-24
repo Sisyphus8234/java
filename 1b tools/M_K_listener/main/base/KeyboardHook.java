@@ -17,13 +17,10 @@ import com.sun.jna.platform.win32.WinUser.MSG;
 
 /** Sample implementation of a low-level keyboard hook on W32. */
 public class KeyboardHook {
-
-
 	private HHOOK hhk;
 	private LowLevelKeyboardProc keyboardHook;
 	private InputInfo inputInfo =new InputInfo();
 	private Utiliy utiliy =new Utiliy();
-
 
 	public void run() {
 
