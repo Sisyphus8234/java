@@ -16,6 +16,7 @@ public @interface ListenMouseKeyboard {
 	boolean userInput() default true;
 	boolean intercept() default false;
 	int mouseData() default 0;
+	String note() default "";
 
 //	public enum KeyboardOrMouse
 //	{
