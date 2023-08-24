@@ -7,9 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Controller {
-
-	public static boolean listenSwitch =true;
 	public static boolean printKey =false;
+	public static boolean listenSwitch =true;
 	public static ArrayList<MyThread> threadList=new ArrayList<>();
 	public static Map<InputInfo, Utiliy> mapJna=new HashMap<>();
 	public static Map<String, Utiliy> mapJintellitype=new HashMap<>();
