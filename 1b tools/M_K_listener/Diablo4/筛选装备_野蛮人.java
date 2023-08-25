@@ -9,10 +9,14 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     public int 需求词条数量_要求 =3;
 
     public int 数值大于多少算优秀 = -10;
+    public int 物品强度大于多少算优秀 = -10;
 
     @Override
     public int 数值大于多少算优秀() {
         return 数值大于多少算优秀;
+    }
+    public int 物品强度大于多少算优秀() {
+        return 物品强度大于多少算优秀;
     }
 
 

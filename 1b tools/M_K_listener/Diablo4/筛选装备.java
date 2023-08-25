@@ -118,7 +118,7 @@ public class 筛选装备 {
             筛选逻辑参数.要的词缀_容器 = 筛选装备_子类.要的词缀();
             筛选逻辑参数.不要的词缀_容器 = 筛选装备_子类.不要的词缀();
             筛选逻辑参数.装备种类 = 装备种类.未定种类;
-            筛选逻辑参数.initPrimitiveDataType(筛选装备_子类.需求词条数量_要求(),筛选装备_子类.数值大于多少算优秀());
+            筛选逻辑参数.initPrimitiveDataType(筛选装备_子类.需求词条数量_要求(),筛选装备_子类.数值大于多少算优秀(),筛选装备_子类.物品强度大于多少算优秀());
 
             List<String> 图片解析出的所有词条 = new ArrayList<>();
             List<String> 需求词条 = new ArrayList<>();
@@ -243,7 +243,11 @@ public class 筛选装备 {
                         if (筛选逻辑参数.数值优秀) {
                             筛选逻辑参数.所有要求满足 = true;
                         }
-                    } else if (筛选逻辑参数.装备种类.equals(装备种类.只看属性)) {
+                    } else if (筛选逻辑参数.装备种类.equals(装备种类.只看物品强度)) {
+                        if (筛选逻辑参数.物品强度优秀) {
+                            筛选逻辑参数.所有要求满足 = true;
+                        }
+                    }else if (筛选逻辑参数.装备种类.equals(装备种类.只看属性)) {
                         if (筛选逻辑参数.需求词条数量是否满足) {
                             筛选逻辑参数.所有要求满足 = true;
                         }
@@ -348,6 +352,22 @@ public class 筛选装备 {
                     筛选逻辑参数.数值优秀 = true;
                 }
             }
+            if (s.contains("物品强度")) {
+
+                Pattern pattern = Pattern.compile("(\\d+)物品强度");
+                Matcher matcher = pattern.matcher(s);
+
+                matcher.find();
+
+                String 物品强度 = matcher.group(1);
+
+
+                筛选逻辑参数.物品强度= Integer.parseInt(物品强度);
+
+                if (筛选逻辑参数.物品强度 >= 筛选逻辑参数.物品强度大于多少算优秀) {
+                    筛选逻辑参数.物品强度优秀 = true;
+                }
+            }
             for (String s1 : 筛选逻辑参数.要的词缀_容器) {
                 boolean 要的词缀是否包含不要的词缀 = false;
                 if (s.contains(s1)) {
@@ -374,7 +394,9 @@ public class 筛选装备 {
     static class 筛选逻辑参数 {
         List<String> 是词缀的部分_容器;
         int 数值;
+        int 物品强度;
         boolean 数值优秀;
+        boolean 物品强度优秀;
         String[] 要的词缀_容器;
         String[] 不要的词缀_容器;
         int 需求词条数量;
@@ -384,9 +406,11 @@ public class 筛选装备 {
         boolean 所有要求满足;
         装备种类 装备种类;
         int 数值大于多少算优秀;
+        int 物品强度大于多少算优秀;
         预类别 预类别;
 
-        public void initPrimitiveDataType(int 需求词条数量_要求,int 数值大于多少算优秀){
+        public void initPrimitiveDataType(int 需求词条数量_要求,int 数值大于多少算优秀,int 物品强度大于多少算优秀){
+            this.物品强度=0;
             this.数值优秀=false;
             this.需求词条数量=0;
             this.需求词条数量_要求=需求词条数量_要求;
@@ -394,13 +418,17 @@ public class 筛选装备 {
             this.所有要求满足=false;
             this.数值大于多少算优秀=数值大于多少算优秀;
             this.数值=数值大于多少算优秀-1;
+            this.物品强度大于多少算优秀=物品强度大于多少算优秀;
             this.预类别=预类别.其他;
+            this.物品强度优秀=false;
+
         }
     }
 
     enum 装备种类 {
         只看数值,
         只看属性,
+        只看物品强度,
         看数值或看属性,
         看数值且看属性,
         自定要求,
