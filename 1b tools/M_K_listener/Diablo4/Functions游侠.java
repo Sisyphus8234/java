@@ -1,6 +1,7 @@
 package custom;
 
 
+import base.Controller;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
@@ -18,6 +19,7 @@ public class Functions游侠 extends Functions公共 {
     public static boolean t1Temp = false;
     public static boolean t1Temp1 = false;
     public static boolean t2Temp = false;
+    public static boolean t3Temp = false;
 
     public static boolean 右键或者1234在t1运行时按下 = false;
     public static boolean 之前已经有右键或者1234在t1运行时按下 = false;
@@ -36,6 +38,8 @@ public class Functions游侠 extends Functions公共 {
 
     static {
 
+//        Controller.printKey=true;
+
         t1 = new MyThread(MyThread.State.on) {
             @Override
             public void run() {
@@ -43,9 +47,19 @@ public class Functions游侠 extends Functions公共 {
                     if (t1Temp == true) {
 
                         if(是否基础技能) {
-                            robot.mouseRelease(BUTTON1_DOWN_MASK);
-                            robot.mousePress(BUTTON1_DOWN_MASK);
 
+
+                            pixelColor = robot.getPixelColor(1308, 980);
+                            System.out.println(pixelColor);
+
+                            if (pixelColor.getRed() +
+                                    pixelColor.getGreen() +
+                                    pixelColor.getBlue() < 179
+                            ) {
+                                robot.mouseRelease(BUTTON1_DOWN_MASK);
+                                robot.mousePress(BUTTON1_DOWN_MASK);
+                            }else {
+                            }
                         }
                         robot.keyRelease(VK_5);
                         robot.keyPress(VK_5);
@@ -105,8 +119,10 @@ public class Functions游侠 extends Functions公共 {
                     if (t1Temp == true ) {
                         robot.keyPress(KeyEvent.VK_6);
                         robot.keyRelease(KeyEvent.VK_6);
-//                        robot.keyPress(VK_7);
-//                        robot.keyRelease(VK_7);
+                        if(t3Temp==true) {
+                        robot.keyPress(VK_7);
+                        robot.keyRelease(VK_7);
+                        }
                     } else {
                     }
                     pause(1000);
@@ -218,19 +234,19 @@ public class Functions游侠 extends Functions公共 {
 
     }
 
-    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四() {
         t1Temp = false;
         t2Temp = true;
     }
 
-    @ListenMouseKeyboard(note = "3",value = 51, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "4",value = 52, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 四1() {
-        t1Temp = true;
-        t2Temp = false;
-    }
+//    @ListenMouseKeyboard(note = "3",value = 51, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "4",value = 52, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 四1() {
+//        t1Temp = true;
+//        t2Temp = false;
+//    }
 
 
     @ListenMouseKeyboard(value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
@@ -244,6 +260,18 @@ public class Functions游侠 extends Functions公共 {
     public static void 右键1() {
         是否基础技能 = true;
     }
+
+    @ListenMouseKeyboard(note="space",value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 空格() {
+        t3Temp=true;
+    }
+
+    @ListenMouseKeyboard(note="space",value = 32,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 空格1() {
+        t3Temp=false;
+    }
+
+
 
     @ListenMouseKeyboard(value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备() {

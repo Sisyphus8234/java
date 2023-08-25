@@ -5,6 +5,7 @@ import base.IFunctions;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -211,11 +212,6 @@ public class 筛选装备 {
 
                 筛选装备_子类.装备分类(图片解析出的所有词条, 筛选逻辑参数);
 
-                if(筛选逻辑参数.预类别==预类别.戒指){
-                    物品强度索引+=2;
-                }else if(筛选逻辑参数.预类别==预类别.护符){
-                    物品强度索引 += 1;
-                }
 
                 // 等待命令执行完成
                 int exitCode = process.waitFor();
@@ -225,8 +221,15 @@ public class 筛选装备 {
                 reader.close();
                 inputStream.close();
 
-
+                List<String> 是词缀的部分_物品强度=图片解析出的所有词条.subList(物品强度索引 , 物品强度索引+1);
+                if(筛选逻辑参数.预类别==预类别.戒指){
+                    物品强度索引+=2;
+                }else if(筛选逻辑参数.预类别==预类别.护符){
+                    物品强度索引 += 1;
+                }
                 List<String> 是词缀的部分 = 图片解析出的所有词条.subList(物品强度索引 + 1, 装备时损失属性索引);
+                是词缀的部分_物品强度.addAll(是词缀的部分);
+                是词缀的部分=是词缀的部分_物品强度;
 //                System.out.println(是词缀的部分);
 
 
@@ -285,6 +288,7 @@ public class 筛选装备 {
                     ("-----数值: " + 筛选逻辑参数.数值) + "\n" +
                     ("-----数值优秀: " + 筛选逻辑参数.数值优秀) + "\n" +
                     ("-----预类别: " + 预类别.values()) + "\n" +
+                    ("-----物品强度: " + 筛选逻辑参数.物品强度) + "\n" +
                     ("-----装备种类: " + 筛选逻辑参数.装备种类) + "\n" +
                     ("-----所有要求满足: " + 筛选逻辑参数.所有要求满足) + "\n" +
                     ("===============================================================================") + "\n";
@@ -353,6 +357,8 @@ public class 筛选装备 {
                 }
             }
             if (s.contains("物品强度")) {
+                System.out.println("-----------1");
+                System.out.println(s);
 
                 Pattern pattern = Pattern.compile("(\\d+)物品强度");
                 Matcher matcher = pattern.matcher(s);
