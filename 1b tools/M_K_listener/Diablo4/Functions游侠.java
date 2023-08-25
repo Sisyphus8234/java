@@ -50,7 +50,7 @@ public class Functions游侠 extends Functions公共 {
 
 
                             pixelColor = robot.getPixelColor(1308, 980);
-                            System.out.println(pixelColor);
+//                            System.out.println(pixelColor);
 
                             if (pixelColor.getRed() +
                                     pixelColor.getGreen() +
