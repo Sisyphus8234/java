@@ -49,12 +49,15 @@ public class Functions游侠 extends Functions公共 {
                         if(是否基础技能) {
 
 
-                            pixelColor = robot.getPixelColor(1308, 980);
+                            pixelColor = robot.getPixelColor(1313, 980);
 //                            System.out.println(pixelColor);
+//                            System.out.println(pixelColor.getRed() +
+//                                    pixelColor.getGreen() +
+//                                    pixelColor.getBlue());
 
                             if (pixelColor.getRed() +
                                     pixelColor.getGreen() +
-                                    pixelColor.getBlue() < 179
+                                    pixelColor.getBlue() < 170
                             ) {
                                 robot.mouseRelease(BUTTON1_DOWN_MASK);
                                 robot.mousePress(BUTTON1_DOWN_MASK);
@@ -163,6 +166,8 @@ public class Functions游侠 extends Functions公共 {
         是否基础技能=false;
         t1Temp = true;
         t2Temp = false;
+        Functions公共.自动喝药=true;
+        Functions公共.t1.myResume();
     }
 
     @ListenMouseKeyboard(value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
