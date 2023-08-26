@@ -33,6 +33,11 @@ public class Functions游侠 extends Functions公共 {
     public static MyThread t2;
     public static MyThread t3;
     public static MyThread t4;
+    public static int rgb=0;
+
+    public static int rgbx=1313;
+    public static int rgby=980;
+    public static int value=170;
 
 
 
@@ -49,20 +54,39 @@ public class Functions游侠 extends Functions公共 {
                         if(是否基础技能) {
 
 
-                            pixelColor = robot.getPixelColor(1313, 980);
-//                            System.out.println(pixelColor);
-//                            System.out.println(pixelColor.getRed() +
-//                                    pixelColor.getGreen() +
-//                                    pixelColor.getBlue());
+//                            pixelColor = robot.getPixelColor(1313, 980);
+//                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < 170)
 
-                            if (pixelColor.getRed() +
-                                    pixelColor.getGreen() +
-                                    pixelColor.getBlue() < 170
-                            ) {
+//                            pixelColor = robot.getPixelColor(1313, 985);
+//                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < 177)
+
+//                            pixelColor = robot.getPixelColor(1313, 990);
+//                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < 199)
+
+
+                                pixelColor = robot.getPixelColor(rgbx, rgby);
+                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < value)
+
+                            {
                                 robot.mouseRelease(BUTTON1_DOWN_MASK);
                                 robot.mousePress(BUTTON1_DOWN_MASK);
                             }else {
                             }
+
+//                            System.out.println(rgbx);
+//                            System.out.println(rgby);
+//                            System.out.println(value);
+//                            System.out.println("---------------");
+
+
+
+//                            System.out.println(pixelColor);
+//                            if((pixelColor.getRed() +pixelColor.getGreen() +pixelColor.getBlue())>rgb){
+//                                rgb=pixelColor.getRed() +pixelColor.getGreen() +pixelColor.getBlue();
+//                            }
+//                            System.out.println(rgb);
+
+
                         }
                         robot.keyRelease(VK_5);
                         robot.keyPress(VK_5);
@@ -187,6 +211,7 @@ public class Functions游侠 extends Functions公共 {
 //        robot.keyRelease(BUTTON1_DOWN_MASK);
 
         t1Temp = false;
+        Functions公共.自动喝药=false;
         t2Temp = true;
     }
 
@@ -258,16 +283,17 @@ public class Functions游侠 extends Functions公共 {
 //    }
 
 
-    @ListenMouseKeyboard(value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+
     @ListenMouseKeyboard(value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
-        是否基础技能 = false;
+        rgby=990;
+        value=199;
     }
 
-    @ListenMouseKeyboard(value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false, intercept = true)
     @ListenMouseKeyboard(value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
-        是否基础技能 = true;
+        rgby=980;
+        value=170;
     }
 
     @ListenMouseKeyboard(note="space",value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
