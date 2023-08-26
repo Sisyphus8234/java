@@ -75,6 +75,8 @@ public class Functions游侠 extends Functions公共 {
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         t1Temp1=false;
                         }
+
+
                     }
                     pause(baseDelay);
                 }
@@ -102,9 +104,10 @@ public class Functions游侠 extends Functions公共 {
             public void run() {
                 while (true) {
                     if (t1Temp == true) {
-                        robot.keyPress(VK_V);
                         robot.keyRelease(VK_V);
+                        robot.keyPress(VK_V);
                     } else {
+                        robot.keyRelease(VK_V);
                     }
                     pause(baseDelay);
 
@@ -155,6 +158,7 @@ public class Functions游侠 extends Functions公共 {
         暂停t1时是否松开左键 = false;
 //        t1Temp1=false;
         t1Temp = false;
+        Functions公共.自动喝药=false;
 
         t2Temp = false;
     }
