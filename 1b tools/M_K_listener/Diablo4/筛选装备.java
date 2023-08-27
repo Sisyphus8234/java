@@ -146,7 +146,8 @@ public class 筛选装备 {
 
             try {
                 // 构建命令
-                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + folderName + "/" + outPictureName + ".png --use_angle_cls false --use_gpu false");
+//                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + folderName + "/" + outPictureName + ".png --use_angle_cls false --use_gpu false");
+                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + folderName + "/" + outPictureName + ".png --use_angle_cls false");
 
                 // 设置工作目录（可选）
                 // processBuilder.directory(new File("path_to_working_directory"));
@@ -304,9 +305,9 @@ public class 筛选装备 {
                     robot.mouseMove(标准化x, 标准化y);
                     IFunctions.pause(20);
                     robot.keyPress(VK_SPACE);
-                    IFunctions.pause(20);
+//                    IFunctions.pause(20);
                     robot.keyRelease(VK_SPACE);
-                    IFunctions.pause(10);
+                    IFunctions.pause(20);
                 }
             }
 
@@ -334,31 +335,45 @@ public class 筛选装备 {
     }
 
     public static void 筛选逻辑(筛选逻辑参数 筛选逻辑参数) {
+
+
+        boolean 是否是是数值=false;
         for (String s : 筛选逻辑参数.是词缀的部分_容器) {
-            if (s.contains("每秒伤害") || s.contains("护甲值")) {
+            if (s.contains("每秒伤害") || s.contains("护甲值")||是否是是数值==true) {
+                if(是否是是数值==true){
+                    是否是是数值=false;
+                }else {
+                    是否是是数值=true;
+                }
+
+//                System.out.println("---------1");
+//                System.out.println(s);
+//                s="xxxxxx-23xxxxxx";
+
 
                 Pattern pattern = Pattern.compile("([+-]{1})(\\d+)");
                 Matcher matcher = pattern.matcher(s);
 
-                matcher.find();
+                if(matcher.find()) {
+//                    matcher.find();
 
-                String sign = matcher.group(1); // 符号
-                int number = Integer.parseInt(matcher.group(2)); // 数字
-
-                if (sign.equals("-")) {
-                    筛选逻辑参数.数值 = -number;
-                }else {
-                    筛选逻辑参数.数值=number;
-                }
+                    String sign = matcher.group(1); // 符号
+                    int number = Integer.parseInt(matcher.group(2)); // 数字
 
 
-                if (筛选逻辑参数.数值 >= 筛选逻辑参数.数值大于多少算优秀) {
-                    筛选逻辑参数.数值优秀 = true;
+                    if (sign.equals("-")) {
+                        筛选逻辑参数.数值 = -number;
+                    } else {
+                        筛选逻辑参数.数值 = number;
+                    }
+
+
+                    if (筛选逻辑参数.数值 >= 筛选逻辑参数.数值大于多少算优秀) {
+                        筛选逻辑参数.数值优秀 = true;
+                    }
                 }
             }
             if (s.contains("物品强度")) {
-                System.out.println("-----------1");
-                System.out.println(s);
 
                 Pattern pattern = Pattern.compile("(\\d+)物品强度");
                 Matcher matcher = pattern.matcher(s);

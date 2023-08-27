@@ -19,6 +19,7 @@ public class Functions游侠 extends Functions公共 {
     public static boolean t1Temp = false;
     public static boolean t1Temp1 = false;
     public static boolean t2Temp = false;
+    public static boolean t2Temp1 = false;
     public static boolean t3Temp = false;
 
     public static boolean 右键或者1234在t1运行时按下 = false;
@@ -33,11 +34,15 @@ public class Functions游侠 extends Functions公共 {
     public static MyThread t2;
     public static MyThread t3;
     public static MyThread t4;
-    public static int rgb=0;
+    public static float test1 =0;
+    public static float test2 =1;
 
     public static int rgbx=1313;
     public static int rgby=980;
-    public static int value=170;
+    public static float value= 0.624F;
+
+    public static final float value1= 0.624F;
+    public static final float value2= 0.661F;
 
 
 
@@ -63,28 +68,43 @@ public class Functions游侠 extends Functions公共 {
 //                            pixelColor = robot.getPixelColor(1313, 990);
 //                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < 199)
 
+//                            myHSB=getHSB(1313,980);
+//                            if(myHSB[0]<0.612)
 
-                                pixelColor = robot.getPixelColor(rgbx, rgby);
-                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < value)
+//                                myHSB=getHSB(1313,995);
+//                            if(myHSB[0]<0.645)
 
+                            myHSB资源 = getHSB资源(rgbx,rgby);
+                            if(myHSB资源[0]<value)
                             {
                                 robot.mouseRelease(BUTTON1_DOWN_MASK);
                                 robot.mousePress(BUTTON1_DOWN_MASK);
                             }else {
                             }
 
-//                            System.out.println(rgbx);
-//                            System.out.println(rgby);
-//                            System.out.println(value);
-//                            System.out.println("---------------");
+
+
+
+//                            System.out.println(myHSB资源[0]);
+//                            System.out.println(myHSB资源[1]);
+//                            System.out.println(myHSB资源[2]);
+//                            if(myHSB资源[1]>test1){
+//                                test1 = myHSB资源[1];
+//                            }
+//                            System.out.println(test1);
+//                            System.out.println("-------------------------");
+
 
 
 
 //                            System.out.println(pixelColor);
-//                            if((pixelColor.getRed() +pixelColor.getGreen() +pixelColor.getBlue())>rgb){
+//                            if((pixelColor.getRed() +pixelColor.getGreen() +pixelColor.getBlue())<rgb){
 //                                rgb=pixelColor.getRed() +pixelColor.getGreen() +pixelColor.getBlue();
 //                            }
 //                            System.out.println(rgb);
+
+
+
 
 
                         }
@@ -130,8 +150,14 @@ public class Functions游侠 extends Functions公共 {
                     if (t1Temp == true) {
                         robot.keyRelease(VK_V);
                         robot.keyPress(VK_V);
+                        t2Temp1=true;
                     } else {
-                        robot.keyRelease(VK_V);
+
+                        if(t2Temp1==true){
+                            robot.keyRelease(VK_V);
+                            t2Temp1=false;
+                        }
+
                     }
                     pause(baseDelay);
 
@@ -211,7 +237,7 @@ public class Functions游侠 extends Functions公共 {
 //        robot.keyRelease(BUTTON1_DOWN_MASK);
 
         t1Temp = false;
-        Functions公共.自动喝药=false;
+//        Functions公共.自动喝药=false;
         t2Temp = true;
     }
 
@@ -286,14 +312,14 @@ public class Functions游侠 extends Functions公共 {
 
     @ListenMouseKeyboard(value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
-        rgby=990;
-        value=199;
+        rgby=995;
+        value=value2;
     }
 
     @ListenMouseKeyboard(value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
         rgby=980;
-        value=170;
+        value=value1;
     }
 
     @ListenMouseKeyboard(note="space",value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)

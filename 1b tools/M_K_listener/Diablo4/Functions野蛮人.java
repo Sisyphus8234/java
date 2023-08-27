@@ -3,7 +3,7 @@ package custom;
 import base.Config;
 import base.ListenMouseKeyboard;
 import base.MyThread;
-import custom.Functions公共;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Random;
@@ -44,7 +44,7 @@ public class Functions野蛮人 extends Functions公共 {
 
 
     public static void fTemp(){
-        pixelColor = robot.getPixelColor(1318, 965);
+        pixelColor血量 = robot.getPixelColor(1318, 965);
 //                    System.out.println(pixelColor);
 //                    200,128,55
 //                            32,35,39
@@ -55,9 +55,9 @@ public class Functions野蛮人 extends Functions公共 {
 //                                robot.keyPress(KeyEvent.VK_4);
 //                                robot.keyRelease(KeyEvent.VK_4);
 //                            }
-        if (pixelColor.getRed() +
-                pixelColor.getGreen() +
-                pixelColor.getBlue() < 130
+        if (pixelColor血量.getRed() +
+                pixelColor血量.getGreen() +
+                pixelColor血量.getBlue() < 130
         ) {
         }else {
             robot.keyPress(KeyEvent.VK_4);
