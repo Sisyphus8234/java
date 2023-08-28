@@ -1,5 +1,6 @@
 package custom;
 
+import base.FunctionsAddition;
 import base.IFunctions;
 import base.ListenMouseKeyboard;
 import base.MyThread;
@@ -29,10 +30,10 @@ public class Functions公共 extends IFunctions {
 
     static {
 
-        File directory = new File(folderName);
-        if (!directory.exists()) {
-            directory.mkdirs(); // 创建目标文件夹及其父文件夹（如果不存在）
-        }
+//        File directory = new File(folderName);
+//        if (!directory.exists()) {
+//            directory.mkdirs(); // 创建目标文件夹及其父文件夹（如果不存在）
+//        }
 
 
 
@@ -187,6 +188,17 @@ public class Functions公共 extends IFunctions {
         pixelColor血量 = robot.getPixelColor(x, y);
         myHSB血量 =Color.RGBtoHSB(pixelColor血量.getRed(), pixelColor血量.getGreen(), pixelColor血量.getBlue(), null);
         return(myHSB血量);
+    }
+
+    @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void f() {
+
+        FunctionsAddition.gatherPixelColorHSB.threadOn(1313,995);
+    }
+
+    @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void f1() {
+        FunctionsAddition.gatherPixelColorHSB.threadOff();
     }
 
 
