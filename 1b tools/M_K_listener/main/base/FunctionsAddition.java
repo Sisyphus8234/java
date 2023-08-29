@@ -30,7 +30,7 @@ public class FunctionsAddition extends IFunctions {
 
                         float[] HSB = getPixelColor(pixelXForThread0, pixelYForThread0);
                         HSBList.add(HSB);
-                        stringBuilder.append("H: (").append(String.format("%.8f", HSB[0])).append(")S: (").append(String.format("%.8f", HSB[1])).append(")B: (").append(String.format("%.8f", HSB[2])).append(")\n");
+                        stringBuilder.append("H: (").append(valueOfFormatFloat(HSB[0])).append(") S: (").append(valueOfFormatFloat(HSB[1])).append(") B: (").append(valueOfFormatFloat(HSB[2])).append(")\n");
 
 
                     } else {
@@ -48,12 +48,12 @@ public class FunctionsAddition extends IFunctions {
                         // 使用 Collections.sort() 进行排序
                         Collections.sort(HSBList, comparator);
 
-                        stringBuilder.append("min and max of ");
-                        stringBuilder.append("H: ").append("(").append(HSBList.get(0)[0]).append("   ").append(HSBList.get(HSBList.size() - 1)[0]).append(")");
+                        stringBuilder.append("min and max of");
+                        stringBuilder.append(" H: ").append("(").append(valueOfFormatFloat(HSBList.get(0)[0])).append(" ").append(valueOfFormatFloat(HSBList.get(HSBList.size() - 1)[0])).append(")");
                         Collections.sort(HSBList, comparator1);
-                        stringBuilder.append("S: ").append("(").append(HSBList.get(0)[1]).append("   ").append(HSBList.get(HSBList.size() - 1)[1]).append(")");
+                        stringBuilder.append(" S: ").append("(").append(valueOfFormatFloat(HSBList.get(0)[1])).append(" ").append(valueOfFormatFloat(HSBList.get(HSBList.size() - 1)[1])).append(")");
                         Collections.sort(HSBList, comparator2);
-                        stringBuilder.append("B: ").append("(").append(HSBList.get(0)[2]).append("   ").append(HSBList.get(HSBList.size() - 1)[2]).append(")");
+                        stringBuilder.append(" B: ").append("(").append(valueOfFormatFloat(HSBList.get(0)[2])).append(" ").append(valueOfFormatFloat(HSBList.get(HSBList.size() - 1)[2])).append(")");
                         stringBuilder.append("\n");
 
 
@@ -77,6 +77,10 @@ public class FunctionsAddition extends IFunctions {
 
             }
         };
+
+        private String valueOfFormatFloat(float f){
+            return String.format("%.8f", f);
+        }
 
 
         public float[] getPixelColor(int pixelX, int pixelY) {
