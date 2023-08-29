@@ -5,12 +5,7 @@ import base.IFunctions;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -24,9 +19,11 @@ public class Functions公共 extends IFunctions {
     public static boolean dTemp1 = false;
     public static float[] myHSB血量;
     public static float[] myHSB资源;
-    public static String folderName="test";
 
-    public static float test=1F;
+    public static FunctionsAddition.GatherPixelColor gatherPixelColor=new FunctionsAddition.GatherPixelColor();
+
+
+
 
     static {
 
@@ -192,13 +189,12 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-
-        FunctionsAddition.gatherPixelColorHSB.threadOn(1313,995);
+        gatherPixelColor.threadOn(1313,995);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f1() {
-        FunctionsAddition.gatherPixelColorHSB.threadOff();
+        gatherPixelColor.threadOff();
     }
 
 
