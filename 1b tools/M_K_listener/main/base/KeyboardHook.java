@@ -42,9 +42,9 @@ public class KeyboardHook {
 						printText.append("--------------------").append("\n");
 						if (info.flags == 0 || info.flags == 1 || info.flags == 32 || info.flags == 128 || info.flags == 129) {
 						} else {
-							printText.append("(由程序执行的) ");
+							printText.append("(not user input) ");
 						}
-						printText.append("键盘键 ").append(info.vkCode);
+						printText.append("KeyboardKey: ").append(info.vkCode);
 						printText.append("\n").append("info.flags ").append(info.flags);
 						System.out.println(printText);
 					}
@@ -52,12 +52,13 @@ public class KeyboardHook {
 
 					//开关相关
 					if(Controller.mapListenBar.containsKey(info.vkCode)){
-						System.out.println(Controller.mapListenBar.get(info.vkCode));
 						if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.off)){
 							for(MyThread thread:Controller.threadList){
 								thread.mySuspend();
 							}
 							Controller.listenSwitch =false;
+
+							System.out.println("program off");
 						}else if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.on)){
 							for(MyThread thread:Controller.threadList){
 								if(thread.defaultState==MyThread.State.on){
@@ -65,6 +66,8 @@ public class KeyboardHook {
 								}
 							}
 							Controller.listenSwitch =true;
+
+							System.out.println("program on");
 						}
 					}
 					if(Controller.listenSwitch ==false){
@@ -110,7 +113,7 @@ public class KeyboardHook {
 		MSG msg = new MSG();
 		lib.GetMessage(msg, null, 0, 0);
 
-		System.out.println("base.KeyboardHook run 方法结束");
+		System.out.println("base.KeyboardHook run() Method finished");
 	}
 
 

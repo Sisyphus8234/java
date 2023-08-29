@@ -23,16 +23,14 @@ public class IFunctions {
     public static List<MyThread> threadList=new ArrayList<>();
 
     static {
-
-        System.out.println("Functions类加载");
-
+        System.out.println("IFunctions class loading");
         try {
             robot = new Robot();
+            System.out.println("Robot instance created");
         } catch (AWTException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("Robot创建完成");
+
     }
 
     public static void pause(long millis) {

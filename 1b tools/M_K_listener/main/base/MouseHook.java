@@ -44,9 +44,9 @@ public class MouseHook {
 						printText.setLength(0);
 						printText.append("--------------------").append("\n");
 						if (info.flags==1) {
-							printText.append("(由程序执行的) ");
+							printText.append("(not user input) ");
 						}
-						printText.append("鼠标键 ").append(wParam);
+						printText.append("MouseKey: ").append(wParam);
 						printText.append("\n").append("info.flags ").append(info.flags);
 						printText.append("\n").append("info.mouseData ").append(info.mouseData);
 						System.out.println(printText);
@@ -94,7 +94,7 @@ public class MouseHook {
 		MSG msg = new MSG();
 		lib.GetMessage(msg, null, 0, 0);
 
-		System.out.println("base.MouseHook run 方法结束");
+		System.out.println("base.MouseHook run() Method finished");
 	}
 
 }

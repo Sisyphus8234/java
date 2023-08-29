@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,20 +15,20 @@ public class FunctionsAddition extends IFunctions {
         public boolean b = false;
         public String folderName = "record";
         public ArrayList<float[]> HSBList = new ArrayList<>();
-        public int pixelX;
-        public int pixelY;
+        public int pixelXForThread0;
+        public int pixelYForThread0;
         public StringBuilder stringBuilder = new StringBuilder();
         public Color pixelColor;
         public float[] pixelColorHSB;
 
 
-        public MyThread thread = new MyThread(MyThread.State.off) {
+        public MyThread thread0 = new MyThread(MyThread.State.off) {
             @Override
             public void run() {
                 while (true) {
                     if (b == true) {
 
-                        float[] HSB = getPixelColor(pixelX, pixelY);
+                        float[] HSB = getPixelColor(pixelXForThread0, pixelYForThread0);
                         HSBList.add(HSB);
                         stringBuilder.append("H: (").append(String.format("%.8f", HSB[0])).append(")S: (").append(String.format("%.8f", HSB[1])).append(")B: (").append(String.format("%.8f", HSB[2])).append(")\n");
 
@@ -48,24 +48,24 @@ public class FunctionsAddition extends IFunctions {
                         // 使用 Collections.sort() 进行排序
                         Collections.sort(HSBList, comparator);
 
-                        stringBuilder.append("max and min of");
-                        stringBuilder.append(" H: ").append("(").append(HSBList.get(0)[0]).append("   ").append(HSBList.get(HSBList.size() - 1)[0]).append(")");
+                        stringBuilder.append("max and min of ");
+                        stringBuilder.append("H: ").append("(").append(HSBList.get(0)[0]).append("   ").append(HSBList.get(HSBList.size() - 1)[0]).append(")");
                         Collections.sort(HSBList, comparator1);
-                        stringBuilder.append(" S: ").append("(").append(HSBList.get(0)[1]).append("   ").append(HSBList.get(HSBList.size() - 1)[1]).append(")");
+                        stringBuilder.append("S: ").append("(").append(HSBList.get(0)[1]).append("   ").append(HSBList.get(HSBList.size() - 1)[1]).append(")");
                         Collections.sort(HSBList, comparator2);
-                        stringBuilder.append(" B: ").append("(").append(HSBList.get(0)[2]).append("   ").append(HSBList.get(HSBList.size() - 1)[2]).append(")");
+                        stringBuilder.append("B: ").append("(").append(HSBList.get(0)[2]).append("   ").append(HSBList.get(HSBList.size() - 1)[2]).append(")");
                         stringBuilder.append("\n");
 
 
                         // 将内容保存到文件
-                        String fileName = folderName + "/" + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".txt";
+                        String fileName = folderName + "/("+ pixelXForThread0+","+pixelYForThread0+")"+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd HHmmss")) + ".txt";
                         try {
                             FileWriter writer = new FileWriter(fileName);
                             writer.write(stringBuilder.toString());
                             writer.close();
-                            System.out.println("内容已保存到 " + fileName);
+                            System.out.println("Content saved to: " + fileName);
                         } catch (IOException e) {
-                            System.out.println("保存文件时出现错误：" + e.getMessage());
+                            System.out.println("Errors occurred while saving the file: " + e.getMessage());
                         }
 
 
@@ -86,13 +86,13 @@ public class FunctionsAddition extends IFunctions {
         }
 
         public void threadOn(int pixelX, int pixelY) {
-            this.pixelX = pixelX;
-            this.pixelY = pixelY;
+            this.pixelXForThread0 = pixelX;
+            this.pixelYForThread0 = pixelY;
             HSBList.clear();
             stringBuilder.setLength(0);
 
             b = true;
-            thread.myResume();
+            thread0.myResume();
         }
 
         public void threadOff() {

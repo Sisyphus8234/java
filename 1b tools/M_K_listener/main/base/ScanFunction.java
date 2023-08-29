@@ -27,7 +27,7 @@ public class ScanFunction {
             Do.obj1 = myFunctionClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("创建Functions实例对象失败");
+            System.out.println("failed to create Functions instance object");
             System.exit(0);
         }
 
@@ -48,7 +48,7 @@ public class ScanFunction {
                 method.setAccessible(true);
                 ListenMouseKeyboard k111 = method.getAnnotation(ListenMouseKeyboard.class);
 
-                System.out.println("已扫描方法"+method.getName());
+                System.out.println("Method recorded: "+method.getName());
                 Utiliy u111 = new Utiliy();
                 u111.method = method;
                 u111.immediately = k111.immediately();
@@ -68,7 +68,7 @@ public class ScanFunction {
                 ListenMouseKeyboards ks111 = method.getAnnotation(ListenMouseKeyboards.class);
 
                 for(ListenMouseKeyboard k111 : ks111.value()){
-                    System.out.println("已扫描方法"+method.getName());
+                    System.out.println("Method recorded: "+method.getName());
                     Utiliy u111 = new Utiliy();
                     u111.method = method;
                     u111.immediately = k111.immediately();
@@ -88,7 +88,7 @@ public class ScanFunction {
                 method.setAccessible(true);
                 JintellitypeListen j111 = method.getAnnotation(JintellitypeListen.class);
 
-                System.out.println("已扫描方法"+method.getName());
+                System.out.println("Method recorded: "+method.getName());
                 Utiliy u111 = new Utiliy();
                 u111.method = method;
                 u111.immediately = j111.immediately();
@@ -101,7 +101,7 @@ public class ScanFunction {
                 JintellitypeListens js111 = method.getAnnotation(JintellitypeListens.class);
 
                 for(JintellitypeListen j111 : js111.value()){
-                    System.out.println("已扫描方法"+method.getName());
+                    System.out.println("Method recorded: "+method.getName());
                     Utiliy u111 = new Utiliy();
                     u111.method = method;
                     u111.immediately = j111.immediately();
@@ -113,8 +113,8 @@ public class ScanFunction {
 
 
         }
-        System.out.println(mapJna);
-        System.out.println(mapJintellitype);
+        System.out.println("Jna:"+mapJna);
+        System.out.println("Jintellitype: "+mapJintellitype);
 
 
 //        Field[] fieldsChild=class1.getDeclaredFields();
@@ -154,8 +154,8 @@ public class ScanFunction {
 
         }
 
-        System.out.println("开关键: "+mapListenBar);
-        System.out.println("开关控制的线程: "+threadList);
+        System.out.println("on and off key(1 means on,2 means off): "+mapListenBar);
+        System.out.println("Thread controlled by on and off key: "+threadList);
 
 
 
