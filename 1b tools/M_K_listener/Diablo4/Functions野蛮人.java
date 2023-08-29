@@ -348,24 +348,5 @@ public class Functions野蛮人 extends Functions公共 {
 //        是否核心技能 = true;
 //    }
 
-    @ListenMouseKeyboard(value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备() {
-        筛选装备.是否筛选装备 = true;
-        筛选装备.鼠标是否回到原点 = true;
-        t4.myResume();
-    }
-
-    @ListenMouseKeyboard(value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备1() {
-        筛选装备.是否筛选装备 = true;
-        筛选装备.鼠标是否回到原点 = false;
-        t4.myResume();
-    }
-
-    @ListenMouseKeyboard(value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备_终止() {
-        筛选装备.是否筛选装备 = false;
-    }
-
 
 }

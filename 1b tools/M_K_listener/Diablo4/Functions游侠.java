@@ -1,7 +1,6 @@
 package custom;
 
 
-import base.Controller;
 import base.FunctionsAddition;
 import base.ListenMouseKeyboard;
 import base.MyThread;
@@ -16,7 +15,7 @@ import static java.awt.event.KeyEvent.*;
 public class Functions游侠 extends Functions公共 {
 
 //    public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
-    public static Long baseDelay = 200L;
+    public static Long baseDelay = 150L;
     public static boolean t1Temp = false;
     public static boolean t1Temp1 = false;
     public static boolean t2Temp = false;
@@ -176,7 +175,12 @@ public class Functions游侠 extends Functions公共 {
             @Override
             public void run() {
                 while (true) {
-                    筛选装备.run( robot, 筛选装备_游侠);
+                    if(筛选装备.是否标记 ==true){
+                        筛选装备.run1();
+                    }else if(筛选装备.是否扫描和筛选 ==true){
+                        筛选装备.run(robot,筛选装备_游侠);
+                    }
+
                     this.mySuspend();
                 }
             }
@@ -319,23 +323,30 @@ public class Functions游侠 extends Functions公共 {
 
 
 
-    @ListenMouseKeyboard(value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "f1",value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备() {
-        筛选装备.是否筛选装备 = true;
-        筛选装备.鼠标是否回到原点 = true;
-        t4.myResume();
-    }
 
-    @ListenMouseKeyboard(value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备1() {
-        筛选装备.是否筛选装备 = true;
-        筛选装备.鼠标是否回到原点 = false;
-        t4.myResume();
+        筛选装备.标记终点();
     }
 
     @ListenMouseKeyboard(note = "f2",value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 图像识别_装备1() {
+        筛选装备.是否扫描和筛选 = true;
+        筛选装备.是否标记 = false;
+        t4.myResume();
+    }
+
+    @ListenMouseKeyboard(note = "f3",value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_装备2() {
+        筛选装备.是否标记 = true;
+        筛选装备.是否扫描和筛选 = false;
+        t4.myResume();
+    }
+
+    @ListenMouseKeyboard(note = "f4",value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备_终止() {
-        筛选装备.是否筛选装备 = false;
+        筛选装备.是否扫描和筛选 = false;
+        筛选装备.是否标记 = false;
     }
 
 
