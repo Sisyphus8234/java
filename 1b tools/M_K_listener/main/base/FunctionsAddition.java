@@ -48,7 +48,7 @@ public class FunctionsAddition extends IFunctions {
                         // 使用 Collections.sort() 进行排序
                         Collections.sort(HSBList, comparator);
 
-                        stringBuilder.append("max and min of ");
+                        stringBuilder.append("min and max of ");
                         stringBuilder.append("H: ").append("(").append(HSBList.get(0)[0]).append("   ").append(HSBList.get(HSBList.size() - 1)[0]).append(")");
                         Collections.sort(HSBList, comparator1);
                         stringBuilder.append("S: ").append("(").append(HSBList.get(0)[1]).append("   ").append(HSBList.get(HSBList.size() - 1)[1]).append(")");

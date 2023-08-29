@@ -333,7 +333,7 @@ public class Functions游侠 extends Functions公共 {
         t4.myResume();
     }
 
-    @ListenMouseKeyboard(value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "f2",value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 图像识别_装备_终止() {
         筛选装备.是否筛选装备 = false;
     }
