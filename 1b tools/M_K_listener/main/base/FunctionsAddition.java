@@ -63,9 +63,9 @@ public class FunctionsAddition extends IFunctions {
                             FileWriter writer = new FileWriter(fileName);
                             writer.write(stringBuilder.toString());
                             writer.close();
-                            System.out.println("Content saved to: " + fileName);
+                            System.out.println("content saved to: " + fileName);
                         } catch (IOException e) {
-                            System.out.println("Errors occurred while saving the file: " + e.getMessage());
+                            System.out.println("errors occurred while saving the file: " + e.getMessage());
                         }
 
 
