@@ -154,8 +154,8 @@ public class ScanFunction {
 
         }
 
-        System.out.println("on and off key(1 means on,2 means off): "+mapListenBar);
-        System.out.println("Thread controlled by on and off key: "+threadList);
+        System.out.println("OnAndOff key(1 means on,2 means off): "+mapListenBar);
+        System.out.println("Thread controlled by OnAndOff key: "+threadList);
 
 
 
