@@ -2,6 +2,7 @@ package custom;
 
 
 import base.Controller;
+import base.FunctionsAddition;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
@@ -28,21 +29,21 @@ public class Functions游侠 extends Functions公共 {
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = true;
     public static 筛选装备_游侠 筛选装备_游侠 = new 筛选装备_游侠();
-
-
     public static MyThread t1;
     public static MyThread t2;
     public static MyThread t3;
     public static MyThread t4;
-    public static float test1 =0;
-    public static float test2 =1;
 
-    public static int rgbx=1313;
-    public static int rgby=980;
-    public static float value= 0.624F;
-
+    public static final int rgby1= 980;
+    public static final int rgby2= 995;
     public static final float value1= 0.624F;
     public static final float value2= 0.661F;
+    public static int rgbx=1313;
+    public static int rgby=rgby1;
+    public static float value= value1;
+
+    public static FunctionsAddition.PixelColor pixelColor =new FunctionsAddition.PixelColor();
+    public static float[] myHSB资源;
 
 
 
@@ -58,23 +59,7 @@ public class Functions游侠 extends Functions公共 {
 
                         if(是否基础技能) {
 
-
-//                            pixelColor = robot.getPixelColor(1313, 980);
-//                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < 170)
-
-//                            pixelColor = robot.getPixelColor(1313, 985);
-//                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < 177)
-
-//                            pixelColor = robot.getPixelColor(1313, 990);
-//                            if (pixelColor.getRed()+pixelColor.getGreen()+pixelColor.getBlue() < 199)
-
-//                            myHSB=getHSB(1313,980);
-//                            if(myHSB[0]<0.612)
-
-//                                myHSB=getHSB(1313,995);
-//                            if(myHSB[0]<0.645)
-
-                            myHSB资源 = getHSB资源(rgbx,rgby);
+                            myHSB资源 = pixelColor.getPixelColor(rgbx,rgby);
                             if(myHSB资源[0]<value)
                             {
                                 robot.mouseRelease(BUTTON1_DOWN_MASK);
@@ -312,13 +297,13 @@ public class Functions游侠 extends Functions公共 {
 
     @ListenMouseKeyboard(value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
-        rgby=995;
+        rgby=rgby2;
         value=value2;
     }
 
     @ListenMouseKeyboard(value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
-        rgby=980;
+        rgby=rgby1;
         value=value1;
     }
 

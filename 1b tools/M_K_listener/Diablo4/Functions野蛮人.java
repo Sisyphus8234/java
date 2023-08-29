@@ -4,6 +4,7 @@ import base.Config;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Random;
@@ -41,10 +42,11 @@ public class Functions野蛮人 extends Functions公共 {
     public static MyThread t4;
 
     public static 筛选装备_野蛮人 筛选装备_野蛮人 = new 筛选装备_野蛮人();
+    private static Color pixelColor资源;
 
 
     public static void fTemp(){
-        pixelColor血量 = robot.getPixelColor(1318, 965);
+        pixelColor资源 = robot.getPixelColor(1318, 965);
 //                    System.out.println(pixelColor);
 //                    200,128,55
 //                            32,35,39
@@ -55,9 +57,9 @@ public class Functions野蛮人 extends Functions公共 {
 //                                robot.keyPress(KeyEvent.VK_4);
 //                                robot.keyRelease(KeyEvent.VK_4);
 //                            }
-        if (pixelColor血量.getRed() +
-                pixelColor血量.getGreen() +
-                pixelColor血量.getBlue() < 130
+        if (pixelColor资源.getRed() +
+                pixelColor资源.getGreen() +
+                pixelColor资源.getBlue() < 130
         ) {
         }else {
             robot.keyPress(KeyEvent.VK_4);

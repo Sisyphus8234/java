@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class FunctionsAddition extends IFunctions {
-    public static class GatherPixelColor {
+    public static class PixelColor {
         public boolean b = false;
         public String folderName = "record";
         public ArrayList<float[]> HSBList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class FunctionsAddition extends IFunctions {
 
                         float[] HSB = getPixelColor(pixelX, pixelY);
                         HSBList.add(HSB);
-                        stringBuilder.append("\nH: (").append(String.format("%.8f", HSB[0])).append(")S: (").append(String.format("%.8f", HSB[1])).append(")B: (").append(String.format("%.8f", HSB[2])).append(")");
+                        stringBuilder.append("H: (").append(String.format("%.8f", HSB[0])).append(")S: (").append(String.format("%.8f", HSB[1])).append(")B: (").append(String.format("%.8f", HSB[2])).append(")\n");
 
 
                     } else {
@@ -48,12 +48,13 @@ public class FunctionsAddition extends IFunctions {
                         // 使用 Collections.sort() 进行排序
                         Collections.sort(HSBList, comparator);
 
-                        stringBuilder.append("\nmax and min of");
+                        stringBuilder.append("max and min of");
                         stringBuilder.append(" H: ").append("(").append(HSBList.get(0)[0]).append("   ").append(HSBList.get(HSBList.size() - 1)[0]).append(")");
                         Collections.sort(HSBList, comparator1);
                         stringBuilder.append(" S: ").append("(").append(HSBList.get(0)[1]).append("   ").append(HSBList.get(HSBList.size() - 1)[1]).append(")");
                         Collections.sort(HSBList, comparator2);
                         stringBuilder.append(" B: ").append("(").append(HSBList.get(0)[2]).append("   ").append(HSBList.get(HSBList.size() - 1)[2]).append(")");
+                        stringBuilder.append("\n");
 
 
                         // 将内容保存到文件

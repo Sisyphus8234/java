@@ -10,17 +10,13 @@ import java.awt.*;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
-    public static Color pixelColor血量;
-    public static Color pixelColor资源;
     public static boolean 自动喝药 = false;
     public static MyThread t1;
     public static boolean t1Temp1 = false;
     public static boolean dTemp = false;
     public static boolean dTemp1 = false;
     public static float[] myHSB血量;
-    public static float[] myHSB资源;
-
-    public static FunctionsAddition.GatherPixelColor gatherPixelColor=new FunctionsAddition.GatherPixelColor();
+    public static FunctionsAddition.PixelColor pixelColor =new FunctionsAddition.PixelColor();
 
 
 
@@ -39,21 +35,7 @@ public class Functions公共 extends IFunctions {
             public void run() {
                 while (true) {
                     if (自动喝药 == true) {
-
-                        myHSB血量= getHSB血量(625,985);
-
-//                        System.out.println(myHSB血量[0]);
-//                        System.out.println(myHSB血量[1]);
-//                        System.out.println(myHSB血量[2]);
-//
-//                        System.out.println(myHSB血量[1]);
-//                        if(myHSB血量[1]<test){
-//                            test=myHSB血量[1];
-//                        }
-//                        System.out.println(test);
-//                        System.out.println("------");
-
-//                       625,985 s 最小0.69942194
+                        myHSB血量= pixelColor.getPixelColor(625,985);
                         if (
                                 myHSB血量[1]<0.5F
                         ) {
@@ -170,31 +152,14 @@ public class Functions公共 extends IFunctions {
 //        dTemp=false;
 //    }
 
-
-
-
-
-
-    public static float[] getHSB资源(int x, int y){
-        pixelColor资源 = robot.getPixelColor(x, y);
-        myHSB资源 =Color.RGBtoHSB(pixelColor资源.getRed(), pixelColor资源.getGreen(), pixelColor资源.getBlue(), null);
-        return(myHSB资源);
-    }
-
-    public static float[] getHSB血量(int x, int y){
-        pixelColor血量 = robot.getPixelColor(x, y);
-        myHSB血量 =Color.RGBtoHSB(pixelColor血量.getRed(), pixelColor血量.getGreen(), pixelColor血量.getBlue(), null);
-        return(myHSB血量);
-    }
-
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-        gatherPixelColor.threadOn(1313,995);
+        pixelColor.threadOn(1313,995);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f1() {
-        gatherPixelColor.threadOff();
+        pixelColor.threadOff();
     }
 
 
