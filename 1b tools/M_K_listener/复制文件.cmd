@@ -5,10 +5,11 @@ chcp 65001
 set /p input=
 set OutDir=%input%Out
 
-:: /s 是代表删除所有子目录跟其中的档案 /q是不要它在删除档案或目录时，不再问我 Yes or No 的动作
-:: rmdir /s/q %OutDir%
-:: mkdir %OutDir%
-
+::/S 是代表删除所有子目录跟其中的档案 
+::/Q 是不要它在删除档案或目录时，不再问我 Yes or No 的动作
+if exist "%OutDir%" (
+    rmdir /s /q "%OutDir%"
+)
 
 ::/Y 表示强制复制
 ::/E 表示复制子文件夹和文件。
