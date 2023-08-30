@@ -14,7 +14,7 @@ public class Functions extends IFunctions {
     public static Long time1 = Long.valueOf(Config.read("Time1"));
 
     static {
-        t1 = new MyThread("off") {
+        t1 = new MyThread(MyThread.State.off) {
             @Override
             public void run() {
                 while (true) {
