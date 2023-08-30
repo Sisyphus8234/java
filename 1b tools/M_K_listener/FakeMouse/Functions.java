@@ -193,7 +193,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "`",value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 波浪键0() {
         波浪键按住期间做了什么 = false;
         波浪键按住 = true;
@@ -201,13 +201,19 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "`",value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 波浪键1() {
         波浪键按住 = false;
         if (波浪键按住期间做了什么 == true) {
         } else {
-            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
-            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
+            robot.keyPress(KeyEvent.VK_WINDOWS);
+            robot.keyPress(WhichProgram);
+            pause(50);
+            robot.keyRelease(KeyEvent.VK_WINDOWS);
+            robot.keyRelease(WhichProgram);
+
+//            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
+//            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
         }
 
 
