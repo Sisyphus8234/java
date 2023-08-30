@@ -325,7 +325,6 @@ public class Functions游侠 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "f1",value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备() {
-
         筛选装备.标记终点();
     }
 
@@ -338,8 +337,8 @@ public class Functions游侠 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "f3",value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备2() {
-        筛选装备.是否标记 = true;
         筛选装备.是否扫描和筛选 = false;
+        筛选装备.是否标记 = true;
         t4.myResume();
     }
 

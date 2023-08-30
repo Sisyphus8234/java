@@ -236,7 +236,6 @@ public class 筛选装备 {
     }
 
     public static void 筛选(筛选装备_子类 筛选装备_子类,当前装备信息 当前装备信息){
-        System.out.println("-----------2");
         boolean 是否报错 = false;
         筛选逻辑参数 筛选逻辑参数 = new 筛选逻辑参数();
         筛选逻辑参数.要的词缀_容器 = 筛选装备_子类.要的词缀();
@@ -341,7 +340,7 @@ public class 筛选装备 {
             List<String> 是词缀的部分 = 图片解析出的所有词条.subList(物品强度索引 + 1, 装备时损失属性索引);
             是词缀的部分_物品强度.addAll(是词缀的部分);
             是词缀的部分=是词缀的部分_物品强度;
-//                System.out.println(是词缀的部分);
+
 
 
             筛选逻辑参数.是词缀的部分_容器 = 是词缀的部分;
@@ -438,11 +437,6 @@ public class 筛选装备 {
                 }else {
                     是否是是数值=true;
                 }
-
-//                System.out.println("---------1");
-//                System.out.println(s);
-//                s="xxxxxx-23xxxxxx";
-
 
                 Pattern pattern = Pattern.compile("([+-]{1})(\\d+)");
                 Matcher matcher = pattern.matcher(s);
