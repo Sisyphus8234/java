@@ -35,7 +35,7 @@ public class Functions公共 extends IFunctions {
             public void run() {
                 while (true) {
                     if (自动喝药 == true) {
-                        myHSB血量= pixelColor.getPixelColor(625,985);
+                        myHSB血量= pixelColor.getPixelColor(625,990);
                         if (
                                 myHSB血量[1]<0.5F
                         ) {
@@ -68,7 +68,7 @@ public class Functions公共 extends IFunctions {
                             t1Temp1=true;
 
                             if(t1Temp1==true){
-                                pause(550L);
+                                pause(800L);
                                 t1Temp1=false;
                             }
 

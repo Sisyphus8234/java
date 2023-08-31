@@ -228,6 +228,8 @@ public class 筛选装备 {
     public static void 扫描(int x轴第几个, int y轴第几个){
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
+        robot.mouseMove(1846, 695);
+        IFunctions.pause(100);
         robot.mouseMove(标准化x, 标准化y);
         IFunctions.pause(300);
         String fileName=savePicture(标准化x, 标准化y, robot);
