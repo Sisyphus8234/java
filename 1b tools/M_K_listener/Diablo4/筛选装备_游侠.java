@@ -9,7 +9,7 @@ public class 筛选装备_游侠 extends 筛选装备_子类 {
     public String[] 不要的词缀 = {"受伤状态下的", "对受伤敌人的暴击几率", "被灌注技能的暴击伤害", "能量上限","对中毒敌人的伤害减免","暗影抗性"};
     public int 需求词条数量_要求 = 3;
     public int 数值大于多少算优秀 = -75;
-    public int 物品强度大于多少算优秀 = 785;
+    public int 物品强度大于多少算优秀 = 799;
 
     @Override
     public String[] 要的词缀() {
