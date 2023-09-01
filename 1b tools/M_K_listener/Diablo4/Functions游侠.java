@@ -298,7 +298,7 @@ public class Functions游侠 extends Functions公共 {
     };
     @ListenMouseKeyboard(note = "f1",value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备() {
-        筛选装备.标记终点();
+        筛选装备.标记起点();
     }
     @ListenMouseKeyboard(note = "f2",value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 图像识别_装备1() {

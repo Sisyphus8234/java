@@ -57,9 +57,13 @@ public class 筛选装备 {
     public static String outPictureName = "screenshot";
     public static String outTextName = "output";
     public static Robot robot;
+    public static int x轴第几个_起点;
+    public static int y轴第几个_起点;
+    public static boolean 是否标记起点 =false;
+
     public static int x轴第几个_终点;
     public static int y轴第几个_终点;
-    public static boolean 是否标记终点=false;
+
 
 
 
@@ -134,15 +138,15 @@ public class 筛选装备 {
     }
 
 
-    public static void 标记终点(){
+    public static void 标记起点(){
 
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
 
-        x轴第几个_终点 = (int) (Math.floor((x - 左线) / 单个宽度));
-        y轴第几个_终点 = (int) (Math.floor((y - 上线) / 单个高度));
+        x轴第几个_起点 = (int) (Math.floor((x - 左线) / 单个宽度));
+        y轴第几个_起点 = (int) (Math.floor((y - 上线) / 单个高度));
 
-        是否标记终点=true;
+        是否标记起点 =true;
 
 
     }
@@ -155,38 +159,46 @@ public class 筛选装备 {
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
 
-        int x轴第几个 = (int) (Math.floor((x - 左线) / 单个宽度));
-        int y轴第几个 = (int) (Math.floor((y - 上线) / 单个高度));
+
+
+        x轴第几个_终点 = (int) (Math.floor((x - 左线) / 单个宽度));
+        y轴第几个_终点 = (int) (Math.floor((y - 上线) / 单个高度));
 
         File directory = new File(folderName);
         if (!directory.exists()) {
             directory.mkdirs(); // 创建目标文件夹及其父文件夹（如果不存在）
         }
 
+        int x轴第几个=0;
+        int y轴第几个=0;
+
+        if(是否标记起点 ==true) {
+            x轴第几个=x轴第几个_起点;
+            y轴第几个=y轴第几个_起点;
+        }
 
         while (是否扫描和筛选 ==true){
             扫描(x轴第几个,y轴第几个);
 
 
-            x轴第几个--;
-            if (x轴第几个 < 0) {
-                x轴第几个 = 横向数量 - 1;
-                y轴第几个--;
+            x轴第几个++;
+            if (x轴第几个 > 横向数量-1) {
+                y轴第几个++;
+                x轴第几个 = 0;
             }
-            if(是否标记终点==false) {
+            if(是否标记起点 ==false) {
                 if (y轴第几个 < 0) {
                     break;
                 }
             }else {
-                if(y轴第几个<y轴第几个_终点){
+                if(y轴第几个> y轴第几个_终点){
                     break;
                 }
-                if(y轴第几个==y轴第几个_终点){
-                    if(x轴第几个<x轴第几个_终点){
+                if(y轴第几个== y轴第几个_终点){
+                    if(x轴第几个> x轴第几个_终点){
                         break;
                     }
                 }
-
             }
         }
 
@@ -213,7 +225,7 @@ public class 筛选装备 {
 
         voice("custom/结束.wav",600);
 
-        是否标记终点=false;
+        是否标记起点 =false;
     }
 
     public static void run1() {
@@ -228,8 +240,6 @@ public class 筛选装备 {
     public static void 扫描(int x轴第几个, int y轴第几个){
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
-        robot.mouseMove(1846, 695);
-        IFunctions.pause(100);
         robot.mouseMove(标准化x, 标准化y);
         IFunctions.pause(300);
         String fileName=savePicture(标准化x, 标准化y, robot);
