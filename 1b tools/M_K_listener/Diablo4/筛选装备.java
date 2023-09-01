@@ -305,9 +305,7 @@ public class 筛选装备 {
         StringBuilder 一件装备的所有文本=new StringBuilder();
 
         try {
-            // 构建命令
-//                ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + folderName + "/" + outPictureName + ".png --use_angle_cls false --use_gpu false");
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + 当前装备信息.文件名+" --use_angle_cls false");
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + 当前装备信息.文件名+" --use_angle_cls false --enable_mkldnn true");
 
             // 设置工作目录（可选）
             // processBuilder.directory(new File("path_to_working_directory"));
