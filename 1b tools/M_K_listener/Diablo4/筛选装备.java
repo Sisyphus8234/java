@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static base.IFunctions.pause;
 import static java.awt.event.KeyEvent.VK_SPACE;
 
 public class 筛选装备 {
@@ -70,7 +71,8 @@ public class 筛选装备 {
     public static int y轴第几个_终点;
 
     // 创建一个线程池，例如使用固定数量的线程
-    public static int 线程池大小 = Runtime.getRuntime().availableProcessors(); // 您可以根据需要调整线程池的大小
+//    public static int 线程池大小 = Runtime.getRuntime().availableProcessors(); // 您可以根据需要调整线程池的大小
+    public static int 线程池大小 = 4; // 您可以根据需要调整线程池的大小
     public static ExecutorService 线程池;
 
     // 创建一个列表来保存Future对象
@@ -78,6 +80,8 @@ public class 筛选装备 {
 
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static int 还有几个 = 0;
+    public static long 扫描间隔 = 330L;
+    public static long 标记间隔 = 200L;
 
 
 
@@ -171,7 +175,7 @@ public class 筛选装备 {
         robot=robot1;
         list.clear();
         output.setLength(0);
-        线程池 = Executors.newFixedThreadPool(线程池大小);
+
 
 
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
@@ -195,6 +199,7 @@ public class 筛选装备 {
             y轴第几个=y轴第几个_起点;
         }
 
+
         while (是否扫描和筛选 ==true){
             扫描(x轴第几个,y轴第几个);
 
@@ -204,20 +209,16 @@ public class 筛选装备 {
                 y轴第几个++;
                 x轴第几个 = 0;
             }
-            if(是否标记起点 ==false) {
-                if (y轴第几个 < 0) {
+
+
+            if(y轴第几个> y轴第几个_终点){
+                break;
+            }else if(y轴第几个== y轴第几个_终点){
+                if(x轴第几个> x轴第几个_终点){
                     break;
-                }
-            }else {
-                if(y轴第几个> y轴第几个_终点){
-                    break;
-                }
-                if(y轴第几个== y轴第几个_终点){
-                    if(x轴第几个> x轴第几个_终点){
-                        break;
-                    }
                 }
             }
+
         }
 
 //        for(当前装备信息 u:list){
@@ -228,6 +229,7 @@ public class 筛选装备 {
         还有几个=list.size();
         clipboard.setContents(new StringSelection(LocalTime.now().toString()+" 总共有: "+还有几个), null);
 
+        线程池 = Executors.newFixedThreadPool(线程池大小);
         // 遍历装备信息列表并提交任务给线程池
         for (当前装备信息 当前装备信息:list) {
             if (是否扫描和筛选) {
@@ -238,18 +240,6 @@ public class 筛选装备 {
             }
         }
 
-//        // 遍历装备信息列表并提交任务给线程池
-//        for (当前装备信息 当前装备信息:list) {
-//
-//                    筛选_包裹(筛选装备_子类, 当前装备信息);6
-//
-//        }
-
-
-
-
-
-
         // 关闭线程池并等待所有任务完成
         线程池.shutdown();
         try {
@@ -257,6 +247,12 @@ public class 筛选装备 {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+
+//        // 遍历装备信息列表并提交任务给线程池
+//        for (当前装备信息 当前装备信息:list) {
+//            筛选_包裹(筛选装备_子类, 当前装备信息);
+//        }
 
 
         // 将内容保存到文件
@@ -288,7 +284,7 @@ public class 筛选装备 {
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
         robot.mouseMove(标准化x, 标准化y);
-        IFunctions.pause(300);
+        pause(扫描间隔);
         String fileName=savePicture(标准化x, 标准化y, robot);
         当前装备信息 当前装备信息=new 当前装备信息(x轴第几个,y轴第几个,标准化x,标准化y,fileName);
         list.add(当前装备信息);
@@ -319,7 +315,7 @@ public class 筛选装备 {
         StringBuilder 一件装备的所有文本=new StringBuilder();
 
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + 当前装备信息.文件名+" --use_angle_cls false --enable_mkldnn true");
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + 当前装备信息.文件名+" --use_angle_cls false --enable_mkldnn false");
 
             // 设置工作目录（可选）
             // processBuilder.directory(new File("path_to_working_directory"));
@@ -484,15 +480,14 @@ public class 筛选装备 {
 
 
     public static void 标记(当前装备信息 当前装备信息){
-        long time=50L;
         robot.mouseMove(当前装备信息.x,当前装备信息.y);
-        IFunctions.pause(time);
+        pause(标记间隔);
         if(当前装备信息.所有要求满足==false) {
             robot.keyPress(VK_SPACE);
-            IFunctions.pause(time);
+            pause(20L);
             robot.keyRelease(VK_SPACE);
         }
-        IFunctions.pause(time);
+        pause(标记间隔);
 
     }
 
