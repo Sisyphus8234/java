@@ -71,7 +71,7 @@ public class 筛选装备 {
 
     // 创建一个线程池，例如使用固定数量的线程
     public static int 线程池大小 = Runtime.getRuntime().availableProcessors(); // 您可以根据需要调整线程池的大小
-    public static ExecutorService 线程池 = Executors.newFixedThreadPool(线程池大小);
+    public static ExecutorService 线程池;
 
     // 创建一个列表来保存Future对象
     public static List<Future<?>> futures = new ArrayList<>();
@@ -171,6 +171,7 @@ public class 筛选装备 {
         robot=robot1;
         list.clear();
         output.setLength(0);
+        线程池 = Executors.newFixedThreadPool(线程池大小);
 
 
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
@@ -219,12 +220,13 @@ public class 筛选装备 {
             }
         }
 
-
+//        for(当前装备信息 u:list){
+//            u.文件名="D:\\wkspaces\\t2\\screenshot222932.png";
+//        }
 
         voice("custom/yy.wav",250);
         还有几个=list.size();
-        clipboard.setContents(new StringSelection("总共有: "+还有几个), null);
-
+        clipboard.setContents(new StringSelection(LocalTime.now().toString()+" 总共有: "+还有几个), null);
 
         // 遍历装备信息列表并提交任务给线程池
         for (当前装备信息 当前装备信息:list) {
@@ -235,6 +237,18 @@ public class 筛选装备 {
             futures.add(future);
             }
         }
+
+//        // 遍历装备信息列表并提交任务给线程池
+//        for (当前装备信息 当前装备信息:list) {
+//
+//                    筛选_包裹(筛选装备_子类, 当前装备信息);6
+//
+//        }
+
+
+
+
+
 
         // 关闭线程池并等待所有任务完成
         线程池.shutdown();
@@ -351,6 +365,7 @@ public class 筛选装备 {
 
 
 
+
                         if (extractedText.contains("戒指")) {
                             筛选逻辑参数.预类别=预类别.戒指;
                         } else if (extractedText.contains("护符")) {
@@ -463,7 +478,7 @@ public class 筛选装备 {
 
         voice("custom/yy.wav",250);
         还有几个--;
-        clipboard.setContents(new StringSelection("还有几个: "+还有几个), null);
+        clipboard.setContents(new StringSelection(LocalTime.now().toString()+" 还有几个: "+还有几个), null);
     }
 
 
