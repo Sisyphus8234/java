@@ -6,6 +6,8 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.time.LocalDateTime;
@@ -13,6 +15,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,8 +42,7 @@ public class 筛选装备 {
         }
     }
 
-    public static String output = "";
-
+    public static StringBuilder output = new StringBuilder();
     public static List<当前装备信息> list=new ArrayList<>();
     public static int 左线 = 1270;
     public static int 右线 = 1874;
@@ -63,6 +68,17 @@ public class 筛选装备 {
 
     public static int x轴第几个_终点;
     public static int y轴第几个_终点;
+
+    // 创建一个线程池，例如使用固定数量的线程
+    public static int 线程池大小 = Runtime.getRuntime().availableProcessors(); // 您可以根据需要调整线程池的大小
+    public static ExecutorService 线程池 = Executors.newFixedThreadPool(线程池大小);
+
+    // 创建一个列表来保存Future对象
+    public static List<Future<?>> futures = new ArrayList<>();
+
+    public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    public static int 还有几个 = 0;
+
 
 
 
@@ -154,7 +170,8 @@ public class 筛选装备 {
     public static void run(Robot robot1, 筛选装备_子类 筛选装备_子类) {
         robot=robot1;
         list.clear();
-        output="";
+        output.setLength(0);
+
 
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
@@ -202,21 +219,37 @@ public class 筛选装备 {
             }
         }
 
+
+
         voice("custom/yy.wav",250);
+        还有几个=list.size();
+        clipboard.setContents(new StringSelection("总共有: "+还有几个), null);
 
 
-        for(当前装备信息 当前装备信息:list){
-            if(是否扫描和筛选 == false){break;}
-            筛选(筛选装备_子类,当前装备信息);
+        // 遍历装备信息列表并提交任务给线程池
+        for (当前装备信息 当前装备信息:list) {
+            if (是否扫描和筛选) {
+            Future<?> future = 线程池.submit(() -> {
+                筛选_包裹(筛选装备_子类, 当前装备信息);
+            });
+            futures.add(future);
+            }
         }
 
+        // 关闭线程池并等待所有任务完成
+        线程池.shutdown();
+        try {
+            线程池.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 
         // 将内容保存到文件
         String fileName = folderName + "/" + outTextName + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".txt";
         try {
             FileWriter writer = new FileWriter(fileName);
-            writer.write(output);
+            writer.write(output.toString());
             writer.close();
             System.out.println("内容已保存到 " + fileName);
         } catch (IOException e) {
@@ -247,6 +280,12 @@ public class 筛选装备 {
         list.add(当前装备信息);
     }
 
+
+    public static void 筛选_包裹(筛选装备_子类 筛选装备_子类,当前装备信息 当前装备信息){
+        if(是否扫描和筛选==true) {
+            筛选(筛选装备_子类, 当前装备信息);
+        }
+    }
     public static void 筛选(筛选装备_子类 筛选装备_子类,当前装备信息 当前装备信息){
         boolean 是否报错 = false;
         筛选逻辑参数 筛选逻辑参数 = new 筛选逻辑参数();
@@ -263,7 +302,7 @@ public class 筛选装备 {
         int 装备时损失属性索引 = 0;
         int 装备时损失属性索引temp = 0;
 
-
+        StringBuilder 一件装备的所有文本=new StringBuilder();
 
         try {
             // 构建命令
@@ -280,6 +319,9 @@ public class 筛选装备 {
             InputStream inputStream = process.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "GBK");
             BufferedReader reader = new BufferedReader(inputStreamReader);
+            
+            
+
 
             // 读取输出
             String line;
@@ -306,7 +348,8 @@ public class 筛选装备 {
                         String extractedText = textPart.replaceAll("'", "").trim();
                         图片解析出的所有词条.add(extractedText);
 
-                        output = output + line + "\n";
+                        一件装备的所有文本.append(line).append("\n");
+
 
 
 
@@ -399,28 +442,30 @@ public class 筛选装备 {
 
 
 
-        output = output + ("-----需求词条: " + 需求词条) + "\n" +
-                ("-----需求词条数量: " + 筛选逻辑参数.需求词条数量) + "\n" +
-                ("-----数值: " + 筛选逻辑参数.数值) + "\n" +
-                ("-----数值优秀: " + 筛选逻辑参数.数值优秀) + "\n" +
-                ("-----预类别: " + 预类别.values()) + "\n" +
-                ("-----物品强度: " + 筛选逻辑参数.物品强度) + "\n" +
-                ("-----装备种类: " + 筛选逻辑参数.装备种类) + "\n" +
-                ("-----所有要求满足: " + 筛选逻辑参数.所有要求满足) + "\n" +
-                ("===============================================================================") + "\n";
+        一件装备的所有文本.append("-----需求词条: ").append(需求词条).append("\n");
+        一件装备的所有文本.append("-----需求词条数量: ").append(筛选逻辑参数.需求词条数量).append("\n");
+        一件装备的所有文本.append("-----数值: ").append(筛选逻辑参数.数值).append("\n");
+        一件装备的所有文本.append("-----数值优秀: ").append(筛选逻辑参数.数值优秀).append("\n");
+        一件装备的所有文本.append("-----预类别: ").append(预类别.values()).append("\n");
+        一件装备的所有文本.append("-----物品强度: ").append(筛选逻辑参数.物品强度).append("\n");
+        一件装备的所有文本.append("-----装备种类: ").append(筛选逻辑参数.装备种类).append("\n");
+        一件装备的所有文本.append("-----所有要求满足: ").append(筛选逻辑参数.所有要求满足).append("\n");
+        一件装备的所有文本.append("===============================================================================").append("\n");
 
-//        tempx = (int) MouseInfo.getPointerInfo().getLocation().getX();
-//        tempy = (int) MouseInfo.getPointerInfo().getLocation().getY();
+        output.append(一件装备的所有文本);
 
 
         if (筛选逻辑参数.所有要求满足) {
         } else {
             if (是否报错 == false) {
                 当前装备信息.所有要求满足=false;
+
             }
         }
 
         voice("custom/yy.wav",250);
+        还有几个--;
+        clipboard.setContents(new StringSelection("还有几个: "+还有几个), null);
     }
 
 
