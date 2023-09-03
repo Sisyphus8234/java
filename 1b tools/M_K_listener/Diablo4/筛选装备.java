@@ -82,7 +82,7 @@ public class 筛选装备 {
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static int 还有几个 = 0;
     public static long 扫描间隔 = 300L;
-    public static long 标记间隔 = 300L;
+    public static long 标记间隔 = 250L;
 
 
 
@@ -485,11 +485,14 @@ public class 筛选装备 {
 
     public static void 标记(当前装备信息 当前装备信息){
 
+        robot.mouseMove(1202, 845);
+        pause(50L);
+
         if(当前装备信息.所有要求满足==false) {
             robot.mouseMove(当前装备信息.x,当前装备信息.y);
             pause(标记间隔);
             robot.keyPress(VK_SPACE);
-//            pause(20L);
+            pause(20L);
             robot.keyRelease(VK_SPACE);
         }
         pause(标记间隔);
