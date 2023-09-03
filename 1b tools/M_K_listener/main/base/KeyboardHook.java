@@ -45,7 +45,8 @@ public class KeyboardHook {
 							printText.append("(not user input) ");
 						}
 						printText.append("KeyboardKey: ").append(info.vkCode);
-						printText.append("\n").append("info.flags ").append(info.flags);
+						printText.append("\n").append("info.flags: ").append(info.flags);
+						printText.append("\n").append("wParam.intValue(): ").append(wParam.intValue());
 						System.out.println(printText);
 					}
 
@@ -78,12 +79,12 @@ public class KeyboardHook {
 					inputInfo.value=info.vkCode;
 
 //					if(info.flags==16 || info.flags==144){
-					if(info.flags==0 ||info.flags==1||info.flags==32|| info.flags==128||info.flags==129){
+					if(info.flags==0 ||info.flags==1||info.flags==32||info.flags==33|| info.flags==128||info.flags==129){
 						inputInfo.userInput=true;
 					}else {
 						inputInfo.userInput=false;
 					}
-					if(wParam.intValue()==256){
+					if(wParam.intValue()==256||wParam.intValue()==260){
 						inputInfo.press=true;
 					}else {
 						inputInfo.press=false;
