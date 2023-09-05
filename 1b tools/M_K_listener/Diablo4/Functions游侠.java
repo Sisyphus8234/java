@@ -45,17 +45,12 @@ public class Functions游侠 extends Functions公共 {
         public void run() {
             while (true) {
                 if (t1Temp == true) {
-
                     if(是否基础技能) {
-
                         myHSB资源 = pixelColor.getPixelColor(rgbx,rgby);
-                        if(myHSB资源[0]<value)
-                        {
+                        if(myHSB资源[0]<value){
                             robot.mouseRelease(BUTTON1_DOWN_MASK);
                             robot.mousePress(BUTTON1_DOWN_MASK);
-                        }else {
                         }
-
 
                     }
                     robot.keyRelease(VK_5);

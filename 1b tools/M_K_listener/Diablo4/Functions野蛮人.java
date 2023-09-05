@@ -9,11 +9,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
+import static java.awt.event.KeyEvent.VK_5;
+import static java.awt.event.KeyEvent.VK_V;
 
 public class Functions野蛮人 extends Functions公共 {
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
     public static Long baseDelayT3 = Long.parseLong(Config.read("BaseDelay"))*2;
     public static boolean t1B = false;
+    public static boolean t1B1 = false;
     public static boolean t2B = false;
     public static boolean 右键或者1234在t1运行时按下 = false;
     public static boolean 是否基础技能 = true;
@@ -68,7 +71,18 @@ public class Functions野蛮人 extends Functions公共 {
                         robot.mousePress(BUTTON1_DOWN_MASK);
                     }
                     if (是否核心技能) {
-                        robot.mousePress(MouseEvent.BUTTON2_DOWN_MASK);
+                        robot.keyRelease(VK_5);
+                        robot.keyPress(VK_5);
+                    }
+
+                    t1B1=true;
+                } else {
+                    if(t1B1==true){
+                        robot.keyRelease(VK_5);
+                        if(w或者左键==false) {
+                            robot.mouseRelease(BUTTON1_DOWN_MASK);
+                        }
+                        t1B1=false;
                     }
                 }
                 pause(baseDelay);
@@ -88,17 +102,23 @@ public class Functions野蛮人 extends Functions公共 {
             }
         }
     };
-    public static MyThread t3=new MyThread(MyThread.State.on) {
+    public static boolean t捡东西B = false;
+    public static MyThread t捡东西=new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
                 if (t1B == true) {
-                    robot.keyPress(KeyEvent.VK_V);
-                    robot.keyRelease(KeyEvent.VK_V);
+                    robot.keyRelease(VK_V);
+                    robot.keyPress(VK_V);
+                    t捡东西B =true;
                 } else {
-                }
-                pause(baseDelayT3);
+                    if(t捡东西B ==true){
+                        robot.keyRelease(VK_V);
+                        t捡东西B =false;
+                    }
 
+                }
+                pause(baseDelay);
             }
         }
     };
