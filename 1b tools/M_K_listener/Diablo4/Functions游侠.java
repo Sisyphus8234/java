@@ -21,13 +21,10 @@ public class Functions游侠 extends Functions公共 {
     public static boolean t3Temp = false;
 
     public static boolean 右键或者1234在t1运行时按下 = false;
-    public static boolean 之前已经有右键或者1234在t1运行时按下 = false;
     public static boolean w或者左键 = false;
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = true;
     public static 筛选装备_游侠 筛选装备_游侠 = new 筛选装备_游侠();
-
-
     public static final int rgby1= 980;
     public static final int rgby2= 995;
     public static final float value1= 0.624F;
@@ -133,7 +130,6 @@ public class Functions游侠 extends Functions公共 {
     @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w() {
-
         w或者左键 = true;
         t1Temp = false;
         Functions公共.自动喝药=false;
@@ -144,8 +140,6 @@ public class Functions游侠 extends Functions公共 {
     public static void w_1() {
         w或者左键 = false;
     }
-
-
     @ListenMouseKeyboard(note = "e",value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e() {
         rgby=rgby2;
@@ -155,8 +149,6 @@ public class Functions游侠 extends Functions公共 {
         t2Temp = false;
         Functions公共.自动喝药=true;
         Functions公共.t1.myResume();
-
-
     }
     @ListenMouseKeyboard(note = "e",value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e1() {
@@ -172,7 +164,6 @@ public class Functions游侠 extends Functions公共 {
         是否基础技能=false;
 
     }
-
     @ListenMouseKeyboard(note = "右键",value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
         是否基础技能=true;
@@ -192,9 +183,6 @@ public class Functions游侠 extends Functions公共 {
         t1Temp = true;
         t2Temp = false;
     }
-
-
-
 
     //    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
 //    @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
