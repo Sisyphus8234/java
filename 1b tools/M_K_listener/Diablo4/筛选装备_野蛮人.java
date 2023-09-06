@@ -36,50 +36,50 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     }
 
     @Override
-    public void 装备分类(List<String> result, 筛选装备.筛选逻辑参数 筛选逻辑参数) {
+    public void 装备分类(List<String> result, 筛选装备.当前装备情况 当前装备情况) {
         for(String extractedText:result) {
             if (extractedText.contains("双手锤")) {
-                筛选逻辑参数.装备种类 = (筛选装备.装备种类.只看数值);
+                当前装备情况.装备种类 = (筛选装备.装备种类.只看数值);
                 break;
             } else if (extractedText.contains("靴子")) {
-                筛选逻辑参数.装备种类 = (筛选装备.装备种类.自定要求);
+                当前装备情况.装备种类 = (筛选装备.装备种类.自定要求);
                 break;
             } else if (extractedText.contains("护甲值")) {
-                筛选逻辑参数.装备种类 = (筛选装备.装备种类.只看属性);
+                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
                 break;
             } else if (!extractedText.contains("双手") && (extractedText.contains("斧") || extractedText.contains("剑") || extractedText.contains("锤"))) {
-                筛选逻辑参数.装备种类 = (筛选装备.装备种类.只看属性);
+                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
                 break;
             } else if ((extractedText.contains("双手") && extractedText.contains("劈砍")) || extractedText.contains("长柄武器")) {
-                筛选逻辑参数.装备种类 = (筛选装备.装备种类.只看属性);
+                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
                 break;
             }else {
-                筛选逻辑参数.装备种类 = (筛选装备.装备种类.看数值或看属性);
+                当前装备情况.装备种类 = (筛选装备.装备种类.看数值或看属性);
             }
         }
 
-        if(筛选逻辑参数.预类别== 筛选装备.预类别.戒指||筛选逻辑参数.预类别==筛选装备.预类别.护符){
-            筛选逻辑参数.装备种类=(筛选装备.装备种类.只看属性);
+        if(当前装备情况.预类别== 筛选装备.预类别.戒指|| 当前装备情况.预类别==筛选装备.预类别.护符){
+            当前装备情况.装备种类=(筛选装备.装备种类.只看属性);
         }
     }
 
 
     @Override
-    public void 自定筛选(筛选装备.筛选逻辑参数 筛选逻辑参数) {
+    public void 自定筛选(筛选装备.当前装备情况 当前装备情况) {
         boolean 自定要求是否满足=false;
-        for (String s : 筛选逻辑参数.是词缀的部分_容器) {
+        for (String s : 当前装备情况.是词缀的部分_容器) {
             if(s.contains("移动速度")){
                 自定要求是否满足=true;
             }
         }
 
 //        筛选逻辑参数.需求词条要求数量--;
-        筛选装备.筛选逻辑(筛选逻辑参数);
+        筛选装备.筛选逻辑(当前装备情况);
 
-        if((筛选逻辑参数.需求词条数量是否满足)
+        if((当前装备情况.需求词条数量是否满足)
         &&自定要求是否满足
         ){
-            筛选逻辑参数.所有要求满足=true;
+            当前装备情况.所有要求满足=true;
         }
     }
 }

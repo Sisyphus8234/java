@@ -12,7 +12,6 @@ import static java.awt.event.KeyEvent.*;
 
 public class Functions死灵 extends Functions公共 {
     public static Long baseDelay = 200L;
-    public static Long baseDelayT3 = Long.parseLong(Config.read("BaseDelay")) * 2;
     public static boolean t1B = false;
     public static boolean tB是否尸体 = false;
     public static boolean tB是否技能 = false;
@@ -35,7 +34,7 @@ public class Functions死灵 extends Functions公共 {
                     t1B1 = true;
                 } else {
                     if (t1B1 == true) {
-                        Point p = (MouseInfo.getPointerInfo().getLocation());
+//                        Point p = (MouseInfo.getPointerInfo().getLocation());
 
 //                        robot.mouseMove(958,505);
 //                        pause(100);
@@ -68,23 +67,33 @@ public class Functions死灵 extends Functions公共 {
             }
         }
     };
+    public static boolean t技能B1 = false;
     public static MyThread t技能 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
                 if (tB是否技能 == true) {
+                    robot.keyPress(VK_SPACE);
+                    t技能B1 = true;
 //                    if (pixelColor1.getPixelColor(867, 982)[1] > 0.47f) {
-                        robot.keyPress(VK_2);
-                        robot.keyRelease(VK_2);
+                    robot.keyPress(VK_2);
+                    robot.keyRelease(VK_2);
 //                    }  else {
-                        robot.keyPress(VK_3);
-                        robot.keyRelease(VK_3);
+                    robot.keyPress(VK_3);
+                    robot.keyRelease(VK_3);
 //                        pause(100L);
-                        robot.keyPress(VK_4);
-                        robot.keyRelease(VK_4);
+                    robot.keyPress(VK_W);
+                    robot.keyRelease(VK_W);
 //                    }
 
 
+                } else {
+                    if (t技能B1 == true) {
+                        if (space == false) {
+                            robot.keyRelease(VK_SPACE);
+                        }
+                        t技能B1=false;
+                    }
                 }
                 pause(baseDelay);
             }
@@ -133,6 +142,9 @@ public class Functions死灵 extends Functions公共 {
         t2B = false;
         Functions公共.自动喝药 = true;
         Functions公共.t1.myResume();
+
+        tB是否尸体=false;
+        tB是否技能=false;
     }
 
 //    @ListenMouseKeyboard(note = "e", value = 69, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -141,21 +153,19 @@ public class Functions死灵 extends Functions公共 {
 //        t2B = false;
 //    }
 
-    @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "1",value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体() {
-        if (t1B == true) {
-            右键或者1234在t1运行时按下 = true;
-        }
+//        if (t1B == true) {
+//            右键或者1234在t1运行时按下 = true;
+//        }
         t1B = false;
-
 
         tB是否尸体 = true;
         t尸体.myResume();
     }
 
-    @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+//    @ListenMouseKeyboard(note = "1",value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体1() {
-
         if (右键或者1234在t1运行时按下 == true) {
             t1B = true;
         }
@@ -164,7 +174,7 @@ public class Functions死灵 extends Functions公共 {
         tB是否尸体 = false;
     }
 
-    @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "2",value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 技能() {
         if (t1B == true) {
             右键或者1234在t1运行时按下 = true;
@@ -176,7 +186,7 @@ public class Functions死灵 extends Functions公共 {
         t技能.myResume();
     }
 
-    @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "2",value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 技能1() {
         if (右键或者1234在t1运行时按下 == true) {
             t1B = true;
@@ -187,8 +197,10 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
+    public static boolean space = false;
     @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格() {
+        space = true;
         if (t1B == true) {
             右键或者1234在t1运行时按下 = true;
         }
@@ -197,6 +209,7 @@ public class Functions死灵 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "space", value = 32, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格1() {
+        space = false;
         if (右键或者1234在t1运行时按下 == true) {
             t1B = true;
         }
@@ -204,24 +217,24 @@ public class Functions死灵 extends Functions公共 {
 
     }
 
-    @ListenMouseKeyboard(value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="r",value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void R() {
         t1B = false;
 //        Functions公共.自动喝药=false;
         t2B = true;
     }
 
-    @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="左键",value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note="w",value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w() {
         w或者左键 = true;
         t1B = false;
-        Functions公共.自动喝药 = false;
+//        Functions公共.自动喝药 = false;
         t2B = false;
     }
 
-    @ListenMouseKeyboard(value = 514, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="左键",value = 514, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note="w",value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w_1() {
         w或者左键 = false;
     }
