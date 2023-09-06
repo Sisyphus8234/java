@@ -36,17 +36,18 @@ public class Functions死灵 extends Functions公共 {
                     t1B1 = true;
                 } else {
                     if (t1B1 == true) {
-                        if(space==true) {
-                            Point p = (MouseInfo.getPointerInfo().getLocation());
-                            robot.mouseMove(958, 505);
-                            pause(10);
-                            robot.keyPress(VK_G);
+//                        if(space==true) {
+//                            Point p = (MouseInfo.getPointerInfo().getLocation());
+//                            robot.mouseMove(958, 520);
+//                            pause(30);
+//                            robot.keyPress(VK_G);
+//                            pause(20);
+//                            robot.keyRelease(VK_G);
+//                            pause(20);
+//                            robot.mouseMove(p.x, p.y);
+//                        }else {
                             robot.keyRelease(VK_G);
-                            pause(10);
-                            robot.mouseMove(p.x, p.y);
-                        }else {
-                            robot.keyRelease(VK_G);
-                        }
+//                        }
                         t1B1 = false;
                     }
                 }
@@ -55,12 +56,16 @@ public class Functions死灵 extends Functions公共 {
         }
     };
 
+    public static boolean 判断(){
+       return pixelColor.getPixelColor(776, 969)[1] < 0.59F||pixelColor.getPixelColor(1374, 1028)[1]<0.06F||pixelColor.getPixelColor(1372, 983)[1]<0.06F;
+    }
+
     public static MyThread t尸体 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
                 if (tB是否尸体 == true) {
-                    if (pixelColor.getPixelColor(776, 969)[1] < 0.59F) {
+                    if (判断()) {
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
                     } else {
@@ -79,17 +84,38 @@ public class Functions死灵 extends Functions公共 {
             while (true) {
                 if (tB是否技能 == true) {
                     robot.keyPress(VK_SPACE);
+                    if(t技能B1==false){
+                        robot.keyPress(VK_5);
+                        robot.keyRelease(VK_5);
+                    }
                     t技能B1 = true;
-//                    if (pixelColor1.getPixelColor(867, 982)[1] > 0.47f) {
+
+
+
+
                     robot.keyPress(VK_2);
                     robot.keyRelease(VK_2);
 //                    }  else {
                     robot.keyPress(VK_3);
                     robot.keyRelease(VK_3);
+
+                    robot.keyPress(VK_4);
+                    robot.keyRelease(VK_4);
 //                        pause(100L);
                     robot.keyPress(VK_W);
                     robot.keyRelease(VK_W);
-//                    }
+
+                    if(判断()){
+                        robot.keyPress(VK_1);
+                        robot.keyRelease(VK_1);
+                    }else {
+
+                        robot.keyPress(VK_5);
+                        robot.keyRelease(VK_5);
+                    }
+
+
+
 
 
                 } else {
@@ -225,7 +251,7 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(note="r",value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void R() {
         t1B = false;
-//        Functions公共.自动喝药=false;
+        Functions公共.自动喝药=false;
         t2B = true;
     }
 
