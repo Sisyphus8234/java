@@ -1,12 +1,10 @@
 package custom;
 
-import base.Config;
 import base.FunctionsAddition;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -17,12 +15,16 @@ public class Functions死灵 extends Functions公共 {
     public static boolean tB是否技能 = false;
     public static boolean t1B1 = false;
     public static boolean t2B = false;
-    public static boolean 右键或者1234在t1运行时按下 = false;
+    public static boolean 按12时t1是否运行 = false;
+    public static boolean 按space时t1是否运行 = false;
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = true;
     private static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
     private static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
     public static boolean w或者左键 = false;
+
+
+
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
@@ -34,14 +36,17 @@ public class Functions死灵 extends Functions公共 {
                     t1B1 = true;
                 } else {
                     if (t1B1 == true) {
-//                        Point p = (MouseInfo.getPointerInfo().getLocation());
-
-//                        robot.mouseMove(958,505);
-//                        pause(100);
-//                        robot.keyPress(VK_G);
-                        robot.keyRelease(VK_G);
-//                        pause(100);
-//                        robot.mouseMove(p.x,p.y);
+                        if(space==true) {
+                            Point p = (MouseInfo.getPointerInfo().getLocation());
+                            robot.mouseMove(958, 505);
+                            pause(10);
+                            robot.keyPress(VK_G);
+                            robot.keyRelease(VK_G);
+                            pause(10);
+                            robot.mouseMove(p.x, p.y);
+                        }else {
+                            robot.keyRelease(VK_G);
+                        }
                         t1B1 = false;
                     }
                 }
@@ -155,21 +160,21 @@ public class Functions死灵 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "1",value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体() {
-//        if (t1B == true) {
-//            右键或者1234在t1运行时按下 = true;
-//        }
+        if (t1B == true) {
+            按12时t1是否运行 = true;
+        }
         t1B = false;
 
         tB是否尸体 = true;
         t尸体.myResume();
     }
 
-//    @ListenMouseKeyboard(note = "1",value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "1",value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体1() {
-        if (右键或者1234在t1运行时按下 == true) {
+        if (按12时t1是否运行 == true) {
             t1B = true;
         }
-        右键或者1234在t1运行时按下 = false;
+        按12时t1是否运行 = false;
 
         tB是否尸体 = false;
     }
@@ -177,7 +182,7 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(note = "2",value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 技能() {
         if (t1B == true) {
-            右键或者1234在t1运行时按下 = true;
+            按12时t1是否运行 = true;
         }
         t1B = false;
 
@@ -188,10 +193,10 @@ public class Functions死灵 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "2",value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 技能1() {
-        if (右键或者1234在t1运行时按下 == true) {
+        if (按12时t1是否运行 == true) {
             t1B = true;
         }
-        右键或者1234在t1运行时按下 = false;
+        按12时t1是否运行 = false;
 
         tB是否技能 = false;
     }
@@ -202,7 +207,7 @@ public class Functions死灵 extends Functions公共 {
     public static void 空格() {
         space = true;
         if (t1B == true) {
-            右键或者1234在t1运行时按下 = true;
+            按space时t1是否运行 = true;
         }
         t1B = false;
     }
@@ -210,10 +215,10 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(note = "space", value = 32, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格1() {
         space = false;
-        if (右键或者1234在t1运行时按下 == true) {
+        if (按space时t1是否运行 == true) {
             t1B = true;
         }
-        右键或者1234在t1运行时按下 = false;
+        按12时t1是否运行 = false;
 
     }
 
@@ -240,15 +245,7 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    public static void 右键() {
-        是否基础技能 = false;
-    }
 
-    @ListenMouseKeyboard(note = "右键", value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    public static void 右键1() {
-        是否基础技能 = true;
-    }
 
     @ListenMouseKeyboard(value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -271,7 +268,7 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1() {
         if (t1B == true) {
-            右键或者1234在t1运行时按下 = true;
+            按12时t1是否运行 = true;
         }
         t1B = false;
     }
@@ -282,10 +279,10 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1_1() {
-        if (右键或者1234在t1运行时按下 == true) {
+        if (按12时t1是否运行 == true) {
             t1B = true;
         }
-        右键或者1234在t1运行时按下 = false;
+        按12时t1是否运行 = false;
     }
 
     //    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
