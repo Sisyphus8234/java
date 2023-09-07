@@ -65,8 +65,8 @@ public class Functions死灵 extends Functions公共 {
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
                     } else {
-                        robot.keyPress(VK_5);
-                        robot.keyRelease(VK_5);
+//                        robot.keyPress(VK_5);
+//                        robot.keyRelease(VK_5);
                     }
                 }
                 pause(baseDelay);
@@ -81,9 +81,11 @@ public class Functions死灵 extends Functions公共 {
                 if (tB是否技能 == true) {
                     robot.keyPress(VK_SPACE);
                     if(t技能B1==false){
-                        robot.keyPress(VK_5);
-                        robot.keyRelease(VK_5);
+
+                        robot.keyPress(VK_W);
+                        robot.keyRelease(VK_W);
                     }
+//
                     t技能B1 = true;
 
 
@@ -98,16 +100,14 @@ public class Functions死灵 extends Functions公共 {
                     robot.keyPress(VK_4);
                     robot.keyRelease(VK_4);
 //                        pause(100L);
-                    robot.keyPress(VK_W);
-                    robot.keyRelease(VK_W);
+
 
                     if(判断骷髅()){
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
                     }else {
-
-                        robot.keyPress(VK_5);
-                        robot.keyRelease(VK_5);
+                        robot.keyPress(VK_W);
+                        robot.keyRelease(VK_W);
                     }
 
 
@@ -223,17 +223,18 @@ public class Functions死灵 extends Functions公共 {
         tB是否技能 = false;
     }
 
-    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 技能_按一下() {
-        t1B = true;
-        t2B = false;
+//    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 技能_按一下() {
+//        t1B = true;
+//        t2B = false;
+//
+//        tB是否尸体=false;
+//        tB是否技能=false;
+//    }
 
-        tB是否尸体=false;
-        tB是否技能=false;
-    }
-
-    @ListenMouseKeyboard(note = "3",value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 技能_按一下1() {
+//    @ListenMouseKeyboard(note = "3",value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+        @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+        public static void 技能_按一下1() {
         t1B = false;
 
         tB是否技能 = true;
@@ -297,6 +298,9 @@ public class Functions死灵 extends Functions公共 {
     public static void 侧键_f() {
         t1B = false;
         t2B = true;
+
+        tB是否技能=false;
+        tB是否尸体=false;
     }
 
     @ListenMouseKeyboard(value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
