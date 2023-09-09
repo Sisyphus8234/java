@@ -24,7 +24,6 @@ public class Functions游侠 extends Functions公共 {
     public static boolean w或者左键 = false;
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = true;
-    public static 筛选装备_游侠 筛选装备_游侠 = new 筛选装备_游侠();
     public static final int rgby1= 980;
     public static final int rgby2= 995;
     public static final float value1= 0.624F;
@@ -210,14 +209,14 @@ public class Functions游侠 extends Functions公共 {
         右键或者1234在t1运行时按下 = false;
     }
 
-    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四() {
         t1Temp = false;
         t2Temp = true;
     }
 
-    @ListenMouseKeyboard(note = "3",value = 51, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "3",value = 51, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四1() {
         t1Temp = true;
@@ -288,6 +287,8 @@ public class Functions游侠 extends Functions公共 {
             }
         }
     };
+
+    public static 筛选装备_游侠 筛选装备_游侠 = new 筛选装备_游侠();
     @ListenMouseKeyboard(note = "f1",value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备() {
         筛选装备.标记起点();

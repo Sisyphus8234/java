@@ -34,61 +34,61 @@ public class Functions野蛮人 extends Functions公共 {
             robot.keyRelease(KeyEvent.VK_4);
         }
     }
-//    public static MyThread t1 = new MyThread(MyThread.State.on) {
-//        @Override
-//        public void run() {
-//            while (true) {
-//                if (t1B == true) {
-//                    if (是否基础技能 == true) {
-//                        robot.keyPress(KeyEvent.VK_5);
-//                        robot.keyRelease(KeyEvent.VK_5);
-//                    }
-//                    if (是否核心技能) {
-//                        fTemp();
-//                    }
-//                    if (是否基础技能 == true) {
-//                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-//                    }
-//                    if (是否核心技能) {
-//                        fTemp();
-//                    }
-//
-//                } else {
-//
-//                }
-//                pause(baseDelay);
-//            }
-//        }
-//    };
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
                 if (t1B == true) {
                     if (是否基础技能 == true) {
-                        robot.mouseRelease(BUTTON1_DOWN_MASK);
-                        robot.mousePress(BUTTON1_DOWN_MASK);
+                        robot.keyPress(KeyEvent.VK_5);
+                        robot.keyRelease(KeyEvent.VK_5);
                     }
                     if (是否核心技能) {
-                        robot.keyRelease(VK_5);
-                        robot.keyPress(VK_5);
+                        fTemp();
+                    }
+                    if (是否基础技能 == true) {
+                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    }
+                    if (是否核心技能) {
+                        fTemp();
                     }
 
-                    t1B1=true;
                 } else {
-                    if(t1B1==true){
-                        robot.keyRelease(VK_5);
-                        if(w或者左键==false) {
-                            robot.mouseRelease(BUTTON1_DOWN_MASK);
-                        }
-                        t1B1=false;
-                    }
+
                 }
                 pause(baseDelay);
             }
         }
     };
+//    public static MyThread t1 = new MyThread(MyThread.State.on) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (t1B == true) {
+//                    if (是否基础技能 == true) {
+//                        robot.mouseRelease(BUTTON1_DOWN_MASK);
+//                        robot.mousePress(BUTTON1_DOWN_MASK);
+//                    }
+//                    if (是否核心技能) {
+//                        robot.keyRelease(VK_5);
+//                        robot.keyPress(VK_5);
+//                    }
+//
+//                    t1B1=true;
+//                } else {
+//                    if(t1B1==true){
+//                        robot.keyRelease(VK_5);
+//                        if(w或者左键==false) {
+//                            robot.mouseRelease(BUTTON1_DOWN_MASK);
+//                        }
+//                        t1B1=false;
+//                    }
+//                }
+//                pause(baseDelay);
+//            }
+//        }
+//    };
     public static MyThread t2 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
@@ -179,10 +179,10 @@ public class Functions野蛮人 extends Functions公共 {
     }
 
     //    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 52 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1() {
         if (t1B == true) {
             右键或者1234在t1运行时按下 = true;
@@ -190,10 +190,10 @@ public class Functions野蛮人 extends Functions公共 {
         t1B = false;
     }
     //    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1_1() {
         if (右键或者1234在t1运行时按下 == true) {
             t1B = true;
@@ -215,17 +215,46 @@ public class Functions野蛮人 extends Functions公共 {
         t2B = false;
     }
 
-
     public static 筛选装备_野蛮人 筛选装备_野蛮人 = new 筛选装备_野蛮人();
-    public static MyThread t4 = new MyThread(MyThread.State.off) {
+    public static MyThread t4= new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
-                筛选装备.run( robot, 筛选装备_野蛮人);
+                if(筛选装备.是否标记 ==true){
+                    筛选装备.run1();
+                }else if(筛选装备.是否扫描和筛选 ==true){
+                    筛选装备.run(robot,筛选装备_野蛮人);
+                }
+
                 this.mySuspend();
             }
         }
     };
+    @ListenMouseKeyboard(note = "f1",value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_装备() {
+        筛选装备.标记起点();
+    }
+    @ListenMouseKeyboard(note = "f2",value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 图像识别_装备1() {
+        筛选装备.是否扫描和筛选 = true;
+        筛选装备.是否标记 = false;
+        t4.myResume();
+    }
+    @ListenMouseKeyboard(note = "f3",value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_装备2() {
+        筛选装备.是否扫描和筛选 = false;
+        筛选装备.是否标记 = true;
+        t4.myResume();
+    }
+    @ListenMouseKeyboard(note = "f4",value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_装备_终止() {
+        筛选装备.是否扫描和筛选 = false;
+        筛选装备.是否标记 = false;
+    }
+
+
+
+
 
 
 }
