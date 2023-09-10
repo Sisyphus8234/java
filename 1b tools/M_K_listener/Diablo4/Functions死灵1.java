@@ -6,7 +6,7 @@ import base.MyThread;
 
 import static java.awt.event.KeyEvent.*;
 
-public class Functions死灵 extends Functions公共 {
+public class Functions死灵1 extends Functions公共 {
     public static Long baseDelay = 200L;
     public static boolean t1B = false;
     public static boolean tB是否尸体 = false;
@@ -29,23 +29,15 @@ public class Functions死灵 extends Functions公共 {
             while (true) {
                 if (t1B == true) {
                     t1B1 = true;
-                    robot.keyRelease(VK_G);
-                    robot.keyPress(VK_G);
+                    robot.mouseRelease(BUTTON1_DOWN_MASK);
+                    robot.mousePress(BUTTON1_DOWN_MASK);
                 } else {
-                    if (t1B1 == true) {
-//                        if(space==true) {
-//                            Point p = (MouseInfo.getPointerInfo().getLocation());
-//                            robot.mouseMove(958, 520);
-//                            pause(30);
-//                            robot.keyPress(VK_G);
-//                            pause(20);
-//                            robot.keyRelease(VK_G);
-//                            pause(20);
-//                            robot.mouseMove(p.x, p.y);
-//                        }else {
-                            robot.keyRelease(VK_G);
-//                        }
-                        t1B1 = false;
+                    if(t1B1==true){
+                        robot.keyRelease(VK_5);
+                        if(w或者左键==false) {
+                            robot.mouseRelease(BUTTON1_DOWN_MASK);
+                        }
+                        t1B1=false;
                     }
                 }
                 pause(baseDelay);
@@ -53,41 +45,7 @@ public class Functions死灵 extends Functions公共 {
         }
     };
 
-    public static boolean 判断骷髅(){
-       return pixelColor.getPixelColor(776, 969)[1] < 0.59F||pixelColor.getPixelColor(1374, 1028)[1]<0.06F||pixelColor.getPixelColor(1372, 983)[1]<0.06F;
-    }
-    public static MyThread t尸体 = new MyThread(MyThread.State.off) {
-        @Override
-        public void run() {
-            while (true) {
-                if (tB是否尸体 == true) {
-                    if (判断骷髅()) {
-                        robot.keyPress(VK_1);
-                        robot.keyRelease(VK_1);
-                    } else {
 
-                        robot.keyPress(VK_2);
-                        robot.keyRelease(VK_2);
-//                    }  else {
-                        robot.keyPress(VK_3);
-                        robot.keyRelease(VK_3);
-
-                        robot.keyPress(VK_4);
-                        robot.keyRelease(VK_4);
-
-                        robot.keyPress(VK_W);
-                        robot.keyRelease(VK_W);
-
-
-
-
-
-                    }
-                }
-                pause(baseDelay);
-            }
-        }
-    };
     public static boolean t技能B1 = false;
     public static MyThread t技能 = new MyThread(MyThread.State.off) {
         @Override
@@ -95,35 +53,33 @@ public class Functions死灵 extends Functions公共 {
             while (true) {
                 if (tB是否技能 == true) {
                     robot.keyPress(VK_SPACE);
-                    if(t技能B1==false){
+//                    if(t技能B1==false){
+//
+//                        robot.keyPress(VK_2);
+//                        robot.keyRelease(VK_2);
+//                    }
 
-                        robot.keyPress(VK_W);
-                        robot.keyRelease(VK_W);
-                    }
+
+
+
+
 //
                     t技能B1 = true;
 
 
 
 
-                    robot.keyPress(VK_2);
-                    robot.keyRelease(VK_2);
-//                    }  else {
-                    robot.keyPress(VK_3);
-                    robot.keyRelease(VK_3);
-
-                    robot.keyPress(VK_4);
-                    robot.keyRelease(VK_4);
-//                        pause(100L);
-
-
-                    if(判断骷髅()){
-                        robot.keyPress(VK_1);
-                        robot.keyRelease(VK_1);
+                    if(pixelColor.getPixelColor(1308,1020)[1]>0.14F){
+                        robot.keyPress(VK_5);
+                        robot.keyRelease(VK_5);
                     }else {
-                        robot.keyPress(VK_W);
-                        robot.keyRelease(VK_W);
+                        robot.keyPress(VK_2);
+                        robot.keyRelease(VK_2);
                     }
+
+
+
+
 
 
 
@@ -182,39 +138,15 @@ public class Functions死灵 extends Functions公共 {
     public static void e() {
         t1B = true;
         t2B = false;
-//        Functions公共.自动喝药 = true;
-//        Functions公共.t1.myResume();
+        Functions公共.自动喝药 = true;
+        Functions公共.t1.myResume();
 
         tB是否尸体=false;
         tB是否技能=false;
     }
 
-//    @ListenMouseKeyboard(note = "e", value = 69, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    public static void e1() {
-//        t1B = true;
-//        t2B = false;
-//    }
 
-    @ListenMouseKeyboard(note = "1",value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 尸体() {
-        if (t1B == true) {
-            按12时t1是否运行 = true;
-        }
-        t1B = false;
 
-        tB是否尸体 = true;
-        t尸体.myResume();
-    }
-
-    @ListenMouseKeyboard(note = "1",value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 尸体1() {
-        if (按12时t1是否运行 == true) {
-            t1B = true;
-        }
-        按12时t1是否运行 = false;
-
-        tB是否尸体 = false;
-    }
 
     @ListenMouseKeyboard(note = "2",value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 技能() {
@@ -238,42 +170,27 @@ public class Functions死灵 extends Functions公共 {
         tB是否技能 = false;
     }
 
-//    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-//    public static void 技能_按一下() {
-//        t1B = true;
-//        t2B = false;
-//
-//        tB是否尸体=false;
-//        tB是否技能=false;
-//    }
 
-//    @ListenMouseKeyboard(note = "3",value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-        @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-        public static void 技能_按一下1() {
-        t1B = false;
 
-        tB是否技能 = true;
-        t技能.myResume();
-    }
 
 
     public static boolean space = false;
     @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格() {
         space = true;
-        if (t1B == true) {
-            按space时t1是否运行 = true;
-        }
-        t1B = false;
+//        if (t1B == true) {
+//            按space时t1是否运行 = true;
+//        }
+//        t1B = false;
     }
 
     @ListenMouseKeyboard(note = "space", value = 32, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格1() {
         space = false;
-        if (按space时t1是否运行 == true) {
-            t1B = true;
-        }
-        按12时t1是否运行 = false;
+//        if (按space时t1是否运行 == true) {
+//            t1B = true;
+//        }
+//        按12时t1是否运行 = false;
 
     }
 
