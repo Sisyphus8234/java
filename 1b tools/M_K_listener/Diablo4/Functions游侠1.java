@@ -5,8 +5,6 @@ import base.FunctionsAddition;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
-import java.awt.event.KeyEvent;
-
 import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
 import static java.awt.event.KeyEvent.*;
 
@@ -20,9 +18,7 @@ public class Functions游侠1 extends Functions公共 {
     public static boolean t3Temp = false;
 
     public static boolean 右键或者1234在t1运行时按下 = false;
-    public static boolean w或者左键 = false;
-    public static boolean 是否基础技能 = true;
-    public static boolean 是否核心技能 = false;
+
     public static final int rgby1= 980;
     public static final int rgby2= 995;
     public static final float value1= 0.624F;
@@ -36,38 +32,33 @@ public class Functions游侠1 extends Functions公共 {
     public static float[] myHSB资源;
 
 
-    public static boolean t1Temp = false;
-    public static boolean t1Temp1 = false;
-
+    public static boolean t1B = false;
+    public static boolean t1B1 = false;
+    public static boolean w或者左键 = false;
+    public static boolean 是否基础技能 = true;
+    public static boolean 是否核心技能 = false;
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if (t1Temp == true) {
+                if (t1B == true) {
                     System.out.println(是否核心技能);
                     if(是否基础技能) {
-
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         robot.mousePress(BUTTON1_DOWN_MASK);
-
-
                     }
                     if(是否核心技能){
                         robot.keyPress(VK_5);
                         robot.keyRelease(VK_5);
-
                     }
-
-
-                    t1Temp1=true;
-
+                    t1B1 =true;
                 } else {
-                    if(t1Temp1==true){
+                    if(t1B1 ==true){
                         robot.keyRelease(VK_5);
                         if(w或者左键==false) {
                             robot.mouseRelease(BUTTON1_DOWN_MASK);
                         }
-                        t1Temp1=false;
+                        t1B1 =false;
                     }
                 }
                 pause(baseDelay);
@@ -75,100 +66,75 @@ public class Functions游侠1 extends Functions公共 {
         }
     };
 
-    public static boolean t2Temp = false;
+    public static boolean t2B = false;
     public static MyThread t2 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if (t2Temp == true) {
+                if (t2B == true) {
                     robot.keyPress(VK_G);
                     robot.keyRelease(VK_G);
                 }
                 pause(baseDelay);
-
             }
         }
     };
-
-//    public static MyThread t3=new MyThread(MyThread.State.on) {
-//        @Override
-//        public void run() {
-//            while (true) {
-//
-//                if (t1Temp == true ) {
-//
-//                    if(pixelColor1.getPixelColor(804,982)[1]<0.47f)
-//                    {
-//                    }else {
-//                        robot.keyPress(KeyEvent.VK_6);
-//                        robot.keyRelease(KeyEvent.VK_6);
-//                    }
-//
-//                    if(t3Temp==true) {
-////                        robot.keyPress(VK_8);
-////                        robot.keyRelease(VK_8);
-//                        robot.keyPress(VK_7);
-//                        robot.keyRelease(VK_7);
-//
-//                    }
-//                } else {
-//                }
-//                pause(1000);
-//
-//            }
-//        }
-//    };
-
-
-
-        @ListenMouseKeyboard(note="space",value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 空格() {
-        是否核心技能=true;
-    }
-
-        @ListenMouseKeyboard(note="space",value = 32,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "alt",value = 164,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 空格1() {
-            是否核心技能=false;
-    }
-
-    @ListenMouseKeyboard(value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void R() {
-        t1Temp = false;
-//        Functions公共.自动喝药=false;
-        t2Temp = true;
+    @ListenMouseKeyboard(note = "e",value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void e() {
+        t1B = true;
+        t2B = false;
+        Functions公共.自动喝药=true;
+        Functions公共.t1.myResume();
     }
     @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w() {
         w或者左键 = true;
-        t1Temp = false;
+        t1B = false;
         Functions公共.自动喝药=false;
-        t2Temp = false;
+        t2B = false;
     }
     @ListenMouseKeyboard(value = 514,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 87, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w_1() {
         w或者左键 = false;
     }
-    @ListenMouseKeyboard(note = "e",value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void e() {
-        rgby=rgby2;
-        value=value2;
 
-        t1Temp = true;
-        t2Temp = false;
-        Functions公共.自动喝药=true;
-        Functions公共.t1.myResume();
+
+    @ListenMouseKeyboard(value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void R() {
+        t1B = false;
+//        Functions公共.自动喝药=false;
+        t2B = true;
     }
-    @ListenMouseKeyboard(note = "e",value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void e1() {
-        rgby=rgby1;
-        value=value1;
 
-        t1Temp = true;
-        t2Temp = false;
+    @ListenMouseKeyboard(note="space",value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="`",value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 空格() {
+        是否核心技能=true;
+    }
+
+        @ListenMouseKeyboard(note="space",value = 32,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+        @ListenMouseKeyboard(note="`",value = 192,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "alt",value = 164,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 空格1() {
+            是否核心技能=false;
+    }
+
+
+    @ListenMouseKeyboard(value = 523, keyboardOrMouse =     ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard )
+    public static void 侧键_f() {
+        t1B = false;
+        t2B = true;
+    }
+
+    @ListenMouseKeyboard(value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
+    public static void 侧键_f_1() {
+        t1B = true;
+        t2B = false;
     }
 
     @ListenMouseKeyboard(note = "右键",value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
@@ -179,21 +145,6 @@ public class Functions游侠1 extends Functions公共 {
     @ListenMouseKeyboard(note = "右键",value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
         是否基础技能=true;
-    }
-
-
-    @ListenMouseKeyboard(value = 523, keyboardOrMouse =     ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard )
-    public static void 侧键_f() {
-        t1Temp = false;
-        t2Temp = true;
-    }
-
-    @ListenMouseKeyboard(value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
-    public static void 侧键_f_1() {
-        t1Temp = true;
-        t2Temp = false;
     }
 
     //    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
@@ -209,10 +160,10 @@ public class Functions游侠1 extends Functions公共 {
 //        }
 
 //        暂停t1时是否松开左键 =false;
-        if (t1Temp == true) {
+        if (t1B == true) {
             右键或者1234在t1运行时按下 = true;
         }
-        t1Temp = false;
+        t1B = false;
     }
 
     //    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
@@ -222,7 +173,7 @@ public class Functions游侠1 extends Functions公共 {
 //    @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1_1() {
         if (右键或者1234在t1运行时按下 == true) {
-            t1Temp = true;
+            t1B = true;
         }
         右键或者1234在t1运行时按下 = false;
     }
@@ -230,15 +181,15 @@ public class Functions游侠1 extends Functions公共 {
     @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四() {
-        t1Temp = false;
-        t2Temp = true;
+        t1B = false;
+        t2B = true;
     }
 
     @ListenMouseKeyboard(note = "3",value = 51, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四1() {
-        t1Temp = true;
-        t2Temp = false;
+        t1B = true;
+        t2B = false;
     }
 
 
@@ -257,7 +208,7 @@ public class Functions游侠1 extends Functions公共 {
             @Override
             public void run() {
                 while (true) {
-                    if (t1Temp == true) {
+                    if (t1B == true) {
                         robot.keyRelease(VK_V);
                         robot.keyPress(VK_V);
                         t捡东西B =true;

@@ -64,7 +64,7 @@ public class Functions公共 extends IFunctions {
         robot.mouseMove(point.x, point.y);
     }
 
-    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "b", value = 66, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 人物详情() {
         robot.keyPress(VK_C);
         robot.keyRelease(VK_C);
@@ -74,8 +74,6 @@ public class Functions公共 extends IFunctions {
         robot.mouseRelease(BUTTON1_DOWN_MASK);
         robot.mouseMove(point.x, point.y);
     }
-
-
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
