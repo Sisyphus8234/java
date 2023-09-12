@@ -36,44 +36,73 @@ public class Functions游侠1 extends Functions公共 {
     public static int 模式 = 1;
     public static boolean t1B = false;
     public static boolean t1B1 = false;
+    public static boolean t1B2 = true;
     public static boolean w或者左键 = false;
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = false;
+//    public static MyThread t1 = new MyThread(MyThread.State.on) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (t1B == true) {
+////                        if (是否核心技能&&pixelColor.getPixelColor(959, 925)[1]>0.19) {
+//                        if (是否核心技能&&pixelColor.getPixelColor(925, 925)[1]>0.19) {
+////                        if (是否核心技能) {
+//                            robot.keyPress(VK_5);
+//                            robot.keyRelease(VK_5);
+//                        }
+//
+//                        if (是否基础技能) {
+//                            if (pixelColor.getPixelColor(925, 925)[1] > 0.19&&t1B2==true&&模式==2) {
+//                                robot.keyPress(VK_5);
+//                                robot.keyRelease(VK_5);
+//                                t1B2=false;
+//                            }else {
+//                                t1B2=true;
+//                            }
+//                            robot.mouseRelease(BUTTON1_DOWN_MASK);
+//                            robot.mousePress(BUTTON1_DOWN_MASK);
+//                        t1B1 = true;
+//                    }
+//                } else {
+//                    if (t1B1 == true) {
+//                        robot.keyRelease(VK_5);
+//                        if (w或者左键 == false) {
+//                            robot.mouseRelease(BUTTON1_DOWN_MASK);
+//                        }
+//                        t1B1 = false;
+//                    }
+//                }
+//                pause(baseDelay);
+//            }
+//        }
+//    };
+
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
                 if (t1B == true) {
-
-                    if(模式==2){
-                        robot.mouseRelease(BUTTON1_DOWN_MASK);
-                        robot.keyPress(VK_2);
-                        robot.keyRelease(VK_2);
-                        robot.keyPress(VK_3);
-                        robot.keyRelease(VK_3);
-                    }else {
-
-                        if (是否基础技能) {
+                    if(是否基础技能) {
+//                        myHSB资源 = pixelColor.getPixelColor(rgbx,rgby);
+//                        if(myHSB资源[0]<value){
                             robot.mouseRelease(BUTTON1_DOWN_MASK);
                             robot.mousePress(BUTTON1_DOWN_MASK);
-                        }
+//                        }
 
-
-                        if (是否核心技能) {
-                            robot.keyPress(VK_5);
-                            robot.keyRelease(VK_5);
-                        }
-
-
-                        t1B1 = true;
                     }
+                    robot.keyRelease(VK_5);
+                    robot.keyPress(VK_5);
+
+                    t1B1=true;
+
                 } else {
-                    if (t1B1 == true) {
+                    if(t1B1==true){
                         robot.keyRelease(VK_5);
-                        if (w或者左键 == false) {
+                        if(w或者左键==false) {
                             robot.mouseRelease(BUTTON1_DOWN_MASK);
                         }
-                        t1B1 = false;
+                        t1B1=false;
                     }
                 }
                 pause(baseDelay);
@@ -97,6 +126,7 @@ public class Functions游侠1 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e() {
+        模式=2;
         t1B = true;
         t2B = false;
         Functions公共.自动喝药 = true;
@@ -104,15 +134,15 @@ public class Functions游侠1 extends Functions公共 {
     }
 
 
-    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 模式() {
         模式 = 2;
     }
 
-    @ListenMouseKeyboard(note = "alt",value = 164, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 模式1() {
-        模式 = 1;
-    }
+//    @ListenMouseKeyboard(note = "alt",value = 164, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 模式1() {
+//        模式 = 1;
+//    }
 
     @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -141,6 +171,7 @@ public class Functions游侠1 extends Functions公共 {
     @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格() {
+        模式=1;
         是否核心技能 = true;
     }
 
@@ -183,7 +214,7 @@ public class Functions游侠1 extends Functions公共 {
     @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1() {
 //        if(右键或者1234在t1运行时按下==true){
 //            之前已经有右键或者1234在t1运行时按下=true;
@@ -202,7 +233,7 @@ public class Functions游侠1 extends Functions公共 {
     @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1_1() {
         if (右键或者1234在t1运行时按下 == true) {
             t1B = true;
@@ -211,7 +242,7 @@ public class Functions游侠1 extends Functions公共 {
     }
 
     //    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四() {
         t1B = false;
         t2B = true;
