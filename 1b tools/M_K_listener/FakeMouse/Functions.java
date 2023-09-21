@@ -9,6 +9,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 
+import static java.awt.event.KeyEvent.*;
+
+class MainClass extends base.MainClass {}
+
 public class Functions extends IFunctions {
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
     public static boolean temp1 = false;
@@ -237,11 +241,22 @@ public class Functions extends IFunctions {
             波浪键按住期间做了什么 = true;
 
 
+
+
             robot.keyPress(KeyEvent.VK_WINDOWS);
-            robot.keyPress(WhichProgram);
+            robot.keyPress(VK_1);
             pause(50);
             robot.keyRelease(KeyEvent.VK_WINDOWS);
-            robot.keyRelease(WhichProgram);
+            robot.keyRelease(VK_1);
+
+//            Point point1=MouseInfo.getPointerInfo().getLocation();
+//
+//            pause(200);
+//
+//            robot.mouseMove(520,364);
+//            pause(200);
+//            System.out.println(point1);
+
         } else {
             robot.keyPress(KeyEvent.VK_3);
         }
@@ -337,7 +352,7 @@ public class Functions extends IFunctions {
             t3.myResume();
 
         } else {
-            robot.keyPress(KeyEvent.VK_1);
+            robot.keyPress(VK_1);
         }
     }
 
@@ -349,7 +364,7 @@ public class Functions extends IFunctions {
 
             t3Temp = false;
         } else {
-            robot.keyRelease(KeyEvent.VK_1);
+            robot.keyRelease(VK_1);
         }
     }
 
