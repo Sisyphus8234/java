@@ -77,7 +77,7 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-        pixelColor.threadOn(804,982);
+        pixelColor.threadOn(868,978);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
