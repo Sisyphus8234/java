@@ -35,19 +35,20 @@ public class Functions法师 extends Functions公共 {
     public static boolean t1B = false;
     public static boolean t1B1 = false;
     public static boolean w或者左键 = false;
-    public static boolean 是否基础技能 = true;
-    public static boolean 是否核心技能 = false;
+    public static boolean 是否基础技能 = false;
+    public static boolean 是否核心技能 = true;
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
                 if (t1B == true) {
-//                    System.out.println(是否基础技能);
-                    if(是否基础技能) {
+                    if(是否核心技能) {
+
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         robot.mousePress(BUTTON1_DOWN_MASK);
+
                     }
-                    if(是否核心技能){
+                    if(是否基础技能){
                         robot.keyPress(VK_5);
                         robot.keyRelease(VK_5);
                     }
@@ -109,17 +110,17 @@ public class Functions法师 extends Functions公共 {
     }
 
     @ListenMouseKeyboard(note="space",value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note="`",value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note="`",value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格() {
-        是否核心技能=true;
+        是否基础技能=true;
     }
 
     @ListenMouseKeyboard(note="space",value = 32,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note="`",value = 192,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "alt",value = 164,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note="`",value = 192,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "alt",value = 164,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格1() {
-        是否核心技能=false;
+        是否基础技能=false;
     }
 
 
@@ -137,13 +138,14 @@ public class Functions法师 extends Functions公共 {
         t2B = false;
     }
 
-    @ListenMouseKeyboard(note = "右键",value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+//    @ListenMouseKeyboard(note = "右键",value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
+
         是否基础技能=false;
         是否核心技能=true;
 
     }
-    @ListenMouseKeyboard(note = "右键",value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+//    @ListenMouseKeyboard(note = "右键",value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
         是否基础技能=true;
         是否核心技能=false;
