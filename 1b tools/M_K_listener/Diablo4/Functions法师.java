@@ -162,7 +162,7 @@ public class Functions法师 extends Functions公共 {
     @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1() {
 //        if(右键或者1234在t1运行时按下==true){
 //            之前已经有右键或者1234在t1运行时按下=true;
@@ -181,7 +181,7 @@ public class Functions法师 extends Functions公共 {
     @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1_1() {
         if (右键或者1234在t1运行时按下 == true) {
             t1B = true;
@@ -189,17 +189,12 @@ public class Functions法师 extends Functions公共 {
         右键或者1234在t1运行时按下 = false;
     }
 
-    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 处理要按一会的() {
-        t放1234I=4;
-        startTime = LocalDateTime.now();
-        t放1234.myResume();
-
     }
 
-    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 处理要按一会的1() {
-
     }
 
     //    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -217,49 +212,33 @@ public class Functions法师 extends Functions公共 {
     }
 
 
-    public static int t放1234I = 0;
+
     public static LocalDateTime startTime=LocalDateTime.MIN;
     public static LocalDateTime currentDateTime=LocalDateTime.now();
-    public static int count=0;
-    public static int countMax=10;
+
+
+    public static void f1(int key){
+        startTime=LocalDateTime.now();
+        while (LocalDateTime.now().getSecond()-startTime.getSecond()<5&&t1B) {
+            robot.keyPress(key);
+            robot.keyRelease(key);
+            pause(400);
+        }
+        System.out.println("111111111111111111111111111");
+    }
     public static MyThread t放1234 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if(t1B&&pixelColor.getPixelColor(000,000)[0]<0.5F){
+                if(t1B&&pixelColor.getPixelColor(000,000)[0]<1F){
                     if(pixelColor1.getPixelColor(000,000)[1]<1F){
-                        count=0;
-                        while (count<countMax) {
-                            robot.keyPress(VK_5);
-                            robot.keyRelease(VK_5);
-                            count++;
-                            pause(baseDelay);
-                        }
-
+                        f1(VK_5);
                     }else if(pixelColor1.getPixelColor(000,000)[1]>0.1F){
-                        count=0;
-                        while (count<countMax) {
-                            robot.keyPress(VK_4);
-                            robot.keyRelease(VK_4);
-                            count++;
-                            pause(baseDelay);
-                        }
+                        f1(VK_4);
                     }else if(pixelColor1.getPixelColor(000,00)[1]>0.1F){
-                        count=0;
-                        while (count<countMax) {
-                            robot.keyPress(VK_3);
-                            robot.keyRelease(VK_3);
-                            count++;
-                            pause(baseDelay);
-                        }
+                        f1(VK_3);
                     }else if(pixelColor1.getPixelColor(000,00)[1]>0.1F){
-                        count=0;
-                        while (count<countMax) {
-                            robot.keyPress(VK_2);
-                            robot.keyRelease(VK_2);
-                            count++;
-                            pause(baseDelay);
-                        }
+                        f1(VK_2);
                     }
                 }
                 pause(500);
