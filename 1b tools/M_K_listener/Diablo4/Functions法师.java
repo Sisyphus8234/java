@@ -220,27 +220,50 @@ public class Functions法师 extends Functions公共 {
     public static int t放1234I = 0;
     public static LocalDateTime startTime=LocalDateTime.MIN;
     public static LocalDateTime currentDateTime=LocalDateTime.now();
-    public static MyThread t放1234 = new MyThread(MyThread.State.off) {
+    public static int count=0;
+    public static int countMax=10;
+    public static MyThread t放1234 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
+                if(t1B&&pixelColor.getPixelColor(000,000)[0]<0.5F){
+                    if(pixelColor1.getPixelColor(000,000)[1]<1F){
+                        count=0;
+                        while (count<countMax) {
+                            robot.keyPress(VK_5);
+                            robot.keyRelease(VK_5);
+                            count++;
+                            pause(baseDelay);
+                        }
 
-                currentDateTime = LocalDateTime.now();
-                System.out.println(currentDateTime.getSecond() - startTime.getSecond());
-
-                if (currentDateTime.getSecond() - startTime.getSecond() < 2) {
-                    if (t放1234I == 4) {
-                        robot.keyPress(VK_4);
-                        robot.keyRelease(VK_4);
+                    }else if(pixelColor1.getPixelColor(000,000)[1]>0.1F){
+                        count=0;
+                        while (count<countMax) {
+                            robot.keyPress(VK_4);
+                            robot.keyRelease(VK_4);
+                            count++;
+                            pause(baseDelay);
+                        }
+                    }else if(pixelColor1.getPixelColor(000,00)[1]>0.1F){
+                        count=0;
+                        while (count<countMax) {
+                            robot.keyPress(VK_3);
+                            robot.keyRelease(VK_3);
+                            count++;
+                            pause(baseDelay);
+                        }
+                    }else if(pixelColor1.getPixelColor(000,00)[1]>0.1F){
+                        count=0;
+                        while (count<countMax) {
+                            robot.keyPress(VK_2);
+                            robot.keyRelease(VK_2);
+                            count++;
+                            pause(baseDelay);
+                        }
                     }
-                    pause(150);
-                } else {
-                    this.mySuspend();
                 }
-
+                pause(500);
             }
-
-
         }
 
     };
