@@ -3,13 +3,12 @@ package custom;
 import java.util.List;
 
 public class 筛选装备_法师 extends 筛选装备_子类 {
-    public String[] 要的词缀 = {"攻击速度", "暴击几率", "先祖之锤", "点力量", "点敏捷", "点意力", "点全属性", "核心技能伤害", "抗性", "伤害减免", "移动速度", "易伤伤害"
-            , "生命上限", "物理伤害", "对近距敌人的伤害", "怒气", "冷却", "----对流血敌人的---", "敌人的伤害减免", "使用双手钝击武器的伤害","强固时","总护甲","%伤害"};
-    public String[] 不要的词缀 = {"受伤状态下的伤害减免", "对受伤敌人的暴击几率","对流血敌人的"};
+    public String[] 要的词缀 = {"攻击速度", "幸运一击","暴击几率","--点力量", "点敏捷", "--点意力", "点全属性", "核心技能伤害", "抗性", "伤害减免", "易伤伤害"
+            , "生命上限", "非物理伤害", "距敌人的伤害", "法力", "冷却时间缩减", "敌人的伤害减免", "双持","总护甲","%伤害","闪电伤害","资源","消耗","电冲技能","连锁闪电","电花"};
+    public String[] 不要的词缀 = {"受伤状态下的伤害减免", "对受伤敌人的暴击几率","对燃烧敌人的"};
     public int 需求词条数量_要求 =3;
-
     public int 数值大于多少算优秀 = -10;
-    public int 物品强度大于多少算优秀 = -10;
+    public int 物品强度大于多少算优秀 = 684;
 
     @Override
     public int 数值大于多少算优秀() {
@@ -38,22 +37,21 @@ public class 筛选装备_法师 extends 筛选装备_子类 {
     @Override
     public void 装备分类(List<String> result, 筛选装备.当前装备情况 当前装备情况) {
         for(String extractedText:result) {
-            if (extractedText.contains("双手锤")) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.只看数值);
+            if (extractedText.contains("魔杖")||extractedText.contains("匕首")) {
+                当前装备情况.物品强度大于多少算优秀=701;
+                当前装备情况.装备种类 = (筛选装备.装备种类.只看物品强度);
                 break;
-            } else if (extractedText.contains("靴子")) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.自定要求);
+            }else if (extractedText.contains("聚能器")) {
+                当前装备情况.物品强度大于多少算优秀=704;
+                当前装备情况.装备种类 = (筛选装备.装备种类.不要);
+                break;
+            } else if (extractedText.contains("杖")) {
+                当前装备情况.装备种类 = (筛选装备.装备种类.不要);
                 break;
             } else if (extractedText.contains("护甲值")) {
                 当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
                 break;
-            } else if (!extractedText.contains("双手") && (extractedText.contains("斧") || extractedText.contains("剑") || extractedText.contains("锤"))) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
-                break;
-            } else if ((extractedText.contains("双手") && extractedText.contains("劈砍")) || extractedText.contains("长柄武器")) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
-                break;
-            }else {
+            } else {
                 当前装备情况.装备种类 = (筛选装备.装备种类.看数值或看属性);
             }
         }

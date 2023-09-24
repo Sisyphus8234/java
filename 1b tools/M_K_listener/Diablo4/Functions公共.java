@@ -10,6 +10,7 @@ import java.awt.*;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
+
     public static boolean 自动喝药 = false;
     public static boolean t1Temp1 = false;
     public static float[] myHSB血量;
@@ -77,7 +78,7 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-        pixelColor.threadOn(868,978);
+        pixelColor.threadOn(1307, 945);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)

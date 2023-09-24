@@ -46,6 +46,7 @@ public class Functions法师 extends Functions公共 {
                 if (t1B == true) {
                     if (是否核心技能) {
 
+//                        System.out.println("222222222222222222");
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         robot.mousePress(BUTTON1_DOWN_MASK);
 
@@ -92,6 +93,10 @@ public class Functions法师 extends Functions公共 {
         Functions公共.t1.myResume();
     }
 
+    //    @ListenMouseKeyboard(note = "e", value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void e1() {
+    }
+
     @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w() {
@@ -115,23 +120,10 @@ public class Functions法师 extends Functions公共 {
         t2B = true;
     }
 
-    @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "alt",value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 空格() {
-        是否基础技能 = true;
-    }
-
-    @ListenMouseKeyboard(note = "space", value = 32, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "`", value = 192, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "alt",value = 164,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 空格1() {
-        是否基础技能 = false;
-    }
-
 
     @ListenMouseKeyboard(value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 侧键_f() {
         t1B = false;
         t2B = true;
@@ -139,6 +131,7 @@ public class Functions法师 extends Functions公共 {
 
     @ListenMouseKeyboard(value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
+    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
     public static void 侧键_f_1() {
         t1B = true;
         t2B = false;
@@ -189,11 +182,11 @@ public class Functions法师 extends Functions公共 {
         右键或者1234在t1运行时按下 = false;
     }
 
-//    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    //    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 处理要按一会的() {
     }
 
-//    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    //    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 处理要按一会的1() {
     }
 
@@ -212,33 +205,80 @@ public class Functions法师 extends Functions公共 {
     }
 
 
+    public static LocalDateTime startTime = LocalDateTime.MIN;
+    public static LocalDateTime currentDateTime = LocalDateTime.now();
+    public static boolean t放1234B = true;
+    public static boolean t放1234B1 = true;
 
-    public static LocalDateTime startTime=LocalDateTime.MIN;
-    public static LocalDateTime currentDateTime=LocalDateTime.now();
 
-
-    public static void f1(int key){
-        startTime=LocalDateTime.now();
-        while (LocalDateTime.now().getSecond()-startTime.getSecond()<5&&t1B) {
-            robot.keyPress(key);
-            robot.keyRelease(key);
-            pause(400);
-        }
-        System.out.println("111111111111111111111111111");
+    public static void f1(int key) {
+//        startTime=LocalDateTime.now();
+//        while (LocalDateTime.now().getSecond()-startTime.getSecond()<1&&t1B) {
+        robot.keyPress(key);
+        robot.keyRelease(key);
+//            pause(400);
+//        }
     }
+
+    public static boolean 空格 = false;
+
+    @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 空格() {
+        空格 = true;
+    }
+
+    @ListenMouseKeyboard(note = "space", value = 32, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 空格1() {
+        空格 = false;
+
+    }
+
+    public static boolean 波浪按下 = false;
+
+    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void f1() {
+        波浪按下 = true;
+    }
+
+    @ListenMouseKeyboard(note = "`", value = 192, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void f1_1() {
+        波浪按下 = false;
+        t1B = true;
+        t2B = false;
+    }
+
     public static MyThread t放1234 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if(t1B&&pixelColor.getPixelColor(000,000)[0]<1F){
-                    if(pixelColor1.getPixelColor(000,000)[1]<1F){
-                        f1(VK_5);
-                    }else if(pixelColor1.getPixelColor(000,000)[1]>0.1F){
-                        f1(VK_4);
-                    }else if(pixelColor1.getPixelColor(000,00)[1]>0.1F){
-                        f1(VK_3);
-                    }else if(pixelColor1.getPixelColor(000,00)[1]>0.1F){
-                        f1(VK_2);
+
+                if (波浪按下 == false) {
+                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
+                        if (pixelColor1.getPixelColor(1120, 978)[1] > 0.1F) {
+                            f1(VK_5);
+                        } else if (pixelColor1.getPixelColor(993, 981)[1] > 0.1F) {
+                            f1(VK_4);
+                        } else if (pixelColor1.getPixelColor(931, 981)[1] > 0.1F) {
+                            f1(VK_3);
+                        } else if (pixelColor1.getPixelColor(868, 981)[1] > 0.1F) {
+                            f1(VK_2);
+                        }
+                    }
+                } else {
+                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
+
+
+                        t1B = false;
+                        if (空格 == false) {
+                            t2B = true;
+                        }
+//                    } else if (pixelColor.getPixelColor(1307, 945)[1] > 0.24F) {
+                    } else if (pixelColor.getPixelColor(1307, 990)[1] > 0.2F) {
+
+                        t1B = true;
+                        t2B = false;
+                    } else if (空格 == false) {
+                        t2B = true;
                     }
                 }
                 pause(500);
@@ -256,6 +296,8 @@ public class Functions法师 extends Functions公共 {
         public void run() {
             while (true) {
                 if (t1B == true) {
+                    robot.keyPress(VK_ALT);
+                    robot.keyRelease(VK_ALT);
                     robot.keyRelease(VK_V);
                     robot.keyPress(VK_V);
                     t捡东西B = true;
@@ -281,7 +323,7 @@ public class Functions法师 extends Functions公共 {
                 if (筛选装备.是否标记 == true) {
                     筛选装备.run1();
                 } else if (筛选装备.是否扫描和筛选 == true) {
-                    筛选装备.run(robot, 筛选装备_游侠);
+                    筛选装备.run(robot, 筛选装备_法师);
                 }
 
                 this.mySuspend();
@@ -289,7 +331,7 @@ public class Functions法师 extends Functions公共 {
         }
     };
 
-    public static 筛选装备_游侠 筛选装备_游侠 = new 筛选装备_游侠();
+    public static 筛选装备_法师 筛选装备_法师 = new 筛选装备_法师();
 
     @ListenMouseKeyboard(note = "f1", value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备() {
