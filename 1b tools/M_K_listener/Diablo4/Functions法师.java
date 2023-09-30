@@ -258,7 +258,7 @@ public class Functions法师 extends Functions公共 {
                             f1(VK_5);
                         } else if (pixelColor1.getPixelColor(993, 981)[1] > 0.1F) {
                             f1(VK_4);
-                        } else if (pixelColor1.getPixelColor(931, 981)[1] > 0.1F) {
+                        } else if (pixelColor1.getPixelColor(931, 981)[1] > 0.38F) {
                             f1(VK_3);
                         } else if (pixelColor1.getPixelColor(868, 981)[1] > 0.1F) {
                             f1(VK_2);
@@ -281,14 +281,32 @@ public class Functions法师 extends Functions公共 {
                         t2B = true;
                     }
                 }
-                pause(500);
+                pause(250L);
             }
         }
 
     };
 
+public static Float fTemp;
+    public static MyThread t自动按1 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
 
-    public static boolean t捡东西B = false;
+                if (t1B == true) {
+                    fTemp=pixelColor.getPixelColor(782,1017)[0];
+                    if (t1B && 0.22F<fTemp&&fTemp<0.78F) {
+                        robot.keyPress(VK_6);
+                        robot.keyRelease(VK_6);
+                    }
+                }
+                pause(1000);
+            }
+        }
+    };
+
+
+        public static boolean t捡东西B = false;
 
 
     public static MyThread t捡东西 = new MyThread(MyThread.State.on) {

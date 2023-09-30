@@ -58,7 +58,7 @@ public class FunctionsAddition extends IFunctions {
 
 
                         // 将内容保存到文件
-                        String fileName = folderName + "/("+ pixelXForThread0+","+pixelYForThread0+") "+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd HHmmss")) + ".txt";
+                        String fileName = folderName + "/" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd HHmmss")) + " (" + pixelXForThread0 + "," + pixelYForThread0 + ")" + ".txt";
                         try {
                             FileWriter writer = new FileWriter(fileName);
                             writer.write(stringBuilder.toString());
@@ -78,7 +78,7 @@ public class FunctionsAddition extends IFunctions {
             }
         };
 
-        private String valueOfFormatFloat(float f){
+        private String valueOfFormatFloat(float f) {
             return String.format("%.8f", f);
         }
 
