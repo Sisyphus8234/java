@@ -31,6 +31,11 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     }
 
     @Override
+    public String[] 必须的词缀() {
+        return new String[0];
+    }
+
+    @Override
     public int 需求词条数量_要求() {
         return 需求词条数量_要求;
     }
@@ -39,27 +44,27 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     public void 装备分类(List<String> result, 筛选装备.当前装备情况 当前装备情况) {
         for(String extractedText:result) {
             if (extractedText.contains("双手锤")) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.只看数值);
+//                当前装备情况.装备种类 = (筛选装备.装备种类_枚举.只看数值);
                 break;
             } else if (extractedText.contains("靴子")) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.自定要求);
+                当前装备情况.装备种类 = (筛选装备.装备种类_枚举.自定要求);
                 break;
             } else if (extractedText.contains("护甲值")) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
+//                当前装备情况.装备种类 = (筛选装备.装备种类_枚举.只看属性);
                 break;
             } else if (!extractedText.contains("双手") && (extractedText.contains("斧") || extractedText.contains("剑") || extractedText.contains("锤"))) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
+//                当前装备情况.装备种类 = (筛选装备.装备种类_枚举.只看属性);
                 break;
             } else if ((extractedText.contains("双手") && extractedText.contains("劈砍")) || extractedText.contains("长柄武器")) {
-                当前装备情况.装备种类 = (筛选装备.装备种类.只看属性);
+//                当前装备情况.装备种类 = (筛选装备.装备种类_枚举.只看属性);
                 break;
             }else {
-                当前装备情况.装备种类 = (筛选装备.装备种类.看数值或看属性);
+//                当前装备情况.装备种类 = (筛选装备.装备种类_枚举.看数值或看属性);
             }
         }
 
-        if(当前装备情况.预类别== 筛选装备.预类别.戒指|| 当前装备情况.预类别==筛选装备.预类别.护符){
-            当前装备情况.装备种类=(筛选装备.装备种类.只看属性);
+        if(当前装备情况.预类别== 筛选装备.预类别_枚举.戒指|| 当前装备情况.预类别== 筛选装备.预类别_枚举.护符){
+//            当前装备情况.装备种类=(筛选装备.装备种类_枚举.只看属性);
         }
     }
 

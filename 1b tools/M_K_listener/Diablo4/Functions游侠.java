@@ -251,6 +251,8 @@ public class Functions游侠 extends Functions公共 {
             public void run() {
                 while (true) {
                     if (t1Temp == true) {
+                        robot.keyPress(VK_ALT);
+                        robot.keyRelease(VK_ALT);
                         robot.keyRelease(VK_V);
                         robot.keyPress(VK_V);
                         t捡东西B =true;

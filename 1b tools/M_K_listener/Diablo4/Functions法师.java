@@ -5,6 +5,7 @@ import base.FunctionsAddition;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 
 import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
@@ -155,7 +156,7 @@ public class Functions法师 extends Functions公共 {
     @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1() {
 //        if(右键或者1234在t1运行时按下==true){
 //            之前已经有右键或者1234在t1运行时按下=true;
@@ -174,7 +175,7 @@ public class Functions法师 extends Functions公共 {
     @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1_1() {
         if (右键或者1234在t1运行时按下 == true) {
             t1B = true;
@@ -182,13 +183,40 @@ public class Functions法师 extends Functions公共 {
         右键或者1234在t1运行时按下 = false;
     }
 
-    //    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+
+
+    @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 处理要按一会的() {
+        t按一会.myResume();
     }
 
-    //    @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 处理要按一会的1() {
-    }
+//        @ListenMouseKeyboard(value = 52, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 处理要按一会的1() {
+//    }
+
+    public static MyThread t按一会=new MyThread(MyThread.State.off){
+        @Override
+        public void run() {
+            while (true){
+                if(t1B==true){
+                      for(int i=0;i<15;i++){
+                          robot.keyPress(VK_4);
+                          robot.keyRelease(VK_4);
+                          pause(200L);
+                      }
+                    this.mySuspend();
+
+                }
+            }
+
+        }
+
+    };
+
+
+
+
+
 
     //    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -210,15 +238,6 @@ public class Functions法师 extends Functions公共 {
     public static boolean t放1234B = true;
     public static boolean t放1234B1 = true;
 
-
-    public static void f1(int key) {
-//        startTime=LocalDateTime.now();
-//        while (LocalDateTime.now().getSecond()-startTime.getSecond()<1&&t1B) {
-        robot.keyPress(key);
-        robot.keyRelease(key);
-//            pause(400);
-//        }
-    }
 
     public static boolean 空格 = false;
 
@@ -247,22 +266,40 @@ public class Functions法师 extends Functions公共 {
         t2B = false;
     }
 
+    public static void f1(int key) {
+//        startTime=LocalDateTime.now();
+//        while (LocalDateTime.now().getSecond()-startTime.getSecond()<1&&t1B) {
+        robot.keyPress(key);
+        robot.keyRelease(key);
+        pause(300L);
+//        }
+    }
+
+    public static void tempF() {
+        if (pixelColor1.getPixelColor(1120, 978)[1] > 0.1F) {
+            f1(VK_5);
+        } else if (pixelColor1.getPixelColor(993, 981)[1] > 0.1F) {
+            f1(VK_4);
+        } else if (pixelColor1.getPixelColor(931, 981)[1] > 0.38F) {
+            f1(VK_3);
+        } else if (pixelColor1.getPixelColor(868, 981)[1] > 0.1F) {
+            f1(VK_2);
+        }
+    }
+
+    public static float[] temp;
+
     public static MyThread t放1234 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-
+                temp = pixelColor.getPixelColor(608, 928);
                 if (波浪按下 == false) {
-                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
-                        if (pixelColor1.getPixelColor(1120, 978)[1] > 0.1F) {
-                            f1(VK_5);
-                        } else if (pixelColor1.getPixelColor(993, 981)[1] > 0.1F) {
-                            f1(VK_4);
-                        } else if (pixelColor1.getPixelColor(931, 981)[1] > 0.38F) {
-                            f1(VK_3);
-                        } else if (pixelColor1.getPixelColor(868, 981)[1] > 0.1F) {
-                            f1(VK_2);
-                        }
+//                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
+                    if (t1B && (pixelColor.getPixelColor(1307, 1015)[1] < 0.2F
+//                            ||(temp[0]<0.87F&&pixelColor.getPixelColor(1307, 990)[1]<0.2F)
+                    )) {
+                        tempF();
                     }
                 } else {
                     if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
@@ -287,28 +324,47 @@ public class Functions法师 extends Functions公共 {
 
     };
 
-public static Float fTemp;
-    public static MyThread t自动按1 = new MyThread(MyThread.State.on) {
+
+    public static Point temp1;
+    public static int temp2 = 1;
+    public static int temp3 = 20;
+
+    public static MyThread t范围移动鼠标 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-
                 if (t1B == true) {
-                    fTemp=pixelColor.getPixelColor(782,1017)[0];
-                    if (t1B && 0.22F<fTemp&&fTemp<0.78F) {
-                        robot.keyPress(VK_6);
-                        robot.keyRelease(VK_6);
+                    temp1 = MouseInfo.getPointerInfo().getLocation();
+                    int x = temp1.x;
+                    int y = temp1.y;
+                    if (temp2 == 1) {
+                        x = temp1.x + temp3;
+                        y = temp1.y;
+                    } else if (temp2 == 2) {
+                        x = temp1.x;
+                        y = temp1.y + temp3;
+                    } else if (temp2 == 3) {
+                        x = temp1.x - temp3;
+                        y = temp1.y;
+                    } else if (temp2 == 4) {
+                        x = temp1.x;
+                        y = temp1.y - temp3;
                     }
+
+                    robot.mouseMove(x, y);
+                    temp2++;
+                    if (temp2 >= 5) {
+                        temp2 = 1;
+                    }
+
                 }
-                pause(1000);
+                pause(100L);
+
             }
         }
     };
 
-
-        public static boolean t捡东西B = false;
-
-
+    public static boolean t捡东西B = false;
     public static MyThread t捡东西 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
