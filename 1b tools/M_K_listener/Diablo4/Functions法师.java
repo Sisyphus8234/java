@@ -92,6 +92,7 @@ public class Functions法师 extends Functions公共 {
         t2B = false;
         Functions公共.自动喝药 = true;
         Functions公共.t1.myResume();
+        进入战斗 = false;
     }
 
     //    @ListenMouseKeyboard(note = "e", value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -122,18 +123,14 @@ public class Functions法师 extends Functions公共 {
     }
 
 
-    @ListenMouseKeyboard(value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 侧键_f() {
+    @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    public static void 强制移动() {
         t1B = false;
         t2B = true;
     }
 
-    @ListenMouseKeyboard(value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
-    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
-    public static void 侧键_f_1() {
+    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    public static void 强制移动_1() {
         t1B = true;
         t2B = false;
     }
@@ -184,7 +181,6 @@ public class Functions法师 extends Functions公共 {
     }
 
 
-
     @ListenMouseKeyboard(value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 处理要按一会的() {
         t按一会.myResume();
@@ -194,16 +190,16 @@ public class Functions法师 extends Functions公共 {
 //    public static void 处理要按一会的1() {
 //    }
 
-    public static MyThread t按一会=new MyThread(MyThread.State.off){
+    public static MyThread t按一会 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
-            while (true){
-                if(t1B==true){
-                      for(int i=0;i<15;i++){
-                          robot.keyPress(VK_4);
-                          robot.keyRelease(VK_4);
-                          pause(200L);
-                      }
+            while (true) {
+                if (t1B == true) {
+                    for (int i = 0; i < 15; i++) {
+                        robot.keyPress(VK_4);
+                        robot.keyRelease(VK_4);
+                        pause(200L);
+                    }
                     this.mySuspend();
 
                 }
@@ -212,10 +208,6 @@ public class Functions法师 extends Functions公共 {
         }
 
     };
-
-
-
-
 
 
     //    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -244,6 +236,7 @@ public class Functions法师 extends Functions公共 {
     @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 空格() {
         空格 = true;
+        进入战斗 = true;
     }
 
     @ListenMouseKeyboard(note = "space", value = 32, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -252,16 +245,16 @@ public class Functions法师 extends Functions公共 {
 
     }
 
-    public static boolean 波浪按下 = false;
+    public static boolean 被动触发放技能 = true;
 
-    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    //    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1() {
-        波浪按下 = true;
+        被动触发放技能 = false;
     }
 
-    @ListenMouseKeyboard(note = "`", value = 192, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    //    @ListenMouseKeyboard(note = "`", value = 192, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1_1() {
-        波浪按下 = false;
+        被动触发放技能 = true;
         t1B = true;
         t2B = false;
     }
@@ -271,7 +264,7 @@ public class Functions法师 extends Functions公共 {
 //        while (LocalDateTime.now().getSecond()-startTime.getSecond()<1&&t1B) {
         robot.keyPress(key);
         robot.keyRelease(key);
-        pause(300L);
+        pause(150L);
 //        }
     }
 
@@ -288,21 +281,27 @@ public class Functions法师 extends Functions公共 {
     }
 
     public static float[] temp;
-
+    public static boolean 进入战斗 = false;
     public static MyThread t放1234 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                temp = pixelColor.getPixelColor(608, 928);
-                if (波浪按下 == false) {
+                temp = pixelColor1.getPixelColor(608, 928);
+                if (被动触发放技能 == true) {
 //                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
-                    if (t1B && (pixelColor.getPixelColor(1307, 1015)[1] < 0.2F
-//                            ||(temp[0]<0.87F&&pixelColor.getPixelColor(1307, 990)[1]<0.2F)
+                    if (t1B && (
+                            pixelColor1.getPixelColor(1307, 1015)[1] < 0.2F ||
+                                    (
+//                                            pixelColor.getPixelColor(1307, 945)[1] < 0.2F
+
+                                            进入战斗 == true &&
+                                                    temp[2] < 0.44F
+                                    )
                     )) {
                         tempF();
                     }
                 } else {
-                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
+                    if (t1B && pixelColor1.getPixelColor(1307, 990)[1] < 0.2F) {
 
 
                         t1B = false;
@@ -310,7 +309,7 @@ public class Functions法师 extends Functions公共 {
                             t2B = true;
                         }
 //                    } else if (pixelColor.getPixelColor(1307, 945)[1] > 0.24F) {
-                    } else if (pixelColor.getPixelColor(1307, 990)[1] > 0.2F) {
+                    } else if (pixelColor1.getPixelColor(1307, 990)[1] > 0.2F) {
 
                         t1B = true;
                         t2B = false;
@@ -318,7 +317,7 @@ public class Functions法师 extends Functions公共 {
                         t2B = true;
                     }
                 }
-                pause(250L);
+                pause(200L);
             }
         }
 
@@ -329,40 +328,79 @@ public class Functions法师 extends Functions公共 {
     public static int temp2 = 1;
     public static int temp3 = 20;
 
-    public static MyThread t范围移动鼠标 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-                if (t1B == true) {
-                    temp1 = MouseInfo.getPointerInfo().getLocation();
-                    int x = temp1.x;
-                    int y = temp1.y;
-                    if (temp2 == 1) {
-                        x = temp1.x + temp3;
-                        y = temp1.y;
-                    } else if (temp2 == 2) {
-                        x = temp1.x;
-                        y = temp1.y + temp3;
-                    } else if (temp2 == 3) {
-                        x = temp1.x - temp3;
-                        y = temp1.y;
-                    } else if (temp2 == 4) {
-                        x = temp1.x;
-                        y = temp1.y - temp3;
-                    }
+    public static boolean t范围移动鼠标B = true;
 
-                    robot.mouseMove(x, y);
-                    temp2++;
-                    if (temp2 >= 5) {
-                        temp2 = 1;
-                    }
+//    public static MyThread t范围移动鼠标 = new MyThread(MyThread.State.on) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (t1B == true && t范围移动鼠标B == true) {
+//                    temp1 = MouseInfo.getPointerInfo().getLocation();
+//                    int x = temp1.x;
+//                    int y = temp1.y;
+//                    if (temp2 == 1) {
+//                        x = temp1.x + temp3;
+//                        y = temp1.y;
+//                    } else if (temp2 == 2) {
+//                        x = temp1.x;
+//                        y = temp1.y + temp3;
+//                    } else if (temp2 == 3) {
+//                        x = temp1.x - temp3;
+//                        y = temp1.y;
+//                    } else if (temp2 == 4) {
+//                        x = temp1.x;
+//                        y = temp1.y - temp3;
+//                    }
+//
+//                    robot.mouseMove(x, y);
+//                    temp2++;
+//                    if (temp2 >= 5) {
+//                        temp2 = 1;
+//                    }
+//
+//                }
+//                pause(100L);
+//
+//            }
+//        }
+//    };
 
-                }
-                pause(100L);
+    public static Point 中心点 = new Point(955, 514);
 
-            }
+    public static Robot robot1;
+
+    static {
+        try {
+            robot1 = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
         }
-    };
+    }
+
+    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "alt", value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 后撤步() {
+        if (t1B == true) {
+//            t范围移动鼠标.mySuspend();
+            Point temp = MouseInfo.getPointerInfo().getLocation();
+            robot1.mouseMove(中心点.x * 2 - temp.x, 中心点.y * 2 - temp.y);
+            pause(50L);
+            robot1.keyPress(VK_F);
+//            pause(100L);
+            robot1.keyRelease(VK_F);
+            pause(20L);
+            robot1.mouseMove(temp.x, temp.y);
+            pause(40L);
+            robot1.mouseMove(temp.x, temp.y);
+//            t范围移动鼠标.myResume();
+
+
+
+
+        }
+    }
+
 
     public static boolean t捡东西B = false;
     public static MyThread t捡东西 = new MyThread(MyThread.State.on) {

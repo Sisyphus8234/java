@@ -79,7 +79,7 @@ public class 筛选装备 {
 
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static int 还有几个 = 0;
-    public static long 扫描间隔 = 250L;
+    public static long 扫描间隔 = 200L;
     public static long 标记间隔 = 150L;
 
 
@@ -278,8 +278,8 @@ public class 筛选装备 {
     public static void 扫描(int x轴第几个, int y轴第几个) {
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
-//        robot.mouseMove(1202, 845);
-//        pause(50L);
+        robot.mouseMove(1202, 845);
+        pause(50L);
         robot.mouseMove(标准化x, 标准化y);
         pause(扫描间隔);
         String fileName = savePicture(标准化x, 标准化y, robot);
@@ -448,7 +448,13 @@ public class 筛选装备 {
         一件装备的所有文本.append("-----物品强度: ").append(当前装备情况.物品强度).append("\n");
         一件装备的所有文本.append("-----需求词条: ").append(当前装备情况.需求词条).append("\n");
         一件装备的所有文本.append("-----必须词条: ").append(当前装备情况.必须词条).append("\n");
+
+
+        一件装备的所有文本.append("-----物品强度优秀: ").append(当前装备情况.物品强度优秀).append("\n");
+        一件装备的所有文本.append("-----需求词条数量是否满足: ").append(当前装备情况.需求词条数量是否满足).append("\n");
+        一件装备的所有文本.append("-----必须词条是否满足: ").append(当前装备情况.必须词条是否满足).append("\n");
         一件装备的所有文本.append("-----所有要求满足: ").append(当前装备情况.所有要求满足).append("\n");
+        一件装备的所有文本.append("-----物品强度大于多少算优秀: ").append(当前装备情况.物品强度大于多少算优秀).append("\n");
         一件装备的所有文本.append("===============================================================================").append("\n");
 
         output.append(一件装备的所有文本);
