@@ -29,9 +29,8 @@ public class Functions法师 extends Functions公共 {
     public static int rgbx = 1313;
     public static int rgby = rgby1;
     public static float value = value1;
-
-    public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
     public static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
+    public static FunctionsAddition.PixelColor pixelColor2 = new FunctionsAddition.PixelColor();
     public static float[] myHSB资源;
 
 
@@ -381,7 +380,7 @@ public class Functions法师 extends Functions公共 {
     @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "alt", value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 后撤步() {
-        if (t1B == true) {
+        if (t1B == true&& pixelColor2.getPixelColorHSB(1239,897)[2]>0.25F) {
 //            t范围移动鼠标.mySuspend();
             Point temp = MouseInfo.getPointerInfo().getLocation();
             robot1.mouseMove(中心点.x * 2 - temp.x, 中心点.y * 2 - temp.y);

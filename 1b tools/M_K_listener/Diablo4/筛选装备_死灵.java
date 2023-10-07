@@ -23,14 +23,9 @@ public class 筛选装备_死灵 extends 筛选装备_子类 {
     public String[] 必须的词缀() {
         return new String[0];
     }
-
     @Override
     public int 需求词条数量_要求() {
         return 需求词条数量_要求;
-    }
-    @Override
-    public int 数值大于多少算优秀() {
-        return 数值大于多少算优秀;
     }
     @Override
     public int 物品强度大于多少算优秀() {

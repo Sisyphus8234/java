@@ -49,6 +49,7 @@ public class 筛选装备 {
     public static String outTextName = "output";
 
     public static Robot robot;
+
     static {
         try {
             robot = new Robot();
@@ -56,6 +57,7 @@ public class 筛选装备 {
             throw new RuntimeException(e);
         }
     }
+
     public static int x轴第几个_起点;
     public static int y轴第几个_起点;
     public static boolean 是否标记起点 = false;
@@ -73,29 +75,46 @@ public class 筛选装备 {
 
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static int 还有几个 = 0;
-    public static long 扫描间隔 = 200L;
+    public static long 扫描间隔 = 270L;
     public static long 标记间隔 = 200L;
-    public static long 平滑移动鼠标间隔 = 2L;
+    public static long 平滑移动鼠标间隔 = 4L;
 
 
     public static void 平滑移动鼠标(Point 起点, Point 终点) {
-        int step = 1;
+        int step = 2;
         int x = 起点.x;
         int y = 起点.y;
         boolean x到终点 = false;
         boolean y到终点 = false;
         while (true) {
-            x = x + step;
-            if (x >= 终点.x) {
-                x = 终点.x;
-                x到终点 = true;
+            if (终点.x >= 起点.x) {
+                x = x + step;
+                if (x >= 终点.x) {
+                    x = 终点.x;
+                    x到终点 = true;
+                }
+            } else {
+                x = x - step;
+                if (x <= 终点.x) {
+                    x = 终点.x;
+                    x到终点 = true;
+                }
             }
-            y = y + step;
-            if (y >= 终点.y) {
-                y = 终点.y;
-                y到终点 = true;
+            if (终点.y >= 起点.y) {
+                y = y + step;
+                if (y >= 终点.y) {
+                    y = 终点.y;
+                    y到终点 = true;
+                }
+            }else {
+                y = y - step;
+                if (y <= 终点.y) {
+                    y = 终点.y;
+                    y到终点 = true;
+                }
             }
             robot.mouseMove(x, y);
+
             if (x到终点 && y到终点) {
                 break;
             }
@@ -320,7 +339,6 @@ public class 筛选装备 {
 
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", modelPath + "/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
-            System.out.println(modelPath + "/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
 
             // 设置工作目录（可选）
             // processBuilder.directory(new File("path_to_working_directory"));
@@ -437,7 +455,7 @@ public class 筛选装备 {
 //                }
 
 
-                if (当前装备情况.物品强度优秀 && 当前装备情况.需求词条数量是否满足 && 当前装备情况.必须词条是否满足) {
+                if (当前装备情况.物品强度优秀 && 当前装备情况.需求词缀数量是否满足 && 当前装备情况.必须词缀数量是否满足) {
                     当前装备情况.所有要求满足 = true;
                 }
             } else {
@@ -454,13 +472,13 @@ public class 筛选装备 {
         一件装备的所有文本.append("-----筛选哪些: ").append(当前装备情况.筛选哪些).append("\n");
 
         一件装备的所有文本.append("-----物品强度: ").append(当前装备情况.物品强度).append("\n");
-        一件装备的所有文本.append("-----需求词条: ").append(当前装备情况.需求词条).append("\n");
-        一件装备的所有文本.append("-----必须词条: ").append(当前装备情况.必须词条).append("\n");
+        一件装备的所有文本.append("-----需求词条: ").append(当前装备情况.需求词缀).append("\n");
+        一件装备的所有文本.append("-----必须词条: ").append(当前装备情况.必须词缀).append("\n");
 
 
         一件装备的所有文本.append("-----物品强度优秀: ").append(当前装备情况.物品强度优秀).append("\n");
-        一件装备的所有文本.append("-----需求词条数量是否满足: ").append(当前装备情况.需求词条数量是否满足).append("\n");
-        一件装备的所有文本.append("-----必须词条是否满足: ").append(当前装备情况.必须词条是否满足).append("\n");
+        一件装备的所有文本.append("-----需求词条数量是否满足: ").append(当前装备情况.需求词缀数量是否满足).append("\n");
+        一件装备的所有文本.append("-----必须词条是否满足: ").append(当前装备情况.必须词缀数量是否满足).append("\n");
         一件装备的所有文本.append("-----所有要求满足: ").append(当前装备情况.所有要求满足).append("\n");
         一件装备的所有文本.append("-----物品强度大于多少算优秀: ").append(当前装备情况.物品强度大于多少算优秀).append("\n");
         一件装备的所有文本.append("===============================================================================").append("\n");
@@ -525,53 +543,53 @@ public class 筛选装备 {
             }
 
 
-            for (String s1 : 当前装备情况.要的词缀_容器) {
+            for (String s1 : 当前装备情况.需求词缀_目标) {
                 boolean 要的词缀是否包含不要的词缀 = false;
                 if (s.contains(s1)) {
-                    for (String s2 : 当前装备情况.不要的词缀_容器) {
+                    for (String s2 : 当前装备情况.不要词缀_目标) {
                         if (s.contains(s2)) {
                             要的词缀是否包含不要的词缀 = true;
                             break;
                         }
                     }
                     if (要的词缀是否包含不要的词缀 == false) {
-                        当前装备情况.需求词条数量++;
-                        当前装备情况.需求词条.add(s);
+                        当前装备情况.需求词缀数量_实际++;
+                        当前装备情况.需求词缀.add(s);
                         break;
                     }
                 }
             }
-            if (当前装备情况.需求词条数量 >= 当前装备情况.需求词条数量_要求) {
-                当前装备情况.需求词条数量是否满足 = true;
+            if (当前装备情况.需求词缀数量_实际 >= 当前装备情况.需求词缀数量_目标) {
+                当前装备情况.需求词缀数量是否满足 = true;
             }
             if (当前装备情况.筛选哪些.contains(筛选哪些_枚举.属性)) {
             } else {
-                当前装备情况.需求词条数量是否满足 = true;
+                当前装备情况.需求词缀数量是否满足 = true;
             }
 
 
-            for (String s1 : 当前装备情况.必须的词缀_容器) {
+            for (String s1 : 当前装备情况.必须词缀_目标) {
                 boolean 要的词缀是否包含不要的词缀 = false;
                 if (s.contains(s1)) {
-                    for (String s2 : 当前装备情况.不要的词缀_容器) {
+                    for (String s2 : 当前装备情况.不要词缀_目标) {
                         if (s.contains(s2)) {
                             要的词缀是否包含不要的词缀 = true;
                             break;
                         }
                     }
                     if (要的词缀是否包含不要的词缀 == false) {
-                        当前装备情况.必须词条数量++;
-                        当前装备情况.必须词条.add(s);
+                        当前装备情况.必须词缀数量_实际++;
+                        当前装备情况.必须词缀.add(s);
                         break;
                     }
                 }
             }
-            if (当前装备情况.必须词条数量 >= 当前装备情况.必须的词缀_容器.length) {
-                当前装备情况.必须词条是否满足 = true;
+            if (当前装备情况.必须词缀数量_实际 >= 当前装备情况.必须词缀_目标.length) {
+                当前装备情况.必须词缀数量是否满足 = true;
             }
             if (当前装备情况.筛选哪些.contains(筛选哪些_枚举.必须属性)) {
             } else {
-                当前装备情况.必须词条是否满足 = true;
+                当前装备情况.必须词缀数量是否满足 = true;
             }
 
         }
@@ -583,31 +601,29 @@ public class 筛选装备 {
         List<String> 是词缀的部分_容器;
         int 物品强度 = 0;
         boolean 物品强度优秀 = false;
-        String[] 要的词缀_容器;
-        String[] 必须的词缀_容器;
-        String[] 不要的词缀_容器;
-        int 需求词条数量 = 0;
-        int 必须词条数量;
-        List<String> 需求词条 = new ArrayList<>();
-        List<String> 必须词条;
-        int 需求词条数量_要求;
-        boolean 需求词条数量是否满足 = false;
-        boolean 必须词条是否满足;
+        String[] 需求词缀_目标;
+        String[] 必须词缀_目标;
+        String[] 不要词缀_目标;
+        int 需求词缀数量_实际 = 0;
+        int 必须词缀数量_实际 = 0;
+        List<String> 需求词缀 = new ArrayList<>();
+        List<String> 必须词缀 = new ArrayList<>();
+        int 需求词缀数量_目标 = 0;
+        boolean 需求词缀数量是否满足 = false;
+        boolean 必须词缀数量是否满足 = false;
         boolean 所有要求满足 = false;
         装备种类_枚举 装备种类 = 装备种类_枚举.未定种类;
         List<筛选哪些_枚举> 筛选哪些 = new ArrayList<>();
-        int 数值大于多少算优秀;
-        int 物品强度大于多少算优秀;
+        int 物品强度大于多少算优秀 = 0;
         预类别_枚举 预类别 = 预类别_枚举.其他;
 
         public void initProperty(筛选装备_子类 筛选装备_子类) {
-            this.需求词条数量_要求 = 筛选装备_子类.需求词条数量_要求();
-            this.数值大于多少算优秀 = 筛选装备_子类.数值大于多少算优秀();
+            this.需求词缀数量_目标 = 筛选装备_子类.需求词条数量_要求();
             this.物品强度大于多少算优秀 = 筛选装备_子类.物品强度大于多少算优秀();
 
-            this.要的词缀_容器 = 筛选装备_子类.要的词缀();
-            this.不要的词缀_容器 = 筛选装备_子类.不要的词缀();
-            this.必须的词缀_容器 = 筛选装备_子类.必须的词缀();
+            this.需求词缀_目标 = 筛选装备_子类.要的词缀();
+            this.不要词缀_目标 = 筛选装备_子类.不要的词缀();
+            this.必须词缀_目标 = 筛选装备_子类.必须的词缀();
         }
 
     }
