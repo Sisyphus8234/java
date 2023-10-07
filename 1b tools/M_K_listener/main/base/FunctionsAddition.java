@@ -12,6 +12,17 @@ import java.util.Comparator;
 
 public class FunctionsAddition extends IFunctions {
     public static class PixelColor {
+
+        public static Robot robot;
+
+        static {
+            try {
+                robot = new Robot();
+            } catch (AWTException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         public boolean b = false;
         public String folderName = "record";
         public ArrayList<float[]> HSBList = new ArrayList<>();
@@ -28,7 +39,7 @@ public class FunctionsAddition extends IFunctions {
                 while (true) {
                     if (b == true) {
 
-                        float[] HSB = getPixelColor(pixelXForThread0, pixelYForThread0);
+                        float[] HSB = getPixelColorHSB(pixelXForThread0, pixelYForThread0);
                         HSBList.add(HSB);
                         stringBuilder.append("H: (").append(valueOfFormatFloat(HSB[0])).append(") S: (").append(valueOfFormatFloat(HSB[1])).append(") B: (").append(valueOfFormatFloat(HSB[2])).append(")\n");
 
@@ -68,7 +79,6 @@ public class FunctionsAddition extends IFunctions {
                             System.out.println("errors occurred while saving the file: " + e.getMessage());
                         }
 
-
                         this.mySuspend();
                     }
                     pause(200);
@@ -83,7 +93,7 @@ public class FunctionsAddition extends IFunctions {
         }
 
 
-        public float[] getPixelColor(int pixelX, int pixelY) {
+        public float[] getPixelColorHSB(int pixelX, int pixelY) {
             pixelColor = robot.getPixelColor(pixelX, pixelY);
             pixelColorHSB = Color.RGBtoHSB(pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue(), null);
             return (pixelColorHSB);

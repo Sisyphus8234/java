@@ -287,7 +287,7 @@ public class Functions游侠1 extends Functions公共 {
             while (true) {
 
                 if (t1B == true) {
-                    if (pixelColor1.getPixelColor(804, 982)[1] < 0.47f) {
+                    if (pixelColor1.getPixelColorHSB(804, 982)[1] < 0.47f) {
                     } else {
                         robot.keyPress(KeyEvent.VK_6);
                         robot.keyRelease(KeyEvent.VK_6);

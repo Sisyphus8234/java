@@ -269,13 +269,13 @@ public class Functions法师 extends Functions公共 {
     }
 
     public static void tempF() {
-        if (pixelColor1.getPixelColor(1120, 978)[1] > 0.1F) {
+        if (pixelColor1.getPixelColorHSB(1120, 978)[1] > 0.1F) {
             f1(VK_5);
-        } else if (pixelColor1.getPixelColor(993, 981)[1] > 0.1F) {
+        } else if (pixelColor1.getPixelColorHSB(993, 981)[1] > 0.1F) {
             f1(VK_4);
-        } else if (pixelColor1.getPixelColor(931, 981)[1] > 0.38F) {
+        } else if (pixelColor1.getPixelColorHSB(931, 981)[1] > 0.38F) {
             f1(VK_3);
-        } else if (pixelColor1.getPixelColor(868, 981)[1] > 0.1F) {
+        } else if (pixelColor1.getPixelColorHSB(868, 981)[1] > 0.1F) {
             f1(VK_2);
         }
     }
@@ -286,11 +286,11 @@ public class Functions法师 extends Functions公共 {
         @Override
         public void run() {
             while (true) {
-                temp = pixelColor1.getPixelColor(608, 928);
+                temp = pixelColor1.getPixelColorHSB(608, 928);
                 if (被动触发放技能 == true) {
 //                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
                     if (t1B && (
-                            pixelColor1.getPixelColor(1307, 1015)[1] < 0.2F ||
+                            pixelColor1.getPixelColorHSB(1307, 1015)[1] < 0.2F ||
                                     (
 //                                            pixelColor.getPixelColor(1307, 945)[1] < 0.2F
 
@@ -301,7 +301,7 @@ public class Functions法师 extends Functions公共 {
                         tempF();
                     }
                 } else {
-                    if (t1B && pixelColor1.getPixelColor(1307, 990)[1] < 0.2F) {
+                    if (t1B && pixelColor1.getPixelColorHSB(1307, 990)[1] < 0.2F) {
 
 
                         t1B = false;
@@ -309,7 +309,7 @@ public class Functions法师 extends Functions公共 {
                             t2B = true;
                         }
 //                    } else if (pixelColor.getPixelColor(1307, 945)[1] > 0.24F) {
-                    } else if (pixelColor1.getPixelColor(1307, 990)[1] > 0.2F) {
+                    } else if (pixelColor1.getPixelColorHSB(1307, 990)[1] > 0.2F) {
 
                         t1B = true;
                         t2B = false;

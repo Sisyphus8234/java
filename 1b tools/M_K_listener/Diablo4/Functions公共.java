@@ -21,7 +21,7 @@ public class Functions公共 extends IFunctions {
         public void run() {
             while (true) {
                 if (自动喝药 == true) {
-                    myHSB血量 = pixelColor.getPixelColor(625, 990);
+                    myHSB血量 = pixelColor.getPixelColorHSB(625, 990);
                     if (
                             myHSB血量[1] < 0.5F
                     ) {
@@ -80,7 +80,7 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-        pixelColor.threadOn(608, 928);
+        pixelColor.threadOn(1,1);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)

@@ -45,7 +45,7 @@ public class Functions游侠 extends Functions公共 {
             while (true) {
                 if (t1Temp == true) {
                     if(是否基础技能) {
-                        myHSB资源 = pixelColor.getPixelColor(rgbx,rgby);
+                        myHSB资源 = pixelColor.getPixelColorHSB(rgbx,rgby);
                         if(myHSB资源[0]<value){
                             robot.mouseRelease(BUTTON1_DOWN_MASK);
                             robot.mousePress(BUTTON1_DOWN_MASK);
@@ -93,7 +93,7 @@ public class Functions游侠 extends Functions公共 {
 
                 if (t1Temp == true ) {
 
-                    if(pixelColor1.getPixelColor(804,982)[1]<0.47f)
+                    if(pixelColor1.getPixelColorHSB(804,982)[1]<0.47f)
                     {
                     }else {
                         robot.keyPress(KeyEvent.VK_6);

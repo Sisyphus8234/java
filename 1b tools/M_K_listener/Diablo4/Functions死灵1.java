@@ -69,7 +69,7 @@ public class Functions死灵1 extends Functions公共 {
 
 
 
-                    if(pixelColor.getPixelColor(1308,1020)[1]>0.14F){
+                    if(pixelColor.getPixelColorHSB(1308,1020)[1]>0.14F){
                         robot.keyPress(VK_5);
                         robot.keyRelease(VK_5);
                     }else {

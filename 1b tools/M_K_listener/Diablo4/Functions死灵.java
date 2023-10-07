@@ -54,7 +54,7 @@ public class Functions死灵 extends Functions公共 {
     };
 
     public static boolean 判断骷髅(){
-       return pixelColor.getPixelColor(776, 969)[1] < 0.59F||pixelColor.getPixelColor(1374, 1028)[1]<0.06F||pixelColor.getPixelColor(1372, 983)[1]<0.06F;
+       return pixelColor.getPixelColorHSB(776, 969)[1] < 0.59F||pixelColor.getPixelColorHSB(1374, 1028)[1]<0.06F||pixelColor.getPixelColorHSB(1372, 983)[1]<0.06F;
     }
     public static MyThread t尸体 = new MyThread(MyThread.State.off) {
         @Override

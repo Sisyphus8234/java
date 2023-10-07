@@ -73,8 +73,9 @@ public class 筛选装备 {
 
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static int 还有几个 = 0;
-    public static long 扫描间隔 = 50L;
-    public static long 标记间隔 = 50L;
+    public static long 扫描间隔 = 200L;
+    public static long 标记间隔 = 200L;
+    public static long 平滑移动鼠标间隔 = 2L;
 
 
     public static void 平滑移动鼠标(Point 起点, Point 终点) {
@@ -98,7 +99,7 @@ public class 筛选装备 {
             if (x到终点 && y到终点) {
                 break;
             }
-            IFunctions.pause(2L);
+            IFunctions.pause(平滑移动鼠标间隔);
         }
     }
 
@@ -288,11 +289,11 @@ public class 筛选装备 {
 //        robot.mouseMove(标准化x, 标准化y);
         平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(标准化x, 标准化y));
 //        pause(扫描间隔);
+        pause(扫描间隔);
         String fileName = savePicture(标准化x, 标准化y);
-        pause(50L);
+
         当前装备信息 当前装备信息 = new 当前装备信息(x轴第几个, y轴第几个, 标准化x, 标准化y, fileName);
         list.add(当前装备信息);
-        pause(扫描间隔);
     }
 
 
@@ -319,6 +320,7 @@ public class 筛选装备 {
 
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", modelPath + "/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
+            System.out.println(modelPath + "/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
 
             // 设置工作目录（可选）
             // processBuilder.directory(new File("path_to_working_directory"));
