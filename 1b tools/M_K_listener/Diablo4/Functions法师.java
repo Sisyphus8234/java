@@ -377,7 +377,7 @@ public class Functions法师 extends Functions公共 {
     }
 
     @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "g", value = 71, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "alt", value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 后撤步() {
         if (t1B == true&& pixelColor2.getPixelColorHSB(1239,897)[2]>0.25F) {
@@ -388,9 +388,9 @@ public class Functions法师 extends Functions公共 {
             robot1.keyPress(VK_F);
 //            pause(100L);
             robot1.keyRelease(VK_F);
-            pause(20L);
-            robot1.mouseMove(temp.x, temp.y);
-            pause(40L);
+//            pause(20L);
+//            robot1.mouseMove(temp.x, temp.y);
+            pause(100L);
             robot1.mouseMove(temp.x, temp.y);
 //            t范围移动鼠标.myResume();
 
