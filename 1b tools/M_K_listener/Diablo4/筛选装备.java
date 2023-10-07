@@ -1,5 +1,7 @@
 package custom;
 
+import base.Config;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -24,24 +26,7 @@ import static base.IFunctions.pause;
 import static java.awt.event.KeyEvent.VK_SPACE;
 
 public class 筛选装备 {
-    private static class 当前装备信息 {
-        int x;
-        int xIndex;
-        int y;
-        int yIndex;
-        boolean 所有要求满足;
-        String 文件名;
-
-        public 当前装备信息(int xIndex, int yIndex, int x, int y, String 文件名) {
-            this.xIndex = xIndex;
-            this.yIndex = yIndex;
-            this.x = x;
-            this.y = y;
-            this.文件名 = 文件名;
-            所有要求满足 = true;
-        }
-    }
-
+    public static String modelPath= Config.read("modelPath");
     public static StringBuilder output = new StringBuilder();
     public static List<当前装备信息> list = new ArrayList<>();
     public static int 左线 = 1270;
@@ -79,8 +64,33 @@ public class 筛选装备 {
 
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static int 还有几个 = 0;
-    public static long 扫描间隔 = 200L;
-    public static long 标记间隔 = 150L;
+    public static long 扫描间隔 = 50L;
+    public static long 标记间隔 = 50L;
+
+
+    public static void 平滑移动鼠标(Point 起点,Point 终点){
+        int step = 1;
+        int x=起点.x;
+        int y=起点.y;
+        boolean x到终点=false;
+        boolean y到终点=false;
+        while (true){
+            x=x+step;
+            if(x>=终点.x){
+                x=终点.x;
+                x到终点=true;
+            }
+            y=y+step;
+            if(y>=终点.y){
+                y=终点.y;
+                y到终点=true;
+            }
+            robot.mouseMove(x,y);
+            if(x到终点&&y到终点){
+                break;
+            }
+        }
+    }
 
 
     public static String savePicture(int x, int y, Robot robot) {
@@ -278,14 +288,16 @@ public class 筛选装备 {
     public static void 扫描(int x轴第几个, int y轴第几个) {
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
-        robot.mouseMove(1202, 845);
-        pause(50L);
-        robot.mouseMove(标准化x, 标准化y);
-        pause(扫描间隔);
+//        robot.mouseMove(1202, 845);
+//        pause(50L);
+//        robot.mouseMove(标准化x, 标准化y);
+        平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(),new Point(标准化x,标准化y));
+//        pause(扫描间隔);
         String fileName = savePicture(标准化x, 标准化y, robot);
         pause(50L);
         当前装备信息 当前装备信息 = new 当前装备信息(x轴第几个, y轴第几个, 标准化x, 标准化y, fileName);
         list.add(当前装备信息);
+        pause(扫描间隔);
     }
 
 
@@ -311,7 +323,7 @@ public class 筛选装备 {
         StringBuilder 一件装备的所有文本 = new StringBuilder();
 
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", "C:/Users/aaa/.conda/envs/paddle_env/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", modelPath+"/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
 
             // 设置工作目录（可选）
             // processBuilder.directory(new File("path_to_working_directory"));
@@ -476,14 +488,15 @@ public class 筛选装备 {
 
     public static void 标记(当前装备信息 当前装备信息) {
 
-        robot.mouseMove(1202, 845);
-        pause(50L);
+//        robot.mouseMove(1202, 845);
+//        pause(50L);
 
         if (当前装备信息.所有要求满足 == false) {
-            robot.mouseMove(当前装备信息.x, 当前装备信息.y);
+            平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(),new Point(当前装备信息.x,当前装备信息.y));
+//            robot.mouseMove(当前装备信息.x, 当前装备信息.y);
             robot.keyRelease(VK_SPACE);
-            pause(标记间隔);
-            robot.keyRelease(VK_SPACE);
+//            pause(标记间隔);
+//            robot.keyRelease(VK_SPACE);
             robot.keyPress(VK_SPACE);
 //            pause(20L);
             robot.keyRelease(VK_SPACE);
@@ -656,6 +669,24 @@ public class 筛选装备 {
 //        预类别_枚举(String value) {
 //            this.value = value;
 //        }
+    }
+
+    private static class 当前装备信息 {
+        int x;
+        int xIndex;
+        int y;
+        int yIndex;
+        boolean 所有要求满足;
+        String 文件名;
+
+        public 当前装备信息(int xIndex, int yIndex, int x, int y, String 文件名) {
+            this.xIndex = xIndex;
+            this.yIndex = yIndex;
+            this.x = x;
+            this.y = y;
+            this.文件名 = 文件名;
+            所有要求满足 = true;
+        }
     }
 
 }
