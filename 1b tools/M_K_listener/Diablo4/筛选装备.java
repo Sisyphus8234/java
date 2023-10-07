@@ -1,6 +1,7 @@
 package custom;
 
 import base.Config;
+import base.IFunctions;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
@@ -89,6 +90,7 @@ public class 筛选装备 {
             if(x到终点&&y到终点){
                 break;
             }
+            IFunctions.pause(2L);
         }
     }
 
