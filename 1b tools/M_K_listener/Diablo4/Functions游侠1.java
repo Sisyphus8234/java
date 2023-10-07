@@ -308,7 +308,7 @@ public class Functions游侠1 extends Functions公共 {
                 if (筛选装备.是否标记 == true) {
                     筛选装备.run1();
                 } else if (筛选装备.是否扫描和筛选 == true) {
-                    筛选装备.run(robot, 筛选装备_游侠);
+                    筛选装备.run(筛选装备_游侠);
                 }
 
                 this.mySuspend();

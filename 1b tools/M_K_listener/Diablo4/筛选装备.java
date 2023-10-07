@@ -27,7 +27,7 @@ import static base.IFunctions.pause;
 import static java.awt.event.KeyEvent.VK_SPACE;
 
 public class 筛选装备 {
-    public static String modelPath= Config.read("modelPath");
+    public static String modelPath = Config.read("modelPath");
     public static StringBuilder output = new StringBuilder();
     public static List<当前装备信息> list = new ArrayList<>();
     public static int 左线 = 1270;
@@ -47,7 +47,15 @@ public class 筛选装备 {
     public static String folderName = "record";
     public static String outPictureName = "screenshot";
     public static String outTextName = "output";
+
     public static Robot robot;
+    static {
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static int x轴第几个_起点;
     public static int y轴第几个_起点;
     public static boolean 是否标记起点 = false;
@@ -69,25 +77,25 @@ public class 筛选装备 {
     public static long 标记间隔 = 50L;
 
 
-    public static void 平滑移动鼠标(Point 起点,Point 终点){
+    public static void 平滑移动鼠标(Point 起点, Point 终点) {
         int step = 1;
-        int x=起点.x;
-        int y=起点.y;
-        boolean x到终点=false;
-        boolean y到终点=false;
-        while (true){
-            x=x+step;
-            if(x>=终点.x){
-                x=终点.x;
-                x到终点=true;
+        int x = 起点.x;
+        int y = 起点.y;
+        boolean x到终点 = false;
+        boolean y到终点 = false;
+        while (true) {
+            x = x + step;
+            if (x >= 终点.x) {
+                x = 终点.x;
+                x到终点 = true;
             }
-            y=y+step;
-            if(y>=终点.y){
-                y=终点.y;
-                y到终点=true;
+            y = y + step;
+            if (y >= 终点.y) {
+                y = 终点.y;
+                y到终点 = true;
             }
-            robot.mouseMove(x,y);
-            if(x到终点&&y到终点){
+            robot.mouseMove(x, y);
+            if (x到终点 && y到终点) {
                 break;
             }
             IFunctions.pause(2L);
@@ -95,7 +103,7 @@ public class 筛选装备 {
     }
 
 
-    public static String savePicture(int x, int y, Robot robot) {
+    public static String savePicture(int x, int y) {
 
         int arg1 = x - 430; // 传递给方法的参数
         int arg2 = 90; // 传递给方法的参数
@@ -118,10 +126,6 @@ public class 筛选装备 {
             BufferedImage screenshot = robot.createScreenCapture(screenRect);
 
             fileName = folderName + "/" + outPictureName + "_" + x + "_" + y + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".png";
-
-            // 保存图像为文件
-//            File output = new File(folderName + "/" + outPictureName + ".png");
-//            ImageIO.write(screenshot, "png", output);
 
             File output1 = new File(fileName);
             ImageIO.write(screenshot, "png", output1);
@@ -178,8 +182,7 @@ public class 筛选装备 {
 
     }
 
-    public static void run(Robot robot1, 筛选装备_子类 筛选装备_子类) {
-        robot = robot1;
+    public static void run(筛选装备_子类 筛选装备_子类) {
         list.clear();
         output.setLength(0);
 
@@ -226,9 +229,6 @@ public class 筛选装备 {
 
         }
 
-//        for(当前装备信息 u:list){
-//            u.文件名="D:\\wkspaces\\t2\\screenshot222932.png";
-//        }
 
         voice("custom/yy.wav", 250);
         还有几个 = list.size();
@@ -252,13 +252,6 @@ public class 筛选装备 {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-
-//        // 遍历装备信息列表并提交任务给线程池
-//        for (当前装备信息 当前装备信息:list) {
-//            筛选_包裹(筛选装备_子类, 当前装备信息);
-//        }
-
 
         // 将内容保存到文件
         String fileName = folderName + "/" + outTextName + LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss")) + ".txt";
@@ -293,9 +286,9 @@ public class 筛选装备 {
 //        robot.mouseMove(1202, 845);
 //        pause(50L);
 //        robot.mouseMove(标准化x, 标准化y);
-        平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(),new Point(标准化x,标准化y));
+        平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(标准化x, 标准化y));
 //        pause(扫描间隔);
-        String fileName = savePicture(标准化x, 标准化y, robot);
+        String fileName = savePicture(标准化x, 标准化y);
         pause(50L);
         当前装备信息 当前装备信息 = new 当前装备信息(x轴第几个, y轴第几个, 标准化x, 标准化y, fileName);
         list.add(当前装备信息);
@@ -325,7 +318,7 @@ public class 筛选装备 {
         StringBuilder 一件装备的所有文本 = new StringBuilder();
 
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", modelPath+"/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", modelPath + "/Scripts/paddleocr --image_dir " + 当前装备信息.文件名 + " --use_angle_cls false --enable_mkldnn false");
 
             // 设置工作目录（可选）
             // processBuilder.directory(new File("path_to_working_directory"));
@@ -370,7 +363,6 @@ public class 筛选装备 {
                         当前装备情况.预类别 = 预类别_枚举.护符;
                     }
 
-//                            筛选装备_子类.装备分类(extractedText, 筛选逻辑参数,预类别);
 
                     if (extractedText.contains("物品强度")) {
                         物品强度索引 = 物品强度索引temp;
@@ -494,7 +486,7 @@ public class 筛选装备 {
 //        pause(50L);
 
         if (当前装备信息.所有要求满足 == false) {
-            平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(),new Point(当前装备信息.x,当前装备信息.y));
+            平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(当前装备信息.x, 当前装备信息.y));
 //            robot.mouseMove(当前装备信息.x, 当前装备信息.y);
             robot.keyRelease(VK_SPACE);
 //            pause(标记间隔);
@@ -510,47 +502,14 @@ public class 筛选装备 {
 
     public static void 筛选逻辑(当前装备情况 当前装备情况) {
 
-
-//        boolean 是否是是数值 = false;
         for (String s : 当前装备情况.是词缀的部分_容器) {
-//            if (s.contains("每秒伤害") || s.contains("护甲值") || 是否是是数值 == true) {
-//                if (是否是是数值 == true) {
-//                    是否是是数值 = false;
-//                } else {
-//                    是否是是数值 = true;
-//                }
-//
-//                Pattern pattern = Pattern.compile("([+-]{1})(\\d+)");
-//                Matcher matcher = pattern.matcher(s);
-//
-//                if (matcher.find()) {
-////                    matcher.find();
-//
-//                    String sign = matcher.group(1); // 符号
-//                    int number = Integer.parseInt(matcher.group(2)); // 数字
-//
-//
-//                    if (sign.equals("-")) {
-//                        当前装备情况.数值 = -number;
-//                    } else {
-//                        当前装备情况.数值 = number;
-//                    }
-//
-//
-//                    if (当前装备情况.数值 >= 当前装备情况.数值大于多少算优秀) {
-//                        当前装备情况.数值优秀 = true;
-//                    }
-//                }
-//            }
             if (s.contains("物品强度")) {
-
                 Pattern pattern = Pattern.compile("(\\d+)物品强度");
                 Matcher matcher = pattern.matcher(s);
 
                 matcher.find();
 
                 String 物品强度 = matcher.group(1);
-
 
                 当前装备情况.物品强度 = Integer.parseInt(物品强度);
 
@@ -666,11 +625,6 @@ public class 筛选装备 {
 
     enum 预类别_枚举 {
         戒指(), 护符(), 其他();
-//        public String value;
-
-//        预类别_枚举(String value) {
-//            this.value = value;
-//        }
     }
 
     private static class 当前装备信息 {
