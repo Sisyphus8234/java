@@ -1,6 +1,7 @@
 package custom;
 
 import base.Config;
+import base.FunctionsAddition;
 import base.IFunctions;
 
 import javax.imageio.ImageIO;
@@ -78,6 +79,7 @@ public class 筛选装备 {
     public static long 扫描间隔 = 270L;
     public static long 标记间隔 = 200L;
     public static long 平滑移动鼠标间隔 = 4L;
+    public static List<FunctionsAddition.TopLevelBoxDrawer.Argument> 传奇装备框信息列表 = new ArrayList<>();
 
 
     public static void 平滑移动鼠标(Point 起点, Point 终点) {
@@ -106,7 +108,7 @@ public class 筛选装备 {
                     y = 终点.y;
                     y到终点 = true;
                 }
-            }else {
+            } else {
                 y = y - step;
                 if (y <= 终点.y) {
                     y = 终点.y;
@@ -206,7 +208,6 @@ public class 筛选装备 {
         list.clear();
         output.setLength(0);
 
-
         int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
 
@@ -259,7 +260,7 @@ public class 筛选装备 {
         for (当前装备信息 当前装备信息 : list) {
             if (是否扫描和筛选) {
                 Future<?> future = 线程池.submit(() -> {
-                    筛选_包裹(筛选装备_子类, 当前装备信息);
+                   筛选_包裹(筛选装备_子类, 当前装备信息);
                 });
                 futures.add(future);
             }
@@ -375,6 +376,21 @@ public class 筛选装备 {
                     图片解析出的所有词条.add(extractedText);
 
                     一件装备的所有文本.append(line).append("\n");
+
+
+                    if (extractedText.contains("传奇")) {
+                        当前装备情况.品质 = 品质_枚举.传奇;
+                        FunctionsAddition.TopLevelBoxDrawer.Argument argument=new FunctionsAddition.TopLevelBoxDrawer.Argument();
+                        argument.color=Color.RED;
+                        argument.x=当前装备信息.x;
+                        argument.y=当前装备信息.y;
+                        argument.w=5;
+                        argument.h=5;
+                        argument.lineWidth=3;
+                        传奇装备框信息列表.add(argument);
+                    } else if (extractedText.contains("稀有")) {
+                        当前装备情况.品质 = 品质_枚举.稀有;
+                    }
 
 
                     if (extractedText.contains("戒指")) {
@@ -616,6 +632,7 @@ public class 筛选装备 {
         List<筛选哪些_枚举> 筛选哪些 = new ArrayList<>();
         int 物品强度大于多少算优秀 = 0;
         预类别_枚举 预类别 = 预类别_枚举.其他;
+        品质_枚举 品质 = 品质_枚举.其他;
 
         public void initProperty(筛选装备_子类 筛选装备_子类) {
             this.需求词缀数量_目标 = 筛选装备_子类.需求词条数量_要求();
@@ -663,4 +680,23 @@ public class 筛选装备 {
         }
     }
 
-}
+    enum 品质_枚举 {
+        传奇,
+        稀有,
+        其他
+    }
+
+    public static void 显示或者隐藏传奇标记() {
+        if(FunctionsAddition.TopLevelBoxDrawer.show==false) {
+            FunctionsAddition.TopLevelBoxDrawer.createOutline(传奇装备框信息列表);
+        }else {
+            FunctionsAddition.TopLevelBoxDrawer.closeFrame();
+        }
+    }
+
+    public static void 清除传奇框() {
+
+        传奇装备框信息列表=new ArrayList<>();
+    }
+
+    }

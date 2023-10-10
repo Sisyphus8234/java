@@ -5,8 +5,12 @@ import base.IFunctions;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.time.LocalDateTime;
+
+import javax.swing.SwingUtilities;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -43,14 +47,14 @@ public class Functions公共 extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(note = "f5", value = 116, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "f5", value = 116, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 自动喝药() {
         自动喝药 = true;
         t1.myResume();
     }
 
-    @ListenMouseKeyboard(note = "f6", value = 117, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "t", value = 84, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "f6", value = 117, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "t", value = 84, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 自动喝药1() {
         自动喝药 = false;
     }
@@ -80,7 +84,7 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-        pixelColor.threadOn(1239,896);
+        pixelColor.threadOn(1239, 896);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
@@ -109,12 +113,12 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "=", value = 187, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 右键连点() {
-        if(LocalDateTime.now().getSecond()-计时器.getSecond()<2){
-          t右键连点是否左键 = true;
-        }else {
-            t右键连点是否左键=false;
+        if (LocalDateTime.now().getSecond() - 计时器.getSecond() < 2) {
+            t右键连点是否左键 = true;
+        } else {
+            t右键连点是否左键 = false;
         }
-        计时器=LocalDateTime.now();
+        计时器 = LocalDateTime.now();
         t鼠标连点.myResume();
     }
 
@@ -122,6 +126,63 @@ public class Functions公共 extends IFunctions {
     public static void 右键连点_1() {
         t鼠标连点.mySuspend();
     }
+
+
+    //-------------
+
+
+    public static MyThread t筛选装备 = new MyThread(MyThread.State.off) {
+        @Override
+        public void run() {
+            while (true) {
+                if (筛选装备.是否标记 == true) {
+                    筛选装备.run1();
+                } else if (筛选装备.是否扫描和筛选 == true) {
+                    筛选装备.run(筛选装备_子类);
+                }
+
+                this.mySuspend();
+            }
+        }
+    };
+
+    public static 筛选装备_子类 筛选装备_子类;
+
+    @ListenMouseKeyboard(note = "f1", value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_装备() {
+        筛选装备.标记起点();
+    }
+
+    @ListenMouseKeyboard(note = "f2", value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 图像识别_装备1() {
+        筛选装备.是否扫描和筛选 = true;
+        筛选装备.是否标记 = false;
+        t筛选装备.myResume();
+    }
+
+    @ListenMouseKeyboard(note = "f3", value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_装备2() {
+        筛选装备.是否扫描和筛选 = false;
+        筛选装备.是否标记 = true;
+        t筛选装备.myResume();
+    }
+
+    @ListenMouseKeyboard(note = "f4", value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_装备_终止() {
+        筛选装备.是否扫描和筛选 = false;
+        筛选装备.是否标记 = false;
+    }
+
+    @ListenMouseKeyboard(note = "f5", value = 116, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_标记传奇() {
+        筛选装备.显示或者隐藏传奇标记();
+    }
+
+    @ListenMouseKeyboard(note = "f6", value = 117, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 图像识别_重置传奇列表() {
+        筛选装备.清除传奇框();
+    }
+
 
 
 }

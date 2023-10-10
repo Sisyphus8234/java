@@ -263,7 +263,7 @@ public class Functions法师 extends Functions公共 {
 //        while (LocalDateTime.now().getSecond()-startTime.getSecond()<1&&t1B) {
         robot.keyPress(key);
         robot.keyRelease(key);
-        pause(150L);
+//        pause(150L);
 //        }
     }
 
@@ -316,7 +316,7 @@ public class Functions法师 extends Functions公共 {
                         t2B = true;
                     }
                 }
-                pause(200L);
+                pause(300L);
             }
         }
 
@@ -384,13 +384,13 @@ public class Functions法师 extends Functions公共 {
 //            t范围移动鼠标.mySuspend();
             Point temp = MouseInfo.getPointerInfo().getLocation();
             robot1.mouseMove(中心点.x * 2 - temp.x, 中心点.y * 2 - temp.y);
-            pause(50L);
+            pause(30L);
             robot1.keyPress(VK_F);
 //            pause(100L);
             robot1.keyRelease(VK_F);
 //            pause(20L);
 //            robot1.mouseMove(temp.x, temp.y);
-            pause(100L);
+            pause(80L);
             robot1.mouseMove(temp.x, temp.y);
 //            t范围移动鼠标.myResume();
 
@@ -427,47 +427,50 @@ public class Functions法师 extends Functions公共 {
     };
 
 
-    public static MyThread t4 = new MyThread(MyThread.State.off) {
-        @Override
-        public void run() {
-            while (true) {
-                if (筛选装备.是否标记 == true) {
-                    筛选装备.run1();
-                } else if (筛选装备.是否扫描和筛选 == true) {
-                    筛选装备.run(筛选装备_法师);
-                }
+//    public static MyThread t4 = new MyThread(MyThread.State.off) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (筛选装备.是否标记 == true) {
+//                    筛选装备.run1();
+//                } else if (筛选装备.是否扫描和筛选 == true) {
+//                    筛选装备.run(筛选装备_法师);
+//                }
+//
+//                this.mySuspend();
+//            }
+//        }
+//    };
+//
+//    public static 筛选装备_法师 筛选装备_法师 = new 筛选装备_法师();
+//
+//    @ListenMouseKeyboard(note = "f1", value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_装备() {
+//        筛选装备.标记起点();
+//    }
+//
+//    @ListenMouseKeyboard(note = "f2", value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 图像识别_装备1() {
+//        筛选装备.是否扫描和筛选 = true;
+//        筛选装备.是否标记 = false;
+//        t4.myResume();
+//    }
+//
+//    @ListenMouseKeyboard(note = "f3", value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_装备2() {
+//        筛选装备.是否扫描和筛选 = false;
+//        筛选装备.是否标记 = true;
+//        t4.myResume();
+//    }
+//
+//    @ListenMouseKeyboard(note = "f4", value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_装备_终止() {
+//        筛选装备.是否扫描和筛选 = false;
+//        筛选装备.是否标记 = false;
+//    }
 
-                this.mySuspend();
-            }
-        }
-    };
-
-    public static 筛选装备_法师 筛选装备_法师 = new 筛选装备_法师();
-
-    @ListenMouseKeyboard(note = "f1", value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备() {
-        筛选装备.标记起点();
+    static {
+        Functions公共.筛选装备_子类 = new 筛选装备_法师();
     }
-
-    @ListenMouseKeyboard(note = "f2", value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 图像识别_装备1() {
-        筛选装备.是否扫描和筛选 = true;
-        筛选装备.是否标记 = false;
-        t4.myResume();
-    }
-
-    @ListenMouseKeyboard(note = "f3", value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备2() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = true;
-        t4.myResume();
-    }
-
-    @ListenMouseKeyboard(note = "f4", value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备_终止() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = false;
-    }
-
 
 }
