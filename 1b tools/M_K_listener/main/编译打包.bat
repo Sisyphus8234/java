@@ -11,7 +11,7 @@ if exist classfiles (
 )
 mkdir classfiles
 
-%MyJavaPath%javac -d .\classfiles base\*.java custom\*.java -encoding UTF-8 -cp ".;.\lib\*"
+%MyJavaPath%javac -d .\classfiles base\*.java addition\*.java custom\*.java -encoding UTF-8 -cp ".;.\base\lib\*;.\addition\lib\*;.\custom\lib\*"
 
 if exist run.jar (
     del run.jar
@@ -19,9 +19,9 @@ if exist run.jar (
 
 cd classfiles
 IF "%MyJavaPath%"=="" (
-    jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class custom\*.class
+    jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class addition\*.class custom\*.class
 ) ELSE (
-    ..\%MyJavaPath%jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class custom\*.class
+    ..\%MyJavaPath%jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class addition\*.class custom\*.class
 )
 
 :: cd ..

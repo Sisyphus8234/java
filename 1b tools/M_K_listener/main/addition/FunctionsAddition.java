@@ -1,4 +1,7 @@
-package base;
+package addition;
+
+import base.IFunctions;
+import base.MyThread;
 
 import javax.swing.*;
 import java.awt.*;
@@ -123,9 +126,10 @@ public class FunctionsAddition extends IFunctions {
         static int screenWidth = (int) screenSize.getWidth();
         static int screenHeight = (int) screenSize.getHeight();
 
-        public static JFrame frame=new JFrame("");;
+        public static JFrame frame = new JFrame("");
+        ;
 
-        public static boolean show=false;
+        public static boolean show = false;
 
         public static class Argument {
             public Color color;
@@ -162,13 +166,13 @@ public class FunctionsAddition extends IFunctions {
                 }
                 frame.setVisible(true);
 
-                show=true;
+                show = true;
             });
         }
 
-        public static void closeFrame(){
+        public static void closeFrame() {
             frame.dispose();
-            show=false;
+            show = false;
         }
 
 //        public static void aaa() {

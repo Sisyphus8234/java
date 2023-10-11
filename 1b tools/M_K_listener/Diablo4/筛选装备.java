@@ -1,7 +1,7 @@
 package custom;
 
 import base.Config;
-import base.FunctionsAddition;
+import addition.FunctionsAddition;
 import base.IFunctions;
 
 import javax.imageio.ImageIO;
