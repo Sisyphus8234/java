@@ -22,13 +22,6 @@ public class Functions法师 extends Functions公共 {
 
     public static boolean 右键或者1234在t1运行时按下 = false;
 
-    public static final int rgby1 = 980;
-    public static final int rgby2 = 995;
-    public static final float value1 = 0.624F;
-    public static final float value2 = 0.661F;
-    public static int rgbx = 1313;
-    public static int rgby = rgby1;
-    public static float value = value1;
     public static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
     public static FunctionsAddition.PixelColor pixelColor2 = new FunctionsAddition.PixelColor();
     public static float[] myHSB资源;
@@ -384,7 +377,7 @@ public class Functions法师 extends Functions公共 {
 //            t范围移动鼠标.mySuspend();
             Point temp = MouseInfo.getPointerInfo().getLocation();
             robot1.mouseMove(中心点.x * 2 - temp.x, 中心点.y * 2 - temp.y);
-            pause(30L);
+//            pause(30L);
             robot1.keyPress(VK_F);
 //            pause(100L);
             robot1.keyRelease(VK_F);
