@@ -281,45 +281,4 @@ public class Functions死灵1 extends Functions公共 {
     }
 
 
-    public static 筛选装备_死灵 筛选装备_死灵 = new 筛选装备_死灵();
-    public static MyThread t4 = new MyThread(MyThread.State.off) {
-        @Override
-        public void run() {
-            while (true) {
-                if (筛选装备.是否标记 == true) {
-                    筛选装备.run1();
-                } else if (筛选装备.是否扫描和筛选 == true) {
-                    筛选装备.run(筛选装备_死灵);
-                }
-                this.mySuspend();
-            }
-        }
-    };
-
-    @ListenMouseKeyboard(note = "f1", value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备() {
-        筛选装备.标记起点();
-    }
-
-    @ListenMouseKeyboard(note = "f2", value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 图像识别_装备1() {
-        筛选装备.是否扫描和筛选 = true;
-        筛选装备.是否标记 = false;
-        t4.myResume();
-    }
-
-    @ListenMouseKeyboard(note = "f3", value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备2() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = true;
-        t4.myResume();
-    }
-
-    @ListenMouseKeyboard(note = "f4", value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备_终止() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = false;
-    }
-
-
 }

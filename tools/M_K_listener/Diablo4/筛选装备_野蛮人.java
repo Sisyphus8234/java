@@ -12,24 +12,29 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     public int 物品强度大于多少算优秀 = -10;
 
     @Override
-    public int 物品强度大于多少算优秀() {
+    public int 物品强度下限() {
         return 物品强度大于多少算优秀;
     }
 
 
     @Override
-    public String[] 要的词缀() {
+    public String[] 需求词缀_目标() {
         return 要的词缀;
     }
 
     @Override
-    public String[] 不要的词缀() {
+    public String[] 不要词缀_目标() {
         return 不要的词缀;
     }
 
     @Override
-    public String[] 必须的词缀() {
+    public String[] 必须词缀_目标() {
         return new String[0];
+    }
+
+    @Override
+    public int 必须词缀_减少量() {
+        return 0;
     }
 
     @Override

@@ -260,7 +260,7 @@ public class 筛选装备 {
         for (当前装备信息 当前装备信息 : list) {
             if (是否扫描和筛选) {
                 Future<?> future = 线程池.submit(() -> {
-                   筛选_包裹(筛选装备_子类, 当前装备信息);
+                    筛选_包裹(筛选装备_子类, 当前装备信息);
                 });
                 futures.add(future);
             }
@@ -380,13 +380,13 @@ public class 筛选装备 {
 
                     if (extractedText.contains("传奇")) {
                         当前装备情况.品质 = 品质_枚举.传奇;
-                        FunctionsAddition.TopLevelBoxDrawer.Argument argument=new FunctionsAddition.TopLevelBoxDrawer.Argument();
-                        argument.color=Color.RED;
-                        argument.x=当前装备信息.x;
-                        argument.y=当前装备信息.y;
-                        argument.w=5;
-                        argument.h=5;
-                        argument.lineWidth=3;
+                        FunctionsAddition.TopLevelBoxDrawer.Argument argument = new FunctionsAddition.TopLevelBoxDrawer.Argument();
+                        argument.color = Color.RED;
+                        argument.x = 当前装备信息.x;
+                        argument.y = 当前装备信息.y;
+                        argument.w = 5;
+                        argument.h = 5;
+                        argument.lineWidth = 3;
                         传奇装备框信息列表.add(argument);
                     } else if (extractedText.contains("稀有")) {
                         当前装备情况.品质 = 品质_枚举.稀有;
@@ -488,15 +488,15 @@ public class 筛选装备 {
         一件装备的所有文本.append("-----筛选哪些: ").append(当前装备情况.筛选哪些).append("\n");
 
         一件装备的所有文本.append("-----物品强度: ").append(当前装备情况.物品强度).append("\n");
-        一件装备的所有文本.append("-----需求词条: ").append(当前装备情况.需求词缀).append("\n");
-        一件装备的所有文本.append("-----必须词条: ").append(当前装备情况.必须词缀).append("\n");
+        一件装备的所有文本.append("-----需求词条: ").append(当前装备情况.需求词缀_实际).append("\n");
+        一件装备的所有文本.append("-----必须词条: ").append(当前装备情况.必须词缀_实际).append("\n");
 
 
         一件装备的所有文本.append("-----物品强度优秀: ").append(当前装备情况.物品强度优秀).append("\n");
         一件装备的所有文本.append("-----需求词条数量是否满足: ").append(当前装备情况.需求词缀数量是否满足).append("\n");
         一件装备的所有文本.append("-----必须词条是否满足: ").append(当前装备情况.必须词缀数量是否满足).append("\n");
         一件装备的所有文本.append("-----所有要求满足: ").append(当前装备情况.所有要求满足).append("\n");
-        一件装备的所有文本.append("-----物品强度大于多少算优秀: ").append(当前装备情况.物品强度大于多少算优秀).append("\n");
+        一件装备的所有文本.append("-----物品强度大于多少算优秀: ").append(当前装备情况.物品强度下限).append("\n");
         一件装备的所有文本.append("===============================================================================").append("\n");
 
         output.append(一件装备的所有文本);
@@ -549,7 +549,7 @@ public class 筛选装备 {
 
                 当前装备情况.物品强度 = Integer.parseInt(物品强度);
 
-                if (当前装备情况.物品强度 >= 当前装备情况.物品强度大于多少算优秀) {
+                if (当前装备情况.物品强度 >= 当前装备情况.物品强度下限) {
                     当前装备情况.物品强度优秀 = true;
                 }
             }
@@ -570,7 +570,7 @@ public class 筛选装备 {
                     }
                     if (要的词缀是否包含不要的词缀 == false) {
                         当前装备情况.需求词缀数量_实际++;
-                        当前装备情况.需求词缀.add(s);
+                        当前装备情况.需求词缀_实际.add(s);
                         break;
                     }
                 }
@@ -595,12 +595,12 @@ public class 筛选装备 {
                     }
                     if (要的词缀是否包含不要的词缀 == false) {
                         当前装备情况.必须词缀数量_实际++;
-                        当前装备情况.必须词缀.add(s);
+                        当前装备情况.必须词缀_实际.add(s);
                         break;
                     }
                 }
             }
-            if (当前装备情况.必须词缀数量_实际 >= 当前装备情况.必须词缀_目标.length) {
+            if (当前装备情况.必须词缀数量_实际 >= 当前装备情况.必须词缀_目标.length - 当前装备情况.必须词缀_减少量) {
                 当前装备情况.必须词缀数量是否满足 = true;
             }
             if (当前装备情况.筛选哪些.contains(筛选哪些_枚举.必须属性)) {
@@ -622,25 +622,26 @@ public class 筛选装备 {
         String[] 不要词缀_目标;
         int 需求词缀数量_实际 = 0;
         int 必须词缀数量_实际 = 0;
-        List<String> 需求词缀 = new ArrayList<>();
-        List<String> 必须词缀 = new ArrayList<>();
+        List<String> 需求词缀_实际 = new ArrayList<>();
+        List<String> 必须词缀_实际 = new ArrayList<>();
         int 需求词缀数量_目标 = 0;
+        int 必须词缀_减少量 = 0;
         boolean 需求词缀数量是否满足 = false;
         boolean 必须词缀数量是否满足 = false;
         boolean 所有要求满足 = false;
         装备种类_枚举 装备种类 = 装备种类_枚举.未定种类;
         List<筛选哪些_枚举> 筛选哪些 = new ArrayList<>();
-        int 物品强度大于多少算优秀 = 0;
+        int 物品强度下限 = 0;
         预类别_枚举 预类别 = 预类别_枚举.其他;
         品质_枚举 品质 = 品质_枚举.其他;
 
         public void initProperty(筛选装备_子类 筛选装备_子类) {
             this.需求词缀数量_目标 = 筛选装备_子类.需求词条数量_要求();
-            this.物品强度大于多少算优秀 = 筛选装备_子类.物品强度大于多少算优秀();
-
-            this.需求词缀_目标 = 筛选装备_子类.要的词缀();
-            this.不要词缀_目标 = 筛选装备_子类.不要的词缀();
-            this.必须词缀_目标 = 筛选装备_子类.必须的词缀();
+            this.物品强度下限 = 筛选装备_子类.物品强度下限();
+            this.必须词缀_减少量 = 筛选装备_子类.必须词缀_减少量();
+            this.需求词缀_目标 = 筛选装备_子类.需求词缀_目标();
+            this.不要词缀_目标 = 筛选装备_子类.不要词缀_目标();
+            this.必须词缀_目标 = 筛选装备_子类.必须词缀_目标();
         }
 
     }
@@ -687,16 +688,16 @@ public class 筛选装备 {
     }
 
     public static void 显示或者隐藏传奇标记() {
-        if(FunctionsAddition.TopLevelBoxDrawer.show==false) {
+        if (FunctionsAddition.TopLevelBoxDrawer.show == false) {
             FunctionsAddition.TopLevelBoxDrawer.createOutline(传奇装备框信息列表);
-        }else {
+        } else {
             FunctionsAddition.TopLevelBoxDrawer.closeFrame();
         }
     }
 
     public static void 清除传奇框() {
 
-        传奇装备框信息列表=new ArrayList<>();
+        传奇装备框信息列表 = new ArrayList<>();
     }
 
-    }
+}
