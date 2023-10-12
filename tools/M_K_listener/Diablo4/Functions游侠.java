@@ -126,7 +126,7 @@ public class Functions游侠 extends Functions公共 {
     public static void w() {
         w或者左键 = true;
         t1Temp = false;
-        Functions公共.自动喝药=false;
+        Functions公共.自动喝药B =false;
         t2Temp = false;
     }
     @ListenMouseKeyboard(value = 514,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
@@ -141,7 +141,7 @@ public class Functions游侠 extends Functions公共 {
 
         t1Temp = true;
         t2Temp = false;
-        Functions公共.自动喝药=true;
+        Functions公共.自动喝药B =true;
         Functions公共.t1.myResume();
     }
     @ListenMouseKeyboard(note = "e",value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)

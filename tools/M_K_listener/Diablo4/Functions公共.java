@@ -5,38 +5,49 @@ import base.IFunctions;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.time.LocalDateTime;
-
-import javax.swing.SwingUtilities;
 
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
 
-    public static boolean 自动喝药 = false;
-    public static boolean t1Temp1 = false;
-    public static float[] myHSB血量;
+    public static boolean 自动喝药B = false;
+    public static boolean TempT1B = false;
+    public static LocalDateTime localDateTime = LocalDateTime.MIN;
+
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
     public static MyThread t1 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
-                if (自动喝药 == true) {
-                    myHSB血量 = pixelColor.getPixelColorHSB(625, 990);
+                if (自动喝药B == true) {
                     if (
-                            myHSB血量[1] < 0.5F
+                            pixelColor.getPixelColorHSB(625, 990)[1] < 0.5F
                     ) {
                         robot.keyRelease(VK_0);
                         robot.keyPress(VK_0);
                         robot.keyRelease(VK_0);
-                        t1Temp1 = true;
-
-                        if (t1Temp1 == true) {
+                        TempT1B = true;
+                        if (TempT1B == true) {
                             pause(800L);
-                            t1Temp1 = false;
+                            TempT1B = false;
+                        }
+                    } else {
+                        if (pixelColor.getPixelColorHSB(625, 950)[1] < 0.5F) {
+                            if (LocalDateTime.now().getSecond() - localDateTime.getSecond() > 5) {
+                                robot.keyRelease(VK_0);
+                                robot.keyPress(VK_0);
+                                robot.keyRelease(VK_0);
+                                TempT1B = true;
+                                if (TempT1B == true) {
+                                    pause(1200L);
+                                    TempT1B = false;
+                                }
+                            }
+
+                        } else {
+                            localDateTime = LocalDateTime.now();
                         }
                     }
                 } else {
@@ -47,16 +58,16 @@ public class Functions公共 extends IFunctions {
         }
     };
 
-//    @ListenMouseKeyboard(note = "f5", value = 116, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    //    @ListenMouseKeyboard(note = "f5", value = 116, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 自动喝药() {
-        自动喝药 = true;
+        自动喝药B = true;
         t1.myResume();
     }
 
-//    @ListenMouseKeyboard(note = "f6", value = 117, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    //    @ListenMouseKeyboard(note = "f6", value = 117, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "t", value = 84, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 自动喝药1() {
-        自动喝药 = false;
+        自动喝药B = false;
     }
 
 
@@ -84,7 +95,7 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-        pixelColor.threadOn(805, 978);
+        pixelColor.threadOn(625, 950);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
@@ -182,7 +193,6 @@ public class Functions公共 extends IFunctions {
     public static void 图像识别_重置传奇列表() {
         筛选装备.清除传奇框();
     }
-
 
 
 }
