@@ -84,11 +84,13 @@ public class Functions法师 extends Functions公共 {
         t2B = false;
         Functions公共.自动喝药 = true;
         Functions公共.t1.myResume();
+
         进入战斗 = false;
     }
 
     //    @ListenMouseKeyboard(note = "e", value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e1() {
+
     }
 
     @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
@@ -260,8 +262,12 @@ public class Functions法师 extends Functions公共 {
 //        }
     }
 
+    public static boolean 是否1 = false;
+
     public static void tempF() {
-        if (pixelColor1.getPixelColorHSB(1120, 978)[1] > 0.1F) {
+        if (是否1 && pixelColor1.getPixelColorHSB(805, 978)[1] > 0.1F) {
+            f1(VK_1);
+        } else if (pixelColor1.getPixelColorHSB(1120, 978)[1] > 0.1F) {
             f1(VK_5);
         } else if (pixelColor1.getPixelColorHSB(993, 981)[1] > 0.1F) {
             f1(VK_4);
@@ -369,11 +375,22 @@ public class Functions法师 extends Functions公共 {
         }
     }
 
-    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "g", value = 71, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "`", intercept = true, value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 是否1() {
+        进入战斗=true;
+        是否1 = true;
+    }
+
+    @ListenMouseKeyboard(note = "`", press = false, intercept = true, value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 是否1_1() {
+        是否1 = false;
+    }
+
+
+    @ListenMouseKeyboard(note = "g", value = 71, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "alt", value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 后撤步() {
-        if (t1B == true&& pixelColor2.getPixelColorHSB(1239,897)[2]>0.25F) {
+        if (t1B == true && pixelColor2.getPixelColorHSB(1239, 897)[2] > 0.25F) {
 //            t范围移动鼠标.mySuspend();
             Point temp = MouseInfo.getPointerInfo().getLocation();
             robot1.mouseMove(中心点.x * 2 - temp.x, 中心点.y * 2 - temp.y);
@@ -386,8 +403,6 @@ public class Functions法师 extends Functions公共 {
             pause(80L);
             robot1.mouseMove(temp.x, temp.y);
 //            t范围移动鼠标.myResume();
-
-
 
 
         }
