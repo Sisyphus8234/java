@@ -121,83 +121,83 @@ public class FunctionsAddition extends IFunctions {
 
     }
 
-    public static class TopLevelBoxDrawer {
-        static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        static int screenWidth = (int) screenSize.getWidth();
-        static int screenHeight = (int) screenSize.getHeight();
-
-        public static JFrame frame = new JFrame("");
-        ;
-
-        public static boolean show = false;
-
-        public static class Argument {
-            public Color color;
-            public float lineWidth;
-            public double x;
-            public double y;
-            public double w;
-            public double h;
-        }
-
-        public static void createOutline(List<Argument> argumentList) {
-            SwingUtilities.invokeLater(() -> {
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setSize(screenWidth, screenHeight);
-                frame.setUndecorated(true); // 设置为无边框窗口
-                frame.setAlwaysOnTop(true); // 设置为最上层窗口
-                frame.setBackground(new Color(0, 0, 0, 0)); // 设置窗口背景透明
-
-                for (Argument argument : argumentList) {
-                    JPanel panel = new JPanel() {
-                        @Override
-                        protected void paintComponent(Graphics g) {
-                            super.paintComponent(g);
-                            Graphics2D g2d = (Graphics2D) g;
-                            g2d.setColor(argument.color);
-                            g2d.setStroke(new BasicStroke(argument.lineWidth)); // 设置线宽
-                            g2d.draw(new Rectangle2D.Double(argument.x, argument.y, argument.w, argument.h)); // 绘制红色线框
-                        }
-                    };
-                    panel.setOpaque(false); // 设置面板背景透明
-                    frame.add(panel);
-                    System.out.println("222222222222222222");
-                    System.out.println(argument.x);
-                }
-                frame.setVisible(true);
-
-                show = true;
-            });
-        }
-
-        public static void closeFrame() {
-            frame.dispose();
-            show = false;
-        }
-
-//        public static void aaa() {
-//            List<Argument> aaa=new ArrayList<>();
+//    public static class TopLevelBoxDrawer {
+//        static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        static int screenWidth = (int) screenSize.getWidth();
+//        static int screenHeight = (int) screenSize.getHeight();
 //
-//            FunctionsAddition.TopLevelBoxDrawer.Argument argument=new FunctionsAddition.TopLevelBoxDrawer.Argument();
-//            argument.color=Color.RED;
-//            argument.x=1000;
-//            argument.y=850;
-//            argument.w=20;
-//            argument.h=20;
-//            argument.lineWidth=3;
-//            aaa.add(argument);
+//        public static JFrame frame = new JFrame("");
+//        ;
 //
-//            FunctionsAddition.TopLevelBoxDrawer.Argument argument1=new FunctionsAddition.TopLevelBoxDrawer.Argument();
-//            argument1.color=Color.RED;
-//            argument1.x=1200;
-//            argument1.y=850;
-//            argument1.w=20;
-//            argument1.h=20;
-//            argument1.lineWidth=3;
-//            aaa.add(argument1);
+//        public static boolean show = false;
 //
-//            createOutline(aaa);
+//        public static class Argument {
+//            public Color color;
+//            public float lineWidth;
+//            public double x;
+//            public double y;
+//            public double w;
+//            public double h;
 //        }
-    }
+//
+//        public static void createOutline(List<Argument> argumentList) {
+//            SwingUtilities.invokeLater(() -> {
+//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                frame.setSize(screenWidth, screenHeight);
+//                frame.setUndecorated(true); // 设置为无边框窗口
+//                frame.setAlwaysOnTop(true); // 设置为最上层窗口
+//                frame.setBackground(new Color(0, 0, 0, 0)); // 设置窗口背景透明
+//
+//                for (Argument argument : argumentList) {
+//                    JPanel panel = new JPanel() {
+//                        @Override
+//                        protected void paintComponent(Graphics g) {
+//                            super.paintComponent(g);
+//                            Graphics2D g2d = (Graphics2D) g;
+//                            g2d.setColor(argument.color);
+//                            g2d.setStroke(new BasicStroke(argument.lineWidth)); // 设置线宽
+//                            g2d.draw(new Rectangle2D.Double(argument.x, argument.y, argument.w, argument.h)); // 绘制红色线框
+//                        }
+//                    };
+//                    panel.setOpaque(false); // 设置面板背景透明
+//                    frame.add(panel);
+//                    System.out.println("222222222222222222");
+//                    System.out.println(argument.x);
+//                }
+//                frame.setVisible(true);
+//
+//                show = true;
+//            });
+//        }
+//
+//        public static void closeFrame() {
+//            frame.dispose();
+//            show = false;
+//        }
+//
+////        public static void aaa() {
+////            List<Argument> aaa=new ArrayList<>();
+////
+////            FunctionsAddition.TopLevelBoxDrawer.Argument argument=new FunctionsAddition.TopLevelBoxDrawer.Argument();
+////            argument.color=Color.RED;
+////            argument.x=1000;
+////            argument.y=850;
+////            argument.w=20;
+////            argument.h=20;
+////            argument.lineWidth=3;
+////            aaa.add(argument);
+////
+////            FunctionsAddition.TopLevelBoxDrawer.Argument argument1=new FunctionsAddition.TopLevelBoxDrawer.Argument();
+////            argument1.color=Color.RED;
+////            argument1.x=1200;
+////            argument1.y=850;
+////            argument1.w=20;
+////            argument1.h=20;
+////            argument1.lineWidth=3;
+////            aaa.add(argument1);
+////
+////            createOutline(aaa);
+////        }
+//    }
 
 }

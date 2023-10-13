@@ -1,7 +1,8 @@
 package custom;
 
+import addition.TopFrame;
+import addition.UseJavafx;
 import base.Config;
-import addition.FunctionsAddition;
 import base.IFunctions;
 
 import javax.imageio.ImageIO;
@@ -26,6 +27,8 @@ import java.util.regex.Pattern;
 
 import static base.IFunctions.pause;
 import static java.awt.event.KeyEvent.VK_SPACE;
+
+import addition.TopFrame.Argument;
 
 public class 筛选装备 {
     public static String modelPath = Config.read("modelPath");
@@ -79,7 +82,7 @@ public class 筛选装备 {
     public static long 扫描间隔 = 270L;
     public static long 标记间隔 = 220L;
     public static long 平滑移动鼠标间隔 = 3L;
-    public static List<FunctionsAddition.TopLevelBoxDrawer.Argument> 传奇装备框信息列表 = new ArrayList<>();
+    public static List<Argument> 传奇装备框信息列表 = new ArrayList<>();
 
 
     public static void 平滑移动鼠标(Point 起点, Point 终点) {
@@ -304,11 +307,13 @@ public class 筛选装备 {
     public static void 扫描(int x轴第几个, int y轴第几个) {
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
-//        robot.mouseMove(1202, 845);
-//        pause(50L);
-//        robot.mouseMove(标准化x, 标准化y);
+
+        if(x轴第几个==0&&y轴第几个==0){
+            传奇装备框信息列表=new ArrayList<>();
+        }
+
+
         平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(标准化x, 标准化y));
-//        pause(扫描间隔);
         pause(扫描间隔);
         String fileName = savePicture(标准化x, 标准化y);
 
@@ -380,13 +385,9 @@ public class 筛选装备 {
 
                     if (extractedText.contains("传奇")) {
                         当前装备情况.品质 = 品质_枚举.传奇;
-                        FunctionsAddition.TopLevelBoxDrawer.Argument argument = new FunctionsAddition.TopLevelBoxDrawer.Argument();
-                        argument.color = Color.RED;
-                        argument.x = 当前装备信息.x;
-                        argument.y = 当前装备信息.y;
-                        argument.w = 5;
-                        argument.h = 5;
-                        argument.lineWidth = 3;
+                        Argument argument = new Argument(当前装备信息.x,当前装备信息.y,(int)单个宽度/2,(int)单个高度/2,4, Color.RED);
+                        System.out.println(当前装备信息.x);
+                        System.out.println(当前装备信息.y);
                         传奇装备框信息列表.add(argument);
                     } else if (extractedText.contains("稀有")) {
                         当前装备情况.品质 = 品质_枚举.稀有;
@@ -687,16 +688,14 @@ public class 筛选装备 {
         其他
     }
 
-    public static void 显示或者隐藏传奇标记() {
-        if (FunctionsAddition.TopLevelBoxDrawer.show == false) {
-            FunctionsAddition.TopLevelBoxDrawer.createOutline(传奇装备框信息列表);
-        } else {
-            FunctionsAddition.TopLevelBoxDrawer.closeFrame();
-        }
+    public static void 显示传奇标记() {
+        TopFrame.start(传奇装备框信息列表);
+    }
+    public static void 关闭传奇标记() {
+        TopFrame.stop();
     }
 
-    public static void 清除传奇框() {
-
+    public static void 重置传奇框() {
         传奇装备框信息列表 = new ArrayList<>();
     }
 

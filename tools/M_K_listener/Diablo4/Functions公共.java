@@ -186,12 +186,12 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f5", value = 116, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_标记传奇() {
-        筛选装备.显示或者隐藏传奇标记();
+        筛选装备.显示传奇标记();
     }
 
     @ListenMouseKeyboard(note = "f6", value = 117, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_重置传奇列表() {
-        筛选装备.清除传奇框();
+        筛选装备.关闭传奇标记();
     }
 
 
