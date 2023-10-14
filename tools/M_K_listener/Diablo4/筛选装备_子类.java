@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class 筛选装备_子类 {
     public abstract void 自定筛选(筛选装备.当前装备情况 当前装备情况);
-    public abstract void 装备分类(List<String> result, 筛选装备.当前装备情况 当前装备情况);
+    public abstract void 装备分类(筛选装备.当前装备情况 当前装备情况);
     public abstract String[] 需求词缀_目标();
     public abstract String[] 不要词缀_目标();
     public abstract String[] 必须词缀_目标();

@@ -37,9 +37,9 @@ public class 筛选装备_法师 extends 筛选装备_子类 {
     }
 
     @Override
-    public void 装备分类(List<String> result, 筛选装备.当前装备情况 当前装备情况) {
-        System.out.println(result);
-        for (String extractedText : result) {
+    public void 装备分类(筛选装备.当前装备情况 当前装备情况) {
+//        System.out.println(result);
+        for (String extractedText : 当前装备情况.是词缀的部分_筛选结果) {
             if (当前装备情况.预类别 == 筛选装备.预类别_枚举.戒指) {
                 当前装备情况.必须词缀_目标 = new String[]{"暴击"};
                 当前装备情况.装备种类 = 筛选装备.装备种类_枚举.筛选;
@@ -109,7 +109,7 @@ public class 筛选装备_法师 extends 筛选装备_子类 {
     @Override
     public void 自定筛选(筛选装备.当前装备情况 当前装备情况) {
         boolean 自定要求是否满足 = false;
-        for (String s : 当前装备情况.是词缀的部分_容器) {
+        for (String s : 当前装备情况.是词缀的部分_筛选结果) {
             if (s.contains("移动速度")) {
                 自定要求是否满足 = true;
             }

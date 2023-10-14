@@ -43,8 +43,8 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     }
 
     @Override
-    public void 装备分类(List<String> result, 筛选装备.当前装备情况 当前装备情况) {
-        for(String extractedText:result) {
+    public void 装备分类(筛选装备.当前装备情况 当前装备情况) {
+        for(String extractedText:当前装备情况.是词缀的部分_筛选结果) {
             if (extractedText.contains("双手锤")) {
 //                当前装备情况.装备种类 = (筛选装备.装备种类_枚举.只看数值);
                 break;
@@ -74,7 +74,7 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
     @Override
     public void 自定筛选(筛选装备.当前装备情况 当前装备情况) {
         boolean 自定要求是否满足=false;
-        for (String s : 当前装备情况.是词缀的部分_容器) {
+        for (String s : 当前装备情况.是词缀的部分_筛选结果) {
             if(s.contains("移动速度")){
                 自定要求是否满足=true;
             }

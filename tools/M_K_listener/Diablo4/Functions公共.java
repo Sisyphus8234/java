@@ -22,15 +22,13 @@ public class Functions公共 extends IFunctions {
         public void run() {
             while (true) {
                 if (自动喝药B == true) {
-                    if (
-                            pixelColor.getPixelColorHSB(625, 990)[1] < 0.5F
-                    ) {
+                    if (pixelColor.getPixelColorHSB(625, 990)[1] < 0.5F) {
                         robot.keyRelease(VK_0);
                         robot.keyPress(VK_0);
                         robot.keyRelease(VK_0);
                         TempT1B = true;
                         if (TempT1B == true) {
-                            pause(800L);
+                            pause(600L);
                             TempT1B = false;
                         }
                     } else {
@@ -41,7 +39,7 @@ public class Functions公共 extends IFunctions {
                                 robot.keyRelease(VK_0);
                                 TempT1B = true;
                                 if (TempT1B == true) {
-                                    pause(1200L);
+                                    pause(1000L);
                                     TempT1B = false;
                                 }
                             }
@@ -53,7 +51,7 @@ public class Functions公共 extends IFunctions {
                 } else {
                     this.mySuspend();
                 }
-                pause(400L);
+                pause(300L);
             }
         }
     };

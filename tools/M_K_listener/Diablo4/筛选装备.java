@@ -1,7 +1,6 @@
 package custom;
 
 import addition.TopFrame;
-import addition.UseJavafx;
 import base.Config;
 import base.IFunctions;
 
@@ -308,8 +307,8 @@ public class 筛选装备 {
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
 
-        if(x轴第几个==0&&y轴第几个==0){
-            传奇装备框信息列表=new ArrayList<>();
+        if (x轴第几个 == 0 && y轴第几个 == 0) {
+            传奇装备框信息列表 = new ArrayList<>();
         }
 
 
@@ -336,10 +335,7 @@ public class 筛选装备 {
         List<String> 图片解析出的所有词条 = new ArrayList<>();
 
 
-        int 物品强度索引 = 0;
-        int 物品强度索引temp = 0;
-        int 装备时损失属性索引 = 0;
-        int 装备时损失属性索引temp = 0;
+
 
         StringBuilder 一件装备的所有文本 = new StringBuilder();
 
@@ -358,9 +354,17 @@ public class 筛选装备 {
             BufferedReader reader = new BufferedReader(inputStreamReader);
 
 
+            int 物品强度索引 = 0;
+            int 物品强度索引temp = 0;
+            int 装备时损失属性索引 = 0;
+            int 装备时损失属性索引temp = 0;
+
             // 读取输出
             String line;
             while ((line = reader.readLine()) != null) {
+                if(!line.contains("INFO:")){
+                    continue;
+                }
 
                 System.out.println(line);
 
@@ -380,18 +384,7 @@ public class 筛选装备 {
 
                     图片解析出的所有词条.add(extractedText);
 
-                    一件装备的所有文本.append(line).append("\n");
-
-
-                    if (extractedText.contains("传奇")) {
-                        当前装备情况.品质 = 品质_枚举.传奇;
-                        Argument argument = new Argument(当前装备信息.x,当前装备信息.y,(int)单个宽度/2,(int)单个高度/2,4, Color.RED);
-                        System.out.println(当前装备信息.x);
-                        System.out.println(当前装备信息.y);
-                        传奇装备框信息列表.add(argument);
-                    } else if (extractedText.contains("稀有")) {
-                        当前装备情况.品质 = 品质_枚举.稀有;
-                    }
+//                    一件装备的所有文本.append(line).append("\n");
 
 
                     if (extractedText.contains("戒指")) {
@@ -414,7 +407,7 @@ public class 筛选装备 {
                 }
             }
 
-            筛选装备_子类.装备分类(图片解析出的所有词条, 当前装备情况);
+//            筛选装备_子类.装备分类(图片解析出的所有词条, 当前装备情况);
 
 
             // 等待命令执行完成
@@ -425,18 +418,31 @@ public class 筛选装备 {
             reader.close();
             inputStream.close();
 
-            List<String> 是词缀的部分_物品强度 = 图片解析出的所有词条.subList(物品强度索引, 物品强度索引 + 1);
+            当前装备情况.是词缀的部分_筛选结果 = 图片解析出的所有词条.subList(0, 装备时损失属性索引);
             if (当前装备情况.预类别 == 预类别_枚举.戒指) {
-                物品强度索引 += 2;
+                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+1,物品强度索引+3).clear();
             } else if (当前装备情况.预类别 == 预类别_枚举.护符) {
-                物品强度索引 += 1;
+                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+1,物品强度索引+2).clear();
             }
-            List<String> 是词缀的部分 = 图片解析出的所有词条.subList(物品强度索引 + 1, 装备时损失属性索引);
-            是词缀的部分_物品强度.addAll(是词缀的部分);
-            是词缀的部分 = 是词缀的部分_物品强度;
 
 
-            当前装备情况.是词缀的部分_容器 = 是词缀的部分;
+
+            筛选装备_子类.装备分类(当前装备情况);
+
+            for (String u : 当前装备情况.是词缀的部分_筛选结果) {
+                一件装备的所有文本.append(u).append("\n");
+
+                if (u.contains("传奇") || u.contains("暗金")) {
+                    System.out.println(u);
+                    当前装备情况.品质 = 品质_枚举.传奇;
+                    Argument argument = new Argument(当前装备信息.x, 当前装备信息.y, (int) 单个宽度 / 2, (int) 单个高度 / 2, 4, Color.RED);
+                    System.out.println(当前装备信息.x);
+                    System.out.println(当前装备信息.y);
+                    传奇装备框信息列表.add(argument);
+                } else if (u.contains("稀有")) {
+                    当前装备情况.品质 = 品质_枚举.稀有;
+                }
+            }
 
 
             if (当前装备情况.装备种类.equals(装备种类_枚举.自定要求)) {
@@ -539,7 +545,7 @@ public class 筛选装备 {
 
     public static void 筛选逻辑(当前装备情况 当前装备情况) {
 
-        for (String s : 当前装备情况.是词缀的部分_容器) {
+        for (String s : 当前装备情况.是词缀的部分_筛选结果) {
             if (s.contains("物品强度")) {
                 Pattern pattern = Pattern.compile("(\\d+)物品强度");
                 Matcher matcher = pattern.matcher(s);
@@ -615,7 +621,7 @@ public class 筛选装备 {
 
 
     static class 当前装备情况 {
-        List<String> 是词缀的部分_容器;
+        List<String> 是词缀的部分_筛选结果;
         int 物品强度 = 0;
         boolean 物品强度优秀 = false;
         String[] 需求词缀_目标;
@@ -691,6 +697,7 @@ public class 筛选装备 {
     public static void 显示传奇标记() {
         TopFrame.start(传奇装备框信息列表);
     }
+
     public static void 关闭传奇标记() {
         TopFrame.stop();
     }

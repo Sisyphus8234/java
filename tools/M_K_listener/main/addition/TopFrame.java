@@ -22,6 +22,7 @@ public class TopFrame {
     public static JFrame frame = new JFrame();
 
     public static void start(List<Argument> argumentList) {
+        stop();
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         // 获取屏幕尺寸
