@@ -98,7 +98,7 @@ public class Functions公共 extends IFunctions {
         int x=Integer.parseInt(parts[0]);
         int y=Integer.parseInt(parts[1]);
         pixelColor.threadOn(x,y);
-        writeClipboard(x+","+y+"记录此坐标的颜色");
+        writeClipboard(x+","+y);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)

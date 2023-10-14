@@ -59,7 +59,7 @@ public class IFunctions {
                 String clipboardText = (String) contents.getTransferData(DataFlavor.stringFlavor);
 
                 return clipboardText;
-            } catch (UnsupportedFlavorException | IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
