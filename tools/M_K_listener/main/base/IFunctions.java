@@ -2,8 +2,14 @@ package base;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.datatransfer.*;
 import java.util.ArrayList;
 import java.util.List;
+
+
+import java.awt.Toolkit;
+import java.io.IOException;
+
 
 public class IFunctions {
 
@@ -14,13 +20,13 @@ public class IFunctions {
     public static Robot robot;
 
     @ListenBar(onOrOff = ListenBar.OnOrOff.on)
-    public static Integer on=33;
+    public static Integer on = 33;
 
     @ListenBar(onOrOff = ListenBar.OnOrOff.off)
-    public static Integer off=34;
+    public static Integer off = 34;
 
     @ListenBar(threadList = true)
-    public static List<MyThread> threadList=new ArrayList<>();
+    public static List<MyThread> threadList = new ArrayList<>();
 
     static {
         System.out.println("IFunctions class loading");
@@ -41,26 +47,33 @@ public class IFunctions {
         }
     }
 
-//    class CreateThread {
-//        public Thread thread;
-//        public void myFunction() {
-//        };
-//        public CreateThread() {
-//            thread = new Thread() {
-//                @Override
-//                public void run() {
-//                    myFunction();
-//                }
-//            };
-//            thread.start();
-//            try {
-//                thread.wait();
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//            threadList.add(thread);
-//        }
-//    }
+
+    public static Toolkit toolkit = Toolkit.getDefaultToolkit();
+    public static Clipboard clipboard = toolkit.getSystemClipboard();
+
+
+    public static String readClipboard() {
+        if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+            try {
+                Transferable contents = clipboard.getContents(null);
+                String clipboardText = (String) contents.getTransferData(DataFlavor.stringFlavor);
+
+                return clipboardText;
+            } catch (UnsupportedFlavorException | IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            return "no content";
+        }
+        return "fail";
+    }
+
+    public static void writeClipboard(String text) {
+        StringSelection stringSelection = new StringSelection(text);
+        clipboard.setContents(stringSelection, null);
+    }
+
+
 
 }
 

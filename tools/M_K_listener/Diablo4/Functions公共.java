@@ -93,7 +93,12 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void f() {
-        pixelColor.threadOn(625, 950);
+        String text=readClipboard().replaceAll(" ","");
+        String[] parts = text.split(",");
+        int x=Integer.parseInt(parts[0]);
+        int y=Integer.parseInt(parts[1]);
+        pixelColor.threadOn(x,y);
+        writeClipboard(x+","+y+"记录此坐标的颜色");
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
