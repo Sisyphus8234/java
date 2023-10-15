@@ -79,7 +79,7 @@ public class 筛选装备 {
     public static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static int 还有几个 = 0;
     public static long 扫描间隔 = 270L;
-    public static long 标记间隔 = 220L;
+    public static long 标记间隔 = 200l;
     public static long 平滑移动鼠标间隔 = 3L;
     public static List<Argument> 传奇装备框信息列表 = new ArrayList<>();
 

@@ -284,7 +284,6 @@ public class Functions法师 extends Functions公共 {
         @Override
         public void run() {
             while (true) {
-                temp = pixelColor1.getPixelColorHSB(608, 928);
                 if (被动触发放技能 == true) {
 //                    if (t1B && pixelColor.getPixelColor(1307, 990)[1] < 0.2F) {
                     if (t1B && (
@@ -293,7 +292,8 @@ public class Functions法师 extends Functions公共 {
 //                                            pixelColor.getPixelColor(1307, 945)[1] < 0.2F
 
                                             进入战斗 == true &&
-                                                    temp[2] < 0.44F
+                                                    (pixelColor1.getPixelColorHSB(608, 928)[2] < 0.44F||
+                                                    pixelColor1.getPixelColorHSB(608, 1051)[1] > 0.68F)
                                     )
                     )) {
                         tempF();

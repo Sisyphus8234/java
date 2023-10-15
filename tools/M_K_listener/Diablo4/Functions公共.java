@@ -14,7 +14,7 @@ public class Functions公共 extends IFunctions {
 
     public static boolean 自动喝药B = false;
     public static boolean TempT1B = false;
-    public static LocalDateTime localDateTime = LocalDateTime.MIN;
+    public static LocalDateTime localDateTime = LocalDateTime.now();
 
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
     public static MyThread t1 = new MyThread(MyThread.State.off) {
@@ -33,6 +33,11 @@ public class Functions公共 extends IFunctions {
                         }
                     } else {
                         if (pixelColor.getPixelColorHSB(625, 950)[1] < 0.5F) {
+                            if(LocalDateTime.now().getSecond() - localDateTime.getSecond()<0) {
+                                System.out.println(LocalDateTime.now().getSecond() - localDateTime.getSecond());
+                                System.out.println(LocalDateTime.now());
+                                System.out.println(localDateTime);
+                            }
                             if (LocalDateTime.now().getSecond() - localDateTime.getSecond() > 5) {
                                 robot.keyRelease(VK_0);
                                 robot.keyPress(VK_0);
@@ -46,6 +51,7 @@ public class Functions公共 extends IFunctions {
 
                         } else {
                             localDateTime = LocalDateTime.now();
+                            System.out.println("2222");
                         }
                     }
                 } else {
@@ -189,11 +195,15 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "f5", value = 116, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_标记传奇() {
+//        robot.keyPress(VK_C);
+//        robot.keyRelease(VK_C);
         筛选装备.显示传奇标记();
     }
 
     @ListenMouseKeyboard(note = "f6", value = 117, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_重置传奇列表() {
+        robot.keyPress(VK_ESCAPE);
+        robot.keyRelease(VK_ESCAPE);
         筛选装备.关闭传奇标记();
     }
 
