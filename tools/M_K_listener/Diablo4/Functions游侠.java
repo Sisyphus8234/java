@@ -37,13 +37,13 @@ public class Functions游侠 extends Functions公共 {
     public static float[] myHSB资源;
 
 
-    public static boolean t1Temp = false;
+
     public static boolean t1Temp1 = false;
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if (t1Temp == true) {
+                if (b攻击移动 == true) {
                     if(是否基础技能) {
                         myHSB资源 = pixelColor.getPixelColorHSB(rgbx,rgby);
                         if(myHSB资源[0]<value){
@@ -91,7 +91,7 @@ public class Functions游侠 extends Functions公共 {
         public void run() {
             while (true) {
 
-                if (t1Temp == true ) {
+                if (b攻击移动 == true ) {
 
                     if(pixelColor1.getPixelColorHSB(804,982)[1]<0.47f)
                     {
@@ -117,7 +117,7 @@ public class Functions游侠 extends Functions公共 {
 
     @ListenMouseKeyboard(value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void R() {
-        t1Temp = false;
+        b攻击移动 = false;
 //        Functions公共.自动喝药=false;
         t2Temp = true;
     }
@@ -125,7 +125,7 @@ public class Functions游侠 extends Functions公共 {
     @ListenMouseKeyboard(value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w() {
         w或者左键 = true;
-        t1Temp = false;
+        b攻击移动 = false;
         Functions公共.自动喝药B =false;
         t2Temp = false;
     }
@@ -139,7 +139,7 @@ public class Functions游侠 extends Functions公共 {
         rgby=rgby2;
         value=value2;
 
-        t1Temp = true;
+        b攻击移动 = true;
         t2Temp = false;
         Functions公共.自动喝药B =true;
         Functions公共.t1.myResume();
@@ -149,7 +149,7 @@ public class Functions游侠 extends Functions公共 {
         rgby=rgby1;
         value=value1;
 
-        t1Temp = true;
+        b攻击移动 = true;
         t2Temp = false;
     }
 
@@ -167,14 +167,14 @@ public class Functions游侠 extends Functions公共 {
     @ListenMouseKeyboard(value = 523, keyboardOrMouse =     ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard )
     public static void 侧键_f() {
-        t1Temp = false;
+        b攻击移动 = false;
         t2Temp = true;
     }
 
     @ListenMouseKeyboard(value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
     public static void 侧键_f_1() {
-        t1Temp = true;
+        b攻击移动 = true;
         t2Temp = false;
     }
 
@@ -191,10 +191,10 @@ public class Functions游侠 extends Functions公共 {
 //        }
 
 //        暂停t1时是否松开左键 =false;
-        if (t1Temp == true) {
+        if (b攻击移动 == true) {
             右键或者1234在t1运行时按下 = true;
         }
-        t1Temp = false;
+        b攻击移动 = false;
     }
 
     //    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
@@ -204,7 +204,7 @@ public class Functions游侠 extends Functions公共 {
 //    @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 键盘1_1() {
         if (右键或者1234在t1运行时按下 == true) {
-            t1Temp = true;
+            b攻击移动 = true;
         }
         右键或者1234在t1运行时按下 = false;
     }
@@ -212,14 +212,14 @@ public class Functions游侠 extends Functions公共 {
     @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四() {
-        t1Temp = false;
+        b攻击移动 = false;
         t2Temp = true;
     }
 
     @ListenMouseKeyboard(note = "3",value = 51, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 四1() {
-        t1Temp = true;
+        b攻击移动 = true;
         t2Temp = false;
     }
 
@@ -243,75 +243,8 @@ public class Functions游侠 extends Functions公共 {
 
 
 
-    public static boolean t捡东西B = false;
-
-
-        public static MyThread t捡东西=new MyThread(MyThread.State.on) {
-            @Override
-            public void run() {
-                while (true) {
-                    if (t1Temp == true) {
-                        robot.keyPress(VK_ALT);
-                        robot.keyRelease(VK_ALT);
-                        robot.keyRelease(VK_V);
-                        robot.keyPress(VK_V);
-                        t捡东西B =true;
-                    } else {
-
-                        if(t捡东西B ==true){
-                            robot.keyRelease(VK_V);
-                            t捡东西B =false;
-                        }
-
-                    }
-                    pause(baseDelay);
-
-                }
-            }
-        };
-
-
-
-
-
-
-    public static MyThread t4= new MyThread(MyThread.State.off) {
-        @Override
-        public void run() {
-            while (true) {
-                if(筛选装备.是否标记 ==true){
-                    筛选装备.run1();
-                }else if(筛选装备.是否扫描和筛选 ==true){
-                    筛选装备.run(筛选装备_游侠);
-                }
-
-                this.mySuspend();
-            }
-        }
-    };
-
-    public static 筛选装备_游侠 筛选装备_游侠 = new 筛选装备_游侠();
-    @ListenMouseKeyboard(note = "f1",value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备() {
-        筛选装备.标记起点();
+    static {
+        Functions公共.筛选装备_子类 = new 筛选装备_游侠();
     }
-    @ListenMouseKeyboard(note = "f2",value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 图像识别_装备1() {
-        筛选装备.是否扫描和筛选 = true;
-        筛选装备.是否标记 = false;
-        t4.myResume();
-    }
-    @ListenMouseKeyboard(note = "f3",value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备2() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = true;
-        t4.myResume();
-    }
-    @ListenMouseKeyboard(note = "f4",value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备_终止() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = false;
-    }
-
 
 }

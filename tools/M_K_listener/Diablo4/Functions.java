@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Functions extends Functions法师{
+public class Functions extends Functions游侠{
 
 
 }

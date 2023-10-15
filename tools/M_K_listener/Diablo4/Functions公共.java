@@ -11,6 +11,31 @@ import java.time.LocalDateTime;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
+    public static boolean b攻击移动=false;
+    public static boolean b拾取物品 = false;
+    public static MyThread t拾取物品 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                if (b攻击移动 == true) {
+                    robot.keyPress(VK_ALT);
+                    robot.keyRelease(VK_ALT);
+                    robot.keyRelease(VK_V);
+                    robot.keyPress(VK_V);
+                    b拾取物品 = true;
+                } else {
+
+                    if (b拾取物品 == true) {
+                        robot.keyRelease(VK_V);
+                        b拾取物品 = false;
+                    }
+
+                }
+                pause(200L);
+
+            }
+        }
+    };
 
     public static boolean 自动喝药B = false;
     public static boolean TempT1B = false;
@@ -28,7 +53,7 @@ public class Functions公共 extends IFunctions {
                         robot.keyRelease(VK_0);
                         TempT1B = true;
                         if (TempT1B == true) {
-                            pause(600L);
+                            pause(800L);
                             TempT1B = false;
                         }
                     } else {
@@ -44,7 +69,7 @@ public class Functions公共 extends IFunctions {
                                 robot.keyRelease(VK_0);
                                 TempT1B = true;
                                 if (TempT1B == true) {
-                                    pause(1000L);
+                                    pause(1200L);
                                     TempT1B = false;
                                 }
                             }
