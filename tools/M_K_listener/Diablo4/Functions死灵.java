@@ -47,19 +47,23 @@ public class Functions死灵 extends Functions公共 {
                     if (判断骷髅()) {
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
-                    } else {
+                    }
+                    else {
 
-                        robot.keyPress(VK_2);
-                        robot.keyRelease(VK_2);
+//                        robot.keyPress(VK_2);
+//                        robot.keyRelease(VK_2);
+//
+//                        robot.keyPress(VK_3);
+//                        robot.keyRelease(VK_3);
+//
+//                        robot.keyPress(VK_4);
+//                        robot.keyRelease(VK_4);
+//
+//                        robot.keyPress(VK_W);
+//                        robot.keyRelease(VK_W);
 
-                        robot.keyPress(VK_3);
-                        robot.keyRelease(VK_3);
-
-                        robot.keyPress(VK_4);
-                        robot.keyRelease(VK_4);
-
-                        robot.keyPress(VK_W);
-                        robot.keyRelease(VK_W);
+                        robot.keyRelease(VK_G);
+                        robot.keyPress(VK_G);
 
 
                     }
@@ -121,37 +125,49 @@ public class Functions死灵 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e() {
-        b攻击移动 = true;
+
         b移动 = false;
 
         自动喝药(null, null, false);
-        b尸体技能优先 = false;
+
+        b攻击移动 = false;
+
         b非尸体技能优先 = false;
+        b尸体技能优先 = true;
+        t尸体技能优先.myResume();
+
+
     }
 
-//    @ListenMouseKeyboard(note = "e", value = 69, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    public static void e1() {
-//        b攻击移动 = true;
-//        b移动 = false;
-//    }
+    @ListenMouseKeyboard(note = "e", value = 69, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void e1() {
+        b攻击移动 = true;
+        b移动 = false;
+
+        b非尸体技能优先 = false;
+        b尸体技能优先 = false;
+
+    }
 
     @ListenMouseKeyboard(note = "1", value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体() {
-        if (b攻击移动 == true) {
-            按12时t1是否运行 = true;
-        }
+//        if (b攻击移动 == true) {
+//            按12时t1是否运行 = true;
+//        }
         b攻击移动 = false;
 
         b尸体技能优先 = true;
         t尸体技能优先.myResume();
+
+        b非尸体技能优先=false;
     }
 
     @ListenMouseKeyboard(note = "1", value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体1() {
-        if (按12时t1是否运行 == true) {
+//        if (按12时t1是否运行 == true) {
             b攻击移动 = true;
-        }
-        按12时t1是否运行 = false;
+//        }
+//        按12时t1是否运行 = false;
 
         b尸体技能优先 = false;
     }
@@ -233,8 +249,8 @@ public class Functions死灵 extends Functions公共 {
     public static void w() {
         w或者左键 = true;
         b攻击移动 = false;
-//        Functions公共.自动喝药 = false;
         b移动 = false;
+        自动喝药1();
 
         b非尸体技能优先 = false;
         b尸体技能优先 = false;

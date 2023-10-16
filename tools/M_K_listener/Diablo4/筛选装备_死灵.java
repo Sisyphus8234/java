@@ -3,7 +3,7 @@ package custom;
 public class 筛选装备_死灵 extends 筛选装备_子类 {
     @Override
     public int 物品强度下限() {
-        return 760;
+        return 661;
     }
 
     @Override
@@ -53,10 +53,16 @@ public class 筛选装备_死灵 extends 筛选装备_子类 {
 
                 break;
             } else if (extractedText.contains("双手")) {
-                当前装备情况.物品强度下限 = 804;
+                当前装备情况.物品强度下限 = 714;
                 当前装备情况.装备种类 = 筛选装备.装备种类_枚举.筛选;
                 当前装备情况.筛选哪些.add(筛选装备.筛选哪些_枚举.物品强度);
                 当前装备情况.筛选哪些.add(筛选装备.筛选哪些_枚举.属性);
+                break;
+            } else if (extractedText.contains("每秒伤害")||extractedText.contains("格挡")) {
+
+                当前装备情况.装备种类 = 筛选装备.装备种类_枚举.不要;
+
+
                 break;
             } else if (extractedText.contains("手套")) {
 //                当前装备情况.筛选哪些.add(筛选装备.筛选哪些_枚举.必须属性);
