@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
-    public static long 移动间隔 = 200L;
+    public static long BaseDelay = 200L;
     public static boolean b攻击移动 = false;
     public static boolean b攻击移动1 = false;
 
@@ -32,7 +32,7 @@ public class Functions公共 extends IFunctions {
                     }
                 }
 
-                pause(移动间隔);
+                pause(BaseDelay);
             }
         }
     };
@@ -49,21 +49,19 @@ public class Functions公共 extends IFunctions {
                     robot.keyPress(VK_V);
                     b拾取物品 = true;
                 } else {
-
                     if (b拾取物品 == true) {
                         robot.keyRelease(VK_V);
                         b拾取物品 = false;
                     }
-
                 }
-                pause(移动间隔);
+                pause(BaseDelay);
 
             }
         }
     };
 
 
-    @ListenMouseKeyboard(note = "e",value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e() {
         b攻击移动 = true;
         b移动 = false;
@@ -110,8 +108,13 @@ public class Functions公共 extends IFunctions {
 
     //-----------------------------
 
+    public static Point p自动喝药 = new Point(625, 990);
+    public static Point p自动喝药1 = new Point(625, 950);
+
+
     public static boolean b自动喝药 = false;
     public static boolean b自动喝药1 = false;
+    public static boolean b自动喝药2 = true;
     public static LocalDateTime localDateTime = LocalDateTime.now();
 
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
@@ -129,7 +132,7 @@ public class Functions公共 extends IFunctions {
                             pause(800L);
                             b自动喝药1 = false;
                         }
-                    } else {
+                    } else if (b自动喝药2 == true) {
                         if (pixelColor.getPixelColorHSB(625, 950)[1] < 0.5F) {
                             if (LocalDateTime.now().getSecond() - localDateTime.getSecond() < 0) {
                                 System.out.println(LocalDateTime.now().getSecond() - localDateTime.getSecond());
@@ -164,6 +167,17 @@ public class Functions公共 extends IFunctions {
     public static void 自动喝药() {
         b自动喝药 = true;
         t自动喝药.myResume();
+    }
+
+    public static void 自动喝药(Point point, Point point1, boolean b) {
+        if (point != null) {
+            p自动喝药 = point;
+        }
+        if (point1 != null) {
+            p自动喝药1 = point1;
+        }
+        b自动喝药2 = b;
+        自动喝药();
     }
 
     public static void 自动喝药1() {

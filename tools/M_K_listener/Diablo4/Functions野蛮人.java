@@ -56,7 +56,7 @@ public class Functions野蛮人 extends Functions公共 {
                     }
 
                 }
-                pause(移动间隔);
+                pause(BaseDelay);
             }
         }
     };
