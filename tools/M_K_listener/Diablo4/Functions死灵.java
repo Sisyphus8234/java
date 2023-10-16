@@ -156,26 +156,7 @@ public class Functions死灵 extends Functions公共 {
             }
         }
     };
-    public static boolean t捡东西B = false;
-    public static MyThread t捡东西 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-                if (t1B == true) {
-                    robot.keyRelease(VK_V);
-                    robot.keyPress(VK_V);
-                    t捡东西B = true;
-                } else {
-                    if (t捡东西B == true) {
-                        robot.keyRelease(VK_V);
-                        t捡东西B = false;
-                    }
 
-                }
-                pause(baseDelay);
-            }
-        }
-    };
 
 
     @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -280,7 +261,7 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(note="r",value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void R() {
         t1B = false;
-        Functions公共.自动喝药B =false;
+        Functions公共.b自动喝药 =false;
         t2B = true;
 
         tB是否技能=false;
@@ -297,6 +278,8 @@ public class Functions死灵 extends Functions公共 {
 
         tB是否技能=false;
         tB是否尸体=false;
+
+
     }
 
     @ListenMouseKeyboard(note="左键",value = 514, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)

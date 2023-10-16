@@ -11,7 +11,31 @@ import java.time.LocalDateTime;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
-    public static boolean b攻击移动=false;
+    public static long 移动间隔 = 200L;
+    public static boolean b攻击移动 = false;
+
+    public static boolean b移动 = false;
+    public static boolean b移动1 = false;
+    public static MyThread t移动 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                if (b移动 == true) {
+                    robot.keyRelease(VK_G);
+                    robot.keyPress(VK_G);
+                    b移动1 = true;
+                } else {
+                    if (b移动1 == true) {
+                        robot.keyRelease(VK_G);
+                        b移动1 = false;
+                    }
+                }
+
+                pause(移动间隔);
+            }
+        }
+    };
+
     public static boolean b拾取物品 = false;
     public static MyThread t拾取物品 = new MyThread(MyThread.State.on) {
         @Override
@@ -31,14 +55,56 @@ public class Functions公共 extends IFunctions {
                     }
 
                 }
-                pause(200L);
+                pause(移动间隔);
 
             }
         }
     };
 
-    public static boolean 自动喝药B = false;
-    public static boolean TempT1B = false;
+
+
+    public static boolean w或者左键 = false;
+
+    @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "w", value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void w() {
+        w或者左键 = true;
+        b攻击移动 = false;
+        b移动 = false;
+        自动喝药1();
+    }
+
+    @ListenMouseKeyboard(note = "左键", value = 514, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "w", value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void w_1() {
+        w或者左键 = false;
+    }
+
+    @ListenMouseKeyboard(note = "r", value = 82, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void R() {
+        b攻击移动 = false;
+//        Functions公共.自动喝药=false;
+        b移动 = true;
+    }
+
+    @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "f", value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 强制移动() {
+        b攻击移动 = false;
+        b移动 = true;
+    }
+
+    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "f", press = false, value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 强制移动_1() {
+        b攻击移动 = true;
+        b移动 = false;
+    }
+
+    //-----------------------------
+
+    public static boolean b自动喝药 = false;
+    public static boolean b自动喝药1 = false;
     public static LocalDateTime localDateTime = LocalDateTime.now();
 
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
@@ -46,19 +112,19 @@ public class Functions公共 extends IFunctions {
         @Override
         public void run() {
             while (true) {
-                if (自动喝药B == true) {
+                if (b自动喝药 == true) {
                     if (pixelColor.getPixelColorHSB(625, 990)[1] < 0.5F) {
                         robot.keyRelease(VK_0);
                         robot.keyPress(VK_0);
                         robot.keyRelease(VK_0);
-                        TempT1B = true;
-                        if (TempT1B == true) {
+                        b自动喝药1 = true;
+                        if (b自动喝药1 == true) {
                             pause(800L);
-                            TempT1B = false;
+                            b自动喝药1 = false;
                         }
                     } else {
                         if (pixelColor.getPixelColorHSB(625, 950)[1] < 0.5F) {
-                            if(LocalDateTime.now().getSecond() - localDateTime.getSecond()<0) {
+                            if (LocalDateTime.now().getSecond() - localDateTime.getSecond() < 0) {
                                 System.out.println(LocalDateTime.now().getSecond() - localDateTime.getSecond());
                                 System.out.println(LocalDateTime.now());
                                 System.out.println(localDateTime);
@@ -67,10 +133,10 @@ public class Functions公共 extends IFunctions {
                                 robot.keyRelease(VK_0);
                                 robot.keyPress(VK_0);
                                 robot.keyRelease(VK_0);
-                                TempT1B = true;
-                                if (TempT1B == true) {
+                                b自动喝药1 = true;
+                                if (b自动喝药1 == true) {
                                     pause(1200L);
-                                    TempT1B = false;
+                                    b自动喝药1 = false;
                                 }
                             }
 
@@ -87,17 +153,21 @@ public class Functions公共 extends IFunctions {
         }
     };
 
-    //    @ListenMouseKeyboard(note = "f5", value = 116, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+
     public static void 自动喝药() {
-        自动喝药B = true;
+        b自动喝药 = true;
         t1.myResume();
     }
 
-    //    @ListenMouseKeyboard(note = "f6", value = 117, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "t", value = 84, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 自动喝药1() {
-        自动喝药B = false;
+        b自动喝药 = false;
     }
+
+
+
+
+
+    //---------------------------------------------------
 
 
     @ListenMouseKeyboard(note = "x", value = 88, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -122,21 +192,27 @@ public class Functions公共 extends IFunctions {
         robot.mouseMove(point.x, point.y);
     }
 
+
+    //------------------
+
+
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void f() {
-        String text=readClipboard().replaceAll(" ","");
+    public static void 读取颜色() {
+        String text = readClipboard().replaceAll(" ", "");
         String[] parts = text.split(",");
-        int x=Integer.parseInt(parts[0]);
-        int y=Integer.parseInt(parts[1]);
-        pixelColor.threadOn(x,y);
-        writeClipboard(x+","+y);
+        int x = Integer.parseInt(parts[0]);
+        int y = Integer.parseInt(parts[1]);
+        pixelColor.threadOn(x, y);
+        writeClipboard(x + "," + y);
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void f1() {
+    public static void 读取颜色_1() {
         pixelColor.threadOff();
     }
 
+
+    //-------------------------------------------------------
 
     public static boolean t右键连点是否左键 = false;
     public static LocalDateTime 计时器 = LocalDateTime.MIN;
@@ -226,9 +302,9 @@ public class Functions公共 extends IFunctions {
     }
 
     @ListenMouseKeyboard(note = "f6", value = 117, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_重置传奇列表() {
-        robot.keyPress(VK_ESCAPE);
-        robot.keyRelease(VK_ESCAPE);
+    public static void 图像识别_标记传奇_1() {
+//        robot.keyPress(VK_ESCAPE);
+//        robot.keyRelease(VK_ESCAPE);
         筛选装备.关闭传奇标记();
     }
 

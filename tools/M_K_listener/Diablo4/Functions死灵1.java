@@ -138,7 +138,7 @@ public class Functions死灵1 extends Functions公共 {
     public static void e() {
         t1B = true;
         t2B = false;
-        Functions公共.自动喝药B = true;
+        Functions公共.b自动喝药 = true;
         Functions公共.t1.myResume();
 
         tB是否尸体=false;
@@ -197,7 +197,7 @@ public class Functions死灵1 extends Functions公共 {
     @ListenMouseKeyboard(note="r",value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void R() {
         t1B = false;
-        Functions公共.自动喝药B =false;
+        Functions公共.b自动喝药 =false;
         t2B = true;
 
         tB是否技能=false;

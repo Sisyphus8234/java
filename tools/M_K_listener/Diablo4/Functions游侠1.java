@@ -129,7 +129,7 @@ public class Functions游侠1 extends Functions公共 {
         模式=2;
         t1B = true;
         t2B = false;
-        Functions公共.自动喝药B = true;
+        Functions公共.b自动喝药 = true;
         Functions公共.t1.myResume();
     }
 
@@ -149,7 +149,7 @@ public class Functions游侠1 extends Functions公共 {
     public static void w() {
         w或者左键 = true;
         t1B = false;
-        Functions公共.自动喝药B = false;
+        Functions公共.b自动喝药 = false;
         t2B = false;
     }
 

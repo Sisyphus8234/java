@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 
 import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
 import static java.awt.event.KeyEvent.VK_5;
-import static java.awt.event.KeyEvent.VK_V;
 
 public class Functions野蛮人 extends Functions公共 {
     public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
@@ -90,7 +89,7 @@ public class Functions野蛮人 extends Functions公共 {
     public static void w() {
         w或者左键 = true;
         b攻击移动 = false;
-        Functions公共.自动喝药B =false;
+        Functions公共.b自动喝药 =false;
         t2B = false;
     }
     @ListenMouseKeyboard(value = 514,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
@@ -102,7 +101,7 @@ public class Functions野蛮人 extends Functions公共 {
     public static void e() {
         b攻击移动 = true;
         t2B = false;
-        Functions公共.自动喝药B =true;
+        Functions公共.b自动喝药 =true;
         Functions公共.t1.myResume();
     }
     @ListenMouseKeyboard(note = "e",value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
