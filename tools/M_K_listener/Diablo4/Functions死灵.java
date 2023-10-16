@@ -7,6 +7,9 @@ import base.MyThread;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions死灵 extends Functions公共 {
+    static {
+        Functions.筛选装备_子类=new 筛选装备_死灵();
+    }
     public static boolean 按12时t1是否运行 = false;
     public static boolean 按space时t1是否运行 = false;
     private static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
