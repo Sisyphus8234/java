@@ -86,7 +86,7 @@ public class Functions德鲁伊 extends Functions公共 {
         t1B = true;
         t2B = false;
         Functions公共.b自动喝药 =true;
-        Functions公共.t1.myResume();
+        Functions公共.t自动喝药.myResume();
     }
     @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)

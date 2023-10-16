@@ -142,7 +142,7 @@ public class Functions游侠 extends Functions公共 {
         b攻击移动 = true;
         t2Temp = false;
         Functions公共.b自动喝药 =true;
-        Functions公共.t1.myResume();
+        Functions公共.t自动喝药.myResume();
     }
     @ListenMouseKeyboard(note = "e",value = 69,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e1() {

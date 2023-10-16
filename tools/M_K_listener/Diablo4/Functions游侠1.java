@@ -130,7 +130,7 @@ public class Functions游侠1 extends Functions公共 {
         t1B = true;
         t2B = false;
         Functions公共.b自动喝药 = true;
-        Functions公共.t1.myResume();
+        Functions公共.t自动喝药.myResume();
     }
 
 

@@ -71,7 +71,7 @@ public class Functions法师 extends Functions公共 {
         b攻击移动 = true;
         b移动 = false;
         Functions公共.b自动喝药 = true;
-        Functions公共.t1.myResume();
+        Functions公共.t自动喝药.myResume();
 
         进入战斗 = false;
     }

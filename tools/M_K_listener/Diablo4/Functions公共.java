@@ -13,6 +13,7 @@ import static java.awt.event.KeyEvent.*;
 public class Functions公共 extends IFunctions {
     public static long 移动间隔 = 200L;
     public static boolean b攻击移动 = false;
+    public static boolean b攻击移动1 = false;
 
     public static boolean b移动 = false;
     public static boolean b移动1 = false;
@@ -62,6 +63,12 @@ public class Functions公共 extends IFunctions {
     };
 
 
+    @ListenMouseKeyboard(note = "e",value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void e() {
+        b攻击移动 = true;
+        b移动 = false;
+        自动喝药();
+    }
 
     public static boolean w或者左键 = false;
 
@@ -108,7 +115,7 @@ public class Functions公共 extends IFunctions {
     public static LocalDateTime localDateTime = LocalDateTime.now();
 
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
-    public static MyThread t1 = new MyThread(MyThread.State.off) {
+    public static MyThread t自动喝药 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
@@ -156,15 +163,12 @@ public class Functions公共 extends IFunctions {
 
     public static void 自动喝药() {
         b自动喝药 = true;
-        t1.myResume();
+        t自动喝药.myResume();
     }
 
     public static void 自动喝药1() {
         b自动喝药 = false;
     }
-
-
-
 
 
     //---------------------------------------------------
@@ -185,6 +189,7 @@ public class Functions公共 extends IFunctions {
     public static void 人物详情() {
         robot.keyPress(VK_C);
         robot.keyRelease(VK_C);
+        pause(50L);
         Point point = MouseInfo.getPointerInfo().getLocation();
         robot.mouseMove(1355, 264);
         robot.mousePress(BUTTON1_DOWN_MASK);
