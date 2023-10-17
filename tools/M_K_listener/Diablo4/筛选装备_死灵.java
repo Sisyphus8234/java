@@ -15,7 +15,7 @@ public class 筛选装备_死灵 extends 筛选装备_子类 {
 
     @Override
     public String[] 不要词缀_目标() {
-        return new String[]{"闪避获得","你的药水也会","对受伤敌人的", "基础技能","远距敌人的伤害减免"};
+        return new String[]{"闪避获得","你的药水也会","对受伤敌人的", "基础技能","远距敌人的伤害减免","白骨技能的","继承你的荆棘"};
     }
 
     @Override
