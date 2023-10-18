@@ -51,6 +51,11 @@ public class 筛选装备 {
     public static String outPictureName = "screenshot";
     public static String outTextName = "output";
 
+    public static int 截图时左边距离鼠标=430;
+    public static int 截图时上边=90;
+    public static int 截图时宽=380;
+    public static int 截图时高=690;
+
     public static Robot robot;
 
     static {
@@ -127,12 +132,13 @@ public class 筛选装备 {
     }
 
 
+
     public static String savePicture(int x, int y) {
 
-        int arg1 = x - 430; // 传递给方法的参数
-        int arg2 = 90; // 传递给方法的参数
-        int arg3 = 380; // 传递给方法的参数
-        int arg4 = 690; // 传递给方法的参数
+        int arg1 = x - 截图时左边距离鼠标; // 传递给方法的参数
+        int arg2 = 截图时上边; // 传递给方法的参数
+        int arg3 = 截图时宽; // 传递给方法的参数
+        int arg4 = 截图时高; // 传递给方法的参数
 
         File directory = new File(folderName);
         if (!directory.exists()) {

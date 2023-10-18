@@ -8,8 +8,9 @@ import static java.awt.event.KeyEvent.*;
 
 public class Functions死灵 extends Functions公共 {
     static {
-        Functions.筛选装备_子类=new 筛选装备_死灵();
+        Functions.筛选装备_子类 = new 筛选装备_死灵();
     }
+
     public static boolean 按12时t1是否运行 = false;
     public static boolean 按space时t1是否运行 = false;
     private static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
@@ -18,24 +19,24 @@ public class Functions死灵 extends Functions公共 {
         public void run() {
             while (true) {
                 if (b攻击移动 == true) {
-                    if(判断骷髅()==false) {
+                    if (判断骷髅() == false) {
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         robot.keyRelease(VK_G);
                         robot.keyPress(VK_G);
-                    }else {
+                    } else {
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         robot.mousePress(BUTTON1_DOWN_MASK);
 
-                        if(需要骷髅祭司==true&&需要骷髅战士==false&&需要骷髅法师==false){
-
-                            pause(700L);
-                        }
+//                        if(需要骷髅祭司==true&&需要骷髅战士==false&&需要骷髅法师==false){
+//
+//                            pause(700L);
+//                        }
                     }
                     b攻击移动1 = true;
                 } else {
                     if (b攻击移动1 == true) {
                         robot.keyRelease(VK_G);
-                        if(w或者左键==false){
+                        if (w或者左键 == false) {
                             robot.mouseRelease(BUTTON1_DOWN_MASK);
                         }
                         b攻击移动1 = false;
@@ -46,29 +47,31 @@ public class Functions死灵 extends Functions公共 {
         }
     };
 
-    public static boolean 需要骷髅祭司 =false;
-    public static boolean 需要骷髅法师=false;
-    public static boolean 需要骷髅战士=false;
+    public static boolean 需要骷髅祭司 = false;
+    public static boolean 需要骷髅法师 = false;
+    public static boolean 需要骷髅战士 = false;
 
     public static boolean 判断骷髅() {
-        需要骷髅祭司 =pixelColor.getPixelColorHSB(1028, 969)[1] < 0.59F;
-        需要骷髅法师=pixelColor.getPixelColorHSB(1374, 1028)[1] < 0.06F;
-        需要骷髅战士=pixelColor.getPixelColorHSB(1372, 983)[1] < 0.06F;
+        需要骷髅祭司 = pixelColor.getPixelColorHSB(1028, 969)[1] < 0.59F;
+        需要骷髅法师 = pixelColor.getPixelColorHSB(1374, 1028)[1] < 0.06F;
+        需要骷髅战士 = pixelColor.getPixelColorHSB(1372, 983)[1] < 0.06F;
 
-        return 需要骷髅祭司||需要骷髅法师||需要骷髅战士;
+        return 需要骷髅祭司 || 需要骷髅法师 || 需要骷髅战士;
     }
 
     public static boolean b尸体技能优先 = false;
-    public static MyThread t尸体技能优先 = new MyThread(MyThread.State.on) {
+    public static boolean b尸体技能优先1 = false;
+    public static MyThread t尸体技能优先 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
                 if (b尸体技能优先 == true) {
+                    b尸体技能优先1 = true;
+                    robot.keyPress(VK_SPACE);
                     if (判断骷髅()) {
                         robot.mousePress(BUTTON1_DOWN_MASK);
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
-                    }
-                    else {
+                    } else {
 
 //                        robot.keyPress(VK_2);
 //                        robot.keyRelease(VK_2);
@@ -87,13 +90,44 @@ public class Functions死灵 extends Functions公共 {
 
 
                     }
+                } else {
+                    if (b尸体技能优先1 == true) {
+                        if (space == false) {
+                            robot.keyRelease(VK_SPACE);
+                        }
+                        b尸体技能优先1 = false;
+                    }
+                    this.mySuspend();
                 }
                 pause(BaseDelay);
             }
         }
     };
+
+    public static void t尸体技能优先(boolean b) {
+        if (b == true) {
+            b尸体技能优先 = true;
+            t尸体技能优先.myResume();
+        } else {
+            b尸体技能优先 = false;
+
+        }
+    }
+
+
     public static boolean b非尸体技能优先 = false;
     public static boolean b非尸体技能优先1 = false;
+
+    public static void t非尸体技能优先(boolean b) {
+        if (b == true) {
+            b非尸体技能优先 = true;
+            t非尸体技能优先.myResume();
+        } else {
+            b非尸体技能优先 = false;
+        }
+    }
+
+
     public static MyThread t非尸体技能优先 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
@@ -156,8 +190,8 @@ public class Functions死灵 extends Functions公共 {
         b攻击移动 = true;
         b移动 = false;
 
-        b非尸体技能优先 = false;
-        b尸体技能优先 = false;
+        t非尸体技能优先(false);
+        t尸体技能优先(false);
 
     }
 
@@ -178,20 +212,20 @@ public class Functions死灵 extends Functions公共 {
 //        }
         b攻击移动 = false;
 
-        b尸体技能优先 = true;
+        t尸体技能优先(true);
 
 
-        b非尸体技能优先=false;
+        t非尸体技能优先(false);
     }
 
     @ListenMouseKeyboard(note = "1", value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体1() {
 //        if (按12时t1是否运行 == true) {
-            b攻击移动 = true;
+        b攻击移动 = true;
 //        }
 //        按12时t1是否运行 = false;
 
-        b尸体技能优先 = false;
+        t尸体技能优先(false);
     }
 
     @ListenMouseKeyboard(note = "2", value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
@@ -201,10 +235,7 @@ public class Functions死灵 extends Functions公共 {
         }
         b攻击移动 = false;
 
-
-        b非尸体技能优先 = true;
-        t非尸体技能优先.myResume();
-
+        t非尸体技能优先(true);
     }
 
     @ListenMouseKeyboard(note = "2", value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
@@ -214,7 +245,7 @@ public class Functions死灵 extends Functions公共 {
         }
         按12时t1是否运行 = false;
 
-        b非尸体技能优先 = false;
+        t非尸体技能优先(false);
     }
 
 //    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
@@ -231,10 +262,7 @@ public class Functions死灵 extends Functions公共 {
     public static void 技能_按一下1() {
         b攻击移动 = false;
 
-        b非尸体技能优先 = true;
-        t非尸体技能优先.myResume();
-
-
+        t非尸体技能优先(true);
     }
 
 
