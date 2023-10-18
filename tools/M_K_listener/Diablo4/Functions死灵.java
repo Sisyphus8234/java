@@ -287,7 +287,7 @@ public class Functions死灵 extends Functions公共 {
 
     }
 
-    @ListenMouseKeyboard(note = "r", value = 82, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "r", intercept = false,value = 82, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void R() {
         b攻击移动 = false;
         Functions公共.b自动喝药 = false;
