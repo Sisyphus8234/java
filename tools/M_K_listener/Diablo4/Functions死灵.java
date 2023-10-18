@@ -52,9 +52,11 @@ public class Functions死灵 extends Functions公共 {
     public static boolean 需要骷髅战士 = false;
 
     public static boolean 判断骷髅() {
+        需要骷髅战士 = pixelColor.getPixelColorHSB(1376, 997)[1] < 0.06F;
+//        需要骷髅战士 = pixelColor.getPixelColorHSB(1372, 983)[1] < 0.06F;
+//        需要骷髅法师 = pixelColor.getPixelColorHSB(1374, 1028)[1] < 0.06F;
         需要骷髅祭司 = pixelColor.getPixelColorHSB(1028, 969)[1] < 0.59F;
-        需要骷髅法师 = pixelColor.getPixelColorHSB(1374, 1028)[1] < 0.06F;
-        需要骷髅战士 = pixelColor.getPixelColorHSB(1372, 983)[1] < 0.06F;
+
 
         return 需要骷髅祭司 || 需要骷髅法师 || 需要骷髅战士;
     }
@@ -335,7 +337,7 @@ public class Functions死灵 extends Functions公共 {
         b移动 = false;
     }
 
-    //    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+        @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
 //    @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -347,7 +349,7 @@ public class Functions死灵 extends Functions公共 {
         b攻击移动 = false;
     }
 
-    //    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+        @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
 //    @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
