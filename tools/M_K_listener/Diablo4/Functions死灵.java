@@ -19,11 +19,23 @@ public class Functions死灵 extends Functions公共 {
         public void run() {
             while (true) {
                 if (b攻击移动 == true) {
+                    if (v按下==true){
+                        robot.keyRelease(VK_G);
+                        robot.mouseRelease(BUTTON1_DOWN_MASK);
+
+//                        robot.keyRelease(VK_V);
+//                        robot.keyRelease(VK_V);
+                        pause(BaseDelay);
+                        continue;
+                    }
+
                     if (判断骷髅() == false) {
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         robot.keyRelease(VK_G);
+
                         robot.keyPress(VK_G);
                     } else {
+                        robot.keyRelease(VK_G);
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                         robot.mousePress(BUTTON1_DOWN_MASK);
 
@@ -52,9 +64,9 @@ public class Functions死灵 extends Functions公共 {
     public static boolean 需要骷髅战士 = false;
 
     public static boolean 判断骷髅() {
-        需要骷髅战士 = pixelColor.getPixelColorHSB(1376, 997)[1] < 0.06F;
-//        需要骷髅战士 = pixelColor.getPixelColorHSB(1372, 983)[1] < 0.06F;
-//        需要骷髅法师 = pixelColor.getPixelColorHSB(1374, 1028)[1] < 0.06F;
+//        需要骷髅战士 = pixelColor.getPixelColorHSB(1376, 997)[1] < 0.06F;
+        需要骷髅战士 = pixelColor.getPixelColorHSB(1372, 983)[1] < 0.06F;
+        需要骷髅法师 = pixelColor.getPixelColorHSB(1374, 1028)[1] < 0.06F;
         需要骷髅祭司 = pixelColor.getPixelColorHSB(1028, 969)[1] < 0.59F;
 
 
@@ -136,11 +148,10 @@ public class Functions死灵 extends Functions公共 {
             while (true) {
                 if (b非尸体技能优先 == true) {
                     robot.keyPress(VK_SPACE);
-                    if (b非尸体技能优先1 == false) {
-
-                        robot.keyPress(VK_1);
-                        robot.keyRelease(VK_1);
-                    }
+//                    if (b非尸体技能优先1 == false) {
+//                        robot.keyPress(VK_1);
+//                        robot.keyRelease(VK_1);
+//                    }
 //
                     b非尸体技能优先1 = true;
 
@@ -151,18 +162,21 @@ public class Functions死灵 extends Functions公共 {
                     robot.keyPress(VK_3);
                     robot.keyRelease(VK_3);
 
+
                     robot.keyPress(VK_4);
                     robot.keyRelease(VK_4);
-//                        pause(100L);
-
 
                     if (判断骷髅()) {
                         robot.mousePress(BUTTON1_DOWN_MASK);
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                     } else {
+
+//                        robot.keyPress(VK_4);
+//                        robot.keyRelease(VK_4);
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
                     }
+
 
 
                 } else {
@@ -206,6 +220,18 @@ public class Functions死灵 extends Functions公共 {
 //        b尸体技能优先 = false;
 //
 //    }
+
+    public static boolean v按下=false;
+
+    @ListenMouseKeyboard(note = "v", value = 86,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void v() {
+v按下=true;
+    }
+    @ListenMouseKeyboard(note = "v",press = false, value = 86,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void v_1() {
+        v按下=false;
+
+    }
 
     @ListenMouseKeyboard(note = "1", value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 尸体() {
@@ -262,6 +288,8 @@ public class Functions死灵 extends Functions公共 {
     //    @ListenMouseKeyboard(note = "3",value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     @ListenMouseKeyboard(note = "3", value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 技能_按一下1() {
+        robot.keyPress(VK_1);
+        robot.keyRelease(VK_1);
         b攻击移动 = false;
 
         t非尸体技能优先(true);
