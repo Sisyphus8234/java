@@ -261,7 +261,7 @@ public class Functions公共 extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(note = "=", value = 187, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "=", value = 187, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 右键连点() {
         if (LocalDateTime.now().getSecond() - 计时器.getSecond() < 2) {
             t右键连点是否左键 = true;
@@ -272,7 +272,7 @@ public class Functions公共 extends IFunctions {
         t鼠标连点.myResume();
     }
 
-    @ListenMouseKeyboard(note = "-", value = 189, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(note = "-", value = 189, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 右键连点_1() {
         t鼠标连点.mySuspend();
     }

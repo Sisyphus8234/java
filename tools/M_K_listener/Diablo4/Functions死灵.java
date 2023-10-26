@@ -148,10 +148,10 @@ public class Functions死灵 extends Functions公共 {
             while (true) {
                 if (b非尸体技能优先 == true) {
                     robot.keyPress(VK_SPACE);
-//                    if (b非尸体技能优先1 == false) {
-//                        robot.keyPress(VK_1);
-//                        robot.keyRelease(VK_1);
-//                    }
+                    if (b非尸体技能优先1 == false) {
+                        robot.keyPress(VK_1);
+                        robot.keyRelease(VK_1);
+                    }
 //
                     b非尸体技能优先1 = true;
 
@@ -163,16 +163,16 @@ public class Functions死灵 extends Functions公共 {
                     robot.keyRelease(VK_3);
 
 
-                    robot.keyPress(VK_4);
-                    robot.keyRelease(VK_4);
+//                    robot.keyPress(VK_4);
+//                    robot.keyRelease(VK_4);
 
                     if (判断骷髅()) {
                         robot.mousePress(BUTTON1_DOWN_MASK);
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                     } else {
 
-//                        robot.keyPress(VK_4);
-//                        robot.keyRelease(VK_4);
+                        robot.keyPress(VK_4);
+                        robot.keyRelease(VK_4);
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
                     }

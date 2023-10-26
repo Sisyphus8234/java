@@ -30,20 +30,24 @@ public class Functions野蛮人 extends Functions公共 {
         public void run() {
             while (true) {
                 if (b攻击移动 == true) {
+                    if (是否核心技能) {
+                        判断核心技能怒气是否满足();
+                    }
                     if (是否基础技能 == true) {
                         robot.keyPress(KeyEvent.VK_5);
                         robot.keyRelease(KeyEvent.VK_5);
                     }
+                    pause(BaseDelay);
+
                     if (是否核心技能) {
                         判断核心技能怒气是否满足();
                     }
+
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     }
-                    if (是否核心技能) {
-                        判断核心技能怒气是否满足();
-                    }
+
                     b攻击移动1 = true;
 
                 } else {
