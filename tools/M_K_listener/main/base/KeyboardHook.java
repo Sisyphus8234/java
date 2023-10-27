@@ -21,7 +21,7 @@ import static base.Controller.printKey;
 public class KeyboardHook {
 	private HHOOK hhk;
 	private LowLevelKeyboardProc keyboardHook;
-	private InputInfo inputInfo =new InputInfo();
+	private InputInfo inputInfoActual =new InputInfo();
 	private MethodInfo methodInfo =new MethodInfo();
 	private StringBuilder printText=new StringBuilder();
 
@@ -75,23 +75,23 @@ public class KeyboardHook {
 						return null;
 					}
 
-					inputInfo.resetProperty();
-					inputInfo.value=info.vkCode;
+					inputInfoActual.resetProperty();
+					inputInfoActual.value=info.vkCode;
 
 //					if(info.flags==16 || info.flags==144){
 					if(info.flags==0 ||info.flags==1||info.flags==32||info.flags==33|| info.flags==128||info.flags==129){
-						inputInfo.userInput=true;
+						inputInfoActual.userInput=true;
 					}else {
-						inputInfo.userInput=false;
+						inputInfoActual.userInput=false;
 					}
 					if(wParam.intValue()==256||wParam.intValue()==260){
-						inputInfo.press=true;
+						inputInfoActual.press=true;
 					}else {
-						inputInfo.press=false;
+						inputInfoActual.press=false;
 					}
 
-					if(Controller.mapJna.containsKey(inputInfo)){
-						methodInfo =Controller.mapJna.get(inputInfo);
+					if(Controller.mapJna.containsKey(inputInfoActual)){
+						methodInfo =Controller.mapJna.get(inputInfoActual);
 						Controller.do1.task(methodInfo);
 						if(methodInfo.intercept==true){
 							return new LRESULT(1);

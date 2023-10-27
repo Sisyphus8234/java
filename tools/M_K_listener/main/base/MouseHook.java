@@ -19,7 +19,7 @@ import static base.Controller.printKey;
 public class MouseHook {
 	private HHOOK hhk;
 	private LowLevelMouseProc mouseHook;
-	private InputInfo inputInfo =new InputInfo();
+	private InputInfo inputInfoActual =new InputInfo();
 	private MethodInfo methodInfo;
 	private StringBuilder printText=new StringBuilder();
 
@@ -59,20 +59,20 @@ public class MouseHook {
 					}
 
 //					InputInfo inputInfo =new InputInfo();
-					inputInfo.resetProperty();
-					inputInfo.value=wParam.intValue();
-					inputInfo.mouseData=info.mouseData;
+					inputInfoActual.resetProperty();
+					inputInfoActual.value=wParam.intValue();
+					inputInfoActual.mouseData=info.mouseData;
 
 
 					if(info.flags==1){
-						inputInfo.userInput=false;
+						inputInfoActual.userInput=false;
 					}else {
-						inputInfo.userInput=true;
+						inputInfoActual.userInput=true;
 					}
-					inputInfo.press=true;
+					inputInfoActual.press=true;
 
-					if(Controller.mapJna.containsKey(inputInfo)){
-						methodInfo =Controller.mapJna.get(inputInfo);
+					if(Controller.mapJna.containsKey(inputInfoActual)){
+						methodInfo =Controller.mapJna.get(inputInfoActual);
 						Controller.do1.task(methodInfo);
 						if(methodInfo.intercept==true){
 							return new LRESULT(1);
