@@ -7,24 +7,25 @@ import java.util.*;
 import static base.Controller.*;
 
 public class ScanFunction {
-    public static void run(Class myFunctionClass, Class baseFunctionClass){
+    public static void run(Class myFunctionClass, Class baseFunctionClass) {
 
 
         //Class<Functions> classFunctions = Functions.class;
         Class classForTraverseMethod;
-        classForTraverseMethod=myFunctionClass;
-        Method[] methods=new Method[0];
-        while (true){
-            methods=mergeFields(methods,classForTraverseMethod.getDeclaredMethods());
-            if(classForTraverseMethod.isInstance(baseFunctionClass)){
+        classForTraverseMethod = myFunctionClass;
+        Method[] methods = new Method[0];
+        while (true) {
+            methods = mergeFields(methods, classForTraverseMethod.getDeclaredMethods());
+            if (classForTraverseMethod.isInstance(baseFunctionClass)) {
                 break;
-            };
-            classForTraverseMethod=classForTraverseMethod.getSuperclass();
+            }
+            ;
+            classForTraverseMethod = classForTraverseMethod.getSuperclass();
         }
 
 
         try {
-            Do.obj1 = myFunctionClass.newInstance();
+            Do.object = myFunctionClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("failed to create Functions instance object");
@@ -46,42 +47,42 @@ public class ScanFunction {
 
             if (method.isAnnotationPresent(ListenMouseKeyboard.class)) {
                 method.setAccessible(true);
-                ListenMouseKeyboard k111 = method.getAnnotation(ListenMouseKeyboard.class);
+                ListenMouseKeyboard listenMouseKeyboard = method.getAnnotation(ListenMouseKeyboard.class);
 
-                System.out.println("Method recorded: "+method.getName());
-                Utiliy u111 = new Utiliy();
-                u111.method = method;
-                u111.immediately = k111.immediately();
-                u111.intercept=k111.intercept();
-                InputInfo inputInfo =new InputInfo();
-                inputInfo.value=k111.value();
-                inputInfo.press=k111.press();
-                inputInfo.userInput=k111.userInput();
-                inputInfo.keyboardOrMouse=k111.keyboardOrMouse();
-                inputInfo.mouseData= k111.mouseData();
-                u111.inputInfo=inputInfo;
-                mapJna.put(inputInfo, u111);
+                System.out.println("Method recorded: " + method.getName());
+                Utiliy utiliy = new Utiliy();
+                utiliy.method = method;
+                utiliy.immediately = listenMouseKeyboard.immediately();
+                utiliy.intercept = listenMouseKeyboard.intercept();
+                InputInfo inputInfo = new InputInfo();
+                inputInfo.value = listenMouseKeyboard.value();
+                inputInfo.press = listenMouseKeyboard.press();
+                inputInfo.userInput = listenMouseKeyboard.userInput();
+                inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
+                inputInfo.mouseData = listenMouseKeyboard.mouseData();
+                utiliy.inputInfo = inputInfo;
+                mapJna.put(inputInfo, utiliy);
             }
 
             //处理重复注解
             if (method.isAnnotationPresent(ListenMouseKeyboards.class)) {
                 method.setAccessible(true);
-                ListenMouseKeyboards ks111 = method.getAnnotation(ListenMouseKeyboards.class);
+                ListenMouseKeyboards listenMouseKeyboards = method.getAnnotation(ListenMouseKeyboards.class);
 
-                for(ListenMouseKeyboard k111 : ks111.value()){
-                    System.out.println("Method recorded: "+method.getName());
-                    Utiliy u111 = new Utiliy();
-                    u111.method = method;
-                    u111.immediately = k111.immediately();
-                    u111.intercept=k111.intercept();
-                    InputInfo inputInfo =new InputInfo();
-                    inputInfo.value=k111.value();
-                    inputInfo.press=k111.press();
-                    inputInfo.userInput=k111.userInput();
-                    inputInfo.keyboardOrMouse=k111.keyboardOrMouse();
-                    inputInfo.mouseData= k111.mouseData();
-                    u111.inputInfo=inputInfo;
-                    mapJna.put(inputInfo, u111);
+                for (ListenMouseKeyboard listenMouseKeyboard : listenMouseKeyboards.value()) {
+                    System.out.println("Method recorded: " + method.getName());
+                    Utiliy utiliy = new Utiliy();
+                    utiliy.method = method;
+                    utiliy.immediately = listenMouseKeyboard.immediately();
+                    utiliy.intercept = listenMouseKeyboard.intercept();
+                    InputInfo inputInfo = new InputInfo();
+                    inputInfo.value = listenMouseKeyboard.value();
+                    inputInfo.press = listenMouseKeyboard.press();
+                    inputInfo.userInput = listenMouseKeyboard.userInput();
+                    inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
+                    inputInfo.mouseData = listenMouseKeyboard.mouseData();
+                    utiliy.inputInfo = inputInfo;
+                    mapJna.put(inputInfo, utiliy);
                 }
             }
 
@@ -90,11 +91,11 @@ public class ScanFunction {
                 method.setAccessible(true);
                 JintellitypeListen j111 = method.getAnnotation(JintellitypeListen.class);
 
-                System.out.println("Method recorded: "+method.getName());
+                System.out.println("Method recorded: " + method.getName());
                 Utiliy u111 = new Utiliy();
                 u111.method = method;
                 u111.immediately = j111.immediately();
-                mapJintellitype.put(j111.modifier()+"_"+j111.keycode(), u111);
+                mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
             }
 
             //处理重复
@@ -102,21 +103,19 @@ public class ScanFunction {
                 method.setAccessible(true);
                 JintellitypeListens js111 = method.getAnnotation(JintellitypeListens.class);
 
-                for(JintellitypeListen j111 : js111.value()){
-                    System.out.println("Method recorded: "+method.getName());
+                for (JintellitypeListen j111 : js111.value()) {
+                    System.out.println("Method recorded: " + method.getName());
                     Utiliy u111 = new Utiliy();
                     u111.method = method;
                     u111.immediately = j111.immediately();
-                    mapJintellitype.put(j111.modifier()+"_"+j111.keycode(), u111);
+                    mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
                 }
             }
 
 
-
-
         }
-        System.out.println("Jna:"+mapJna);
-        System.out.println("Jintellitype: "+mapJintellitype);
+        System.out.println("Jna:" + mapJna);
+        System.out.println("Jintellitype: " + mapJintellitype);
 
 
 //        Field[] fieldsChild=class1.getDeclaredFields();
@@ -124,41 +123,43 @@ public class ScanFunction {
 //        Field[] fieldsChildAndParent = mergeFields(fieldsChild, fieldsParent);
 
         Class classForTraverseField;
-        classForTraverseField=myFunctionClass;
-        Field[] fields=new Field[0];
-        while (true){
+        classForTraverseField = myFunctionClass;
+        Field[] fields = new Field[0];
+        while (true) {
 
-            fields=mergeFields(fields,classForTraverseField.getDeclaredFields());
-            if(classForTraverseField.isInstance(baseFunctionClass)){
+            fields = mergeFields(fields, classForTraverseField.getDeclaredFields());
+            if (classForTraverseField.isInstance(baseFunctionClass)) {
                 break;
-            };
-            classForTraverseField=classForTraverseField.getSuperclass();
+            }
+            ;
+            classForTraverseField = classForTraverseField.getSuperclass();
         }
 
 
-        for(Field field:fields){
-            if(field.isAnnotationPresent(ListenBar.class)){
-                ListenBar listenBar =field.getAnnotation(ListenBar.class);
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(ListenBar.class)) {
+                ListenBar listenBar = field.getAnnotation(ListenBar.class);
                 try {
-                    if(listenBar.onOrOff()==ListenBar.OnOrOff.off&&listenBar.threadList()!=true){
-                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),ListenBar.OnOrOff.off);
-                    }else if(listenBar.onOrOff()==ListenBar.OnOrOff.on&&listenBar.threadList()!=true){
-                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()),ListenBar.OnOrOff.on);
+                    if (listenBar.onOrOff() == ListenBar.OnOrOff.off && listenBar.threadList() != true) {
+                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()), ListenBar.OnOrOff.off);
+                    } else if (listenBar.onOrOff() == ListenBar.OnOrOff.on && listenBar.threadList() != true) {
+                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()), ListenBar.OnOrOff.on);
                     }
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
 
-                try{
-                    if(listenBar.threadList()==true){
-                        threadList.addAll((List<MyThread>)field.get(myFunctionClass));
+                try {
+                    if (listenBar.threadList() == true) {
+                        threadList.addAll((List<MyThread>) field.get(myFunctionClass));
                     }
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
             }
 
         }
 
-        System.out.println("OnAndOff key(1 means on,2 means off): "+mapListenBar);
-        System.out.println("Thread controlled by OnAndOff key: "+threadList);
-
+        System.out.println("OnAndOff key(1 means on,2 means off): " + mapListenBar);
+        System.out.println("Thread controlled by OnAndOff key: " + threadList);
 
 
     }
