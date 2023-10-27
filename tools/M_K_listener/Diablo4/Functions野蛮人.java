@@ -1,14 +1,15 @@
 package custom;
 
 import addition.FunctionsAddition;
+import base.InputInfo;
 import base.ListenMouseKeyboard;
 import base.MyThread;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
-import static java.awt.event.KeyEvent.VK_5;
+import static java.awt.event.InputEvent.*;
+import static java.awt.event.KeyEvent.*;
 
 public class Functions野蛮人 extends Functions公共 {
     public static boolean 右键或者1234在t1运行时按下 = false;
@@ -81,30 +82,54 @@ public class Functions野蛮人 extends Functions公共 {
         是否基础技能 = true;
     }
 
+    @ListenMouseKeyboard(note = "1",intercept = true,value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "2",intercept = true,value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "3",intercept = true,value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "4",intercept = true,value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 键盘1(InputInfo inputInfo){
+        无干扰按键(inputInfo.value,t1);
+    }
+//    @ListenMouseKeyboard(note = "2",intercept = true,value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 键盘2(){
+//        无干扰按键(VK_2,t1);
+//    }
+//    @ListenMouseKeyboard(note = "3",intercept = true,value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 键盘3(){
+//        无干扰按键(VK_3,t1);
+//    }
+//    @ListenMouseKeyboard(note = "4",intercept = true,value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 键盘4(){
+//        无干扰按键(VK_4,t1);
+//    }
+
+
+
+
+
 
     //    @ListenMouseKeyboard(value = 516 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
 //    @ListenMouseKeyboard(value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 52 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 键盘1() {
-        if (b攻击移动 == true) {
-            右键或者1234在t1运行时按下 = true;
-        }
-        b攻击移动 = false;
-    }
+//    public static void 键盘1() {
+//        if (b攻击移动 == true) {
+//            右键或者1234在t1运行时按下 = true;
+//        }
+//        b攻击移动 = false;
+//    }
 
     //    @ListenMouseKeyboard(value = 517 ,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
 //    @ListenMouseKeyboard(value = 49, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 50, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 51, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(value = 52 ,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 键盘1_1() {
-        if (右键或者1234在t1运行时按下 == true) {
-            b攻击移动 = true;
-        }
-        右键或者1234在t1运行时按下 = false;
-    }
+//    public static void 键盘1_1() {
+//        if (右键或者1234在t1运行时按下 == true) {
+//            b攻击移动 = true;
+//        }
+//        右键或者1234在t1运行时按下 = false;
+//    }
 
     //    @ListenMouseKeyboard(note = "3",value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "4",value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
