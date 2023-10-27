@@ -49,18 +49,18 @@ public class ScanFunction {
                 ListenMouseKeyboard listenMouseKeyboard = method.getAnnotation(ListenMouseKeyboard.class);
 
                 System.out.println("Method recorded: " + method.getName());
-                TaskdInfo taskdInfo = new TaskdInfo();
-                taskdInfo.method = method;
-                taskdInfo.immediately = listenMouseKeyboard.immediately();
-                taskdInfo.intercept = listenMouseKeyboard.intercept();
+                TaskInfo taskInfo = new TaskInfo();
+                taskInfo.method = method;
+                taskInfo.immediately = listenMouseKeyboard.immediately();
+                taskInfo.intercept = listenMouseKeyboard.intercept();
                 InputInfo inputInfo = new InputInfo();
                 inputInfo.value = listenMouseKeyboard.value();
                 inputInfo.press = listenMouseKeyboard.press();
                 inputInfo.userInput = listenMouseKeyboard.userInput();
                 inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
                 inputInfo.mouseData = listenMouseKeyboard.mouseData();
-                taskdInfo.inputInfo = inputInfo;
-                mapJna.put(inputInfo, taskdInfo);
+                taskInfo.inputInfo = inputInfo;
+                mapJna.put(inputInfo, taskInfo);
             }
 
             //处理重复注解
@@ -70,18 +70,18 @@ public class ScanFunction {
 
                 for (ListenMouseKeyboard listenMouseKeyboard : listenMouseKeyboards.value()) {
                     System.out.println("Method recorded: " + method.getName());
-                    TaskdInfo taskdInfo = new TaskdInfo();
-                    taskdInfo.method = method;
-                    taskdInfo.immediately = listenMouseKeyboard.immediately();
-                    taskdInfo.intercept = listenMouseKeyboard.intercept();
+                    TaskInfo taskInfo = new TaskInfo();
+                    taskInfo.method = method;
+                    taskInfo.immediately = listenMouseKeyboard.immediately();
+                    taskInfo.intercept = listenMouseKeyboard.intercept();
                     InputInfo inputInfo = new InputInfo();
                     inputInfo.value = listenMouseKeyboard.value();
                     inputInfo.press = listenMouseKeyboard.press();
                     inputInfo.userInput = listenMouseKeyboard.userInput();
                     inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
                     inputInfo.mouseData = listenMouseKeyboard.mouseData();
-                    taskdInfo.inputInfo = inputInfo;
-                    mapJna.put(inputInfo, taskdInfo);
+                    taskInfo.inputInfo = inputInfo;
+                    mapJna.put(inputInfo, taskInfo);
                 }
             }
 
@@ -91,7 +91,7 @@ public class ScanFunction {
                 JintellitypeListen j111 = method.getAnnotation(JintellitypeListen.class);
 
                 System.out.println("Method recorded: " + method.getName());
-                TaskdInfo u111 = new TaskdInfo();
+                TaskInfo u111 = new TaskInfo();
                 u111.method = method;
                 u111.immediately = j111.immediately();
                 mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
@@ -104,7 +104,7 @@ public class ScanFunction {
 
                 for (JintellitypeListen j111 : js111.value()) {
                     System.out.println("Method recorded: " + method.getName());
-                    TaskdInfo u111 = new TaskdInfo();
+                    TaskInfo u111 = new TaskInfo();
                     u111.method = method;
                     u111.immediately = j111.immediately();
                     mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);

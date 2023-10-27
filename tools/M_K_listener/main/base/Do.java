@@ -7,7 +7,7 @@ public class Do
 {
 
 	public long refreshtime;
-	public List<TaskdInfo> taskdInfoList =new ArrayList<>();
+	public List<TaskInfo> taskInfoList =new ArrayList<>();
 
 	public static Object object;
 	
@@ -20,29 +20,29 @@ public class Do
 		    @Override
 		    public void run() {
 		    	while(true) {try {Thread.sleep(refreshtime);} catch (InterruptedException e) {e.printStackTrace();}
-	            delay(taskdInfoList);
+	            delay(taskInfoList);
 	    }}}.start();
     }
 
-	public void doTask(TaskdInfo taskdInfo) {
-		if(taskdInfo.immediately==true) {
+	public void doTask(TaskInfo taskInfo) {
+		if(taskInfo.immediately==true) {
 			//立即执行功能
-			this.immediate(taskdInfo);
-		}else if(taskdInfo.immediately==false){
+			this.immediate(taskInfo);
+		}else if(taskInfo.immediately==false){
 			//放入队列执行
-			this.taskdInfoList.add(taskdInfo);
+			this.taskInfoList.add(taskInfo);
 		}
 	}
 	
 	
-    public void immediate(TaskdInfo taskdInfo) {
+    public void immediate(TaskInfo taskInfo) {
 
 		try {
-			int parameterCount = taskdInfo.method.getParameterCount();
+			int parameterCount = taskInfo.method.getParameterCount();
 			if(parameterCount>0) {
-				taskdInfo.method.invoke(object, taskdInfo.inputInfo);
+				taskInfo.method.invoke(object, taskInfo.inputInfo);
 			}else {
-				taskdInfo.method.invoke(object);
+				taskInfo.method.invoke(object);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,20 +51,20 @@ public class Do
 	
 	
 	
-	public void delay(List<TaskdInfo> taskdInfoList) {
-		if(taskdInfoList.size()>0) {
+	public void delay(List<TaskInfo> taskInfoList) {
+		if(taskInfoList.size()>0) {
 			try {
-				TaskdInfo taskdInfo = taskdInfoList.get(0);
-				int parameterCount = taskdInfo.method.getParameterCount();
+				TaskInfo taskInfo = taskInfoList.get(0);
+				int parameterCount = taskInfo.method.getParameterCount();
 				if(parameterCount>0){
-					taskdInfo.method.invoke(object, taskdInfo.inputInfo);
+					taskInfo.method.invoke(object, taskInfo.inputInfo);
 				}
-				taskdInfo.method.invoke(object);
+				taskInfo.method.invoke(object);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			taskdInfoList.remove(0);
+			taskInfoList.remove(0);
 	    }
 	}
 
