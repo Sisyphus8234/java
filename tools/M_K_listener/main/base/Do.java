@@ -7,7 +7,7 @@ public class Do
 {
 
 	public long refreshtime;
-	public List<Utiliy> utiliyList=new ArrayList<>();
+	public List<MethodInfo> methodInfoList =new ArrayList<>();
 
 	public static Object object;
 	
@@ -20,29 +20,29 @@ public class Do
 		    @Override
 		    public void run() {
 		    	while(true) {try {Thread.sleep(refreshtime);} catch (InterruptedException e) {e.printStackTrace();}
-	            task(utiliyList);
+	            task(methodInfoList);
 	    }}}.start();
     }
 
-	public void task(Utiliy utiliy) {
-		if(utiliy.immediately==true) {
+	public void task(MethodInfo methodInfo) {
+		if(methodInfo.immediately==true) {
 			//立即执行功能
-			this.what_at_once(utiliy);
-		}else if(utiliy.immediately==false){
+			this.what_at_once(methodInfo);
+		}else if(methodInfo.immediately==false){
 			//放入队列执行
-			this.utiliyList.add(utiliy);
+			this.methodInfoList.add(methodInfo);
 		}
 	}
 	
 	
-    public void what_at_once(Utiliy utiliy) {
+    public void what_at_once(MethodInfo methodInfo) {
 
 		try {
-			int parameterCount = utiliy.method.getParameterCount();
+			int parameterCount = methodInfo.method.getParameterCount();
 			if(parameterCount>0) {
-				utiliy.method.invoke(object, utiliy.inputInfo);
+				methodInfo.method.invoke(object, methodInfo.inputInfo);
 			}else {
-				utiliy.method.invoke(object);
+				methodInfo.method.invoke(object);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,15 +51,15 @@ public class Do
 	
 	
 	
-	public void task(List<Utiliy> utiliyList) {
-		if(utiliyList.size()>0) {
+	public void task(List<MethodInfo> methodInfoList) {
+		if(methodInfoList.size()>0) {
 			try {
-				utiliyList.get(0).method.invoke(object);
+				methodInfoList.get(0).method.invoke(object);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			utiliyList.remove(0);
+			methodInfoList.remove(0);
 	    }
 	}
 

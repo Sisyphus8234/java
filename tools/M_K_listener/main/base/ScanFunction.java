@@ -19,7 +19,6 @@ public class ScanFunction {
             if (classForTraverseMethod.isInstance(baseFunctionClass)) {
                 break;
             }
-            ;
             classForTraverseMethod = classForTraverseMethod.getSuperclass();
         }
 
@@ -50,18 +49,18 @@ public class ScanFunction {
                 ListenMouseKeyboard listenMouseKeyboard = method.getAnnotation(ListenMouseKeyboard.class);
 
                 System.out.println("Method recorded: " + method.getName());
-                Utiliy utiliy = new Utiliy();
-                utiliy.method = method;
-                utiliy.immediately = listenMouseKeyboard.immediately();
-                utiliy.intercept = listenMouseKeyboard.intercept();
+                MethodInfo methodInfo = new MethodInfo();
+                methodInfo.method = method;
+                methodInfo.immediately = listenMouseKeyboard.immediately();
+                methodInfo.intercept = listenMouseKeyboard.intercept();
                 InputInfo inputInfo = new InputInfo();
                 inputInfo.value = listenMouseKeyboard.value();
                 inputInfo.press = listenMouseKeyboard.press();
                 inputInfo.userInput = listenMouseKeyboard.userInput();
                 inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
                 inputInfo.mouseData = listenMouseKeyboard.mouseData();
-                utiliy.inputInfo = inputInfo;
-                mapJna.put(inputInfo, utiliy);
+                methodInfo.inputInfo = inputInfo;
+                mapJna.put(inputInfo, methodInfo);
             }
 
             //处理重复注解
@@ -71,18 +70,18 @@ public class ScanFunction {
 
                 for (ListenMouseKeyboard listenMouseKeyboard : listenMouseKeyboards.value()) {
                     System.out.println("Method recorded: " + method.getName());
-                    Utiliy utiliy = new Utiliy();
-                    utiliy.method = method;
-                    utiliy.immediately = listenMouseKeyboard.immediately();
-                    utiliy.intercept = listenMouseKeyboard.intercept();
+                    MethodInfo methodInfo = new MethodInfo();
+                    methodInfo.method = method;
+                    methodInfo.immediately = listenMouseKeyboard.immediately();
+                    methodInfo.intercept = listenMouseKeyboard.intercept();
                     InputInfo inputInfo = new InputInfo();
                     inputInfo.value = listenMouseKeyboard.value();
                     inputInfo.press = listenMouseKeyboard.press();
                     inputInfo.userInput = listenMouseKeyboard.userInput();
                     inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
                     inputInfo.mouseData = listenMouseKeyboard.mouseData();
-                    utiliy.inputInfo = inputInfo;
-                    mapJna.put(inputInfo, utiliy);
+                    methodInfo.inputInfo = inputInfo;
+                    mapJna.put(inputInfo, methodInfo);
                 }
             }
 
@@ -92,7 +91,7 @@ public class ScanFunction {
                 JintellitypeListen j111 = method.getAnnotation(JintellitypeListen.class);
 
                 System.out.println("Method recorded: " + method.getName());
-                Utiliy u111 = new Utiliy();
+                MethodInfo u111 = new MethodInfo();
                 u111.method = method;
                 u111.immediately = j111.immediately();
                 mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
@@ -105,7 +104,7 @@ public class ScanFunction {
 
                 for (JintellitypeListen j111 : js111.value()) {
                     System.out.println("Method recorded: " + method.getName());
-                    Utiliy u111 = new Utiliy();
+                    MethodInfo u111 = new MethodInfo();
                     u111.method = method;
                     u111.immediately = j111.immediately();
                     mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
@@ -131,7 +130,7 @@ public class ScanFunction {
             if (classForTraverseField.isInstance(baseFunctionClass)) {
                 break;
             }
-            ;
+
             classForTraverseField = classForTraverseField.getSuperclass();
         }
 

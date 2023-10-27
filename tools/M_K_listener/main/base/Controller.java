@@ -10,8 +10,8 @@ public class Controller {
 	public static boolean printKey =false;
 	public static boolean listenSwitch =true;
 	public static ArrayList<MyThread> threadList=new ArrayList<>();
-	public static Map<InputInfo, Utiliy> mapJna=new HashMap<>();
-	public static Map<String, Utiliy> mapJintellitype=new HashMap<>();
+	public static Map<InputInfo, MethodInfo> mapJna=new HashMap<>();
+	public static Map<String, MethodInfo> mapJintellitype=new HashMap<>();
 	public static Map<Integer, Integer> mapListenBar=new HashMap<>();
 	
 	public static long refreshtime=3000L;

@@ -20,7 +20,7 @@ public class MouseHook {
 	private HHOOK hhk;
 	private LowLevelMouseProc mouseHook;
 	private InputInfo inputInfo =new InputInfo();
-	private Utiliy utiliy;
+	private MethodInfo methodInfo;
 	private StringBuilder printText=new StringBuilder();
 
 	public void run() {
@@ -72,9 +72,9 @@ public class MouseHook {
 					inputInfo.press=true;
 
 					if(Controller.mapJna.containsKey(inputInfo)){
-						utiliy=Controller.mapJna.get(inputInfo);
-						Controller.do1.task(utiliy);
-						if(utiliy.intercept==true){
+						methodInfo =Controller.mapJna.get(inputInfo);
+						Controller.do1.task(methodInfo);
+						if(methodInfo.intercept==true){
 							return new LRESULT(1);
 						}
 					}
