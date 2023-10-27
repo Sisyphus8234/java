@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class InputInfo {
 
-    int keyboardOrMouse;
-    int value;
-    boolean press;
-    boolean userInput;
-    int mouseData;
+    public int keyboardOrMouse;
+    public int value;
+    public boolean press;
+    public boolean userInput;
+    public int mouseData;
 
     public void resetProperty(){
         this.keyboardOrMouse=0;
@@ -16,7 +16,6 @@ public class InputInfo {
         this.press=true;
         this.userInput=true;
         this.mouseData=0;
-
     }
 
 

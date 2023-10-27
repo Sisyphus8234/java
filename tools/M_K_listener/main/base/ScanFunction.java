@@ -59,6 +59,7 @@ public class ScanFunction {
                 inputInfo.userInput=k111.userInput();
                 inputInfo.keyboardOrMouse=k111.keyboardOrMouse();
                 inputInfo.mouseData= k111.mouseData();
+                u111.inputInfo=inputInfo;
                 mapJna.put(inputInfo, u111);
             }
 
@@ -79,6 +80,7 @@ public class ScanFunction {
                     inputInfo.userInput=k111.userInput();
                     inputInfo.keyboardOrMouse=k111.keyboardOrMouse();
                     inputInfo.mouseData= k111.mouseData();
+                    u111.inputInfo=inputInfo;
                     mapJna.put(inputInfo, u111);
                 }
             }

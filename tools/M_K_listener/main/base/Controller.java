@@ -14,7 +14,7 @@ public class Controller {
 	public static Map<String, Utiliy> mapJintellitype=new HashMap<>();
 	public static Map<Integer, Integer> mapListenBar=new HashMap<>();
 	
-	public static long refreshtime=3000;
+	public static long refreshtime=3000L;
 
 	public static Do do1=new Do(refreshtime);
 	

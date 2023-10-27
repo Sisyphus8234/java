@@ -8,7 +8,7 @@ public class Do
 {
 
 	public long refreshtime;
-	public List<Method> task_list=new ArrayList<Method>();
+	public List<Utiliy> utiliyList=new ArrayList<>();
 
 	public static Object obj1;
 	
@@ -21,25 +21,30 @@ public class Do
 		    @Override
 		    public void run() {
 		    	while(true) {try {Thread.sleep(refreshtime);} catch (InterruptedException e) {e.printStackTrace();}
-	            task(task_list);
+	            task(utiliyList);
 	    }}}.start();
     }
 
 	public void task(Utiliy u1) {
 		if(u1.immediately==true) {
 			//立即执行功能
-			this.what_at_once(u1.method);
+			this.what_at_once(u1);
 		}else if(u1.immediately==false){
 			//放入队列执行
-			this.task_list.add(u1.method);
+			this.utiliyList.add(u1);
 		}
 	}
 	
 	
-    public void what_at_once(Method m1) {
+    public void what_at_once(Utiliy u1) {
 
 		try {
-			m1.invoke(obj1);
+			int parameterCount = u1.method.getParameterCount();
+			if(parameterCount>0) {
+				u1.method.invoke(obj1, u1.inputInfo);
+			}else {
+				u1.method.invoke(obj1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,16 +52,15 @@ public class Do
 	
 	
 	
-	public void task(List<Method> task_list) {
-		if(task_list.size()>0) {
-
+	public void task(List<Utiliy> utiliyList) {
+		if(utiliyList.size()>0) {
 			try {
-				task_list.get(0).invoke(obj1);
+				utiliyList.get(0).method.invoke(obj1);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			task_list.remove(0);
+			utiliyList.remove(0);
 	    }
 	}
 
