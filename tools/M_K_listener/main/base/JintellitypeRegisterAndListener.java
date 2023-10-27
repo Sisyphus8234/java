@@ -29,7 +29,7 @@ public class JintellitypeRegisterAndListener {
 
                 if(set1.contains(markCode)){
 
-                    do1.task(Controller.mapJintellitype.get(map1.get(markCode)));
+                    do1.doTask(Controller.mapJintellitype.get(map1.get(markCode)));
                 }
             }
         });

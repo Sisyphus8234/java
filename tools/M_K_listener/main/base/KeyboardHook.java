@@ -22,7 +22,7 @@ public class KeyboardHook {
 	private HHOOK hhk;
 	private LowLevelKeyboardProc keyboardHook;
 	private InputInfo inputInfoActual =new InputInfo();
-	private MethodInfo methodInfo =new MethodInfo();
+	private TaskdInfo taskdInfo =new TaskdInfo();
 	private StringBuilder printText=new StringBuilder();
 
 	public void run() {
@@ -91,9 +91,9 @@ public class KeyboardHook {
 					}
 
 					if(Controller.mapJna.containsKey(inputInfoActual)){
-						methodInfo =Controller.mapJna.get(inputInfoActual);
-						Controller.do1.task(methodInfo);
-						if(methodInfo.intercept==true){
+						taskdInfo =Controller.mapJna.get(inputInfoActual);
+						Controller.do1.doTask(taskdInfo);
+						if(taskdInfo.intercept==true){
 							return new LRESULT(1);
 						}
 					}

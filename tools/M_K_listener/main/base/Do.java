@@ -7,7 +7,7 @@ public class Do
 {
 
 	public long refreshtime;
-	public List<MethodInfo> methodInfoList =new ArrayList<>();
+	public List<TaskdInfo> taskdInfoList =new ArrayList<>();
 
 	public static Object object;
 	
@@ -20,29 +20,29 @@ public class Do
 		    @Override
 		    public void run() {
 		    	while(true) {try {Thread.sleep(refreshtime);} catch (InterruptedException e) {e.printStackTrace();}
-	            task(methodInfoList);
+	            delay(taskdInfoList);
 	    }}}.start();
     }
 
-	public void task(MethodInfo methodInfo) {
-		if(methodInfo.immediately==true) {
+	public void doTask(TaskdInfo taskdInfo) {
+		if(taskdInfo.immediately==true) {
 			//立即执行功能
-			this.what_at_once(methodInfo);
-		}else if(methodInfo.immediately==false){
+			this.immediate(taskdInfo);
+		}else if(taskdInfo.immediately==false){
 			//放入队列执行
-			this.methodInfoList.add(methodInfo);
+			this.taskdInfoList.add(taskdInfo);
 		}
 	}
 	
 	
-    public void what_at_once(MethodInfo methodInfo) {
+    public void immediate(TaskdInfo taskdInfo) {
 
 		try {
-			int parameterCount = methodInfo.method.getParameterCount();
+			int parameterCount = taskdInfo.method.getParameterCount();
 			if(parameterCount>0) {
-				methodInfo.method.invoke(object, methodInfo.inputInfo);
+				taskdInfo.method.invoke(object, taskdInfo.inputInfo);
 			}else {
-				methodInfo.method.invoke(object);
+				taskdInfo.method.invoke(object);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,15 +51,20 @@ public class Do
 	
 	
 	
-	public void task(List<MethodInfo> methodInfoList) {
-		if(methodInfoList.size()>0) {
+	public void delay(List<TaskdInfo> taskdInfoList) {
+		if(taskdInfoList.size()>0) {
 			try {
-				methodInfoList.get(0).method.invoke(object);
+				TaskdInfo taskdInfo = taskdInfoList.get(0);
+				int parameterCount = taskdInfo.method.getParameterCount();
+				if(parameterCount>0){
+					taskdInfo.method.invoke(object, taskdInfo.inputInfo);
+				}
+				taskdInfo.method.invoke(object);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			methodInfoList.remove(0);
+			taskdInfoList.remove(0);
 	    }
 	}
 
