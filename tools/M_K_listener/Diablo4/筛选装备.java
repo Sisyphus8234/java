@@ -28,6 +28,7 @@ import static base.IFunctions.pause;
 import static java.awt.event.KeyEvent.VK_SPACE;
 
 import addition.TopFrame.Argument;
+import base.ScanFunction;
 
 public class 筛选装备 {
     public static String modelPath = Config.read("modelPath");
@@ -591,7 +592,7 @@ public class 筛选装备 {
             if (当前装备情况.需求词缀数量_实际 >= 当前装备情况.需求词缀数量_目标) {
                 当前装备情况.需求词缀数量是否满足 = true;
             }
-            if (当前装备情况.筛选哪些.contains(筛选哪些_枚举.属性)) {
+            if (当前装备情况.筛选哪些.contains(筛选哪些_枚举.需求词缀)) {
             } else {
                 当前装备情况.需求词缀数量是否满足 = true;
             }
@@ -616,7 +617,7 @@ public class 筛选装备 {
             if (当前装备情况.必须词缀数量_实际 >= 当前装备情况.必须词缀_目标.length - 当前装备情况.必须词缀_减少量) {
                 当前装备情况.必须词缀数量是否满足 = true;
             }
-            if (当前装备情况.筛选哪些.contains(筛选哪些_枚举.必须属性)) {
+            if (当前装备情况.筛选哪些.contains(筛选哪些_枚举.必须词缀)) {
             } else {
                 当前装备情况.必须词缀数量是否满足 = true;
             }
@@ -649,10 +650,10 @@ public class 筛选装备 {
         品质_枚举 品质 = 品质_枚举.其他;
 
         public void initProperty(筛选装备_子类 筛选装备_子类) {
-            this.需求词缀数量_目标 = 筛选装备_子类.需求词条数量_要求();
+            this.需求词缀数量_目标 = 筛选装备_子类.需求词条数量_目标();
             this.物品强度下限 = 筛选装备_子类.物品强度下限();
             this.必须词缀_减少量 = 筛选装备_子类.必须词缀_减少量();
-            this.需求词缀_目标 = 筛选装备_子类.需求词缀_目标();
+            this.需求词缀_目标= ScanFunction.mergeFields(筛选装备_子类.需求词缀_目标(),筛选装备_子类.必须词缀_目标());
             this.不要词缀_目标 = 筛选装备_子类.不要词缀_目标();
             this.必须词缀_目标 = 筛选装备_子类.必须词缀_目标();
         }
@@ -667,9 +668,9 @@ public class 筛选装备 {
     }
 
     enum 筛选哪些_枚举 {
-        属性,
+        需求词缀,
         物品强度,
-        必须属性
+        必须词缀
     }
 
     enum 预类别_枚举 {

@@ -7,14 +7,16 @@ import base.ListenMouseKeyboard;
 import base.MyThread;
 
 import java.awt.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
     static {
-        Controller.refreshtime=200L;
+        Controller.refreshtime = 200L;
     }
+
     public static long BaseDelay = 200L;
     public static boolean b攻击移动 = false;
     public static boolean b攻击移动1 = false;
@@ -125,25 +127,30 @@ public class Functions公共 extends IFunctions {
 
     public static int 要按的key;
     public static MyThread 要暂停的t;
-    public static boolean b无干扰按键=false;
-    public static MyThread t无干扰按键=new MyThread (){
+    public static boolean b无干扰按键 = false;
+    public static LocalDateTime start = LocalDateTime.now();
+    public static MyThread t无干扰按键 = new MyThread() {
 
         @Override
-        public void run(){
+        public void run() {
 
-            while (true){
-                if(b无干扰按键==true) {
-                    要暂停的t.mySuspend();
-                    pause(200L);
-                    robot.keyPress(要按的key);
-                    robot.keyRelease(要按的key);
-                    pause(200L);
-                    要暂停的t.myResume();
+            while (true) {
+                if (b无干扰按键 == true) {
+//                    if(LocalDateTime.now().getNano()-start.getNano()<2000) {
+                    if (Duration.between(start, LocalDateTime.now()).toMillis() < 800) {
+//                        System.out.println(Duration.between(start,LocalDateTime.now()).toMillis());
+//                    要暂停的t.mySuspend();
+//                    pause(50L);
+                        robot.keyPress(要按的key);
+                        robot.keyRelease(要按的key);
+//                    pause(50L);
+//                    要暂停的t.myResume();
 
-                    b无干扰按键=false;
+//                    b无干扰按键=false;
+                    }
 
 
-                }else {
+                } else {
                     this.mySuspend();
                 }
 
@@ -156,10 +163,11 @@ public class Functions公共 extends IFunctions {
 
     };
 
-    public static void 无干扰按键(int key,MyThread myThread){
-        要按的key=key;
-        要暂停的t=myThread;
-        b无干扰按键=true;
+    public static void 无干扰按键(int key, MyThread myThread) {
+        start = LocalDateTime.now();
+        要按的key = key;
+//        要暂停的t=myThread;
+        b无干扰按键 = true;
         t无干扰按键.myResume();
 
     }
@@ -187,7 +195,7 @@ public class Functions公共 extends IFunctions {
                         robot.keyRelease(VK_0);
                         b自动喝药1 = true;
                         if (b自动喝药1 == true) {
-                            pause(800L);
+                            pause(500L);
                             b自动喝药1 = false;
                         }
                     } else if (b自动喝药2 == true) {
@@ -197,7 +205,7 @@ public class Functions公共 extends IFunctions {
                                 System.out.println(LocalDateTime.now());
                                 System.out.println(localDateTime);
                             }
-                            if (LocalDateTime.now().getSecond() - localDateTime.getSecond() > 5) {
+                            if (Duration.between(localDateTime, LocalDateTime.now()).toMillis() > 5000) {
                                 robot.keyRelease(VK_0);
                                 robot.keyPress(VK_0);
                                 robot.keyRelease(VK_0);
@@ -210,7 +218,6 @@ public class Functions公共 extends IFunctions {
 
                         } else {
                             localDateTime = LocalDateTime.now();
-                            System.out.println("2222");
                         }
                     }
                 } else {

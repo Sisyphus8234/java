@@ -163,7 +163,7 @@ public class ScanFunction {
 
     }
 
-    private static <T> T[] mergeFields(T[] arr1, T[] arr2) {
+    public static <T> T[] mergeFields(T[] arr1, T[] arr2) {
         int length1 = arr1.length;
         int length2 = arr2.length;
         T[] merged = Arrays.copyOf(arr2, length1 + length2);  // 创建一个新数组，长度为两个数组之和
