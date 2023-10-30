@@ -20,12 +20,13 @@ public class Functions野蛮人 extends Functions公共 {
 
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
 
-    public static void 判断核心技能怒气是否满足() {
-        if (pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F||核心技能跳过条件) {
-//        if (pixelColor.getPixelColorHSB(1318, 955)[0] < 0.33F) {
-            robot.keyPress(KeyEvent.VK_5);
-            robot.keyRelease(KeyEvent.VK_5);
-        }
+    public static boolean 判断核心技能怒气是否满足() {
+        return pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F || 核心技能跳过条件;
+//        if (是否核心技能&&pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F||核心技能跳过条件) {
+//            robot.keyRelease(KeyEvent.VK_5);
+//            robot.keyPress(KeyEvent.VK_5);
+//
+//        }
     }
 
     public static MyThread t1 = new MyThread(MyThread.State.on) {
@@ -42,9 +43,14 @@ public class Functions野蛮人 extends Functions公共 {
 //                    }
 //                    pause(BaseDelay);
 
-                    if (是否核心技能) {
-                        判断核心技能怒气是否满足();
+
+                    if (判断核心技能怒气是否满足()) {
+                        if (是否核心技能) {
+                            robot.keyRelease(KeyEvent.VK_5);
+                            robot.keyPress(KeyEvent.VK_5);
+                        }
                     }
+
 
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
@@ -75,20 +81,20 @@ public class Functions野蛮人 extends Functions公共 {
 
     @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
-        核心技能跳过条件=true;
+        核心技能跳过条件 = true;
         是否基础技能 = false;
     }
 
     @ListenMouseKeyboard(note = "右键", value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键1() {
-        核心技能跳过条件=false;
+        核心技能跳过条件 = false;
         是否基础技能 = true;
     }
 
-//    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    //    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "4",intercept = true,value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 无干扰按键(InputInfo inputInfo) {
         无干扰按键(inputInfo.value, t1);
     }
@@ -120,7 +126,7 @@ public class Functions野蛮人 extends Functions公共 {
 //        if (pixelColor1.getPixelColorHSB(993, 981)[1] > 0.1F) {
 //            return VK_4;
 //        } else
-            if (pixelColor1.getPixelColorHSB(931, 979)[1] > 0.1F) {
+        if (pixelColor1.getPixelColorHSB(931, 979)[1] > 0.1F) {
             return VK_3;
         } else if (pixelColor1.getPixelColorHSB(868, 979)[1] > 0.1F) {
             return VK_2;
@@ -159,14 +165,15 @@ public class Functions野蛮人 extends Functions公共 {
     };
 
 
-//    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void f延续狂暴(){
-        b延续狂暴=true;
+    //    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void f延续狂暴() {
+        b延续狂暴 = true;
         t延续狂暴.myResume();
     }
-//    @ListenMouseKeyboard(note = "`",press = false, value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void f延续狂暴_1(){
-        b延续狂暴=false;
+
+    //    @ListenMouseKeyboard(note = "`",press = false, value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void f延续狂暴_1() {
+        b延续狂暴 = false;
     }
 
 
