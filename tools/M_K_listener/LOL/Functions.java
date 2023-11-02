@@ -2,8 +2,8 @@ package custom;
 
 import base.*;
 
-import static java.awt.event.InputEvent.BUTTON3_DOWN_MASK;
-import static java.awt.event.KeyEvent.VK_R;
+import static java.awt.event.KeyEvent.*;
+import static java.awt.event.MouseEvent.*;
 
 class a extends MainClass {
 
@@ -25,23 +25,19 @@ public class Functions extends IFunctions {
             while (true) {
 
                 if (t1B == true) {
-
-                    if (是否攻击 == false) {
                         robot.mouseRelease(BUTTON3_DOWN_MASK);
-                        robot.mousePress(BUTTON3_DOWN_MASK);
+                        robot.keyPress(VK_V);
+                        robot.keyRelease(VK_V);
                         是否正在右键连点=true;
-                    } else {
-                        if(是否正在右键连点==true) {
-                            robot.mouseRelease(BUTTON3_DOWN_MASK);
-                        }
 
-                        robot.keyPress(VK_R);
-                        robot.keyRelease(VK_R);
-                    }
-                }else {
+
+                }
+                else {
                     if(是否正在右键连点==true) {
-                        robot.mouseRelease(BUTTON3_DOWN_MASK);
+                        robot.mousePress(BUTTON3_DOWN_MASK);
+                        是否正在右键连点=false;
                     }
+
                 }
 
                 pause(200L);
@@ -50,27 +46,28 @@ public class Functions extends IFunctions {
     };
 
 
-    @ListenMouseKeyboard(note = "alt", value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "z", value = 90, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void alt() {
+        robot.mousePress(BUTTON3_DOWN_MASK);
+//        t1B = true;
+    }
+
+//    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+////    @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+//    public static void alt_2() {
+//
+//        t1B = false;
+//    }
+
+    @ListenMouseKeyboard(note = "f", intercept = true,value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void r() {
+
         t1B = true;
     }
 
-    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    public static void alt_2() {
-
-        t1B = false;
-    }
-
-    @ListenMouseKeyboard(note = "r", intercept = true, value = 82, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void r() {
-        是否攻击 = true;
-    }
-
-    @ListenMouseKeyboard(note = "r", press = false, intercept = true, value = 82, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-
+    @ListenMouseKeyboard(note = "f",press = false,intercept = true, value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void r_1() {
-
-        是否攻击 = false;
+        t1B = false;
     }
 
 
