@@ -20,14 +20,30 @@ public class Functions野蛮人 extends Functions公共 {
 
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
 
+    public static boolean 最终是否满足 = true;
+    public static LocalDateTime start = LocalDateTime.now();
+
     public static boolean 判断核心技能怒气是否满足() {
         return pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F || 核心技能跳过条件;
-//        if (是否核心技能&&pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F||核心技能跳过条件) {
-//            robot.keyRelease(KeyEvent.VK_5);
-//            robot.keyPress(KeyEvent.VK_5);
-//
-//        }
+//        return pixelColor.getPixelColorHSB(1318, 975)[0] < 0.33F || 核心技能跳过条件;
+
     }
+
+    public static boolean 判断核心技能怒气是否满足_1() {
+        if (判断核心技能怒气是否满足() == true) {
+            start = LocalDateTime.now();
+        }else {
+
+        }
+
+        if(Duration.between(start,LocalDateTime.now()).toMillis()>900L){
+            最终是否满足=false;
+        }else {
+            最终是否满足=true;
+        }
+
+        return 最终是否满足;
+    };
 
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
@@ -35,7 +51,7 @@ public class Functions野蛮人 extends Functions公共 {
             while (true) {
                 if (b攻击移动 == true) {
 //                    if(b攻击移动1==false){
-                        b攻击移动1 = true;
+                    b攻击移动1 = true;
 //                        robot.keyPress(VK_G);
 //                    }
 //                    if(space==true){
@@ -43,7 +59,6 @@ public class Functions野蛮人 extends Functions公共 {
 //                    }else {
 //                        robot.keyPress(VK_G);
 //                    }
-
 
 
 //                    if (是否核心技能) {
@@ -55,27 +70,21 @@ public class Functions野蛮人 extends Functions公共 {
 //                    }
 //                    pause(BaseDelay);
 
-                    if (判断核心技能怒气是否满足()) {
-                        if (是否核心技能) {
-//                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
 
-//                            robot.keyRelease(KeyEvent.VK_5);
-                            robot.keyPress(KeyEvent.VK_5);
-                            robot.keyRelease(KeyEvent.VK_5);
 
-                            pause(50L);
 
-                        }
-                    }
-//                    else
 
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 //                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-
                     }
 
+                    if (判断核心技能怒气是否满足_1()) {
+//                        robot.keyRelease(KeyEvent.VK_5);
+                        robot.keyPress(KeyEvent.VK_5);
+                        robot.keyRelease(KeyEvent.VK_5);
+                    }
 
 
                 } else {
@@ -89,7 +98,7 @@ public class Functions野蛮人 extends Functions公共 {
                     }
 
                 }
-                pause(150L);
+                pause(BaseDelay);
             }
         }
     };
@@ -99,7 +108,7 @@ public class Functions野蛮人 extends Functions公共 {
     public static void e() {
         b攻击移动 = true;
         b移动 = false;
-        自动喝药(null,null,false);
+        自动喝药(null, null, false);
     }
 
 
@@ -120,7 +129,7 @@ public class Functions野蛮人 extends Functions公共 {
         public void run() {
             while (true) {
                 if (b攻击移动 == true) {
-                    if (Functions公共.pixelColor.getPixelColorHSB(61722, 970)[1] < 0.5F) {
+                    if (Functions公共.pixelColor.getPixelColorHSB(617, 970)[1] < 0.5F) {
                         robot.keyPress(VK_8);
                         robot.keyRelease(VK_8);
                     }
@@ -133,8 +142,7 @@ public class Functions野蛮人 extends Functions公共 {
     };
 
 
-
-        @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)

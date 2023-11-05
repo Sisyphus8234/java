@@ -195,7 +195,7 @@ public class Functions公共 extends IFunctions {
                         robot.keyRelease(VK_0);
                         b自动喝药1 = true;
                         if (b自动喝药1 == true) {
-                            pause(500L);
+                            pause(800L);
                             b自动喝药1 = false;
                         }
                     } else if (b自动喝药2 == true) {
@@ -266,13 +266,20 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "b", value = 66, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 人物详情() {
+        long time=150L;
         robot.keyPress(VK_C);
         robot.keyRelease(VK_C);
-        pause(50L);
+        pause(time);
         Point point = MouseInfo.getPointerInfo().getLocation();
         robot.mouseMove(1355, 264);
         robot.mousePress(BUTTON1_DOWN_MASK);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
+        pause(time);
+        robot.mouseMove(1089,115);
+        robot.mousePress(BUTTON1_DOWN_MASK);
+        robot.mouseRelease(BUTTON1_DOWN_MASK);
+
+
         robot.mouseMove(point.x, point.y);
     }
 
