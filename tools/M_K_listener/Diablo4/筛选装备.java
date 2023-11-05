@@ -1,8 +1,10 @@
 package custom;
 
 import addition.TopFrame;
+import addition.TopFrame.Argument;
 import base.Config;
 import base.IFunctions;
+import base.ScanFunction;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
@@ -26,9 +28,6 @@ import java.util.regex.Pattern;
 
 import static base.IFunctions.pause;
 import static java.awt.event.KeyEvent.VK_SPACE;
-
-import addition.TopFrame.Argument;
-import base.ScanFunction;
 
 public class 筛选装备 {
     public static String modelPath = Config.read("modelPath");
@@ -169,6 +168,7 @@ public class 筛选装备 {
     }
 
 
+
     public static void voice(String fileName, long time) {
         String audioFilePath = fileName; // 替换为你的音频文件路径
 
@@ -188,10 +188,12 @@ public class 筛选装备 {
             // 播放音频
             clip.start();
 
-            // 等待音频播放完毕
-//            Thread.sleep(clip.getMicrosecondLength() / 1000);
-            Thread.sleep(time);
-
+            if(time==0) {
+                // 等待音频播放完毕
+                Thread.sleep(clip.getMicrosecondLength() / 1000);
+            }else {
+                Thread.sleep(time);
+            }
             // 关闭 Clip
             clip.close();
         } catch (Exception e) {
@@ -260,7 +262,7 @@ public class 筛选装备 {
         }
 
 
-        voice("custom/yy.wav", 250);
+        voice("custom/开始.wav", 0);
         还有几个 = list.size();
         clipboard.setContents(new StringSelection(LocalTime.now().toString() + " 总共有: " + 还有几个), null);
 
@@ -294,7 +296,7 @@ public class 筛选装备 {
             System.out.println("保存文件时出现错误：" + e.getMessage());
         }
 
-        voice("custom/结束.wav", 600);
+        voice("custom/全部完成.wav", 0);
 
         是否标记起点 = false;
     }
@@ -524,7 +526,7 @@ public class 筛选装备 {
             }
         }
 
-        voice("custom/yy.wav", 250);
+        voice("custom/单个完成.wav", 0);
         还有几个--;
         clipboard.setContents(new StringSelection(LocalTime.now().toString() + " 还有几个: " + 还有几个), null);
     }

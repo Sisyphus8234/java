@@ -34,6 +34,18 @@ public class Functions野蛮人 extends Functions公共 {
         public void run() {
             while (true) {
                 if (b攻击移动 == true) {
+//                    if(b攻击移动1==false){
+                        b攻击移动1 = true;
+//                        robot.keyPress(VK_G);
+//                    }
+//                    if(space==true){
+//                        robot.keyRelease(VK_G);
+//                    }else {
+//                        robot.keyPress(VK_G);
+//                    }
+
+
+
 //                    if (是否核心技能) {
 //                        判断核心技能怒气是否满足();
 //                    }
@@ -43,23 +55,32 @@ public class Functions野蛮人 extends Functions公共 {
 //                    }
 //                    pause(BaseDelay);
 
-
                     if (判断核心技能怒气是否满足()) {
                         if (是否核心技能) {
-                            robot.keyRelease(KeyEvent.VK_5);
+//                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+
+//                            robot.keyRelease(KeyEvent.VK_5);
                             robot.keyPress(KeyEvent.VK_5);
+                            robot.keyRelease(KeyEvent.VK_5);
+
+                            pause(50L);
+
                         }
                     }
-
+//                    else
 
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+
                     }
-                    b攻击移动1 = true;
+
+
 
                 } else {
                     if (b攻击移动1 == true) {
+//                        robot.keyRelease(VK_G);
                         robot.keyRelease(VK_5);
                         if (w或者左键 == false) {
                             robot.mouseRelease(BUTTON1_DOWN_MASK);
@@ -68,14 +89,17 @@ public class Functions野蛮人 extends Functions公共 {
                     }
 
                 }
-                pause(BaseDelay);
+                pause(150L);
             }
         }
     };
 
 
-    @ListenMouseKeyboard(note = "e", value = 69, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void e1() {
+    @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void e() {
+        b攻击移动 = true;
+        b移动 = false;
+        自动喝药(null,null,false);
     }
 
 
@@ -91,9 +115,28 @@ public class Functions野蛮人 extends Functions公共 {
         是否基础技能 = true;
     }
 
-    //    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static MyThread t钢铁之肤 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                if (b攻击移动 == true) {
+                    if (Functions公共.pixelColor.getPixelColorHSB(61722, 970)[1] < 0.5F) {
+                        robot.keyPress(VK_8);
+                        robot.keyRelease(VK_8);
+                    }
+                } else {
+
+                }
+                pause(300L);
+            }
+        }
+    };
+
+
+
+        @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 无干扰按键(InputInfo inputInfo) {
         无干扰按键(inputInfo.value, t1);
