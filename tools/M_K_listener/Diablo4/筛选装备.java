@@ -190,7 +190,7 @@ public class 筛选装备 {
 
             if(time==0) {
                 // 等待音频播放完毕
-                Thread.sleep(clip.getMicrosecondLength() / 1000);
+                Thread.sleep(clip.getMicrosecondLength()/1000);
             }else {
                 Thread.sleep(time);
             }

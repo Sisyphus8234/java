@@ -71,6 +71,11 @@ public class Functions野蛮人 extends Functions公共 {
 //                    pause(BaseDelay);
 
 
+                    if (判断核心技能怒气是否满足_1()) {
+//                        robot.keyRelease(KeyEvent.VK_5);
+                        robot.keyPress(KeyEvent.VK_5);
+                        robot.keyRelease(KeyEvent.VK_5);
+                    }
 
 
 
@@ -80,11 +85,6 @@ public class Functions野蛮人 extends Functions公共 {
 //                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
 
-                    if (判断核心技能怒气是否满足_1()) {
-//                        robot.keyRelease(KeyEvent.VK_5);
-                        robot.keyPress(KeyEvent.VK_5);
-                        robot.keyRelease(KeyEvent.VK_5);
-                    }
 
 
                 } else {
@@ -124,22 +124,34 @@ public class Functions野蛮人 extends Functions公共 {
         是否基础技能 = true;
     }
 
-    public static MyThread t钢铁之肤 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-                if (b攻击移动 == true) {
-                    if (Functions公共.pixelColor.getPixelColorHSB(617, 970)[1] < 0.5F) {
-                        robot.keyPress(VK_8);
-                        robot.keyRelease(VK_8);
-                    }
-                } else {
+    public static boolean space=false;
 
-                }
-                pause(300L);
-            }
-        }
-    };
+    @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void space() {
+space=true;
+    }
+
+    @ListenMouseKeyboard(note = "space", press = false,value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void space_1() {
+space=false;
+    }
+
+//    public static MyThread t钢铁之肤 = new MyThread(MyThread.State.on) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (b攻击移动 == true) {
+//                    if (Functions公共.pixelColor.getPixelColorHSB(617, 970)[1] < 0.5F) {
+//                        robot.keyPress(VK_8);
+//                        robot.keyRelease(VK_8);
+//                    }
+//                } else {
+//
+//                }
+//                pause(300L);
+//            }
+//        }
+//    };
 
 
     @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -151,14 +163,14 @@ public class Functions野蛮人 extends Functions公共 {
     }
 
 
-    public static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
+//    public static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
 
     public static void 按键(int key) {
         robot.keyPress(key);
         robot.keyRelease(key);
     }
 
-    public static int 按的是几 = -1;
+//    public static int 按的是几 = -1;
 
 //    public static void tempF() {
 //        if (pixelColor1.getPixelColorHSB(993, 981)[1] > 0.1F) {
@@ -173,59 +185,59 @@ public class Functions野蛮人 extends Functions公共 {
 //        }
 //    }
 
-    public static int 判断几是亮的() {
-//        if (pixelColor1.getPixelColorHSB(993, 981)[1] > 0.1F) {
-//            return VK_4;
-//        } else
-        if (pixelColor1.getPixelColorHSB(931, 979)[1] > 0.1F) {
-            return VK_3;
-        } else if (pixelColor1.getPixelColorHSB(868, 979)[1] > 0.1F) {
-            return VK_2;
-        } else if (pixelColor1.getPixelColorHSB(805, 979)[1] > 0.1F) {
-            return VK_1;
-        }
-
-        return -1;
-    }
-
-    ;
-
-    public static boolean b延续狂暴 = false;
-    public static MyThread t延续狂暴 = new MyThread() {
-        @Override
-        public void run() {
-            while (true) {
-                if (b延续狂暴 == true) {
-                    int 判断几是亮的 = 判断几是亮的();
-                    System.out.println(判断几是亮的);
-                    if (Duration.between(start, LocalDateTime.now()).toMillis() > 5000 &&
-                            (按的是几 == -1 || 判断几是亮的 == 按的是几)) {
-                        System.out.println(Duration.between(start, LocalDateTime.now()).toMillis());
-                        按键(判断几是亮的);
-                        按的是几 = 判断几是亮的;
-                    } else {
-                        Functions公共.start = LocalDateTime.now();
-                        按的是几 = -1;
-                    }
-                } else {
-                    this.mySuspend();
-                }
-                pause(BaseDelay);
-            }
-        }
-    };
+//    public static int 判断几是亮的() {
+////        if (pixelColor1.getPixelColorHSB(993, 981)[1] > 0.1F) {
+////            return VK_4;
+////        } else
+//        if (pixelColor1.getPixelColorHSB(931, 979)[1] > 0.1F) {
+//            return VK_3;
+//        } else if (pixelColor1.getPixelColorHSB(868, 979)[1] > 0.1F) {
+//            return VK_2;
+//        } else if (pixelColor1.getPixelColorHSB(805, 979)[1] > 0.1F) {
+//            return VK_1;
+//        }
+//
+//        return -1;
+//    }
 
 
-    //    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void f延续狂暴() {
-        b延续狂暴 = true;
-        t延续狂暴.myResume();
-    }
 
-    //    @ListenMouseKeyboard(note = "`",press = false, value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void f延续狂暴_1() {
-        b延续狂暴 = false;
-    }
+//    public static boolean b延续狂暴 = false;
+//    public static MyThread t延续狂暴 = new MyThread() {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (b延续狂暴 == true) {
+//                    int 判断几是亮的 = 判断几是亮的();
+//                    System.out.println(判断几是亮的);
+//                    if (Duration.between(start, LocalDateTime.now()).toMillis() > 5000 &&
+//                            (按的是几 == -1 || 判断几是亮的 == 按的是几)) {
+//                        System.out.println(Duration.between(start, LocalDateTime.now()).toMillis());
+//                        按键(判断几是亮的);
+//                        按的是几 = 判断几是亮的;
+//                    } else {
+//                        Functions公共.start = LocalDateTime.now();
+//                        按的是几 = -1;
+//                    }
+//                } else {
+//                    this.mySuspend();
+//                }
+//                pause(BaseDelay);
+//            }
+//        }
+//    };
+//
+//
+//    //    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void f延续狂暴() {
+//        b延续狂暴 = true;
+//        t延续狂暴.myResume();
+//    }
+//
+//    //    @ListenMouseKeyboard(note = "`",press = false, value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void f延续狂暴_1() {
+//        b延续狂暴 = false;
+//    }
 
 
     static {
