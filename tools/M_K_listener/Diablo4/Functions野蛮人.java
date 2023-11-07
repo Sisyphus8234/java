@@ -71,19 +71,42 @@ public class Functions野蛮人 extends Functions公共 {
 //                    pause(BaseDelay);
 
 
-                    if (判断核心技能怒气是否满足_1()) {
-//                        robot.keyRelease(KeyEvent.VK_5);
-                        robot.keyPress(KeyEvent.VK_5);
-                        robot.keyRelease(KeyEvent.VK_5);
+
+                    if (v按下==true){
+
+                        robot.mouseRelease(BUTTON1_DOWN_MASK);
+
+                        robot.keyRelease(VK_V);
+                        robot.keyRelease(VK_V);
+                        pause(BaseDelay);
+                        continue;
                     }
-
-
 
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 //                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+
+
                     }
+
+                    if (判断核心技能怒气是否满足_1()) {
+//                        robot.keyRelease(KeyEvent.VK_5);
+                        robot.keyPress(KeyEvent.VK_5);
+                        robot.keyRelease(KeyEvent.VK_5);
+
+
+                    }
+
+                    if (是否基础技能 == true) {
+                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+
+
+                    }
+
+
 
 
 
@@ -125,6 +148,19 @@ public class Functions野蛮人 extends Functions公共 {
     }
 
     public static boolean space=false;
+
+
+    public static boolean v按下=false;
+
+    @ListenMouseKeyboard(note = "v", value = 86,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void v() {
+        v按下=true;
+    }
+    @ListenMouseKeyboard(note = "v",press = false, value = 86,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void v_1() {
+        v按下=false;
+
+    }
 
     @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void space() {
