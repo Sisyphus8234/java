@@ -7,16 +7,16 @@ import java.awt.event.MouseEvent;
 
 import static java.awt.event.KeyEvent.*;
 
-class Run extends MainClass{
-
+class Run extends MainClass {
 
 
 }
 
 public class Functions extends IFunctions {
     static {
-//        Controller.printKey=true;
+        Controller.printKey = true;
     }
+
     public static Thread t1;
     public static boolean t1Temp = false;
     public static Long time1 = Long.valueOf(Config.read("Time1"));
@@ -39,34 +39,15 @@ public class Functions extends IFunctions {
         };
     }
 
-//    public static boolean b暂停奔跑=false;
-//    public static boolean b暂停奔跑1=false;
-//    public static MyThread t暂停奔跑=new MyThread(){
-//
-//        @Override
-//        public void run(){
-//            while (true){
-//                if(b暂停奔跑=true){
-//                    b暂停奔跑1=true;
-//                    robot.keyRelease(VK_SHIFT);
-//                    robot.keyPress(VK_SHIFT);
-//
-//
-//
-//                }
-//
-//                robot.keyPress(VK_SHIFT);
-//           }
-//        }
-//
-//    };
 
-    @ListenMouseKeyboard(value = 516, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(value = 516, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "space", value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 奔跑() {
         robot.keyRelease(VK_SHIFT);
     }
 
-    @ListenMouseKeyboard(value = 517, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(value = 517, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "space", press = false, value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 奔跑_1() {
         robot.keyPress(VK_SHIFT);
     }
