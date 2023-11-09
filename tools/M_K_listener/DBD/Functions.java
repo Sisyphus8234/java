@@ -1,12 +1,16 @@
 package custom;
 
-import base.Config;
-import base.IFunctions;
-import base.ListenMouseKeyboard;
-import base.MyThread;
+import base.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+
+import static java.awt.event.KeyEvent.*;
+
+class Run extends MainClass{
+
+
+}
 
 public class Functions extends IFunctions {
     public static Thread t1;
@@ -31,11 +35,39 @@ public class Functions extends IFunctions {
         };
     }
 
-    @ListenMouseKeyboard(value = 516, keyboardOrMouse = 1)
+//    public static boolean b暂停奔跑=false;
+//    public static boolean b暂停奔跑1=false;
+//    public static MyThread t暂停奔跑=new MyThread(){
+//
+//        @Override
+//        public void run(){
+//            while (true){
+//                if(b暂停奔跑=true){
+//                    b暂停奔跑1=true;
+//                    robot.keyRelease(VK_SHIFT);
+//                    robot.keyPress(VK_SHIFT);
+//
+//
+//
+//                }
+//
+//                robot.keyPress(VK_SHIFT);
+//           }
+//        }
+//
+//    };
+
+    @ListenMouseKeyboard(value = 516, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     private static void 奔跑() {
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-        robot.keyPress(KeyEvent.VK_SHIFT);
-        // robot.keyRelease(KeyEvent.VK_F);
+        robot.keyRelease(VK_SHIFT);
+
+
+    }
+
+    @ListenMouseKeyboard(value = 517, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    private static void 奔跑_1() {
+
+        robot.keyPress(VK_SHIFT);
     }
 
     @ListenMouseKeyboard(value = 71, keyboardOrMouse = 0)
