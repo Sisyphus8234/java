@@ -14,7 +14,7 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
     }
 
     public static Thread t1;
@@ -41,18 +41,28 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(value = 516, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "space", value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 奔跑() {
         robot.keyRelease(VK_SHIFT);
     }
 
     @ListenMouseKeyboard(value = 517, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "space", press = false, value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 奔跑_1() {
         robot.keyPress(VK_SHIFT);
     }
 
-    @ListenMouseKeyboard(value = 71, keyboardOrMouse = 0)
+    @ListenMouseKeyboard(note = "space", value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    private static void 奔跑_2() {
+        robot.keyRelease(VK_SHIFT);
+        robot.keyPress(VK_SHIFT);
+    }
+
+
+
+
+
+
+
+    @ListenMouseKeyboard(value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 修机() {
         robot.keyRelease(KeyEvent.VK_F);
         robot.keyPress(KeyEvent.VK_F);
@@ -78,20 +88,20 @@ public class Functions extends IFunctions {
 //	}
 
 
-    @ListenMouseKeyboard(value = 191, keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 191, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 点血网() {
         t1Temp = true;
         t1.resume();
     }
 
-    @ListenMouseKeyboard(value = 190, keyboardOrMouse = 0)
+    @ListenMouseKeyboard(value = 190, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 点血网1() {
         t1Temp = false;
     }
 
-    @ListenMouseKeyboard(value = 84, keyboardOrMouse = 0)
-    private static void 能力键1_space() {
-        robot.keyRelease(KeyEvent.VK_SPACE);
-        robot.keyPress(KeyEvent.VK_SPACE);
-    }
+//    @ListenMouseKeyboard(value = 84, keyboardOrMouse = 0)
+//    private static void 能力键1_space() {
+//        robot.keyRelease(KeyEvent.VK_SPACE);
+//        robot.keyPress(KeyEvent.VK_SPACE);
+//    }
 }
