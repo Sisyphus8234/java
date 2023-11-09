@@ -10,9 +10,13 @@ import static java.awt.event.KeyEvent.*;
 class Run extends MainClass{
 
 
+
 }
 
 public class Functions extends IFunctions {
+    static {
+//        Controller.printKey=true;
+    }
     public static Thread t1;
     public static boolean t1Temp = false;
     public static Long time1 = Long.valueOf(Config.read("Time1"));
@@ -60,13 +64,10 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 516, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     private static void 奔跑() {
         robot.keyRelease(VK_SHIFT);
-
-
     }
 
     @ListenMouseKeyboard(value = 517, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     private static void 奔跑_1() {
-
         robot.keyPress(VK_SHIFT);
     }
 
