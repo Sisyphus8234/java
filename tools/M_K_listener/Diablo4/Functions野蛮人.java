@@ -60,18 +60,6 @@ public class Functions野蛮人 extends Functions公共 {
 //                        robot.keyPress(VK_G);
 //                    }
 
-
-//                    if (是否核心技能) {
-//                        判断核心技能怒气是否满足();
-//                    }
-//                    if (是否基础技能 == true) {
-//                        robot.keyPress(KeyEvent.VK_4);
-//                        robot.keyRelease(KeyEvent.VK_4);
-//                    }
-//                    pause(BaseDelay);
-
-
-
                     if (v按下==true){
 
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
@@ -82,6 +70,13 @@ public class Functions野蛮人 extends Functions公共 {
                         continue;
                     }
 
+
+
+
+
+
+
+
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
@@ -90,7 +85,7 @@ public class Functions野蛮人 extends Functions公共 {
 
                     }
 
-                    if (判断核心技能怒气是否满足_1()) {
+                    if (判断核心技能怒气是否满足_1()&&是否核心技能) {
 //                        robot.keyRelease(KeyEvent.VK_5);
                         robot.keyPress(KeyEvent.VK_5);
                         robot.keyRelease(KeyEvent.VK_5);
@@ -132,6 +127,7 @@ public class Functions野蛮人 extends Functions公共 {
         b攻击移动 = true;
         b移动 = false;
         自动喝药(null, null, false);
+        筛选装备.关闭传奇标记();
     }
 
 
@@ -153,13 +149,14 @@ public class Functions野蛮人 extends Functions公共 {
     public static boolean v按下=false;
 
     @ListenMouseKeyboard(note = "v", value = 86,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "`", value = 192,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void v() {
         v按下=true;
     }
     @ListenMouseKeyboard(note = "v",press = false, value = 86,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "`",press = false, value = 192,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void v_1() {
         v按下=false;
-
     }
 
     @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
