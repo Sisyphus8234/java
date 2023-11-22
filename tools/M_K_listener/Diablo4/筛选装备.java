@@ -296,7 +296,7 @@ public class 筛选装备 {
             System.out.println("保存文件时出现错误：" + e.getMessage());
         }
 
-        voice("custom/全部完成.wav", 0);
+        voice("custom/全部完成.wav", 800L);
 
         是否标记起点 = false;
     }
@@ -526,7 +526,7 @@ public class 筛选装备 {
             }
         }
 
-        voice("custom/单个完成.wav", 0);
+        voice("custom/单个完成.wav", 800L);
         还有几个--;
         clipboard.setContents(new StringSelection(LocalTime.now().toString() + " 还有几个: " + 还有几个), null);
     }

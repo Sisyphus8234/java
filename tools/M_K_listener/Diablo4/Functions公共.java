@@ -1,10 +1,7 @@
 package custom;
 
 import addition.FunctionsAddition;
-import base.Controller;
-import base.IFunctions;
-import base.ListenMouseKeyboard;
-import base.MyThread;
+import base.*;
 
 import java.awt.*;
 import java.time.Duration;
@@ -128,6 +125,7 @@ public class Functions公共 extends IFunctions {
     public static int 要按的key;
     public static MyThread 要暂停的t;
     public static boolean b无干扰按键 = false;
+    public static boolean b无干扰按键进行中 = false;
     public static LocalDateTime start = LocalDateTime.now();
     public static MyThread t无干扰按键 = new MyThread() {
 
@@ -137,39 +135,71 @@ public class Functions公共 extends IFunctions {
             while (true) {
                 if (b无干扰按键 == true) {
 //                    if(LocalDateTime.now().getNano()-start.getNano()<2000) {
-                    if (Duration.between(start, LocalDateTime.now()).toMillis() < 800) {
+//                    if (Duration.between(start, LocalDateTime.now()).toMillis() < 1100) {
 //                        System.out.println(Duration.between(start,LocalDateTime.now()).toMillis());
 //                    要暂停的t.mySuspend();
 //                    pause(50L);
+                    b无干扰按键进行中=true;
+                    start = LocalDateTime.now();
+                    while (Duration.between(start, LocalDateTime.now()).toMillis() < 500L) {
                         robot.keyPress(要按的key);
                         robot.keyRelease(要按的key);
-//                    pause(50L);
+                        pause(100L);
+                    }
+                    b无干扰按键进行中=false;
+
+
+//                    pause(100L);
 //                    要暂停的t.myResume();
 
+//                    pause(500L);
+
 //                    b无干扰按键=false;
-                    }
+//                    }
 
 
-                } else {
-                    this.mySuspend();
                 }
+                this.mySuspend();
 
                 pause(BaseDelay);
             }
-
-
         }
-
-
     };
 
-    public static void 无干扰按键(int key, MyThread myThread) {
+//    public static void 无干扰按键(int key) {
+////        start = LocalDateTime.now();
+////        要按的key = key;
+////        b无干扰按键 = true;
+////        t无干扰按键.myResume();
+//
+////        要暂停的t.mySuspend();
+////        robot.keyPress(key);
+////        robot.keyRelease(key);
+////        要暂停的t.myResume();
+//
+//    }
+
+
+    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 无干扰按键(InputInfo inputInfo) {
+        要按的key = inputInfo.value;
+
+//        b无干扰按键 = true;
+//        t无干扰按键.myResume();
+
+//        b无干扰按键进行中=true;
+//        pause(50L);
+//        robot.keyPress(要按的key);
+//        robot.keyRelease(要按的key);
+//        pause(50L);
+//        b无干扰按键进行中=false;
+
         start = LocalDateTime.now();
-        要按的key = key;
-//        要暂停的t=myThread;
         b无干扰按键 = true;
         t无干扰按键.myResume();
-
     }
 
     //-----------------------------
@@ -249,6 +279,8 @@ public class Functions公共 extends IFunctions {
         b自动喝药 = false;
     }
 
+    //------------------------------------------------
+
 
     //---------------------------------------------------
 
@@ -266,7 +298,7 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "b", value = 66, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 人物详情() {
-        long time=150L;
+        long time = 150L;
         robot.keyPress(VK_C);
         robot.keyRelease(VK_C);
         pause(time);
@@ -275,7 +307,7 @@ public class Functions公共 extends IFunctions {
         robot.mousePress(BUTTON1_DOWN_MASK);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
         pause(time);
-        robot.mouseMove(1089,115);
+        robot.mouseMove(1089, 115);
         robot.mousePress(BUTTON1_DOWN_MASK);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
 
@@ -301,6 +333,9 @@ public class Functions公共 extends IFunctions {
     public static void 读取颜色_1() {
         pixelColor.threadOff();
     }
+
+
+    //------------------------------------------------
 
 
     //-------------------------------------------------------
