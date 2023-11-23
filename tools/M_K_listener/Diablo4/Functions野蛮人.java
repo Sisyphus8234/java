@@ -187,6 +187,35 @@ public class Functions野蛮人 extends Functions公共 {
 //    }
 
 
+    public static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
+    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 无干扰按键(InputInfo inputInfo) {
+        Functions公共.要按的key = inputInfo.value;
+        if(inputInfo.value==VK_1){
+            if(pixelColor1.getPixelColorHSB(805, 978)[1] < 0.1F){
+                if(pixelColor1.getPixelColorHSB(931, 981)[1] <0.37F){
+                    Functions公共.要按的key=VK_3;
+                }else {
+                    Functions公共.要按的key=VK_2;
+                }
+
+            }
+
+
+        }
+
+
+
+
+        Functions公共.start = LocalDateTime.now();
+        Functions公共.b无干扰按键 = true;
+        Functions公共.t无干扰按键.myResume();
+    }
+
+
     @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
         核心技能跳过条件 = true;

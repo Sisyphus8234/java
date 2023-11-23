@@ -187,16 +187,6 @@ public class Functions公共 extends IFunctions {
     public static void 无干扰按键(InputInfo inputInfo) {
         要按的key = inputInfo.value;
 
-//        b无干扰按键 = true;
-//        t无干扰按键.myResume();
-
-//        b无干扰按键进行中=true;
-//        pause(50L);
-//        robot.keyPress(要按的key);
-//        robot.keyRelease(要按的key);
-//        pause(50L);
-//        b无干扰按键进行中=false;
-
         start = LocalDateTime.now();
         b无干扰按键 = true;
         t无干扰按键.myResume();
