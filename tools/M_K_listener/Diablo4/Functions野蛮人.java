@@ -73,8 +73,7 @@ public class Functions野蛮人 extends Functions公共 {
 
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
 
-                        robot.keyRelease(VK_V);
-                        robot.keyRelease(VK_V);
+
                         pause(BaseDelay);
                         continue;
                     }
@@ -167,23 +166,41 @@ public class Functions野蛮人 extends Functions公共 {
 
 
     public static boolean e按下=false;
+    public static LocalDateTime e按下时间=LocalDateTime.now();
+    public static boolean z按过了=false;
 
     @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "z", value = 90, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void e() {
         b攻击移动 = true;
         b移动 = false;
         自动喝药(null, null, false);
         筛选装备.关闭传奇标记();
 
-        e按下=true;
+
+//        if(e按下==false){
+//            e按下时间=LocalDateTime.now();
+//            z按过了=false;
+//        }
+//        e按下=true;
+//
+//
+//        if(Duration.between(e按下时间,LocalDateTime.now()).toMillis()>250L&&z按过了==false){
+//            robot.keyPress(VK_Z);
+//            robot.keyRelease(VK_Z);
+//            z按过了=true;
+//        }
+
+
 //        是否使用旋风斩=false;
+
 
     }
 
 //    @ListenMouseKeyboard(note = "e", press = false,value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    public static void e_1() {
-//
 //        e按下=false;
+//
 //    }
 
 

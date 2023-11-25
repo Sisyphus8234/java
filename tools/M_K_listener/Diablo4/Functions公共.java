@@ -14,7 +14,7 @@ public class Functions公共 extends IFunctions {
         Controller.refreshtime = 200L;
     }
 
-    public static long BaseDelay = 200L;
+    public static long BaseDelay = 300L;
     public static boolean b攻击移动 = false;
     public static boolean b攻击移动1 = false;
 
@@ -41,11 +41,20 @@ public class Functions公共 extends IFunctions {
     };
 
     public static boolean b拾取物品 = false;
+    public static boolean b需要骑马 = false;
+    public static LocalDateTime 骑马start = LocalDateTime.now();
+    public static FunctionsAddition.PixelColor pixelColor拾取物品 = new FunctionsAddition.PixelColor();
     public static MyThread t拾取物品 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
+
                 if (b攻击移动 == true) {
+
+                    if (b需要骑马 == true && pixelColor拾取物品.getPixelColorHSB(801, 974)[0] > 0.35F) {
+                        robot.keyPress(VK_Z);
+                        robot.keyRelease(VK_Z);
+                    }
                     robot.keyPress(VK_ALT);
                     robot.keyRelease(VK_ALT);
                     robot.keyRelease(VK_V);
@@ -57,6 +66,12 @@ public class Functions公共 extends IFunctions {
                         b拾取物品 = false;
                     }
                 }
+
+                if (Duration.between(骑马start, LocalDateTime.now()).toMillis() > 800L) {
+                    b需要骑马 = false;
+                }
+
+
                 pause(BaseDelay);
 
             }
@@ -105,18 +120,60 @@ public class Functions公共 extends IFunctions {
         b移动 = true;
     }
 
+
+    public static boolean b攻击移动是否在运行 = false;
+    public static boolean b移动是否在运行 = false;
+    public static boolean b是否第一次按f = true;
+
     @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(note = "f", value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 强制移动() {
-        b攻击移动 = false;
-        b移动 = true;
+
+        if (b是否第一次按f == true) {
+            if (b攻击移动 == true) {
+                b攻击移动是否在运行 = true;
+            } else {
+                b攻击移动是否在运行 = false;
+            }
+
+            if (b移动 == true) {
+                b移动是否在运行 = true;
+            } else {
+                b移动是否在运行 = false;
+            }
+
+            b攻击移动 = false;
+            b移动 = true;
+
+            骑马start = LocalDateTime.now();
+            b需要骑马 = true;
+
+        }
+
+
+        if (b是否第一次按f == true) {
+            b是否第一次按f = false;
+        }
     }
 
     @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(note = "f", press = false, value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 强制移动_1() {
-        b攻击移动 = true;
-        b移动 = false;
+
+
+        if (b攻击移动是否在运行 == true) {
+            b攻击移动 = true;
+        } else {
+            b攻击移动 = false;
+        }
+
+        if (b移动是否在运行 == true) {
+            b移动 = true;
+        } else {
+            b移动 = false;
+        }
+
+        b是否第一次按f = true;
     }
 
     //-----------------------------
@@ -139,14 +196,14 @@ public class Functions公共 extends IFunctions {
 //                        System.out.println(Duration.between(start,LocalDateTime.now()).toMillis());
 //                    要暂停的t.mySuspend();
 //                    pause(50L);
-                    b无干扰按键进行中=true;
+                    b无干扰按键进行中 = true;
                     start = LocalDateTime.now();
                     while (Duration.between(start, LocalDateTime.now()).toMillis() < 500L) {
                         robot.keyPress(要按的key);
                         robot.keyRelease(要按的key);
                         pause(100L);
                     }
-                    b无干扰按键进行中=false;
+                    b无干扰按键进行中 = false;
 
 
 //                    pause(100L);
