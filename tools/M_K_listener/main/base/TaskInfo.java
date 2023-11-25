@@ -1,6 +1,7 @@
 package base;
 
 import java.lang.reflect.Method;
+import java.time.LocalDateTime;
 
 public class TaskInfo {
     public Method method;
@@ -8,4 +9,6 @@ public class TaskInfo {
     public boolean intercept;
 
     public InputInfo inputInfo;
+
+    LocalDateTime lastTime=LocalDateTime.now();
 }

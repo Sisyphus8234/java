@@ -1,5 +1,7 @@
 package base;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +27,15 @@ public class Do
     }
 
 	public void doTask(TaskInfo taskInfo) {
-		if(taskInfo.immediately==true) {
-			//立即执行功能
-			this.immediate(taskInfo);
-		}else if(taskInfo.immediately==false){
-			//放入队列执行
-			this.taskInfoList.add(taskInfo);
+		if(Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis()>taskInfo.inputInfo.timeInterval) {
+			taskInfo.lastTime=LocalDateTime.now();
+			if (taskInfo.immediately == true) {
+				//立即执行功能
+				this.immediate(taskInfo);
+			} else if (taskInfo.immediately == false) {
+				//放入队列执行
+				this.taskInfoList.add(taskInfo);
+			}
 		}
 	}
 	

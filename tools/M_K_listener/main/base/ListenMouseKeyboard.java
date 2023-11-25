@@ -17,6 +17,7 @@ public @interface ListenMouseKeyboard {
 	boolean intercept() default false;
 	int mouseData() default 0;
 	String note() default "";
+	long timeInterval() default 0L;
 
 //	public enum KeyboardOrMouse
 //	{

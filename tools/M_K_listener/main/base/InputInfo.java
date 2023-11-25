@@ -10,6 +10,8 @@ public class InputInfo {
     public boolean userInput;
     public int mouseData;
 
+    public long timeInterval;
+
     public void resetProperty(){
         this.keyboardOrMouse=0;
         this.value=0;

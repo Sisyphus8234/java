@@ -59,6 +59,7 @@ public class ScanFunction {
                 inputInfo.userInput = listenMouseKeyboard.userInput();
                 inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
                 inputInfo.mouseData = listenMouseKeyboard.mouseData();
+                inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
                 taskInfo.inputInfo = inputInfo;
                 mapJna.put(inputInfo, taskInfo);
             }
@@ -80,6 +81,7 @@ public class ScanFunction {
                     inputInfo.userInput = listenMouseKeyboard.userInput();
                     inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
                     inputInfo.mouseData = listenMouseKeyboard.mouseData();
+                    inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
                     taskInfo.inputInfo = inputInfo;
                     mapJna.put(inputInfo, taskInfo);
                 }
