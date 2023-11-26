@@ -362,11 +362,13 @@ public class 筛选装备 {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "GBK");
             BufferedReader reader = new BufferedReader(inputStreamReader);
 
-
+            int 现在是第几条词条 = 0;
             int 物品强度索引 = 0;
-            int 物品强度索引temp = 0;
             int 装备时损失属性索引 = 0;
-            int 装备时损失属性索引temp = 0;
+            int 每秒攻击次数索引 = 0;
+
+
+
 
             // 读取输出
             String line;
@@ -400,17 +402,22 @@ public class 筛选装备 {
                         当前装备情况.预类别 = 预类别_枚举.戒指;
                     } else if (extractedText.contains("护符")) {
                         当前装备情况.预类别 = 预类别_枚举.护符;
+                    } else if (extractedText.contains("每秒伤害")) {
+                        当前装备情况.预类别 = 预类别_枚举.武器;
                     }
+
 
 
                     if (extractedText.contains("物品强度")) {
-                        物品强度索引 = 物品强度索引temp;
+                        物品强度索引 = 现在是第几条词条;
                     }
-                    物品强度索引temp++;
                     if (extractedText.contains("装备时损失属性")) {
-                        装备时损失属性索引 = 装备时损失属性索引temp;
+                        装备时损失属性索引 = 现在是第几条词条;
                     }
-                    装备时损失属性索引temp++;
+                    if (extractedText.contains("每秒攻击次数")) {
+                        每秒攻击次数索引 = 现在是第几条词条;
+                    }
+                    现在是第几条词条++;
 
 
                 }
@@ -432,6 +439,8 @@ public class 筛选装备 {
                 当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+1,物品强度索引+3).clear();
             } else if (当前装备情况.预类别 == 预类别_枚举.护符) {
                 当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+1,物品强度索引+2).clear();
+            } else if (当前装备情况.预类别 == 预类别_枚举.武器) {
+                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+2,每秒攻击次数索引+2).clear();
             }
 
             当前装备情况.是词缀的部分_筛选结果.subList(0,物品强度索引-1).clear();
@@ -677,7 +686,7 @@ public class 筛选装备 {
     }
 
     enum 预类别_枚举 {
-        戒指(), 护符(), 其他();
+        戒指(), 护符(), 武器(),其他();
     }
 
     private static class 当前装备信息 {

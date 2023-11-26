@@ -6,6 +6,8 @@ import base.*;
 import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -179,7 +181,7 @@ public class Functions公共 extends IFunctions {
     //-----------------------------
 
 
-    public static int 要按的key;
+    public static List<Integer> 要按的key = new ArrayList();
     public static MyThread 要暂停的t;
     public static boolean b无干扰按键 = false;
     public static boolean b无干扰按键进行中 = false;
@@ -197,13 +199,23 @@ public class Functions公共 extends IFunctions {
 //                    要暂停的t.mySuspend();
 //                    pause(50L);
                     b无干扰按键进行中 = true;
-                    start = LocalDateTime.now();
-                    while (Duration.between(start, LocalDateTime.now()).toMillis() < 500L) {
-                        robot.keyPress(要按的key);
-                        robot.keyRelease(要按的key);
-                        pause(100L);
+                    try {
+                        start = LocalDateTime.now();
+                        while (Duration.between(start, LocalDateTime.now()).toMillis() < 要按的key.size() * 600L) {
+                            int i = 0;
+                            int size = 要按的key.size();
+                            while (i < size) {
+                                robot.keyPress(要按的key.get(i));
+                                robot.keyRelease(要按的key.get(i));
+                                pause(100L);
+                                i++;
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     b无干扰按键进行中 = false;
+                    要按的key.clear();
 
 
 //                    pause(100L);
@@ -237,14 +249,15 @@ public class Functions公共 extends IFunctions {
 //    }
 
 
-    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 无干扰按键(InputInfo inputInfo) {
-        要按的key = inputInfo.value;
 
-        start = LocalDateTime.now();
+        要按的key.add(inputInfo.value);
+
+
         b无干扰按键 = true;
         t无干扰按键.myResume();
     }

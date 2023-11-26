@@ -29,6 +29,7 @@ public class Functions野蛮人 extends Functions公共 {
 //        return pixelColor.getPixelColorHSB(1318, 975)[0] < 0.33F || 核心技能跳过条件;
 
     }
+
     public static boolean 判断核心技能怒气是否满足() {
         return pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F || 核心技能跳过条件;
 //        return pixelColor.getPixelColorHSB(1318, 940)[0] < 0.49F || 核心技能跳过条件;
@@ -78,7 +79,7 @@ public class Functions野蛮人 extends Functions公共 {
                         continue;
                     }
 
-                    if(b无干扰按键进行中==true){
+                    if (b无干扰按键进行中 == true) {
 
                         pause(BaseDelay);
                         continue;
@@ -133,15 +134,11 @@ public class Functions野蛮人 extends Functions公共 {
 //                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
 
-                    if (
-                            判断核心技能怒气是否满足_1() &&
-                                    是否核心技能) {
+                    if (判断核心技能怒气是否满足_1() && 是否核心技能) {
 //                        robot.keyRelease(KeyEvent.VK_5);
                         robot.keyPress(KeyEvent.VK_5);
                         robot.keyRelease(KeyEvent.VK_5);
                     }
-
-
 
 
                 } else {
@@ -165,9 +162,9 @@ public class Functions野蛮人 extends Functions公共 {
 //    }
 
 
-    public static boolean e按下=false;
-    public static LocalDateTime e按下时间=LocalDateTime.now();
-    public static boolean z按过了=false;
+    public static boolean e按下 = false;
+    public static LocalDateTime e按下时间 = LocalDateTime.now();
+    public static boolean z按过了 = false;
 
     @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "z", value = 90, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -205,36 +202,26 @@ public class Functions野蛮人 extends Functions公共 {
 
 
     public static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
-    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+
+    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
     public static void 无干扰按键(InputInfo inputInfo) {
-        Functions公共.要按的key = inputInfo.value;
-        if(inputInfo.value==VK_1){
-            if(pixelColor1.getPixelColorHSB(805, 978)[1] < 0.1F){
-                if(pixelColor1.getPixelColorHSB(931, 981)[1] <0.37F){
-                    Functions公共.要按的key=VK_3;
-                }else {
-                    Functions公共.要按的key=VK_2;
-                }
-
+        Functions公共.无干扰按键(inputInfo);
+        if (inputInfo.value == VK_1) {
+            if (pixelColor1.getPixelColorHSB(805, 978)[1] < 0.1F) {
+//                if (pixelColor1.getPixelColorHSB(931, 981)[1] < 0.37F) {
+                要按的key.add(VK_2);
+//            }
             }
-
-
         }
-
-
-
-
-        Functions公共.start = LocalDateTime.now();
-        Functions公共.b无干扰按键 = true;
-        Functions公共.t无干扰按键.myResume();
     }
 
 
     @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static void 右键() {
+
         核心技能跳过条件 = true;
         是否基础技能 = false;
     }
@@ -273,8 +260,6 @@ public class Functions野蛮人 extends Functions公共 {
     }
 
 
-
-
 //        public static MyThread t自动技能 = new MyThread(MyThread.State.on) {
 //        @Override
 //        public void run() {
@@ -289,11 +274,6 @@ public class Functions野蛮人 extends Functions公共 {
 //            }
 //        }
 //    };
-
-
-
-
-
 
 
 //    public static MyThread t钢铁之肤 = new MyThread(MyThread.State.on) {
@@ -312,11 +292,6 @@ public class Functions野蛮人 extends Functions公共 {
 //            }
 //        }
 //    };
-
-
-
-
-
 
 
     static {
