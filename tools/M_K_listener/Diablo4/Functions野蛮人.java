@@ -208,20 +208,26 @@ public class Functions野蛮人 extends Functions公共 {
     @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
     @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
     public static void 无干扰按键(InputInfo inputInfo) {
-        int value=inputInfo.value;
+
+//        int value=inputInfo.value;
 
 
 
         if (inputInfo.value == VK_1) {
             if (pixelColor1.getPixelColorHSB(805, 980)[1] < 0.1F) {
 //                if (pixelColor1.getPixelColorHSB(931, 981)[1] < 0.37F) {
-                value=VK_2;
+
+//                value=VK_2;
+                要按的key.add(VK_2);
+
 //            }
             }
         }
+        要按的key.add(inputInfo.value);
 
 
-        要按的key.add(value);
+//        要按的key.add(value);
+
 
         b无干扰按键 = true;
         t无干扰按键.myResume();    }
