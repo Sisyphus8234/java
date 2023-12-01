@@ -51,10 +51,10 @@ public class 筛选装备 {
     public static String outPictureName = "screenshot";
     public static String outTextName = "output";
 
-    public static int 截图时左边距离鼠标=430;
-    public static int 截图时上边=90;
-    public static int 截图时宽=380;
-    public static int 截图时高=690;
+    public static int 截图时左边距离鼠标 = 430;
+    public static int 截图时上边 = 90;
+    public static int 截图时宽 = 380;
+    public static int 截图时高 = 690;
 
     public static Robot robot;
 
@@ -132,7 +132,6 @@ public class 筛选装备 {
     }
 
 
-
     public static String savePicture(int x, int y) {
 
         int arg1 = x - 截图时左边距离鼠标; // 传递给方法的参数
@@ -168,7 +167,6 @@ public class 筛选装备 {
     }
 
 
-
     public static void voice(String fileName, long time) {
         String audioFilePath = fileName; // 替换为你的音频文件路径
 
@@ -188,10 +186,10 @@ public class 筛选装备 {
             // 播放音频
             clip.start();
 
-            if(time==0) {
+            if (time == 0) {
                 // 等待音频播放完毕
-                Thread.sleep(clip.getMicrosecondLength()/1000);
-            }else {
+                Thread.sleep(clip.getMicrosecondLength() / 1000);
+            } else {
                 Thread.sleep(time);
             }
             // 关闭 Clip
@@ -216,6 +214,8 @@ public class 筛选装备 {
     }
 
     public static void run(筛选装备_子类 筛选装备_子类) {
+
+
         list.clear();
         output.setLength(0);
 
@@ -239,6 +239,7 @@ public class 筛选装备 {
             y轴第几个 = y轴第几个_起点;
         }
 
+        去离起始点比较近的点();
 
         while (是否扫描和筛选 == true) {
             扫描(x轴第几个, y轴第几个);
@@ -302,6 +303,9 @@ public class 筛选装备 {
     }
 
     public static void run1() {
+
+        去离起始点比较近的点();
+
         for (当前装备信息 当前装备信息 : list) {
             if (是否标记 == false) {
                 break;
@@ -313,6 +317,7 @@ public class 筛选装备 {
     }
 
     public static void 扫描(int x轴第几个, int y轴第几个) {
+
         int 标准化x = (int) (x轴第几个 * 单个宽度 + 单个宽度 / 2) + 左线;
         int 标准化y = (int) (y轴第几个 * 单个高度 + 单个高度 / 2 + 上线);
 
@@ -327,6 +332,10 @@ public class 筛选装备 {
 
         当前装备信息 当前装备信息 = new 当前装备信息(x轴第几个, y轴第几个, 标准化x, 标准化y, fileName);
         list.add(当前装备信息);
+
+        if (x轴第几个 >= 10) {
+            去离起始点比较近的点();
+        }
     }
 
 
@@ -342,8 +351,6 @@ public class 筛选装备 {
         当前装备情况.initProperty(筛选装备_子类);
 
         List<String> 图片解析出的所有词条 = new ArrayList<>();
-
-
 
 
         StringBuilder 一件装备的所有文本 = new StringBuilder();
@@ -368,12 +375,10 @@ public class 筛选装备 {
             int 每秒攻击次数索引 = 0;
 
 
-
-
             // 读取输出
             String line;
             while ((line = reader.readLine()) != null) {
-                if(!line.contains("INFO:")){
+                if (!line.contains("INFO:")) {
                     continue;
                 }
 
@@ -407,7 +412,6 @@ public class 筛选装备 {
                     }
 
 
-
                     if (extractedText.contains("物品强度")) {
                         物品强度索引 = 现在是第几条词条;
                     }
@@ -436,14 +440,14 @@ public class 筛选装备 {
 
             当前装备情况.是词缀的部分_筛选结果 = 图片解析出的所有词条.subList(0, 装备时损失属性索引);
             if (当前装备情况.预类别 == 预类别_枚举.戒指) {
-                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+1,物品强度索引+3).clear();
+                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引 + 1, 物品强度索引 + 3).clear();
             } else if (当前装备情况.预类别 == 预类别_枚举.护符) {
-                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+1,物品强度索引+2).clear();
+                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引 + 1, 物品强度索引 + 2).clear();
             } else if (当前装备情况.预类别 == 预类别_枚举.武器) {
-                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引+2,每秒攻击次数索引+2).clear();
+                当前装备情况.是词缀的部分_筛选结果.subList(物品强度索引 + 2, 每秒攻击次数索引 + 2).clear();
             }
 
-            当前装备情况.是词缀的部分_筛选结果.subList(0,物品强度索引-1).clear();
+            当前装备情况.是词缀的部分_筛选结果.subList(0, 物品强度索引 - 1).clear();
 
 
             筛选装备_子类.装备分类(当前装备情况);
@@ -547,18 +551,20 @@ public class 筛选装备 {
 //        robot.mouseMove(1202, 845);
 //        pause(50L);
 
+
         if (当前装备信息.所有要求满足 == false) {
             平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(当前装备信息.x, 当前装备信息.y));
-//            robot.mouseMove(当前装备信息.x, 当前装备信息.y);
+
             robot.keyRelease(VK_SPACE);
-//            pause(标记间隔);
-//            robot.keyRelease(VK_SPACE);
             robot.keyPress(VK_SPACE);
-//            pause(20L);
             robot.keyRelease(VK_SPACE);
 
         }
         pause(标记间隔);
+
+        if (当前装备信息.xIndex >= 10) {
+            去离起始点比较近的点();
+        }
 
     }
 
@@ -638,6 +644,12 @@ public class 筛选装备 {
 
     }
 
+    private static void 去离起始点比较近的点() {
+        pause(50L);
+        robot.mouseMove(1214, 851);
+        pause(50L);
+    }
+
 
     static class 当前装备情况 {
         List<String> 是词缀的部分_筛选结果;
@@ -665,28 +677,26 @@ public class 筛选装备 {
             this.需求词缀数量_目标 = 筛选装备_子类.需求词条数量_目标();
             this.物品强度下限 = 筛选装备_子类.物品强度下限();
             this.必须词缀_减少量 = 筛选装备_子类.必须词缀_减少量();
-            this.需求词缀_目标= 筛选装备_子类.需求词缀_目标();
+            this.需求词缀_目标 = 筛选装备_子类.需求词缀_目标();
             this.不要词缀_目标 = 筛选装备_子类.不要词缀_目标();
             this.必须词缀_目标 = 筛选装备_子类.必须词缀_目标();
+
+            this.需求词缀_目标.addAll(筛选装备_子类.必须词缀_目标());
         }
 
     }
 
+
     enum 装备种类_枚举 {
-        筛选,
-        自定要求,
-        不要,
-        未定种类
+        筛选, 自定要求, 不要, 未定种类
     }
 
     enum 筛选哪些_枚举 {
-        需求词缀,
-        物品强度,
-        必须词缀
+        需求词缀, 物品强度, 必须词缀
     }
 
     enum 预类别_枚举 {
-        戒指(), 护符(), 武器(),其他();
+        戒指(), 护符(), 武器(), 其他();
     }
 
     private static class 当前装备信息 {
@@ -708,9 +718,7 @@ public class 筛选装备 {
     }
 
     enum 品质_枚举 {
-        传奇,
-        稀有,
-        其他
+        传奇, 稀有, 其他
     }
 
     public static void 显示传奇标记() {
