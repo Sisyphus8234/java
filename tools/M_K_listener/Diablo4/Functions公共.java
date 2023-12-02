@@ -201,7 +201,7 @@ public class Functions公共 extends IFunctions {
                     b无干扰按键进行中 = true;
                     try {
                         start = LocalDateTime.now();
-                        while (Duration.between(start, LocalDateTime.now()).toMillis() < 要按的key.size() * 600L) {
+                        while (Duration.between(start, LocalDateTime.now()).toMillis() < 要按的key.size() * 500L) {
                             int i = 0;
                             int size = 要按的key.size();
                             while (i < size) {

@@ -682,6 +682,10 @@ public class 筛选装备 {
             this.必须词缀_目标 = 筛选装备_子类.必须词缀_目标();
 
             this.需求词缀_目标.addAll(筛选装备_子类.必须词缀_目标());
+            
+            this.需求词缀_目标.remove("");
+            this.不要词缀_目标.remove("");
+            this.必须词缀_目标.remove("");
         }
 
     }

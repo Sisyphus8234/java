@@ -120,13 +120,17 @@ public class Functions野蛮人 extends Functions公共 {
 //                        robot.keyRelease(VK_4);
 //                    }
 //
-//                    if (
-//                            判断核心技能怒气是否满足_1() &&
-//                                    是否核心技能) {
-////                        robot.keyRelease(KeyEvent.VK_5);
-//                        robot.keyPress(KeyEvent.VK_5);
-//                        robot.keyRelease(KeyEvent.VK_5);
-//                    }
+
+
+                    if (
+                            判断核心技能怒气是否满足_1() &&
+                                    是否核心技能) {
+
+                        robot.keyPress(KeyEvent.VK_5);
+                        robot.keyRelease(KeyEvent.VK_5);
+
+                    }
+
 
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
@@ -134,11 +138,8 @@ public class Functions野蛮人 extends Functions公共 {
 //                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
 
-                    if (判断核心技能怒气是否满足_1() && 是否核心技能) {
-//                        robot.keyRelease(KeyEvent.VK_5);
-                        robot.keyPress(KeyEvent.VK_5);
-                        robot.keyRelease(KeyEvent.VK_5);
-                    }
+
+
 
 
                 } else {
