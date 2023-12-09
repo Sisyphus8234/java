@@ -141,10 +141,18 @@ public class ScanFunction {
             if (field.isAnnotationPresent(ListenBar.class)) {
                 ListenBar listenBar = field.getAnnotation(ListenBar.class);
                 try {
-                    if (listenBar.onOrOff() == ListenBar.OnOrOff.off && listenBar.threadList() != true) {
-                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()), ListenBar.OnOrOff.off);
-                    } else if (listenBar.onOrOff() == ListenBar.OnOrOff.on && listenBar.threadList() != true) {
-                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()), ListenBar.OnOrOff.on);
+                    if ((listenBar.onOrOff() == ListenBar.OnOrOff.on || listenBar.onOrOff() == ListenBar.OnOrOff.off) && listenBar.threadList() != true) {
+
+                        Iterator<Map.Entry<Integer, Integer>> iterator = mapListenBar.entrySet().iterator();
+                        while (iterator.hasNext()) {
+                            Map.Entry<Integer, Integer> entry = iterator.next();
+                            if (entry.getValue().equals(listenBar.onOrOff())) {
+                                iterator.remove();
+                            }
+                        }
+
+                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()), listenBar.onOrOff());
+
                     }
                 } catch (Exception e) {
                 }
