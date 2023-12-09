@@ -1,5 +1,6 @@
 package custom;
 
+import addition.DisplayImageOnTop;
 import addition.FunctionsAddition;
 import base.*;
 
@@ -503,6 +504,27 @@ public class Functions公共 extends IFunctions {
 //        robot.keyRelease(VK_ESCAPE);
         筛选装备.关闭传奇标记();
     }
+
+
+    public static DisplayImageOnTop displayImageOnTop;
+    public static boolean 是否打开图片 = false;
+
+    @ListenMouseKeyboard(note = "H", value = 72, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 打开半透明图片() {
+        if (是否打开图片 == false) {
+
+            displayImageOnTop=new DisplayImageOnTop(new Point(0, 0), 1F);
+//                displayImageOnTop.openImage(path);
+            displayImageOnTop.openImage("custom/图片.png");
+            是否打开图片 = true;
+
+        } else {
+            displayImageOnTop.closeWindow();
+            是否打开图片 = false;
+        }
+    }
+
+
 
 
 }

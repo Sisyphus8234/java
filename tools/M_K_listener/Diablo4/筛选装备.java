@@ -1,10 +1,9 @@
 package custom;
 
-import addition.TopFrame;
-import addition.TopFrame.Argument;
+import addition.DisplayMarkOnTop;
+import addition.DisplayMarkOnTop.Argument;
 import base.Config;
 import base.IFunctions;
-import base.ScanFunction;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
@@ -733,11 +732,11 @@ public class 筛选装备 {
     }
 
     public static void 显示传奇标记() {
-        TopFrame.start(传奇装备框信息列表);
+        DisplayMarkOnTop.start(传奇装备框信息列表);
     }
 
     public static void 关闭传奇标记() {
-        TopFrame.stop();
+        DisplayMarkOnTop.stop();
     }
 
     public static void 重置传奇框() {

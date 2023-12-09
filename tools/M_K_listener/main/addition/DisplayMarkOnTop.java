@@ -2,10 +2,9 @@ package addition;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class TopFrame {
+public class DisplayMarkOnTop {
     public static class Argument {
         public int x, y, width, height,lineWidth;
         public Color color;

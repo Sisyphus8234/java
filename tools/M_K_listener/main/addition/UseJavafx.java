@@ -11,7 +11,7 @@ import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class UseJavafx extends Application {
     public static List<Argument> list = new ArrayList();
     public static class Argument {
