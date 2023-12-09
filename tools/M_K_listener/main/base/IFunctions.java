@@ -8,7 +8,6 @@ import java.util.List;
 
 
 import java.awt.Toolkit;
-import java.io.IOException;
 
 
 public class IFunctions {
@@ -74,8 +73,17 @@ public class IFunctions {
     }
 
 
+    public static boolean clipboardIsString() {
+        // 获取剪贴板中的数据
+        Transferable transferable = clipboard.getContents(null);
 
-
+        // 判断是否包含文本
+        if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
 

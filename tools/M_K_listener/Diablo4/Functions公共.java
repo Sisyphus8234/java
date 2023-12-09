@@ -16,7 +16,7 @@ public class Functions公共 extends IFunctions {
         Controller.refreshtime = 200L;
     }
 
-    public static long BaseDelay = 300L;
+    public static long BaseDelay = 200L;
     public static boolean b攻击移动 = false;
     public static boolean b攻击移动1 = false;
 
@@ -375,18 +375,28 @@ public class Functions公共 extends IFunctions {
         robot.mouseMove(point.x, point.y);
     }
 
+    @ListenMouseKeyboard(note = "c", value = 67, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 去掉括号() {
+        if (clipboardIsString()) {
+            String text = readClipboard().replaceAll(" ", "").replaceAll("\\[", "").replaceAll("\\]", "");
+            writeClipboard(text);
+        }
+    }
+
 
     //------------------
 
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色() {
-        String text = readClipboard().replaceAll(" ", "");
-        String[] parts = text.split(",");
-        int x = Integer.parseInt(parts[0]);
-        int y = Integer.parseInt(parts[1]);
-        pixelColor.threadOn(x, y);
-        writeClipboard(x + "," + y);
+        if (clipboardIsString()) {
+            String text = readClipboard().replaceAll(" ", "");
+            String[] parts = text.split(",");
+            int x = Integer.parseInt(parts[0]);
+            int y = Integer.parseInt(parts[1]);
+            pixelColor.threadOn(x, y);
+            writeClipboard(x + "," + y);
+        }
     }
 
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
