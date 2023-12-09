@@ -61,8 +61,9 @@ public class Functions野蛮人 extends Functions公共 {
             while (true) {
                 if (b攻击移动 == true) {
 //                    if(b攻击移动1==false){
-                    b攻击移动1 = true;
+//                    b攻击移动1 = true;
 //                        robot.keyPress(VK_G);
+//                        robot.mousePress(BUTTON1_DOWN_MASK);
 //                    }
 //                    if(space==true){
 //                        robot.keyRelease(VK_G);
@@ -132,13 +133,12 @@ public class Functions野蛮人 extends Functions公共 {
                     }
 
 
+
                     if (是否基础技能 == true) {
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
 //                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
-
-
 
 
 

@@ -88,7 +88,13 @@ public class 筛选装备 {
     public static long 平滑移动鼠标间隔 = 3L;
     public static List<Argument> 传奇装备框信息列表 = new ArrayList<>();
 
+    public static void 缩小距离(Point 起点, Point 终点) {
+        int 距离=150;
+        if(起点.distance(终点)>距离){
+            robot.mouseMove(终点.x-距离,终点.y);
+        }
 
+    }
     public static void 平滑移动鼠标(Point 起点, Point 终点) {
         int step = 2;
         int x = 起点.x;
@@ -239,7 +245,7 @@ public class 筛选装备 {
             y轴第几个 = y轴第几个_起点;
         }
 
-        去离起始点比较近的点();
+//        去离起始点比较近的点();
 
         while (是否扫描和筛选 == true) {
             扫描(x轴第几个, y轴第几个);
@@ -304,7 +310,7 @@ public class 筛选装备 {
 
     public static void run1() {
 
-        去离起始点比较近的点();
+//        去离起始点比较近的点();
 
         for (当前装备信息 当前装备信息 : list) {
             if (是否标记 == false) {
@@ -325,7 +331,7 @@ public class 筛选装备 {
             传奇装备框信息列表 = new ArrayList<>();
         }
 
-
+        缩小距离(MouseInfo.getPointerInfo().getLocation(), new Point(标准化x, 标准化y));
         平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(标准化x, 标准化y));
         pause(扫描间隔);
         String fileName = savePicture(标准化x, 标准化y);
@@ -333,9 +339,9 @@ public class 筛选装备 {
         当前装备信息 当前装备信息 = new 当前装备信息(x轴第几个, y轴第几个, 标准化x, 标准化y, fileName);
         list.add(当前装备信息);
 
-        if (x轴第几个 >= 10) {
-            去离起始点比较近的点();
-        }
+//        if (x轴第几个 >= 10) {
+//            去离起始点比较近的点();
+//        }
     }
 
 
@@ -553,6 +559,7 @@ public class 筛选装备 {
 
 
         if (当前装备信息.所有要求满足 == false) {
+            缩小距离(MouseInfo.getPointerInfo().getLocation(), new Point(当前装备信息.x, 当前装备信息.y));
             平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(当前装备信息.x, 当前装备信息.y));
 
             robot.keyRelease(VK_SPACE);
@@ -562,9 +569,9 @@ public class 筛选装备 {
         }
         pause(标记间隔);
 
-        if (当前装备信息.xIndex >= 10) {
-            去离起始点比较近的点();
-        }
+//        if (当前装备信息.xIndex >= 10) {
+//            去离起始点比较近的点();
+//        }
 
     }
 
@@ -644,11 +651,11 @@ public class 筛选装备 {
 
     }
 
-    private static void 去离起始点比较近的点() {
-        pause(50L);
-        robot.mouseMove(1214, 851);
-        pause(50L);
-    }
+//    private static void 去离起始点比较近的点() {
+//        pause(50L);
+//        robot.mouseMove(1214, 851);
+//        pause(50L);
+//    }
 
 
     static class 当前装备情况 {
