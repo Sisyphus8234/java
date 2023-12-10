@@ -389,7 +389,15 @@ public class Functions公共 extends IFunctions {
 
 
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 读取颜色() {
+    @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 读取颜色(InputInfo inputInfo) {
+        if(inputInfo.value==VK_F7){
+            pixelColor.active=true;
+        }else if(inputInfo.value==VK_F8){
+            pixelColor.active=false;
+        }
+
+
         if (clipboardIsString()) {
             String text = readClipboard().replaceAll(" ", "");
             String[] parts = text.split(",");
@@ -400,11 +408,11 @@ public class Functions公共 extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 读取颜色_1() {
+
+    @ListenMouseKeyboard(note = "f9", value = 120, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    public static void 读取颜色_2() {
         pixelColor.threadOff();
     }
-
 
     //------------------------------------------------
 

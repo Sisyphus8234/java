@@ -1,9 +1,7 @@
 package custom;
 
 import addition.FunctionsAddition;
-import base.InputInfo;
-import base.ListenMouseKeyboard;
-import base.MyThread;
+import base.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -14,6 +12,9 @@ import static java.awt.event.InputEvent.*;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions野蛮人 extends Functions公共 {
+    static {
+        Config.prefix="野蛮人";
+    }
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = true;
     public static boolean 核心技能跳过条件 = false;
