@@ -1,12 +1,12 @@
 package base;
 
 import java.io.*;
-import java.util.Properties;
+import java.util.*;
 
 public class Config {
-
+    public static String prefix = "";
     public static String filePath = "custom/Config.properties";
-    private static Properties prop=new Properties();
+    private static Properties prop = new Properties();
 
     static {
         init();
@@ -22,22 +22,42 @@ public class Config {
     }
 
     public static String read(String s1) {
-        return read(s1,null);
+        return prop.getProperty(s1, null);
     }
 
-    public static String read(String s1,String defaultValue) {
-        return prop.getProperty(s1,defaultValue);
+    public static String readWithPrefix(String s1) {
+        s1 = prefix + s1;
+        return read(s1);
     }
 
-    public static void write(String s1,String s2) {
+
+    public static void write(String s1, String s2) {
 
         try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath)));
-            prop.setProperty(s1,s2);
-            prop.store(bw, null);
-            bw.close();
+            prop.setProperty(s1, s2);
+
+            Set<String> keys = prop.stringPropertyNames();
+
+            // 将键按照首字母排序
+            List<String> sortedKeys = new ArrayList<>(keys);
+            Collections.sort(sortedKeys);
+
+            // 手动写入属性到文件，保持顺序
+            try (Writer writer = new FileWriter(filePath, false)) { // 设置为 false 表示覆盖源文件
+                for (String key : sortedKeys) {
+                    String value = prop.getProperty(key);
+                    writer.write(key + "=" + value + "\n");
+                }
+            }
+
         } catch (Exception e) {
         }
 
     }
+
+    public static void writeWithPrefix(String s1, String s2) {
+        s1 = prefix + s1;
+        write(s1, s2);
+    }
+
 }
