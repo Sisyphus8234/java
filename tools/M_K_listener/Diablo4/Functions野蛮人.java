@@ -31,7 +31,8 @@ public class Functions野蛮人 extends Functions公共 {
     }
 
     public static boolean 判断核心技能怒气是否满足() {
-        return pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F || 核心技能跳过条件;
+//        return pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F || 核心技能跳过条件;
+        return pixelColor.getPixelColorHSB(1318, 950)[0] < 0.33F || 核心技能跳过条件;
 //        return pixelColor.getPixelColorHSB(1318, 940)[0] < 0.49F || 核心技能跳过条件;
 //        return pixelColor.getPixelColorHSB(1318, 975)[0] < 0.33F || 核心技能跳过条件;
 
@@ -61,7 +62,7 @@ public class Functions野蛮人 extends Functions公共 {
             while (true) {
                 if (b攻击移动 == true) {
 //                    if(b攻击移动1==false){
-//                    b攻击移动1 = true;
+
 //                        robot.keyPress(VK_G);
 //                        robot.mousePress(BUTTON1_DOWN_MASK);
 //                    }
@@ -71,6 +72,8 @@ public class Functions野蛮人 extends Functions公共 {
 //                        robot.keyPress(VK_G);
 //                    }
 
+
+                    b攻击移动1 = true;
                     if (v按下 == true) {
 
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
@@ -120,26 +123,28 @@ public class Functions野蛮人 extends Functions公共 {
 //                        robot.keyPress(VK_4);
 //                        robot.keyRelease(VK_4);
 //                    }
-//
 
 
-                    if (
-                            判断核心技能怒气是否满足_1() &&
-                                    是否核心技能) {
+//                    robot.keyRelease(VK_G);
 
-                        robot.keyPress(KeyEvent.VK_5);
+//                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    if (判断核心技能怒气是否满足()) {
+//                        robot.keyPress(VK_G);
                         robot.keyRelease(KeyEvent.VK_5);
+                        robot.keyPress(KeyEvent.VK_5);
+//                        robot.keyRelease(KeyEvent.VK_5);
+//                        robot.keyRelease(VK_G);
 
+                    } else {
+                        robot.keyRelease(KeyEvent.VK_5);
                     }
-
-
 
                     if (是否基础技能 == true) {
+
                         robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                         robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//                            robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
-
 
 
                 } else {
@@ -210,10 +215,10 @@ public class Functions野蛮人 extends Functions公共 {
     @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
     public static void 无干扰按键(InputInfo inputInfo) {
 
-        int value=inputInfo.value;
+        int value = inputInfo.value;
 
         if (inputInfo.value == VK_1) {
-            if (pixelColor1.getPixelColorHSB(805, 980)[1] < 0.1F) {
+            if (pixelColor1.getPixelColorHSB(805, 982)[2] < 0.15F) {
 //                if (pixelColor1.getPixelColorHSB(931, 981)[1] < 0.37F) {
 //                value=VK_2;
                 要按的key.add(VK_2);
@@ -222,13 +227,14 @@ public class Functions野蛮人 extends Functions公共 {
         }
 
         if (inputInfo.value == VK_2) {
-            if (pixelColor1.getPixelColorHSB(805, 980)[1] > 0.1F) {
+            if (pixelColor1.getPixelColorHSB(805, 982)[2] > 0.15F) {
 
-                value=VK_1;
+                value = VK_1;
             }
         }
 
         要按的key.add(value);
+        System.out.println(要按的key);
 
 
         b无干扰按键 = true;
