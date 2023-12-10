@@ -1,19 +1,18 @@
 package addition;
 
+import base.Config;
+import base.Controller;
 import base.IFunctions;
 import base.MyThread;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 import java.util.List;
 
 public class FunctionsAddition extends IFunctions {
@@ -30,14 +29,19 @@ public class FunctionsAddition extends IFunctions {
         }
 
         public boolean b = false;
-        public String folderName = "record";
+        public static String folderName = "record";
+
         public ArrayList<float[]> HSBList = new ArrayList<>();
         public int pixelXForThread0;
         public int pixelYForThread0;
         public StringBuilder stringBuilder = new StringBuilder();
         public Color pixelColor;
         public float[] pixelColorHSB;
+        public boolean active;
 
+
+        public static HSB activeHSB=new HSB();
+        public static HSB notActiveHSB=new HSB();
 
         public MyThread thread0 = new MyThread(MyThread.State.off) {
             @Override
@@ -65,14 +69,26 @@ public class FunctionsAddition extends IFunctions {
                         // 使用 Collections.sort() 进行排序
                         Collections.sort(HSBList, comparator);
 
+                        HSB hsb=new HSB();
+                        hsb.point=new Point(pixelXForThread0,pixelYForThread0);
+                        hsb.active=active;
+
                         stringBuilder.append("min and max of");
                         stringBuilder.append(" H: ").append("(").append(valueOfFormatFloat(HSBList.get(0)[0])).append(" ").append(valueOfFormatFloat(HSBList.get(HSBList.size() - 1)[0])).append(")");
+                        ArrayList<Float> minAndMaxOfH=new ArrayList<>(Arrays.asList(HSBList.get(0)[0],HSBList.get(HSBList.size() - 1)[0]));
+                        hsb.colorList.add(minAndMaxOfH);
+
                         Collections.sort(HSBList, comparator1);
                         stringBuilder.append(" S: ").append("(").append(valueOfFormatFloat(HSBList.get(0)[1])).append(" ").append(valueOfFormatFloat(HSBList.get(HSBList.size() - 1)[1])).append(")");
+                        ArrayList<Float> minAndMaxOfS=new ArrayList<>(Arrays.asList(HSBList.get(0)[1],HSBList.get(HSBList.size() - 1)[1]));
+                        hsb.colorList.add(minAndMaxOfS);
+
                         Collections.sort(HSBList, comparator2);
                         stringBuilder.append(" B: ").append("(").append(valueOfFormatFloat(HSBList.get(0)[2])).append(" ").append(valueOfFormatFloat(HSBList.get(HSBList.size() - 1)[2])).append(")");
-                        stringBuilder.append("\n");
+                        ArrayList<Float> minAndMaxOfB=new ArrayList<>(Arrays.asList(HSBList.get(0)[2],HSBList.get(HSBList.size() - 1)[2]));
+                        hsb.colorList.add(minAndMaxOfB);
 
+                        stringBuilder.append("\n");
 
                         // 将内容保存到文件
                         String fileName = folderName + "/" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd HHmmss")) + " (" + pixelXForThread0 + "," + pixelYForThread0 + ")" + ".txt";
@@ -84,6 +100,20 @@ public class FunctionsAddition extends IFunctions {
                         } catch (IOException e) {
                             System.out.println("errors occurred while saving the file: " + e.getMessage());
                         }
+
+
+
+
+
+                        if(active==true){
+                            activeHSB=hsb;
+                        }else {
+                            notActiveHSB=hsb;
+                        }
+
+
+
+                        result();
 
                         this.mySuspend();
                     }
@@ -119,85 +149,88 @@ public class FunctionsAddition extends IFunctions {
             b = false;
         }
 
+        public void result() {
+            if(Objects.equals(activeHSB.point,notActiveHSB.point)) {
+
+                String name = pixelXForThread0 + "," + pixelYForThread0 + ",";
+
+
+                for (int i = 0; i < activeHSB.colorList.size(); i++) {
+                    ResultClass resultClass = compareLists(activeHSB.colorList.get(i), notActiveHSB.colorList.get(i));
+                    String symbol = "";
+                    String average = "";
+                    if (resultClass.large == null) {
+
+                    } else if (resultClass.large) {
+                        symbol = "1";
+                        average = String.valueOf(resultClass.average);
+
+                    } else if (resultClass.large == false) {
+                        symbol = "-1";
+                        average = String.valueOf(resultClass.average);
+                    }
+                    Config.writeWithPrefix(name + i + ",symbol", symbol);
+
+
+                    Config.writeWithPrefix(name + i + ",average", average);
+
+                }
+            }
+
+
+
+
+
+
+
+        }
+
+        public static ResultClass compareLists(List<Float> a, List<Float> b) {
+            ResultClass resultClass=new ResultClass();
+
+            // 检查两个列表是否可比较
+            boolean aIsGreaterThanB = a.stream().allMatch(ai -> ai > b.get(0) && ai > b.get(1));
+            boolean bIsGreaterThanA = b.stream().allMatch(bi -> bi > a.get(0) && bi > a.get(1));
+
+            if (aIsGreaterThanB || bIsGreaterThanA) {
+                // 取大的列表的最小值和小的列表的最大值的平均值
+                double average = (Math.min(a.get(0), b.get(1)) + Math.max(a.get(1), b.get(0))) / 2.0;
+
+                // 判断哪个列表是大的
+                boolean aIsGreater = aIsGreaterThanB;
+
+                resultClass.average = (float) average;
+                resultClass.large=aIsGreater;
+
+                System.out.println("Min of larger list and max of smaller list average: " + average);
+
+                // 返回是哪个列表较大
+                return resultClass;
+            } else {
+
+                resultClass.large=null;
+                resultClass.average=null;
+                // 两个列表不可比较
+                return resultClass;
+            }
+        }
+
     }
 
-//    public static class TopLevelBoxDrawer {
-//        static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//        static int screenWidth = (int) screenSize.getWidth();
-//        static int screenHeight = (int) screenSize.getHeight();
-//
-//        public static JFrame frame = new JFrame("");
-//        ;
-//
-//        public static boolean show = false;
-//
-//        public static class Argument {
-//            public Color color;
-//            public float lineWidth;
-//            public double x;
-//            public double y;
-//            public double w;
-//            public double h;
-//        }
-//
-//        public static void createOutline(List<Argument> argumentList) {
-//            SwingUtilities.invokeLater(() -> {
-//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                frame.setSize(screenWidth, screenHeight);
-//                frame.setUndecorated(true); // 设置为无边框窗口
-//                frame.setAlwaysOnTop(true); // 设置为最上层窗口
-//                frame.setBackground(new Color(0, 0, 0, 0)); // 设置窗口背景透明
-//
-//                for (Argument argument : argumentList) {
-//                    JPanel panel = new JPanel() {
-//                        @Override
-//                        protected void paintComponent(Graphics g) {
-//                            super.paintComponent(g);
-//                            Graphics2D g2d = (Graphics2D) g;
-//                            g2d.setColor(argument.color);
-//                            g2d.setStroke(new BasicStroke(argument.lineWidth)); // 设置线宽
-//                            g2d.draw(new Rectangle2D.Double(argument.x, argument.y, argument.w, argument.h)); // 绘制红色线框
-//                        }
-//                    };
-//                    panel.setOpaque(false); // 设置面板背景透明
-//                    frame.add(panel);
-//                    System.out.println("222222222222222222");
-//                    System.out.println(argument.x);
-//                }
-//                frame.setVisible(true);
-//
-//                show = true;
-//            });
-//        }
-//
-//        public static void closeFrame() {
-//            frame.dispose();
-//            show = false;
-//        }
-//
-////        public static void aaa() {
-////            List<Argument> aaa=new ArrayList<>();
-////
-////            FunctionsAddition.TopLevelBoxDrawer.Argument argument=new FunctionsAddition.TopLevelBoxDrawer.Argument();
-////            argument.color=Color.RED;
-////            argument.x=1000;
-////            argument.y=850;
-////            argument.w=20;
-////            argument.h=20;
-////            argument.lineWidth=3;
-////            aaa.add(argument);
-////
-////            FunctionsAddition.TopLevelBoxDrawer.Argument argument1=new FunctionsAddition.TopLevelBoxDrawer.Argument();
-////            argument1.color=Color.RED;
-////            argument1.x=1200;
-////            argument1.y=850;
-////            argument1.w=20;
-////            argument1.h=20;
-////            argument1.lineWidth=3;
-////            aaa.add(argument1);
-////
-////            createOutline(aaa);
-////        }
-//    }
+
+    public static class HSB implements Serializable {
+        public Point point;
+        public boolean active;
+        public List<List<Float>> colorList=new ArrayList<>();
+
+    }
+
+    static class ResultClass {
+        public Boolean large;
+
+        public Float average;
+    }
+
+
 
 }
