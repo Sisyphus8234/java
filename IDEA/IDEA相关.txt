@@ -10,6 +10,9 @@ Ctrl+Shift+F9 重新编译？
 设置
 文件-设置-编辑器-常规-自动换行
 
+java17报错,虚拟机选项
+--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+
 
 插件
 Free MyBatis Tool
