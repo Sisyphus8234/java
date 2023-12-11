@@ -29,7 +29,7 @@ import static base.IFunctions.pause;
 import static java.awt.event.KeyEvent.VK_SPACE;
 
 public class 筛选装备 {
-    public static String modelPath = Config.read("modelPath");
+    public static String modelPath = Config.read("model_path");
     public static StringBuilder output = new StringBuilder();
     public static List<当前装备信息> list = new ArrayList<>();
     public static int 左线 = 1270;

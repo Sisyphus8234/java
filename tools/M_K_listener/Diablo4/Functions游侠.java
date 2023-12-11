@@ -14,7 +14,7 @@ import static java.awt.event.KeyEvent.*;
 
 public class Functions游侠 extends Functions公共 {
 
-//    public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
+//    public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
     public static Long baseDelay = 150L;
 
 
