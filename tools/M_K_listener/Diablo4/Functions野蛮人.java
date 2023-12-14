@@ -13,8 +13,9 @@ import static java.awt.event.KeyEvent.*;
 
 public class Functions野蛮人 extends Functions公共 {
     static {
-        Config.prefix="野蛮人";
+        Config.prefix = "野蛮人";
     }
+
     public static boolean 是否基础技能 = true;
     public static boolean 是否核心技能 = true;
     public static boolean 核心技能跳过条件 = false;
@@ -229,13 +230,10 @@ public class Functions野蛮人 extends Functions公共 {
 
         if (inputInfo.value == VK_2) {
             if (pixelColor1.getPixelColorHSB(805, 982)[2] > 0.15F) {
-
                 value = VK_1;
             }
         }
-
         要按的key.add(value);
-        System.out.println(要按的key);
 
 
         b无干扰按键 = true;
