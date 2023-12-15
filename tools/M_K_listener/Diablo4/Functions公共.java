@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -515,20 +516,32 @@ public class Functions公共 extends IFunctions {
 
 
     public static DisplayImageOnTop displayImageOnTop;
+    public static boolean 图片状态 = false;
     public static boolean 是否打开图片 = false;
 
+
+    public static String 图片路径=Config.read("top_picture_path");
     @ListenMouseKeyboard(note = "H", value = 72, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 打开半透明图片() {
         if (是否打开图片 == false) {
-
-            displayImageOnTop=new DisplayImageOnTop(new Point(0, 0), 1F);
-//                displayImageOnTop.openImage(path);
-            displayImageOnTop.openImage("custom/图片.png");
-            是否打开图片 = true;
-
+            是否打开图片=true;
         } else {
-            displayImageOnTop.closeWindow();
-            是否打开图片 = false;
+            是否打开图片=false;
+        }
+    }
+
+    @ListenMouseKeyboard(note = "d", value = 68, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 打开半透明图片_1() {
+        if (是否打开图片==true&&图片状态 == false) {
+            displayImageOnTop=new DisplayImageOnTop(new Point(0, 0), 1F);
+            System.out.println(图片路径);
+            displayImageOnTop.openImage(图片路径);
+            图片状态 = true;
+        } else {
+            if(!Objects.isNull(displayImageOnTop)) {
+                displayImageOnTop.closeWindow();
+            }
+            图片状态 = false;
         }
     }
 
