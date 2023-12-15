@@ -293,9 +293,9 @@ public class Functions公共 extends IFunctions {
                     } else if (b自动喝药2 == true) {
                         if (pixelColor.getPixelColorHSB(625, 950)[1] < 0.5F) {
                             if (LocalDateTime.now().getSecond() - localDateTime.getSecond() < 0) {
-                                System.out.println(LocalDateTime.now().getSecond() - localDateTime.getSecond());
-                                System.out.println(LocalDateTime.now());
-                                System.out.println(localDateTime);
+//                                System.out.println(LocalDateTime.now().getSecond() - localDateTime.getSecond());
+//                                System.out.println(LocalDateTime.now());
+//                                System.out.println(localDateTime);
                             }
                             if (Duration.between(localDateTime, LocalDateTime.now()).toMillis() > 5000) {
                                 robot.keyRelease(VK_0);
@@ -534,7 +534,6 @@ public class Functions公共 extends IFunctions {
     public static void 打开半透明图片_1() {
         if (是否打开图片==true&&图片状态 == false) {
             displayImageOnTop=new DisplayImageOnTop(new Point(0, 0), 1F);
-            System.out.println(图片路径);
             displayImageOnTop.openImage(图片路径);
             图片状态 = true;
         } else {
