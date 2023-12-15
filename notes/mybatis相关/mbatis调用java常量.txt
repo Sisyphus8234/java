@@ -1,0 +1,1 @@
+'${@com.dftx.stock.service.impl.xxx类$xxx内部类@某属性}'
