@@ -1,8 +1,5 @@
 package custom;
-import base.Config;
-import base.IFunctions;
-import base.ListenMouseKeyboard;
-import base.MyThread;
+import base.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -11,18 +8,17 @@ import java.util.Date;
 
 import static java.awt.event.KeyEvent.*;
 
-class MainClass extends base.MainClass {}
+class MainClass extends base.MainClass {
+
+}
 
 public class Functions extends IFunctions {
-    public static Long baseDelay = Long.parseLong(Config.read("BaseDelay"));
+    static {
+//        Controller.printKey=true;
+    }
+    public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
     public static boolean temp1 = false;
     public static boolean temp2 = false;
-    public static boolean 波浪键按住 = false;
-    public static boolean 波浪键按住期间做了什么 = false;
-    public static boolean 波浪键功能执行了 = false;
-    public static Integer 切换次数 = 0;
-    public static int y1 = 0;
-    public static int y2 = 0;
     public static boolean t3Temp = false;
     public static MyThread t1;
     public static MyThread t2;
@@ -42,7 +38,7 @@ public class Functions extends IFunctions {
 
     public static Point point = new Point();
 
-    public static int WhichProgram = Integer.parseInt(Config.read("WhichProgram"));
+    public static int WhichProgram = Integer.parseInt(Config.read("which_program"));
 
     static {
 
@@ -196,7 +192,9 @@ public class Functions extends IFunctions {
 
     }
 
-
+    public static boolean 波浪键按住 = false;
+    public static boolean 波浪键按住期间做了什么 = false;
+    public static Integer 切换次数 = 0;
     @ListenMouseKeyboard(note = "`",value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 波浪键0() {
         波浪键按住期间做了什么 = false;
@@ -219,9 +217,44 @@ public class Functions extends IFunctions {
 //            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
 //            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
         }
-
-
     }
+
+
+    public static float screenScale= Float.parseFloat(Config.read("screen_scale"));
+    @ListenMouseKeyboard(note="q",value = 81, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void q(InputInfo inputInfo) {
+        tempQW(new Point(845,418),inputInfo);
+    }
+
+    @ListenMouseKeyboard(note="w",value = 87, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void w(InputInfo inputInfo) {
+        tempQW(new Point(845,498),inputInfo);
+    }
+
+    public static void tempQW(Point point,InputInfo inputInfo){
+        波浪键按住期间做了什么=true;
+        if(波浪键按住==true){
+            robot.keyPress(VK_WINDOWS);
+            robot.keyPress(VK_1);
+            robot.keyRelease(VK_1);
+            robot.keyRelease(VK_WINDOWS);
+
+            robot.mouseMove((int) (point.x/screenScale), (int) (point.y/screenScale));
+            pause(100L);
+            robot.mousePress(BUTTON1_DOWN_MASK);
+            robot.mouseRelease(BUTTON1_DOWN_MASK);
+            pause(100L);
+
+            robot.keyPress(VK_WINDOWS);
+            robot.keyPress(VK_1);
+            robot.keyRelease(VK_1);
+            robot.keyRelease(VK_WINDOWS);
+        }else {
+            robot.keyPress(inputInfo.value);
+        }
+    }
+
+
 
 
     @ListenMouseKeyboard(value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
