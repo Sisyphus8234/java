@@ -19,6 +19,7 @@ Free MyBatis Tool
 JRebel and XRebel
 POJO to JSON
 String Manipulation
+EasyCode
 
 Key Promoter X
 
