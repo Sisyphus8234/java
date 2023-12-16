@@ -69,11 +69,20 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
                 当前装备情况.筛选哪些.add(筛选装备.筛选哪些_枚举.必须词缀);
 
                 当前装备情况.筛选哪些.add(筛选装备.筛选哪些_枚举.需求词缀);
-                if (extractedText.contains("双手剑")) {
-                    当前装备情况.需求词缀数量_目标 = 3;
-                } else {
-                    当前装备情况.需求词缀数量_目标 = 4;
+                for (String extractedText1 : 当前装备情况.是词缀的部分_筛选结果) {
+                    if (extractedText1.contains("双手剑")) {
+                        当前装备情况.需求词缀数量_目标 = 3;
+                    } else {
+                        当前装备情况.需求词缀数量_目标 = 4;
+                    }
+                    if (!extractedText1.contains("双手")&&(extractedText1.contains("斧")||extractedText1.contains("剑")||extractedText1.contains("锤"))) {
+                        当前装备情况.必须词缀_目标.remove("全属性");
+                        当前装备情况.必须词缀_目标.add("意力");
+                    }
                 }
+
+
+
                 break;
             }
 //            else if (extractedText.contains("双手锤")) {

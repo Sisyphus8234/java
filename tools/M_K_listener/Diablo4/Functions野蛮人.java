@@ -13,7 +13,7 @@ import static java.awt.event.KeyEvent.*;
 
 public class Functions野蛮人 extends Functions公共 {
     static {
-        Config.prefix = "野蛮人";
+        Config.prefix = "ye_man_ren";
     }
 
     public static boolean 是否基础技能 = true;
@@ -79,7 +79,7 @@ public class Functions野蛮人 extends Functions公共 {
                     if (v按下 == true) {
 
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
-
+                        robot.keyRelease(VK_5);
 
                         pause(BaseDelay);
                         continue;

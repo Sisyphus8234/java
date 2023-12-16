@@ -392,10 +392,10 @@ public class Functions公共 extends IFunctions {
     @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色(InputInfo inputInfo) {
-        if(inputInfo.value==VK_F7){
-            pixelColor.active=true;
-        }else if(inputInfo.value==VK_F8){
-            pixelColor.active=false;
+        if (inputInfo.value == VK_F7) {
+            pixelColor.active = true;
+        } else if (inputInfo.value == VK_F8) {
+            pixelColor.active = false;
         }
 
 
@@ -520,31 +520,42 @@ public class Functions公共 extends IFunctions {
     public static boolean 是否打开图片 = false;
 
 
-    public static String 图片路径=Config.read("top_picture_path");
+    public static String 图片路径 = Config.read("top_picture_path");
+
     @ListenMouseKeyboard(note = "H", value = 72, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 打开半透明图片() {
         if (是否打开图片 == false) {
-            是否打开图片=true;
+            是否打开图片 = true;
         } else {
-            是否打开图片=false;
+            是否打开图片 = false;
         }
     }
 
-    @ListenMouseKeyboard(note = "d", value = 68, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 打开半透明图片_1() {
-        if (是否打开图片==true&&图片状态 == false) {
-            displayImageOnTop=new DisplayImageOnTop(new Point(0, 0), 1F);
-            displayImageOnTop.openImage(图片路径);
-            图片状态 = true;
+
+    @ListenMouseKeyboard(note = "s", intercept = true, value = 83, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 打开半透明图片_1(InputInfo inputInfo) {
+        if (是否打开图片 == true) {
+
+            if (图片状态 == false) {
+                displayImageOnTop = new DisplayImageOnTop(new Point(0, 0), 1F);
+                displayImageOnTop.openImage(图片路径);
+                图片状态=true;
+            } else {
+                if (!Objects.isNull(displayImageOnTop)) {
+                    displayImageOnTop.closeWindow();
+                }
+                图片状态=false;
+            }
+
+
         } else {
-            if(!Objects.isNull(displayImageOnTop)) {
+            robot.keyPress(inputInfo.value);
+            if (!Objects.isNull(displayImageOnTop)) {
                 displayImageOnTop.closeWindow();
             }
-            图片状态 = false;
+
         }
     }
-
-
 
 
 }
