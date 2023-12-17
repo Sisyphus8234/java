@@ -221,14 +221,25 @@ public class Functions extends IFunctions {
 
 
     public static float screenScale= Float.parseFloat(Config.read("screen_scale"));
+    public static int screenWidth= Integer.parseInt(Config.read("screen_width"));
+    public static int screenHeight= Integer.parseInt(Config.read("screen_height"));
+    public static float clash0XPersent= Float.parseFloat(Config.read("clash_0_x_percent"));
+    public static float clash0YPersent= Float.parseFloat(Config.read("clash_0_y_percent"));
+    public static float clash1YPersent= Float.parseFloat(Config.read("clash_1_y_percent"));
+
+    public static int clash0X= (int) (screenWidth*clash0XPersent/screenScale);
+    public static int clash0Y= (int) (screenHeight*clash0YPersent/screenScale);
+    public static int clash1Y= (int) (screenHeight*clash1YPersent/screenScale);
+
+
     @ListenMouseKeyboard(note="q",value = 81, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void q(InputInfo inputInfo) {
-        tempQW(new Point(845,418),inputInfo);
+        tempQW(new Point(clash0X,clash0Y),inputInfo);
     }
 
     @ListenMouseKeyboard(note="w",value = 87, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w(InputInfo inputInfo) {
-        tempQW(new Point(845,498),inputInfo);
+        tempQW(new Point(clash0X,clash1Y),inputInfo);
     }
 
     public static void tempQW(Point point,InputInfo inputInfo){
@@ -239,7 +250,7 @@ public class Functions extends IFunctions {
             robot.keyRelease(VK_1);
             robot.keyRelease(VK_WINDOWS);
 
-            robot.mouseMove((int) (point.x/screenScale), (int) (point.y/screenScale));
+            robot.mouseMove((int) (point.x), (int) (point.y));
             pause(100L);
             robot.mousePress(BUTTON1_DOWN_MASK);
             robot.mouseRelease(BUTTON1_DOWN_MASK);
