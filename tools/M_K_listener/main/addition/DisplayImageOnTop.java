@@ -12,6 +12,7 @@ public class DisplayImageOnTop {
     public JLabel label;
     public ImageIcon imageIcon;
     public Image image;
+    public Image scaledImage;
 
     public static long lastModified = 0L;  // 记录上次读取图片的文件修改时间
     public Point location = new Point(0, 0);
@@ -47,18 +48,15 @@ public class DisplayImageOnTop {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            imageIcon = new ImageIcon(image);
-
-
+            scaledImage = image.getScaledInstance((int) (imageSize.x * scale), (int) (imageSize.y * scale), Image.SCALE_SMOOTH);
+            imageIcon = new ImageIcon(scaledImage);
         }
         lastModified = imageFile.lastModified();
-
         run();
-
     }
 
     public void changeImageScale() {
-        Image scaledImage = image.getScaledInstance((int) (imageSize.x * scale), (int) (imageSize.y * scale), Image.SCALE_SMOOTH);
+        scaledImage = image.getScaledInstance((int) (imageSize.x * scale), (int) (imageSize.y * scale), Image.SCALE_SMOOTH);
 
         imageIcon = new ImageIcon(scaledImage);
 
@@ -83,7 +81,9 @@ public class DisplayImageOnTop {
         g2d.setColor(Color.RED);
         g2d.fillOval(point.x,point.y, 20, 20);
         g2d.dispose();
-        imageIcon = new ImageIcon(image);
+
+        scaledImage = image.getScaledInstance((int) (imageSize.x * scale), (int) (imageSize.y * scale), Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(scaledImage);
         run();
     }
 

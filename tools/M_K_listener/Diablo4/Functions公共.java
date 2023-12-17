@@ -543,7 +543,7 @@ public class Functions公共 extends IFunctions {
     public static void 涂改(InputInfo inputInfo) {
         if (是否打开图片 == true) {
             Point mouse=MouseInfo.getPointerInfo().getLocation();
-            displayImageOnTop.draw(new Point(mouse.x - displayImageOnTop.location.x, mouse.y - displayImageOnTop.location.y));
+            displayImageOnTop.draw(new Point((int) ((mouse.x - displayImageOnTop.location.x)/displayImageOnTop.scale), (int) ((mouse.y - displayImageOnTop.location.y)/displayImageOnTop.scale)));
 
         } else {
             robot.keyPress(inputInfo.value);
