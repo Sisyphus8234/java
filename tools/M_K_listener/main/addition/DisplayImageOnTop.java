@@ -1,21 +1,26 @@
 package addition;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 
 public class DisplayImageOnTop {
 
-    private JFrame frame;
-    private JLabel imageLabel;
+    public JFrame frame;
+    public JLabel label;
+    public ImageIcon imageIcon;
+    public Image image;
 
-    public static long lastModified;  // 记录上次读取图片的文件修改时间
-    public static ImageIcon imageIcon;
+    public static long lastModified = 0L;  // 记录上次读取图片的文件修改时间
+    public Point location = new Point(0, 0);
+    public float opacity = 1F;
+    public String imagePath;
+    public double scale = 1D;
+    public Point imageSize = new Point();
 
-    public DisplayImageOnTop(Point locatin, float opacity) {
-
+    public void newPicture() {
         frame = new JFrame("Transparent Image Window");
         frame.setType(Window.Type.UTILITY);
 
@@ -24,59 +29,83 @@ public class DisplayImageOnTop {
 
         frame.setAlwaysOnTop(true);
 
-        frame.setLocation(locatin);
-
-        frame.setOpacity(opacity);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-
-        imageLabel = new JLabel();
-        frame.getContentPane().add(imageLabel);
+        label = new JLabel();
+        frame.getContentPane().add(label);
 
         frame.setVisible(true);
     }
 
-    public void openImage(String imagePath) {
-
+    public void openImage() {
         File imageFile = new File(imagePath);
+        if (imageFile.lastModified() != lastModified) {
+            try {
+                image = ImageIO.read(imageFile);
+                imageSize.x=image.getWidth(null);
+                imageSize.y=image.getHeight(null);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            imageIcon = new ImageIcon(image);
 
 
-
-
-        if (imageFile.lastModified() == lastModified) {
-
-        }else {
-            imageIcon = createImageIcon(imagePath);
         }
-
-
-
-
-        imageLabel.setIcon(imageIcon);
-
-        // 设置窗口大小为图片尺寸
-        frame.setSize(imageIcon.getIconWidth(), imageIcon.getIconHeight());
-
         lastModified = imageFile.lastModified();
 
-
+        run();
 
     }
 
-    private ImageIcon createImageIcon(String imagePath) {
-        // 禁用图片缓存
-        Image image = Toolkit.getDefaultToolkit().createImage(imagePath);
-        return new ImageIcon(image);
+    public void changeImageScale() {
+        Image scaledImage = image.getScaledInstance((int) (imageSize.x * scale), (int) (imageSize.y * scale), Image.SCALE_SMOOTH);
+
+        imageIcon = new ImageIcon(scaledImage);
+
+        run();
     }
+
+    public void run(){
+
+        label.setIcon(imageIcon);
+
+
+        frame.setSize(label.getIcon().getIconWidth(), label.getIcon().getIconHeight());
+
+
+        frame.setLocation(location);
+        frame.setOpacity(opacity);
+    }
+
+    public void draw(Point point){
+        // 在原图上绘制圆圈
+        Graphics2D g2d = (Graphics2D) image.getGraphics();
+        g2d.setColor(Color.RED);
+        g2d.fillOval(point.x,point.y, 20, 20);
+        g2d.dispose();
+        imageIcon = new ImageIcon(image);
+        run();
+    }
+
 
     public void closeImage() {
-        imageLabel.setIcon(null);
-        frame.setOpacity(1.0f);
+        label.setIcon(null);
+        frame.setOpacity(0f);
     }
 
     public void closeWindow() {
         frame.dispose();
     }
 
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            DisplayImageOnTop displayImageOnTop = new DisplayImageOnTop();
+//
+//
+//            displayImageOnTop.imagePath = "custom/top_pic.png";
+//            displayImageOnTop.scale=2D;
+//            displayImageOnTop.openImage();
+////            displayImageOnTop.changeImageScale();
+//        });
+//    }
 }

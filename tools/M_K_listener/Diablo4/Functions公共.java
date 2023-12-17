@@ -4,6 +4,7 @@ import addition.DisplayImageOnTop;
 import addition.FunctionsAddition;
 import base.*;
 
+import javax.xml.stream.Location;
 import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Functions公共 extends IFunctions {
     }
 
     public static long BaseDelay = 200L;
+    public static long bigDelay = 500L;
     public static boolean b攻击移动 = false;
     public static boolean b攻击移动1 = false;
 
@@ -76,7 +78,7 @@ public class Functions公共 extends IFunctions {
                 }
 
 
-                pause(BaseDelay);
+                pause(bigDelay);
 
             }
         }
@@ -515,12 +517,18 @@ public class Functions公共 extends IFunctions {
     }
 
 
-    public static DisplayImageOnTop displayImageOnTop;
+    public static DisplayImageOnTop displayImageOnTop = new DisplayImageOnTop();
     public static boolean 图片状态 = false;
     public static boolean 是否打开图片 = false;
 
 
     public static String 图片路径 = Config.read("top_picture_path");
+
+    static {
+        displayImageOnTop.scale = Float.parseFloat(Config.read("scale"));
+    }
+
+    public static Point 图片标记点 = new Point(0, 0);
 
     @ListenMouseKeyboard(note = "H", value = 72, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 打开半透明图片() {
@@ -531,23 +539,70 @@ public class Functions公共 extends IFunctions {
         }
     }
 
+    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 涂改(InputInfo inputInfo) {
+        if (是否打开图片 == true) {
+            Point mouse=MouseInfo.getPointerInfo().getLocation();
+            displayImageOnTop.draw(new Point((int) (mouse.x - displayImageOnTop.location.x),(int) (mouse.y - displayImageOnTop.location.y)));
+
+        } else {
+            robot.keyPress(inputInfo.value);
+        }
+    }
+
+    @ListenMouseKeyboard(note = "a", intercept = true, value = 65, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 标记点(InputInfo inputInfo) {
+        if (是否打开图片 == true) {
+            Point mouse=MouseInfo.getPointerInfo().getLocation();
+            图片标记点.x = (int) ((mouse.x - displayImageOnTop.location.x) / displayImageOnTop.scale);
+            图片标记点.y = (int) ((mouse.y - displayImageOnTop.location.y) / displayImageOnTop.scale);
+        } else {
+            robot.keyPress(inputInfo.value);
+        }
+    }
+
+    @ListenMouseKeyboard(note = "↑", intercept = true, value = 38, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "↓", intercept = true, value = 40, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 缩放(InputInfo inputInfo) {
+        double 幅度 = 0.01D;
+        if (inputInfo.value == 40) {
+            displayImageOnTop.scale = displayImageOnTop.scale - 幅度;
+        } else {
+            displayImageOnTop.scale = displayImageOnTop.scale + 幅度;
+        }
+        System.out.println(displayImageOnTop.scale);
+        Config.write("scale", String.valueOf(displayImageOnTop.scale));
+
+
+        displayImageOnTop.changeImageScale();
+    }
+
 
     @ListenMouseKeyboard(note = "s", intercept = true, value = 83, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 打开半透明图片_1(InputInfo inputInfo) {
         if (是否打开图片 == true) {
-
             if (图片状态 == false) {
-                displayImageOnTop = new DisplayImageOnTop(new Point(0, 0), 1F);
-                displayImageOnTop.openImage(图片路径);
-                图片状态=true;
+
+                displayImageOnTop.newPicture();
+
+                displayImageOnTop.location.x = (int) (MouseInfo.getPointerInfo().getLocation().x - 图片标记点.x * displayImageOnTop.scale);
+                displayImageOnTop.location.y = (int) (MouseInfo.getPointerInfo().getLocation().y - 图片标记点.y * displayImageOnTop.scale);
+
+
+                displayImageOnTop.imagePath = 图片路径;
+
+                displayImageOnTop.opacity = 0.7F;
+
+
+                displayImageOnTop.openImage();
+
+                图片状态 = true;
             } else {
                 if (!Objects.isNull(displayImageOnTop)) {
                     displayImageOnTop.closeWindow();
                 }
-                图片状态=false;
+                图片状态 = false;
             }
-
-
         } else {
             robot.keyPress(inputInfo.value);
             if (!Objects.isNull(displayImageOnTop)) {
