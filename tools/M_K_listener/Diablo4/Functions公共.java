@@ -525,7 +525,7 @@ public class Functions公共 extends IFunctions {
     public static String 图片路径 = Config.read("top_picture_path");
 
     static {
-        displayImageOnTop.scale = Float.parseFloat(Config.read("scale"));
+        displayImageOnTop.scale = Double.parseDouble((Config.read("scale")));
     }
 
     public static Point 图片标记点 = new Point(0, 0);
@@ -543,7 +543,7 @@ public class Functions公共 extends IFunctions {
     public static void 涂改(InputInfo inputInfo) {
         if (是否打开图片 == true) {
             Point mouse=MouseInfo.getPointerInfo().getLocation();
-            displayImageOnTop.draw(new Point((int) (mouse.x - displayImageOnTop.location.x),(int) (mouse.y - displayImageOnTop.location.y)));
+            displayImageOnTop.draw(new Point(mouse.x - displayImageOnTop.location.x, mouse.y - displayImageOnTop.location.y));
 
         } else {
             robot.keyPress(inputInfo.value);
