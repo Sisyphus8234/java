@@ -16,7 +16,7 @@ class MainClass extends base.MainClass {
 
 public class Functions extends IFunctions {
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
     }
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
