@@ -253,6 +253,9 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "tab", value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void tab(InputInfo inputInfo) {
         tab按下 = true;
+        if(tab期间做了什么==false){
+            robot.keyPress(inputInfo.value);
+        }
     }
 
     @ListenMouseKeyboard(note = "tab", value = 9, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
