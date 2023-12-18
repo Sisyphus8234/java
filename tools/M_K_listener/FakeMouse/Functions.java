@@ -16,7 +16,7 @@ class MainClass extends base.MainClass {
 
 public class Functions extends IFunctions {
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
     }
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
@@ -199,7 +199,7 @@ public class Functions extends IFunctions {
     public static boolean 波浪键按住期间做了什么 = false;
     public static Integer 切换次数 = 0;
 
-    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 500L)
     public static void 波浪键0() {
         波浪键按住期间做了什么 = false;
         波浪键按住 = true;
@@ -247,20 +247,29 @@ public class Functions extends IFunctions {
     }
 
 
-    public static boolean tab期间做了什么 = false;
-    public static boolean tab按下 = false;
+    public static boolean 斜杠期间做了什么 = false;
+    public static boolean 斜杠按下 = false;
 
-    @ListenMouseKeyboard(note = "tab", value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void tab(InputInfo inputInfo) {
-        tab按下 = true;
-        if(tab期间做了什么==false){
-            robot.keyPress(inputInfo.value);
+    @ListenMouseKeyboard(note = "d", value = 68, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 500L)
+    public static void test(InputInfo inputInfo) {
+    }
+
+
+    @ListenMouseKeyboard(note = "/", value = 191, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 500L)
+    public static void 斜杠(InputInfo inputInfo) {
+        if(斜杠按下 ==false) {
+            斜杠期间做了什么 = false;
+            斜杠按下 = true;
         }
     }
 
-    @ListenMouseKeyboard(note = "tab", value = 9, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void tab_1(InputInfo inputInfo) {
-        tab按下 = false;
+    @ListenMouseKeyboard(note = "/", value = 191,intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 斜杠_1(InputInfo inputInfo) {
+        斜杠按下 = false;
+        if(斜杠期间做了什么 ==false){
+            robot.keyPress(VK_DIVIDE);
+            robot.keyRelease(VK_DIVIDE);
+        }
     }
 
     @ListenMouseKeyboard(note = "q", value = 81, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -275,7 +284,7 @@ public class Functions extends IFunctions {
 
     public static void tempQW(InputInfo inputInfo) {
         波浪键按住期间做了什么 = true;
-        tab期间做了什么 = true;
+        斜杠期间做了什么 = true;
         if (波浪键按住 == true) {
             switch (inputInfo.value) {
                 case VK_Q:
@@ -300,7 +309,7 @@ public class Functions extends IFunctions {
             robot.keyPress(VK_1);
             robot.keyRelease(VK_1);
             robot.keyRelease(VK_WINDOWS);
-        } else if (tab按下 == true) {
+        } else if (斜杠按下 == true) {
             Point mouse = MouseInfo.getPointerInfo().getLocation();
 
             switch (inputInfo.value) {
