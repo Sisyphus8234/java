@@ -199,7 +199,7 @@ public class Functions extends IFunctions {
     public static boolean 波浪键按住期间做了什么 = false;
     public static Integer 切换次数 = 0;
 
-    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 500L)
+    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
         波浪键按住期间做了什么 = false;
         波浪键按住 = true;
@@ -246,27 +246,20 @@ public class Functions extends IFunctions {
         }
     }
 
-
     public static boolean 斜杠期间做了什么 = false;
     public static boolean 斜杠按下 = false;
-
-    @ListenMouseKeyboard(note = "d", value = 68, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 500L)
-    public static void test(InputInfo inputInfo) {
-    }
-
-
-    @ListenMouseKeyboard(note = "/", value = 191, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 500L)
+    @ListenMouseKeyboard(note = "/", value = 191, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 斜杠(InputInfo inputInfo) {
-        if(斜杠按下 ==false) {
+        if (斜杠按下 == false) {
             斜杠期间做了什么 = false;
             斜杠按下 = true;
         }
     }
 
-    @ListenMouseKeyboard(note = "/", value = 191,intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "/", value = 191, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 斜杠_1(InputInfo inputInfo) {
         斜杠按下 = false;
-        if(斜杠期间做了什么 ==false){
+        if (斜杠期间做了什么 == false) {
             robot.keyPress(VK_DIVIDE);
             robot.keyRelease(VK_DIVIDE);
         }
