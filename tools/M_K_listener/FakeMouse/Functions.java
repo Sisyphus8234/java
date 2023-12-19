@@ -293,10 +293,10 @@ public class Functions extends IFunctions {
             robot.keyRelease(VK_WINDOWS);
 
             robot.mouseMove((int) (point.x), (int) (point.y));
-            pause(100L);
+            pause(150L);
             robot.mousePress(BUTTON1_DOWN_MASK);
             robot.mouseRelease(BUTTON1_DOWN_MASK);
-            pause(100L);
+            pause(150L);
 
             robot.keyPress(VK_WINDOWS);
             robot.keyPress(VK_1);
