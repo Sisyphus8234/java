@@ -17,3 +17,9 @@ D:\maven\apache-maven-3.8.1
 
 Path添加
 %MAVEN_HOME%\bin\
+
+java快捷方式位置
+C:\Program Files (x86)\Common Files\Oracle\Java
+java.exe
+javac.exe
+javaw.exe

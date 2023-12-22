@@ -16,7 +16,7 @@ class MainClass extends base.MainClass {
 
 public class Functions extends IFunctions {
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
     }
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
@@ -246,22 +246,22 @@ public class Functions extends IFunctions {
         }
     }
 
-    public static boolean 斜杠期间做了什么 = false;
-    public static boolean 斜杠按下 = false;
-    @ListenMouseKeyboard(note = "/", value = 191, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    public static void 斜杠(InputInfo inputInfo) {
-        if (斜杠按下 == false) {
-            斜杠期间做了什么 = false;
-            斜杠按下 = true;
+    public static boolean prtsc期间做了什么 = false;
+    public static boolean prtsc按下 = false;
+    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void prtsc(InputInfo inputInfo) {
+        if (prtsc按下 == false) {
+            prtsc期间做了什么 = false;
+            prtsc按下 = true;
         }
     }
 
-    @ListenMouseKeyboard(note = "/", value = 191, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 斜杠_1(InputInfo inputInfo) {
-        斜杠按下 = false;
-        if (斜杠期间做了什么 == false) {
-            robot.keyPress(VK_DIVIDE);
-            robot.keyRelease(VK_DIVIDE);
+    @ListenMouseKeyboard(note = "/", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void prtsc_1(InputInfo inputInfo) {
+        prtsc按下 = false;
+        if (prtsc期间做了什么 == false) {
+            robot.keyPress(VK_PRINTSCREEN);
+            robot.keyRelease(VK_PRINTSCREEN);
         }
     }
 
@@ -277,7 +277,7 @@ public class Functions extends IFunctions {
 
     public static void tempQW(InputInfo inputInfo) {
         波浪键按住期间做了什么 = true;
-        斜杠期间做了什么 = true;
+        prtsc期间做了什么 = true;
         if (波浪键按住 == true) {
             switch (inputInfo.value) {
                 case VK_Q:
@@ -302,7 +302,7 @@ public class Functions extends IFunctions {
             robot.keyPress(VK_1);
             robot.keyRelease(VK_1);
             robot.keyRelease(VK_WINDOWS);
-        } else if (斜杠按下 == true) {
+        } else if (prtsc按下 == true) {
             Point mouse = MouseInfo.getPointerInfo().getLocation();
 
             switch (inputInfo.value) {
