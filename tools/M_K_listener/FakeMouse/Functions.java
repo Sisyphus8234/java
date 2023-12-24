@@ -1,12 +1,17 @@
 package custom;
 
+import addition.JsonUtils;
 import base.*;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -27,10 +32,6 @@ public class Functions extends IFunctions {
     public static MyThread t2;
     public static MyThread t3;
     public static MyThread t4;
-
-
-    public static int x = Integer.parseInt(Config.read("x"));
-    public static int y = Integer.parseInt(Config.read("y"));
 
     public static boolean 滚轮变成左键 = true;
     public static boolean ctrl按下 = false;
@@ -223,26 +224,17 @@ public class Functions extends IFunctions {
         }
     }
 
-    public static double scaleX;
-    public static double scaleY;
-    public static Point clash0 = new Point(0, 0);
 
-    public static Point clash1 = new Point(0, 0);
-
+    //--clash
+    public static String clashPointMapName = "clashPointMap";
+    public static HashMap<String,Point> clashPointMap;
     static {
-        GraphicsConfiguration asdf = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-
-        AffineTransform asfd2 = asdf.getDefaultTransform();
-
-        scaleX = asfd2.getScaleX();
-        scaleY = asfd2.getScaleY();
-
         try {
-            clash0 = new Point(Integer.parseInt(Config.read("clash_0").split(",")[0]), Integer.parseInt(Config.read("clash_0").split(",")[1]));
-            clash1 = new Point(Integer.parseInt(Config.read("clash_1").split(",")[0]), Integer.parseInt(Config.read("clash_1").split(",")[1]));
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            TypeReference<HashMap<String, Point>> typeReference = new TypeReference<HashMap<String, Point>>() {};
+            clashPointMap = JsonUtils.readJsonFile(clashPointMapName, typeReference);
+            System.out.println(1);
+        } catch (IOException e) {
+            clashPointMap=new HashMap<>();
         }
     }
 
@@ -267,32 +259,30 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "q", value = 81, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void q(InputInfo inputInfo) {
-        tempQW(inputInfo);
+        clash(inputInfo);
     }
 
     @ListenMouseKeyboard(note = "w", value = 87, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void w(InputInfo inputInfo) {
-        tempQW(inputInfo);
+        clash(inputInfo);
     }
 
-    public static void tempQW(InputInfo inputInfo) {
+    public static void clash(InputInfo inputInfo) {
         波浪键按住期间做了什么 = true;
         prtsc期间做了什么 = true;
         if (波浪键按住 == true) {
-            switch (inputInfo.value) {
-                case VK_Q:
-                    point = clash0;
-                    break;
-                case VK_W:
-                    point = clash1;
-                    break;
-            }
+
             robot.keyPress(VK_WINDOWS);
             robot.keyPress(VK_1);
             robot.keyRelease(VK_1);
             robot.keyRelease(VK_WINDOWS);
 
-            robot.mouseMove((int) (point.x), (int) (point.y));
+
+            Point clashPoint=clashPointMap.get(String.valueOf(inputInfo.value));
+
+
+
+            robot.mouseMove((int) (clashPoint.x), (int) (clashPoint.y));
             pause(150L);
             robot.mousePress(BUTTON1_DOWN_MASK);
             robot.mouseRelease(BUTTON1_DOWN_MASK);
@@ -305,16 +295,15 @@ public class Functions extends IFunctions {
         } else if (prtsc按下 == true) {
             Point mouse = MouseInfo.getPointerInfo().getLocation();
 
-            switch (inputInfo.value) {
-                case VK_Q:
-                    clash0 = mouse;
-                    Config.write("clash_0", mouse.x + "," + mouse.y);
-                    break;
-                case VK_W:
-                    clash1 = mouse;
-                    Config.write("clash_1", mouse.x + "," + mouse.y);
-                    break;
+
+            clashPointMap.put(String.valueOf(inputInfo.value),mouse);
+            try {
+                JsonUtils.writeJsonFile(clashPointMapName, clashPointMap);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
+
+
         } else {
             robot.keyPress(inputInfo.value);
         }
