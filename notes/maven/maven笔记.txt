@@ -67,3 +67,7 @@ mvn exec:java -Dexec.mainClass="com.wushi.MainClass" -Dexec.classpathScope=runti
 Maven多模块项目
 mvn clean package 在根目录下
 java -jar xxx.jar 在此jar目录下
+
+
+pom取最大版本
+<version>LATEST</version>
