@@ -60,6 +60,7 @@ public class KeyboardHook {
 							Controller.listenSwitch =false;
 
 							System.out.println("program off");
+							return new LRESULT(1);
 						}else if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.on)){
 							for(MyThread thread:Controller.threadList){
 								if(thread.defaultState==MyThread.State.on){
@@ -69,6 +70,7 @@ public class KeyboardHook {
 							Controller.listenSwitch =true;
 
 							System.out.println("program on");
+							return new LRESULT(1);
 						}
 					}
 					if(Controller.listenSwitch ==false){
