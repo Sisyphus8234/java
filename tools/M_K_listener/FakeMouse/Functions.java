@@ -30,17 +30,10 @@ public class Functions extends IFunctions {
     public static MyThread t2;
     public static MyThread t3;
     public static MyThread t4;
-
-    public static boolean 滚轮变成左键 = true;
     public static boolean ctrl按下 = false;
     public static int 滚轮次数 = 0;
 
     public static int 滚轮方向 = 1;
-    public static Long time = new Date().getTime();
-
-    public static Point point = new Point();
-
-    public static int WhichProgram = Integer.parseInt(Config.read("which_program"));
 
     static {
 
@@ -432,9 +425,9 @@ win=false;
     @ListenMouseKeyboard(value = 106, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字键盘星号() {
         robot.keyPress(KeyEvent.VK_WINDOWS);
-        robot.keyPress(WhichProgram);
+        robot.keyPress(winWithValue);
         pause(50);
-        robot.keyRelease(WhichProgram);
+        robot.keyRelease(winWithValue);
         robot.keyRelease(KeyEvent.VK_WINDOWS);
 
     }
