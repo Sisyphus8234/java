@@ -7,11 +7,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -21,7 +19,7 @@ class MainClass extends base.MainClass {
 
 public class Functions extends IFunctions {
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
     }
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
@@ -214,13 +212,54 @@ public class Functions extends IFunctions {
         if (波浪键按住期间做了什么 == true) {
         } else {
             robot.keyPress(KeyEvent.VK_WINDOWS);
-            robot.keyPress(WhichProgram);
+            robot.keyPress(winWithValue);
             pause(50);
             robot.keyRelease(KeyEvent.VK_WINDOWS);
-            robot.keyRelease(WhichProgram);
+            robot.keyRelease(winWithValue);
 
 //            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
 //            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
+        }
+    }
+
+    //---win键
+    public static String winWithValueName = "winWithValue";
+    public static Integer winWithValue;
+    static {
+        try {
+            TypeReference<Integer> typeReference1 = new TypeReference<Integer>() {};
+            winWithValue = JsonUtils.readJsonFile(winWithValueName, typeReference1);
+            System.out.println(1);
+        } catch (IOException e) {
+            winWithValue =49;
+        }
+    }
+
+    public static boolean win=false;
+    @ListenMouseKeyboard(note = "win", value = 91, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void win() {
+
+        win=true;
+    }
+
+    @ListenMouseKeyboard(note = "win", value = 91,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void win1() {
+win=false;
+    }
+
+    @ListenMouseKeyboard(note = "1", value = 49,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "2", value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "3", value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "4", value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "5", value = 53, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void win3(InputInfo inputInfo) {
+        if(win==true){
+            winWithValue=inputInfo.value;
+            try {
+                JsonUtils.writeJsonFile(winWithValueName, winWithValue);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
