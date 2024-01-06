@@ -4,13 +4,14 @@ import custom.Functions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Controller {
 	public static boolean printKey =false;
 	public static boolean listenSwitch =true;
 	public static ArrayList<MyThread> threadList=new ArrayList<>();
-	public static Map<InputInfo, TaskInfo> mapJna=new HashMap<>();
+	public static Map<InputInfo, List<TaskInfo>> mapJna=new HashMap<>();
 	public static Map<String, TaskInfo> mapJintellitype=new HashMap<>();
 	public static Map<Integer, Integer> mapListenBar=new HashMap<>();
 	

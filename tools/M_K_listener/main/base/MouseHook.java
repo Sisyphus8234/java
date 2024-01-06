@@ -13,6 +13,8 @@ import com.sun.jna.platform.win32.WinUser.LowLevelMouseProc;
 import com.sun.jna.platform.win32.WinUser.MSG;
 import com.sun.jna.platform.win32.WinUser.MSLLHOOKSTRUCT;
 
+import java.util.List;
+
 import static base.Controller.printKey;
 
 
@@ -20,7 +22,7 @@ public class MouseHook {
 	private HHOOK hhk;
 	private LowLevelMouseProc mouseHook;
 	private InputInfo inputInfoActual =new InputInfo();
-	private TaskInfo taskInfo;
+//	private TaskInfo taskInfo;
 	private StringBuilder printText=new StringBuilder();
 
 	public void run() {
@@ -72,10 +74,14 @@ public class MouseHook {
 					inputInfoActual.press=true;
 
 					if(Controller.mapJna.containsKey(inputInfoActual)){
-						taskInfo =Controller.mapJna.get(inputInfoActual);
-						Controller.do1.doTask(taskInfo);
-						if(taskInfo.intercept==true){
-							return new LRESULT(1);
+						List<TaskInfo> taskInfoList =Controller.mapJna.get(inputInfoActual);
+						for(TaskInfo taskInfo:taskInfoList){
+							Controller.do1.doTask(taskInfo);
+						}
+						for(TaskInfo taskInfo:taskInfoList){
+							if(taskInfo.intercept==true){
+								return new LRESULT(1);
+							}
 						}
 					}
 				}

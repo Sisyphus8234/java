@@ -14,6 +14,8 @@ import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 
 import com.sun.jna.platform.win32.WinUser.MSG;
 
+import java.util.List;
+
 import static base.Controller.printKey;
 
 
@@ -22,7 +24,7 @@ public class KeyboardHook {
 	private HHOOK hhk;
 	private LowLevelKeyboardProc keyboardHook;
 	private InputInfo inputInfoActual =new InputInfo();
-	private TaskInfo taskInfo =new TaskInfo();
+//	private TaskInfo taskInfo =new TaskInfo();
 	private StringBuilder printText=new StringBuilder();
 
 	public void run() {
@@ -93,10 +95,14 @@ public class KeyboardHook {
 					}
 
 					if(Controller.mapJna.containsKey(inputInfoActual)){
-						taskInfo =Controller.mapJna.get(inputInfoActual);
-						Controller.do1.doTask(taskInfo);
-						if(taskInfo.intercept==true){
-							return new LRESULT(1);
+						List<TaskInfo> taskInfoList =Controller.mapJna.get(inputInfoActual);
+						for(TaskInfo taskInfo:taskInfoList){
+							Controller.do1.doTask(taskInfo);
+						}
+						for(TaskInfo taskInfo:taskInfoList){
+							if(taskInfo.intercept==true){
+								return new LRESULT(1);
+							}
 						}
 					}
 				}
