@@ -22,14 +22,26 @@ public class ScanFunction {
         inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
         inputInfo.mouseData = listenMouseKeyboard.mouseData();
         inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
+        inputInfo.extend = listenMouseKeyboard.extend();
         taskInfo.inputInfo = inputInfo;
         if (!mapJna.containsKey(inputInfo)) {
             List tempList = new ArrayList<TaskInfo>();
             tempList.add(taskInfo);
             mapJna.put(inputInfo, tempList);
+
         } else {
+            if (inputInfo.extend == false) {
+                Iterator<TaskInfo> tempIterator = mapJna.get(inputInfo).iterator();
+                while (tempIterator.hasNext()) {
+                    TaskInfo tempTaskInfo = tempIterator.next();
+                    if (tempTaskInfo.inputInfo.extend == false) {
+                        tempIterator.remove();
+                    }
+                }
+            } else {
+                System.out.println("warning: " + method.getName() + " input has more than one task!");
+            }
             mapJna.get(inputInfo).add(taskInfo);
-            System.out.println("warning: "+method.getName()+" input has more than one task!");
         }
     }
 
