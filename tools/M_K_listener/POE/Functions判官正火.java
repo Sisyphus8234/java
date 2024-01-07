@@ -9,27 +9,26 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 public class Functions判官正火 extends Functions公共 {
-    public static Thread t2 = new MyThread(MyThread.State.off) {
-        @Override
-        public void run() {
-            while (true) {
-
-                if (running == true) {
-                    if (放陷阱 == true) {
-                        放陷阱 = false;
-                        pause(200);
-                    } else {
-                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        pause(140);
-                    }
-                } else {
-                    t2.suspend();
-                }
-
-            }
-        }
-    };
+//    public static Thread t2 = new MyThread(MyThread.State.off) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//
+//                if (放陷阱 == true) {
+//                    tempStopRun = true;
+//
+//
+//
+//
+//                } else {
+//                    tempStopRun = false;
+//                    t2.suspend();
+//                }
+//                pause(140);
+//
+//            }
+//        }
+//    };
 
 
     // public static Integer 水银药剂 = 0;
@@ -49,21 +48,17 @@ public class Functions判官正火 extends Functions公共 {
     // }
 
 
-
-
     //基础功能
     //---------------------------------------------------------------
-
 
 
     public static boolean 放陷阱 = false;
 
 
-
     @ListenMouseKeyboard(note = "space", value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 奔跑() {
+        tempStopRun = false;
         running = true;
-        t2.resume();
     }
 
     @ListenMouseKeyboard(note = "r", value = 82, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -72,11 +67,24 @@ public class Functions判官正火 extends Functions公共 {
         running = false;
     }
 
-    @ListenMouseKeyboard(note = "e", value = 69, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "q", value = 81, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "e", value = 69, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 300L)
+//    @ListenMouseKeyboard(note = "q", value = 81, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     private static void 放技能() {
-        放陷阱 = true;
+//        放陷阱 = true;
+        tempStopRun = true;
+
+
+    }
+
+    @ListenMouseKeyboard(note = "e", press = false, value = 69, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "q", value = 81, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    private static void 放技能1() {
+        tempStopRun = false;
+
+
+
 
     }
 
