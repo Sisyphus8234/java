@@ -8,12 +8,12 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 
 import static java.awt.event.KeyEvent.*;
 
-class MainClass extends base.MainClass {
+class Run extends MainClass {
+
 
 }
 
