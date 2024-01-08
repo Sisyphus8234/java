@@ -1,2 +1,0 @@
-使用java属性
-'${@com.dftx.stock.service.impl.MaterialServiceImpl$TypeTellInOrOut@outType}' typeTellInOrOut

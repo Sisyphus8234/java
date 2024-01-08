@@ -1,0 +1,4 @@
+使用java属性
+'${@com.dftx.stock.service.impl.MaterialServiceImpl$TypeTellInOrOut@outType}' typeTellInOrOut
+
+and picking_num like '${@com.dftx.stock.service.impl.MaterialServiceImpl$TypeTellInOrOut@outType}%'
