@@ -1,12 +1,14 @@
 package custom;
 
 import addition.JsonUtils;
+import addition.MouseMoveFix;
 import base.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -19,7 +21,7 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
     }
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
@@ -275,6 +277,10 @@ public class Functions extends IFunctions {
         }
     }
 
+
+    public static double screen_scale= Double.parseDouble(Config.read("screen_scale"));
+
+
     public static boolean prtsc期间做了什么 = false;
     public static boolean prtsc按下 = false;
 
@@ -286,7 +292,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "/", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void prtsc_1(InputInfo inputInfo) {
         prtsc按下 = false;
         if (prtsc期间做了什么 == false) {
@@ -305,6 +311,8 @@ public class Functions extends IFunctions {
         clash(inputInfo);
     }
 
+
+
     public static void clash(InputInfo inputInfo) {
         波浪键按住期间做了什么 = true;
         prtsc期间做了什么 = true;
@@ -318,8 +326,8 @@ public class Functions extends IFunctions {
 
             Point clashPoint = clashPointMap.get(String.valueOf(inputInfo.value));
 
+            MouseMoveFix.run((int) (clashPoint.x / screen_scale), (int) (clashPoint.y / screen_scale));
 
-            robot.mouseMove((int) (clashPoint.x), (int) (clashPoint.y));
             pause(150L);
             robot.mousePress(BUTTON1_DOWN_MASK);
             robot.mouseRelease(BUTTON1_DOWN_MASK);
