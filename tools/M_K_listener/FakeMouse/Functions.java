@@ -366,26 +366,15 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 51, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="3",value = 51, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字3() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
-
-
-            robot.keyPress(KeyEvent.VK_WINDOWS);
-            robot.keyPress(VK_1);
-            pause(50);
-            robot.keyRelease(KeyEvent.VK_WINDOWS);
-            robot.keyRelease(VK_1);
-
-//            Point point1=MouseInfo.getPointerInfo().getLocation();
-//
-//            pause(200);
-//
-//            robot.mouseMove(520,364);
-//            pause(200);
-//            System.out.println(point1);
-
+            robot.keyPress(VK_ALT);
+            robot.keyPress(VK_F4);
+            pause(100L);
+            robot.keyRelease(VK_F4);
+            robot.keyRelease(VK_ALT);
         } else {
             robot.keyPress(KeyEvent.VK_3);
         }
