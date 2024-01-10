@@ -355,7 +355,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="tab",value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void tab键() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -460,7 +460,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 49, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "1",value = 49, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -475,7 +475,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 49, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "1",value = 49, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字1_1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -486,7 +486,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(value = 50, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="2",value = 50, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字2() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -500,7 +500,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(value = 50, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note="2",value = 50, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字2_1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
