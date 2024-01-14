@@ -25,7 +25,7 @@ public class Functions公共 extends IFunctions {
     public static void esc(){
         myKeyRelease(VK_ALT);
         pause(100L);
-//        myKeyPress(VK_ESCAPE);
+        myKeyPress(VK_ESCAPE);
     }
 
     @ListenMouseKeyboard(note="f",value = 70,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
