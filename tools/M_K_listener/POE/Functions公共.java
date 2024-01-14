@@ -19,8 +19,21 @@ public class Functions公共 extends IFunctions {
     public static boolean running = false;
     public static boolean tempStopRun = false;
     public static boolean b1 = false;
+    public static boolean 拾取 = false;
 
-    //按ctrl并连点左键
+    @ListenMouseKeyboard(note="esc",value = 27,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
+    public static void esc(){
+        myKeyRelease(VK_ALT);
+        pause(100L);
+//        myKeyPress(VK_ESCAPE);
+    }
+
+    @ListenMouseKeyboard(note="f",value = 70,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+
+    public static void 拾取1(){
+
+        拾取=false;
+    }
     public static Thread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
@@ -36,8 +49,13 @@ public class Functions公共 extends IFunctions {
 //                    if(getKeyStatus(VK_R)==false){
 //                        myKeyPress(VK_R);
 //                    }
-                    if (getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK) == false) {
+                    if(拾取==true){
                         myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                        myMouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                    }else {
+                        if (getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK) == false) {
+                            myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                        }
                     }
 
 
@@ -224,14 +242,20 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(note = "1", value = 49, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void ctrl加左键连点() {
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(VK_1);
-        robot.keyRelease(VK_1);
+        if(getKeyStatus(VK_CONTROL)==false){
+            myKeyPress(KeyEvent.VK_CONTROL);
+
+        }
+
+        myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
+        myMouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+
     }
 
     @ListenMouseKeyboard(note = "1", value = 49, press = false, intercept = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 退出ctrl加左键连点() {
-        robot.keyRelease(KeyEvent.VK_CONTROL);
+
+        myKeyRelease(VK_CONTROL);
     }
 
 
