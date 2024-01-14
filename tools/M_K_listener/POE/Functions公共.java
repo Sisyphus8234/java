@@ -33,15 +33,26 @@ public class Functions公共 extends IFunctions {
 //                        pause(110);
 //                        continue;
 //                    }
-                    if(getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK)==false){
+//                    if(getKeyStatus(VK_R)==false){
+//                        myKeyPress(VK_R);
+//                    }
+                    if (getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK) == false) {
                         myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     }
+
+
+
+
                 }else{
-                    if(getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK)==true){
+//                    if(getKeyStatus(VK_R)==true){
+//                        myKeyRelease(VK_R);
+//                    }
+
+                    if (getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK) == true) {
                         myMouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
                 }
-                pause(110);
+                pause(200L);
             }
         }
     };
@@ -52,9 +63,9 @@ public class Functions公共 extends IFunctions {
             while (true) {
 
                 if (running == true) {
-                    if(getKeyStatus(VK_ALT)==false){
+//                    if(getKeyStatus(VK_ALT)==false){
                         myKeyPress(VK_ALT);
-                    }
+//                    }
                 }else{
 
                 }
