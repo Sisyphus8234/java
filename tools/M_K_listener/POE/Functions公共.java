@@ -11,6 +11,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -19,35 +20,45 @@ public class Functions公共 extends IFunctions {
     public static boolean tempStopRun = false;
     public static boolean b1 = false;
 
-
     //按ctrl并连点左键
     public static Thread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-
                 if (running == true) {
                     b1=true;
-                    if (tempStopRun == true) {
-                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-
-                        pause(110);
-                        continue;
+//                    if (tempStopRun == true) {
+//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+//                        pause(110);
+//                        continue;
+//                    }
+                    if(getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK)==false){
+                        myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
                     }
-
-                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
-//                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-
-
-
                 }else{
-                    if(b1==true) {
-                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        b1=false;
+                    if(getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK)==true){
+                        myMouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
                 }
                 pause(110);
+            }
+        }
+    };
+
+    public static Thread t2 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+
+                if (running == true) {
+                    if(getKeyStatus(VK_ALT)==false){
+                        myKeyPress(VK_ALT);
+                    }
+                }else{
+
+                }
+                pause(500L);
             }
         }
     };
