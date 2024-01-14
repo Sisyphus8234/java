@@ -4,10 +4,12 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.datatransfer.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 import java.awt.Toolkit;
+import java.util.Map;
 
 
 public class IFunctions {
@@ -83,6 +85,30 @@ public class IFunctions {
         } else {
             return false;
         }
+    }
+
+    private static Map<Integer,Boolean> keyStatusMap=new HashMap<>();
+
+    public static void myKeyPress(int key){
+        robot.keyPress(key);
+        keyStatusMap.put(key,true);
+    }
+    public static void myKeyRelease(int key){
+        robot.keyRelease(key);
+        keyStatusMap.put(key,false);
+    }
+
+    public static void myMousePress(int key){
+        robot.mousePress(key);
+        keyStatusMap.put(key,true);
+    }
+    public static void myMouseRelease(int key){
+        robot.mouseRelease(key);
+        keyStatusMap.put(key,false);
+    }
+
+    public static boolean getKeyStatus(int key){
+        return keyStatusMap.getOrDefault(key, false);
     }
 
 }
