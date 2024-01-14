@@ -27,12 +27,18 @@ public class Functions公共 extends IFunctions {
         pause(100L);
         myKeyPress(VK_ESCAPE);
     }
+    @ListenMouseKeyboard(note="f",value = 70,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
+    @ListenMouseKeyboard(note="h",value = 72,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
 
-    @ListenMouseKeyboard(note="f",value = 70,press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 拾取(){
 
+        拾取=true;
+    }
+    @ListenMouseKeyboard(note="f",value = 70,press = false,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
+    @ListenMouseKeyboard(note="h",value = 72,press = false,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
     public static void 拾取1(){
-
         拾取=false;
+        System.out.println(拾取);
     }
     public static Thread t1 = new MyThread(MyThread.State.on) {
         @Override
@@ -50,8 +56,11 @@ public class Functions公共 extends IFunctions {
 //                        myKeyPress(VK_R);
 //                    }
                     if(拾取==true){
+
                         myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
                         myMouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        System.out.println(11111);
+//                        pause(500L);
                     }else {
                         if (getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK) == false) {
                             myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
