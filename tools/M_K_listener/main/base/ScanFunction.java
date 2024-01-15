@@ -172,7 +172,16 @@ public class ScanFunction {
 
 
         }
-        System.out.println("Jna:" + mapJna);
+        System.out.println("Jna:");
+        for(Map.Entry<InputInfo,List<TaskInfo>> entry:mapJna.entrySet()){
+            System.out.print(entry.getKey().value);
+            System.out.print("\t");
+            for(TaskInfo taskInfo:entry.getValue()){
+                System.out.print(taskInfo.method.getName()+",");
+            }
+            System.out.println();
+        }
+
         System.out.println("Jintellitype: " + mapJintellitype);
 
 
