@@ -55,11 +55,7 @@ public class Functions判官正火 extends Functions公共 {
     public static boolean 放陷阱 = false;
 
 
-    @ListenMouseKeyboard(note = "space", value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    private static void 奔跑() {
-        tempStopRun = false;
-        running = true;
-    }
+
 
     @ListenMouseKeyboard(note = "r", value = 82, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)

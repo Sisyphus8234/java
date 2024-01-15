@@ -10,6 +10,8 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,27 +21,29 @@ public class Functions公共 extends IFunctions {
     public static boolean running = false;
     public static boolean tempStopRun = false;
     public static boolean b1 = false;
-    public static boolean 拾取 = false;
+
 
     @ListenMouseKeyboard(note="esc",value = 27,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
     public static void esc(){
         myKeyRelease(VK_ALT);
-        pause(100L);
+        pause(50L);
         myKeyPress(VK_ESCAPE);
     }
-    @ListenMouseKeyboard(note="f",value = 70,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
-    @ListenMouseKeyboard(note="h",value = 72,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
 
+    public static LocalDateTime 拾取start = LocalDateTime.now();
+    @ListenMouseKeyboard(note="f",value = 70,intercept = true,timeInterval = 500L,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
     public static void 拾取(){
+        拾取start=LocalDateTime.now();
+    }
 
-        拾取=true;
+    @ListenMouseKeyboard(note = "space", value = 32, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    private static void 奔跑() {
+        tempStopRun = false;
+        running = true;
     }
-    @ListenMouseKeyboard(note="f",value = 70,press = false,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
-    @ListenMouseKeyboard(note="h",value = 72,press = false,intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,extend = true)
-    public static void 拾取1(){
-        拾取=false;
-        System.out.println(拾取);
-    }
+
+
+
     public static Thread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
@@ -55,12 +59,10 @@ public class Functions公共 extends IFunctions {
 //                    if(getKeyStatus(VK_R)==false){
 //                        myKeyPress(VK_R);
 //                    }
-                    if(拾取==true){
-
+                    if(Duration.between(拾取start,LocalDateTime.now()).toMillis()<2000L){
+                        System.out.println(LocalDateTime.now());
                         myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
                         myMouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
-                        System.out.println(11111);
-//                        pause(500L);
                     }else {
                         if (getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK) == false) {
                             myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
