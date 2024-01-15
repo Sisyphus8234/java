@@ -110,6 +110,9 @@ public class IFunctions {
     public static boolean getKeyStatus(int key){
         return keyStatusMap.getOrDefault(key, false);
     }
+    public static void setKeyStatus(int key,boolean b){
+        keyStatusMap.put(key, b);
+    }
 
 }
 
