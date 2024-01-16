@@ -1,0 +1,15 @@
+
+…
+java:S1488a"cImmediately return this expression instead of assigning it to the temporary variable "jsonPayload".(ÛïÕèûÿÿÿÿ8¨ˆè‡Ñ1
+W
+java:S1118":Add a private constructor to hide the implicit public one.(àªÅö8û›ğ‡Ñ1
+Y
+java:S1854$"<Remove this useless assignment to local variable "jsonNode".(ˆ„û8’²åƒÑ1
+J
+java:S1481$"-Remove this unused "jsonNode" local variable.(ˆ„û8Ô …‡Ñ1
+L	java:S106'"+Replace this use of System.out by a logger.(ìÑÑÈÿÿÿÿÿ8«²åƒÑ1
+R
+java:S1128	"5Remove this unused import 'org.jsoup.nodes.Document'.(ô¯É8Ööé‡Ñ1
+V
+java:S1128
+"4Remove this unused import 'org.jsoup.nodes.Element'.(ıƒ‘öşÿÿÿÿ8Ööé‡Ñ1

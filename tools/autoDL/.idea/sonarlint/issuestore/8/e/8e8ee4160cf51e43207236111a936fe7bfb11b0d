@@ -1,0 +1,39 @@
+
+…
+java:S1488Y"cImmediately return this expression instead of assigning it to the temporary variable "jsonPayload".(ÛïÕèûÿÿÿÿ8®İæŠÑ1
+s
+java:S1104"VMake page_index a static final constant or non-public and provide accessors if needed.(…™âÈ8®İæŠÑ1
+r
+java:S1104"UMake page_size a static final constant or non-public and provide accessors if needed.(»£úÜ8®İæŠÑ1
+p
+java:S1104"TMake max_page a static final constant or non-public and provide accessors if needed.(ªÎı+8®İæŠÑ1
+u
+java:S1104"XMake åœ°åŒºåˆ—è¡¨ a static final constant or non-public and provide accessors if needed.(–’Üš8®İæŠÑ1
+M
+java:S1444"0Make this "public static page_index" field final(…™âÈ8®İæŠÑ1
+L
+java:S1444"/Make this "public static page_size" field final(»£úÜ8®İæŠÑ1
+J
+java:S1444".Make this "public static max_page" field final(ªÎı+8®İæŠÑ1
+O
+java:S1444"2Make this "public static åœ°åŒºåˆ—è¡¨" field final(–’Üš8®İæŠÑ1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(é ¾Â8®İæŠÑ1
+F
+java:S2629U"$Invoke method(s) only conditionally.(Šœß¥üÿÿÿÿ8×åíŠÑ1
+7
+java:S1220""Move this file to a named package.8®İæŠÑ1
+r
+java:S3008"URename this field "page_index" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…™âÈ8²İæŠÑ1
+q
+java:S3008"TRename this field "page_size" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»£úÜ8²İæŠÑ1
+o
+java:S3008"SRename this field "max_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªÎı+8²İæŠÑ1
+t
+java:S3008"WRename this field "åœ°åŒºåˆ—è¡¨" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–’Üš8²İæŠÑ1
+:
+java:S2386"Make this member "protected".(–’Üš8²İæŠÑ1
+W
+java:S1118":Add a private constructor to hide the implicit public one.(é ¾Â8³İæŠÑ1
+]	java:S125R"<This block of commented-out lines of code should be removed.(ÎÈ™åùÿÿÿÿ8ÈİæŠÑ1
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8öëŸŒÑ1

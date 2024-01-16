@@ -1,0 +1,18 @@
+
+F
+java:S2629$"$Invoke method(s) only conditionally.(é—õöþÿÿÿÿ8¢´Á‹Ñ1
+F
+java:S2629)"$Invoke method(s) only conditionally.(Ú™Þ×ÿÿÿÿÿ8¢´Á‹Ñ1
+7
+java:S1220""Move this file to a named package.8¢´Á‹Ñ1
+X	java:S125"<This block of commented-out lines of code should be removed.(ÐÇý—8„µÁ‹Ñ1
+p
+java:S1602&"SRemove useless curly braces around statement and then remove useless return keyword(ì‰¤î8„µÁ‹Ñ1
+u
+java:S1602+"SRemove useless curly braces around statement and then remove useless return keyword(•²®ùÿÿÿÿ8…µÁ‹Ñ1
+G	java:S1066"+Replace this use of System.out by a logger.(éª–¢8á…Â‹Ñ1
+L	java:S1067"+Replace this use of System.out by a logger.(»ÌÇýÿÿÿÿ8÷àÆ‹Ñ1
+L	java:S1068"+Replace this use of System.out by a logger.(ïžÕ¼üÿÿÿÿ8´ªÚ‹Ñ1
+]	java:S125<"<This block of commented-out lines of code should be removed.(†›çóúÿÿÿÿ8…µÁ‹Ñ1
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8‹¼Â‹Ñ1

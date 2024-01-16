@@ -1,0 +1,12 @@
+
+…
+java:S1488R"cImmediately return this expression instead of assigning it to the temporary variable "jsonPayload".(ÛïÕèûÿÿÿÿ8¶ÏäˆÑ1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ùäøÿÿÿÿ8·ÏäˆÑ1
+7
+java:S1220""Move this file to a named package.8·ÏäˆÑ1
+\
+java:S1118":Add a private constructor to hide the implicit public one.(ùäøÿÿÿÿ8ÂÏäˆÑ1
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8Ğ¶ìŠÑ1
+N
+java:S1144:",Remove this unused private "payload" method.(½‡Ößÿÿÿÿÿ8‘êäˆÑ1
