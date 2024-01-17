@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -10,6 +11,9 @@ public class 公共 {
     public static 二级请求 保管二级请求;
 
     public static final Logger logger = Logger.getLogger(公共.class.getName());
+    static {
+        logger.setLevel(Level.WARNING);
+    }
 
     public List<JsonNode> 一级的返回地区列表 =new ArrayList<>();
     public Set<String> 地区名 =new HashSet<>();

@@ -19,7 +19,7 @@ public class 二级请求 {
     public int page_size=100;
     public int max_page;
 
-    public static List<String> 地区列表 =new ArrayList<>();
+    public List<String> 地区列表 =new ArrayList<>();
     public static List<JsonNode> run() {
 
         List<JsonNode> result= new ArrayList<>();
@@ -79,9 +79,9 @@ public class 二级请求 {
         requestBodyMap.put("default_order", true);
 
 //        String[] regionSignList = {"bj-B1"};
-        requestBodyMap.put("region_sign_list", 地区列表);
+        requestBodyMap.put("region_sign_list", 公共.保管二级请求.地区列表);
 
-        公共.logger.info(地区列表.toString());
+        公共.logger.info(公共.保管二级请求.地区列表.toString());
 
         // 使用Jackson库将Map转换为JSON字符串
         ObjectMapper objectMapper = new ObjectMapper();

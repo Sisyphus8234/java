@@ -18,15 +18,16 @@ public class Main {
 
             公共.保管公共=new 公共();
 
-            公共.保管二级请求 =new 二级请求();
+
 
 
             一级请求.run();
             for (String item : 公共.保管公共.地区名) {
-                二级请求.地区列表.clear();
+                公共.保管二级请求 =new 二级请求();
+
                 for (JsonNode item1 : 公共.保管公共.一级的返回地区列表) {
                     if (String.valueOf(item1.get("region_name")).equals(item)) {
-                        二级请求.地区列表.add(item1.get("region_sign").textValue());
+                        公共.保管二级请求.地区列表.add(item1.get("region_sign").textValue());
                     }
                 }
 
@@ -43,31 +44,31 @@ public class Main {
             }
 
 
-            公共.logger.info(String.valueOf(公共.保管公共.机器列表.size()));
+
             List<JsonNode> result = 公共.保管公共.机器列表.stream()
                     .filter(s -> {
                         return s.get("gpu_order_num").intValue() > 0;
                     })
                     .collect(Collectors.toList());
 
-            公共.logger.info(String.valueOf(result.size()));
+
 
             Collections.sort(result, Comparator.comparingInt(s -> {
                 return s.get("payg_price").intValue();
             }));
 
 
-            int tempNum = 1;
-            for (JsonNode item : result) {
-                if (tempNum > 4) {
-                    break;
-                }
-
-                System.out.println(item.get("region_name"));
-                System.out.println(item.get("machine_alias"));
-                System.out.println(item.get("gpu_order_num"));
-                tempNum++;
+//            int size=result.size();
+//            int tempNum = 1;
+//            for (JsonNode item : result) {
+            for (int i=3;i>=0;i--) {
+                System.out.println(result.get(i).get("region_name"));
+                System.out.println(result.get(i).get("machine_alias"));
+//                System.out.println(item.get("gpu_order_num"));
+                System.out.println(result.get(i).get("payg_price"));
+                System.out.println("-----");
             }
+            System.out.println("==========");
 
 //        公共.logger.info(result.toString());
 
