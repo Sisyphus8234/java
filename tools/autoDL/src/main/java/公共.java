@@ -6,11 +6,14 @@ import java.util.logging.Logger;
 
 public class 公共 {
 
+    public static 公共 保管公共;
+    public static 二级请求 保管二级请求;
+
     public static final Logger logger = Logger.getLogger(公共.class.getName());
 
-    public static List<JsonNode> 一级的返回地区列表 =new ArrayList<>();
-    public static Set<String> 地区名 =new HashSet<>();
-    public static List<JsonNode> 机器列表 =new ArrayList<>();
+    public List<JsonNode> 一级的返回地区列表 =new ArrayList<>();
+    public Set<String> 地区名 =new HashSet<>();
+    public List<JsonNode> 机器列表 =new ArrayList<>();
 
 
     public static Map<String, String> headers() {

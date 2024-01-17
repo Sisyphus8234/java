@@ -5,7 +5,6 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,12 +12,12 @@ import java.util.Map;
 
 // 按两次 Shift 打开“随处搜索”对话框并输入 `show whitespaces`，
 // 然后按 Enter 键。现在，您可以在代码中看到空格字符。
-public class 最终 {
+public class 二级请求 {
 
 
-    public static int page_index;
-    public static int page_size=100;
-    public static int max_page;
+    public int page_index;
+    public int page_size=100;
+    public int max_page;
 
     public static List<String> 地区列表 =new ArrayList<>();
     public static List<JsonNode> run() {
@@ -43,7 +42,7 @@ public class 最终 {
             JsonNode jsonNode = objectMapper.readTree(responseBody);
 
             JsonNode temp=jsonNode.get("data").get("list");
-            max_page=jsonNode.get("data").get("max_page").asInt();
+            公共.保管二级请求.max_page=jsonNode.get("data").get("max_page").asInt();
 
 
             for(JsonNode item:temp){
@@ -73,8 +72,8 @@ public class 最终 {
         requestBodyMap.put("date_range", "");
         requestBodyMap.put("date_from", "");
         requestBodyMap.put("date_to", "");
-        requestBodyMap.put("page_index", page_index);
-        requestBodyMap.put("page_size", page_size);
+        requestBodyMap.put("page_index", 公共.保管二级请求.page_index);
+        requestBodyMap.put("page_size", 公共.保管二级请求.page_size);
         requestBodyMap.put("pay_price_order", "");
         requestBodyMap.put("gpu_idle_type", "");
         requestBodyMap.put("default_order", true);

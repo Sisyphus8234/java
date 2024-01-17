@@ -5,7 +5,6 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Map;
 
 // 按两次 Shift 打开“随处搜索”对话框并输入 `show whitespaces`，
 // 然后按 Enter 键。现在，您可以在代码中看到空格字符。
-public class 第一 {
+public class 一级请求 {
 
 
     public static List<JsonNode> run() {
@@ -40,8 +39,8 @@ public class 第一 {
 
 
             for(JsonNode item:temp){
-                公共.一级的返回地区列表.add(item);
-                公共.地区名.add(String.valueOf(item.get("region_name")));
+                公共.保管公共.一级的返回地区列表.add(item);
+                公共.保管公共.地区名.add(String.valueOf(item.get("region_name")));
             }
 
 
