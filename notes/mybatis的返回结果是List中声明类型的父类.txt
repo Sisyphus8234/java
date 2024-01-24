@@ -1,0 +1,1 @@
+List<? extends ContractRefundStatusVo> refundList = resultItem.getContractRefundVo().getRefunds();
