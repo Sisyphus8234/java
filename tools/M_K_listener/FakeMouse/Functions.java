@@ -278,7 +278,7 @@ public class Functions extends IFunctions {
     }
 
 
-    public static double screen_scale= Double.parseDouble(Config.read("screen_scale"));
+    public static double screen_scale = Double.parseDouble(Config.read("screen_scale"));
 
 
     public static boolean prtsc期间做了什么 = false;
@@ -312,11 +312,12 @@ public class Functions extends IFunctions {
     }
 
 
-
     public static void clash(InputInfo inputInfo) {
         波浪键按住期间做了什么 = true;
         prtsc期间做了什么 = true;
         if (波浪键按住 == true) {
+
+            Point temp = MouseInfo.getPointerInfo().getLocation();
 
             robot.keyPress(VK_WINDOWS);
             robot.keyPress(VK_1);
@@ -326,7 +327,7 @@ public class Functions extends IFunctions {
 
             Point clashPoint = clashPointMap.get(String.valueOf(inputInfo.value));
 
-            MouseMoveFix.run((int) (clashPoint.x / screen_scale), (int) (clashPoint.y / screen_scale));
+            MouseMoveFix.run(clashPoint.x, clashPoint.y, screen_scale);
 
             pause(150L);
             robot.mousePress(BUTTON1_DOWN_MASK);
@@ -337,6 +338,9 @@ public class Functions extends IFunctions {
             robot.keyPress(VK_1);
             robot.keyRelease(VK_1);
             robot.keyRelease(VK_WINDOWS);
+
+            pause(150L);
+            MouseMoveFix.run(temp.x, temp.y,screen_scale);
         } else if (prtsc按下 == true) {
             Point mouse = MouseInfo.getPointerInfo().getLocation();
 
@@ -355,7 +359,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note="tab",value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "tab", value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void tab键() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -366,7 +370,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note="3",value = 51, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "3", value = 51, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字3() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -460,7 +464,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note = "1",value = 49, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "1", value = 49, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -475,7 +479,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note = "1",value = 49, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "1", value = 49, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字1_1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -486,7 +490,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note="2",value = 50, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "2", value = 50, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字2() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -500,7 +504,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note="2",value = 50, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "2", value = 50, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字2_1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
