@@ -75,9 +75,12 @@ public class 筛选装备_野蛮人 extends 筛选装备_子类 {
                     } else {
                         当前装备情况.需求词缀数量_目标 = 4;
                     }
+                    //单手武器
                     if (!extractedText1.contains("双手")&&(extractedText1.contains("斧")||extractedText1.contains("剑")||extractedText1.contains("锤"))) {
-                        当前装备情况.必须词缀_目标.remove("全属性");
-                        当前装备情况.必须词缀_目标.add("意力");
+//                        当前装备情况.必须词缀_目标.remove("全属性");
+//                        当前装备情况.必须词缀_目标.add("意力");
+                        当前装备情况.必须词缀_目标 = new ArrayList<>(Arrays.asList("全属性", "力量","意力"));
+                        当前装备情况.必须词缀_减少量=1;
                     }
                 }
 
