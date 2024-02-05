@@ -3,12 +3,10 @@ package base;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.logging.Logger;
 
 import static base.Controller.*;
 
 public class ScanFunction {
-    public static final Logger logger = Logger.getLogger(ScanFunction.class.getName());
     private static void handleMethod(Method method, ListenMouseKeyboard listenMouseKeyboard) {
         method.setAccessible(true);
 
@@ -22,10 +20,16 @@ public class ScanFunction {
         inputInfo.press = listenMouseKeyboard.press();
         inputInfo.userInput = listenMouseKeyboard.userInput();
         inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
-        inputInfo.mouseData = listenMouseKeyboard.mouseData();
         inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
         inputInfo.extend = listenMouseKeyboard.extend();
         taskInfo.inputInfo = inputInfo;
+
+        inputInfo.hookInputInfo.mouseData = listenMouseKeyboard.mouseData();
+        String[] otherCondition=listenMouseKeyboard.otherCondition().split(",");
+        for(String item:otherCondition){
+            inputInfo.otherCondition.add(item);
+        }
+
         if (!mapJna.containsKey(inputInfo)) {
             List tempList = new ArrayList<TaskInfo>();
             tempList.add(taskInfo);
@@ -41,11 +45,9 @@ public class ScanFunction {
                     }
                 }
             } else {
+                System.out.println("warning: " + method.getName() + " input has more than one task!");
             }
             mapJna.get(inputInfo).add(taskInfo);
-            if(mapJna.get(inputInfo).size()>=2){
-                logger.warning("warning: " + inputInfo.value + " input has more than one task!");
-            }
         }
     }
 
@@ -172,16 +174,7 @@ public class ScanFunction {
 
 
         }
-        System.out.println("Jna:");
-        for(Map.Entry<InputInfo,List<TaskInfo>> entry:mapJna.entrySet()){
-            System.out.print(entry.getKey().value);
-            System.out.print("\t");
-            for(TaskInfo taskInfo:entry.getValue()){
-                System.out.print(taskInfo.method.getName()+",");
-            }
-            System.out.println();
-        }
-
+        System.out.println("Jna:" + mapJna);
         System.out.println("Jintellitype: " + mapJintellitype);
 
 

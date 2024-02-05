@@ -19,112 +19,113 @@ import java.util.List;
 import static base.Controller.printKey;
 
 
-/** Sample implementation of a low-level keyboard hook on W32. */
+/**
+ * Sample implementation of a low-level keyboard hook on W32.
+ */
 public class KeyboardHook {
-	private HHOOK hhk;
-	private LowLevelKeyboardProc keyboardHook;
-	private InputInfo inputInfoActual =new InputInfo();
-//	private TaskInfo taskInfo =new TaskInfo();
-	private StringBuilder printText=new StringBuilder();
+    private HHOOK hhk;
+    private LowLevelKeyboardProc keyboardHook;
+    private InputInfo inputInfoActual = new InputInfo();
+    //	private TaskInfo taskInfo =new TaskInfo();
+    private StringBuilder printText = new StringBuilder();
 
-	public void run() {
+    public void run() {
 
-		final User32 lib = User32.INSTANCE;
-		HMODULE hMod = Kernel32.INSTANCE.GetModuleHandle(null);
+        final User32 lib = User32.INSTANCE;
+        HMODULE hMod = Kernel32.INSTANCE.GetModuleHandle(null);
 
-		keyboardHook = new LowLevelKeyboardProc() {
-			@Override
-			public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {
+        keyboardHook = new LowLevelKeyboardProc() {
+            @Override
+            public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {
 
-				if (nCode==0) {
-
-
-					if(printKey==true) {
-						printText.setLength(0);
-						printText.append("--------------------").append("\n");
-						if (info.flags == 0 || info.flags == 1 || info.flags == 32 || info.flags == 128 || info.flags == 129) {
-						} else {
-							printText.append("(not user input) ");
-						}
-						printText.append("KeyboardKey: ").append(info.vkCode);
-						printText.append("\n").append("info.flags: ").append(info.flags);
-						printText.append("\n").append("wParam.intValue(): ").append(wParam.intValue());
-						System.out.println(printText);
-					}
+                if (nCode == 0) {
 
 
-					//开关相关
-					if(Controller.mapListenBar.containsKey(info.vkCode)){
-						if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.off)){
-							for(MyThread thread:Controller.threadList){
-								thread.mySuspend();
-							}
-							Controller.listenSwitch =false;
+                    if (printKey == true) {
+                        printText.setLength(0);
+                        printText.append("--------------------").append("\n");
+                        if (info.flags == 0 || info.flags == 1 || info.flags == 32 || info.flags == 128 || info.flags == 129) {
+                        } else {
+                            printText.append("(not user input) ");
+                        }
+                        printText.append("KeyboardKey: ").append(info.vkCode);
+                        printText.append("\n").append("info.flags: ").append(info.flags);
+                        printText.append("\n").append("wParam.intValue(): ").append(wParam.intValue());
+                        System.out.println(printText);
+                    }
 
-							System.out.println("program off");
-							return new LRESULT(1);
-						}else if(Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.on)){
-							for(MyThread thread:Controller.threadList){
-								if(thread.defaultState==MyThread.State.on){
-									thread.myResume();
-								}
-							}
-							Controller.listenSwitch =true;
 
-							System.out.println("program on");
-							return new LRESULT(1);
-						}
-					}
-					if(Controller.listenSwitch ==false){
-						return null;
-					}
+                    //开关相关
+                    if (Controller.mapListenBar.containsKey(info.vkCode)) {
+                        if (Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.off)) {
+                            for (MyThread thread : Controller.threadList) {
+                                thread.mySuspend();
+                            }
+                            Controller.listenSwitch = false;
 
-					inputInfoActual.resetProperty();
-					inputInfoActual.value=info.vkCode;
+                            System.out.println("program off");
+                            return new LRESULT(1);
+                        } else if (Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.on)) {
+                            for (MyThread thread : Controller.threadList) {
+                                if (thread.defaultState == MyThread.State.on) {
+                                    thread.myResume();
+                                }
+                            }
+                            Controller.listenSwitch = true;
+
+                            System.out.println("program on");
+                            return new LRESULT(1);
+                        }
+                    }
+                    if (Controller.listenSwitch == false) {
+                        return null;
+                    }
+
+                    inputInfoActual.resetProperty();
+                    inputInfoActual.value = info.vkCode;
+                    inputInfoActual.hookInputInfo.flags = info.flags;
 
 //					if(info.flags==16 || info.flags==144){
-					if(info.flags==0 ||info.flags==1||info.flags==32||info.flags==33|| info.flags==128||info.flags==129){
-						inputInfoActual.userInput=true;
-					}else {
-						inputInfoActual.userInput=false;
-					}
-					if(wParam.intValue()==256||wParam.intValue()==260){
-						inputInfoActual.press=true;
-					}else {
-						inputInfoActual.press=false;
-					}
+                    if (info.flags == 0 || info.flags == 1 || info.flags == 32 || info.flags == 33 || info.flags == 128 || info.flags == 129) {
+                        inputInfoActual.userInput = true;
+                    } else {
+                        inputInfoActual.userInput = false;
+                    }
+                    if (wParam.intValue() == 256 || wParam.intValue() == 260) {
+                        inputInfoActual.press = true;
+                    } else {
+                        inputInfoActual.press = false;
+                    }
 
-					if(Controller.mapJna.containsKey(inputInfoActual)){
-						List<TaskInfo> taskInfoList =Controller.mapJna.get(inputInfoActual);
-						for(TaskInfo taskInfo:taskInfoList){
-							Controller.do1.doTask(taskInfo);
-						}
-						for(TaskInfo taskInfo:taskInfoList){
-							if(taskInfo.intercept==true){
-								return new LRESULT(1);
-							}
-						}
-					}
-				}
-
-
-				Pointer ptr = info.getPointer();
-				long peer = Pointer.nativeValue(ptr);
-				return lib.CallNextHookEx(hhk, nCode, wParam, new LPARAM(peer));
-			}
-		};
-
-		hhk = lib.SetWindowsHookEx(WinUser.WH_KEYBOARD_LL, keyboardHook, hMod, 0);
+                    if (Controller.mapJna.containsKey(inputInfoActual)) {
+                        List<TaskInfo> taskInfoList = Controller.mapJna.get(inputInfoActual);
+                        for (TaskInfo taskInfo : taskInfoList) {
+                            Controller.do1.doTask(taskInfo);
+                        }
+                        for (TaskInfo taskInfo : taskInfoList) {
+                            if (taskInfo.intercept == true) {
+                                return new LRESULT(1);
+                            }
+                        }
+                    }
+                }
 
 
+                Pointer ptr = info.getPointer();
+                long peer = Pointer.nativeValue(ptr);
+                return lib.CallNextHookEx(hhk, nCode, wParam, new LPARAM(peer));
+            }
+        };
 
-		// This bit never returns from GetMessage
-		MSG msg = new MSG();
-		lib.GetMessage(msg, null, 0, 0);
+        hhk = lib.SetWindowsHookEx(WinUser.WH_KEYBOARD_LL, keyboardHook, hMod, 0);
 
-		System.out.println("base.KeyboardHook run() Method finished");
-	}
 
+        // This bit never returns from GetMessage
+        MSG msg = new MSG();
+        lib.GetMessage(msg, null, 0, 0);
+
+        System.out.println("base.KeyboardHook run() Method finished");
+    }
 
 
 }

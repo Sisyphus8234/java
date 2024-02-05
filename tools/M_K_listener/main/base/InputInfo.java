@@ -1,6 +1,6 @@
 package base;
 
-import java.util.Objects;
+import java.util.*;
 
 public class InputInfo {
 
@@ -8,17 +8,23 @@ public class InputInfo {
     public int value;
     public boolean press;
     public boolean userInput;
-    public int mouseData;
+
+    HookInputInfo hookInputInfo = new HookInputInfo();
+
+    public Set<String> otherCondition = new HashSet<>();
 
     public long timeInterval;
     public boolean extend;
 
-    public void resetProperty(){
-        this.keyboardOrMouse=0;
-        this.value=0;
-        this.press=true;
-        this.userInput=true;
-        this.mouseData=0;
+
+
+    public void resetProperty() {
+        this.keyboardOrMouse = 0;
+        this.value = 0;
+        this.press = true;
+        this.userInput = true;
+        this.hookInputInfo.mouseData = 0;
+        this.hookInputInfo.flags = 0;
     }
 
 
@@ -32,17 +38,29 @@ public class InputInfo {
         }
         InputInfo other = (InputInfo) obj; // 将obj强制转换为当前类的类型
         // 根据类的属性进行相等性比较
-        switch (other.keyboardOrMouse){
+
+        boolean step0 = false;
+        switch (other.keyboardOrMouse) {
             case ListenMouseKeyboard.KeyboardOrMouse.Keyboard:
-                return value == other.value && press==other.press && userInput== other.userInput;
+                step0 = value == other.value && press == other.press && userInput == other.userInput;
+                break;
+
             case ListenMouseKeyboard.KeyboardOrMouse.Mouse:
-                return value == other.value  && userInput== other.userInput;
-            case ListenMouseKeyboard.KeyboardOrMouse.MouseWithMouseData:
-                return value == other.value  && userInput== other.userInput&&mouseData== other.mouseData;
-            default:
-                return false;
+                step0 = value == other.value && userInput == other.userInput;
+                break;
         }
 
+        boolean step1 = true;
+        if (!otherCondition.isEmpty()) {
+            if (otherCondition.contains(ListenMouseKeyboard.ConditionName.mouseData)) {
+                step1 = step1 && (hookInputInfo.mouseData == other.hookInputInfo.mouseData);
+            }
+            if (otherCondition.contains(ListenMouseKeyboard.ConditionName.flags)) {
+                step1 = step1 && (hookInputInfo.flags == other.hookInputInfo.flags);
+            }
+        }
+
+        return step0 && step1;
     }
 
     @Override

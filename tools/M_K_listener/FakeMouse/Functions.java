@@ -136,27 +136,29 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(note = "esc", value = 27, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 523, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键() {
         temp1 = true;
         t1.myResume();
     }
 
     @ListenMouseKeyboard(note = "esc", value = 27, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "菜单键", value = 93, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 524, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
     public static void esc和菜单键1() {
         temp1 = false;
     }
 
     @ListenMouseKeyboard(note = "f1", value = 112, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键按下() {
         robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
 
     }
 
     @ListenMouseKeyboard(note = "f1", value = 112, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "菜单键", value = 93, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键松开() {
         robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
     }
@@ -340,7 +342,7 @@ public class Functions extends IFunctions {
             robot.keyRelease(VK_WINDOWS);
 
             pause(150L);
-            MouseMoveFix.run(temp.x, temp.y,screen_scale);
+            MouseMoveFix.run(temp.x, temp.y, screen_scale);
         } else if (prtsc按下 == true) {
             Point mouse = MouseInfo.getPointerInfo().getLocation();
 
@@ -519,11 +521,14 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 162, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void ctrl() {
+        System.out.println(111);
         ctrl按下 = true;
     }
 
     @ListenMouseKeyboard(value = 162, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
     public static void ctrl_1() {
+        System.out.println(222);
+
         ctrl按下 = false;
     }
 
