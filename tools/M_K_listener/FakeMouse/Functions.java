@@ -21,7 +21,7 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
     }
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
@@ -137,7 +137,8 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "esc", value = 27, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 523, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "alt右", value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键() {
         temp1 = true;
         t1.myResume();
@@ -145,20 +146,21 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "esc", value = 27, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 524, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
+//    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
+    @ListenMouseKeyboard(note = "alt右", press = false,value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键1() {
         temp1 = false;
     }
 
     @ListenMouseKeyboard(note = "f1", value = 112, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "shift右", value = 161, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "shift右", value = 161, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键按下() {
         robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
 
     }
 
     @ListenMouseKeyboard(note = "f1", value = 112, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "shift右", value = 161, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "shift右", value = 161, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键松开() {
         robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
     }
