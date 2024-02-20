@@ -167,7 +167,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "alt右", press = false,value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键1(InputInfo inputInfo) {
         if(取消功能()){
-            myKeyPress(inputInfo.value);
+            myKeyRelease(inputInfo.value);
         }else {
             temp1 = false;
         }
@@ -189,7 +189,7 @@ public class Functions extends IFunctions {
 //    @ListenMouseKeyboard(note = "shift右", value = 161, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键松开(InputInfo inputInfo) {
         if(取消功能()){
-            myKeyPress(inputInfo.value);
+            myKeyRelease(inputInfo.value);
         }else {
             robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
         }
@@ -233,7 +233,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 115, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 松开(InputInfo inputInfo) {
         if(取消功能()){
-            myKeyPress(inputInfo.value);
+            myKeyRelease(inputInfo.value);
         }else {
         }
 
