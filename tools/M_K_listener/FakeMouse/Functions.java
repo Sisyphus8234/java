@@ -21,7 +21,7 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
     }
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
@@ -229,6 +229,9 @@ public class Functions extends IFunctions {
         波浪键按住 = false;
         if (波浪键按住期间做了什么 == true) {
         } else {
+            Point tempPoint=MouseInfo.getPointerInfo().getLocation();
+            MouseMoveFix.run(0,0,screen_scale);
+
             robot.keyPress(KeyEvent.VK_WINDOWS);
             robot.keyPress(winWithValue);
             pause(50);
@@ -237,6 +240,8 @@ public class Functions extends IFunctions {
 
 //            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
 //            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
+
+            MouseMoveFix.run(tempPoint.x,tempPoint.y,screen_scale);
         }
     }
 
