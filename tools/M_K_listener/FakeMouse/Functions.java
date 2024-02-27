@@ -24,6 +24,8 @@ public class Functions extends IFunctions {
         Controller.printKey = true;
     }
 
+    public static double screen_scale = Double.parseDouble(Config.read("screen_scale"));
+
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
     public static boolean temp1 = false;
     public static boolean temp2 = false;
@@ -37,10 +39,12 @@ public class Functions extends IFunctions {
     public static int 滚轮方向 = 1;
 
     public static boolean win = false;
+
     @ListenMouseKeyboard(note = "win", value = 91, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win() {
         win = true;
     }
+
     @ListenMouseKeyboard(note = "win", value = 91, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win1() {
         win = false;
@@ -143,8 +147,8 @@ public class Functions extends IFunctions {
         };
     }
 
-    private static boolean 取消功能(){
-        return win==true;
+    private static boolean 取消功能() {
+        return win == true;
     }
 
 
@@ -153,9 +157,9 @@ public class Functions extends IFunctions {
 //    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "alt右", value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyPress(inputInfo.value);
-        }else {
+        } else {
             temp1 = true;
             t1.myResume();
         }
@@ -164,11 +168,11 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "esc", value = 27, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 524, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
 //    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
-    @ListenMouseKeyboard(note = "alt右", press = false,value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "alt右", press = false, value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键1(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyRelease(inputInfo.value);
-        }else {
+        } else {
             temp1 = false;
         }
 
@@ -177,9 +181,9 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "f1", value = 112, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "shift右", value = 161, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键按下(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyPress(inputInfo.value);
-        }else {
+        } else {
             robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
         }
 
@@ -188,18 +192,18 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "f1", value = 112, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "shift右", value = 161, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键松开(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyRelease(inputInfo.value);
-        }else {
+        } else {
             robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
         }
     }
 
     @ListenMouseKeyboard(value = 113, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f2键(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyPress(inputInfo.value);
-        }else {
+        } else {
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
@@ -208,9 +212,9 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 114, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f3键(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyPress(inputInfo.value);
-        }else {
+        } else {
             robot.keyRelease(KeyEvent.VK_BACK_SPACE);
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
             robot.keyRelease(KeyEvent.VK_BACK_SPACE);
@@ -219,9 +223,9 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(value = 115, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f4键(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyPress(inputInfo.value);
-        }else {
+        } else {
             robot.keyRelease(KeyEvent.VK_DELETE);
             robot.keyPress(KeyEvent.VK_DELETE);
             robot.keyRelease(KeyEvent.VK_DELETE);
@@ -232,16 +236,16 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 114, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 115, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 松开(InputInfo inputInfo) {
-        if(取消功能()){
+        if (取消功能()) {
             myKeyRelease(inputInfo.value);
-        }else {
+        } else {
         }
 
     }
 
-    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 1000L)
-    public static void win切换(InputInfo inputInfo){
-        if(getKeyStatus(inputInfo.value)==false) {
+    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    public static void win切换(InputInfo inputInfo) {
+        if (getKeyStatus(inputInfo.value) == false) {
             setKeyStatus(inputInfo.value, true);
             robot.keyPress(VK_WINDOWS);
             robot.keyPress(VK_TAB);
@@ -251,9 +255,9 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "菜单键", value = 93,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void win切换1(InputInfo inputInfo){
-        setKeyStatus(inputInfo.value,false);
+    @ListenMouseKeyboard(note = "菜单键", value = 93, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void win切换1(InputInfo inputInfo) {
+        setKeyStatus(inputInfo.value, false);
         robot.mousePress(BUTTON1_DOWN_MASK);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
     }
@@ -276,8 +280,8 @@ public class Functions extends IFunctions {
         波浪键按住 = false;
         if (波浪键按住期间做了什么 == true) {
         } else {
-            Point tempPoint=MouseInfo.getPointerInfo().getLocation();
-            MouseMoveFix.run(0,0,screen_scale);
+            Point tempPoint = MouseInfo.getPointerInfo().getLocation();
+            MouseMoveFix.run(0, 0, screen_scale);
 
             robot.keyPress(KeyEvent.VK_WINDOWS);
             robot.keyPress(winWithValue);
@@ -288,7 +292,7 @@ public class Functions extends IFunctions {
 //            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
 //            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
 
-            MouseMoveFix.run(tempPoint.x,tempPoint.y,screen_scale);
+            MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
         }
     }
 
@@ -307,7 +311,6 @@ public class Functions extends IFunctions {
     }
 
 
-
     @ListenMouseKeyboard(note = "1", value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
     @ListenMouseKeyboard(note = "2", value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
     @ListenMouseKeyboard(note = "3", value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
@@ -323,26 +326,6 @@ public class Functions extends IFunctions {
             }
         }
     }
-
-
-    //--clash
-    public static String clashPointMapName = "clashPointMap";
-    public static HashMap<String, Point> clashPointMap;
-
-    static {
-        try {
-            TypeReference<HashMap<String, Point>> typeReference = new TypeReference<HashMap<String, Point>>() {
-            };
-            clashPointMap = JsonUtils.readJsonFile(clashPointMapName, typeReference);
-
-        } catch (IOException e) {
-            clashPointMap = new HashMap<>();
-        }
-    }
-
-
-    public static double screen_scale = Double.parseDouble(Config.read("screen_scale"));
-
 
     public static boolean prtsc期间做了什么 = false;
     public static boolean prtsc按下 = false;
@@ -364,64 +347,6 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "q", value = 81, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void q(InputInfo inputInfo) {
-        clash(inputInfo);
-    }
-
-    @ListenMouseKeyboard(note = "w", value = 87, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void w(InputInfo inputInfo) {
-        clash(inputInfo);
-    }
-
-
-    public static void clash(InputInfo inputInfo) {
-        波浪键按住期间做了什么 = true;
-        prtsc期间做了什么 = true;
-        if (波浪键按住 == true) {
-
-            Point temp = MouseInfo.getPointerInfo().getLocation();
-
-            robot.keyPress(VK_WINDOWS);
-            robot.keyPress(VK_1);
-            robot.keyRelease(VK_1);
-            robot.keyRelease(VK_WINDOWS);
-
-
-            Point clashPoint = clashPointMap.get(String.valueOf(inputInfo.value));
-
-            MouseMoveFix.run(clashPoint.x, clashPoint.y, screen_scale);
-
-            pause(150L);
-            robot.mousePress(BUTTON1_DOWN_MASK);
-            robot.mouseRelease(BUTTON1_DOWN_MASK);
-            pause(150L);
-
-            robot.keyPress(VK_WINDOWS);
-            robot.keyPress(VK_1);
-            robot.keyRelease(VK_1);
-            robot.keyRelease(VK_WINDOWS);
-
-            pause(150L);
-            MouseMoveFix.run(temp.x, temp.y, screen_scale);
-        } else if (prtsc按下 == true) {
-            Point mouse = MouseInfo.getPointerInfo().getLocation();
-
-
-            clashPointMap.put(String.valueOf(inputInfo.value), mouse);
-            try {
-                JsonUtils.writeJsonFile(clashPointMapName, clashPointMap);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        } else {
-            robot.keyPress(inputInfo.value);
-        }
-    }
-
-
     @ListenMouseKeyboard(note = "tab", value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void tab键() {
         if (波浪键按住 == true) {
@@ -431,7 +356,6 @@ public class Functions extends IFunctions {
             robot.keyPress(KeyEvent.VK_TAB);
         }
     }
-
 
     @ListenMouseKeyboard(note = "3", value = 51, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字3() {
