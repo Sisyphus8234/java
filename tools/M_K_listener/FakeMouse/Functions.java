@@ -93,7 +93,7 @@ public class Functions extends IFunctions {
 
     //---基础功能
 
-    private static boolean 取消功能() {
+    private static boolean 判断win按下() {
         return win == true;
     }
 
@@ -102,14 +102,15 @@ public class Functions extends IFunctions {
 //    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "alt右", value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyPress(inputInfo.value);
+            win期间做了什么 = true;
         } else {
             temp1 = true;
             t1.myResume();
         }
 
-        win期间做了什么 = true;
+
     }
 
     @ListenMouseKeyboard(note = "esc", value = 27, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -117,79 +118,86 @@ public class Functions extends IFunctions {
 //    @ListenMouseKeyboard(note = "ctrl右", value = 163, intercept = true,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
     @ListenMouseKeyboard(note = "alt右", press = false, value = 165, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void esc和菜单键1(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyRelease(inputInfo.value);
+            win期间做了什么 = true;
         } else {
             temp1 = false;
         }
 
-        win期间做了什么 = true;
+
 
     }
 
     @ListenMouseKeyboard(note = "f1", value = 112, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "shift右", value = 161, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键按下(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyPress(inputInfo.value);
+            win期间做了什么 = true;
         } else {
             robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
         }
 
-        win期间做了什么 = true;
+
 
     }
 
     @ListenMouseKeyboard(note = "f1", value = 112, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(note = "shift右", value = 161, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f1键松开(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyRelease(inputInfo.value);
+            win期间做了什么 = true;
         } else {
             robot.mouseRelease(MouseEvent.BUTTON3_DOWN_MASK);
         }
-        win期间做了什么 = true;
+
 
     }
 
     @ListenMouseKeyboard(value = 113, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f2键(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyPress(inputInfo.value);
+            win期间做了什么 = true;
         } else {
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
         }
-        win期间做了什么 = true;
+
 
     }
 
     @ListenMouseKeyboard(value = 114, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f3键(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyPress(inputInfo.value);
+            win期间做了什么 = true;
         } else {
             robot.keyRelease(KeyEvent.VK_BACK_SPACE);
             robot.keyPress(KeyEvent.VK_BACK_SPACE);
             robot.keyRelease(KeyEvent.VK_BACK_SPACE);
         }
 
-        win期间做了什么 = true;
+
 
     }
 
     @ListenMouseKeyboard(value = 115, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void f4键(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyPress(inputInfo.value);
+            win期间做了什么 = true;
         } else {
             robot.keyRelease(KeyEvent.VK_DELETE);
             robot.keyPress(KeyEvent.VK_DELETE);
             robot.keyRelease(KeyEvent.VK_DELETE);
+
         }
 
-        win期间做了什么 = true;
+
 
     }
 
@@ -197,7 +205,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(value = 114, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(value = 115, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 松开(InputInfo inputInfo) {
-        if (取消功能()) {
+        if (判断win按下()) {
             myKeyRelease(inputInfo.value);
         } else {
         }
@@ -211,18 +219,17 @@ public class Functions extends IFunctions {
     public static boolean win期间做了什么 = false;
 
     @ListenMouseKeyboard(note = "win", value = 91, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void win_监测按下() {
+    public static void win按下() {
         win = true;
     }
 
     @ListenMouseKeyboard(note = "win", value = 91, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void win_监测按下1() {
+    public static void win按下1() {
         win = false;
     }
 
     @ListenMouseKeyboard(note = "win", value = 91, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
     public static void win_功能() {
-        win期间做了什么 = false;
     }
 
     @ListenMouseKeyboard(note = "win", value = 91, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
@@ -230,6 +237,9 @@ public class Functions extends IFunctions {
         if (win期间做了什么 == false) {
             t2.myResume();
         }
+
+        //重置
+        win期间做了什么 = false;
     }
 
 
@@ -269,7 +279,10 @@ public class Functions extends IFunctions {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
+            win期间做了什么=true;
         }
+
     }
     //---菜单键
 
@@ -329,25 +342,25 @@ public class Functions extends IFunctions {
     }
 
 
-//    public static boolean prtsc期间做了什么 = false;
-//    public static boolean prtsc按下 = false;
+    public static boolean prtsc期间做了什么 = false;
+    public static boolean prtsc按下 = false;
 
-//    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-//    public static void prtsc(InputInfo inputInfo) {
-//        if (prtsc按下 == false) {
-//            prtsc期间做了什么 = false;
-//            prtsc按下 = true;
-//        }
-//    }
+    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void prtsc(InputInfo inputInfo) {
+        if (prtsc按下 == false) {
+            prtsc期间做了什么 = false;
+            prtsc按下 = true;
+        }
+    }
 
-//    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    public static void prtsc_1(InputInfo inputInfo) {
-//        prtsc按下 = false;
-//        if (prtsc期间做了什么 == false) {
-//            robot.keyPress(VK_PRINTSCREEN);
-//            robot.keyRelease(VK_PRINTSCREEN);
-//        }
-//    }
+    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void prtsc_1(InputInfo inputInfo) {
+        prtsc按下 = false;
+        if (prtsc期间做了什么 == false) {
+            robot.keyPress(VK_PRINTSCREEN);
+            robot.keyRelease(VK_PRINTSCREEN);
+        }
+    }
 
     //---模拟alt+tab
 
