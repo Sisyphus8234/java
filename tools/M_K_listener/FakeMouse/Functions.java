@@ -226,21 +226,10 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "win", value = 91, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win按下1() {
         win = false;
-    }
-
-    @ListenMouseKeyboard(note = "win", value = 91, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
-    public static void win_功能() {
-    }
-
-    @ListenMouseKeyboard(note = "win", value = 91, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
-    public static void win_功能1() {
-        if (win期间做了什么 == false) {
-            t2.myResume();
-        }
-
         //重置
         win期间做了什么 = false;
     }
+
 
 
     @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
@@ -314,53 +303,59 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "`", value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
-        波浪键按住期间做了什么 = false;
         波浪键按住 = true;
-        alt_tab_右键次数 = 0;
     }
 
 
     @ListenMouseKeyboard(note = "`", value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 波浪键1() {
         波浪键按住 = false;
-        if (波浪键按住期间做了什么 == true) {
-        } else {
-            Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-            MouseMoveFix.run(0, 0, screen_scale);
 
-            robot.keyPress(KeyEvent.VK_WINDOWS);
-            robot.keyPress(winWithValue);
-            pause(50);
-            robot.keyRelease(KeyEvent.VK_WINDOWS);
-            robot.keyRelease(winWithValue);
-
-//            robot.keyPress(KeyEvent.VK_BACK_QUOTE);
-//            robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
-
-            MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
+        if (波浪键按住期间做了什么 == false) {
+            t2.myResume();
         }
+
+        波浪键按住期间做了什么 = false;
     }
 
+//    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 波浪键1() {
+//        波浪键按住 = false;
+//        if (波浪键按住期间做了什么 == true) {
+//        } else {
+//            Point tempPoint = MouseInfo.getPointerInfo().getLocation();
+//            MouseMoveFix.run(0, 0, screen_scale);
+//
+//            robot.keyPress(KeyEvent.VK_WINDOWS);
+//            robot.keyPress(winWithValue);
+//            pause(50);
+//            robot.keyRelease(KeyEvent.VK_WINDOWS);
+//            robot.keyRelease(winWithValue);
+//
+//            MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
+//        }
+//    }
 
-    public static boolean prtsc期间做了什么 = false;
-    public static boolean prtsc按下 = false;
 
-    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    public static void prtsc(InputInfo inputInfo) {
-        if (prtsc按下 == false) {
-            prtsc期间做了什么 = false;
-            prtsc按下 = true;
-        }
-    }
-
-    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void prtsc_1(InputInfo inputInfo) {
-        prtsc按下 = false;
-        if (prtsc期间做了什么 == false) {
-            robot.keyPress(VK_PRINTSCREEN);
-            robot.keyRelease(VK_PRINTSCREEN);
-        }
-    }
+//    public static boolean prtsc期间做了什么 = false;
+//    public static boolean prtsc按下 = false;
+//
+//    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+//    public static void prtsc(InputInfo inputInfo) {
+//        if (prtsc按下 == false) {
+//            prtsc期间做了什么 = false;
+//            prtsc按下 = true;
+//        }
+//    }
+//
+//    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void prtsc_1(InputInfo inputInfo) {
+//        prtsc按下 = false;
+//        if (prtsc期间做了什么 == false) {
+//            robot.keyPress(VK_PRINTSCREEN);
+//            robot.keyRelease(VK_PRINTSCREEN);
+//        }
+//    }
 
     //---模拟alt+tab
 
@@ -369,6 +364,10 @@ public class Functions extends IFunctions {
         @Override
         public void run() {
             while (true) {
+
+                Point tempPoint = MouseInfo.getPointerInfo().getLocation();
+                MouseMoveFix.run(0, 0, screen_scale);
+
                 if (alt_tab_右键次数 > 0) {
                     robot.keyPress(KeyEvent.VK_ALT);
                     robot.keyPress(KeyEvent.VK_TAB);
@@ -396,20 +395,22 @@ public class Functions extends IFunctions {
                 robot.keyRelease(KeyEvent.VK_ALT);
                 alt_tab_右键次数++;
 
+                MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
+
                 t2.mySuspend();
             }
         }
     };
 
-    @ListenMouseKeyboard(note = "tab", value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void tab键() {
-        if (波浪键按住 == true) {
-            波浪键按住期间做了什么 = true;
-            t2.myResume();
-        } else {
-            robot.keyPress(KeyEvent.VK_TAB);
-        }
-    }
+//    @ListenMouseKeyboard(note = "tab", value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void tab键() {
+//        if (波浪键按住 == true) {
+//            波浪键按住期间做了什么 = true;
+//            t2.myResume();
+//        } else {
+//            robot.keyPress(KeyEvent.VK_TAB);
+//        }
+//    }
 
     @ListenMouseKeyboard(note = "3", value = 51, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字3() {
