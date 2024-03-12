@@ -22,6 +22,11 @@ public class Functions extends IFunctions {
 //        Controller.printKey = true;
     }
 
+    @Recorder
+    public static void rec(InputInfo inputInfo){
+        System.out.println(inputInfo.value);
+    }
+
     public static double screen_scale = Double.parseDouble(Config.read("screen_scale"));
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
