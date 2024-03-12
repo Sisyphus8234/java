@@ -8,7 +8,7 @@ import static base.Controller.*;
 
 public class ScanFunction {
     private static void handleMethod(Method method, ListenMouseKeyboard listenMouseKeyboard) {
-        method.setAccessible(true);
+//        method.setAccessible(true);
 
         System.out.println("Method recorded: " + method.getName());
         TaskInfo taskInfo = new TaskInfo();
@@ -139,10 +139,6 @@ public class ScanFunction {
         System.out.println("Jna:" + mapJna);
         System.out.println("Jintellitype: " + mapJintellitype);
 
-
-//        Field[] fieldsChild=class1.getDeclaredFields();
-//        Field[] fieldsParent=class1.getSuperclass().getDeclaredFields();
-//        Field[] fieldsChildAndParent = mergeFields(fieldsChild, fieldsParent);
 
         Class classForTraverseField;
         classForTraverseField = myFunctionClass;
