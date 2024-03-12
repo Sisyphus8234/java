@@ -14,7 +14,10 @@ import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 
 import com.sun.jna.platform.win32.WinUser.MSG;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static base.Controller.printKey;
 
@@ -26,8 +29,9 @@ public class KeyboardHook {
     private HHOOK hhk;
     private LowLevelKeyboardProc keyboardHook;
     private InputInfo inputInfoActual = new InputInfo();
-    //	private TaskInfo taskInfo =new TaskInfo();
     private StringBuilder printText = new StringBuilder();
+    private Set<Integer> userInput = new HashSet<>(Arrays.asList(0, 1, 32, 33, 128, 129));
+    private Set<Integer> press = new HashSet<>(Arrays.asList(256, 260));
 
     public void run() {
 
@@ -85,13 +89,12 @@ public class KeyboardHook {
                     inputInfoActual.value = info.vkCode;
                     inputInfoActual.hookInputInfo.flags = info.flags;
 
-//					if(info.flags==16 || info.flags==144){
-                    if (info.flags == 0 || info.flags == 1 || info.flags == 32 || info.flags == 33 || info.flags == 128 || info.flags == 129) {
+                    if (userInput.contains(info.flags)) {
                         inputInfoActual.userInput = true;
                     } else {
                         inputInfoActual.userInput = false;
                     }
-                    if (wParam.intValue() == 256 || wParam.intValue() == 260) {
+                    if (press.contains(wParam.intValue())) {
                         inputInfoActual.press = true;
                     } else {
                         inputInfoActual.press = false;

@@ -13,7 +13,10 @@ import com.sun.jna.platform.win32.WinUser.LowLevelMouseProc;
 import com.sun.jna.platform.win32.WinUser.MSG;
 import com.sun.jna.platform.win32.WinUser.MSLLHOOKSTRUCT;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static base.Controller.printKey;
 
@@ -22,8 +25,8 @@ public class MouseHook {
     private HHOOK hhk;
     private LowLevelMouseProc mouseHook;
     private InputInfo inputInfoActual = new InputInfo();
-    //	private TaskInfo taskInfo;
     private StringBuilder printText = new StringBuilder();
+    private Set<Integer> userInput = new HashSet<>(Arrays.asList(1));
 
     public void run() {
 
@@ -58,14 +61,13 @@ public class MouseHook {
                         return null;
                     }
 
-//					InputInfo inputInfo =new InputInfo();
                     inputInfoActual.resetProperty();
                     inputInfoActual.value = wParam.intValue();
                     inputInfoActual.hookInputInfo.mouseData = info.mouseData;
                     inputInfoActual.hookInputInfo.flags = info.flags;
 
 
-                    if (info.flags == 1) {
+                    if (userInput.contains(info.flags)) {
                         inputInfoActual.userInput = false;
                     } else {
                         inputInfoActual.userInput = true;
