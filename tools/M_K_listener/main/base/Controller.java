@@ -8,62 +8,64 @@ import java.util.List;
 import java.util.Map;
 
 public class Controller {
-	public static boolean printKey =false;
-	public static boolean listenSwitch =true;
-	public static ArrayList<MyThread> threadList=new ArrayList<>();
-	public static Map<InputInfo, List<TaskInfo>> mapJna=new HashMap<>();
-	public static List<TaskInfo> listRecorder=new ArrayList<>();
-	public static Map<String, TaskInfo> mapJintellitype=new HashMap<>();
-	public static Map<Integer, Integer> mapListenBar=new HashMap<>();
-	
-	public static long refreshtime=3000L;
+    public static boolean printKey = false;
+    public static boolean listenSwitch = true;
+    public static List<MyThread> threadList = new ArrayList<>();
+    public static Map<InputInfo, List<TaskInfo>> taskMmap = new HashMap<>();
+    public static Map<Integer, Integer> switchMmap = new HashMap<>();
+    public static List<TaskInfo> recorderList = new ArrayList<>();
 
-	public static Do do1=new Do(refreshtime);
-	
-	public static void run(Class myFunctionClass,Class baseFunctionClass) {
-		
-		MyJFrame.run();
+    @Deprecated
+    public static Map<String, TaskInfo> mapJintellitype = new HashMap<>();
 
-		ScanFunction.run(myFunctionClass,baseFunctionClass);
+    public static long refreshtime = 3000L;
 
-		if(Functions.Jna==true) {
-			//mouse
-			new Thread() {
-				@Override
-				public void run() {
+    public static Do do1 = new Do(refreshtime);
 
-					MouseHook mouseHook = new MouseHook();
-					mouseHook.run();
+    public static void run(Class myFunctionClass, Class baseFunctionClass) {
 
-				}
-			}.start();
+        MyJFrame.run();
+
+        ScanFunction.run(myFunctionClass, baseFunctionClass);
+
+        if (Functions.Jna == true) {
+            //mouse
+            new Thread() {
+                @Override
+                public void run() {
+
+                    MouseHook mouseHook = new MouseHook();
+                    mouseHook.run();
+
+                }
+            }.start();
 
 
-			//keyboard
-			new Thread() {
-				@Override
-				public void run() {
+            //keyboard
+            new Thread() {
+                @Override
+                public void run() {
 
-					KeyboardHook keyboardHook = new KeyboardHook();
-					keyboardHook.run();
+                    KeyboardHook keyboardHook = new KeyboardHook();
+                    keyboardHook.run();
 
-				}
-			}.start();
-		}
+                }
+            }.start();
+        }
 
-		if(Functions.jintellitype==true) {
-			//Jintellitype
-			new Thread() {
-				@Override
-				public void run() {
+//		if(Functions.jintellitype==true) {
+//			//Jintellitype
+//			new Thread() {
+//				@Override
+//				public void run() {
+//
+//					JintellitypeRegisterAndListener jintellitypeRegisterAndListener = new JintellitypeRegisterAndListener();
+//					jintellitypeRegisterAndListener.run();
+//
+//				}
+//			}.start();
+//		}
 
-					JintellitypeRegisterAndListener jintellitypeRegisterAndListener = new JintellitypeRegisterAndListener();
-					jintellitypeRegisterAndListener.run();
-
-				}
-			}.start();
-		}
-        
-	}
+    }
 
 }

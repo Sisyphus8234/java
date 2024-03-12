@@ -16,6 +16,7 @@ public class IFunctions {
 
     public static boolean Jna = true;
 
+    @Deprecated
     public static boolean jintellitype = false;
 
     public static Robot robot;

@@ -57,8 +57,8 @@ public class KeyboardHook {
 
 
                     //开关相关
-                    if (Controller.mapListenBar.containsKey(info.vkCode)) {
-                        if (Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.off)) {
+                    if (Controller.switchMmap.containsKey(info.vkCode)) {
+                        if (Controller.switchMmap.get(info.vkCode).equals(ListenBar.OnOrOff.off)) {
                             for (MyThread thread : Controller.threadList) {
                                 thread.mySuspend();
                             }
@@ -66,7 +66,7 @@ public class KeyboardHook {
 
                             System.out.println("program off");
                             return new LRESULT(1);
-                        } else if (Controller.mapListenBar.get(info.vkCode).equals(ListenBar.OnOrOff.on)) {
+                        } else if (Controller.switchMmap.get(info.vkCode).equals(ListenBar.OnOrOff.on)) {
                             for (MyThread thread : Controller.threadList) {
                                 if (thread.defaultState == MyThread.State.on) {
                                     thread.myResume();
@@ -98,15 +98,15 @@ public class KeyboardHook {
                         inputInfoActualTemp.press = false;
                     }
 
-                    for(TaskInfo item:Controller.listRecorder){
+                    for(TaskInfo item:Controller.recorderList){
                         if(item.inputInfo.recorderEquals(inputInfoActualTemp)){
                             item.inputInfoActualTemp = inputInfoActualTemp;
                             Controller.do1.doTask(item);
                         }
                     }
 
-                    if (Controller.mapJna.containsKey(inputInfoActualTemp)) {
-                        List<TaskInfo> taskInfoList = Controller.mapJna.get(inputInfoActualTemp);
+                    if (Controller.taskMmap.containsKey(inputInfoActualTemp)) {
+                        List<TaskInfo> taskInfoList = Controller.taskMmap.get(inputInfoActualTemp);
                         for (TaskInfo taskInfo : taskInfoList) {
                             taskInfo.inputInfoActualTemp = inputInfoActualTemp;
                             Controller.do1.doTask(taskInfo);

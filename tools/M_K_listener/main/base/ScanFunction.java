@@ -30,14 +30,14 @@ public class ScanFunction {
             inputInfo.otherCondition.add(item);
         }
 
-        if (!mapJna.containsKey(inputInfo)) {
+        if (!taskMmap.containsKey(inputInfo)) {
             List tempList = new ArrayList<TaskInfo>();
             tempList.add(taskInfo);
-            mapJna.put(inputInfo, tempList);
+            taskMmap.put(inputInfo, tempList);
 
         } else {
             if (inputInfo.extend == false) {
-                Iterator<TaskInfo> tempIterator = mapJna.get(inputInfo).iterator();
+                Iterator<TaskInfo> tempIterator = taskMmap.get(inputInfo).iterator();
                 while (tempIterator.hasNext()) {
                     TaskInfo tempTaskInfo = tempIterator.next();
                     if (tempTaskInfo.inputInfo.extend == false) {
@@ -47,7 +47,7 @@ public class ScanFunction {
             } else {
                 System.out.println("warning: " + method.getName() + " input has more than one task!");
             }
-            mapJna.get(inputInfo).add(taskInfo);
+            taskMmap.get(inputInfo).add(taskInfo);
         }
     }
 
@@ -60,7 +60,7 @@ public class ScanFunction {
         inputInfo.userInput = recorder.userInput();
         inputInfo.timeInterval = recorder.timeInterval();
         taskInfo.inputInfo = inputInfo;
-        listRecorder.add(taskInfo);
+        recorderList.add(taskInfo);
     }
 
 
@@ -136,7 +136,7 @@ public class ScanFunction {
 
 
         }
-        System.out.println("Jna:" + mapJna);
+        System.out.println("Jna:" + taskMmap);
         System.out.println("Jintellitype: " + mapJintellitype);
 
 
@@ -159,7 +159,7 @@ public class ScanFunction {
                 ListenBar listenBar = field.getAnnotation(ListenBar.class);
                 try {
                     if ((listenBar.onOrOff() == ListenBar.OnOrOff.on || listenBar.onOrOff() == ListenBar.OnOrOff.off) && listenBar.threadList() != true) {
-                        Iterator<Map.Entry<Integer, Integer>> iterator = mapListenBar.entrySet().iterator();
+                        Iterator<Map.Entry<Integer, Integer>> iterator = switchMmap.entrySet().iterator();
                         while (iterator.hasNext()) {
                             Map.Entry<Integer, Integer> entry = iterator.next();
                             if (entry.getValue().equals(listenBar.onOrOff())) {
@@ -167,7 +167,7 @@ public class ScanFunction {
                             }
                         }
 
-                        mapListenBar.put(Integer.parseInt(field.get(myFunctionClass).toString()), listenBar.onOrOff());
+                        switchMmap.put(Integer.parseInt(field.get(myFunctionClass).toString()), listenBar.onOrOff());
 
                     }
                 } catch (Exception e) {
@@ -183,7 +183,7 @@ public class ScanFunction {
 
         }
 
-        System.out.println("OnAndOff key(1 means on,2 means off): " + mapListenBar);
+        System.out.println("OnAndOff key(1 means on,2 means off): " + switchMmap);
         System.out.println("Thread controlled by OnAndOff key: " + threadList);
 
 

@@ -75,15 +75,15 @@ public class MouseHook {
                     }
                     inputInfoActualTemp.press = true;
 
-                    for(TaskInfo item:Controller.listRecorder){
+                    for(TaskInfo item:Controller.recorderList){
                         if(item.inputInfo.recorderEquals(inputInfoActualTemp)){
                             item.inputInfoActualTemp = inputInfoActualTemp;
                             Controller.do1.doTask(item);
                         }
                     }
 
-                    if (Controller.mapJna.containsKey(inputInfoActualTemp)) {
-                        List<TaskInfo> taskInfoList = Controller.mapJna.get(inputInfoActualTemp);
+                    if (Controller.taskMmap.containsKey(inputInfoActualTemp)) {
+                        List<TaskInfo> taskInfoList = Controller.taskMmap.get(inputInfoActualTemp);
                         for (TaskInfo taskInfo : taskInfoList) {
                             taskInfo.inputInfoActualTemp = inputInfoActualTemp;
                             Controller.do1.doTask(taskInfo);
