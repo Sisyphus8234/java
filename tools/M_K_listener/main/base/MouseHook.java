@@ -24,7 +24,7 @@ import static base.Controller.printKey;
 public class MouseHook {
     private HHOOK hhk;
     private LowLevelMouseProc mouseHook;
-    private InputInfo inputInfoActual = new InputInfo();
+    private InputInfo inputInfoActualTemp = new InputInfo();
     private StringBuilder printText = new StringBuilder();
     private Set<Integer> userInput = new HashSet<>(Arrays.asList(1));
 
@@ -61,22 +61,31 @@ public class MouseHook {
                         return null;
                     }
 
-                    inputInfoActual.resetProperty();
-                    inputInfoActual.value = wParam.intValue();
-                    inputInfoActual.hookInputInfo.mouseData = info.mouseData;
-                    inputInfoActual.hookInputInfo.flags = info.flags;
+                    inputInfoActualTemp.resetProperty();
+                    inputInfoActualTemp.value = wParam.intValue();
+                    inputInfoActualTemp.hookInputInfo.mouseData = info.mouseData;
+                    inputInfoActualTemp.hookInputInfo.flags = info.flags;
+                    inputInfoActualTemp.keyboardOrMouse=ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
 
 
                     if (userInput.contains(info.flags)) {
-                        inputInfoActual.userInput = false;
+                        inputInfoActualTemp.userInput = false;
                     } else {
-                        inputInfoActual.userInput = true;
+                        inputInfoActualTemp.userInput = true;
                     }
-                    inputInfoActual.press = true;
+                    inputInfoActualTemp.press = true;
 
-                    if (Controller.mapJna.containsKey(inputInfoActual)) {
-                        List<TaskInfo> taskInfoList = Controller.mapJna.get(inputInfoActual);
+                    for(TaskInfo item:Controller.listRecorder){
+                        if(item.inputInfo.recorderEquals(inputInfoActualTemp)){
+                            item.inputInfoActualTemp = inputInfoActualTemp;
+                            Controller.do1.doTask(item);
+                        }
+                    }
+
+                    if (Controller.mapJna.containsKey(inputInfoActualTemp)) {
+                        List<TaskInfo> taskInfoList = Controller.mapJna.get(inputInfoActualTemp);
                         for (TaskInfo taskInfo : taskInfoList) {
+                            taskInfo.inputInfoActualTemp = inputInfoActualTemp;
                             Controller.do1.doTask(taskInfo);
                         }
                         for (TaskInfo taskInfo : taskInfoList) {

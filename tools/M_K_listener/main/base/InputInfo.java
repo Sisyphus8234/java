@@ -69,4 +69,31 @@ public class InputInfo {
     }
 
 
+    public boolean recorderEquals(Object obj) {
+        if (this == obj) {
+            return true; // 如果是同一个对象，则认为相等
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // 如果对象为null或者类型不同，则认为不相等
+        }
+        InputInfo other = (InputInfo) obj; // 将obj强制转换为当前类的类型
+        // 根据类的属性进行相等性比较
+
+        boolean step0 = false;
+        switch (other.keyboardOrMouse) {
+            case ListenMouseKeyboard.KeyboardOrMouse.Keyboard:
+                step0 = press == other.press && userInput == other.userInput;
+                break;
+
+            case ListenMouseKeyboard.KeyboardOrMouse.Mouse:
+                step0 = userInput == other.userInput;
+                break;
+        }
+
+
+
+        return step0;
+    }
+
+
 }

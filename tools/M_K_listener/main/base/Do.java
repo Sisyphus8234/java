@@ -45,7 +45,7 @@ public class Do
 		try {
 			int parameterCount = taskInfo.method.getParameterCount();
 			if(parameterCount>0) {
-				taskInfo.method.invoke(object, taskInfo.inputInfo);
+				taskInfo.method.invoke(object, taskInfo.inputInfoActualTemp);
 			}else {
 				taskInfo.method.invoke(object);
 			}

@@ -25,8 +25,8 @@ public class ScanFunction {
         taskInfo.inputInfo = inputInfo;
 
         inputInfo.hookInputInfo.mouseData = listenMouseKeyboard.mouseData();
-        String[] otherCondition=listenMouseKeyboard.otherCondition().split(",");
-        for(String item:otherCondition){
+        String[] otherCondition = listenMouseKeyboard.otherCondition().split(",");
+        for (String item : otherCondition) {
             inputInfo.otherCondition.add(item);
         }
 
@@ -51,10 +51,20 @@ public class ScanFunction {
         }
     }
 
+    private static void handleRecorder(Method method, Recorder recorder) {
+        System.out.println("Recorder recorded: " + method.getName());
+        TaskInfo taskInfo = new TaskInfo();
+        taskInfo.method = method;
+        InputInfo inputInfo = new InputInfo();
+        inputInfo.press = recorder.press();
+        inputInfo.userInput = recorder.userInput();
+        inputInfo.timeInterval = recorder.timeInterval();
+        taskInfo.inputInfo = inputInfo;
+        listRecorder.add(taskInfo);
+    }
+
+
     public static void run(Class myFunctionClass, Class baseFunctionClass) {
-
-
-        //Class<Functions> classFunctions = Functions.class;
         Class classForTraverseMethod;
         classForTraverseMethod = myFunctionClass;
         Method[] methods = new Method[0];
@@ -78,70 +88,22 @@ public class ScanFunction {
             System.exit(0);
         }
 
-//        //按下还是松开,鼠标不适用
-//        Map<Boolean,Integer> map1=new HashMap();
-//        map1.put(true,256);
-//        map1.put(false,257);
-
-//        //是否是用户输入
-//        Map<Boolean,String> map2=new HashMap();
-//        map2.put(true,"userInput");
-//        map2.put(false,"!userInput");
-
 
         for (Method method : methods) {
 
             if (method.isAnnotationPresent(ListenMouseKeyboard.class)) {
-//                method.setAccessible(true);
                 ListenMouseKeyboard listenMouseKeyboard = method.getAnnotation(ListenMouseKeyboard.class);
-
-
                 handleMethod(method, listenMouseKeyboard);
-//                System.out.println("Method recorded: " + method.getName());
-//                TaskInfo taskInfo = new TaskInfo();
-//                taskInfo.method = method;
-//                taskInfo.immediately = listenMouseKeyboard.immediately();
-//                taskInfo.intercept = listenMouseKeyboard.intercept();
-//                InputInfo inputInfo = new InputInfo();
-//                inputInfo.value = listenMouseKeyboard.value();
-//                inputInfo.press = listenMouseKeyboard.press();
-//                inputInfo.userInput = listenMouseKeyboard.userInput();
-//                inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
-//                inputInfo.mouseData = listenMouseKeyboard.mouseData();
-//                inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
-//                taskInfo.inputInfo = inputInfo;
-//                if(!mapJna.containsKey(inputInfo)){
-//                    List tempList=new ArrayList<TaskInfo>();
-//                    tempList.add(taskInfo);
-//                    mapJna.put(inputInfo, tempList);
-//                }else {
-//                    mapJna.get(inputInfo).add(taskInfo);
-//                }
-
+            } else if (method.isAnnotationPresent(Recorder.class)) {
+                Recorder recorder = method.getAnnotation(Recorder.class);
+                handleRecorder(method, recorder);
             }
 
             //处理重复注解
             if (method.isAnnotationPresent(ListenMouseKeyboards.class)) {
-//                method.setAccessible(true);
                 ListenMouseKeyboards listenMouseKeyboards = method.getAnnotation(ListenMouseKeyboards.class);
-
                 for (ListenMouseKeyboard listenMouseKeyboard : listenMouseKeyboards.value()) {
-
                     handleMethod(method, listenMouseKeyboard);
-//                    System.out.println("Method recorded: " + method.getName());
-//                    TaskInfo taskInfo = new TaskInfo();
-//                    taskInfo.method = method;
-//                    taskInfo.immediately = listenMouseKeyboard.immediately();
-//                    taskInfo.intercept = listenMouseKeyboard.intercept();
-//                    InputInfo inputInfo = new InputInfo();
-//                    inputInfo.value = listenMouseKeyboard.value();
-//                    inputInfo.press = listenMouseKeyboard.press();
-//                    inputInfo.userInput = listenMouseKeyboard.userInput();
-//                    inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
-//                    inputInfo.mouseData = listenMouseKeyboard.mouseData();
-//                    inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
-//                    taskInfo.inputInfo = inputInfo;
-//                    mapJna.put(inputInfo, taskInfo);
                 }
             }
 

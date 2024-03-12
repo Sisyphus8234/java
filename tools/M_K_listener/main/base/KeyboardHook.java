@@ -14,10 +14,7 @@ import com.sun.jna.platform.win32.WinUser.LowLevelKeyboardProc;
 
 import com.sun.jna.platform.win32.WinUser.MSG;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static base.Controller.printKey;
 
@@ -28,7 +25,7 @@ import static base.Controller.printKey;
 public class KeyboardHook {
     private HHOOK hhk;
     private LowLevelKeyboardProc keyboardHook;
-    private InputInfo inputInfoActual = new InputInfo();
+    private InputInfo inputInfoActualTemp = new InputInfo();
     private StringBuilder printText = new StringBuilder();
     private Set<Integer> userInput = new HashSet<>(Arrays.asList(0, 1, 32, 33, 128, 129));
     private Set<Integer> press = new HashSet<>(Arrays.asList(256, 260));
@@ -85,24 +82,33 @@ public class KeyboardHook {
                         return null;
                     }
 
-                    inputInfoActual.resetProperty();
-                    inputInfoActual.value = info.vkCode;
-                    inputInfoActual.hookInputInfo.flags = info.flags;
+                    inputInfoActualTemp.resetProperty();
+                    inputInfoActualTemp.value = info.vkCode;
+                    inputInfoActualTemp.hookInputInfo.flags = info.flags;
+                    inputInfoActualTemp.keyboardOrMouse=ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
 
                     if (userInput.contains(info.flags)) {
-                        inputInfoActual.userInput = true;
+                        inputInfoActualTemp.userInput = true;
                     } else {
-                        inputInfoActual.userInput = false;
+                        inputInfoActualTemp.userInput = false;
                     }
                     if (press.contains(wParam.intValue())) {
-                        inputInfoActual.press = true;
+                        inputInfoActualTemp.press = true;
                     } else {
-                        inputInfoActual.press = false;
+                        inputInfoActualTemp.press = false;
                     }
 
-                    if (Controller.mapJna.containsKey(inputInfoActual)) {
-                        List<TaskInfo> taskInfoList = Controller.mapJna.get(inputInfoActual);
+                    for(TaskInfo item:Controller.listRecorder){
+                        if(item.inputInfo.recorderEquals(inputInfoActualTemp)){
+                            item.inputInfoActualTemp = inputInfoActualTemp;
+                            Controller.do1.doTask(item);
+                        }
+                    }
+
+                    if (Controller.mapJna.containsKey(inputInfoActualTemp)) {
+                        List<TaskInfo> taskInfoList = Controller.mapJna.get(inputInfoActualTemp);
                         for (TaskInfo taskInfo : taskInfoList) {
+                            taskInfo.inputInfoActualTemp = inputInfoActualTemp;
                             Controller.do1.doTask(taskInfo);
                         }
                         for (TaskInfo taskInfo : taskInfoList) {

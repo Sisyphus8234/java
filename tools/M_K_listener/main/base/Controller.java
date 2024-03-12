@@ -12,6 +12,7 @@ public class Controller {
 	public static boolean listenSwitch =true;
 	public static ArrayList<MyThread> threadList=new ArrayList<>();
 	public static Map<InputInfo, List<TaskInfo>> mapJna=new HashMap<>();
+	public static List<TaskInfo> listRecorder=new ArrayList<>();
 	public static Map<String, TaskInfo> mapJintellitype=new HashMap<>();
 	public static Map<Integer, Integer> mapListenBar=new HashMap<>();
 	
