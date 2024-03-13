@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 import static base.Controller.printKey;
+import static base.Controller.recorder;
 
 
 public class MouseHook {
@@ -65,7 +66,7 @@ public class MouseHook {
                     inputInfoActualTemp.value = wParam.intValue();
                     inputInfoActualTemp.hookInputInfo.mouseData = info.mouseData;
                     inputInfoActualTemp.hookInputInfo.flags = info.flags;
-                    inputInfoActualTemp.keyboardOrMouse=ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+                    inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
 
 
                     if (userInput.contains(info.flags)) {
@@ -75,10 +76,11 @@ public class MouseHook {
                     }
                     inputInfoActualTemp.press = true;
 
-                    for(TaskInfo item:Controller.recorderList){
-                        if(item.inputInfo.recorderEquals(inputInfoActualTemp)){
-                            item.inputInfoActualTemp = inputInfoActualTemp;
-                            Controller.do1.doTask(item);
+                    if (recorder != null) {
+                        recorder.inputInfoActualTemp = inputInfoActualTemp;
+                        Controller.do1.doTask(recorder);
+                        if (recorder.taskResult != null && recorder.taskResult.intercept == true) {
+                            return new LRESULT(1);
                         }
                     }
 

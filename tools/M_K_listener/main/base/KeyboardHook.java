@@ -17,6 +17,7 @@ import com.sun.jna.platform.win32.WinUser.MSG;
 import java.util.*;
 
 import static base.Controller.printKey;
+import static base.Controller.recorder;
 
 
 /**
@@ -85,7 +86,7 @@ public class KeyboardHook {
                     inputInfoActualTemp.resetProperty();
                     inputInfoActualTemp.value = info.vkCode;
                     inputInfoActualTemp.hookInputInfo.flags = info.flags;
-                    inputInfoActualTemp.keyboardOrMouse=ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+                    inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
 
                     if (userInput.contains(info.flags)) {
                         inputInfoActualTemp.userInput = true;
@@ -98,10 +99,11 @@ public class KeyboardHook {
                         inputInfoActualTemp.press = false;
                     }
 
-                    for(TaskInfo item:Controller.recorderList){
-                        if(item.inputInfo.recorderEquals(inputInfoActualTemp)){
-                            item.inputInfoActualTemp = inputInfoActualTemp;
-                            Controller.do1.doTask(item);
+                    if (recorder != null) {
+                        recorder.inputInfoActualTemp = inputInfoActualTemp;
+                        Controller.do1.doTask(recorder);
+                        if (recorder.taskResult != null && recorder.taskResult.intercept == true) {
+                            return new LRESULT(1);
                         }
                     }
 

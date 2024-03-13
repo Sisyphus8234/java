@@ -26,7 +26,9 @@ public class Do
 	    }}}.start();
     }
 
+
 	public void doTask(TaskInfo taskInfo) {
+
 		if(Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis()>taskInfo.inputInfo.timeInterval) {
 			taskInfo.lastTime=LocalDateTime.now();
 			if (taskInfo.immediately == true) {
@@ -37,17 +39,18 @@ public class Do
 				this.taskInfoList.add(taskInfo);
 			}
 		}
+
 	}
-	
-	
-    public void immediate(TaskInfo taskInfo) {
+
+
+	public void immediate(TaskInfo taskInfo) {
 
 		try {
 			int parameterCount = taskInfo.method.getParameterCount();
-			if(parameterCount>0) {
-				taskInfo.method.invoke(object, taskInfo.inputInfoActualTemp);
-			}else {
-				taskInfo.method.invoke(object);
+			if (parameterCount > 0) {
+				taskInfo.taskResult = (TaskResult) taskInfo.method.invoke(object, taskInfo.inputInfoActualTemp);
+			} else {
+				taskInfo.taskResult = (TaskResult) taskInfo.method.invoke(object);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

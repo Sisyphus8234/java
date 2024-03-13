@@ -56,11 +56,11 @@ public class ScanFunction {
         TaskInfo taskInfo = new TaskInfo();
         taskInfo.method = method;
         InputInfo inputInfo = new InputInfo();
-        inputInfo.press = recorder.press();
-        inputInfo.userInput = recorder.userInput();
+//        inputInfo.press = recorder.press();
+//        inputInfo.userInput = recorder.userInput();
         inputInfo.timeInterval = recorder.timeInterval();
         taskInfo.inputInfo = inputInfo;
-        recorderList.add(taskInfo);
+        Controller.recorder =taskInfo;
     }
 
 

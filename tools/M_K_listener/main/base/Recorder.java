@@ -9,14 +9,13 @@ import java.lang.annotation.RetentionPolicy;
 public @interface Recorder {
 
 
-    boolean press() default true;
+//    boolean press() default true;
 
-    boolean userInput() default true;
+//    boolean userInput() default true;
 
     String note() default "";
 
     long timeInterval() default 0L;
-
 
 }
 
