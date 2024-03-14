@@ -22,9 +22,45 @@ public class Functions extends IFunctions {
 //        Controller.printKey = true;
     }
 
+
     @Recorder
-    public static void rec(InputInfo inputInfo){
-        System.out.println(inputInfo.value);
+    public static TaskResult rec(InputInfo inputInfo) {
+        if (inputInfo.userInput == true && inputInfo.value != 192) {
+            alt_tab_右键次数 = 0;
+        }
+        return null;
+    }
+
+
+    public static boolean prtsc期间做了什么 = false;
+
+    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void prtsc(InputInfo inputInfo) {
+        if (getKeyStatus(VK_PRINTSCREEN) == false) {
+            prtsc期间做了什么 = false;
+        }
+        setKeyStatus(VK_PRINTSCREEN, true);
+    }
+
+    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void prtsc_1(InputInfo inputInfo) {
+        setKeyStatus(VK_PRINTSCREEN, false);
+        if (prtsc期间做了什么 == false) {
+            robot.keyPress(VK_PRINTSCREEN);
+            robot.keyRelease(VK_PRINTSCREEN);
+        }
+    }
+
+
+    //    public static boolean alt期间做了什么 = false;
+    @ListenMouseKeyboard(note = "alt", value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void alt(InputInfo inputInfo) {
+        setKeyStatus(VK_PRINTSCREEN, true);
+    }
+
+    @ListenMouseKeyboard(note = "alt", value = 164, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void alt1(InputInfo inputInfo) {
+        setKeyStatus(VK_ALT, false);
     }
 
     public static double screen_scale = Double.parseDouble(Config.read("screen_scale"));
@@ -131,7 +167,6 @@ public class Functions extends IFunctions {
         }
 
 
-
     }
 
     @ListenMouseKeyboard(note = "f1", value = 112, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -143,7 +178,6 @@ public class Functions extends IFunctions {
         } else {
             robot.mousePress(MouseEvent.BUTTON3_DOWN_MASK);
         }
-
 
 
     }
@@ -187,7 +221,6 @@ public class Functions extends IFunctions {
         }
 
 
-
     }
 
     @ListenMouseKeyboard(value = 115, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -201,7 +234,6 @@ public class Functions extends IFunctions {
             robot.keyRelease(KeyEvent.VK_DELETE);
 
         }
-
 
 
     }
@@ -236,14 +268,13 @@ public class Functions extends IFunctions {
     }
 
 
-
-    @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
-    @ListenMouseKeyboard(note = "左键", userInput = false, value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
-    @ListenMouseKeyboard(note = "滚轮", value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
-    @ListenMouseKeyboard(note = "滚轮", userInput = false, value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
-    public static void 停止alt_tab() {
-        alt_tab_右键次数 = 0;
-    }
+//    @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    @ListenMouseKeyboard(note = "左键", userInput = false, value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    @ListenMouseKeyboard(note = "滚轮", value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    @ListenMouseKeyboard(note = "滚轮", userInput = false, value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    public static void 停止alt_tab() {
+//        alt_tab_右键次数 = 0;
+//    }
 
 
     public static String winWithValueName = "winWithValue";
@@ -274,7 +305,7 @@ public class Functions extends IFunctions {
                 throw new RuntimeException(e);
             }
 
-            win期间做了什么=true;
+            win期间做了什么 = true;
         }
 
     }
@@ -341,26 +372,6 @@ public class Functions extends IFunctions {
 //        }
 //    }
 
-
-//    public static boolean prtsc期间做了什么 = false;
-//    public static boolean prtsc按下 = false;
-//
-//    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-//    public static void prtsc(InputInfo inputInfo) {
-//        if (prtsc按下 == false) {
-//            prtsc期间做了什么 = false;
-//            prtsc按下 = true;
-//        }
-//    }
-//
-//    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    public static void prtsc_1(InputInfo inputInfo) {
-//        prtsc按下 = false;
-//        if (prtsc期间做了什么 == false) {
-//            robot.keyPress(VK_PRINTSCREEN);
-//            robot.keyRelease(VK_PRINTSCREEN);
-//        }
-//    }
 
     //---模拟alt+tab
 
