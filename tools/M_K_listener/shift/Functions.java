@@ -31,6 +31,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(note = "滚轮", value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(note = "esc", value = 27, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     private static void 松开shift() {
         if (getKeyStatus(VK_SHIFT) == true) {
             myKeyRelease(VK_SHIFT);
