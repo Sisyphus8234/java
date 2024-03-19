@@ -135,7 +135,7 @@ public class Functions extends IFunctions {
     //---基础功能
 
     private static boolean 判断win按下() {
-        return win == true;
+        return getKeyStatus(VK_WINDOWS);
     }
 
     @ListenMouseKeyboard(note = "esc", value = 27, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -250,19 +250,40 @@ public class Functions extends IFunctions {
 
     }
 
-    //---win功能
+    //---大写锁
+    @ListenMouseKeyboard(note = "大写", value = 20, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 大写锁() {
+    }
 
-    public static boolean win = false;
+    @ListenMouseKeyboard(note = "大写", value = 20, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 大写锁1() {
+
+        Point tempPoint = MouseInfo.getPointerInfo().getLocation();
+        MouseMoveFix.run(0, 0, screen_scale);
+
+        robot.keyPress(KeyEvent.VK_WINDOWS);
+        robot.keyPress(winWithValue);
+        pause(50);
+        robot.keyRelease(KeyEvent.VK_WINDOWS);
+        robot.keyRelease(winWithValue);
+
+        MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
+
+
+    }
+
+
+    //---win功能
     public static boolean win期间做了什么 = false;
 
     @ListenMouseKeyboard(note = "win", value = 91, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win按下() {
-        win = true;
+        setKeyStatus(VK_WINDOWS, true);
     }
 
     @ListenMouseKeyboard(note = "win", value = 91, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win按下1() {
-        win = false;
+        setKeyStatus(VK_WINDOWS, false);
         //重置
         win期间做了什么 = false;
     }
@@ -297,7 +318,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "4", value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
     @ListenMouseKeyboard(note = "5", value = 53, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
     public static void win3(InputInfo inputInfo) {
-        if (win == true) {
+        if (getKeyStatus(VK_WINDOWS) == true) {
             winWithValue = inputInfo.value;
             try {
                 JsonUtils.writeJsonFile(winWithValueName, winWithValue);
