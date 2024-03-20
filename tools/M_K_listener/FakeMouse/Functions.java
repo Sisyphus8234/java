@@ -19,7 +19,7 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
     }
 
 
@@ -216,14 +216,14 @@ public class Functions extends IFunctions {
 
     public static boolean b替换 = false;
 
-    @ListenMouseKeyboard(note = "m", value = 77, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "n", value = 78, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void m() {
         if (getKeyStatus(VK_ALT) == true) {
             b替换 = false;
         }
     }
 
-    @ListenMouseKeyboard(note = "n", value = 78, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "m", value = 77, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void n() {
         if (getKeyStatus(VK_ALT) == true) {
             b替换 = true;
