@@ -19,7 +19,7 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
     }
 
 
@@ -214,12 +214,13 @@ public class Functions extends IFunctions {
     //---
 
 
-    public static boolean b替换 = false;
+    public static boolean b替换 = Boolean.parseBoolean(Config.read("reverse"));
 
     @ListenMouseKeyboard(note = "n", value = 78, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void m() {
         if (getKeyStatus(VK_ALT) == true) {
             b替换 = false;
+            Config.write("reverse", String.valueOf(b替换));
         }
     }
 
@@ -227,6 +228,8 @@ public class Functions extends IFunctions {
     public static void n() {
         if (getKeyStatus(VK_ALT) == true) {
             b替换 = true;
+            Config.write("reverse", String.valueOf(b替换));
+
         }
     }
 
