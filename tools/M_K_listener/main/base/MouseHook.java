@@ -94,6 +94,9 @@ public class MouseHook {
                             if (taskInfo.intercept == true) {
                                 return new LRESULT(1);
                             }
+                            if(taskInfo.taskResult!=null&&taskInfo.taskResult.intercept==true){
+                                return new LRESULT(1);
+                            }
                         }
                     }
                 }
