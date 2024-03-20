@@ -8,8 +8,6 @@ import static base.Controller.*;
 
 public class ScanFunction {
     private static void handleMethod(Method method, ListenMouseKeyboard listenMouseKeyboard) {
-//        method.setAccessible(true);
-
         System.out.println("Method recorded: " + method.getName());
         TaskInfo taskInfo = new TaskInfo();
         taskInfo.method = method;
@@ -75,9 +73,9 @@ public class ScanFunction {
             }
             classForTraverseMethod = classForTraverseMethod.getSuperclass();
         }
-        for (Method method : methods) {
-            method.setAccessible(true);
-        }
+//        for (Method method : methods) {
+//            method.setAccessible(true);
+//        }
 
 
         try {
@@ -108,36 +106,35 @@ public class ScanFunction {
             }
 
 
-            //jintellitype部分
-            if (method.isAnnotationPresent(JintellitypeListen.class)) {
-                method.setAccessible(true);
-                JintellitypeListen j111 = method.getAnnotation(JintellitypeListen.class);
-
-                System.out.println("Method recorded: " + method.getName());
-                TaskInfo u111 = new TaskInfo();
-                u111.method = method;
-                u111.immediately = j111.immediately();
-                mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
-            }
-
-            //处理重复
-            if (method.isAnnotationPresent(JintellitypeListens.class)) {
-                method.setAccessible(true);
-                JintellitypeListens js111 = method.getAnnotation(JintellitypeListens.class);
-
-                for (JintellitypeListen j111 : js111.value()) {
-                    System.out.println("Method recorded: " + method.getName());
-                    TaskInfo u111 = new TaskInfo();
-                    u111.method = method;
-                    u111.immediately = j111.immediately();
-                    mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
-                }
-            }
+//            //jintellitype部分
+//            if (method.isAnnotationPresent(JintellitypeListen.class)) {
+//                JintellitypeListen j111 = method.getAnnotation(JintellitypeListen.class);
+//
+//                System.out.println("Method recorded: " + method.getName());
+//                TaskInfo u111 = new TaskInfo();
+//                u111.method = method;
+//                u111.immediately = j111.immediately();
+//                mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
+//            }
+//
+//            //处理重复
+//            if (method.isAnnotationPresent(JintellitypeListens.class)) {
+//                method.setAccessible(true);
+//                JintellitypeListens js111 = method.getAnnotation(JintellitypeListens.class);
+//
+//                for (JintellitypeListen j111 : js111.value()) {
+//                    System.out.println("Method recorded: " + method.getName());
+//                    TaskInfo u111 = new TaskInfo();
+//                    u111.method = method;
+//                    u111.immediately = j111.immediately();
+//                    mapJintellitype.put(j111.modifier() + "_" + j111.keycode(), u111);
+//                }
+//            }
 
 
         }
         System.out.println("Jna:" + taskMmap);
-        System.out.println("Jintellitype: " + mapJintellitype);
+//        System.out.println("Jintellitype: " + mapJintellitype);
 
 
         Class classForTraverseField;
@@ -150,9 +147,9 @@ public class ScanFunction {
             }
             classForTraverseField = classForTraverseField.getSuperclass();
         }
-        for (Field field : fields) {
-            field.setAccessible(true);
-        }
+//        for (Field field : fields) {
+//            field.setAccessible(true);
+//        }
 
         for (Field field : fields) {
             if (field.isAnnotationPresent(ListenBar.class)) {
