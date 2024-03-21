@@ -45,18 +45,19 @@ public class Functions extends IFunctions {
 //        robot.keyPress(VK_W);
 //    }
 
-    private static boolean w;
+
     @ListenMouseKeyboard(note = "w", value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 83, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 65, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 68, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 按下w() {
-        w = true;
+    public static void 按下w(InputInfo inputInfo) {
+        setKeyStatus(inputInfo.value,true);
+
     }
 
     @ListenMouseKeyboard(note = "w", value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static TaskResult 按下w1() {
-        w = false;
+    public static TaskResult 按下w1(InputInfo inputInfo) {
+        setKeyStatus(inputInfo.value,false);
         if (b1==true) {
             return new TaskResult(true);
         } else {
@@ -67,14 +68,15 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "", value = 83, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 65, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 68, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void aa() {
-        w = false;
+    public static void aa(InputInfo inputInfo) {
+        setKeyStatus(inputInfo.value,false);
     }
 
 
     @ListenMouseKeyboard(note = "shift", value = 160, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult shift1() {
-        if (w == true) {
+        boolean temp=getKeyStatus(VK_W)||getKeyStatus(VK_A)||getKeyStatus(VK_S)||getKeyStatus(VK_D);
+        if (temp == true) {
             return new TaskResult(true);
         }else {
             return null;
