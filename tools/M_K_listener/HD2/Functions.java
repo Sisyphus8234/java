@@ -45,24 +45,55 @@ public class Functions extends IFunctions {
 //        robot.keyPress(VK_W);
 //    }
 
-        @ListenMouseKeyboard(note = "w", value = 87, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static TaskResult 按下w() {
-        if(getKeyStatus(VK_SHIFT)==true){
+    private static boolean w;
+    @ListenMouseKeyboard(note = "w", value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", value = 83, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", value = 65, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", value = 68, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 按下w() {
+        w = true;
+    }
+
+    @ListenMouseKeyboard(note = "w", value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static TaskResult 按下w1() {
+        w = false;
+        if (b1==true) {
             return new TaskResult(true);
-        }else {
+        } else {
             return null;
         }
     }
 
-    @ListenMouseKeyboard(note = "shift", value = 160, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void shift() {
-        setKeyStatus(VK_SHIFT,true);
+    @ListenMouseKeyboard(note = "", value = 83, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", value = 65, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", value = 68, press = false,keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void aa() {
+        w = false;
     }
 
-    @ListenMouseKeyboard(note = "shift", value = 160,press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void shift1() {
-        setKeyStatus(VK_SHIFT,false);
+
+    @ListenMouseKeyboard(note = "shift", value = 160, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static TaskResult shift1() {
+        if (w == true) {
+            return new TaskResult(true);
+        }else {
+            return null;
+        }
+
     }
+
+    private static boolean b1=false;
+    @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 侧键() {
+        b1=true;
+    }
+
+    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 侧键1() {
+        b1=false;
+    }
+
+
 
 
 }
