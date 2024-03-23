@@ -62,7 +62,8 @@ public class Functions extends IFunctions {
         setKeyStatus(VK_SHIFT, false);
 
         boolean temp = getKeyStatus(VK_W) || getKeyStatus(VK_A) || getKeyStatus(VK_S) || getKeyStatus(VK_D);
-        if (Duration.between(LocalDateTime.now(), shiftStart).toMillis() >= 1000L) {
+        System.out.println(Duration.between(shiftStart,LocalDateTime.now()).toMillis());
+        if (Duration.between(LocalDateTime.now(), shiftStart).toMillis() >= 500L) {
             return null;
         } else if (temp == true) {
             return new TaskResult(true);
