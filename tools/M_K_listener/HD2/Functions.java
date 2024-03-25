@@ -46,6 +46,15 @@ public class Functions extends IFunctions {
     }
 
 
+    @ListenMouseKeyboard(note = "e", value = 69, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void e(InputInfo inputInfo) {
+        setKeyStatus(inputInfo.value, true);
+    }
+    @ListenMouseKeyboard(note = "e", value = 69, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void e1(InputInfo inputInfo) {
+        setKeyStatus(inputInfo.value, false);
+    }
+
     public static LocalDateTime shiftStart = LocalDateTime.now();
 
     @ListenMouseKeyboard(note = "shift", value = 160, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -62,9 +71,11 @@ public class Functions extends IFunctions {
         setKeyStatus(VK_SHIFT, false);
 
         boolean temp = getKeyStatus(VK_W) || getKeyStatus(VK_A) || getKeyStatus(VK_S) || getKeyStatus(VK_D);
-        System.out.println(Duration.between(shiftStart,LocalDateTime.now()).toMillis());
-        if (Duration.between(LocalDateTime.now(), shiftStart).toMillis() >= 500L) {
-            return null;
+
+        if (Duration.between(shiftStart,LocalDateTime.now()).toMillis() >= 500L) {
+            return new TaskResult(false);
+        }  else if (getKeyStatus(VK_E)==true) {
+            return new TaskResult(false);
         } else if (temp == true) {
             return new TaskResult(true);
         } else {
