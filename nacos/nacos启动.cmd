@@ -1,0 +1,1 @@
+D:\nacos\bin\startup.cmd -m standalone

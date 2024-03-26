@@ -22,6 +22,30 @@ public class Functions extends IFunctions {
 //        Controller.printKey = true;
     }
 
+    @ListenMouseKeyboard(note = "pause", value = 19, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static TaskResult reOpen(InputInfo inputInfo) {
+
+        String batchFilePath = Config.read("self_path");
+        System.out.println(batchFilePath);
+        try {
+            // 使用Runtime类的exec方法执行批处理文件
+            Process process = Runtime.getRuntime().exec(batchFilePath);
+
+            // 可以选择等待批处理文件执行完成
+            process.waitFor();
+
+            // 打印批处理文件的执行结果（可选）
+            int exitCode = process.exitValue();
+            System.out.println("批处理文件执行完成，退出码：" + exitCode);
+
+            System.exit(0);
+        } catch (Exception e) {
+
+        }
+
+        return null;
+    }
+
 
     @Recorder
     public static TaskResult rec(InputInfo inputInfo) {
@@ -152,6 +176,7 @@ public class Functions extends IFunctions {
     }
 
     public static TaskResult result左键 = new TaskResult();
+
     @ListenMouseKeyboard(note = "esc", value = 27, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(note = "alt右", value = 165, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -236,11 +261,11 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换(InputInfo inputInfo) {
         if (b替换 == false) {
-            result右键.intercept=false;
+            result右键.intercept = false;
         } else {
             t左键b = true;
             t左键.myResume();
-            result右键.intercept=true;
+            result右键.intercept = true;
         }
         return result右键;
     }
@@ -248,10 +273,10 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "右键", value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换1() {
         if (b替换 == false) {
-            result右键.intercept=false;
+            result右键.intercept = false;
         } else {
             t左键b = false;
-            result右键.intercept=true;
+            result右键.intercept = true;
         }
         return result右键;
 
@@ -261,11 +286,11 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换2() {
         if (b替换 == false) {
-            result左键.intercept=false;
+            result左键.intercept = false;
         } else {
             t右键b = true;
             t右键.myResume();
-            result左键.intercept=true;
+            result左键.intercept = true;
         }
 
         return result左键;
@@ -275,17 +300,17 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "左键", value = 514, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换3(InputInfo inputInfo) {
         if (b替换 == false) {
-            result左键.intercept=false;
+            result左键.intercept = false;
         } else {
             t右键b = false;
-            result右键.intercept=true;
+            result右键.intercept = true;
         }
         return result左键;
     }
 
     //---
 
-    @ListenMouseKeyboard(value = 113,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult f2键(InputInfo inputInfo) {
         if (判断win按下()) {
             myKeyPress(inputInfo.value);
@@ -334,9 +359,9 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(value = 113, press = false,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 114, press = false,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 115, press = false,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 113, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 114, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(value = 115, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult 松开(InputInfo inputInfo) {
         if (判断win按下()) {
             win期间做了什么 = true;
