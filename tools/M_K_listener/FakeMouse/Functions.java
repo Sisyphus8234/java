@@ -24,7 +24,7 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "pause", value = 19, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
-
+        System.exit(0);
         String batchFilePath = Config.read("self_path");
         System.out.println(batchFilePath);
         try {
@@ -38,7 +38,7 @@ public class Functions extends IFunctions {
             int exitCode = process.exitValue();
             System.out.println("批处理文件执行完成，退出码：" + exitCode);
 
-            System.exit(0);
+
         } catch (Exception e) {
 
         }
@@ -49,7 +49,7 @@ public class Functions extends IFunctions {
 
     @Recorder
     public static TaskResult rec(InputInfo inputInfo) {
-        if (inputInfo.userInput == true && inputInfo.value != 192) {
+        if (inputInfo.userInput == true && inputInfo.value != 192 && inputInfo.value != 93) {
             alt_tab_右键次数 = 0;
         }
         return null;
@@ -114,7 +114,7 @@ public class Functions extends IFunctions {
     public static MyThread t右键 = new MyThread() {
         @Override
         public void run() {
-            pause(1000L);
+            pause(2000L);
             while (true) {
                 if (getKeyStatus(MouseEvent.BUTTON3_DOWN_MASK) == false) {
                     myMousePress(MouseEvent.BUTTON3_DOWN_MASK);
@@ -180,7 +180,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "esc", value = 27, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(note = "alt右", value = 165, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static TaskResult esc和菜单键(InputInfo inputInfo) {
+    public static TaskResult 模拟左键(InputInfo inputInfo) {
         if (判断win按下()) {
             win期间做了什么 = true;
             result左键.intercept = false;
@@ -197,7 +197,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "esc", value = 27, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(note = "alt右", press = false, value = 165, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static TaskResult esc和菜单键1(InputInfo inputInfo) {
+    public static TaskResult 模拟左键1(InputInfo inputInfo) {
         if (判断win按下()) {
             win期间做了什么 = true;
             result左键.intercept = false;
@@ -456,24 +456,24 @@ public class Functions extends IFunctions {
     }
     //---菜单键
 
-    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
-    public static void 菜单键(InputInfo inputInfo) {
-        if (getKeyStatus(inputInfo.value) == false) {
-            setKeyStatus(inputInfo.value, true);
-            robot.keyPress(VK_WINDOWS);
-            robot.keyPress(VK_TAB);
-            pause(200L);
-            robot.keyRelease(VK_TAB);
-            robot.keyRelease(VK_WINDOWS);
-        }
-    }
-
-    @ListenMouseKeyboard(note = "菜单键", value = 93, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 菜单键1(InputInfo inputInfo) {
-        setKeyStatus(inputInfo.value, false);
-        robot.mousePress(BUTTON1_DOWN_MASK);
-        robot.mouseRelease(BUTTON1_DOWN_MASK);
-    }
+//    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+//    public static void 菜单键(InputInfo inputInfo) {
+//        if (getKeyStatus(inputInfo.value) == false) {
+//            setKeyStatus(inputInfo.value, true);
+//            robot.keyPress(VK_WINDOWS);
+//            robot.keyPress(VK_TAB);
+//            pause(200L);
+//            robot.keyRelease(VK_TAB);
+//            robot.keyRelease(VK_WINDOWS);
+//        }
+//    }
+//
+//    @ListenMouseKeyboard(note = "菜单键", value = 93, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 菜单键1(InputInfo inputInfo) {
+//        setKeyStatus(inputInfo.value, false);
+//        robot.mousePress(BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(BUTTON1_DOWN_MASK);
+//    }
 
     //---波浪键相关
 
@@ -483,12 +483,14 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(note = "`", value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
         波浪键按住 = true;
     }
 
 
     @ListenMouseKeyboard(note = "`", value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "菜单键", value = 93,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键1() {
         波浪键按住 = false;
 
