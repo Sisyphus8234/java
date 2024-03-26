@@ -24,7 +24,7 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "pause", value = 19, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
-        System.exit(0);
+
         String batchFilePath = Config.read("self_path");
         System.out.println(batchFilePath);
         try {
@@ -37,7 +37,7 @@ public class Functions extends IFunctions {
             // 打印批处理文件的执行结果（可选）
             int exitCode = process.exitValue();
             System.out.println("批处理文件执行完成，退出码：" + exitCode);
-
+            System.exit(0);
 
         } catch (Exception e) {
 
