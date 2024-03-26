@@ -2,8 +2,6 @@ package custom;
 
 import base.*;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -23,17 +21,19 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "", value = 83, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 65, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 68, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 按下w(InputInfo inputInfo) {
+    public static void wasd(InputInfo inputInfo) {
         setKeyStatus(inputInfo.value, true);
 
     }
 
     @ListenMouseKeyboard(note = "w", value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static TaskResult 按下w1(InputInfo inputInfo) {
-        setKeyStatus(inputInfo.value, false);
-        if (b1 == true) {
+    public static TaskResult w1(InputInfo inputInfo) {
+
+        if (阻断下个w弹起 == true) {
+            阻断下个w弹起 = false;
             return new TaskResult(true);
         } else {
+            setKeyStatus(inputInfo.value, false);
             return null;
         }
     }
@@ -41,27 +41,18 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(note = "", value = 83, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 65, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(note = "", value = 68, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void aa(InputInfo inputInfo) {
+    public static void asd1(InputInfo inputInfo) {
         setKeyStatus(inputInfo.value, false);
     }
 
 
-    @ListenMouseKeyboard(note = "e", value = 69, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void e(InputInfo inputInfo) {
-        setKeyStatus(inputInfo.value, true);
-    }
-    @ListenMouseKeyboard(note = "e", value = 69, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void e1(InputInfo inputInfo) {
-        setKeyStatus(inputInfo.value, false);
-    }
-
-    public static LocalDateTime shiftStart = LocalDateTime.now();
+//    public static LocalDateTime shiftStart = LocalDateTime.now();
 
     @ListenMouseKeyboard(note = "shift", value = 160, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult shift() {
-        if (getKeyStatus(VK_SHIFT) == false) {
-            shiftStart = LocalDateTime.now();
-        }
+//        if (getKeyStatus(VK_SHIFT) == false) {
+//            shiftStart = LocalDateTime.now();
+//        }
         setKeyStatus(VK_SHIFT, true);
         return null;
     }
@@ -72,9 +63,14 @@ public class Functions extends IFunctions {
 
         boolean temp = getKeyStatus(VK_W) || getKeyStatus(VK_A) || getKeyStatus(VK_S) || getKeyStatus(VK_D);
 
-        if (Duration.between(shiftStart,LocalDateTime.now()).toMillis() >= 500L) {
-            return new TaskResult(false);
-        }  else if (getKeyStatus(VK_E)==true) {
+//        if (Duration.between(shiftStart, LocalDateTime.now()).toMillis() >= 500L) {
+//            return new TaskResult(false);
+//        } else if (getKeyStatus(VK_E) == true) {
+//            return new TaskResult(false);
+//        } else
+
+        if (强制下个shift弹起 == true) {
+            强制下个shift弹起 = false;
             return new TaskResult(false);
         } else if (temp == true) {
             return new TaskResult(true);
@@ -84,17 +80,22 @@ public class Functions extends IFunctions {
 
     }
 
-    private static boolean b1 = false;
+    private static boolean 阻断下个w弹起 = false;
 
     @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 侧键() {
-        b1 = true;
+        阻断下个w弹起 = true;
     }
 
-    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 侧键1() {
-        b1 = false;
+//    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void 侧键1() {
+//        阻断下个w弹起 = false;
+//    }
+
+    private static boolean 强制下个shift弹起 = false;
+
+    @ListenMouseKeyboard(note = "大写锁", value = 20, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void 大写锁() {
+        强制下个shift弹起 = true;
     }
-
-
 }
