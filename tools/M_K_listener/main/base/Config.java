@@ -14,7 +14,7 @@ public class Config {
 
     public static void init() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),java.nio.charset.StandardCharsets.UTF_8));
             prop.load(br);
             br.close();
         } catch (Exception e) {
