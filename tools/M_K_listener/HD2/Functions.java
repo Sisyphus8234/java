@@ -34,7 +34,6 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "w", value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult w1(InputInfo inputInfo) {
-
         if (阻断下个w弹起 == true) {
             阻断下个w弹起 = false;
             return new TaskResult(true);
@@ -56,9 +55,6 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(note = "shift", value = 160, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult shift() {
-//        if (getKeyStatus(VK_SHIFT) == false) {
-//            shiftStart = LocalDateTime.now();
-//        }
         setKeyStatus(VK_SHIFT, true);
         return null;
     }
@@ -69,11 +65,6 @@ public class Functions extends IFunctions {
 
         boolean temp = getKeyStatus(VK_W) || getKeyStatus(VK_A) || getKeyStatus(VK_S) || getKeyStatus(VK_D);
 
-//        if (Duration.between(shiftStart, LocalDateTime.now()).toMillis() >= 500L) {
-//            return new TaskResult(false);
-//        } else if (getKeyStatus(VK_E) == true) {
-//            return new TaskResult(false);
-//        } else
 
         if (强制下个shift弹起 == true) {
             强制下个shift弹起 = false;
@@ -93,16 +84,16 @@ public class Functions extends IFunctions {
         强制下个shift弹起 = true;
     }
 
-//    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    public static void 侧键1() {
-//        阻断下个w弹起 = false;
-//    }
 
     private static boolean 强制下个shift弹起 = false;
 
-    @ListenMouseKeyboard(note = "大写锁", value = 20, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    public static void 大写锁() {
+    @ListenMouseKeyboard(note = "win", value = 91,intercept = true,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void win() {
         阻断下个w弹起 = true;
+    }
+
+    @ListenMouseKeyboard(note = "win", value = 91, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void win1() {
     }
 
 //    @ListenMouseKeyboard(note = "esc", value = 27, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
@@ -110,7 +101,7 @@ public class Functions extends IFunctions {
 //        f();
 //    }
 
-    public static void f(){
+    public static void f() {
         try {
             // 获取屏幕尺寸
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -128,7 +119,7 @@ public class Functions extends IFunctions {
             String timestamp = now.format(formatter);
 
             // 保存截图到文件
-            File file = new File(timestamp+"_screenshot.png");
+            File file = new File(timestamp + "_screenshot.png");
             ImageIO.write(screenCapture, "png", file);
             System.out.println("截屏成功，保存为: " + file.getAbsolutePath());
         } catch (Exception ex) {
