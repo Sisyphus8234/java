@@ -1,6 +1,7 @@
 package base;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Config {
@@ -14,7 +15,7 @@ public class Config {
 
     public static void init() {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),java.nio.charset.StandardCharsets.UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),StandardCharsets.UTF_8));
             prop.load(br);
             br.close();
         } catch (Exception e) {
@@ -43,7 +44,7 @@ public class Config {
             Collections.sort(sortedKeys);
 
             // 手动写入属性到文件，保持顺序
-            try (Writer writer = new FileWriter(filePath, false)) { // 设置为 false 表示覆盖源文件
+            try (Writer writer = new FileWriter(filePath, StandardCharsets.UTF_8)) {
                 for (String key : sortedKeys) {
                     String value = prop.getProperty(key);
                     writer.write(key + "=" + value + "\n");
