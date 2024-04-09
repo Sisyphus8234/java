@@ -36,6 +36,9 @@ public class IFunctions {
             e.printStackTrace();
         }
 
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("currentDir: " + currentDir);
+
     }
 
     public static void pause(long millis) {

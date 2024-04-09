@@ -425,16 +425,9 @@ public class Functions extends IFunctions {
     public static Integer winWithValue;
 
     static {
-
-        String currentDir = System.getProperty("user.dir");
-        System.out.println("当前程序运行的路径：" + currentDir);
-
-            TypeReference<Integer> typeReference1 = new TypeReference<Integer>() {
-            };
-
-        System.out.println(winWithValueName);
-            winWithValue = JsonUtil.readJsonFile(winWithValueName, typeReference1);
-
+        TypeReference<Integer> typeReference1 = new TypeReference<Integer>() {
+        };
+        winWithValue = JsonUtil.readJsonFile(winWithValueName, typeReference1);
     }
 
 
@@ -446,7 +439,7 @@ public class Functions extends IFunctions {
     public static void win3(InputInfo inputInfo) {
         if (getKeyStatus(VK_WINDOWS) == true) {
             winWithValue = inputInfo.value;
-                JsonUtil.writeJsonFile(winWithValueName, winWithValue);
+            JsonUtil.writeJsonFile(winWithValueName, winWithValue);
 
 
             win期间做了什么 = true;
@@ -489,7 +482,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "`", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "菜单键",press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "菜单键", press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键1() {
         波浪键按住 = false;
 
