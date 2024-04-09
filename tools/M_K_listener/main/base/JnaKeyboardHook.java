@@ -17,13 +17,12 @@ import com.sun.jna.platform.win32.WinUser.MSG;
 import java.util.*;
 
 import static base.Controller.printKey;
-import static base.Controller.recorder;
 
 
 /**
  * Sample implementation of a low-level keyboard hook on W32.
  */
-public class KeyboardHook {
+public class JnaKeyboardHook {
     private HHOOK hhk;
     private LowLevelKeyboardProc keyboardHook;
     private InputInfo inputInfoActualTemp = new InputInfo();
@@ -41,8 +40,6 @@ public class KeyboardHook {
             public LRESULT callback(int nCode, WPARAM wParam, KBDLLHOOKSTRUCT info) {
 
                 if (nCode == 0) {
-
-
                     if (printKey == true) {
                         printText.setLength(0);
                         printText.append("--------------------").append("\n");
@@ -58,26 +55,8 @@ public class KeyboardHook {
 
 
                     //开关相关
-                    if (Controller.switchMmap.containsKey(info.vkCode)) {
-                        if (Controller.switchMmap.get(info.vkCode).equals(ListenBar.OnOrOff.off)) {
-                            for (MyThread thread : Controller.threadList) {
-                                thread.mySuspend();
-                            }
-                            Controller.listenSwitch = false;
-
-                            System.out.println("program off");
-                            return new LRESULT(1);
-                        } else if (Controller.switchMmap.get(info.vkCode).equals(ListenBar.OnOrOff.on)) {
-                            for (MyThread thread : Controller.threadList) {
-                                if (thread.defaultState == MyThread.State.on) {
-                                    thread.myResume();
-                                }
-                            }
-                            Controller.listenSwitch = true;
-
-                            System.out.println("program on");
-                            return new LRESULT(1);
-                        }
+                    if (HookUtil.isSwitch(info.vkCode) == true) {
+                        return new LRESULT(1);
                     }
                     if (Controller.listenSwitch == false) {
                         return null;
@@ -85,8 +64,8 @@ public class KeyboardHook {
 
                     inputInfoActualTemp.resetProperty();
                     inputInfoActualTemp.value = info.vkCode;
-                    inputInfoActualTemp.hookInputInfo.flags = info.flags;
                     inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+                    inputInfoActualTemp.otherCondition.put("flags", String.valueOf(info.flags));
 
                     if (userInput.contains(info.flags)) {
                         inputInfoActualTemp.userInput = true;
@@ -99,29 +78,10 @@ public class KeyboardHook {
                         inputInfoActualTemp.press = false;
                     }
 
-                    if (recorder != null) {
-                        recorder.inputInfoActualTemp = inputInfoActualTemp;
-                        Controller.do1.doTask(recorder);
-                        if (recorder.taskResult != null && recorder.taskResult.intercept == true) {
-                            return new LRESULT(1);
-                        }
+                    if (HookUtil.task(inputInfoActualTemp) == true) {
+                        return new LRESULT(1);
                     }
 
-                    if (Controller.taskMmap.containsKey(inputInfoActualTemp)) {
-                        List<TaskInfo> taskInfoList = Controller.taskMmap.get(inputInfoActualTemp);
-                        for (TaskInfo taskInfo : taskInfoList) {
-                            taskInfo.inputInfoActualTemp = inputInfoActualTemp;
-                            Controller.do1.doTask(taskInfo);
-                        }
-                        for (TaskInfo taskInfo : taskInfoList) {
-                            if (taskInfo.intercept == true) {
-                                return new LRESULT(1);
-                            }
-                            if(taskInfo.taskResult!=null&&taskInfo.taskResult.intercept==true){
-                                return new LRESULT(1);
-                            }
-                        }
-                    }
                 }
 
 

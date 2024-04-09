@@ -9,13 +9,11 @@ public class InputInfo {
     public boolean press;
     public boolean userInput;
 
-    HookInputInfo hookInputInfo = new HookInputInfo();
 
-    public Set<String> otherCondition = new HashSet<>();
+    public Map<String, String> otherCondition = new HashMap();
 
     public long timeInterval;
     public boolean extend;
-
 
 
     public void resetProperty() {
@@ -23,8 +21,7 @@ public class InputInfo {
         this.value = 0;
         this.press = true;
         this.userInput = true;
-        this.hookInputInfo.mouseData = 0;
-        this.hookInputInfo.flags = 0;
+
     }
 
 
@@ -36,28 +33,24 @@ public class InputInfo {
         if (obj == null || getClass() != obj.getClass()) {
             return false; // 如果对象为null或者类型不同，则认为不相等
         }
-        InputInfo other = (InputInfo) obj; // 将obj强制转换为当前类的类型
+        InputInfo objInMap = (InputInfo) obj; // 将obj强制转换为当前类的类型
         // 根据类的属性进行相等性比较
 
         boolean step0 = false;
-        switch (other.keyboardOrMouse) {
-            case ListenMouseKeyboard.KeyboardOrMouse.Keyboard:
-                step0 = value == other.value && press == other.press && userInput == other.userInput;
-                break;
+        step0 = value == objInMap.value && press == objInMap.press && userInput == objInMap.userInput && keyboardOrMouse == objInMap.keyboardOrMouse;
 
-            case ListenMouseKeyboard.KeyboardOrMouse.Mouse:
-                step0 = value == other.value && userInput == other.userInput;
-                break;
-        }
 
         boolean step1 = true;
-        if (!otherCondition.isEmpty()) {
-            if (otherCondition.contains(ListenMouseKeyboard.ConditionName.mouseData)) {
-                step1 = step1 && (hookInputInfo.mouseData == other.hookInputInfo.mouseData);
+        if (objInMap.otherCondition != null && objInMap.otherCondition.size() != 0) {
+
+            for (Map.Entry<String, String> item : objInMap.otherCondition.entrySet()) {
+                if (!otherCondition.containsKey(item.getKey())) {
+                    throw new RuntimeException("otherCondition mistake");
+                }
+
+                step1 = step1 && Objects.equals(objInMap.otherCondition.get(item.getKey()), item.getValue());
             }
-            if (otherCondition.contains(ListenMouseKeyboard.ConditionName.flags)) {
-                step1 = step1 && (hookInputInfo.flags == other.hookInputInfo.flags);
-            }
+
         }
 
         return step0 && step1;

@@ -7,14 +7,26 @@ import java.util.*;
 import static base.Controller.*;
 
 public class ScanFunction {
+
+
+
     private static void handleMethod(Method method, ListenMouseKeyboard listenMouseKeyboard) {
+
+        if(listenMouseKeyboard.active()!=-1&&listenMouseKeyboard.active()!=IFunctions.active){
+            return;
+        }
+
+
         System.out.println("Method recorded: " + method.getName());
         TaskInfo taskInfo = new TaskInfo();
         taskInfo.method = method;
         taskInfo.immediately = listenMouseKeyboard.immediately();
         taskInfo.intercept = listenMouseKeyboard.intercept();
         InputInfo inputInfo = new InputInfo();
-        inputInfo.value = listenMouseKeyboard.value();
+        if(!keyCodeMap.containsKey(listenMouseKeyboard.key())){
+            throw new RuntimeException(listenMouseKeyboard.key()+" was not found in keyCodeMap");
+        }
+        inputInfo.value = keyCodeMap.get(listenMouseKeyboard.key());
         inputInfo.press = listenMouseKeyboard.press();
         inputInfo.userInput = listenMouseKeyboard.userInput();
         inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
@@ -22,10 +34,13 @@ public class ScanFunction {
         inputInfo.extend = listenMouseKeyboard.extend();
         taskInfo.inputInfo = inputInfo;
 
-        inputInfo.hookInputInfo.mouseData = listenMouseKeyboard.mouseData();
-        String[] otherCondition = listenMouseKeyboard.otherCondition().split(",");
-        for (String item : otherCondition) {
-            inputInfo.otherCondition.add(item);
+        if(!listenMouseKeyboard.otherCondition().isEmpty()) {
+            String[] otherCondition = listenMouseKeyboard.otherCondition().split(",");
+            for (String item : otherCondition) {
+                String key = item.split("=")[0];
+                String value = item.split("=")[1];
+                inputInfo.otherCondition.put(key, value);
+            }
         }
 
         if (!taskMmap.containsKey(inputInfo)) {
@@ -182,6 +197,8 @@ public class ScanFunction {
 
         System.out.println("OnAndOff key(1 means on,2 means off): " + switchMmap);
         System.out.println("Thread controlled by OnAndOff key: " + threadList);
+
+
 
 
     }

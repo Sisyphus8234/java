@@ -11,7 +11,7 @@ public @interface ListenMouseKeyboard {
 
     int keyboardOrMouse();
 
-    int value();
+    String key();
 
     boolean immediately() default true;
 
@@ -32,6 +32,8 @@ public @interface ListenMouseKeyboard {
     int flags() default 0;
 
     String otherCondition() default "";
+
+    int active() default -1;
 
 
     public static class KeyboardOrMouse {

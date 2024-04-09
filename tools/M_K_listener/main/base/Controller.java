@@ -1,5 +1,6 @@
 package base;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import custom.Functions;
 
 import java.util.ArrayList;
@@ -22,20 +23,30 @@ public class Controller {
 
     public static Do do1 = new Do(refreshtime);
 
+    public static Map<String, Integer> keyCodeMap = new HashMap<>();
+
+    public class Active {
+        public static final int jna = 0;
+        public static final int jnativehook = 1;
+    }
+
     public static void run(Class myFunctionClass, Class baseFunctionClass) {
 
         MyJFrame.run();
 
-        ScanFunction.run(myFunctionClass, baseFunctionClass);
 
-        if (Functions.Jna == true) {
+        if (Functions.active == Active.jna) {
+            keyCodeMap = JsonUtil.readJsonFile("base/jna_key_code.json", new TypeReference<HashMap<String, Integer>>() {
+            });
+
+
             //mouse
             new Thread() {
                 @Override
                 public void run() {
 
-                    MouseHook mouseHook = new MouseHook();
-                    mouseHook.run();
+                    JnaMouseHook jnaMouseHook = new JnaMouseHook();
+                    jnaMouseHook.run();
 
                 }
             }.start();
@@ -46,11 +57,36 @@ public class Controller {
                 @Override
                 public void run() {
 
-                    KeyboardHook keyboardHook = new KeyboardHook();
-                    keyboardHook.run();
+                    JnaKeyboardHook jnaKeyboardHook = new JnaKeyboardHook();
+                    jnaKeyboardHook.run();
 
                 }
             }.start();
+        } else if (Functions.active == Active.jnativehook) {
+            keyCodeMap = JsonUtil.readJsonFile("base/jnativehook_key_code.json", new TypeReference<HashMap<String, Integer>>() {
+            });
+
+            //keyboard
+            new Thread() {
+                @Override
+                public void run() {
+                    JnativehookUtil.run();
+
+                }
+            }.start();
+
+
+//            //mouse
+//            new Thread() {
+//                @Override
+//                public void run() {
+//
+//
+//
+//                }
+//            }.start();
+
+
         }
 
 //		if(Functions.jintellitype==true) {
@@ -65,6 +101,8 @@ public class Controller {
 //				}
 //			}.start();
 //		}
+
+        ScanFunction.run(myFunctionClass, baseFunctionClass);
 
     }
 

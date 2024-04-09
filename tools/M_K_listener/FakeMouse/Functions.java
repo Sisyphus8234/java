@@ -1,6 +1,6 @@
 package custom;
 
-import addition.JsonUtils;
+import base.JsonUtil;
 import addition.MouseMoveFix;
 import base.*;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,7 +8,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -22,7 +21,7 @@ public class Functions extends IFunctions {
 //        Controller.printKey = true;
     }
 
-    @ListenMouseKeyboard(note = "pause", value = 19, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
 
         String batchFilePath = Config.read("self_path");
@@ -58,7 +57,7 @@ public class Functions extends IFunctions {
 
     public static boolean prtsc期间做了什么 = false;
 
-    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "prtsc", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void prtsc(InputInfo inputInfo) {
         if (getKeyStatus(VK_PRINTSCREEN) == false) {
             prtsc期间做了什么 = false;
@@ -66,7 +65,7 @@ public class Functions extends IFunctions {
         setKeyStatus(VK_PRINTSCREEN, true);
     }
 
-    @ListenMouseKeyboard(note = "prtsc", value = 44, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "prtsc", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void prtsc_1(InputInfo inputInfo) {
         setKeyStatus(VK_PRINTSCREEN, false);
         if (prtsc期间做了什么 == false) {
@@ -77,12 +76,12 @@ public class Functions extends IFunctions {
 
 
     //    public static boolean alt期间做了什么 = false;
-    @ListenMouseKeyboard(note = "alt", value = 164, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void alt(InputInfo inputInfo) {
         setKeyStatus(VK_ALT, true);
     }
 
-    @ListenMouseKeyboard(note = "alt", value = 164, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void alt1(InputInfo inputInfo) {
         setKeyStatus(VK_ALT, false);
     }
@@ -177,9 +176,9 @@ public class Functions extends IFunctions {
 
     public static TaskResult result左键 = new TaskResult();
 
-    @ListenMouseKeyboard(note = "esc", value = 27, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "alt右", value = 165, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "esc", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "侧键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键(InputInfo inputInfo) {
         if (判断win按下()) {
             win期间做了什么 = true;
@@ -194,9 +193,9 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(note = "esc", value = 27, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "alt右", press = false, value = 165, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "esc", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "侧键松开", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(press = false, key = "alt右", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键1(InputInfo inputInfo) {
         if (判断win按下()) {
             win期间做了什么 = true;
@@ -210,7 +209,7 @@ public class Functions extends IFunctions {
 
     public static TaskResult result右键 = new TaskResult();
 
-    @ListenMouseKeyboard(note = "f1", value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f1", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult f1键按下(InputInfo inputInfo) {
         if (判断win按下()) {
             result右键.intercept = false;
@@ -223,7 +222,7 @@ public class Functions extends IFunctions {
         return result右键;
     }
 
-    @ListenMouseKeyboard(note = "f1", value = 112, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f1", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult f1键松开(InputInfo inputInfo) {
         if (判断win按下()) {
             result右键.intercept = false;
@@ -241,7 +240,7 @@ public class Functions extends IFunctions {
 
     public static boolean b替换 = Boolean.parseBoolean(Config.read("reverse"));
 
-    @ListenMouseKeyboard(note = "n", value = 78, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "n", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void m() {
         if (getKeyStatus(VK_ALT) == true) {
             b替换 = false;
@@ -249,7 +248,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "m", value = 77, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "m", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void n() {
         if (getKeyStatus(VK_ALT) == true) {
             b替换 = true;
@@ -258,7 +257,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换(InputInfo inputInfo) {
         if (b替换 == false) {
             result右键.intercept = false;
@@ -270,7 +269,7 @@ public class Functions extends IFunctions {
         return result右键;
     }
 
-    @ListenMouseKeyboard(note = "右键", value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "右键松开", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换1() {
         if (b替换 == false) {
             result右键.intercept = false;
@@ -283,7 +282,7 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换2() {
         if (b替换 == false) {
             result左键.intercept = false;
@@ -297,7 +296,7 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(note = "左键", value = 514, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
     public static TaskResult 替换3(InputInfo inputInfo) {
         if (b替换 == false) {
             result左键.intercept = false;
@@ -310,7 +309,7 @@ public class Functions extends IFunctions {
 
     //---
 
-    @ListenMouseKeyboard(value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult f2键(InputInfo inputInfo) {
         if (判断win按下()) {
             myKeyPress(inputInfo.value);
@@ -327,7 +326,7 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f3", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult f3键(InputInfo inputInfo) {
         if (判断win按下()) {
 
@@ -343,7 +342,7 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f4", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult f4键(InputInfo inputInfo) {
         if (判断win按下()) {
 
@@ -359,9 +358,9 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(value = 113, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 114, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(value = 115, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f2", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f3", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f4", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult 松开(InputInfo inputInfo) {
         if (判断win按下()) {
             win期间做了什么 = true;
@@ -375,11 +374,11 @@ public class Functions extends IFunctions {
     }
 
     //---大写锁
-    @ListenMouseKeyboard(note = "大写", value = 20, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "大写", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 大写锁() {
     }
 
-    @ListenMouseKeyboard(note = "大写", value = 20, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "大写", press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 大写锁1() {
 
         Point tempPoint = MouseInfo.getPointerInfo().getLocation();
@@ -400,12 +399,12 @@ public class Functions extends IFunctions {
     //---win功能
     public static boolean win期间做了什么 = false;
 
-    @ListenMouseKeyboard(note = "win", value = 91, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "win", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win按下() {
         setKeyStatus(VK_WINDOWS, true);
     }
 
-    @ListenMouseKeyboard(note = "win", value = 91, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "win", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win按下1() {
         setKeyStatus(VK_WINDOWS, false);
         //重置
@@ -413,42 +412,42 @@ public class Functions extends IFunctions {
     }
 
 
-//    @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
-//    @ListenMouseKeyboard(note = "左键", userInput = false, value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
-//    @ListenMouseKeyboard(note = "滚轮", value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
-//    @ListenMouseKeyboard(note = "滚轮", userInput = false, value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    @ListenMouseKeyboard(value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    @ListenMouseKeyboard(userInput = false, value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    @ListenMouseKeyboard(value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
+//    @ListenMouseKeyboard(userInput = false, value = 522, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, extend = true)
 //    public static void 停止alt_tab() {
 //        alt_tab_右键次数 = 0;
 //    }
 
 
-    public static String winWithValueName = "winWithValue";
+    public static String winWithValueName = "custom/winWithValue.json";
     public static Integer winWithValue;
 
     static {
-        try {
+
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("当前程序运行的路径：" + currentDir);
+
             TypeReference<Integer> typeReference1 = new TypeReference<Integer>() {
             };
-            winWithValue = JsonUtils.readJsonFile(winWithValueName, typeReference1);
-        } catch (IOException e) {
-            winWithValue = 49;
-        }
+
+        System.out.println(winWithValueName);
+            winWithValue = JsonUtil.readJsonFile(winWithValueName, typeReference1);
+
     }
 
 
-    @ListenMouseKeyboard(note = "1", value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
-    @ListenMouseKeyboard(note = "2", value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
-    @ListenMouseKeyboard(note = "3", value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
-    @ListenMouseKeyboard(note = "4", value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
-    @ListenMouseKeyboard(note = "5", value = 53, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(key = "1", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(key = "2", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(key = "3", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(key = "4", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(key = "5", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
     public static void win3(InputInfo inputInfo) {
         if (getKeyStatus(VK_WINDOWS) == true) {
             winWithValue = inputInfo.value;
-            try {
-                JsonUtils.writeJsonFile(winWithValueName, winWithValue);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+                JsonUtil.writeJsonFile(winWithValueName, winWithValue);
+
 
             win期间做了什么 = true;
         }
@@ -456,7 +455,7 @@ public class Functions extends IFunctions {
     }
     //---菜单键
 
-//    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+//    @ListenMouseKeyboard(value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
 //    public static void 菜单键(InputInfo inputInfo) {
 //        if (getKeyStatus(inputInfo.value) == false) {
 //            setKeyStatus(inputInfo.value, true);
@@ -468,7 +467,7 @@ public class Functions extends IFunctions {
 //        }
 //    }
 //
-//    @ListenMouseKeyboard(note = "菜单键", value = 93, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 93, press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    public static void 菜单键1(InputInfo inputInfo) {
 //        setKeyStatus(inputInfo.value, false);
 //        robot.mousePress(BUTTON1_DOWN_MASK);
@@ -482,15 +481,15 @@ public class Functions extends IFunctions {
     public static boolean 波浪键按住期间做了什么 = false;
 
 
-    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(note = "菜单键", value = 93, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "`", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "菜单键", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
         波浪键按住 = true;
     }
 
 
-    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "菜单键", value = 93,press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "`", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "菜单键",press = false, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键1() {
         波浪键按住 = false;
 
@@ -501,7 +500,7 @@ public class Functions extends IFunctions {
         波浪键按住期间做了什么 = false;
     }
 
-//    @ListenMouseKeyboard(note = "`", value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 192, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    public static void 波浪键1() {
 //        波浪键按住 = false;
 //        if (波浪键按住期间做了什么 == true) {
@@ -565,7 +564,7 @@ public class Functions extends IFunctions {
         }
     };
 
-//    @ListenMouseKeyboard(note = "tab", value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(value = 9, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
 //    public static void tab键() {
 //        if (波浪键按住 == true) {
 //            波浪键按住期间做了什么 = true;
@@ -575,7 +574,7 @@ public class Functions extends IFunctions {
 //        }
 //    }
 
-    @ListenMouseKeyboard(note = "3", value = 51, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "3", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字3() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -590,7 +589,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note = "1", value = 49, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -605,7 +604,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note = "1", value = 49, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "1", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字1_1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -616,7 +615,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "2", value = 50, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "2", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字2() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -630,7 +629,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "2", value = 50, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "2", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 数字2_1() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -643,12 +642,12 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(value = 162, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "ctrl左", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void ctrl() {
         ctrl按下 = true;
     }
 
-    @ListenMouseKeyboard(value = 162, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
+    @ListenMouseKeyboard(key = "ctrl左", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, press = false)
     public static void ctrl_1() {
         ctrl按下 = false;
     }

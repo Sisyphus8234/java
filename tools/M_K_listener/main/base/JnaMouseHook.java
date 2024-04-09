@@ -15,14 +15,12 @@ import com.sun.jna.platform.win32.WinUser.MSLLHOOKSTRUCT;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static base.Controller.printKey;
-import static base.Controller.recorder;
 
 
-public class MouseHook {
+public class JnaMouseHook {
     private HHOOK hhk;
     private LowLevelMouseProc mouseHook;
     private InputInfo inputInfoActualTemp = new InputInfo();
@@ -64,9 +62,9 @@ public class MouseHook {
 
                     inputInfoActualTemp.resetProperty();
                     inputInfoActualTemp.value = wParam.intValue();
-                    inputInfoActualTemp.hookInputInfo.mouseData = info.mouseData;
-                    inputInfoActualTemp.hookInputInfo.flags = info.flags;
                     inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+                    inputInfoActualTemp.otherCondition.put("mouseData", String.valueOf(info.mouseData));
+                    inputInfoActualTemp.otherCondition.put("flags", String.valueOf(info.flags));
 
 
                     if (userInput.contains(info.flags)) {
@@ -76,28 +74,8 @@ public class MouseHook {
                     }
                     inputInfoActualTemp.press = true;
 
-                    if (recorder != null) {
-                        recorder.inputInfoActualTemp = inputInfoActualTemp;
-                        Controller.do1.doTask(recorder);
-                        if (recorder.taskResult != null && recorder.taskResult.intercept == true) {
-                            return new LRESULT(1);
-                        }
-                    }
-
-                    if (Controller.taskMmap.containsKey(inputInfoActualTemp)) {
-                        List<TaskInfo> taskInfoList = Controller.taskMmap.get(inputInfoActualTemp);
-                        for (TaskInfo taskInfo : taskInfoList) {
-                            taskInfo.inputInfoActualTemp = inputInfoActualTemp;
-                            Controller.do1.doTask(taskInfo);
-                        }
-                        for (TaskInfo taskInfo : taskInfoList) {
-                            if (taskInfo.intercept == true) {
-                                return new LRESULT(1);
-                            }
-                            if(taskInfo.taskResult!=null&&taskInfo.taskResult.intercept==true){
-                                return new LRESULT(1);
-                            }
-                        }
+                    if(HookUtil.task(inputInfoActualTemp)==true){
+                        return new LRESULT(1);
                     }
                 }
 

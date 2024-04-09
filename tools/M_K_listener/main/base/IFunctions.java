@@ -14,10 +14,7 @@ import java.util.Map;
 
 public class IFunctions {
 
-    public static boolean Jna = true;
-
-    @Deprecated
-    public static boolean jintellitype = false;
+    public static int active = Controller.Active.jna;
 
     public static Robot robot;
 
