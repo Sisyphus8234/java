@@ -3,6 +3,7 @@ package custom;
 import base.JsonUtil;
 import addition.MouseMoveFix;
 import base.*;
+import base.enty.TaskResult;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.awt.*;

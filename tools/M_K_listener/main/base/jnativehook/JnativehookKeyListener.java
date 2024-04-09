@@ -1,14 +1,11 @@
-package base;
+package base.jnativehook;
 
-import com.github.kwhat.jnativehook.GlobalScreen;
-import com.github.kwhat.jnativehook.NativeHookException;
-import com.github.kwhat.jnativehook.NativeInputEvent;
+import base.InputInfo;
+import base.ListenMouseKeyboard;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
-import java.lang.reflect.Field;
-
-import static base.JnativehookUtil.tempF;
+import static base.jnativehook.JnativehookUtil.tempF;
 
 public class JnativehookKeyListener implements NativeKeyListener {
 
@@ -25,7 +22,7 @@ public class JnativehookKeyListener implements NativeKeyListener {
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = true;
 
-        tempF(inputInfoActualTemp, e);
+        JnativehookUtil.tempF(inputInfoActualTemp, e);
 
     }
 
@@ -36,7 +33,7 @@ public class JnativehookKeyListener implements NativeKeyListener {
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = false;
 
-        tempF(inputInfoActualTemp, e);
+        JnativehookUtil.tempF(inputInfoActualTemp, e);
     }
 
 

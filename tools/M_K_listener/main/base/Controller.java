@@ -1,5 +1,9 @@
 package base;
 
+import base.enty.TaskInfo;
+import base.jna.JnaKeyboardHook;
+import base.jna.JnaMouseHook;
+import base.jnativehook.JnativehookUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import custom.Functions;
 
@@ -36,7 +40,7 @@ public class Controller {
 
 
         if (Functions.active == Active.jna) {
-            keyCodeMap = JsonUtil.readJsonFile("base/jna_key_code.json", new TypeReference<HashMap<String, Integer>>() {
+            keyCodeMap = JsonUtil.readJsonFile("base/jna/jna_key_code.json", new TypeReference<HashMap<String, Integer>>() {
             });
 
 
@@ -63,7 +67,7 @@ public class Controller {
                 }
             }.start();
         } else if (Functions.active == Active.jnativehook) {
-            keyCodeMap = JsonUtil.readJsonFile("base/jnativehook_key_code.json", new TypeReference<HashMap<String, Integer>>() {
+            keyCodeMap = JsonUtil.readJsonFile("base/jnativehook/jnativehook_key_code.json", new TypeReference<HashMap<String, Integer>>() {
             });
 
             //keyboard

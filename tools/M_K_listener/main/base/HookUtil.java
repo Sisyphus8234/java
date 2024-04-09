@@ -1,6 +1,6 @@
 package base;
 
-import com.sun.jna.platform.win32.WinDef;
+import base.enty.TaskInfo;
 
 import java.util.List;
 

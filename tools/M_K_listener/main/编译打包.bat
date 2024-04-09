@@ -41,9 +41,8 @@ for %%i in (lib\*.jar) do (
 
 endlocal
 
-
-
-
+del java.txt
+dir /s /b *.java > java.txt
 
 ::/S 是代表删除所有子目录跟其中的档案 
 ::/Q 是不要它在删除档案或目录时，不再问我 Yes or No 的动作
@@ -52,18 +51,51 @@ if exist classfiles (
 )
 mkdir classfiles
 
-%MyJavaPath%javac -d .\classfiles base\*.java addition\*.java custom\*.java -encoding UTF-8 -cp ".;.\lib\*"
+%MyJavaPath%javac -d .\classfiles @java.txt -encoding UTF-8 -cp ".;.\lib\*"
+
+
+
 
 if exist run.jar (
     del run.jar
 )
 
+
+
 cd classfiles
+
+@echo off
+chcp 65001 > nul
+
+setlocal enabledelayedexpansion
+
+rem 获取当前目录的绝对路径
+for %%I in ("%cd%") do set "current_path=%%~fI"
+
+rem 清空或创建一个新的文本文件
+echo. > class.txt
+
+rem 遍历当前目录下的所有 .class 文件
+for /r %%F in (*.class) do (
+    rem 获取文件的绝对路径
+    set "absolute_path=%%~fF"
+    rem 将绝对路径转换为相对路径
+    set "relative_path=!absolute_path:%current_path%\=!"
+    rem 将相对路径写入文本文件
+    echo !relative_path! >> class.txt
+)
+
+echo 相对路径已保存到 class.txt 文件中。
+
+endlocal
+
 IF "%MyJavaPath%"=="" (
-    jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class addition\*.class custom\*.class
+    jar cfm ..\run.jar ..\META-INF\MANIFEST.MF @class.txt
 ) ELSE (
-    ..\%MyJavaPath%jar cfm ..\run.jar ..\META-INF\MANIFEST.MF base\*.class addition\*.class custom\*.class
+    ..\%MyJavaPath%jar cfm ..\run.jar ..\META-INF\MANIFEST.MF @class.txt
 )
 
 :: cd ..
 :: %MyJavaPath%java -jar run.jar
+
+:: pause

@@ -1,4 +1,6 @@
-package base;
+package base.enty;
+
+import base.InputInfo;
 
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
@@ -14,5 +16,5 @@ public class TaskInfo {
 
     public TaskResult taskResult;
 
-    LocalDateTime lastTime = LocalDateTime.now();
+    public LocalDateTime lastTime = LocalDateTime.now();
 }

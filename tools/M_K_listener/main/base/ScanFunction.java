@@ -1,5 +1,7 @@
 package base;
 
+import base.enty.TaskInfo;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;

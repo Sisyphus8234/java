@@ -1,12 +1,12 @@
-package base;
+package base.jnativehook;
 
 
-import com.github.kwhat.jnativehook.GlobalScreen;
-import com.github.kwhat.jnativehook.NativeHookException;
+import base.InputInfo;
+import base.ListenMouseKeyboard;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseInputListener;
 
-import static base.JnativehookUtil.tempF;
+import static base.jnativehook.JnativehookUtil.tempF;
 
 public class JnativehookMouseListener implements NativeMouseInputListener {
     private InputInfo inputInfoActualTemp = new InputInfo();
@@ -20,7 +20,7 @@ public class JnativehookMouseListener implements NativeMouseInputListener {
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = true;
 
-        tempF(inputInfoActualTemp, e);
+        JnativehookUtil.tempF(inputInfoActualTemp, e);
     }
 
     public void nativeMousePressed(NativeMouseEvent e) {
@@ -33,7 +33,7 @@ public class JnativehookMouseListener implements NativeMouseInputListener {
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = true;
 
-        tempF(inputInfoActualTemp, e);
+        JnativehookUtil.tempF(inputInfoActualTemp, e);
     }
 
     public void nativeMouseReleased(NativeMouseEvent e) {
@@ -46,7 +46,7 @@ public class JnativehookMouseListener implements NativeMouseInputListener {
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = false;
 
-        tempF(inputInfoActualTemp, e);
+        JnativehookUtil.tempF(inputInfoActualTemp, e);
     }
 
     public void nativeMouseMoved(NativeMouseEvent e) {

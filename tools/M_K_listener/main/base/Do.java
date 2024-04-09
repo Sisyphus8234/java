@@ -1,6 +1,8 @@
 package base;
 
-import java.lang.reflect.InvocationTargetException;
+import base.enty.TaskInfo;
+import base.enty.TaskResult;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package base;
+package base.enty;
 
 public class TaskResult {
     public boolean intercept=false;
