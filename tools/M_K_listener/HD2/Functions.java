@@ -1,6 +1,7 @@
 package custom;
 
 import base.*;
+import base.enty.TaskResult;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,19 +21,19 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
     }
 
-    @ListenMouseKeyboard(note = "w", value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", value = 83, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", value = 65, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", value = 68, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "w", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "a", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "s", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "d", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void wasd(InputInfo inputInfo) {
         setKeyStatus(inputInfo.value, true);
 
     }
 
-    @ListenMouseKeyboard(note = "w", value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "w", key = "w", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult w1(InputInfo inputInfo) {
         if (阻断下个w弹起 == true) {
             阻断下个w弹起 = false;
@@ -43,9 +44,9 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "", value = 83, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", value = 65, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", value = 68, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "a", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "s", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "d", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void asd1(InputInfo inputInfo) {
         setKeyStatus(inputInfo.value, false);
     }
@@ -53,13 +54,13 @@ public class Functions extends IFunctions {
 
 //    public static LocalDateTime shiftStart = LocalDateTime.now();
 
-    @ListenMouseKeyboard(note = "shift", value = 160, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "shift左", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult shift() {
         setKeyStatus(VK_SHIFT, true);
         return null;
     }
 
-    @ListenMouseKeyboard(note = "shift", value = 160, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "", key = "shift左", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult shift1() {
         setKeyStatus(VK_SHIFT, false);
 
@@ -79,7 +80,7 @@ public class Functions extends IFunctions {
 
     private static boolean 阻断下个w弹起 = false;
 
-    @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "侧键", key = "侧键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 侧键() {
         强制下个shift弹起 = true;
     }
@@ -87,12 +88,12 @@ public class Functions extends IFunctions {
 
     private static boolean 强制下个shift弹起 = false;
 
-    @ListenMouseKeyboard(note = "win", value = 91,intercept = true,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "win", key = "win",intercept = true,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win() {
         阻断下个w弹起 = true;
     }
 
-    @ListenMouseKeyboard(note = "win", value = 91, intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(note = "win", key = "win", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win1() {
     }
 
