@@ -1,5 +1,7 @@
 package custom;
 
+import base.CommonUtil.Active;
+
 import base.JsonUtil;
 import addition.MouseMoveFix;
 import base.*;
@@ -10,6 +12,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import static base.CommonUtil.keyCodeMap;
 import static java.awt.event.KeyEvent.*;
 
 class Run extends MainClass {
@@ -18,13 +21,23 @@ class Run extends MainClass {
 }
 
 public class Functions extends IFunctions {
+
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
+        active=(Integer.parseInt(Config.read("active")));
     }
 
+
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "ins", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
 
+        if(inputInfo.value==keyCodeMap.get("pause")) {
+
+            Config.write("active", String.valueOf(Active.jna));
+        }else if(inputInfo.value==keyCodeMap.get("ins")) {
+            Config.write("active", String.valueOf(Active.jnativehook));
+        }
         String batchFilePath = Config.read("self_path");
         System.out.println(batchFilePath);
         try {
@@ -49,7 +62,7 @@ public class Functions extends IFunctions {
 
     @Recorder
     public static TaskResult rec(InputInfo inputInfo) {
-        if (inputInfo.userInput == true && inputInfo.value != 192 && inputInfo.value != 93) {
+        if (inputInfo.userInput == true && inputInfo.value != keyCodeMap.get("`") && inputInfo.value != keyCodeMap.get("菜单键")) {
             alt_tab_右键次数 = 0;
         }
         return null;
@@ -258,7 +271,7 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换(InputInfo inputInfo) {
         if (b替换 == false) {
             result右键.intercept = false;
@@ -270,7 +283,7 @@ public class Functions extends IFunctions {
         return result右键;
     }
 
-    @ListenMouseKeyboard(key = "右键松开", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "右键松开", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换1() {
         if (b替换 == false) {
             result右键.intercept = false;
@@ -283,7 +296,7 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换2() {
         if (b替换 == false) {
             result左键.intercept = false;
@@ -297,7 +310,7 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换3(InputInfo inputInfo) {
         if (b替换 == false) {
             result左键.intercept = false;
@@ -313,7 +326,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "f2", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult f2键(InputInfo inputInfo) {
         if (判断win按下()) {
-            myKeyPress(inputInfo.value);
+
             win期间做了什么 = true;
             return new TaskResult(false);
         } else {
@@ -439,7 +452,18 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "5", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, extend = true)
     public static void win3(InputInfo inputInfo) {
         if (getKeyStatus(VK_WINDOWS) == true) {
-            winWithValue = inputInfo.value;
+            if (inputInfo.value == keyCodeMap.get("1")) {
+                winWithValue = VK_1;
+            } else if (inputInfo.value == keyCodeMap.get("2")) {
+                winWithValue = VK_2;
+            } else if (inputInfo.value == keyCodeMap.get("3")) {
+                winWithValue = VK_3;
+            } else if (inputInfo.value == keyCodeMap.get("4")) {
+                winWithValue = VK_4;
+            } else if (inputInfo.value == keyCodeMap.get("5")) {
+                winWithValue = VK_5;
+            }
+
             JsonUtil.writeJsonFile(winWithValueName, winWithValue);
 
 
@@ -645,6 +669,20 @@ public class Functions extends IFunctions {
     public static void ctrl_1() {
         ctrl按下 = false;
     }
+
+
+//    @ListenMouseKeyboard(key = "v", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void v() {
+//        CommonUtil.switchActive(Active.jna);
+//    }
+//
+//    @ListenMouseKeyboard(key = "b", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    public static void b() {
+//        CommonUtil.switchActive(Active.jnativehook);
+//    }
+
+
+
 
 //    @ListenMouseKeyboard(value = 522, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.MouseWithMouseData, mouseData = -7864320)
 //    public static void 滚轮() {

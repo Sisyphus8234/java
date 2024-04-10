@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
+
 import static base.Controller.*;
 
 public class ScanFunction {
@@ -25,10 +26,10 @@ public class ScanFunction {
         taskInfo.immediately = listenMouseKeyboard.immediately();
         taskInfo.intercept = listenMouseKeyboard.intercept();
         InputInfo inputInfo = new InputInfo();
-        if(!keyCodeMap.containsKey(listenMouseKeyboard.key())){
+        if(!CommonUtil.keyCodeMap.containsKey(listenMouseKeyboard.key())){
             throw new RuntimeException(listenMouseKeyboard.key()+" was not found in keyCodeMap");
         }
-        inputInfo.value = keyCodeMap.get(listenMouseKeyboard.key());
+        inputInfo.value = CommonUtil.keyCodeMap.get(listenMouseKeyboard.key());
         inputInfo.press = listenMouseKeyboard.press();
         inputInfo.userInput = listenMouseKeyboard.userInput();
         inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();

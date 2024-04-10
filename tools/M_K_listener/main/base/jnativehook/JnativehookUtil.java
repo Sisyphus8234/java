@@ -7,6 +7,7 @@ import base.InputInfo;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.NativeInputEvent;
+import com.github.kwhat.jnativehook.dispatcher.VoidDispatchService;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
 
@@ -20,6 +21,7 @@ public class JnativehookUtil{
 
         if (Controller.listenSwitch == true) {
             if (HookUtil.task(inputInfoActualTemp) == true) {
+
                 intercept(e);
             }
         }
@@ -37,7 +39,20 @@ public class JnativehookUtil{
         }
     }
 
-    public static void intercept(NativeInputEvent e) {
+    public static void intercept(NativeKeyEvent e) {
+        try {
+            Field f = NativeInputEvent.class.getDeclaredField("reserved");
+            f.setAccessible(true);
+            f.setShort(e, (short) 0x01);
+
+            System.out.print("[ OK ]\n");
+        } catch (Exception ex) {
+            System.out.print("[ !! ]\n");
+            ex.printStackTrace();
+        }
+    }
+
+    public static void intercept(NativeMouseEvent e) {
         try {
             Field f = NativeInputEvent.class.getDeclaredField("reserved");
             f.setAccessible(true);
@@ -52,6 +67,7 @@ public class JnativehookUtil{
 
     public static void run() {
         try {
+            GlobalScreen.setEventDispatcher(new VoidDispatchService());
             GlobalScreen.registerNativeHook();
         } catch (NativeHookException ex) {
             System.err.println("There was a problem registering the native hook.");

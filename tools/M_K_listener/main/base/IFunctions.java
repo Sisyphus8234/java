@@ -6,6 +6,7 @@ import java.awt.datatransfer.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import base.CommonUtil.Active;
 
 
 import java.awt.Toolkit;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class IFunctions {
 
-    public static int active = Controller.Active.jna;
+    public static int active = Active.jna;
 
     public static Robot robot;
 
