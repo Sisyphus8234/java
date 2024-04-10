@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static base.IFunctions.*;
+import static java.awt.event.KeyEvent.VK_J;
+
 public class CommonUtil {
 
     public static class Active {
@@ -29,10 +32,10 @@ public class CommonUtil {
         String file = "";
         Thread temp;
 
-        for(Thread thread:hookList){
-            thread.stop();
-        }
-        hookList.clear();
+//        for(Thread thread:hookList){
+//            thread.stop();
+//        }
+//        hookList.clear();
 
         if (IFunctions.active == Active.jna) {
             file = "base/jna/jna_key_code.json";
@@ -73,8 +76,6 @@ public class CommonUtil {
             file = "base/jnativehook/jnativehook_key_code.json";
             CommonUtil.keyCodeMap.putAll(JsonUtil.readJsonFile(file, new TypeReference<HashMap<String, Integer>>() {
             }));
-
-
 
             //keyboard
             temp=new Thread() {
