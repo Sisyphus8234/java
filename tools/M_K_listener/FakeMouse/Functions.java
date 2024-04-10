@@ -23,21 +23,20 @@ class Run extends MainClass {
 public class Functions extends IFunctions {
 
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
         active=(Integer.parseInt(Config.read("active")));
     }
 
 
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "ins", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
 
-        if(inputInfo.value==keyCodeMap.get("pause")) {
+//        if(inputInfo.value==keyCodeMap.get("pause")) {
+//            Config.write("active", String.valueOf(Active.jna));
+//        }else if(inputInfo.value==keyCodeMap.get("ins")) {
+//            Config.write("active", String.valueOf(Active.jnativehook));
+//        }
 
-            Config.write("active", String.valueOf(Active.jna));
-        }else if(inputInfo.value==keyCodeMap.get("ins")) {
-            Config.write("active", String.valueOf(Active.jnativehook));
-        }
         String batchFilePath = Config.read("self_path");
         System.out.println(batchFilePath);
         try {
