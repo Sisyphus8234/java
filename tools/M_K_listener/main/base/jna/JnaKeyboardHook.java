@@ -69,7 +69,7 @@ public class JnaKeyboardHook {
                     inputInfoActualTemp.resetProperty();
                     inputInfoActualTemp.value = info.vkCode;
                     inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
-                    inputInfoActualTemp.otherCondition.put("flags", String.valueOf(info.flags));
+
 
                     if (userInput.contains(info.flags)) {
                         inputInfoActualTemp.userInput = true;

@@ -66,9 +66,9 @@ public class JnaMouseHook {
 
                     inputInfoActualTemp.resetProperty();
                     inputInfoActualTemp.value = wParam.intValue();
-                    inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+                    inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse;
                     inputInfoActualTemp.otherCondition.put("mouseData", String.valueOf(info.mouseData));
-                    inputInfoActualTemp.otherCondition.put("flags", String.valueOf(info.flags));
+
 
 
                     if (userInput.contains(info.flags)) {
