@@ -11,6 +11,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static base.CommonUtil.keyCodeMap;
 import static java.awt.event.KeyEvent.*;
@@ -29,13 +31,15 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "scrlk", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
 
-//        if(inputInfo.value==keyCodeMap.get("pause")) {
-//            Config.write("active", String.valueOf(Active.jna));
-//        }else if(inputInfo.value==keyCodeMap.get("ins")) {
-//            Config.write("active", String.valueOf(Active.jnativehook));
-//        }
+
+        if (inputInfo.value == keyCodeMap.get("pause")) {
+            Config.write("active", String.valueOf(Active.jna));
+        } else if (inputInfo.value == keyCodeMap.get("scrlk")) {
+            Config.write("active", String.valueOf(Active.jnativehook));
+        }
 
         String batchFilePath = Config.read("self_path");
         System.out.println(batchFilePath);
@@ -59,9 +63,16 @@ public class Functions extends IFunctions {
     }
 
 
+
+
     @Recorder
     public static TaskResult rec(InputInfo inputInfo) {
-        if (inputInfo.userInput == true && inputInfo.value != keyCodeMap.get("`") && inputInfo.value != keyCodeMap.get("菜单键")) {
+
+
+
+        ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
+
+        if (inputInfo.userInput == true && !tempList.contains(inputInfo.value)) {
             alt_tab_右键次数 = 0;
         }
         return null;
@@ -136,6 +147,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "esc", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键(InputInfo inputInfo) {
+
         if (判断win按下()) {
             win期间做了什么 = true;
             result左键.intercept = false;
@@ -476,7 +488,7 @@ public class Functions extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(key = "3", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "3", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult 数字3() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
