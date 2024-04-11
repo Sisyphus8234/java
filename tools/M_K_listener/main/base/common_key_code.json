@@ -39,5 +39,7 @@
   "scrlk": 145,
   "left": 37,
   "right" : 39,
-  "tab": 9
+  "tab": 9,
+  "pgup": 33,
+  "pgdn": 34
 }

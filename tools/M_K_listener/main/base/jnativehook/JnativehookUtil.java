@@ -15,7 +15,7 @@ import java.lang.reflect.Field;
 
 public class JnativehookUtil{
     public static void tempF(InputInfo inputInfoActualTemp, NativeKeyEvent e) {
-        if (HookUtil.isSwitch(e.getKeyCode()) == true) {
+        if (HookUtil.isSwitch(e.getRawCode()) == true) {
             intercept(e);
         }
 
