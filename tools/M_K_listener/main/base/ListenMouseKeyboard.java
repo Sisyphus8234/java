@@ -36,16 +36,7 @@ public @interface ListenMouseKeyboard {
     int active() default -1;
 
 
-    public static class KeyboardOrMouse {
-        public static final int Keyboard = 1;
-        public static final int Mouse = 2;
-    }
-
-    public static class ConditionName {
-        public static final String mouseData = "mouseData";
-        public static final String flags = "flags";
 
 
-    }
 }
 

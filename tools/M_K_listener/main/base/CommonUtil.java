@@ -15,6 +15,11 @@ import static java.awt.event.KeyEvent.VK_J;
 
 public class CommonUtil {
 
+    public static class KeyboardOrMouse {
+        public static final int Keyboard = 1;
+        public static final int Mouse = 2;
+    }
+
     public static class Active {
         public static final int jna = 0;
         public static final int jnativehook = 1;

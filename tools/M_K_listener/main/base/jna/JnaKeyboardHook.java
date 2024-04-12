@@ -1,9 +1,6 @@
 package base.jna;
 
-import base.Controller;
-import base.HookUtil;
-import base.InputInfo;
-import base.ListenMouseKeyboard;
+import base.*;
 import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.User32;
@@ -68,7 +65,7 @@ public class JnaKeyboardHook {
 
                     inputInfoActualTemp.resetProperty();
                     inputInfoActualTemp.value = info.vkCode;
-                    inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+                    inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard;
 
 
                     if (userInput.contains(info.flags)) {
