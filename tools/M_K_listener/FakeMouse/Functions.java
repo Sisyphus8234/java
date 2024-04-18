@@ -351,6 +351,7 @@ public class Functions extends IFunctions {
 
         Point tempPoint = MouseInfo.getPointerInfo().getLocation();
         MouseMoveFix.run(0, 0, screen_scale);
+        pause(50L);
 
         robot.keyPress(KeyEvent.VK_WINDOWS);
         robot.keyPress(winWithValue);
@@ -395,6 +396,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
     @ListenMouseKeyboard(key = "5", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
     public static void win3(InputInfo inputInfo) {
+
         if (getKeyStatus(VK_WINDOWS) == true) {
             if (inputInfo.value == keyCodeMap.get("1")) {
                 winWithValue = VK_1;
@@ -453,6 +455,7 @@ public class Functions extends IFunctions {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
                 MouseMoveFix.run(0, 0, screen_scale);
+                pause(50L);
 
                 if (alt_tab_右键次数 > 0) {
                     robot.keyPress(KeyEvent.VK_ALT);
