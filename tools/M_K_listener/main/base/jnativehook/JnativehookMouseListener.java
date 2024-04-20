@@ -1,6 +1,7 @@
 package base.jnativehook;
 
 
+import base.CommonUtil;
 import base.InputInfo;
 import base.ListenMouseKeyboard;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
@@ -12,11 +13,11 @@ public class JnativehookMouseListener implements NativeMouseInputListener {
     private InputInfo inputInfoActualTemp = new InputInfo();
     public void nativeMouseClicked(NativeMouseEvent e) {
 
-        System.out.println(e.getButton());
+//        System.out.println(e.getButton());
 
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getButton();
-        inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse;
+        inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse;
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = true;
 
@@ -25,11 +26,11 @@ public class JnativehookMouseListener implements NativeMouseInputListener {
 
     public void nativeMousePressed(NativeMouseEvent e) {
 
-        System.out.println(e.getButton());
+//        System.out.println(e.getButton());
 
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getButton();
-        inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse;
+        inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse;
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = true;
 
@@ -38,11 +39,11 @@ public class JnativehookMouseListener implements NativeMouseInputListener {
 
     public void nativeMouseReleased(NativeMouseEvent e) {
 
-        System.out.println(e.getButton());
+//        System.out.println(e.getButton());
 
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getButton();
-        inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse;
+        inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse;
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = false;
 

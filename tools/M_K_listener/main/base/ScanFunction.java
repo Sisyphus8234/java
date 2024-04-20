@@ -7,15 +7,15 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 
+import static base.CommonUtil.keyCodeMap;
 import static base.Controller.*;
 
 public class ScanFunction {
 
 
-
     private static void handleMethod(Method method, ListenMouseKeyboard listenMouseKeyboard) {
 
-        if(listenMouseKeyboard.active()!=-1&&listenMouseKeyboard.active()!=IFunctions.active){
+        if (listenMouseKeyboard.active() != -1 && listenMouseKeyboard.active() != IFunctions.active) {
             return;
         }
 
@@ -26,10 +26,10 @@ public class ScanFunction {
         taskInfo.immediately = listenMouseKeyboard.immediately();
         taskInfo.intercept = listenMouseKeyboard.intercept();
         InputInfo inputInfo = new InputInfo();
-        if(!CommonUtil.keyCodeMap.containsKey(listenMouseKeyboard.key())){
-            throw new RuntimeException(listenMouseKeyboard.key()+" was not found in keyCodeMap");
+        if (!keyCodeMap.containsKey(listenMouseKeyboard.key())) {
+            throw new RuntimeException(listenMouseKeyboard.key() + " was not found in keyCodeMap");
         }
-        inputInfo.value = CommonUtil.keyCodeMap.get(listenMouseKeyboard.key());
+        inputInfo.value = keyCodeMap.get(listenMouseKeyboard.key());
         inputInfo.press = listenMouseKeyboard.press();
         inputInfo.userInput = listenMouseKeyboard.userInput();
         inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
@@ -37,7 +37,7 @@ public class ScanFunction {
         inputInfo.extend = listenMouseKeyboard.extend();
         taskInfo.inputInfo = inputInfo;
 
-        if(!listenMouseKeyboard.otherCondition().isEmpty()) {
+        if (!listenMouseKeyboard.otherCondition().isEmpty()) {
             String[] otherCondition = listenMouseKeyboard.otherCondition().split(",");
             for (String item : otherCondition) {
                 String key = item.split("=")[0];
@@ -76,7 +76,7 @@ public class ScanFunction {
 //        inputInfo.userInput = recorder.userInput();
         inputInfo.timeInterval = recorder.timeInterval();
         taskInfo.inputInfo = inputInfo;
-        Controller.recorder =taskInfo;
+        Controller.recorder = taskInfo;
     }
 
 
@@ -182,7 +182,7 @@ public class ScanFunction {
                             }
                         }
 
-                        switchMmap.put(Integer.parseInt(field.get(myFunctionClass).toString()), listenBar.onOrOff());
+                        switchMmap.put(keyCodeMap.get(field.get(myFunctionClass).toString()), listenBar.onOrOff());
 
                     }
                 } catch (Exception e) {
@@ -200,8 +200,6 @@ public class ScanFunction {
 
         System.out.println("OnAndOff key(1 means on,2 means off): " + switchMmap);
         System.out.println("Thread controlled by OnAndOff key: " + threadList);
-
-
 
 
     }

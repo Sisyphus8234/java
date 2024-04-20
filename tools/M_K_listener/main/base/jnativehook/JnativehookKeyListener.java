@@ -1,5 +1,6 @@
 package base.jnativehook;
 
+import base.CommonUtil;
 import base.InputInfo;
 import base.ListenMouseKeyboard;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
@@ -30,7 +31,7 @@ public class JnativehookKeyListener implements NativeKeyListener {
 
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getRawCode();
-        inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+        inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard;
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = true;
 
@@ -41,7 +42,7 @@ public class JnativehookKeyListener implements NativeKeyListener {
     public void nativeKeyReleased(NativeKeyEvent e) {
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getRawCode();
-        inputInfoActualTemp.keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard;
+        inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard;
         inputInfoActualTemp.userInput = true;
         inputInfoActualTemp.press = false;
 
