@@ -80,10 +80,10 @@ public class Functions extends IFunctions {
 
     private static boolean 阻断下个w弹起 = false;
 
-    @ListenMouseKeyboard(key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 侧键() {
-        强制下个shift弹起 = true;
-    }
+//    @ListenMouseKeyboard(key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void 侧键() {
+//        强制下个shift弹起 = true;
+//    }
 
 
     private static boolean 强制下个shift弹起 = false;
