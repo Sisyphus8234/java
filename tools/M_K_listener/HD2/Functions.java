@@ -24,16 +24,16 @@ public class Functions extends IFunctions {
 //        Controller.printKey = true;
     }
 
-    @ListenMouseKeyboard(note = "", key = "w", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", key = "a", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", key = "s", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", key = "d", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "w", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 600L)
+    @ListenMouseKeyboard(key = "a", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 600L)
+    @ListenMouseKeyboard(key = "s", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 600L)
+    @ListenMouseKeyboard(key = "d", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 600L)
     public static void wasd(InputInfo inputInfo) {
         setKeyStatus(inputInfo.value, true);
 
     }
 
-    @ListenMouseKeyboard(note = "w", key = "w", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "w", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult w1(InputInfo inputInfo) {
         if (阻断下个w弹起 == true) {
             阻断下个w弹起 = false;
@@ -44,9 +44,9 @@ public class Functions extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "", key = "a", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", key = "s", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "", key = "d", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "a", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "s", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "d", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void asd1(InputInfo inputInfo) {
         setKeyStatus(inputInfo.value, false);
     }
@@ -54,13 +54,13 @@ public class Functions extends IFunctions {
 
 //    public static LocalDateTime shiftStart = LocalDateTime.now();
 
-    @ListenMouseKeyboard(note = "", key = "shift左", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "shift左", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult shift() {
         setKeyStatus(VK_SHIFT, true);
         return null;
     }
 
-    @ListenMouseKeyboard(note = "", key = "shift左", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "shift左", press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static TaskResult shift1() {
         setKeyStatus(VK_SHIFT, false);
 
@@ -80,7 +80,7 @@ public class Functions extends IFunctions {
 
     private static boolean 阻断下个w弹起 = false;
 
-    @ListenMouseKeyboard(note = "侧键", key = "侧键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "侧键按下", keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void 侧键() {
         强制下个shift弹起 = true;
     }
@@ -88,19 +88,36 @@ public class Functions extends IFunctions {
 
     private static boolean 强制下个shift弹起 = false;
 
-    @ListenMouseKeyboard(note = "win", key = "win",intercept = true,  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "win", intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win() {
         阻断下个w弹起 = true;
     }
 
-    @ListenMouseKeyboard(note = "win", key = "win", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "win", intercept = true, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
     public static void win1() {
     }
 
-//    @ListenMouseKeyboard(note = "esc", value = 27, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    public static void esc() {
-//        f();
-//    }
+    @ListenMouseKeyboard(key = "space",  keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard,timeInterval = 600L)
+    public static void space() {
+        setKeyStatus(VK_SPACE ,true);
+    }
+
+    @ListenMouseKeyboard(key = "space",press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    public static void space1() {
+        setKeyStatus(VK_SPACE ,false);
+    }
+
+    @ListenMouseKeyboard(key = "左键松开",keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    public static void 左键() {
+        setKeyStatus(VK_SPACE ,false);
+    }
+
+
+
+
+
+
+
 
     public static void f() {
         try {
