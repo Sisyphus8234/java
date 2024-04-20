@@ -108,8 +108,12 @@ public class Functions extends IFunctions {
     }
 
     @ListenMouseKeyboard(key = "左键松开",keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    public static void 左键() {
-        setKeyStatus(VK_SPACE ,false);
+    public static TaskResult 左键() {
+        if(getKeyStatus(VK_SPACE)==true){
+            return new TaskResult(true);
+        }else {
+            return new TaskResult(false);
+        }
     }
 
 
