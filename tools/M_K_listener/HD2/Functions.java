@@ -97,24 +97,24 @@ public class Functions extends IFunctions {
     public static void win1() {
     }
 
-    @ListenMouseKeyboard(key = "space",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 600L)
-    public static void space() {
-        setKeyStatus(VK_SPACE ,true);
-    }
-
-    @ListenMouseKeyboard(key = "space",press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space1() {
-        setKeyStatus(VK_SPACE ,false);
-    }
-
-    @ListenMouseKeyboard(key = "左键松开",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    public static TaskResult 左键() {
-        if(getKeyStatus(VK_SPACE)==true){
-            return new TaskResult(true);
-        }else {
-            return new TaskResult(false);
-        }
-    }
+//    @ListenMouseKeyboard(key = "space",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 600L)
+//    public static void space() {
+//        setKeyStatus(VK_SPACE ,true);
+//    }
+//
+//    @ListenMouseKeyboard(key = "space",press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void space1() {
+//        setKeyStatus(VK_SPACE ,false);
+//    }
+//
+//    @ListenMouseKeyboard(key = "左键松开",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+//    public static TaskResult 左键() {
+//        if(getKeyStatus(VK_SPACE)==true){
+//            return new TaskResult(true);
+//        }else {
+//            return new TaskResult(false);
+//        }
+//    }
 
 
 
