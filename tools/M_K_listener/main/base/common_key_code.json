@@ -41,5 +41,6 @@
   "right" : 39,
   "tab": 9,
   "pgup": 33,
-  "pgdn": 34
+  "pgdn": 34,
+  "space": 32
 }
