@@ -24,10 +24,10 @@ public class Functions extends IFunctions {
 //        Controller.printKey = true;
     }
 
-    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 600L)
-    @ListenMouseKeyboard(key = "a", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 600L)
-    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 600L)
-    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 600L)
+    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "a", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void wasd(InputInfo inputInfo) {
         setKeyStatus(inputInfo.value, true);
 
@@ -43,6 +43,15 @@ public class Functions extends IFunctions {
             return null;
         }
     }
+
+//    @ListenMouseKeyboard(key = "s", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void s(InputInfo inputInfo) {
+//        if(getKeyStatus(VK_W)==true){
+//            强制下个shift弹起 = true;
+//        }
+//        setKeyStatus(inputInfo.value, false);
+//
+//    }
 
     @ListenMouseKeyboard(key = "a", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "s", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -80,10 +89,16 @@ public class Functions extends IFunctions {
 
     private static boolean 阻断下个w弹起 = false;
 
-//    @ListenMouseKeyboard(key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void 侧键() {
-//        强制下个shift弹起 = true;
-//    }
+    //    @ListenMouseKeyboard(key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 500L)
+    public static void e() {
+        强制下个shift弹起 = true;
+    }
+
+    @ListenMouseKeyboard(key = "e",press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void e1() {
+        强制下个shift弹起 = false;
+    }
 
 
     private static boolean 强制下个shift弹起 = false;
@@ -97,7 +112,7 @@ public class Functions extends IFunctions {
     public static void win1() {
     }
 
-//    @ListenMouseKeyboard(key = "space",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 600L)
+//    @ListenMouseKeyboard(key = "space",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 500L)
 //    public static void space() {
 //        setKeyStatus(VK_SPACE ,true);
 //    }
@@ -115,12 +130,6 @@ public class Functions extends IFunctions {
 //            return new TaskResult(false);
 //        }
 //    }
-
-
-
-
-
-
 
 
     public static void f() {
