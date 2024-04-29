@@ -359,7 +359,7 @@ public class Functions extends IFunctions {
 
         Point tempPoint = MouseInfo.getPointerInfo().getLocation();
         MouseMoveFix.run(0, screenHeight, screen_scale);
-        pause(50L);
+        pause(100L);
 
         robot.keyPress(KeyEvent.VK_WINDOWS);
         robot.keyPress(winWithValue);
@@ -463,7 +463,7 @@ public class Functions extends IFunctions {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
                 MouseMoveFix.run(0, screenHeight, screen_scale);
-                pause(50L);
+                pause(100L);
 
                 if (alt_tab_右键次数 > 0) {
                     robot.keyPress(KeyEvent.VK_ALT);
