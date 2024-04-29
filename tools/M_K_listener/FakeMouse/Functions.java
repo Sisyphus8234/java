@@ -27,7 +27,18 @@ public class Functions extends IFunctions {
     static {
 //        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
+
+
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+
+        screenWidth = (int) screenSize.getWidth();
+        screenHeight = (int) screenSize.getHeight();
     }
+
+
+    public static int screenWidth;
+    public static int screenHeight;
 
 
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -63,11 +74,8 @@ public class Functions extends IFunctions {
     }
 
 
-
-
     @Recorder
     public static TaskResult rec(InputInfo inputInfo) {
-
 
 
         ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
@@ -350,7 +358,7 @@ public class Functions extends IFunctions {
     public static void 大写锁1() {
 
         Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-        MouseMoveFix.run(0, 0, screen_scale);
+        MouseMoveFix.run(0, screenHeight, screen_scale);
         pause(50L);
 
         robot.keyPress(KeyEvent.VK_WINDOWS);
@@ -454,7 +462,7 @@ public class Functions extends IFunctions {
             while (true) {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                MouseMoveFix.run(0, 0, screen_scale);
+                MouseMoveFix.run(0, screenHeight, screen_scale);
                 pause(50L);
 
                 if (alt_tab_右键次数 > 0) {
@@ -491,7 +499,7 @@ public class Functions extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,active = Active.jna)
+    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, active = Active.jna)
     public static TaskResult 数字3() {
         if (波浪键按住 == true) {
             波浪键按住期间做了什么 = true;
@@ -564,6 +572,16 @@ public class Functions extends IFunctions {
         }
     }
 
+    @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void alt(InputInfo inputInfo) {
+        setKeyStatus(VK_ALT, true);
+    }
+
+    @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void alt1(InputInfo inputInfo) {
+        setKeyStatus(VK_ALT, false);
+    }
+
 
 //    @ListenMouseKeyboard(key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 //    public static void ctrl() {
@@ -593,16 +611,7 @@ public class Functions extends IFunctions {
 //            robot.keyPress(VK_PRINTSCREEN);
 //            robot.keyRelease(VK_PRINTSCREEN);
 //        }
-//    }
 
-//    @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-//    public static void alt(InputInfo inputInfo) {
-//        setKeyStatus(VK_ALT, true);
-//    }
-//
-//    @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void alt1(InputInfo inputInfo) {
-//        setKeyStatus(VK_ALT, false);
 //    }
 
 
