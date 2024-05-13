@@ -1,38 +1,29 @@
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+package custom;
 
+import base.*;
+
+import java.awt.event.KeyEvent;
+class Run extends MainClass {
+
+
+}
 public class Functions extends IFunctions {
 
-    @ListenBar(off = false)
-    public static int on=36;
-
-    @ListenBar
-    public static int off=35;
-
-    @ListenBar(threadList = true)
-    public static ArrayList l1=new ArrayList();
 
     public static boolean temp1 = false;
     public static boolean temp2 = false;
     public static boolean temp3 = false;
 
 
-    public static Thread t1;
-    public static Thread t2;
+
+
 
     public static Long spaceDelay=Long.parseLong(Config.read("SpaceDelay"));
     public static Long EDelay=Long.parseLong(Config.read("EDelay"));
 
-    static {
-        t1=new CreateThread() {
+    public static MyThread  t1=new MyThread() {
             @Override
-            public void myFunction() {
+            public void run() {
                 while (true) {
 
 //                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
@@ -42,15 +33,15 @@ public class Functions extends IFunctions {
                         pause(spaceDelay);
                     }
                     else{
-                        t1.suspend();
+                        t1.mySuspend();
                     }
                 }
             }
-        }.thread;
+        };
 
-        t2=new CreateThread(){
+    public static MyThread t2=new MyThread(){
             @Override
-            public void myFunction() {
+            public void run() {
                 while (true) {
 //                    pause(Long.parseLong(Config.prop.getProperty("TotalDelay")));
 					if (temp2 == true) {
@@ -70,47 +61,55 @@ public class Functions extends IFunctions {
 
                     }
 					else{
-                        t2.suspend();
+                        t2.mySuspend();
                     }
 
 				}
 			}
-        }.thread;
-        l1.add(t1);
-        l1.add(t2);
-    }
+        };
 
-    @ListenMouseKeyboard(value = 32, intercept = true)
-    private static void space() {
+
+
+    @ListenMouseKeyboard(key = "space",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space() {
         temp1 = true;
-        t1.resume();
+        t1.myResume();
 
 //        t2.suspend();
         temp3=false;
     }
 
-    @ListenMouseKeyboard(value = 32, intercept = true, press = false)
-    private static void space2() {
+    @ListenMouseKeyboard(key = "space",press = false,intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space2() {
 //        robot.keyRelease(KeyEvent.VK_SPACE);
         temp1 = false;
     }
 
-    @ListenMouseKeyboard(value = 81,press = false)
-    private static void q() {
-        robot.keyRelease(KeyEvent.VK_T);
-    }
+//    @ListenMouseKeyboard(value = 81,press = false)
+//    private static void q() {
+//        robot.keyRelease(KeyEvent.VK_T);
+//    }
+//
+//
+
 
 
     //拾取物品
-    @ListenMouseKeyboard(value = 84, intercept = true)
-    private static void e() {
+//    @ListenMouseKeyboard(value = 84, intercept = true
+    @ListenMouseKeyboard(key = "t",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void e() {
         temp2 = true;
-        t2.resume();
+        t2.myResume();
     }
-    @ListenMouseKeyboard(value = 84, press = false, intercept = true)
-    private static void e2() {
+//    @ListenMouseKeyboard(value = 84, press = false, intercept = true)
+    @ListenMouseKeyboard(key = "t",press = false,intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+
+    public static void e2() {
         temp2 = false;
     }
+
+
+
 
 //    //拉人 T
 //    @ListenMouseKeyboard(value = 84, intercept = true)
@@ -123,21 +122,21 @@ public class Functions extends IFunctions {
 //    }
 
     //换武器 G
-    @ListenMouseKeyboard(value = 71, intercept = true)
-    private static void g() {
-        robot.keyRelease(KeyEvent.VK_TAB);
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_TAB);
-        pause(40);
-        robot.mouseMove(1794,622);
-//        pause(1000);
-        robot.mousePress(MouseEvent.BUTTON1_MASK);
-        robot.mouseRelease(MouseEvent.BUTTON1_MASK);
-
-        pause(40);
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_TAB);
-    }
+//    @ListenMouseKeyboard(value = 71, inter cept = true)
+//    private static void g() {
+//        robot.keyRelease(KeyEvent.VK_TAB);
+//        robot.keyPress(KeyEvent.VK_TAB);
+//        robot.keyRelease(KeyEvent.VK_TAB);
+//        pause(40);
+//        robot.mouseMove(1794,622);
+////        pause(1000);
+//        robot.mousePress(MouseEvent.BUTTON1_MASK);
+//        robot.mouseRelease(MouseEvent.BUTTON1_MASK);
+//
+//        pause(40);
+//        robot.keyPress(KeyEvent.VK_TAB);
+//        robot.keyRelease(KeyEvent.VK_TAB);
+//    }
 
 
 //    public static boolean ctrl=false;
@@ -186,23 +185,25 @@ public class Functions extends IFunctions {
 //        spaceDelay=Long.parseLong(Config.read("EDelay"));
 //    }
 
-    @ListenMouseKeyboard(value = 67,press = false,intercept = true)
-    private static void yao(){
-        temp3=true;
-        t2.resume();
-    }
+//    @ListenMouseKeyboard(value = 67,press = false,intercept = true)
+//    private static void yao(){
+//        temp3=true;
+//        t2.resume();
+//    }
 
-    @ListenMouseKeyboard(value = 160,press = true,intercept = true)
-    private static void 短闪1(){
+//    @ListenMouseKeyboard(value = 160,press = true,intercept = true)
+    @ListenMouseKeyboard(key = "shift左",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void 短闪1(){
         robot.keyRelease(KeyEvent.VK_SPACE);
         robot.keyPress(KeyEvent.VK_SPACE);
         robot.keyRelease(KeyEvent.VK_SPACE);
     }
 
-//    @ListenMouseKeyboard(value = 162,press = false,intercept = true)
-//    private static void 短闪2(){
-//        robot.keyRelease(KeyEvent.VK_SPACE);
-//    }
+    @ListenMouseKeyboard(key = "shift左",press = false,intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+
+    public static void 短闪2(){
+        robot.keyRelease(KeyEvent.VK_SPACE);
+    }
 
 //    @ListenMouseKeyboard(value = 18)
 //    private static void yao2(){
