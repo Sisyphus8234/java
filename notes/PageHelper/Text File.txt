@@ -1,0 +1,20 @@
+        PageDomain pageDomain = TableSupport.buildPageRequest();
+
+        switch (pageDomain.getOrderByColumn()){
+            case "applicationTime":
+                pageDomain.setOrderByColumn("eab.create_time");
+                break;
+            case "documentNumber":
+                pageDomain.setOrderByColumn("application_document_number");
+                break;
+            default:
+        }
+
+        Integer pageNum = pageDomain.getPageNum();
+        Integer pageSize = pageDomain.getPageSize();
+        if (StringUtils.isNotNull(pageNum) && StringUtils.isNotNull(pageSize))
+        {
+            String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
+            Boolean reasonable = pageDomain.getReasonable();
+            PageMethod.startPage(pageNum, pageSize, orderBy).setReasonable(reasonable);
+        }
