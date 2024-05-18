@@ -16,7 +16,7 @@ public class Functions extends Functions野蛮人{
 class MainClass {
     public static void main(String[] s){
 
-//        Controller.printKey=true;
+        Controller.printKey=true;
         Controller.run(Functions.class, IFunctions.class);
     }
 

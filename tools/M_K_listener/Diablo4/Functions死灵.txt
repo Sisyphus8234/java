@@ -6,6 +6,7 @@ import base.MyThread;
 
 import static java.awt.event.KeyEvent.*;
 
+
 public class Functions死灵 extends Functions公共 {
     static {
         Functions.筛选装备_子类 = new 筛选装备_死灵();

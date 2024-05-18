@@ -174,8 +174,8 @@ public class Functions野蛮人 extends Functions公共 {
     public static LocalDateTime e按下时间 = LocalDateTime.now();
     public static boolean z按过了 = false;
 
-    @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "z", value = 90, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "e",  intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "z",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void e() {
         b攻击移动 = true;
         b移动 = false;
@@ -202,7 +202,7 @@ public class Functions野蛮人 extends Functions公共 {
 
     }
 
-//    @ListenMouseKeyboard(note = "e", press = false,value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "e", press = false,value = 69, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 //    public static void e_1() {
 //        e按下=false;
 //
@@ -211,10 +211,10 @@ public class Functions野蛮人 extends Functions公共 {
 
     public static FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
 
-    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
-    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
-    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
-    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "1", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "2", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "3", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "4", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 1000L)
     public static void 无干扰按键(InputInfo inputInfo) {
 
         int value = inputInfo.value;
@@ -240,14 +240,14 @@ public class Functions野蛮人 extends Functions公共 {
         t无干扰按键.myResume();
     }
 
-    @ListenMouseKeyboard(note = "右键", value = 516, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "右键按下",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 右键() {
 
         核心技能跳过条件 = true;
         是否基础技能 = false;
     }
 
-    @ListenMouseKeyboard(note = "右键", value = 517, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "右键松开",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 右键1() {
         核心技能跳过条件 = false;
         是否基础技能 = true;
@@ -258,24 +258,24 @@ public class Functions野蛮人 extends Functions公共 {
 
     public static boolean v按下 = false;
 
-    @ListenMouseKeyboard(note = "v", value = 86, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "`", value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "v",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "`",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void v() {
         v按下 = true;
     }
 
-    @ListenMouseKeyboard(note = "v", press = false, value = 86, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "`", press = false, value = 192, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "v", press = false,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "`", press = false,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void v_1() {
         v按下 = false;
     }
 
-    @ListenMouseKeyboard(note = "space", value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "space",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void space() {
         space = true;
     }
 
-    @ListenMouseKeyboard(note = "space", press = false, value = 32, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "space", press = false,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void space_1() {
         space = false;
     }

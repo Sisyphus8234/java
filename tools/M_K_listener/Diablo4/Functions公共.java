@@ -85,7 +85,7 @@ public class Functions公共 extends IFunctions {
     };
 
 
-    @ListenMouseKeyboard(note = "e", value = 69, intercept = true, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "e",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void e() {
         b攻击移动 = true;
         b移动 = false;
@@ -94,9 +94,9 @@ public class Functions公共 extends IFunctions {
 
     public static boolean w或者左键 = false;
 
-    @ListenMouseKeyboard(note = "左键", value = 513, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "w", value = 87, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "v", value = 86, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "v", value = 86, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 
     public static void w() {
         w或者左键 = true;
@@ -105,21 +105,21 @@ public class Functions公共 extends IFunctions {
         自动喝药1();
     }
 
-    @ListenMouseKeyboard(note = "左键", value = 514, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "w", value = 87, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "v", press = false,value = 86, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "w", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "v", press = false,value = 86, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 
     public static void w_1() {
         w或者左键 = false;
     }
 
-//    @ListenMouseKeyboard(note = "v", value = 86, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(note = "v", value = 86, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 //    public static void v() {
 //        b攻击移动 = false;
 //        b移动 = false;
 //    }
 
-    @ListenMouseKeyboard(note = "r", value = 82, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "r", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void R() {
         b攻击移动 = false;
 //        Functions公共.自动喝药=false;
@@ -131,8 +131,8 @@ public class Functions公共 extends IFunctions {
     public static boolean b移动是否在运行 = false;
     public static boolean b是否第一次按f = true;
 
-    @ListenMouseKeyboard(note = "侧键", value = 523, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "f", value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "侧键按下",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "f",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 强制移动() {
 
         if (b是否第一次按f == true) {
@@ -162,8 +162,8 @@ public class Functions公共 extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "侧键", value = 524, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(note = "f", press = false, value = 70, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "侧键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "f", press = false,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 强制移动_1() {
 
 
@@ -253,10 +253,10 @@ public class Functions公共 extends IFunctions {
 //    }
 
 
-    @ListenMouseKeyboard(note = "1", intercept = true, value = 49, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(note = "2", intercept = true, value = 50, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(note = "3", intercept = true, value = 51, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(note = "4", intercept = true, value = 52, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "1", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "2", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "3", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "4", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 无干扰按键(InputInfo inputInfo) {
 
         要按的key.add(inputInfo.value);
@@ -349,7 +349,7 @@ public class Functions公共 extends IFunctions {
     //---------------------------------------------------
 
 
-    @ListenMouseKeyboard(note = "x", value = 88, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "x",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 扔装备() {
         Point point = MouseInfo.getPointerInfo().getLocation();
         robot.mousePress(BUTTON1_DOWN_MASK);
@@ -360,7 +360,7 @@ public class Functions公共 extends IFunctions {
         robot.mouseMove(point.x, point.y);
     }
 
-    @ListenMouseKeyboard(note = "b", value = 66, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "b",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 人物详情() {
         long time = 150L;
         robot.keyPress(VK_C);
@@ -379,7 +379,7 @@ public class Functions公共 extends IFunctions {
         robot.mouseMove(point.x, point.y);
     }
 
-    @ListenMouseKeyboard(note = "c", value = 67, press = false, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "c",  press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 去掉括号() {
         if (clipboardIsString()) {
             String text = readClipboard().replaceAll(" ", "").replaceAll("\\[", "").replaceAll("\\]", "");
@@ -391,8 +391,8 @@ public class Functions公共 extends IFunctions {
     //------------------
 
 
-    @ListenMouseKeyboard(note = "f7", value = 118, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
-    @ListenMouseKeyboard(note = "f8", value = 119, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f7",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f8",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色(InputInfo inputInfo) {
         if (inputInfo.value == VK_F7) {
             pixelColor.active = true;
@@ -412,7 +412,7 @@ public class Functions公共 extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note = "f9", value = 120, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f9",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色_2() {
         pixelColor.threadOff();
     }
@@ -440,7 +440,7 @@ public class Functions公共 extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(note = "=", value = 187, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "=",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 右键连点() {
         if (LocalDateTime.now().getSecond() - 计时器.getSecond() < 2) {
             t右键连点是否左键 = true;
@@ -451,7 +451,7 @@ public class Functions公共 extends IFunctions {
         t鼠标连点.myResume();
     }
 
-    @ListenMouseKeyboard(note = "-", value = 189, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "-",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 右键连点_1() {
         t鼠标连点.mySuspend();
     }
@@ -477,39 +477,39 @@ public class Functions公共 extends IFunctions {
 
     public static 筛选装备_子类 筛选装备_子类;
 
-    @ListenMouseKeyboard(note = "f1", value = 112, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f1",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备() {
         筛选装备.标记起点();
     }
 
-    @ListenMouseKeyboard(note = "f2", value = 113, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 图像识别_装备1() {
         筛选装备.是否扫描和筛选 = true;
         筛选装备.是否标记 = false;
         t筛选装备.myResume();
     }
 
-    @ListenMouseKeyboard(note = "f3", value = 114, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f3",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备2() {
         筛选装备.是否扫描和筛选 = false;
         筛选装备.是否标记 = true;
         t筛选装备.myResume();
     }
 
-    @ListenMouseKeyboard(note = "f4", value = 115, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f4",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_装备_终止() {
         筛选装备.是否扫描和筛选 = false;
         筛选装备.是否标记 = false;
     }
 
-    @ListenMouseKeyboard(note = "f5", value = 116, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f5",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_标记传奇() {
 //        robot.keyPress(VK_C);
 //        robot.keyRelease(VK_C);
         筛选装备.显示传奇标记();
     }
 
-    @ListenMouseKeyboard(note = "f6", value = 117, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f6",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 图像识别_标记传奇_1() {
 //        robot.keyPress(VK_ESCAPE);
 //        robot.keyRelease(VK_ESCAPE);
@@ -530,7 +530,7 @@ public class Functions公共 extends IFunctions {
 
     public static Point 图片标记点 = new Point(0, 0);
 
-    @ListenMouseKeyboard(note = "H", value = 72, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "h",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 打开半透明图片() {
         if (是否打开图片 == false) {
             是否打开图片 = true;
@@ -539,7 +539,7 @@ public class Functions公共 extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "g", value = 71, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "g",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 涂改(InputInfo inputInfo) {
         if (是否打开图片 == true) {
             Point mouse=MouseInfo.getPointerInfo().getLocation();
@@ -550,7 +550,7 @@ public class Functions公共 extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "a", intercept = true, value = 65, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "a", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 标记点(InputInfo inputInfo) {
         if (是否打开图片 == true) {
             Point mouse=MouseInfo.getPointerInfo().getLocation();
@@ -561,8 +561,8 @@ public class Functions公共 extends IFunctions {
         }
     }
 
-    @ListenMouseKeyboard(note = "↑", intercept = true, value = 38, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(note = "↓", intercept = true, value = 40, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "up", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "down", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 缩放(InputInfo inputInfo) {
         double 幅度 = 0.01D;
         if (inputInfo.value == 40) {
@@ -578,7 +578,7 @@ public class Functions公共 extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(note = "s", intercept = true, value = 83, keyboardOrMouse = ListenMouseKeyboard.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "s", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 打开半透明图片_1(InputInfo inputInfo) {
         if (是否打开图片 == true) {
             if (图片状态 == false) {
