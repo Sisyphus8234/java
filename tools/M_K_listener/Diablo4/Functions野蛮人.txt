@@ -179,7 +179,7 @@ public class Functions野蛮人 extends Functions公共 {
     public static void e() {
         b攻击移动 = true;
         b移动 = false;
-        自动喝药(null, null, false);
+        自动喝药开始(null, null, false);
         筛选装备.关闭传奇标记();
 
 
@@ -315,9 +315,6 @@ public class Functions野蛮人 extends Functions公共 {
 //    };
 
 
-    static {
-        Functions公共.筛选装备_子类 = new 筛选装备_野蛮人();
-    }
 
 
 }

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Functions extends Functions野蛮人{
+public class Functions extends Functions死灵{
 
 
 }
@@ -16,7 +16,7 @@ public class Functions extends Functions野蛮人{
 class MainClass {
     public static void main(String[] s){
 
-        Controller.printKey=true;
+//        Controller.printKey=true;
         Controller.run(Functions.class, IFunctions.class);
     }
 

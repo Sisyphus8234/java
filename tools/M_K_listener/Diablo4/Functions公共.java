@@ -1,16 +1,13 @@
 package custom;
 
-import addition.DisplayImageOnTop;
 import addition.FunctionsAddition;
 import base.*;
 
-import javax.xml.stream.Location;
 import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -20,167 +17,24 @@ public class Functions公共 extends IFunctions {
     }
 
     public static long BaseDelay = 200L;
-    public static long bigDelay = 500L;
-    public static boolean b攻击移动 = false;
-    public static boolean b攻击移动1 = false;
 
-    public static boolean b移动 = false;
-    public static boolean b移动1 = false;
-    public static MyThread t移动 = new MyThread(MyThread.State.on) {
+    public static boolean b拾取 = false;
+    public static MyThread t拾取 = new MyThread() {
+
         @Override
         public void run() {
             while (true) {
-                if (b移动 == true) {
-                    robot.keyRelease(VK_G);
-                    robot.keyPress(VK_G);
-                    b移动1 = true;
-                } else {
-                    if (b移动1 == true) {
-                        robot.keyRelease(VK_G);
-                        b移动1 = false;
-                    }
-                }
-
-                pause(BaseDelay);
-            }
-        }
-    };
-
-    public static boolean b拾取物品 = false;
-    public static boolean b需要骑马 = false;
-    public static LocalDateTime 骑马start = LocalDateTime.now();
-    public static FunctionsAddition.PixelColor pixelColor拾取物品 = new FunctionsAddition.PixelColor();
-    public static MyThread t拾取物品 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-
-                if (b攻击移动 == true) {
-
-                    if (b需要骑马 == true && pixelColor拾取物品.getPixelColorHSB(801, 974)[0] > 0.35F) {
-                        robot.keyPress(VK_Z);
-                        robot.keyRelease(VK_Z);
-                    }
+                if (b拾取 == true) {
                     robot.keyPress(VK_ALT);
                     robot.keyRelease(VK_ALT);
-                    robot.keyRelease(VK_V);
-                    robot.keyPress(VK_V);
-                    b拾取物品 = true;
-                } else {
-                    if (b拾取物品 == true) {
-                        robot.keyRelease(VK_V);
-                        b拾取物品 = false;
-                    }
-                }
-
-                if (Duration.between(骑马start, LocalDateTime.now()).toMillis() > 800L) {
-                    b需要骑马 = false;
                 }
 
 
-                pause(bigDelay);
-
+                pause(1000L);
             }
         }
     };
 
-
-    @ListenMouseKeyboard(key = "e",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void e() {
-        b攻击移动 = true;
-        b移动 = false;
-        自动喝药();
-    }
-
-    public static boolean w或者左键 = false;
-
-    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "v", value = 86, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-
-    public static void w() {
-        w或者左键 = true;
-        b攻击移动 = false;
-        b移动 = false;
-        自动喝药1();
-    }
-
-    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(key = "w", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(note = "v", press = false,value = 86, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-
-    public static void w_1() {
-        w或者左键 = false;
-    }
-
-//    @ListenMouseKeyboard(note = "v", value = 86, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void v() {
-//        b攻击移动 = false;
-//        b移动 = false;
-//    }
-
-    @ListenMouseKeyboard(key = "r", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void R() {
-        b攻击移动 = false;
-//        Functions公共.自动喝药=false;
-        b移动 = true;
-    }
-
-
-    public static boolean b攻击移动是否在运行 = false;
-    public static boolean b移动是否在运行 = false;
-    public static boolean b是否第一次按f = true;
-
-    @ListenMouseKeyboard(key = "侧键按下",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(key = "f",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 强制移动() {
-
-        if (b是否第一次按f == true) {
-            if (b攻击移动 == true) {
-                b攻击移动是否在运行 = true;
-            } else {
-                b攻击移动是否在运行 = false;
-            }
-
-            if (b移动 == true) {
-                b移动是否在运行 = true;
-            } else {
-                b移动是否在运行 = false;
-            }
-
-            b攻击移动 = false;
-            b移动 = true;
-
-            骑马start = LocalDateTime.now();
-            b需要骑马 = true;
-
-        }
-
-
-        if (b是否第一次按f == true) {
-            b是否第一次按f = false;
-        }
-    }
-
-    @ListenMouseKeyboard(key = "侧键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(key = "f", press = false,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 强制移动_1() {
-
-
-        if (b攻击移动是否在运行 == true) {
-            b攻击移动 = true;
-        } else {
-            b攻击移动 = false;
-        }
-
-        if (b移动是否在运行 == true) {
-            b移动 = true;
-        } else {
-            b移动 = false;
-        }
-
-        b是否第一次按f = true;
-    }
 
     //-----------------------------
 
@@ -239,24 +93,11 @@ public class Functions公共 extends IFunctions {
         }
     };
 
-//    public static void 无干扰按键(int key) {
-////        start = LocalDateTime.now();
-////        要按的key = key;
-////        b无干扰按键 = true;
-////        t无干扰按键.myResume();
-//
-////        要暂停的t.mySuspend();
-////        robot.keyPress(key);
-////        robot.keyRelease(key);
-////        要暂停的t.myResume();
-//
-//    }
 
-
-    @ListenMouseKeyboard(key = "1", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(key = "2", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(key = "3", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(key = "4", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 无干扰按键(InputInfo inputInfo) {
 
         要按的key.add(inputInfo.value);
@@ -268,8 +109,8 @@ public class Functions公共 extends IFunctions {
 
     //-----------------------------
 
-    public static Point p自动喝药 = new Point(625, 990);
-    public static Point p自动喝药1 = new Point(625, 950);
+    public static Point p自动喝药_在中间位置 = new Point(625, 990);
+    public static Point p自动喝药_在上方位置_长时间损失少量0血量就恢复 = new Point(625, 950);
 
 
     public static boolean b自动喝药 = false;
@@ -283,7 +124,7 @@ public class Functions公共 extends IFunctions {
         public void run() {
             while (true) {
                 if (b自动喝药 == true) {
-                    if (pixelColor.getPixelColorHSB(625, 990)[1] < 0.5F) {
+                    if (pixelColor.getPixelColorHSB(p自动喝药_在中间位置.x, p自动喝药_在中间位置.y)[1] < 0.5F) {
                         robot.keyRelease(VK_0);
                         robot.keyPress(VK_0);
                         robot.keyRelease(VK_0);
@@ -293,7 +134,7 @@ public class Functions公共 extends IFunctions {
                             b自动喝药1 = false;
                         }
                     } else if (b自动喝药2 == true) {
-                        if (pixelColor.getPixelColorHSB(625, 950)[1] < 0.5F) {
+                        if (pixelColor.getPixelColorHSB(p自动喝药_在上方位置_长时间损失少量0血量就恢复.x, p自动喝药_在上方位置_长时间损失少量0血量就恢复.y)[1] < 0.5F) {
                             if (LocalDateTime.now().getSecond() - localDateTime.getSecond() < 0) {
 //                                System.out.println(LocalDateTime.now().getSecond() - localDateTime.getSecond());
 //                                System.out.println(LocalDateTime.now());
@@ -323,23 +164,24 @@ public class Functions公共 extends IFunctions {
     };
 
 
-    public static void 自动喝药() {
+    public static void 自动喝药开始() {
         b自动喝药 = true;
         t自动喝药.myResume();
     }
 
-    public static void 自动喝药(Point point, Point point1, boolean b) {
+
+    public static void 自动喝药开始(Point point, Point point1, boolean b) {
         if (point != null) {
-            p自动喝药 = point;
+            p自动喝药_在中间位置 = point;
         }
         if (point1 != null) {
-            p自动喝药1 = point1;
+            p自动喝药_在上方位置_长时间损失少量0血量就恢复 = point1;
         }
         b自动喝药2 = b;
-        自动喝药();
+        自动喝药开始();
     }
 
-    public static void 自动喝药1() {
+    public static void 自动喝药结束() {
         b自动喝药 = false;
     }
 
@@ -349,7 +191,7 @@ public class Functions公共 extends IFunctions {
     //---------------------------------------------------
 
 
-    @ListenMouseKeyboard(key = "x",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "x", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 扔装备() {
         Point point = MouseInfo.getPointerInfo().getLocation();
         robot.mousePress(BUTTON1_DOWN_MASK);
@@ -360,7 +202,7 @@ public class Functions公共 extends IFunctions {
         robot.mouseMove(point.x, point.y);
     }
 
-    @ListenMouseKeyboard(key = "b",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "b", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 人物详情() {
         long time = 150L;
         robot.keyPress(VK_C);
@@ -379,7 +221,7 @@ public class Functions公共 extends IFunctions {
         robot.mouseMove(point.x, point.y);
     }
 
-    @ListenMouseKeyboard(key = "c",  press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "c", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 去掉括号() {
         if (clipboardIsString()) {
             String text = readClipboard().replaceAll(" ", "").replaceAll("\\[", "").replaceAll("\\]", "");
@@ -391,8 +233,8 @@ public class Functions公共 extends IFunctions {
     //------------------
 
 
-    @ListenMouseKeyboard(key = "f7",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    @ListenMouseKeyboard(key = "f8",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f7", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f8", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色(InputInfo inputInfo) {
         if (inputInfo.value == VK_F7) {
             pixelColor.active = true;
@@ -412,7 +254,7 @@ public class Functions公共 extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(key = "f9",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f9", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色_2() {
         pixelColor.threadOff();
     }
@@ -440,7 +282,7 @@ public class Functions公共 extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(key = "=",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "=", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 右键连点() {
         if (LocalDateTime.now().getSecond() - 计时器.getSecond() < 2) {
             t右键连点是否左键 = true;
@@ -451,7 +293,7 @@ public class Functions公共 extends IFunctions {
         t鼠标连点.myResume();
     }
 
-    @ListenMouseKeyboard(key = "-",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "-", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 右键连点_1() {
         t鼠标连点.mySuspend();
     }
@@ -460,157 +302,157 @@ public class Functions公共 extends IFunctions {
     //-------------
 
 
-    public static MyThread t筛选装备 = new MyThread(MyThread.State.off) {
-        @Override
-        public void run() {
-            while (true) {
-                if (筛选装备.是否标记 == true) {
-                    筛选装备.run1();
-                } else if (筛选装备.是否扫描和筛选 == true) {
-                    筛选装备.run(筛选装备_子类);
-                }
-
-                this.mySuspend();
-            }
-        }
-    };
-
-    public static 筛选装备_子类 筛选装备_子类;
-
-    @ListenMouseKeyboard(key = "f1",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备() {
-        筛选装备.标记起点();
-    }
-
-    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 图像识别_装备1() {
-        筛选装备.是否扫描和筛选 = true;
-        筛选装备.是否标记 = false;
-        t筛选装备.myResume();
-    }
-
-    @ListenMouseKeyboard(key = "f3",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备2() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = true;
-        t筛选装备.myResume();
-    }
-
-    @ListenMouseKeyboard(key = "f4",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_装备_终止() {
-        筛选装备.是否扫描和筛选 = false;
-        筛选装备.是否标记 = false;
-    }
-
-    @ListenMouseKeyboard(key = "f5",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_标记传奇() {
-//        robot.keyPress(VK_C);
-//        robot.keyRelease(VK_C);
-        筛选装备.显示传奇标记();
-    }
-
-    @ListenMouseKeyboard(key = "f6",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 图像识别_标记传奇_1() {
-//        robot.keyPress(VK_ESCAPE);
-//        robot.keyRelease(VK_ESCAPE);
-        筛选装备.关闭传奇标记();
-    }
-
-
-    public static DisplayImageOnTop displayImageOnTop = new DisplayImageOnTop();
-    public static boolean 图片状态 = false;
-    public static boolean 是否打开图片 = false;
+//    public static MyThread t筛选装备 = new MyThread(MyThread.State.off) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (筛选装备.是否标记 == true) {
+//                    筛选装备.run1();
+//                } else if (筛选装备.是否扫描和筛选 == true) {
+//                    筛选装备.run(筛选装备_子类);
+//                }
+//
+//                this.mySuspend();
+//            }
+//        }
+//    };
+//
+//    public static 筛选装备_子类 筛选装备_子类;
+//
+//    @ListenMouseKeyboard(key = "f1",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_装备() {
+//        筛选装备.标记起点();
+//    }
+//
+//    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void 图像识别_装备1() {
+//        筛选装备.是否扫描和筛选 = true;
+//        筛选装备.是否标记 = false;
+//        t筛选装备.myResume();
+//    }
+//
+//    @ListenMouseKeyboard(key = "f3",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_装备2() {
+//        筛选装备.是否扫描和筛选 = false;
+//        筛选装备.是否标记 = true;
+//        t筛选装备.myResume();
+//    }
+//
+//    @ListenMouseKeyboard(key = "f4",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_装备_终止() {
+//        筛选装备.是否扫描和筛选 = false;
+//        筛选装备.是否标记 = false;
+//    }
+//
+//    @ListenMouseKeyboard(key = "f5",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_标记传奇() {
+////        robot.keyPress(VK_C);
+////        robot.keyRelease(VK_C);
+//        筛选装备.显示传奇标记();
+//    }
+//
+//    @ListenMouseKeyboard(key = "f6",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+//    public static void 图像识别_标记传奇_1() {
+////        robot.keyPress(VK_ESCAPE);
+////        robot.keyRelease(VK_ESCAPE);
+//        筛选装备.关闭传奇标记();
+//    }
 
 
-    public static String 图片路径 = Config.read("top_picture_path");
-
-    static {
-        displayImageOnTop.scale = Double.parseDouble((Config.read("scale")));
-    }
-
-    public static Point 图片标记点 = new Point(0, 0);
-
-    @ListenMouseKeyboard(key = "h",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 打开半透明图片() {
-        if (是否打开图片 == false) {
-            是否打开图片 = true;
-        } else {
-            是否打开图片 = false;
-        }
-    }
-
-    @ListenMouseKeyboard(key = "g",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 涂改(InputInfo inputInfo) {
-        if (是否打开图片 == true) {
-            Point mouse=MouseInfo.getPointerInfo().getLocation();
-            displayImageOnTop.draw(new Point((int) ((mouse.x - displayImageOnTop.location.x)/displayImageOnTop.scale), (int) ((mouse.y - displayImageOnTop.location.y)/displayImageOnTop.scale)));
-
-        } else {
-            robot.keyPress(inputInfo.value);
-        }
-    }
-
-    @ListenMouseKeyboard(key = "a", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 标记点(InputInfo inputInfo) {
-        if (是否打开图片 == true) {
-            Point mouse=MouseInfo.getPointerInfo().getLocation();
-            图片标记点.x = (int) ((mouse.x - displayImageOnTop.location.x) / displayImageOnTop.scale);
-            图片标记点.y = (int) ((mouse.y - displayImageOnTop.location.y) / displayImageOnTop.scale);
-        } else {
-            robot.keyPress(inputInfo.value);
-        }
-    }
-
-    @ListenMouseKeyboard(key = "up", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "down", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 缩放(InputInfo inputInfo) {
-        double 幅度 = 0.01D;
-        if (inputInfo.value == 40) {
-            displayImageOnTop.scale = displayImageOnTop.scale - 幅度;
-        } else {
-            displayImageOnTop.scale = displayImageOnTop.scale + 幅度;
-        }
-        System.out.println(displayImageOnTop.scale);
-        Config.write("scale", String.valueOf(displayImageOnTop.scale));
-
-
-        displayImageOnTop.changeImageScale();
-    }
-
-
-    @ListenMouseKeyboard(key = "s", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 打开半透明图片_1(InputInfo inputInfo) {
-        if (是否打开图片 == true) {
-            if (图片状态 == false) {
-
-                displayImageOnTop.newPicture();
-
-                displayImageOnTop.location.x = (int) (MouseInfo.getPointerInfo().getLocation().x - 图片标记点.x * displayImageOnTop.scale);
-                displayImageOnTop.location.y = (int) (MouseInfo.getPointerInfo().getLocation().y - 图片标记点.y * displayImageOnTop.scale);
-
-
-                displayImageOnTop.imagePath = 图片路径;
-
-                displayImageOnTop.opacity = 0.7F;
-
-
-                displayImageOnTop.openImage();
-
-                图片状态 = true;
-            } else {
-                if (!Objects.isNull(displayImageOnTop)) {
-                    displayImageOnTop.closeWindow();
-                }
-                图片状态 = false;
-            }
-        } else {
-            robot.keyPress(inputInfo.value);
-            if (!Objects.isNull(displayImageOnTop)) {
-                displayImageOnTop.closeWindow();
-            }
-
-        }
-    }
+//    public static DisplayImageOnTop displayImageOnTop = new DisplayImageOnTop();
+//    public static boolean 图片状态 = false;
+//    public static boolean 是否打开图片 = false;
+//
+//
+//    public static String 图片路径 = Config.read("top_picture_path");
+//
+//    static {
+//        displayImageOnTop.scale = Double.parseDouble((Config.read("scale")));
+//    }
+//
+//    public static Point 图片标记点 = new Point(0, 0);
+//
+//    @ListenMouseKeyboard(key = "h",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void 打开半透明图片() {
+//        if (是否打开图片 == false) {
+//            是否打开图片 = true;
+//        } else {
+//            是否打开图片 = false;
+//        }
+//    }
+//
+//    @ListenMouseKeyboard(key = "g",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void 涂改(InputInfo inputInfo) {
+//        if (是否打开图片 == true) {
+//            Point mouse=MouseInfo.getPointerInfo().getLocation();
+//            displayImageOnTop.draw(new Point((int) ((mouse.x - displayImageOnTop.location.x)/displayImageOnTop.scale), (int) ((mouse.y - displayImageOnTop.location.y)/displayImageOnTop.scale)));
+//
+//        } else {
+//            robot.keyPress(inputInfo.value);
+//        }
+//    }
+//
+//    @ListenMouseKeyboard(key = "a", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void 标记点(InputInfo inputInfo) {
+//        if (是否打开图片 == true) {
+//            Point mouse=MouseInfo.getPointerInfo().getLocation();
+//            图片标记点.x = (int) ((mouse.x - displayImageOnTop.location.x) / displayImageOnTop.scale);
+//            图片标记点.y = (int) ((mouse.y - displayImageOnTop.location.y) / displayImageOnTop.scale);
+//        } else {
+//            robot.keyPress(inputInfo.value);
+//        }
+//    }
+//
+//    @ListenMouseKeyboard(key = "up", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "down", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void 缩放(InputInfo inputInfo) {
+//        double 幅度 = 0.01D;
+//        if (inputInfo.value == 40) {
+//            displayImageOnTop.scale = displayImageOnTop.scale - 幅度;
+//        } else {
+//            displayImageOnTop.scale = displayImageOnTop.scale + 幅度;
+//        }
+//        System.out.println(displayImageOnTop.scale);
+//        Config.write("scale", String.valueOf(displayImageOnTop.scale));
+//
+//
+//        displayImageOnTop.changeImageScale();
+//    }
+//
+//
+//    @ListenMouseKeyboard(key = "s", intercept = true,  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void 打开半透明图片_1(InputInfo inputInfo) {
+//        if (是否打开图片 == true) {
+//            if (图片状态 == false) {
+//
+//                displayImageOnTop.newPicture();
+//
+//                displayImageOnTop.location.x = (int) (MouseInfo.getPointerInfo().getLocation().x - 图片标记点.x * displayImageOnTop.scale);
+//                displayImageOnTop.location.y = (int) (MouseInfo.getPointerInfo().getLocation().y - 图片标记点.y * displayImageOnTop.scale);
+//
+//
+//                displayImageOnTop.imagePath = 图片路径;
+//
+//                displayImageOnTop.opacity = 0.7F;
+//
+//
+//                displayImageOnTop.openImage();
+//
+//                图片状态 = true;
+//            } else {
+//                if (!Objects.isNull(displayImageOnTop)) {
+//                    displayImageOnTop.closeWindow();
+//                }
+//                图片状态 = false;
+//            }
+//        } else {
+//            robot.keyPress(inputInfo.value);
+//            if (!Objects.isNull(displayImageOnTop)) {
+//                displayImageOnTop.closeWindow();
+//            }
+//
+//        }
+//    }
 
 
 }

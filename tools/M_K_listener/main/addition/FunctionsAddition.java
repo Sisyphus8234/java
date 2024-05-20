@@ -162,11 +162,11 @@ public class FunctionsAddition extends IFunctions {
                     if (resultClass.large == null) {
 
                     } else if (resultClass.large) {
-                        symbol = "1";
+                        symbol = "前者>后者";
                         average = String.valueOf(resultClass.average);
 
                     } else if (resultClass.large == false) {
-                        symbol = "-1";
+                        symbol = "前者<后者";
                         average = String.valueOf(resultClass.average);
                     }
                     Config.writeWithPrefix(name + i + ",symbol", symbol);
