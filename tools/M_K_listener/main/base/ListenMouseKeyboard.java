@@ -21,7 +21,6 @@ public @interface ListenMouseKeyboard {
 
     boolean intercept() default false;
 
-    int mouseData() default 0;
 
     String note() default "";
 
@@ -29,7 +28,6 @@ public @interface ListenMouseKeyboard {
 
     boolean extend() default false;
 
-    int flags() default 0;
 
     String otherCondition() default "";
 

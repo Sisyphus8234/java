@@ -47,22 +47,39 @@ public class Functions死灵 extends Functions公共 {
         b1=false;
     }
 
+    public static boolean t1b2;
     public static MyThread t1 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
                 if (b1 == true) {
+
+
+
+//                    if(t1b2==true){
+//                        robot.keyPress(VK_4);
+//                        robot.keyRelease(VK_4);
+//                        t1b2=false;
+//                    }
+
+                    robot.keyPress(VK_2);
+                    robot.keyRelease(VK_2);
+
+
+
+
                     if (判断骷髅()) {
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
                     } else {
-                        robot.keyPress(VK_2);
-                        robot.keyRelease(VK_2);
-                        robot.keyPress(VK_3);
-                        robot.keyRelease(VK_3);
+
+
 
                     }
+                    robot.keyPress(VK_3);
+                    robot.keyRelease(VK_3);
                 } else {
+                    t1b2=true;
                     this.mySuspend();
                 }
                 pause(BaseDelay);
@@ -102,7 +119,7 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,extend = true)
+    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true)
     public static void R() {
         b拾取=false;
         自动喝药结束();
