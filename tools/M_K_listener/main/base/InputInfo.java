@@ -48,7 +48,7 @@ public class InputInfo {
                     throw new RuntimeException("otherCondition mistake");
                 }
 
-                step1 = step1 && Objects.equals(objInMap.otherCondition.get(item.getKey()), item.getValue());
+                step1 = step1 && Objects.equals(otherCondition.get(item.getKey()), item.getValue());
             }
 
         }
