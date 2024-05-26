@@ -62,22 +62,25 @@ public class Functions死灵 extends Functions公共 {
 //                        t1b2=false;
 //                    }
 
-                    robot.keyPress(VK_2);
-                    robot.keyRelease(VK_2);
+                    robot.keyPress(VK_7);
+                    robot.keyRelease(VK_7);
 
 
 
 
                     if (判断骷髅()) {
-                        robot.keyPress(VK_1);
-                        robot.keyRelease(VK_1);
+                        robot.keyPress(VK_6);
+                        robot.keyRelease(VK_6);
                     } else {
 
 
 
                     }
-                    robot.keyPress(VK_3);
-                    robot.keyRelease(VK_3);
+                    robot.keyPress(VK_8);
+                    robot.keyRelease(VK_8);
+
+                    robot.keyPress(VK_9);
+                    robot.keyRelease(VK_9);
                 } else {
                     t1b2=true;
                     this.mySuspend();
@@ -87,6 +90,22 @@ public class Functions死灵 extends Functions公共 {
         }
     };
 
+
+    public static boolean t2b=false;
+    public static MyThread t2 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+
+
+                if(t2b==true){
+                    robot.keyPress(VK_2);
+                    robot.keyRelease(VK_2);
+                }
+                pause(17000L);
+            }
+        }
+    };
 //    public static MyThread t2 = new MyThread(MyThread.State.on) {
 //        @Override
 //        public void run() {
@@ -112,18 +131,41 @@ public class Functions死灵 extends Functions公共 {
 
 
     public static boolean b2=false;
-    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true,timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true,timeInterval = 200L)
     public static void f1() {
-        b拾取=true;
-        自动喝药开始(null, null, false);
+
+
     }
 
 
     @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true)
     public static void R() {
-        b拾取=false;
-        自动喝药结束();
+
+
     }
+
+
+
+    @ListenMouseKeyboard(key="滚轮",keyboardOrMouse=CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320")
+    public static void gunlun() {
+        b拾取=true;
+        t2b=true;
+
+        自动喝药开始(null, null, false);
+
+    }
+
+    @ListenMouseKeyboard(key="滚轮",keyboardOrMouse=CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320")
+    public static void gunlun1() {
+        b拾取=false;
+        t2b=false;
+
+        自动喝药结束();
+
+    }
+
+
+
 
 
 }
