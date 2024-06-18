@@ -37,7 +37,7 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_7, VK_8, VK_9, VK_W));
+    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_9, VK_W));
     public static int len = list.size();
 
     public static MyThread t1 = new MyThread(MyThread.State.on) {
@@ -49,29 +49,24 @@ public class Functions死灵 extends Functions公共 {
                 if (战斗 == true && 移动 == false) {
 
 
-                    if (判断骷髅()) {
-                        robot.keyPress(VK_6);
-                        robot.keyRelease(VK_6);
-                    } else {
-                        if(i==len){
-                            robot.keyPress(VK_SPACE);
-                        }
-                        robot.keyPress(list.get(i));
-                        robot.keyRelease(list.get(i));
-                        if(i==len){
-                            robot.keyRelease(VK_SPACE);
-                        }
+                    if (i == len - 1) {
+                        robot.keyPress(VK_SPACE);
+                    }
+                    robot.keyPress(list.get(i));
+                    robot.keyRelease(list.get(i));
+                    if (i == len-1) {
+                        pause(100L);
+                        robot.keyRelease(VK_SPACE);
+                    }
 
-                        if(i>=len){
-                            i=0;
-                        }else {
-                            i++;
-                        }
+                    i++;
+
+                    if (i >= len) {
+                        i = 0;
                     }
 
 
-
-                    pause(800L);
+                    pause(200L);
 
 
                 } else {
@@ -82,16 +77,18 @@ public class Functions死灵 extends Functions公共 {
     };
 
 
-    public static boolean 移动 = false;
+    public static boolean 移动 = true;
 
     @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "g", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "g", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 左键1() {
         移动 = true;
     }
 
     @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "g", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "g", userInput = false, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 左键2() {
         移动 = false;
     }
@@ -99,14 +96,15 @@ public class Functions死灵 extends Functions公共 {
     public static boolean 战斗 = false;
 
     @ListenMouseKeyboard(key = "q", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "q", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void q1() {
         自动喝药开始(null, null, false);
         战斗 = true;
     }
 
 
-    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
     @ListenMouseKeyboard(key = "t", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(key = "t", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
     public static void R() {
 
         自动喝药结束();

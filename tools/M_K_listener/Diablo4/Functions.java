@@ -16,7 +16,7 @@ public class Functions extends Functions死灵{
 class MainClass {
     public static void main(String[] s){
 
-//        Controller.printKey=true;
+        Controller.printKey=true;
         Controller.run(Functions.class, IFunctions.class);
     }
 
