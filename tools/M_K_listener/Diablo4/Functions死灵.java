@@ -78,22 +78,25 @@ public class Functions死灵 extends Functions公共 {
 
 
 
-    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "左键按下", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 左键1() {
         移动 = true;
     }
 
 
     public static boolean 移动 = true;
-
+//    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "g", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "g", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void g() {
         移动 = true;
     }
 
+//    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "g", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "g", userInput = false, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "c", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "c", userInput = false, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void g1() {
         移动 = false;
     }
