@@ -18,19 +18,23 @@ public class Functions公共 extends IFunctions {
 
     public static long BaseDelay = 200L;
 
-    public static boolean b拾取 = false;
-    public static MyThread t拾取 = new MyThread() {
-
+    public static boolean b拾取=false;
+    public static MyThread t拾取 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
+
             while (true) {
                 if (b拾取 == true) {
+
+
                     robot.keyPress(VK_ALT);
                     robot.keyRelease(VK_ALT);
+
+                    robot.keyPress(VK_V);
+                    robot.keyRelease(VK_V);
+
                 }
-
-
-                pause(1000L);
+                pause(200L);
             }
         }
     };
