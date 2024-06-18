@@ -15,3 +15,13 @@
 		
 		
 		collection="idList",此是xxxmapper.java文件中的参数名,应该要加@Param
+
+
+        <if test="idList !=null">
+            eab.expense_application_base_id in (0
+            <foreach collection="idList" item="param">
+                , #{param}
+            </foreach>
+            )
+            and
+        </if>
