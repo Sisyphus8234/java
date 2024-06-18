@@ -4,6 +4,7 @@ import addition.FunctionsAddition;
 import base.CommonUtil;
 import base.ListenMouseKeyboard;
 import base.MyThread;
+import base.enty.TaskResult;
 
 import java.awt.event.MouseEvent;
 
@@ -36,13 +37,25 @@ public class Functions死灵 extends Functions公共 {
     public static boolean b1 = false;
 
 
-    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    public static void 尸体() {
-        b1=true;
-        t1.myResume();
+
+//    @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+//    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static TaskResult 尸体() {
+        if(battle==true) {
+            b1 = true;
+            t1.myResume();
+            return new TaskResult(true);
+        }else {
+            return new TaskResult(false);
+        }
     }
 
-    @ListenMouseKeyboard(key = "1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+//    @ListenMouseKeyboard(key = "3", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+//    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,timeInterval = 500L)
+//    @ListenMouseKeyboard(key="滚轮",keyboardOrMouse=CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320")
+//    @ListenMouseKeyboard(key="滚轮",keyboardOrMouse=CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320")
+//    @ListenMouseKeyboard(key="4",keyboardOrMouse=CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key="3",press = false,keyboardOrMouse=CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 尸体1() {
         b1=false;
     }
@@ -57,30 +70,54 @@ public class Functions死灵 extends Functions公共 {
 
 
 //                    if(t1b2==true){
-//                        robot.keyPress(VK_4);
-//                        robot.keyRelease(VK_4);
+//                        robot.keyPress(VK_5);
+//                        robot.keyRelease(VK_5);
 //                        t1b2=false;
 //                    }
 
-                    robot.keyPress(VK_7);
-                    robot.keyRelease(VK_7);
+
+
 
 
 
 
                     if (判断骷髅()) {
+
                         robot.keyPress(VK_6);
                         robot.keyRelease(VK_6);
+                        pause(100L);
                     } else {
 
 
-
                     }
+                    robot.keyPress(VK_7);
+                    robot.keyRelease(VK_7);
+
                     robot.keyPress(VK_8);
                     robot.keyRelease(VK_8);
 
-                    robot.keyPress(VK_9);
-                    robot.keyRelease(VK_9);
+
+//                    pause(100L);
+//                    robot.keyPress(VK_9);
+//                    robot.keyRelease(VK_9);
+
+//                    pause(100L);
+
+//                    if(space==false) {
+//                        robot.keyPress(VK_5);
+//                        robot.keyRelease(VK_5);
+//
+//                    }
+
+
+//                    pause(100L);
+                    robot.keyPress(VK_SPACE);
+                    robot.keyPress(VK_W);
+                    robot.keyRelease(VK_W);
+                    robot.keyRelease(VK_SPACE);
+//                    pause(100L);
+
+
                 } else {
                     t1b2=true;
                     this.mySuspend();
@@ -92,37 +129,17 @@ public class Functions死灵 extends Functions公共 {
 
 
     public static boolean t2b=false;
-    public static MyThread t2 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-
-
-                if(t2b==true){
-                    robot.keyPress(VK_2);
-                    robot.keyRelease(VK_2);
-                }
-                pause(17000L);
-            }
-        }
-    };
 //    public static MyThread t2 = new MyThread(MyThread.State.on) {
 //        @Override
 //        public void run() {
 //            while (true) {
-//                if (b2 == true) {
-//                    if (判断骷髅()) {
 //
-//                        myKeyPress(VK_1);
-//                        myKeyRelease(VK_1);
 //
-//                    }
-//                } else {
-//                    if(getKeyStatus(VK_1)) {
-//                        robot.keyRelease(VK_1);
-//                    }
+//                if(t2b==true){
+//                    robot.keyPress(VK_7);
+//                    robot.keyRelease(VK_7);
 //                }
-//                pause(BaseDelay);
+//                pause(3000L);
 //            }
 //        }
 //    };
@@ -130,39 +147,41 @@ public class Functions死灵 extends Functions公共 {
 
 
 
-    public static boolean b2=false;
-    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true,timeInterval = 200L)
+
+
+
+
+
+    public static boolean battle=false;
+    @ListenMouseKeyboard(key = "q", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true,timeInterval = 200L)
     public static void f1() {
-
-
-    }
-
-
-    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true)
-    public static void R() {
-
-
-    }
-
-
-
-    @ListenMouseKeyboard(key="滚轮",keyboardOrMouse=CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320")
-    public static void gunlun() {
         b拾取=true;
         t2b=true;
-
         自动喝药开始(null, null, false);
-
+        battle=true;
     }
-
-    @ListenMouseKeyboard(key="滚轮",keyboardOrMouse=CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320")
-    public static void gunlun1() {
+    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true)
+    @ListenMouseKeyboard(key = "t", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,extend = true)
+    public static void R() {
         b拾取=false;
         t2b=false;
-
         自动喝药结束();
 
+        battle=false;
     }
+
+
+    public static boolean space=false;
+    @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
+    public static void space() {
+        space=true;
+    }
+
+    @ListenMouseKeyboard(key = "space", press = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
+    public static void space1() {
+        space=false;
+    }
+
 
 
 
