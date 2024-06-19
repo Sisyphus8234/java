@@ -39,16 +39,41 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
+
+    public static boolean 可以放消耗技能() {
+        boolean b;
+        b = pixelColor.getPixelColorHSB(1318, 1000)[1] > 0.35F;
+
+        return b;
+    }
+
+
+
     public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_9, VK_E));
     public static int len = list.size();
+
+    public static LocalDateTime t=LocalDateTime.now();
 
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             int i = 0;
-
+            boolean b;
             while (true) {
                 if (战斗 == true && b拾取 == false) {
+
+
+//                    if(可以放消耗技能()==false){
+//                        t=LocalDateTime.now().plusSeconds(3);
+//                    }
+//
+//                    if(LocalDateTime.now().isBefore(t)&&(list.get(i)==VK_7||list.get(i)==VK_E)
+//                    ){
+//                        i++;
+//                        if (i >= len) {
+//                            i = 0;
+//                        }
+//                    }
 
 
                     if (i == len - 1) {
@@ -62,7 +87,6 @@ public class Functions死灵 extends Functions公共 {
                     }
 
                     i++;
-
                     if (i >= len) {
                         i = 0;
                     }
@@ -71,7 +95,6 @@ public class Functions死灵 extends Functions公共 {
                     pause(50L);
 
 
-                } else {
                 }
                 pause(BaseDelay);
             }
@@ -88,12 +111,8 @@ public class Functions死灵 extends Functions公共 {
             return new TaskResult(false);
         }
 
-        if (getKeyStatus(516) == false) {
-            右键time = LocalDateTime.now();
-        }
 
 
-        setKeyStatus(516, true);
         if (战斗 == true) {
             robot.keyPress(VK_G);
             return new TaskResult(true);
@@ -110,11 +129,6 @@ public class Functions死灵 extends Functions公共 {
             return new TaskResult(false);
         }
 
-        setKeyStatus(516, false);
-//        if (Duration.between(右键time, LocalDateTime.now()).toMillis() >= 1000L) {
-//            q();
-//        }
-
 
         if (战斗 == true) {
             robot.keyRelease(VK_G);
@@ -123,7 +137,7 @@ public class Functions死灵 extends Functions公共 {
             return new TaskResult(false);
         }
 
-    }
+        }
 
 
     @ListenMouseKeyboard(key = "g", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
@@ -176,6 +190,15 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(key = "ctrl", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void space1() {
         setKeyStatus(VK_CONTROL, false);
+    }
+
+    @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static void 滚轮() {
+        if(战斗==true){
+            robot.keyPress(VK_5);
+            robot.keyRelease(VK_5);
+        }
     }
 
 

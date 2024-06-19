@@ -238,7 +238,9 @@ public class Functions公共 extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "f7", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f7", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     @ListenMouseKeyboard(key = "f8", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f8",userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色(InputInfo inputInfo) {
         if (inputInfo.value == VK_F7) {
             pixelColor.active = true;
@@ -259,6 +261,7 @@ public class Functions公共 extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "f9", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f9",userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色_2() {
         pixelColor.threadOff();
     }
