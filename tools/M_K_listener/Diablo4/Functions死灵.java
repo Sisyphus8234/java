@@ -68,7 +68,7 @@ public class Functions死灵 extends Functions公共 {
                     }
 
 
-                    pause(200L);
+                    pause(50L);
 
 
                 } else {
@@ -84,6 +84,10 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(key = "右键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
     @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
     public static TaskResult 右键() {
+        if (getKeyStatus(VK_CONTROL) == true) {
+            return new TaskResult(false);
+        }
+
         if (getKeyStatus(516) == false) {
             右键time = LocalDateTime.now();
         }
@@ -98,9 +102,14 @@ public class Functions死灵 extends Functions公共 {
         }
     }
 
+
     @ListenMouseKeyboard(key = "右键松开", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "右键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static TaskResult 右键1() {
+        if (getKeyStatus(VK_CONTROL) == true) {
+            return new TaskResult(false);
+        }
+
         setKeyStatus(516, false);
 //        if (Duration.between(右键time, LocalDateTime.now()).toMillis() >= 1000L) {
 //            q();
@@ -120,6 +129,7 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(key = "g", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
     @ListenMouseKeyboard(key = "g", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
     @ListenMouseKeyboard(key = "左键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
     public static void g() {
         if (战斗 == true) {
             b拾取 = true;
@@ -139,7 +149,7 @@ public class Functions死灵 extends Functions公共 {
 
     @ListenMouseKeyboard(key = "q", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "q", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "中键按下",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "中键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "中键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void q() {
         自动喝药开始(null, null, false);
@@ -148,12 +158,24 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-    @ListenMouseKeyboard(key = "t", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
-    @ListenMouseKeyboard(key = "t", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(key = "t", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "t", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void t() {
         自动喝药结束();
         战斗 = false;
         b拾取 = false;
+    }
+
+    @ListenMouseKeyboard(key = "ctrl", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "ctrl", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space() {
+        setKeyStatus(VK_CONTROL, true);
+    }
+
+    @ListenMouseKeyboard(key = "ctrl", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "ctrl", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space1() {
+        setKeyStatus(VK_CONTROL, false);
     }
 
 
