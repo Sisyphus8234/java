@@ -49,10 +49,9 @@ public class Functions死灵 extends Functions公共 {
 
 
 
-    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_9, VK_E));
+    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_9,VK_E));
     public static int len = list.size();
 
-    public static LocalDateTime t=LocalDateTime.now();
 
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
@@ -76,12 +75,12 @@ public class Functions死灵 extends Functions公共 {
 //                    }
 
 
-                    if (i == len - 1) {
+                    if (list.get(i) == VK_E) {
                         robot.keyPress(VK_SPACE);
                     }
                     robot.keyPress(list.get(i));
                     robot.keyRelease(list.get(i));
-                    if (i == len - 1) {
+                    if (list.get(i) == VK_E) {
                         pause(100L);
                         robot.keyRelease(VK_SPACE);
                     }
@@ -95,8 +94,23 @@ public class Functions死灵 extends Functions公共 {
                     pause(50L);
 
 
+                }else{
+                    i=0;
                 }
                 pause(BaseDelay);
+            }
+        }
+    };
+
+    public static MyThread t2= new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                if (战斗 == true && b拾取 == false) {
+                    robot.keyPress(VK_6);
+                    robot.keyRelease(VK_6);
+                }
+                pause(300L);
             }
         }
     };
