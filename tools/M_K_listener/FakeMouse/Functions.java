@@ -8,12 +8,12 @@ import base.*;
 import base.enty.TaskResult;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import javax.xml.stream.Location;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static base.CommonUtil.keyCodeMap;
 import static java.awt.event.KeyEvent.*;
@@ -36,8 +36,10 @@ public class Functions extends IFunctions {
         screenWidth = (int) screenSize.getWidth();
         screenHeight = (int) screenSize.getHeight();
     }
+
     public static int screenWidth;
     public static int screenHeight;
+
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "scrlk", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
@@ -91,32 +93,59 @@ public class Functions extends IFunctions {
     public static boolean t3Temp = false;
 
 
+    public static Point pointS = new Point(-1,-1);
+    public static Point pointD = new Point(-1,-1);
+    public static Point pointF = new Point(-1,-1);
+    public static AtomicReference<Point> pointTemp = new AtomicReference<>();
+    public static boolean 拖动 = false;
 
-    public static Point point1=null;
-    public static boolean 拖动=false;
-    @ListenMouseKeyboard(key = "f6",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
-    public static void aaa1(InputInfo inputInfo) {
-        if(拖动==false){
-            if(point1!=null) {
-                robot.mouseMove(point1.x, point1.y);
+    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    public static TaskResult aaa1(InputInfo inputInfo) {
+        if (getKeyStatus(VK_ALT) == false) {
+            return new TaskResult(false);
+        }
+
+        switch(inputInfo.value){
+            case VK_S:
+                pointTemp.set(pointS);
+                break;
+            case VK_D:
+                pointTemp.set(pointD);
+                break;
+            case VK_F:
+                pointTemp.set(pointF);
+                break;
+        }
+        if (拖动 == false) {
+            if (pointTemp.get().x != -1) {
+                robot.mouseMove(pointTemp.get().x, pointTemp.get().y);
                 robot.mousePress(BUTTON1_DOWN_MASK);
-
             }
         }
-        拖动=true;
+        拖动 = true;
+        return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "f6",press = false,intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void aaa2(InputInfo inputInfo) {
-        拖动=false;
-        point1=MouseInfo.getPointerInfo().getLocation();
+    @ListenMouseKeyboard(key = "s", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "s", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "d", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "d", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static TaskResult aaa2(InputInfo inputInfo) {
+        if (getKeyStatus(VK_ALT) == false) {
+            return new TaskResult(false);
+        }
+        拖动 = false;
+        Point point=pointTemp.get();
+        point.x = MouseInfo.getPointerInfo().getLocation().x;
+        point.y = MouseInfo.getPointerInfo().getLocation().y;
         robot.mouseRelease(BUTTON1_DOWN_MASK);
+        return new TaskResult(true);
+
     }
-
-
-
-
-
 
 
     public static boolean t左键b = false;
