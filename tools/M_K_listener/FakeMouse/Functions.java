@@ -103,7 +103,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
     @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
     public static TaskResult aaa1(InputInfo inputInfo) {
-        if (getKeyStatus(VK_ALT) == false) {
+        if (getKeyStatus(VK_ALT) == false&&getKeyStatus(VK_TAB)==false) {
             return new TaskResult(false);
         }
 
@@ -117,6 +117,11 @@ public class Functions extends IFunctions {
             case VK_F:
                 pointTemp.set(pointF);
                 break;
+        }
+
+
+        if(getKeyStatus(VK_TAB)==true){
+            return new TaskResult(true);
         }
         if (拖动 == false) {
             if (pointTemp.get().x != -1) {
@@ -135,8 +140,18 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "f", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult aaa2(InputInfo inputInfo) {
-        if (getKeyStatus(VK_ALT) == false) {
+        if (getKeyStatus(VK_ALT) == false&&getKeyStatus(VK_TAB)==false) {
             return new TaskResult(false);
+        }
+
+        System.out.println(123123);
+
+        if(getKeyStatus(VK_TAB)==true){
+            Point point=pointTemp.get();
+            point.x = MouseInfo.getPointerInfo().getLocation().x;
+            point.y = MouseInfo.getPointerInfo().getLocation().y;
+            System.out.println(point.x);
+            return new TaskResult(true);
         }
         拖动 = false;
         Point point=pointTemp.get();
@@ -637,37 +652,17 @@ public class Functions extends IFunctions {
         setKeyStatus(VK_ALT, false);
     }
 
+    @ListenMouseKeyboard(key = "tab", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void tab(InputInfo inputInfo) {
+        setKeyStatus(VK_TAB, true);
+    }
 
-//    @ListenMouseKeyboard(key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void ctrl() {
-//        setKeyStatus(VK_CONTROL,true);
-//
-//    }
-//
-//    @ListenMouseKeyboard(key = "ctrl左", press = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void ctrl_1() {
-//        setKeyStatus(VK_CONTROL,false);
-//    }
+    @ListenMouseKeyboard(key = "tab", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void tab1(InputInfo inputInfo) {
+        System.out.println(123123123123123L);
+        setKeyStatus(VK_TAB, false);
+    }
 
-//    public static boolean prtsc期间做了什么 = false;
-//
-//    @ListenMouseKeyboard(key = "prtsc", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-//    public static void prtsc(InputInfo inputInfo) {
-//        if (getKeyStatus(VK_PRINTSCREEN) == false) {
-//            prtsc期间做了什么 = false;
-//        }
-//        setKeyStatus(VK_PRINTSCREEN, true);
-//    }
-//
-//    @ListenMouseKeyboard(key = "prtsc", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void prtsc_1(InputInfo inputInfo) {
-//        setKeyStatus(VK_PRINTSCREEN, false);
-//        if (prtsc期间做了什么 == false) {
-//            robot.keyPress(VK_PRINTSCREEN);
-//            robot.keyRelease(VK_PRINTSCREEN);
-//        }
-
-//    }
 
 
 }
