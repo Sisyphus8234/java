@@ -142,6 +142,7 @@ public class Functions extends IFunctions {
         Point point=pointTemp.get();
         point.x = MouseInfo.getPointerInfo().getLocation().x;
         point.y = MouseInfo.getPointerInfo().getLocation().y;
+        pause(100L);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
         return new TaskResult(true);
 
