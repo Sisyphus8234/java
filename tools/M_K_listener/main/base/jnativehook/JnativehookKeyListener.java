@@ -52,9 +52,6 @@ public class JnativehookKeyListener implements NativeKeyListener {
 
 
     public void nativeKeyTyped(NativeKeyEvent e) {
-        System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
-
-
     }
 
 
