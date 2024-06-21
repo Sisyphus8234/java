@@ -59,9 +59,9 @@ public class JnativehookUtil{
             f.setAccessible(true);
             f.setShort(e, (short) 0x01);
 
-            System.out.print("[ OK ]\n");
+//            System.out.print("[ OK ]\n");
         } catch (Exception ex) {
-            System.out.print("[ !! ]\n");
+//            System.out.print("[ !! ]\n");
             ex.printStackTrace();
         }
     }
@@ -72,9 +72,9 @@ public class JnativehookUtil{
             f.setAccessible(true);
             f.setShort(e, (short) 0x01);
 
-            System.out.print("[ OK ]\n");
+//            System.out.print("[ OK ]\n");
         } catch (Exception ex) {
-            System.out.print("[ !! ]\n");
+//            System.out.print("[ !! ]\n");
             ex.printStackTrace();
         }
     }
@@ -85,9 +85,9 @@ public class JnativehookUtil{
             f.setAccessible(true);
             f.setShort(e, (short) 0x01);
 
-            System.out.print("[ OK ]\n");
+//            System.out.print("[ OK ]\n");
         } catch (Exception ex) {
-            System.out.print("[ !! ]\n");
+//            System.out.print("[ !! ]\n");
             ex.printStackTrace();
         }
     }
