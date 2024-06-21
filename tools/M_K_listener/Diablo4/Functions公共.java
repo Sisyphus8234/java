@@ -18,19 +18,23 @@ public class Functions公共 extends IFunctions {
 
     public static long BaseDelay = 200L;
 
-    public static boolean b拾取 = false;
-    public static MyThread t拾取 = new MyThread() {
-
+    public static boolean b拾取=false;
+    public static MyThread t拾取 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
+
             while (true) {
                 if (b拾取 == true) {
+
+
                     robot.keyPress(VK_ALT);
                     robot.keyRelease(VK_ALT);
+
+                    robot.keyPress(VK_V);
+                    robot.keyRelease(VK_V);
+
                 }
-
-
-                pause(1000L);
+                pause(200L);
             }
         }
     };
@@ -234,7 +238,9 @@ public class Functions公共 extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "f7", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f7", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     @ListenMouseKeyboard(key = "f8", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f8",userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色(InputInfo inputInfo) {
         if (inputInfo.value == VK_F7) {
             pixelColor.active = true;
@@ -255,6 +261,7 @@ public class Functions公共 extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "f9", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f9",userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色_2() {
         pixelColor.threadOff();
     }
