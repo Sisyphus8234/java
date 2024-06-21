@@ -8,6 +8,7 @@ import base.*;
 import base.enty.TaskResult;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import javax.xml.stream.Location;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -35,12 +36,8 @@ public class Functions extends IFunctions {
         screenWidth = (int) screenSize.getWidth();
         screenHeight = (int) screenSize.getHeight();
     }
-
-
     public static int screenWidth;
     public static int screenHeight;
-
-
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "scrlk", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
@@ -92,6 +89,34 @@ public class Functions extends IFunctions {
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
 
     public static boolean t3Temp = false;
+
+
+
+    public static Point point1=null;
+    public static boolean 拖动=false;
+    @ListenMouseKeyboard(key = "f6",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
+    public static void aaa1(InputInfo inputInfo) {
+        if(拖动==false){
+            if(point1!=null) {
+                robot.mouseMove(point1.x, point1.y);
+                robot.mousePress(BUTTON1_DOWN_MASK);
+
+            }
+        }
+        拖动=true;
+    }
+
+    @ListenMouseKeyboard(key = "f6",press = false,intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void aaa2(InputInfo inputInfo) {
+        拖动=false;
+        point1=MouseInfo.getPointerInfo().getLocation();
+        robot.mouseRelease(BUTTON1_DOWN_MASK);
+    }
+
+
+
+
+
 
 
     public static boolean t左键b = false;
