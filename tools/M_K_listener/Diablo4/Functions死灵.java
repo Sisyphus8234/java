@@ -39,7 +39,6 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-
     public static boolean 可以放消耗技能() {
         boolean b;
         b = pixelColor.getPixelColorHSB(1318, 1000)[1] > 0.35F;
@@ -48,8 +47,7 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-
-    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_9,VK_E));
+    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_9, VK_E, VK_5));
     public static int len = list.size();
 
 
@@ -73,17 +71,33 @@ public class Functions死灵 extends Functions公共 {
 //                            i = 0;
 //                        }
 //                    }
+//
+//
+                    boolean temp = getKeyStatus(VK_SPACE);
+
+                    if (list.get(i) == VK_5) {
+                        if (temp == true) {
+                            robot.keyPress(list.get(i));
+                            robot.keyRelease(list.get(i));
+                        } else {
+                            i++;
+                            if (i >= len) {
+                                i = 0;
+                            }
+                        }
+                    }
 
 
-                    if (list.get(i) == VK_E) {
+                    if (list.get(i) == VK_E && temp == false) {
                         robot.keyPress(VK_SPACE);
                     }
                     robot.keyPress(list.get(i));
                     robot.keyRelease(list.get(i));
-                    if (list.get(i) == VK_E) {
+                    if (list.get(i) == VK_E && temp == false) {
                         pause(100L);
                         robot.keyRelease(VK_SPACE);
                     }
+
 
                     i++;
                     if (i >= len) {
@@ -94,26 +108,26 @@ public class Functions死灵 extends Functions公共 {
                     pause(50L);
 
 
-                }else{
-                    i=0;
+                } else {
+//                    i=0;
                 }
                 pause(BaseDelay);
             }
         }
     };
 
-    public static MyThread t2= new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-                if (战斗 == true && b拾取 == false) {
-                    robot.keyPress(VK_6);
-                    robot.keyRelease(VK_6);
-                }
-                pause(300L);
-            }
-        }
-    };
+//    public static MyThread t2= new MyThread(MyThread.State.on) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                if (战斗 == true && b拾取 == false) {
+//                    robot.keyPress(VK_9);
+//                    robot.keyRelease(VK_9);
+//                }
+//                pause(500L);
+//            }
+//        }
+//    };
 
 
     public static LocalDateTime 右键time = LocalDateTime.now();
@@ -124,7 +138,6 @@ public class Functions死灵 extends Functions公共 {
         if (getKeyStatus(VK_CONTROL) == true) {
             return new TaskResult(false);
         }
-
 
 
         if (战斗 == true) {
@@ -151,7 +164,7 @@ public class Functions死灵 extends Functions公共 {
             return new TaskResult(false);
         }
 
-        }
+    }
 
 
     @ListenMouseKeyboard(key = "g", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
@@ -196,23 +209,35 @@ public class Functions死灵 extends Functions公共 {
 
     @ListenMouseKeyboard(key = "ctrl", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "ctrl", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space() {
+    public static void ctrl() {
         setKeyStatus(VK_CONTROL, true);
     }
 
     @ListenMouseKeyboard(key = "ctrl", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "ctrl", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space1() {
+    public static void ctrl1() {
         setKeyStatus(VK_CONTROL, false);
     }
 
     @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 滚轮() {
-        if(战斗==true){
+        if (战斗 == true) {
             robot.keyPress(VK_5);
             robot.keyRelease(VK_5);
         }
+    }
+
+    @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "space", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space() {
+        setKeyStatus(VK_SPACE, true);
+    }
+
+    @ListenMouseKeyboard(key = "space", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "space", userInput = false,press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space1() {
+        setKeyStatus(VK_SPACE, false);
     }
 
 
