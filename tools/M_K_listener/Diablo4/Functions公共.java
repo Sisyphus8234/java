@@ -18,8 +18,8 @@ public class Functions公共 extends IFunctions {
 
     public static long BaseDelay = 200L;
 
-    public static boolean b拾取=false;
-    public static MyThread t拾取 = new MyThread(MyThread.State.on) {
+    public static boolean b拾取 = false;
+    public static MyThread t拾取 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
 
@@ -33,11 +33,25 @@ public class Functions公共 extends IFunctions {
                     robot.keyPress(VK_V);
                     robot.keyRelease(VK_V);
 
+
+                    pause(300L);
+                } else {
+                    this.mySuspend();
                 }
-                pause(200L);
+
+
             }
         }
     };
+
+    public static void 自动拾取start() {
+        b拾取 = true;
+        t拾取.myResume();
+    }
+
+    public static void 自动拾取stop() {
+        b拾取 = false;
+    }
 
 
     //-----------------------------
@@ -98,7 +112,7 @@ public class Functions公共 extends IFunctions {
     };
 
 
-//    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    //    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
 //    @ListenMouseKeyboard(key = "2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
 //    @ListenMouseKeyboard(key = "3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
 //    @ListenMouseKeyboard(key = "4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
@@ -118,45 +132,39 @@ public class Functions公共 extends IFunctions {
 
 
     public static boolean b自动喝药 = false;
-    public static boolean b自动喝药1 = false;
+
     public static boolean b自动喝药2 = true;
-    public static LocalDateTime localDateTime = LocalDateTime.now();
 
     public static FunctionsAddition.PixelColor pixelColor = new FunctionsAddition.PixelColor();
     public static MyThread t自动喝药 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
+            LocalDateTime tempTIme = LocalDateTime.now();
+            boolean tempB=false;
             while (true) {
                 if (b自动喝药 == true) {
                     if (pixelColor.getPixelColorHSB(p自动喝药_在中间位置.x, p自动喝药_在中间位置.y)[1] < 0.5F) {
                         robot.keyRelease(VK_0);
                         robot.keyPress(VK_0);
                         robot.keyRelease(VK_0);
-                        b自动喝药1 = true;
-                        if (b自动喝药1 == true) {
+                        tempB = true;
+                        if (tempB == true) {
                             pause(800L);
-                            b自动喝药1 = false;
+                            tempB = false;
                         }
                     } else if (b自动喝药2 == true) {
-                        if (pixelColor.getPixelColorHSB(p自动喝药_在上方位置_长时间损失少量0血量就恢复.x, p自动喝药_在上方位置_长时间损失少量0血量就恢复.y)[1] < 0.5F) {
-                            if (LocalDateTime.now().getSecond() - localDateTime.getSecond() < 0) {
-//                                System.out.println(LocalDateTime.now().getSecond() - localDateTime.getSecond());
-//                                System.out.println(LocalDateTime.now());
-//                                System.out.println(localDateTime);
-                            }
-                            if (Duration.between(localDateTime, LocalDateTime.now()).toMillis() > 5000) {
-                                robot.keyRelease(VK_0);
-                                robot.keyPress(VK_0);
-                                robot.keyRelease(VK_0);
-                                b自动喝药1 = true;
-                                if (b自动喝药1 == true) {
-                                    pause(1200L);
-                                    b自动喝药1 = false;
-                                }
-                            }
+                        if (pixelColor.getPixelColorHSB(p自动喝药_在上方位置_长时间损失少量0血量就恢复.x, p自动喝药_在上方位置_长时间损失少量0血量就恢复.y)[1] < 0.5F && LocalDateTime.now().isAfter(tempTIme)) {
 
+                            robot.keyRelease(VK_0);
+                            robot.keyPress(VK_0);
+                            robot.keyRelease(VK_0);
+//                            tempB = true;
+//                            if (tempB == true) {
+//                                pause(1200L);
+//                                tempB = false;
+//                            }
                         } else {
-                            localDateTime = LocalDateTime.now();
+                            tempTIme = LocalDateTime.now().plusSeconds(5);
                         }
                     }
                 } else {
@@ -238,9 +246,9 @@ public class Functions公共 extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "f7", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    @ListenMouseKeyboard(key = "f7", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f7", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     @ListenMouseKeyboard(key = "f8", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    @ListenMouseKeyboard(key = "f8",userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f8", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色(InputInfo inputInfo) {
         if (inputInfo.value == VK_F7) {
             pixelColor.active = true;
@@ -261,7 +269,7 @@ public class Functions公共 extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "f9", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
-    @ListenMouseKeyboard(key = "f9",userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
+    @ListenMouseKeyboard(key = "f9", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, intercept = true)
     public static void 读取颜色_2() {
         pixelColor.threadOff();
     }
