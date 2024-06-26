@@ -26,7 +26,7 @@ class Run extends MainClass {
 public class Functions extends IFunctions {
 
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
 
 
@@ -447,11 +447,9 @@ public class Functions extends IFunctions {
     }
 
     @ListenMouseKeyboard(key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "侧键按下", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 大写锁1() {
-
         tWin数字.myResume();
-
-
     }
 
 
