@@ -26,7 +26,7 @@ class Run extends MainClass {
 public class Functions extends IFunctions {
 
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
 
 
@@ -93,9 +93,9 @@ public class Functions extends IFunctions {
     public static boolean t3Temp = false;
 
 
-    public static Point pointS = new Point(-1,-1);
-    public static Point pointD = new Point(-1,-1);
-    public static Point pointF = new Point(-1,-1);
+    public static Point pointS = new Point(-1, -1);
+    public static Point pointD = new Point(-1, -1);
+    public static Point pointF = new Point(-1, -1);
     public static AtomicReference<Point> pointTemp = new AtomicReference<>();
     public static boolean 拖动 = false;
 
@@ -103,11 +103,11 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
     @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
     public static TaskResult aaa1(InputInfo inputInfo) {
-        if (getKeyStatus(VK_ALT) == false&&getKeyStatus(VK_TAB)==false) {
+        if (getKeyStatus(VK_ALT) == false && getKeyStatus(VK_TAB) == false) {
             return new TaskResult(false);
         }
 
-        switch(inputInfo.value){
+        switch (inputInfo.value) {
             case VK_S:
                 pointTemp.set(pointS);
                 break;
@@ -120,7 +120,7 @@ public class Functions extends IFunctions {
         }
 
 
-        if(getKeyStatus(VK_TAB)==true){
+        if (getKeyStatus(VK_TAB) == true) {
             return new TaskResult(true);
         }
         if (拖动 == false) {
@@ -140,21 +140,21 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "f", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult aaa2(InputInfo inputInfo) {
-        if (getKeyStatus(VK_ALT) == false&&getKeyStatus(VK_TAB)==false) {
+        if (getKeyStatus(VK_ALT) == false && getKeyStatus(VK_TAB) == false) {
             return new TaskResult(false);
         }
 
         System.out.println(123123);
 
-        if(getKeyStatus(VK_TAB)==true){
-            Point point=pointTemp.get();
+        if (getKeyStatus(VK_TAB) == true) {
+            Point point = pointTemp.get();
             point.x = MouseInfo.getPointerInfo().getLocation().x;
             point.y = MouseInfo.getPointerInfo().getLocation().y;
             System.out.println(point.x);
             return new TaskResult(true);
         }
         拖动 = false;
-        Point point=pointTemp.get();
+        Point point = pointTemp.get();
         point.x = MouseInfo.getPointerInfo().getLocation().x;
         point.y = MouseInfo.getPointerInfo().getLocation().y;
         pause(100L);
@@ -225,7 +225,6 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键(InputInfo inputInfo) {
-
         if (判断win按下()) {
             win期间做了什么 = true;
             result左键.intercept = false;
@@ -420,26 +419,37 @@ public class Functions extends IFunctions {
     }
 
     //---大写锁
+
+    public static MyThread tWin数字 = new MyThread() {
+        @Override
+        public void run() {
+            while (true) {
+
+                Point tempPoint = MouseInfo.getPointerInfo().getLocation();
+                MouseMoveFix.run(1, screenHeight-1, screen_scale);
+                pause(100L);
+                robot.keyPress(KeyEvent.VK_WINDOWS);
+                robot.keyPress(winWithValue);
+                pause(50L);
+                robot.keyRelease(winWithValue);
+                robot.keyRelease(KeyEvent.VK_WINDOWS);
+                pause(50L);
+                MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
+
+                pause(500L);
+                this.mySuspend();
+            }
+        }
+    };
+
     @ListenMouseKeyboard(key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 大写锁() {
     }
 
     @ListenMouseKeyboard(key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "侧键按下", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 大写锁1() {
-
-        Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-        MouseMoveFix.run(0, screenHeight, screen_scale);
-        pause(100L);
-
-        robot.keyPress(KeyEvent.VK_WINDOWS);
-        robot.keyPress(winWithValue);
-        pause(50);
-        robot.keyRelease(KeyEvent.VK_WINDOWS);
-        robot.keyRelease(winWithValue);
-
-        MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
-
-
+        tWin数字.myResume();
     }
 
 
@@ -662,7 +672,6 @@ public class Functions extends IFunctions {
         System.out.println(123123123123123L);
         setKeyStatus(VK_TAB, false);
     }
-
 
 
 }
