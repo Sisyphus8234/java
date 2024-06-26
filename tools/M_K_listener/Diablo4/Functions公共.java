@@ -16,6 +16,12 @@ public class Functions公共 extends IFunctions {
         Controller.refreshtime = 200L;
     }
 
+    @ListenBar(onOrOff = ListenBar.OnOrOff.on)
+    public static String on = "up";
+
+    @ListenBar(onOrOff = ListenBar.OnOrOff.off)
+    public static String off = "down";
+
     public static long BaseDelay = 200L;
 
     public static boolean b拾取 = false;
