@@ -173,7 +173,7 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
     public static void g() {
         if (战斗 == true) {
-            b拾取 = true;
+            自动拾取start();
         }
     }
 
@@ -182,29 +182,29 @@ public class Functions死灵 extends Functions公共 {
     public static void g1() {
         if (战斗 == true) {
 
-            b拾取 = false;
+            自动拾取stop();
         }
     }
 
     public static boolean 战斗 = false;
 
-    @ListenMouseKeyboard(key = "q", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "q", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "e", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "中键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "中键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void q() {
         自动喝药开始(null, null, false);
         战斗 = true;
-        b拾取 = true;
+        自动拾取start();
     }
 
 
-    @ListenMouseKeyboard(key = "t", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "t", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "c", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void t() {
         自动喝药结束();
         战斗 = false;
-        b拾取 = false;
+        自动拾取stop();
     }
 
     @ListenMouseKeyboard(key = "ctrl", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)

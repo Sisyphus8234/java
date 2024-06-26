@@ -1,21 +1,20 @@
 package custom;
 
 import addition.FunctionsAddition;
-import base.*;
+import base.CommonUtil;
+import base.Config;
+import base.ListenMouseKeyboard;
+import base.MyThread;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static java.awt.event.InputEvent.*;
+import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
 import static java.awt.event.KeyEvent.*;
 
-public class Functions野蛮人 extends Functions公共 {
+public class Functions野蛮人备份 extends Functions公共 {
     static {
         Config.prefix = "ye_man_ren";
     }
@@ -38,8 +37,7 @@ public class Functions野蛮人 extends Functions公共 {
 //        return pixelColor.getPixelColorHSB(1318, 960)[0] < 0.33F || 核心技能跳过条件;
 //        return pixelColor.getPixelColorHSB(1318, 950)[0] < 0.33F || 核心技能跳过条件;
 //        return pixelColor.getPixelColorHSB(1318, 940)[0] < 0.49F || 核心技能跳过条件;
-//        return pixelColor.getPixelColorHSB(1318, 975)[0] < 0.33F || 核心技能跳过条件;
-        return pixelColor.getPixelColorHSB(1318, 1020)[0] < 0.31F || 核心技能跳过条件;
+        return pixelColor.getPixelColorHSB(1318, 975)[0] < 0.33F || 核心技能跳过条件;
 
     }
 
@@ -50,26 +48,19 @@ public class Functions野蛮人 extends Functions公共 {
         @Override
         public void run() {
             boolean tempB = false;
-            boolean tempB1 = false;
             while (true) {
                 if (攻击性移动 == true) {
                     tempB = true;
 
+                    robot.keyRelease(KeyEvent.VK_5);
+                    robot.keyPress(KeyEvent.VK_5);
 
-                    tempB1 = 判断核心技能怒气是否满足();
-                    if (tempB1 == false) {
-                        robot.keyPress(VK_5);
-                        robot.keyRelease(VK_5);
-//                        robot.keyPress(VK_5);
-
+                    if (判断核心技能怒气是否满足() == false) {
+//                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                        robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                        robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
                     }
 
-                    if (tempB1 == true) {
-//                        robot.mouseRelease(BUTTON1_DOWN_MASK);
-                        robot.mousePress(BUTTON1_DOWN_MASK);
-                        robot.mouseRelease(BUTTON1_DOWN_MASK);
-
-                    }
 
                 } else {
                     if (tempB == true) {
@@ -86,7 +77,7 @@ public class Functions野蛮人 extends Functions公共 {
 
     public static boolean 攻击性移动 = false;
 
-    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "e",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
     @ListenMouseKeyboard(userInput = false, key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void e() {
         攻击性移动 = false;
@@ -110,8 +101,7 @@ public class Functions野蛮人 extends Functions公共 {
     }
 
     @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(userInput = false, key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(userInput = false, key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(userInput = false, key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void r1() {
         攻击性移动 = false;
@@ -123,9 +113,10 @@ public class Functions野蛮人 extends Functions公共 {
     //-----
 
 
-    public static Point 技能1 = new Point(804, 979);
-    public static Point 技能2 = new Point(867, 979);
-    public static Point 技能3 = new Point(930, 979);
+    public static Point 技能1=new Point(804,979);
+    public static Point 技能2=new Point(867,979);
+    public static Point 技能3=new Point(930,979);
+
 
 
     public static MyThread t2 = new MyThread(MyThread.State.on) {
@@ -137,13 +128,13 @@ public class Functions野蛮人 extends Functions公共 {
             while (true) {
                 if (攻击性移动 == true && pixelColor1.getPixelColorHSB(p自动喝药_在上方位置_长时间损失少量0血量就恢复.x, p自动喝药_在上方位置_长时间损失少量0血量就恢复.y)[1] < 0.5F && LocalDateTime.now().isAfter(tempTIme)) {
 
-                    if (pixelColor1.getPixelColorHSB(技能1.x, 技能1.y)[2] > 0.45F) {
-                        技能 = VK_6;
-                    } else if (pixelColor1.getPixelColorHSB(技能2.x, 技能2.y)[2] > 0.46F) {
-                        技能 = VK_7;
-                    } else if (pixelColor1.getPixelColorHSB(技能3.x, 技能3.y)[2] > 0.48F) {
-                        技能 = VK_8;
-                    } else {
+                    if(pixelColor1.getPixelColorHSB(技能1.x,技能1.y)[2]>0.45F){
+                        技能=VK_6;
+                    }else if (pixelColor1.getPixelColorHSB(技能2.x,技能2.y)[2]>0.46F){
+                        技能=VK_7;
+                    }else if (pixelColor1.getPixelColorHSB(技能3.x,技能3.y)[2]>0.48F){
+                        技能=VK_8;
+                    }else {
                         continue;
                     }
                     robot.keyPress(技能);
@@ -159,21 +150,21 @@ public class Functions野蛮人 extends Functions公共 {
     };
 
 
-//    public static MyThread t3 = new MyThread(MyThread.State.on) {
-//        @Override
-//        public void run() {
-//
-//            while (true) {
-//                if (攻击性移动 == true) {
-//
-//                    robot.keyPress(VK_9);
-//                    robot.keyRelease(VK_9);
-//
-//                }
-//                pause(200L);
-//            }
-//        }
-//    };
+    public static MyThread t3 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+
+            while (true) {
+                if (攻击性移动 == true) {
+
+                    robot.keyPress(VK_9);
+                    robot.keyRelease(VK_9);
+
+                }
+                pause(200L);
+            }
+        }
+    };
 
 
 //    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 1000L)

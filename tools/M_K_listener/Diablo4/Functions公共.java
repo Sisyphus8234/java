@@ -22,17 +22,17 @@ public class Functions公共 extends IFunctions {
     public static MyThread t拾取 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
-
+            LocalDateTime tempTime = LocalDateTime.now();
             while (true) {
                 if (b拾取 == true) {
 
-
-                    robot.keyPress(VK_ALT);
-                    robot.keyRelease(VK_ALT);
-
+                    if (LocalDateTime.now().isAfter(tempTime)) {
+                        robot.keyPress(VK_ALT);
+                        robot.keyRelease(VK_ALT);
+                        tempTime = LocalDateTime.now().plusSeconds(5);
+                    }
                     robot.keyPress(VK_V);
                     robot.keyRelease(VK_V);
-
 
                     pause(300L);
                 } else {
@@ -140,7 +140,7 @@ public class Functions公共 extends IFunctions {
         @Override
         public void run() {
             LocalDateTime tempTIme = LocalDateTime.now();
-            boolean tempB=false;
+            boolean tempB = false;
             while (true) {
                 if (b自动喝药 == true) {
                     if (pixelColor.getPixelColorHSB(p自动喝药_在中间位置.x, p自动喝药_在中间位置.y)[1] < 0.5F) {
