@@ -4,6 +4,7 @@ import base.*;
 import base.enty.TaskResult;
 
 import javax.imageio.ImageIO;
+import javax.swing.text.TabSet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,6 +12,9 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -90,12 +94,12 @@ public class Functions extends IFunctions {
     private static boolean 阻断下个w弹起 = false;
 
     //    @ListenMouseKeyboard(key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 500L)
+    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void e() {
         强制下个shift弹起 = true;
     }
 
-    @ListenMouseKeyboard(key = "e",press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "e", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void e1() {
         强制下个shift弹起 = false;
     }
@@ -111,6 +115,27 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "win", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void win1() {
     }
+
+    public static List<Integer> l1 = new ArrayList<>(Arrays.asList(VK_UP, VK_DOWN, VK_RIGHT, VK_RIGHT, VK_RIGHT));
+    public static int i1 = 0;
+
+    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static TaskResult f1(InputInfo inputInfo) {
+        if (inputInfo.value != l1.get(i1)) {
+            return (new TaskResult(true));
+        } else {
+            if(i1<=l1.size()-2) {
+                i1++;
+            }
+
+            return (new TaskResult(false));
+        }
+
+    }
+
 
 //    @ListenMouseKeyboard(key = "space",  keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 500L)
 //    public static void space() {

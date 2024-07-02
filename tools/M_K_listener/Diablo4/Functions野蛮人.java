@@ -49,33 +49,22 @@ public class Functions野蛮人 extends Functions公共 {
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
-            boolean tempB = false;
-            boolean tempB1 = false;
+            boolean tempB = true;
+
             while (true) {
                 if (攻击性移动 == true) {
                     tempB = true;
 
+                    robot.keyRelease(VK_9);
+                    robot.keyPress(VK_9);
 
-                    tempB1 = 判断核心技能怒气是否满足();
-                    if (tempB1 == false) {
-                        robot.keyPress(VK_5);
-                        robot.keyRelease(VK_5);
-//                        robot.keyPress(VK_5);
 
-                    }
-
-                    if (tempB1 == true) {
-//                        robot.mouseRelease(BUTTON1_DOWN_MASK);
-                        robot.mousePress(BUTTON1_DOWN_MASK);
-                        robot.mouseRelease(BUTTON1_DOWN_MASK);
-
-                    }
 
                 } else {
                     if (tempB == true) {
                         tempB = false;
-                        robot.keyRelease(VK_5);
-                        robot.mouseRelease(BUTTON1_DOWN_MASK);
+                        robot.keyRelease(VK_9);
+
                     }
                 }
                 pause(BaseDelay);
@@ -86,15 +75,15 @@ public class Functions野蛮人 extends Functions公共 {
 
     public static boolean 攻击性移动 = false;
 
-    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
-    @ListenMouseKeyboard(userInput = false, key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void e() {
+    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    @ListenMouseKeyboard(userInput = false, key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
+    public static void w() {
         攻击性移动 = false;
         自动拾取start();
     }
 
-    @ListenMouseKeyboard(key = "e", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(userInput = false, key = "e", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "w", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(userInput = false, key = "w", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void e1() {
         攻击性移动 = true;
         自动喝药开始(null, null, true);
@@ -103,12 +92,6 @@ public class Functions野蛮人 extends Functions公共 {
 
     @ListenMouseKeyboard(key = "r", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(userInput = false, key = "r", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void r() {
-        攻击性移动 = false;
-        自动喝药结束();
-        自动拾取stop();
-    }
-
     @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(userInput = false, key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -128,29 +111,62 @@ public class Functions野蛮人 extends Functions公共 {
     public static Point 技能3 = new Point(930, 979);
 
 
-    public static MyThread t2 = new MyThread(MyThread.State.on) {
+//    public static MyThread t2 = new MyThread(MyThread.State.on) {
+//        @Override
+//        public void run() {
+//            FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
+//            int 技能;
+//            LocalDateTime tempTIme = LocalDateTime.now();
+//            while (true) {
+//                if (攻击性移动 == true && pixelColor1.getPixelColorHSB(p自动喝药_在上方位置_长时间损失少量0血量就恢复.x, p自动喝药_在上方位置_长时间损失少量0血量就恢复.y)[1] < 0.5F && LocalDateTime.now().isAfter(tempTIme)) {
+//
+////                    if (pixelColor1.getPixelColorHSB(技能1.x, 技能1.y)[2] > 0.45F) {
+////                        技能 = VK_6;
+//
+////                    } else {
+//                        技能 = VK_6;
+////                    }
+//                    robot.keyPress(技能);
+//                    robot.keyRelease(技能);
+//
+////                    tempTIme = LocalDateTime.now().plusSeconds(5);
+//
+//                }
+//                pause(200L);
+//            }
+//        }
+//    };
+
+
+    public static MyThread t3 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
-            FunctionsAddition.PixelColor pixelColor1 = new FunctionsAddition.PixelColor();
-            int 技能;
-            LocalDateTime tempTIme = LocalDateTime.now();
+
             while (true) {
-                if (攻击性移动 == true && pixelColor1.getPixelColorHSB(p自动喝药_在上方位置_长时间损失少量0血量就恢复.x, p自动喝药_在上方位置_长时间损失少量0血量就恢复.y)[1] < 0.5F && LocalDateTime.now().isAfter(tempTIme)) {
+                if (攻击性移动 == true) {
 
-                    if (pixelColor1.getPixelColorHSB(技能1.x, 技能1.y)[2] > 0.45F) {
-                        技能 = VK_6;
-                    } else if (pixelColor1.getPixelColorHSB(技能2.x, 技能2.y)[2] > 0.46F) {
-                        技能 = VK_7;
-                    } else if (pixelColor1.getPixelColorHSB(技能3.x, 技能3.y)[2] > 0.48F) {
-                        技能 = VK_8;
-                    } else {
-                        continue;
+
+                    robot.keyPress(VK_8);
+                    robot.keyRelease(VK_8);
+
+                    if(LocalDateTime.now().isAfter(技能禁用)) {
+                        robot.keyPress(VK_E);
+                        robot.keyRelease(VK_E);
                     }
-                    robot.keyPress(技能);
-                    robot.keyRelease(技能);
+
+                    if(getKeyStatus(BUTTON1_DOWN_MASK)==true) {
 
 
-                    tempTIme = LocalDateTime.now().plusSeconds(5);
+                        robot.keyPress(VK_7);
+                        robot.keyRelease(VK_7);
+
+                        robot.keyPress(VK_6);
+                        robot.keyRelease(VK_6);
+
+                    }
+
+
+
 
                 }
                 pause(200L);
@@ -158,22 +174,26 @@ public class Functions野蛮人 extends Functions公共 {
         }
     };
 
+    public static LocalDateTime 技能禁用=LocalDateTime.now();
 
-//    public static MyThread t3 = new MyThread(MyThread.State.on) {
-//        @Override
-//        public void run() {
-//
-//            while (true) {
-//                if (攻击性移动 == true) {
-//
-//                    robot.keyPress(VK_9);
-//                    robot.keyRelease(VK_9);
-//
-//                }
-//                pause(200L);
-//            }
-//        }
-//    };
+    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(userInput = false, key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static void 滚轮() {
+        技能禁用=LocalDateTime.now().plusSeconds(4);
+    }
+
+
+    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(userInput = false, key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static void 左键按下() {
+        setKeyStatus(BUTTON1_DOWN_MASK,true);
+    }
+
+    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(userInput = false, key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static void 左键按下1() {
+        setKeyStatus(BUTTON1_DOWN_MASK,false);
+    }
 
 
 //    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 1000L)

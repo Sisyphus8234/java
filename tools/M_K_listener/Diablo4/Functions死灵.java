@@ -9,6 +9,7 @@ import base.enty.TaskResult;
 import java.awt.event.MouseEvent;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,84 +48,105 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_9, VK_E, VK_5));
+    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6,VK_7, VK_8, VK_6,VK_5,VK_E));
+//    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6,VK_E));
     public static int len = list.size();
 
 
+    public static LocalDateTime time = LocalDateTime.now();
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             int i = 0;
-            boolean b;
+            boolean b = false;
             while (true) {
-                if (战斗 == true && b拾取 == false) {
+                if (战斗 == true) {
+                    b = true;
+                    if (状态 == 0) {
+                        robot.keyRelease(VK_5);
+
+                        robot.keyRelease(VK_G);
+                        robot.keyPress(VK_G);
 
 
-//                    if(可以放消耗技能()==false){
-//                        t=LocalDateTime.now().plusSeconds(3);
-//                    }
-//
-//                    if(LocalDateTime.now().isBefore(t)&&(list.get(i)==VK_7||list.get(i)==VK_E)
-//                    ){
-//                        i++;
-//                        if (i >= len) {
-//                            i = 0;
-//                        }
-//                    }
-//
-//
-                    boolean temp = getKeyStatus(VK_SPACE);
+                    } else if (状态 == 1) {
+                        robot.keyRelease(VK_5);
 
-                    if (list.get(i) == VK_5) {
-                        if (temp == true) {
+                        robot.keyRelease(VK_G);
+                    } else {
+                        robot.keyRelease(VK_G);
+//                        robot.keyPress(VK_5);
+
+//                        if (LocalDateTime.now().isAfter(time)) {
+
+
+//                        } else {
+
+
+//                            if (list.get(i) == VK_9) {
+//                                if (temp == true) {
+//                                    robot.keyPress(list.get(i));
+//                                    robot.keyRelease(list.get(i));
+//                                } else {
+//                                    i++;
+//                                    if (i >= len) {
+//                                        i = 0;
+//                                    }
+//                                }
+//                            }
+
+
+
+                        if (list.get(i) == VK_E) {
+                            robot.keyPress(VK_SPACE);
                             robot.keyPress(list.get(i));
                             robot.keyRelease(list.get(i));
+                            robot.keyRelease(VK_SPACE);
+
+                        } else if (list.get(i) == VK_6) {
+                            robot.keyPress(list.get(i));
+                            robot.keyRelease(list.get(i));
+                            pause(50L);
+                        } else if (list.get(i) == VK_5) {
+                            robot.keyPress(list.get(i));
+                            pause(1400L);
+                            robot.keyRelease(list.get(i));
                         } else {
-                            i++;
-                            if (i >= len) {
-                                i = 0;
-                            }
+                            robot.keyPress(list.get(i));
+                            robot.keyRelease(list.get(i));
                         }
+
+
+                        i++;
+                        if (i >= len) {
+                            i = 0;
+                        }
+                        pause(50L);
+//                        }
+
+
                     }
-
-
-                    if (list.get(i) == VK_E && temp == false) {
-                        robot.keyPress(VK_SPACE);
-                    }
-                    robot.keyPress(list.get(i));
-                    robot.keyRelease(list.get(i));
-                    if (list.get(i) == VK_E && temp == false) {
-                        pause(100L);
-                        robot.keyRelease(VK_SPACE);
-                    }
-
-
-                    i++;
-                    if (i >= len) {
-                        i = 0;
-                    }
-
-
-                    pause(50L);
-
-
                 } else {
-//                    i=0;
+                    if (b == true) {
+                        b = false;
+                        robot.keyRelease(VK_G);
+                        robot.keyRelease(VK_5);
+                    }
                 }
                 pause(BaseDelay);
             }
         }
     };
 
-//    public static MyThread t2= new MyThread(MyThread.State.on) {
+//    public static MyThread t2 = new MyThread(MyThread.State.on) {
 //        @Override
 //        public void run() {
 //            while (true) {
-//                if (战斗 == true && b拾取 == false) {
-//                    robot.keyPress(VK_9);
-//                    robot.keyRelease(VK_9);
+//                if (战斗 == true && 状态 == 2) {
+//                    robot.keyPress(VK_6);
+//                    robot.keyRelease(VK_6);
 //                }
-//                pause(500L);
+//                pause(600L);
 //            }
 //        }
 //    };
@@ -132,16 +154,46 @@ public class Functions死灵 extends Functions公共 {
 
     public static LocalDateTime 右键time = LocalDateTime.now();
 
+    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "w", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void w() {
+        状态 = 0;
+        战斗 = true;
+
+        自动拾取start();
+        自动喝药开始(null, null, true);
+    }
+
+
+    public static int 状态 = 0;
+
+    @ListenMouseKeyboard(key = "左键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+    public static TaskResult g() {
+
+        状态 = 0;
+
+//        if (战斗 == true) {
+//            return new TaskResult(true);
+//        } else {
+            return new TaskResult(false);
+//        }
+    }
+
+    @ListenMouseKeyboard(key = "左键松开", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static void g111() {
+//        time=LocalDateTime.now().plus(2000L, ChronoUnit.MILLIS);
+        状态 = 2;
+    }
+
+
     @ListenMouseKeyboard(key = "右键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
     @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
     public static TaskResult 右键() {
-        if (getKeyStatus(VK_CONTROL) == true) {
-            return new TaskResult(false);
-        }
 
-
+        状态 = 0;
         if (战斗 == true) {
-            robot.keyPress(VK_G);
             return new TaskResult(true);
         } else {
             return new TaskResult(false);
@@ -149,96 +201,43 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-    @ListenMouseKeyboard(key = "右键松开", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(key = "右键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    public static TaskResult 右键1() {
-        if (getKeyStatus(VK_CONTROL) == true) {
-            return new TaskResult(false);
-        }
+    @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+    public static void gl() {
 
-
-        if (战斗 == true) {
-            robot.keyRelease(VK_G);
-            return new TaskResult(true);
-        } else {
-            return new TaskResult(false);
-        }
-
+        状态 = 1;
     }
 
-
-    @ListenMouseKeyboard(key = "g", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
-    @ListenMouseKeyboard(key = "g", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
-    @ListenMouseKeyboard(key = "左键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
-    @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
-    public static void g() {
-        if (战斗 == true) {
-            自动拾取start();
-        }
-    }
-
-    @ListenMouseKeyboard(key = "g", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "g", userInput = false, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void g1() {
-        if (战斗 == true) {
-
-            自动拾取stop();
-        }
-    }
 
     public static boolean 战斗 = false;
-
-    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "e", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "中键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(key = "中键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    public static void q() {
-        自动喝药开始(null, null, false);
-        战斗 = true;
-        自动拾取start();
-    }
 
 
     @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "c", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "d", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "t", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "t", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "r", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "r", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void t() {
         自动喝药结束();
         战斗 = false;
         自动拾取stop();
     }
 
-    @ListenMouseKeyboard(key = "ctrl", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "ctrl", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void ctrl() {
-        setKeyStatus(VK_CONTROL, true);
-    }
 
-    @ListenMouseKeyboard(key = "ctrl", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "ctrl", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void ctrl1() {
-        setKeyStatus(VK_CONTROL, false);
-    }
-
-    @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    public static void 滚轮() {
-        if (战斗 == true) {
-            robot.keyPress(VK_5);
-            robot.keyRelease(VK_5);
-        }
-    }
-
-    @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "space", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space() {
-        setKeyStatus(VK_SPACE, true);
-    }
-
-    @ListenMouseKeyboard(key = "space", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "space", userInput = false,press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space1() {
-        setKeyStatus(VK_SPACE, false);
-    }
+//    @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "space", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void space() {
+//        setKeyStatus(VK_SPACE, true);
+//    }
+//
+//    @ListenMouseKeyboard(key = "space", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "space", userInput = false, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void space1() {
+//        setKeyStatus(VK_SPACE, false);
+//    }
 
 
 }

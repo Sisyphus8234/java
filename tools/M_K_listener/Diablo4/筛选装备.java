@@ -87,122 +87,9 @@ public class 筛选装备 {
     public static long 平滑移动鼠标间隔 = 3L;
     public static List<Argument> 传奇装备框信息列表 = new ArrayList<>();
 
-    public static void 缩小距离(Point 起点, Point 终点) {
-        int 距离=150;
-        if(起点.distance(终点)>距离){
-            robot.mouseMove(终点.x-距离,终点.y);
-        }
-
-    }
-    public static void 平滑移动鼠标(Point 起点, Point 终点) {
-        int step = 2;
-        int x = 起点.x;
-        int y = 起点.y;
-        boolean x到终点 = false;
-        boolean y到终点 = false;
-        while (true) {
-            if (终点.x >= 起点.x) {
-                x = x + step;
-                if (x >= 终点.x) {
-                    x = 终点.x;
-                    x到终点 = true;
-                }
-            } else {
-                x = x - step;
-                if (x <= 终点.x) {
-                    x = 终点.x;
-                    x到终点 = true;
-                }
-            }
-            if (终点.y >= 起点.y) {
-                y = y + step;
-                if (y >= 终点.y) {
-                    y = 终点.y;
-                    y到终点 = true;
-                }
-            } else {
-                y = y - step;
-                if (y <= 终点.y) {
-                    y = 终点.y;
-                    y到终点 = true;
-                }
-            }
-            robot.mouseMove(x, y);
-
-            if (x到终点 && y到终点) {
-                break;
-            }
-            IFunctions.pause(平滑移动鼠标间隔);
-        }
-    }
 
 
-    public static String savePicture(int x, int y) {
 
-        int arg1 = x - 截图时左边距离鼠标; // 传递给方法的参数
-        int arg2 = 截图时上边; // 传递给方法的参数
-        int arg3 = 截图时宽; // 传递给方法的参数
-        int arg4 = 截图时高; // 传递给方法的参数
-
-        File directory = new File(folderName);
-        if (!directory.exists()) {
-            directory.mkdirs(); // 创建目标文件夹及其父文件夹（如果不存在）
-        }
-
-        String fileName = "";
-
-        try {
-
-            // 指定要捕捉的区域
-            Rectangle screenRect = new Rectangle(arg1, arg2, arg3, arg4); // (x, y, width, height)
-
-            // 捕捉屏幕区域的图像
-            BufferedImage screenshot = robot.createScreenCapture(screenRect);
-
-            fileName = folderName + "/" + outPictureName + "_" + x + "_" + y + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".png";
-
-            File output1 = new File(fileName);
-            ImageIO.write(screenshot, "png", output1);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return fileName;
-    }
-
-
-    public static void voice(String fileName, long time) {
-        String audioFilePath = fileName; // 替换为你的音频文件路径
-
-        try {
-            File audioFile = new File(audioFilePath);
-            if (!audioFile.exists()) {
-                System.out.println("Audio file not found.");
-                return;
-            }
-
-            // 获取 Clip 实例
-            Clip clip = AudioSystem.getClip();
-
-            // 打开音频文件
-            clip.open(AudioSystem.getAudioInputStream(audioFile));
-
-            // 播放音频
-            clip.start();
-
-            if (time == 0) {
-                // 等待音频播放完毕
-                Thread.sleep(clip.getMicrosecondLength() / 1000);
-            } else {
-                Thread.sleep(time);
-            }
-            // 关闭 Clip
-            clip.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     public static void 标记起点() {
@@ -214,11 +101,11 @@ public class 筛选装备 {
         y轴第几个_起点 = (int) (Math.floor((y - 上线) / 单个高度));
 
         是否标记起点 = true;
-
-
     }
 
-    public static void run(筛选装备_子类 筛选装备_子类) {
+
+
+    public static void 标记终点(筛选装备_子类 筛选装备_子类) {
 
 
         list.clear();
@@ -307,7 +194,7 @@ public class 筛选装备 {
         是否标记起点 = false;
     }
 
-    public static void run1() {
+    public static void 自动将结果标记() {
 
 //        去离起始点比较近的点();
 
@@ -318,6 +205,11 @@ public class 筛选装备 {
 
             标记(当前装备信息);
         }
+
+    }
+    public static void 自动将结果标记stop() {
+
+        是否标记=false;
 
     }
 
@@ -333,7 +225,7 @@ public class 筛选装备 {
         缩小距离(MouseInfo.getPointerInfo().getLocation(), new Point(标准化x, 标准化y));
         平滑移动鼠标(MouseInfo.getPointerInfo().getLocation(), new Point(标准化x, 标准化y));
         pause(扫描间隔);
-        String fileName = savePicture(标准化x, 标准化y);
+        String fileName = 保存图片(标准化x, 标准化y);
 
         当前装备信息 当前装备信息 = new 当前装备信息(x轴第几个, y轴第几个, 标准化x, 标准化y, fileName);
         list.add(当前装备信息);
@@ -650,36 +542,37 @@ public class 筛选装备 {
 
     }
 
+
+
 //    private static void 去离起始点比较近的点() {
 //        pause(50L);
 //        robot.mouseMove(1214, 851);
 //        pause(50L);
 //    }
-
-
     static class 当前装备情况 {
-        List<String> 是词缀的部分_筛选结果;
-        int 物品强度 = 0;
-        boolean 物品强度优秀 = false;
-        List<String> 需求词缀_目标;
-        List<String> 必须词缀_目标;
-        List<String> 不要词缀_目标;
-        int 需求词缀数量_实际 = 0;
-        int 必须词缀数量_实际 = 0;
-        List<String> 需求词缀_实际 = new ArrayList<>();
-        List<String> 必须词缀_实际 = new ArrayList<>();
-        int 需求词缀数量_目标 = 0;
-        int 必须词缀_减少量 = 0;
-        boolean 需求词缀数量是否满足 = false;
-        boolean 必须词缀数量是否满足 = false;
-        boolean 所有要求满足 = false;
-        装备种类_枚举 装备种类 = 装备种类_枚举.未定种类;
-        List<筛选哪些_枚举> 筛选哪些 = new ArrayList<>();
-        int 物品强度下限 = 0;
-        预类别_枚举 预类别 = 预类别_枚举.其他;
-        品质_枚举 品质 = 品质_枚举.其他;
 
-        public void initProperty(筛选装备_子类 筛选装备_子类) {
+        List<String> 是词缀的部分_筛选结果;
+
+    int 物品强度 = 0;
+    boolean 物品强度优秀 = false;
+    List<String> 需求词缀_目标;
+    List<String> 必须词缀_目标;
+    List<String> 不要词缀_目标;
+    int 需求词缀数量_实际 = 0;
+    int 必须词缀数量_实际 = 0;
+    List<String> 需求词缀_实际 = new ArrayList<>();
+    List<String> 必须词缀_实际 = new ArrayList<>();
+    int 需求词缀数量_目标 = 0;
+    int 必须词缀_减少量 = 0;
+    boolean 需求词缀数量是否满足 = false;
+    boolean 必须词缀数量是否满足 = false;
+    boolean 所有要求满足 = false;
+    装备种类_枚举 装备种类 = 装备种类_枚举.未定种类;
+    List<筛选哪些_枚举> 筛选哪些 = new ArrayList<>();
+    int 物品强度下限 = 0;
+    预类别_枚举 预类别 = 预类别_枚举.其他;
+    品质_枚举 品质 = 品质_枚举.其他;
+    public void initProperty(筛选装备_子类 筛选装备_子类) {
             this.需求词缀数量_目标 = 筛选装备_子类.需求词条数量_目标();
             this.物品强度下限 = 筛选装备_子类.物品强度下限();
             this.必须词缀_减少量 = 筛选装备_子类.必须词缀_减少量();
@@ -688,35 +581,37 @@ public class 筛选装备 {
             this.必须词缀_目标 = 筛选装备_子类.必须词缀_目标();
 
             this.需求词缀_目标.addAll(筛选装备_子类.必须词缀_目标());
-            
+
             this.需求词缀_目标.remove("");
             this.不要词缀_目标.remove("");
             this.必须词缀_目标.remove("");
         }
 
-    }
+
+}
 
 
     enum 装备种类_枚举 {
-        筛选, 自定要求, 不要, 未定种类
+        筛选, 自定要求, 不要, 未定种类;
+
     }
 
     enum 筛选哪些_枚举 {
-        需求词缀, 物品强度, 必须词缀
-    }
+        需求词缀, 物品强度, 必须词缀;
 
+    }
     enum 预类别_枚举 {
         戒指(), 护符(), 武器(), 其他();
-    }
 
+    }
     private static class 当前装备信息 {
         int x;
+
         int xIndex;
         int y;
         int yIndex;
         boolean 所有要求满足;
         String 文件名;
-
         public 当前装备信息(int xIndex, int yIndex, int x, int y, String 文件名) {
             this.xIndex = xIndex;
             this.yIndex = yIndex;
@@ -725,12 +620,14 @@ public class 筛选装备 {
             this.文件名 = 文件名;
             所有要求满足 = true;
         }
+
     }
+
+
 
     enum 品质_枚举 {
-        传奇, 稀有, 其他
+        传奇, 稀有, 其他;
     }
-
     public static void 显示传奇标记() {
         DisplayMarkOnTop.start(传奇装备框信息列表);
     }
@@ -743,4 +640,120 @@ public class 筛选装备 {
         传奇装备框信息列表 = new ArrayList<>();
     }
 
+
+    public static void voice(String fileName, long time) {
+        String audioFilePath = fileName; // 替换为你的音频文件路径
+
+        try {
+            File audioFile = new File(audioFilePath);
+            if (!audioFile.exists()) {
+                System.out.println("Audio file not found.");
+                return;
+            }
+
+            // 获取 Clip 实例
+            Clip clip = AudioSystem.getClip();
+
+            // 打开音频文件
+            clip.open(AudioSystem.getAudioInputStream(audioFile));
+
+            // 播放音频
+            clip.start();
+
+            if (time == 0) {
+                // 等待音频播放完毕
+                Thread.sleep(clip.getMicrosecondLength() / 1000);
+            } else {
+                Thread.sleep(time);
+            }
+            // 关闭 Clip
+            clip.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void 缩小距离(Point 起点, Point 终点) {
+        int 距离=150;
+        if(起点.distance(终点)>距离){
+            robot.mouseMove(终点.x-距离,终点.y);
+        }
+
+    }
+    public static void 平滑移动鼠标(Point 起点, Point 终点) {
+        int step = 2;
+        int x = 起点.x;
+        int y = 起点.y;
+        boolean x到终点 = false;
+        boolean y到终点 = false;
+        while (true) {
+            if (终点.x >= 起点.x) {
+                x = x + step;
+                if (x >= 终点.x) {
+                    x = 终点.x;
+                    x到终点 = true;
+                }
+            } else {
+                x = x - step;
+                if (x <= 终点.x) {
+                    x = 终点.x;
+                    x到终点 = true;
+                }
+            }
+            if (终点.y >= 起点.y) {
+                y = y + step;
+                if (y >= 终点.y) {
+                    y = 终点.y;
+                    y到终点 = true;
+                }
+            } else {
+                y = y - step;
+                if (y <= 终点.y) {
+                    y = 终点.y;
+                    y到终点 = true;
+                }
+            }
+            robot.mouseMove(x, y);
+
+            if (x到终点 && y到终点) {
+                break;
+            }
+            IFunctions.pause(平滑移动鼠标间隔);
+        }
+    }
+
+
+    public static String 保存图片(int x, int y) {
+
+        int arg1 = x - 截图时左边距离鼠标; // 传递给方法的参数
+        int arg2 = 截图时上边; // 传递给方法的参数
+        int arg3 = 截图时宽; // 传递给方法的参数
+        int arg4 = 截图时高; // 传递给方法的参数
+
+        File directory = new File(folderName);
+        if (!directory.exists()) {
+            directory.mkdirs(); // 创建目标文件夹及其父文件夹（如果不存在）
+        }
+
+        String fileName = "";
+
+        try {
+
+            // 指定要捕捉的区域
+            Rectangle screenRect = new Rectangle(arg1, arg2, arg3, arg4); // (x, y, width, height)
+
+            // 捕捉屏幕区域的图像
+            BufferedImage screenshot = robot.createScreenCapture(screenRect);
+
+            fileName = folderName + "/" + outPictureName + "_" + x + "_" + y + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".png";
+
+            File output1 = new File(fileName);
+            ImageIO.write(screenshot, "png", output1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return fileName;
+    }
 }
