@@ -542,7 +542,7 @@ public class Functions extends IFunctions {
             while (true) {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                MouseMoveFix.run(0, screenHeight, screen_scale);
+                MouseMoveFix.run(1, screenHeight-1, screen_scale);
                 pause(100L);
 
                 if (alt_tab_右键次数 > 0) {
