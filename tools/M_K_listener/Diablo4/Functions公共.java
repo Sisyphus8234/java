@@ -17,10 +17,10 @@ public class Functions公共 extends IFunctions {
     }
 
     @ListenBar(onOrOff = ListenBar.OnOrOff.on)
-    public static String on = "up";
+    public static String on = "home";
 
     @ListenBar(onOrOff = ListenBar.OnOrOff.off)
-    public static String off = "down";
+    public static String off = "end";
 
     public static long BaseDelay = 200L;
 
@@ -29,19 +29,28 @@ public class Functions公共 extends IFunctions {
         @Override
         public void run() {
             LocalDateTime tempTime = LocalDateTime.now();
+            boolean temp1 = false;
             while (true) {
                 if (b拾取 == true) {
+                    temp1 = true;
 
                     if (LocalDateTime.now().isAfter(tempTime)) {
                         robot.keyPress(VK_ALT);
                         robot.keyRelease(VK_ALT);
                         tempTime = LocalDateTime.now().plusSeconds(5);
                     }
+
+//                    robot.keyRelease(VK_V);
                     robot.keyPress(VK_V);
                     robot.keyRelease(VK_V);
 
+
                     pause(300L);
                 } else {
+                    if (temp1 == true) {
+                        temp1 = false;
+//                        robot.keyRelease(VK_V);
+                    }
                     this.mySuspend();
                 }
 
@@ -285,38 +294,67 @@ public class Functions公共 extends IFunctions {
 
     //-------------------------------------------------------
 
-    public static boolean t右键连点是否左键 = false;
-    public static LocalDateTime 计时器 = LocalDateTime.MIN;
+    public static int type = 0;
+    public static LocalDateTime 计时器 = LocalDateTime.now();
     public static MyThread t鼠标连点 = new MyThread(MyThread.State.off) {
         @Override
         public void run() {
             while (true) {
-                if (t右键连点是否左键 == false) {
-                    robot.mousePress(BUTTON3_DOWN_MASK);
-                    robot.mouseRelease(BUTTON3_DOWN_MASK);
+                if (LocalDateTime.now().isBefore(计时器)) {
+                    if (type == 0) {
+                        robot.mousePress(BUTTON1_DOWN_MASK);
+                        robot.mouseRelease(BUTTON1_DOWN_MASK);
+                    } else {
+                        robot.mousePress(BUTTON3_DOWN_MASK);
+                        robot.mouseRelease(BUTTON3_DOWN_MASK);
+
+                    }
+                    pause(200L);
                 } else {
-                    robot.mousePress(BUTTON1_DOWN_MASK);
-                    robot.mouseRelease(BUTTON1_DOWN_MASK);
+                    this.mySuspend();
                 }
-                pause(200L);
             }
         }
     };
 
-    @ListenMouseKeyboard(key = "=", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "=", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
+    @ListenMouseKeyboard(key = "=", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
     public static void 右键连点() {
-        if (LocalDateTime.now().getSecond() - 计时器.getSecond() < 2) {
-            t右键连点是否左键 = true;
-        } else {
-            t右键连点是否左键 = false;
-        }
-        计时器 = LocalDateTime.now();
+        type = 1;
+        计时器 = LocalDateTime.now().plusNanos(500);
         t鼠标连点.myResume();
     }
 
-    @ListenMouseKeyboard(key = "-", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "-", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
+    @ListenMouseKeyboard(key = "-", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,timeInterval = 200L)
     public static void 右键连点_1() {
-        t鼠标连点.mySuspend();
+        type = 0;
+        计时器 = LocalDateTime.now().plusNanos(500);
+        t鼠标连点.myResume();
+    }
+
+
+    public static boolean 是否滚轮代替space = false;
+
+    @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(userInput = false, key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
+    public static void c() {
+        是否滚轮代替space = true;
+    }
+
+    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
+    @ListenMouseKeyboard(userInput = false, key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
+    public static void d() {
+        是否滚轮代替space = false;
+    }
+
+    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, extend = true, timeInterval = 350L)
+    @ListenMouseKeyboard(userInput = false, key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, extend = true, timeInterval = 350L)
+    public static void 滚轮() {
+        if (是否滚轮代替space == true) {
+            robot.keyPress(VK_SPACE);
+            robot.keyRelease(VK_SPACE);
+        }
     }
 
 
@@ -328,9 +366,9 @@ public class Functions公共 extends IFunctions {
 //        public void run() {
 //            while (true) {
 //                if (筛选装备.是否标记 == true) {
-//                    筛选装备.run1();
+//                    筛选装备.自动将结果标记();
 //                } else if (筛选装备.是否扫描和筛选 == true) {
-//                    筛选装备.run(筛选装备_子类);
+//                    筛选装备.标记终点(筛选装备_子类);
 //                }
 //
 //                this.mySuspend();
