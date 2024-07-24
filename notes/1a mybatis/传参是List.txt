@@ -25,3 +25,14 @@
             )
             and
         </if>
+
+
+--------------------------
+
+        where S.id in (0
+        <if test="idList !=null">
+            <foreach collection="idList" item="param">
+                , #{param}
+            </foreach>
+        </if>
+        )
