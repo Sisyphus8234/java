@@ -32,7 +32,9 @@ public class MyStream {
 
         //找到List里第一个符合条件的
         Optional<String> o1=l1.stream().filter(u ->u.startsWith("a")).findFirst();
-        o1.get();
+        if(o1.isPresent()){
+            o1.get();
+        }       
 
     }
 }
