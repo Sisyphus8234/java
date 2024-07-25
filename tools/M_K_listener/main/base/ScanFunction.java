@@ -50,10 +50,16 @@ public class ScanFunction {
         }
 
         if (!listenMouseKeyboard.customCondition().isEmpty()) {
-            String[] customCondition = listenMouseKeyboard.otherCondition().split(",");
+
+
+            String[] customCondition = listenMouseKeyboard.customCondition().split(",");
             for (String item : customCondition) {
                 inputInfo.customCondition.add(item);
             }
+
+//            if(listenMouseKeyboard.key().equals("s")){
+//                Object o=customCondition;
+//            }
         }
 
         if (!taskMmap.containsKey(inputInfo)) {

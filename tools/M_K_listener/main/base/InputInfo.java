@@ -55,8 +55,12 @@ public class InputInfo {
         }
 
         boolean step2 = true;
-        if (!objNotTempInput.customCondition.isEmpty()) {
-            step2 = CommonUtil.customConditionSet.containsAll(objNotTempInput.customCondition);
+        if (CommonUtil.prepareState==true) {
+            step2 = customCondition.equals(objNotTempInput.customCondition);
+        }else {
+            if (!objNotTempInput.customCondition.isEmpty()) {
+                step2 = CommonUtil.customConditionSet.containsAll(objNotTempInput.customCondition);
+            }
         }
 
         return step0 && step1 && step2;

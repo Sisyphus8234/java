@@ -32,63 +32,19 @@ public class CommonUtil {
         keyCodeMap = JsonUtil.readJsonFile("base/common_key_code.json", new TypeReference<HashMap<String, Integer>>() {
         });
         String file = "";
-        Thread temp;
 
-//        for(Thread thread:hookList){
-//            thread.stop();
-//        }
-//        hookList.clear();
+
 
         if (IFunctions.active == Active.jna) {
             file = "base/jna/jna_key_code.json";
             CommonUtil.keyCodeMap.putAll(JsonUtil.readJsonFile(file, new TypeReference<HashMap<String, Integer>>() {
             }));
 
-            //mouse
-            temp=new Thread() {
-                @Override
-                public void run() {
-
-                    JnaMouseHook jnaMouseHook = new JnaMouseHook();
-                    jnaMouseHook.run();
-
-                }
-            };
-            temp.start();
-            hookList.add(temp);
-
-
-            //keyboard
-            temp=new Thread() {
-                @Override
-                public void run() {
-
-                    JnaKeyboardHook jnaKeyboardHook = new JnaKeyboardHook();
-                    jnaKeyboardHook.run();
-
-                }
-            };
-            temp.start();
-            hookList.add(temp);
-
-
-
 
         } else if (IFunctions.active == CommonUtil.Active.jnativehook) {
             file = "base/jnativehook/jnativehook_key_code.json";
             CommonUtil.keyCodeMap.putAll(JsonUtil.readJsonFile(file, new TypeReference<HashMap<String, Integer>>() {
             }));
-
-            //keyboard
-            temp=new Thread() {
-                @Override
-                public void run() {
-                    JnativehookUtil.run();
-
-                }
-            };
-            temp.start();
-            hookList.add(temp);
         }
 
 
@@ -96,4 +52,5 @@ public class CommonUtil {
     }
 
     public static Set<String> customConditionSet=new HashSet<>();
+    public static boolean prepareState=true;
 }
