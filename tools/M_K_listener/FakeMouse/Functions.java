@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static base.CommonUtil.customConditionSet;
 import static base.CommonUtil.keyCodeMap;
 import static java.awt.event.KeyEvent.*;
 
@@ -100,10 +101,7 @@ public class Functions extends IFunctions {
     public static boolean 拖动 = false;
 
     @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
-    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
     @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
-    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
-    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
     @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
     public static TaskResult aaa1(InputInfo inputInfo) {
 
@@ -129,10 +127,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
-    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
     @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
-    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
-    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
     @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
     public static TaskResult bbb(InputInfo inputInfo) {
 
@@ -159,11 +154,8 @@ public class Functions extends IFunctions {
     }
 
     @ListenMouseKeyboard(key = "s", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
-    @ListenMouseKeyboard(key = "s", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
     @ListenMouseKeyboard(key = "d", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
-    @ListenMouseKeyboard(key = "d", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
     @ListenMouseKeyboard(key = "f", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
-    @ListenMouseKeyboard(key = "f", press = false, userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
     public static TaskResult bbb1(InputInfo inputInfo) {
 
         拖动 = false;
@@ -659,6 +651,25 @@ public class Functions extends IFunctions {
             return new TaskResult(false);
         }
     }
+//    public ArrayList<Integer> 横向=new ArrayList<>();
+//    public ArrayList<Integer> 纵向=new ArrayList<>();
+//
+//    @ListenMouseKeyboard(key = "[", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "teshu")
+//    public static void 左括号() {
+//        customConditionSet.add("teshu");
+//    }
+//
+//    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
+//    public static void up() {
+//        customConditionSet.add("teshu");
+//    }
+//
+//    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
+//    public static void down() {
+//        customConditionSet.remove("teshu");
+//    }
+
+
 
     @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void alt(InputInfo inputInfo) {
