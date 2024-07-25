@@ -43,7 +43,7 @@ public class HookUtil {
             }
         }
 
-//        inputInfoActualTemp.customCondition=CommonUtil.customConditionSet;
+        inputInfoActualTemp.customCondition=CommonUtil.customConditionSet;
 
         if (Controller.taskMmap.containsKey(inputInfoActualTemp)) {
             List<TaskInfo> taskInfoList = Controller.taskMmap.get(inputInfoActualTemp);
