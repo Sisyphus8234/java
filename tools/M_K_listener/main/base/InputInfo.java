@@ -55,12 +55,8 @@ public class InputInfo {
         }
 
         boolean step2 = true;
-        if (CommonUtil.prepareState==true) {
-            step2 = customCondition.equals(objNotParam.customCondition);
-        }else {
-            if (!objNotParam.customCondition.isEmpty()) {
-                step2 = CommonUtil.customConditionSet.containsAll(objNotParam.customCondition);
-            }
+        if (!objNotParam.customCondition.isEmpty()) {
+            step2 = customCondition.containsAll(objNotParam.customCondition);
         }
 
         return step0 && step1 && step2;

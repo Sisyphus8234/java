@@ -49,7 +49,7 @@ public class Controller {
         ScanFunction.run(myFunctionClass, baseFunctionClass);
 
 
-        CommonUtil.prepareState=false;
+//        CommonUtil.prepareState=false;
 
         if (IFunctions.active == CommonUtil.Active.jna) {
             //mouse
