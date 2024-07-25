@@ -99,9 +99,9 @@ public class Functions extends IFunctions {
     public static AtomicReference<Point> pointTemp = new AtomicReference<>();
     public static boolean 拖动 = false;
 
-//    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
-//    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
-//    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
+    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L)
     public static TaskResult aaa1(InputInfo inputInfo) {
         if (getKeyStatus(VK_ALT) == false && getKeyStatus(VK_TAB) == false) {
             return new TaskResult(false);
@@ -143,8 +143,6 @@ public class Functions extends IFunctions {
         if (getKeyStatus(VK_ALT) == false && getKeyStatus(VK_TAB) == false) {
             return new TaskResult(false);
         }
-
-        System.out.println(123123);
 
         if (getKeyStatus(VK_TAB) == true) {
             Point point = pointTemp.get();
