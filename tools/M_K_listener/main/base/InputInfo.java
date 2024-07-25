@@ -35,17 +35,17 @@ public class InputInfo {
         if (obj == null || getClass() != obj.getClass()) {
             return false; // 如果对象为null或者类型不同，则认为不相等
         }
-        InputInfo objNotTempInput = (InputInfo) obj; // 将obj强制转换为当前类的类型
+        InputInfo objNotParam = (InputInfo) obj; // 将obj强制转换为当前类的类型
         // 根据类的属性进行相等性比较
 
         boolean step0 = false;
-        step0 = value == objNotTempInput.value && press == objNotTempInput.press && userInput == objNotTempInput.userInput && keyboardOrMouse == objNotTempInput.keyboardOrMouse;
+        step0 = value == objNotParam.value && press == objNotParam.press && userInput == objNotParam.userInput && keyboardOrMouse == objNotParam.keyboardOrMouse;
 
 
         boolean step1 = true;
-        if (objNotTempInput.otherCondition != null && objNotTempInput.otherCondition.size() != 0) {
+        if (objNotParam.otherCondition != null && objNotParam.otherCondition.size() != 0) {
 
-            for (Map.Entry<String, String> item : objNotTempInput.otherCondition.entrySet()) {
+            for (Map.Entry<String, String> item : objNotParam.otherCondition.entrySet()) {
                 if (!otherCondition.containsKey(item.getKey())) {
                     throw new RuntimeException("otherCondition mistake");
                 }
@@ -56,10 +56,10 @@ public class InputInfo {
 
         boolean step2 = true;
         if (CommonUtil.prepareState==true) {
-            step2 = customCondition.equals(objNotTempInput.customCondition);
+            step2 = customCondition.equals(objNotParam.customCondition);
         }else {
-            if (!objNotTempInput.customCondition.isEmpty()) {
-                step2 = CommonUtil.customConditionSet.containsAll(objNotTempInput.customCondition);
+            if (!objNotParam.customCondition.isEmpty()) {
+                step2 = CommonUtil.customConditionSet.containsAll(objNotParam.customCondition);
             }
         }
 
