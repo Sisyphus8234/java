@@ -5,10 +5,7 @@ import base.jna.JnaMouseHook;
 import base.jnativehook.JnativehookUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static base.IFunctions.*;
 import static java.awt.event.KeyEvent.VK_J;
@@ -97,4 +94,6 @@ public class CommonUtil {
 
 
     }
+
+    public static Set<String> customConditionSet=new HashSet<>();
 }

@@ -15,6 +15,8 @@ public class InputInfo {
     public long timeInterval;
     public boolean extend;
 
+    public Set<String> customCondition = new HashSet<>();
+
 
     public void resetProperty() {
         this.keyboardOrMouse = 0;
@@ -33,27 +35,31 @@ public class InputInfo {
         if (obj == null || getClass() != obj.getClass()) {
             return false; // 如果对象为null或者类型不同，则认为不相等
         }
-        InputInfo objInMap = (InputInfo) obj; // 将obj强制转换为当前类的类型
+        InputInfo objNotTempInput = (InputInfo) obj; // 将obj强制转换为当前类的类型
         // 根据类的属性进行相等性比较
 
         boolean step0 = false;
-        step0 = value == objInMap.value && press == objInMap.press && userInput == objInMap.userInput && keyboardOrMouse == objInMap.keyboardOrMouse;
+        step0 = value == objNotTempInput.value && press == objNotTempInput.press && userInput == objNotTempInput.userInput && keyboardOrMouse == objNotTempInput.keyboardOrMouse;
 
 
         boolean step1 = true;
-        if (objInMap.otherCondition != null && objInMap.otherCondition.size() != 0) {
+        if (objNotTempInput.otherCondition != null && objNotTempInput.otherCondition.size() != 0) {
 
-            for (Map.Entry<String, String> item : objInMap.otherCondition.entrySet()) {
+            for (Map.Entry<String, String> item : objNotTempInput.otherCondition.entrySet()) {
                 if (!otherCondition.containsKey(item.getKey())) {
                     throw new RuntimeException("otherCondition mistake");
                 }
 
                 step1 = step1 && Objects.equals(otherCondition.get(item.getKey()), item.getValue());
             }
-
         }
 
-        return step0 && step1;
+        boolean step2 = true;
+        if (!objNotTempInput.customCondition.isEmpty()) {
+            step2 = CommonUtil.customConditionSet.containsAll(objNotTempInput.customCondition);
+        }
+
+        return step0 && step1 && step2;
     }
 
     @Override

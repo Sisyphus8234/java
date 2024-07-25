@@ -32,9 +32,7 @@ public @interface ListenMouseKeyboard {
     String otherCondition() default "";
 
     int active() default -1;
-
-
-
+    String customCondition() default "";
 
 }
 

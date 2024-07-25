@@ -69,7 +69,6 @@ public class JnaMouseHook {
 
 
 
-
                     if (userInput.contains(info.flags)) {
                         inputInfoActualTemp.userInput = false;
                     } else {
