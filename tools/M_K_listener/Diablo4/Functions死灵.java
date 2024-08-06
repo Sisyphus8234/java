@@ -48,12 +48,11 @@ public class Functions死灵 extends Functions公共 {
     }
 
 
-    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6,VK_7, VK_8, VK_6,VK_5,VK_E));
-//    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6,VK_E));
+    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_6, VK_5, VK_E));
+    //    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6,VK_E));
     public static int len = list.size();
 
 
-    public static LocalDateTime time = LocalDateTime.now();
     public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
@@ -68,34 +67,12 @@ public class Functions死灵 extends Functions公共 {
                         robot.keyRelease(VK_G);
                         robot.keyPress(VK_G);
 
-
                     } else if (状态 == 1) {
                         robot.keyRelease(VK_5);
 
                         robot.keyRelease(VK_G);
                     } else {
                         robot.keyRelease(VK_G);
-//                        robot.keyPress(VK_5);
-
-//                        if (LocalDateTime.now().isAfter(time)) {
-
-
-//                        } else {
-
-
-//                            if (list.get(i) == VK_9) {
-//                                if (temp == true) {
-//                                    robot.keyPress(list.get(i));
-//                                    robot.keyRelease(list.get(i));
-//                                } else {
-//                                    i++;
-//                                    if (i >= len) {
-//                                        i = 0;
-//                                    }
-//                                }
-//                            }
-
-
 
                         if (list.get(i) == VK_E) {
                             robot.keyPress(VK_SPACE);
@@ -176,7 +153,7 @@ public class Functions死灵 extends Functions公共 {
 //        if (战斗 == true) {
 //            return new TaskResult(true);
 //        } else {
-            return new TaskResult(false);
+        return new TaskResult(false);
 //        }
     }
 
