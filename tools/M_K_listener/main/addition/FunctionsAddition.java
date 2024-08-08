@@ -130,6 +130,8 @@ public class FunctionsAddition extends IFunctions {
 
 
         public float[] getPixelColorHSB(int pixelX, int pixelY) {
+            pixelX=(int)(pixelX/screen_scale);
+            pixelY=(int)(pixelY/screen_scale);
             pixelColor = robot.getPixelColor(pixelX, pixelY);
             pixelColorHSB = Color.RGBtoHSB(pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue(), null);
             return (pixelColorHSB);
