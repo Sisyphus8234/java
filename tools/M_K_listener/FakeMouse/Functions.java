@@ -26,20 +26,12 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
 
+
+
     static {
         Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
-
-
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = toolkit.getScreenSize();
-
-        screenWidth = (int) screenSize.getWidth();
-        screenHeight = (int) screenSize.getHeight();
     }
-
-    public static int screenWidth;
-    public static int screenHeight;
 
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "scrlk", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -87,7 +79,7 @@ public class Functions extends IFunctions {
     }
 
 
-    public static double screen_scale = Double.parseDouble(Config.read("screen_scale"));
+
 
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
 
