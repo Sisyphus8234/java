@@ -6,10 +6,7 @@ import base.ListenMouseKeyboard;
 import base.MyThread;
 import base.enty.TaskResult;
 
-import java.awt.event.MouseEvent;
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,105 +28,101 @@ public class Functions死灵 extends Functions公共 {
 
     public static boolean 判断骷髅() {
 //        需要骷髅战士 = pixelColor.getPixelColorHSB(1376, 997)[1] < 0.06F;
-        需要骷髅战士 = pixelColor.getPixelColorHSB(1394, 976)[1] < 0.11333F;
-        需要骷髅法师 = pixelColor.getPixelColorHSB(1400, 1025)[1] < 0.11F;
-        需要骷髅祭司 = pixelColor.getPixelColorHSB(776, 969)[1] < 0.61F;
+        需要骷髅战士 = pixelColor.getPixelColorHSB(1376, 982)[1] < 0.11333F;
+        需要骷髅法师 = pixelColor.getPixelColorHSB(1377, 1027)[1] < 0.11F;
+        需要骷髅祭司 = pixelColor.getPixelColorHSB(783, 969)[1] < 0.61F;
 
 
         return 需要骷髅祭司 || 需要骷髅法师 || 需要骷髅战士;
     }
 
 
-    public static boolean 可以放消耗技能() {
-        boolean b;
-        b = pixelColor.getPixelColorHSB(1318, 1000)[1] > 0.35F;
-
-        return b;
-    }
+//    public static boolean 可以放消耗技能() {
+//        boolean b;
+//        b = pixelColor.getPixelColorHSB(1318, 1000)[1] > 0.35F;
+//
+//        return b;
+//    }
 
 
     public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6, VK_7, VK_8, VK_6, VK_5, VK_E));
-    //    public static List<Integer> list = new ArrayList<>(Arrays.asList(VK_6,VK_E));
     public static int len = list.size();
 
 
-    public static MyThread t1 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            int i = 0;
-            boolean b = false;
-            while (true) {
-                if (战斗 == true) {
-                    b = true;
-                    if (状态 == 0) {
-                        robot.keyRelease(VK_5);
-
-                        robot.keyRelease(VK_G);
-                        robot.keyPress(VK_G);
-
-                    } else if (状态 == 1) {
-                        robot.keyRelease(VK_5);
-
-                        robot.keyRelease(VK_G);
-                    } else {
-                        robot.keyRelease(VK_G);
-
-                        if (list.get(i) == VK_E) {
-                            robot.keyPress(VK_SPACE);
-                            robot.keyPress(list.get(i));
-                            robot.keyRelease(list.get(i));
-                            robot.keyRelease(VK_SPACE);
-
-                        } else if (list.get(i) == VK_6) {
-                            robot.keyPress(list.get(i));
-                            robot.keyRelease(list.get(i));
-                            pause(50L);
-                        } else if (list.get(i) == VK_5) {
-                            robot.keyPress(list.get(i));
-                            pause(1400L);
-                            robot.keyRelease(list.get(i));
-                        } else {
-                            robot.keyPress(list.get(i));
-                            robot.keyRelease(list.get(i));
-                        }
-
-
-                        i++;
-                        if (i >= len) {
-                            i = 0;
-                        }
-                        pause(50L);
-//                        }
-
-
-                    }
-                } else {
-                    if (b == true) {
-                        b = false;
-                        robot.keyRelease(VK_G);
-                        robot.keyRelease(VK_5);
-                    }
-                }
-                pause(BaseDelay);
-            }
-        }
-    };
-
-//    public static MyThread t2 = new MyThread(MyThread.State.on) {
+//    public static MyThread t1 = new MyThread(MyThread.State.on) {
 //        @Override
 //        public void run() {
+//            int i = 0;
+//            boolean b = false;
 //            while (true) {
-//                if (战斗 == true && 状态 == 2) {
-//                    robot.keyPress(VK_6);
-//                    robot.keyRelease(VK_6);
+//                if (战斗 == true) {
+//                    b = true;
+//                    if (状态 == 0) {
+//                        robot.keyRelease(VK_5);
+//
+//                        robot.keyRelease(VK_G);
+//                        robot.keyPress(VK_G);
+//
+//                    } else if (状态 == 1) {
+//                        robot.keyRelease(VK_5);
+//
+//                        robot.keyRelease(VK_G);
+//                    } else {
+//                        robot.keyRelease(VK_G);
+//
+//                        if (list.get(i) == VK_E) {
+//                            robot.keyPress(VK_SPACE);
+//                            robot.keyPress(list.get(i));
+//                            robot.keyRelease(list.get(i));
+//                            robot.keyRelease(VK_SPACE);
+//
+//                        } else if (list.get(i) == VK_6) {
+//                            robot.keyPress(list.get(i));
+//                            robot.keyRelease(list.get(i));
+//                            pause(50L);
+//                        } else if (list.get(i) == VK_5) {
+//                            robot.keyPress(list.get(i));
+//                            pause(1400L);
+//                            robot.keyRelease(list.get(i));
+//                        } else {
+//                            robot.keyPress(list.get(i));
+//                            robot.keyRelease(list.get(i));
+//                        }
+//
+//
+//                        i++;
+//                        if (i >= len) {
+//                            i = 0;
+//                        }
+//                        pause(50L);
+//
+//
+//                    }
+//                } else {
+//                    if (b == true) {
+//                        b = false;
+//                        robot.keyRelease(VK_G);
+//                        robot.keyRelease(VK_5);
+//                    }
 //                }
-//                pause(600L);
+//                pause(BaseDelay);
 //            }
 //        }
 //    };
 
+    public static MyThread t自动召唤 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                if (战斗 == true && !CommonUtil.customConditionSet.contains("左键") && 判断骷髅() == true) {
+                    robot.keyPress(VK_6);
+                    robot.keyRelease(VK_6);
+                }
+                pause(100L);
+            }
+        }
+    };
 
-    public static LocalDateTime 右键time = LocalDateTime.now();
 
     @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "w", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -148,42 +141,38 @@ public class Functions死灵 extends Functions公共 {
     @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
     public static TaskResult g() {
 
-        状态 = 0;
+        CommonUtil.customConditionSet.add("左键");
 
-//        if (战斗 == true) {
-//            return new TaskResult(true);
-//        } else {
+        状态 = 0;
         return new TaskResult(false);
-//        }
     }
 
     @ListenMouseKeyboard(key = "左键松开", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void g111() {
-//        time=LocalDateTime.now().plus(2000L, ChronoUnit.MILLIS);
+        CommonUtil.customConditionSet.remove("左键");
         状态 = 2;
     }
 
 
-    @ListenMouseKeyboard(key = "右键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
-    @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
-    public static TaskResult 右键() {
-
-        状态 = 0;
-        if (战斗 == true) {
-            return new TaskResult(true);
-        } else {
-            return new TaskResult(false);
-        }
-    }
-
-
-    @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
-    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
-    public static void gl() {
-
-        状态 = 1;
-    }
+//    @ListenMouseKeyboard(key = "右键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+//    @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+//    public static TaskResult 右键() {
+//
+//        状态 = 0;
+//        if (战斗 == true) {
+//            return new TaskResult(true);
+//        } else {
+//            return new TaskResult(false);
+//        }
+//    }
+//
+//
+//    @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+//    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, timeInterval = 200L)
+//    public static void gl() {
+//        状态 = 1;
+//    }
 
 
     public static boolean 战斗 = false;
