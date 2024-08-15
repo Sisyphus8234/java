@@ -29,6 +29,10 @@ public class IFunctions {
     public static List<MyThread> threadList = new ArrayList<>();
 
     static {
+        System.out.print("current path is:");
+        System.out.println(System.getProperty("user.dir"));
+
+
         System.out.println("IFunctions class loading");
         try {
             robot = new Robot();
