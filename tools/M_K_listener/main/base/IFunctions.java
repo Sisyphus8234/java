@@ -54,20 +54,20 @@ public class IFunctions {
     public static AffineTransform affineTransform = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getDefaultTransform();
     public static double scaleX = affineTransform.getScaleX();
     public static double scaleY = affineTransform.getScaleY();
-    public static double screen_scale;
+    public static double screenScale;
     static {
         if(scaleX==scaleY){
-            screen_scale=scaleX;
+            screenScale =scaleX;
         }else {
             throw new RuntimeException("屏幕缩放吧比例x与y不相等");
         }
-        System.out.println(screen_scale);
+        System.out.println(screenScale);
     }
 
     //屏幕尺寸
     public static Dimension screenSize = toolkit.getScreenSize();
-    public static int screenWidth = (int) (screenSize.getWidth()*screen_scale);
-    public static int screenHeight = (int) (screenSize.getHeight()*screen_scale);
+    public static int screenWidth = (int) (screenSize.getWidth()* screenScale);
+    public static int screenHeight = (int) (screenSize.getHeight()* screenScale);
     static{
         System.out.println(screenWidth);
         System.out.println(screenHeight);
@@ -118,6 +118,18 @@ public class IFunctions {
         } else {
             return false;
         }
+    }
+
+    public static Point getPointFix() {
+        Point point=MouseInfo.getPointerInfo().getLocation();
+        point.x= (int) (point.x* screenScale);
+        point.y= (int) (point.y* screenScale);
+        return point;
+    }
+
+    public static void mouseMoveFix(int x, int y) {
+        robot.mouseMove(-1,-1);
+        robot.mouseMove((int) (x/ screenScale), (int) (y/ screenScale));
     }
 
     private static Map<Integer, Boolean> keyStatusMap = new HashMap<>();
