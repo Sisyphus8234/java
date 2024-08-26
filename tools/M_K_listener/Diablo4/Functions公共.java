@@ -1,9 +1,14 @@
 package custom;
 
 import addition.FunctionsAddition;
+
 import base.*;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,6 +29,56 @@ public class Functions公共 extends IFunctions {
 
     public static long BaseDelay = 200L;
 
+//    @ListenMouseKeyboard(key = "f1",press = false,intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public void f2(){}
+//
+//    @ListenMouseKeyboard(key = "f1",intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public void f(){
+//
+//        Point point0=getPointFix();
+//
+//        // 获取屏幕尺寸
+//        Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+//
+//        // 截取屏幕
+//        BufferedImage screenFullImage = robot.createScreenCapture(screenRect);
+//
+//        // 保存图像到本地文件
+//        try {
+//            ImageIO.write(screenFullImage, "png", new File("aaa\\screenshot.png"));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        System.out.println("屏幕截图已保存！");
+//
+//        List<Point> points=RunPythonScript.run();
+//        points.stream().forEach(s->{
+//            System.out.println(s.x);
+//            System.out.println(s.y);
+//            s.y=s.y+46;
+//        });
+//        for (装备.每一格 s : 装备.背包) {
+//            if (!s.包含(points)) {
+//                mouseMoveFix(s.point.x, s.point.y);
+//                pause(100L);
+//                robot.keyPress(VK_SPACE);
+//                robot.keyRelease(VK_SPACE);
+//                pause(50L);
+//            }
+//
+//            if (s.是这一个(point0)) {
+//                break;
+//            }
+//
+//        }
+//    }
+
+
+
+
+
+
     public static boolean b拾取 = false;
     public static MyThread t拾取 = new MyThread(MyThread.State.off) {
         @Override
@@ -35,8 +90,8 @@ public class Functions公共 extends IFunctions {
                     temp1 = true;
 
                     if (LocalDateTime.now().isAfter(tempTime)) {
-                        robot.keyPress(VK_ALT);
-                        robot.keyRelease(VK_ALT);
+                        robot.keyPress(VK_L);
+                        robot.keyRelease(VK_L);
                         tempTime = LocalDateTime.now().plusSeconds(5);
                     }
 
@@ -303,13 +358,15 @@ public class Functions公共 extends IFunctions {
                 if (LocalDateTime.now().isBefore(计时器)) {
                     if (type == 0) {
                         robot.mousePress(BUTTON1_DOWN_MASK);
+//                        pause(50L);
                         robot.mouseRelease(BUTTON1_DOWN_MASK);
                     } else {
                         robot.mousePress(BUTTON3_DOWN_MASK);
+//                        pause(50L);
                         robot.mouseRelease(BUTTON3_DOWN_MASK);
 
                     }
-                    pause(200L);
+                    pause(50L);
                 } else {
                     this.mySuspend();
                 }
@@ -331,30 +388,6 @@ public class Functions公共 extends IFunctions {
         type = 0;
         计时器 = LocalDateTime.now().plusNanos(500);
         t鼠标连点.myResume();
-    }
-
-
-    public static boolean 是否滚轮代替space = false;
-
-    @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
-    @ListenMouseKeyboard(userInput = false, key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
-    public static void c() {
-        是否滚轮代替space = true;
-    }
-
-    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
-    @ListenMouseKeyboard(userInput = false, key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true)
-    public static void d() {
-        是否滚轮代替space = false;
-    }
-
-    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, extend = true, timeInterval = 350L)
-    @ListenMouseKeyboard(userInput = false, key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, extend = true, timeInterval = 350L)
-    public static void 滚轮() {
-        if (是否滚轮代替space == true) {
-            robot.keyPress(VK_SPACE);
-            robot.keyRelease(VK_SPACE);
-        }
     }
 
 
