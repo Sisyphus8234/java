@@ -1,10 +1,7 @@
 package custom;
 
-import base.CommonUtil.Active;
-
-import base.JsonUtil;
-import addition.MouseMoveFix;
 import base.*;
+import base.CommonUtil.Active;
 import base.enty.TaskResult;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -15,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static base.CommonUtil.customConditionSet;
 import static base.CommonUtil.keyCodeMap;
 import static java.awt.event.KeyEvent.*;
 
@@ -418,7 +414,7 @@ public class Functions extends IFunctions {
             while (true) {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                MouseMoveFix.run(1, screenHeight-1, screen_scale);
+                myMouseMove(1, screenHeight-1);
                 pause(100L);
                 robot.keyPress(KeyEvent.VK_WINDOWS);
                 robot.keyPress(winWithValue);
@@ -426,7 +422,7 @@ public class Functions extends IFunctions {
                 robot.keyRelease(winWithValue);
                 robot.keyRelease(KeyEvent.VK_WINDOWS);
                 pause(50L);
-                MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
+                robot.mouseMove(tempPoint.x, tempPoint.y);
 
                 pause(500L);
                 this.mySuspend();
@@ -535,7 +531,7 @@ public class Functions extends IFunctions {
             while (true) {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                MouseMoveFix.run(1, screenHeight-1, screen_scale);
+                myMouseMove(1, screenHeight-1);
                 pause(100L);
 
                 if (alt_tab_右键次数 > 0) {
@@ -565,7 +561,7 @@ public class Functions extends IFunctions {
                 robot.keyRelease(KeyEvent.VK_ALT);
                 alt_tab_右键次数++;
 
-                MouseMoveFix.run(tempPoint.x, tempPoint.y, screen_scale);
+                robot.mouseMove(tempPoint.x, tempPoint.y);
 
                 t2.mySuspend();
             }
@@ -652,15 +648,30 @@ public class Functions extends IFunctions {
 //        customConditionSet.add("teshu");
 //    }
 //
-//    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
-//    public static void up() {
-//        customConditionSet.add("teshu");
-//    }
-//
-//    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
-//    public static void down() {
-//        customConditionSet.remove("teshu");
-//    }
+    public static int 移动距离= Integer.parseInt(Config.read("移动距离"));
+    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void up() {
+        Point point =MouseInfo.getPointerInfo().getLocation();
+        robot.mouseMove(point.x,point.y-移动距离);
+    }
+
+    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void down() {
+        Point point =MouseInfo.getPointerInfo().getLocation();
+        robot.mouseMove(point.x,point.y+移动距离);
+    }
+
+    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void left() {
+        Point point =MouseInfo.getPointerInfo().getLocation();
+        robot.mouseMove(point.x-移动距离,point.y);
+    }
+
+    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void right() {
+        Point point =MouseInfo.getPointerInfo().getLocation();
+        robot.mouseMove(point.x+移动距离,point.y);
+    }
 
 
 
