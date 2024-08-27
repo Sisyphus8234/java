@@ -205,66 +205,40 @@ public class Functions extends IFunctions {
 
     //---基础功能
 
-    private static boolean 判断win按下() {
-        return getKeyStatus(VK_WINDOWS);
-    }
 
-    public static TaskResult result左键 = new TaskResult();
+//    public static TaskResult result左键 = new TaskResult();
 
-    @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键(InputInfo inputInfo) {
-        if (判断win按下()) {
-            win期间做了什么 = true;
-            result左键.intercept = false;
-        } else {
-            t左键b = true;
-            t左键.myResume();
-            result左键.intercept = true;
-        }
-        return result左键;
-
-
+        t左键b = true;
+        t左键.myResume();
+        return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "esc", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "esc", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     @ListenMouseKeyboard(key = "alt右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键1(InputInfo inputInfo) {
-        if (判断win按下()) {
-            win期间做了什么 = true;
-            result左键.intercept = false;
-        } else {
-            t左键b = false;
-            result左键.intercept = true;
-        }
-        return result左键;
+        t左键b = false;
+        return new TaskResult(true);
     }
 
-    public static TaskResult result右键 = new TaskResult();
+//    public static TaskResult result右键 = new TaskResult();
 
-    @ListenMouseKeyboard(key = "f1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     public static TaskResult f1键按下(InputInfo inputInfo) {
-        if (判断win按下()) {
-            result右键.intercept = false;
-            win期间做了什么 = true;
-        } else {
-            t右键b = true;
-            t右键.myResume();
-            result右键.intercept = true;
-        }
-        return result右键;
+
+        t右键b = true;
+        t右键.myResume();
+        return new TaskResult(true);
+
+
     }
 
-    @ListenMouseKeyboard(key = "f1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     public static TaskResult f1键松开(InputInfo inputInfo) {
-        if (判断win按下()) {
-            result右键.intercept = false;
-            win期间做了什么 = true;
-        } else {
-            t右键b = false;
-            result右键.intercept = true;
-        }
-        return result右键;
+        t右键b = false;
+        return new TaskResult(true);
     }
 
 
@@ -289,119 +263,86 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换(InputInfo inputInfo) {
         if (b替换 == false) {
-            result右键.intercept = false;
+            return new TaskResult(false);
         } else {
             t左键b = true;
             t左键.myResume();
-            result右键.intercept = true;
+            return new TaskResult(true);
         }
-        return result右键;
     }
 
     @ListenMouseKeyboard(key = "右键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换1() {
         if (b替换 == false) {
-            result右键.intercept = false;
+            return new TaskResult(false);
         } else {
             t左键b = false;
-            result右键.intercept = true;
+            return new TaskResult(true);
         }
-        return result右键;
-
-
     }
 
     @ListenMouseKeyboard(key = "左键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换2() {
 
         if (b替换 == false) {
-            result左键.intercept = false;
+            return new TaskResult(false);
         } else {
             t右键b = true;
             t右键.myResume();
-            result左键.intercept = true;
+            return new TaskResult(true);
         }
-
-        return result左键;
-
     }
 
     @ListenMouseKeyboard(key = "左键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, active = Active.jna)
     public static TaskResult 替换3(InputInfo inputInfo) {
         if (b替换 == false) {
-            result左键.intercept = false;
+            return new TaskResult(false);
         } else {
             t右键b = false;
-            result右键.intercept = true;
+            return new TaskResult(true);
         }
-        return result左键;
     }
 
     //---
 
-    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     public static TaskResult f2键(InputInfo inputInfo) {
-        if (判断win按下()) {
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
 
-            win期间做了什么 = true;
-            return new TaskResult(false);
-        } else {
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-
-            return new TaskResult(true);
-        }
-
-
+        return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "f3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     public static TaskResult f3键(InputInfo inputInfo) {
-        if (判断win按下()) {
 
-            win期间做了什么 = true;
-            return new TaskResult(false);
-        } else {
-            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-            robot.keyPress(KeyEvent.VK_BACK_SPACE);
-            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-            return new TaskResult(true);
-        }
-
-
+        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        robot.keyPress(KeyEvent.VK_BACK_SPACE);
+        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "f4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     public static TaskResult f4键(InputInfo inputInfo) {
-        if (判断win按下()) {
 
-            win期间做了什么 = true;
-            return new TaskResult(false);
-        } else {
-            robot.keyRelease(KeyEvent.VK_DELETE);
-            robot.keyPress(KeyEvent.VK_DELETE);
-            robot.keyRelease(KeyEvent.VK_DELETE);
-            return new TaskResult(true);
-        }
-
+        robot.keyRelease(KeyEvent.VK_DELETE);
+        robot.keyPress(KeyEvent.VK_DELETE);
+        robot.keyRelease(KeyEvent.VK_DELETE);
+        return new TaskResult(true);
 
     }
 
-    @ListenMouseKeyboard(key = "f2", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "f3", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "f4", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f2", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
+    @ListenMouseKeyboard(key = "f3", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
+    @ListenMouseKeyboard(key = "f4", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     public static TaskResult 松开(InputInfo inputInfo) {
-        if (判断win按下()) {
-            win期间做了什么 = true;
-            return new TaskResult(false);
-        } else {
-
-            return new TaskResult(true);
-        }
-
-
+        return new TaskResult(true);
     }
+
+
+
+
 
     //---大写锁
 
@@ -440,19 +381,7 @@ public class Functions extends IFunctions {
 
 
     //---win功能
-    public static boolean win期间做了什么 = false;
 
-    @ListenMouseKeyboard(key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void win按下() {
-        setKeyStatus(VK_WINDOWS, true);
-    }
-
-    @ListenMouseKeyboard(key = "win", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void win按下1() {
-        setKeyStatus(VK_WINDOWS, false);
-        //重置
-        win期间做了什么 = false;
-    }
 
     public static String winWithValueName = "custom/winWithValue.json";
     public static Integer winWithValue;
@@ -487,7 +416,7 @@ public class Functions extends IFunctions {
             JsonUtil.writeJsonFile(winWithValueName, winWithValue);
 
 
-            win期间做了什么 = true;
+//            win期间做了什么 = true;
         }
 
     }
@@ -703,6 +632,36 @@ public class Functions extends IFunctions {
     public static void ctrl右2() {
         CommonUtil.customConditionSet.remove(String.valueOf("ctrl右"));
     }
+
+//    public static boolean win期间做了什么 = false;
+
+    static {
+        CommonUtil.customConditionSet.add("!win");
+    }
+
+    @ListenMouseKeyboard(key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void win按下() {
+        CommonUtil.customConditionSet.add("win");
+        CommonUtil.customConditionSet.remove("!win");
+    }
+
+    @ListenMouseKeyboard(key = "win", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void win按下1() {
+        CommonUtil.customConditionSet.remove("win");
+        CommonUtil.customConditionSet.add("!win");
+        //重置
+//        win期间做了什么 = false;
+    }
+
+//    @ListenMouseKeyboard(key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+//    public static void ctrl左() {
+//        CommonUtil.customConditionSet.add(String.valueOf("ctrl左"));
+//    }
+//
+//    @ListenMouseKeyboard(key = "ctrl左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    public static void ctrl左2() {
+//        CommonUtil.customConditionSet.remove(String.valueOf("ctrl左"));
+//    }
 
 
 }
