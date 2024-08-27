@@ -5,6 +5,7 @@ import base.CommonUtil.Active;
 import base.enty.TaskResult;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -23,9 +24,8 @@ class Run extends MainClass {
 public class Functions extends IFunctions {
 
 
-
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
     }
 
@@ -75,8 +75,6 @@ public class Functions extends IFunctions {
     }
 
 
-
-
     public static Long baseDelay = Long.parseLong(Config.read("base_delay"));
 
     public static boolean t3Temp = false;
@@ -88,7 +86,7 @@ public class Functions extends IFunctions {
     public static AtomicReference<Point> pointTemp = new AtomicReference<>();
     public static boolean 拖动 = false;
 
-//    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
+    //    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
 //    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
 //    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "tab")
     public static TaskResult aaa1(InputInfo inputInfo) {
@@ -113,8 +111,7 @@ public class Functions extends IFunctions {
     }
 
 
-
-//    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
+    //    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
 //    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
 //    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 200L,customCondition = "alt")
     public static TaskResult bbb(InputInfo inputInfo) {
@@ -141,7 +138,7 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-//    @ListenMouseKeyboard(key = "s", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
+    //    @ListenMouseKeyboard(key = "s", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
 //    @ListenMouseKeyboard(key = "d", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
 //    @ListenMouseKeyboard(key = "f", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
     public static TaskResult bbb1(InputInfo inputInfo) {
@@ -276,16 +273,16 @@ public class Functions extends IFunctions {
 
     public static boolean b替换 = Boolean.parseBoolean(Config.read("reverse"));
 
-    @ListenMouseKeyboard(key = "n", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
+    @ListenMouseKeyboard(key = "n", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "alt")
     public static void m() {
-            b替换 = false;
-            Config.write("reverse", String.valueOf(b替换));
+        b替换 = false;
+        Config.write("reverse", String.valueOf(b替换));
     }
 
-    @ListenMouseKeyboard(key = "m", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "alt")
+    @ListenMouseKeyboard(key = "m", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "alt")
     public static void n() {
-            b替换 = true;
-            Config.write("reverse", String.valueOf(b替换));
+        b替换 = true;
+        Config.write("reverse", String.valueOf(b替换));
 
     }
 
@@ -414,7 +411,7 @@ public class Functions extends IFunctions {
             while (true) {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                myMouseMove(1, screenHeight-1);
+                myMouseMove(1, screenHeight - 1);
                 pause(100L);
                 robot.keyPress(KeyEvent.VK_WINDOWS);
                 robot.keyPress(winWithValue);
@@ -531,7 +528,7 @@ public class Functions extends IFunctions {
             while (true) {
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                myMouseMove(1, screenHeight-1);
+                myMouseMove(1, screenHeight - 1);
                 pause(100L);
 
                 if (alt_tab_右键次数 > 0) {
@@ -640,7 +637,8 @@ public class Functions extends IFunctions {
             return new TaskResult(false);
         }
     }
-//    public ArrayList<Integer> 横向=new ArrayList<>();
+
+    //    public ArrayList<Integer> 横向=new ArrayList<>();
 //    public ArrayList<Integer> 纵向=new ArrayList<>();
 //
 //    @ListenMouseKeyboard(key = "[", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "teshu")
@@ -648,31 +646,31 @@ public class Functions extends IFunctions {
 //        customConditionSet.add("teshu");
 //    }
 //
-    public static int 移动距离= Integer.parseInt(Config.read("移动距离"));
+    public static int 移动距离 = Integer.parseInt(Config.read("移动距离"));
+
     @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void up() {
-        Point point =MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(point.x,point.y-移动距离);
-    }
-
     @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void down() {
-        Point point =MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(point.x,point.y+移动距离);
-    }
-
     @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void left() {
-        Point point =MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(point.x-移动距离,point.y);
-    }
-
     @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void right() {
-        Point point =MouseInfo.getPointerInfo().getLocation();
-        robot.mouseMove(point.x+移动距离,point.y);
-    }
+    public static TaskResult up(InputInfo inputInfo) {
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        if (inputInfo.value == keyCodeMap.get("up")) {
+            point.y = point.y - 移动距离;
+        } else if (inputInfo.value == keyCodeMap.get("down")) {
+            point.y = point.y + 移动距离;
+        } else if (inputInfo.value == keyCodeMap.get("left")) {
+            point.x = point.x - 移动距离;
+        } else if (inputInfo.value == keyCodeMap.get("right")) {
+            point.x = point.x + 移动距离;
+        }
+        robot.mouseMove(point.x, point.y);
 
+        if (CommonUtil.customConditionSet.contains("ctrl右")) {
+            return new TaskResult(true);
+        } else {
+            return new TaskResult(false);
+        }
+    }
 
 
     @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
@@ -693,6 +691,17 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "tab", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void tab1(InputInfo inputInfo) {
         CommonUtil.customConditionSet.remove(String.valueOf("tab"));
+    }
+
+
+    @ListenMouseKeyboard(key = "ctrl右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void ctrl右() {
+        CommonUtil.customConditionSet.add(String.valueOf("ctrl右"));
+    }
+
+    @ListenMouseKeyboard(key = "ctrl右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void ctrl右2() {
+        CommonUtil.customConditionSet.remove(String.valueOf("ctrl右"));
     }
 
 
