@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static base.CommonUtil.customConditionSet;
 import static base.CommonUtil.keyCodeMap;
 import static base.Config.prop;
+import static base.Config.readWithPrefix;
 import static java.awt.event.KeyEvent.*;
 
 class Run extends MainClass {
@@ -477,6 +478,7 @@ public class Functions extends IFunctions {
 
 
                 for (int i = 0; i < alt_tab_右键次数; i++) {
+                    robot.keyPress(VK_CONTROL);
                     robot.keyPress(KeyEvent.VK_RIGHT);
                     robot.keyRelease(KeyEvent.VK_RIGHT);
                     pause(50L);
@@ -670,7 +672,7 @@ public class Functions extends IFunctions {
             right = true;
         }
         移动.myResume();
-        return new TaskResult(true);
+        return new TaskResult(false);
     }
 
     @ListenMouseKeyboard(press = false, key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
