@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static base.CommonUtil.customConditionSet;
 import static base.CommonUtil.keyCodeMap;
+import static base.Config.prop;
 import static java.awt.event.KeyEvent.*;
 
 class Run extends MainClass {
@@ -341,9 +343,6 @@ public class Functions extends IFunctions {
     }
 
 
-
-
-
     //---大写锁
 
     public static MyThread tWin数字 = new MyThread() {
@@ -567,38 +566,128 @@ public class Functions extends IFunctions {
         }
     }
 
-    //    public ArrayList<Integer> 横向=new ArrayList<>();
-//    public ArrayList<Integer> 纵向=new ArrayList<>();
-//
-//    @ListenMouseKeyboard(key = "[", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "teshu")
-//    public static void 左括号() {
-//        customConditionSet.add("teshu");
-//    }
-//
+
     public static int 移动距离 = Integer.parseInt(Config.read("移动距离"));
 
-    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static TaskResult up(InputInfo inputInfo) {
-        Point point = MouseInfo.getPointerInfo().getLocation();
-        if (inputInfo.value == keyCodeMap.get("up")) {
-            point.y = point.y - 移动距离;
-        } else if (inputInfo.value == keyCodeMap.get("down")) {
-            point.y = point.y + 移动距离;
-        } else if (inputInfo.value == keyCodeMap.get("left")) {
-            point.x = point.x - 移动距离;
-        } else if (inputInfo.value == keyCodeMap.get("right")) {
-            point.x = point.x + 移动距离;
-        }
-        robot.mouseMove(point.x, point.y);
 
-        if (CommonUtil.customConditionSet.contains("ctrl右")) {
+    @ListenMouseKeyboard(key = "=", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "ctrl")
+    public static TaskResult 加(InputInfo inputInfo) {
+        移动距离 = 移动距离 + 2;
+        Config.write("移动距离", String.valueOf(移动距离));
+        return new TaskResult(true);
+    }
+
+    @ListenMouseKeyboard(key = "-", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "ctrl")
+    public static TaskResult 减去(InputInfo inputInfo) {
+        移动距离 = 移动距离 - 2;
+        Config.write("移动距离", String.valueOf(移动距离));
+
+        return new TaskResult(true);
+    }
+
+    public static float 倍率=1;
+
+    @ListenMouseKeyboard(key = "a", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false,key = "a", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false,key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false,key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static TaskResult a(InputInfo inputInfo) {
+        if(inputInfo.press==false) {
+            倍率=1;
+        }else {
+            if (inputInfo.value == keyCodeMap.get("a")) {
+                倍率 = 0.5F;
+            } else if (inputInfo.value == keyCodeMap.get("s")) {
+                倍率 = 2;
+            } else if (inputInfo.value == keyCodeMap.get("d")) {
+                倍率 = 3;
+            }
+        }
+        if(b移动==true){
+            System.out.println(1111);
             return new TaskResult(true);
-        } else {
+        }else {
             return new TaskResult(false);
         }
+    }
+
+
+
+    public static boolean b移动;
+
+    public static MyThread 移动 = new MyThread(MyThread.State.off) {
+        @Override
+        public void run() {
+            Point point;
+
+            while (true) {
+                b移动 = up || down || left || right;
+                if (b移动 == true) {
+                    point = MouseInfo.getPointerInfo().getLocation();
+                    int 移动距离_倍率= (int) (移动距离*倍率);
+                    if (up) {
+                        point.y = point.y - 移动距离_倍率;
+                    }
+                    if (down) {
+                        point.y = point.y + 移动距离_倍率;
+                    }
+                    if (left) {
+                        point.x = point.x - 移动距离_倍率;
+                    }
+                    if (right) {
+                        point.x = point.x + 移动距离_倍率;
+                    }
+                    robot.mouseMove(point.x, point.y);
+                    pause(50L);
+                } else {
+                    this.mySuspend();
+                }
+            }
+        }
+
+
+    };
+    public static boolean up;
+    public static boolean down;
+    public static boolean left;
+    public static boolean right;
+
+    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    public static TaskResult up(InputInfo inputInfo) {
+
+        if (inputInfo.value == keyCodeMap.get("up")) {
+            up = true;
+        } else if (inputInfo.value == keyCodeMap.get("down")) {
+            down = true;
+        } else if (inputInfo.value == keyCodeMap.get("left")) {
+            left = true;
+        } else if (inputInfo.value == keyCodeMap.get("right")) {
+            right = true;
+        }
+        移动.myResume();
+        return new TaskResult(true);
+    }
+
+    @ListenMouseKeyboard(press = false, key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    @ListenMouseKeyboard(press = false, key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    @ListenMouseKeyboard(press = false, key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    @ListenMouseKeyboard(press = false, key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+    public static TaskResult up2(InputInfo inputInfo) {
+        if (inputInfo.value == keyCodeMap.get("up")) {
+            up = false;
+        } else if (inputInfo.value == keyCodeMap.get("down")) {
+            down = false;
+        } else if (inputInfo.value == keyCodeMap.get("left")) {
+            left = false;
+        } else if (inputInfo.value == keyCodeMap.get("right")) {
+            right = false;
+        }
+        return new TaskResult(true);
     }
 
 
@@ -622,15 +711,36 @@ public class Functions extends IFunctions {
         CommonUtil.customConditionSet.remove(String.valueOf("tab"));
     }
 
-
-    @ListenMouseKeyboard(key = "ctrl右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    public static void ctrl右() {
-        CommonUtil.customConditionSet.add(String.valueOf("ctrl右"));
+    static {
+        CommonUtil.customConditionSet.add("!ctrl");
     }
 
-    @ListenMouseKeyboard(key = "ctrl右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void ctrl左() {
+        CommonUtil.customConditionSet.add("ctrl左");
+        CommonUtil.customConditionSet.add("ctrl");
+        CommonUtil.customConditionSet.remove("!ctrl");
+    }
+
+    @ListenMouseKeyboard(key = "ctrl左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void ctrl左2() {
+        CommonUtil.customConditionSet.remove("ctrl左");
+        CommonUtil.customConditionSet.remove("ctrl");
+        CommonUtil.customConditionSet.add("!ctrl");
+    }
+
+    @ListenMouseKeyboard(intercept = true,key = "ctrl右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void ctrl右() {
+        CommonUtil.customConditionSet.add("ctrl右");
+        CommonUtil.customConditionSet.add("ctrl");
+        CommonUtil.customConditionSet.remove("!ctrl");
+    }
+
+    @ListenMouseKeyboard(intercept = true,key = "ctrl右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void ctrl右2() {
-        CommonUtil.customConditionSet.remove(String.valueOf("ctrl右"));
+        CommonUtil.customConditionSet.remove("ctrl右");
+        CommonUtil.customConditionSet.remove("ctrl");
+        CommonUtil.customConditionSet.add("!ctrl");
     }
 
 //    public static boolean win期间做了什么 = false;
