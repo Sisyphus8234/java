@@ -456,9 +456,9 @@ public class Functions extends IFunctions {
         public void run() {
             while (true) {
 
-                Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                myMouseMove(1, screenHeight - 1);
-                pause(100L);
+//                Point tempPoint = MouseInfo.getPointerInfo().getLocation();
+//                myMouseMove(1, screenHeight - 1);
+//                pause(100L);
 
                 if (alt_tab_右键次数 > 0) {
                     robot.keyPress(KeyEvent.VK_ALT);
@@ -478,7 +478,7 @@ public class Functions extends IFunctions {
 
 
                 for (int i = 0; i < alt_tab_右键次数; i++) {
-                    robot.keyPress(VK_CONTROL);
+
                     robot.keyPress(KeyEvent.VK_RIGHT);
                     robot.keyRelease(KeyEvent.VK_RIGHT);
                     pause(50L);
@@ -488,7 +488,7 @@ public class Functions extends IFunctions {
                 robot.keyRelease(KeyEvent.VK_ALT);
                 alt_tab_右键次数++;
 
-                robot.mouseMove(tempPoint.x, tempPoint.y);
+//                robot.mouseMove(tempPoint.x, tempPoint.y);
 
                 t2.mySuspend();
             }
