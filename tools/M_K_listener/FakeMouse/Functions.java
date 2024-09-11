@@ -28,7 +28,7 @@ public class Functions extends IFunctions {
 
 
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
     }
 
@@ -65,13 +65,14 @@ public class Functions extends IFunctions {
     }
 
 
+//    public static ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
+    public static boolean bRec=true;
     @Recorder
     public static TaskResult rec(InputInfo inputInfo) {
 
-
         ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
 
-        if (inputInfo.userInput == true && !tempList.contains(inputInfo.value)) {
+        if (inputInfo.userInput == true && !tempList.contains(inputInfo.value)&&bRec==true) {
             alt_tab_右键次数 = 0;
         }
         return null;
@@ -369,10 +370,12 @@ public class Functions extends IFunctions {
     };
 
     @ListenMouseKeyboard(key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(userInput = false,key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 大写锁() {
     }
 
     @ListenMouseKeyboard(key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(userInput = false,key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "侧键按下", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "侧键按下1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 大写锁1() {
@@ -430,6 +433,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(userInput = false,key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     @ListenMouseKeyboard(key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
         波浪键按住 = true;
@@ -437,6 +441,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "`", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(userInput = false,key = "`", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "菜单键", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键1() {
         波浪键按住 = false;
@@ -457,8 +462,20 @@ public class Functions extends IFunctions {
             while (true) {
 
 //                Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-//                myMouseMove(1, screenHeight - 1);
-//                pause(100L);
+//                myMouseMove(screenWidth, screenHeight);
+//                bRec=false;
+//                pause(50L);
+//                robot.keyPress(VK_WINDOWS);
+//                pause(50L);
+//                robot.keyPress(VK_D);
+//                pause(50L);
+//                robot.keyRelease(VK_D);
+//                pause(50L);
+//                robot.keyRelease(VK_WINDOWS);
+//                pause(50L);
+//
+//                bRec=true;
+//                pause(50L);
 
                 if (alt_tab_右键次数 > 0) {
                     robot.keyPress(KeyEvent.VK_ALT);
@@ -731,14 +748,14 @@ public class Functions extends IFunctions {
         CommonUtil.customConditionSet.add("!ctrl");
     }
 
-    @ListenMouseKeyboard(intercept = true,key = "ctrl右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "ctrl右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void ctrl右() {
         CommonUtil.customConditionSet.add("ctrl右");
         CommonUtil.customConditionSet.add("ctrl");
         CommonUtil.customConditionSet.remove("!ctrl");
     }
 
-    @ListenMouseKeyboard(intercept = true,key = "ctrl右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "ctrl右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void ctrl右2() {
         CommonUtil.customConditionSet.remove("ctrl右");
         CommonUtil.customConditionSet.remove("ctrl");
