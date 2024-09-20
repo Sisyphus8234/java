@@ -21,7 +21,7 @@ public class Controller {
     public static List<MyThread> threadList = new ArrayList<>();
     public static Map<InputInfo, List<TaskInfo>> taskMmap = new HashMap<>();
     public static Map<Integer, Integer> switchMmap = new HashMap<>();
-    public static TaskInfo recorder = null;
+    public static List<TaskInfo> recorder = new ArrayList<>();
 
     @Deprecated
     public static Map<String, TaskInfo> mapJintellitype = new HashMap<>();

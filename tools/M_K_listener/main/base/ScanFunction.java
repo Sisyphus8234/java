@@ -26,18 +26,30 @@ public class ScanFunction {
         taskInfo.immediately = listenMouseKeyboard.immediately();
         taskInfo.intercept = listenMouseKeyboard.intercept();
         InputInfo inputInfo = new InputInfo();
-        if (!keyCodeMap.containsKey(listenMouseKeyboard.key())) {
-            throw new RuntimeException(listenMouseKeyboard.key() + " was not found in keyCodeMap");
+
+        //判断是否是recorder
+        if(listenMouseKeyboard.key().isEmpty()){
+            inputInfo.value = -1;
+        }else {
+            if (!keyCodeMap.containsKey(listenMouseKeyboard.key())) {
+                throw new RuntimeException(listenMouseKeyboard.key() + " was not found in keyCodeMap");
+            }
+            inputInfo.value = keyCodeMap.get(listenMouseKeyboard.key());
         }
-        inputInfo.value = keyCodeMap.get(listenMouseKeyboard.key());
         inputInfo.press = listenMouseKeyboard.press();
         inputInfo.userInput = listenMouseKeyboard.userInput();
         inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
         inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
         inputInfo.extend = listenMouseKeyboard.extend();
 
-
         taskInfo.inputInfo = inputInfo;
+
+
+        if(inputInfo.value==-1){
+            recorder.add(taskInfo);
+            return;
+        }
+
 
 
         if (!listenMouseKeyboard.otherCondition().isEmpty()) {
@@ -80,17 +92,16 @@ public class ScanFunction {
         }
     }
 
-    private static void handleRecorder(Method method, Recorder recorder) {
-        System.out.println("Recorder recorded: " + method.getName());
-        TaskInfo taskInfo = new TaskInfo();
-        taskInfo.method = method;
-        InputInfo inputInfo = new InputInfo();
-//        inputInfo.press = recorder.press();
-//        inputInfo.userInput = recorder.userInput();
-        inputInfo.timeInterval = recorder.timeInterval();
-        taskInfo.inputInfo = inputInfo;
-        Controller.recorder = taskInfo;
-    }
+//    private static void handleRecorder(Method method, Recorder recorder) {
+//        System.out.println("Recorder recorded: " + method.getName());
+//        TaskInfo taskInfo = new TaskInfo();
+//        taskInfo.method = method;
+//        InputInfo inputInfo = new InputInfo();
+//
+//        inputInfo.timeInterval = recorder.timeInterval();
+//        taskInfo.inputInfo = inputInfo;
+//        Controller.recorder = taskInfo;
+//    }
 
 
     public static void run(Class myFunctionClass, Class baseFunctionClass) {
@@ -123,10 +134,11 @@ public class ScanFunction {
             if (method.isAnnotationPresent(ListenMouseKeyboard.class)) {
                 ListenMouseKeyboard listenMouseKeyboard = method.getAnnotation(ListenMouseKeyboard.class);
                 handleMethod(method, listenMouseKeyboard);
-            } else if (method.isAnnotationPresent(Recorder.class)) {
-                Recorder recorder = method.getAnnotation(Recorder.class);
-                handleRecorder(method, recorder);
             }
+//            else if (method.isAnnotationPresent(Recorder.class)) {
+//                Recorder recorder = method.getAnnotation(Recorder.class);
+//                handleRecorder(method, recorder);
+//            }
 
             //处理重复注解
             if (method.isAnnotationPresent(ListenMouseKeyboards.class)) {

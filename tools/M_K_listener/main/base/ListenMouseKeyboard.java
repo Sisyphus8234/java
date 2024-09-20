@@ -9,9 +9,9 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ListenMouseKeyboard {
 
-    int keyboardOrMouse();
+    int keyboardOrMouse() default CommonUtil.KeyboardOrMouse.Keyboard;
 
-    String key();
+    String key() default "";
 
     boolean immediately() default true;
 

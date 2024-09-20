@@ -37,17 +37,14 @@ public class HookUtil {
     public static boolean task(InputInfo inputInfoActualTemp){
         boolean result=false;
 
-
-        if (recorder != null) {
-            recorder.inputInfoActualTemp = inputInfoActualTemp;
-            Controller.do1.doTask(recorder);
-            if (recorder.taskResult != null && recorder.taskResult.intercept == true) {
-                return true;
+        if (!recorder.isEmpty()) {
+            for (TaskInfo rec : recorder) {
+                rec.inputInfoActualTemp = inputInfoActualTemp;
+                if(Controller.do1.doTask(rec)==true){
+                    result=true;
+                }
             }
         }
-
-        inputInfoActualTemp.customCondition=CommonUtil.customConditionSet;
-
 
 
         if (Controller.taskMmap.containsKey(inputInfoActualTemp)) {
