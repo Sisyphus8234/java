@@ -67,11 +67,13 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "f", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void e() {
         CommonUtil.customConditionSet.add(shift松开生效);
     }
 
     @ListenMouseKeyboard(key = "e", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void e1() {
         CommonUtil.customConditionSet.remove(shift松开生效);
     }
