@@ -162,11 +162,7 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(key = "l", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void test() {
-        robot.keyPress(VK_1);
-        robot.keyRelease(VK_1);
-    }
+
 
 
 }
