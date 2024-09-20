@@ -52,7 +52,11 @@ public class ScanFunction {
         if (!listenMouseKeyboard.customCondition().isEmpty()) {
             String[] customCondition = listenMouseKeyboard.customCondition().split(",");
             for (String item : customCondition) {
-                inputInfo.customCondition.add(item);
+                if(item.startsWith("!")&&!item.equals("!")){
+                    inputInfo.customConditionReverse.add(item.substring(1));
+                }else {
+                    inputInfo.customCondition.add(item);
+                }
             }
         }
 
@@ -60,18 +64,17 @@ public class ScanFunction {
             List tempList = new ArrayList<TaskInfo>();
             tempList.add(taskInfo);
             taskMmap.put(inputInfo, tempList);
-
         } else {
-            if (inputInfo.extend == false) {
-                Iterator<TaskInfo> tempIterator = taskMmap.get(inputInfo).iterator();
-                while (tempIterator.hasNext()) {
-                    TaskInfo tempTaskInfo = tempIterator.next();
-                    if (tempTaskInfo.inputInfo.extend == false) {
+            Iterator<TaskInfo> tempIterator = taskMmap.get(inputInfo).iterator();
+            while (tempIterator.hasNext()) {
+                TaskInfo tempTaskInfo = tempIterator.next();
+                if (tempTaskInfo.inputInfo.extend == false && inputInfo.extend == false) {
+                    if (tempTaskInfo.inputInfo.customCondition.isEmpty() && inputInfo.customCondition.isEmpty()) {
+                        tempIterator.remove();
+                    } else if (tempTaskInfo.inputInfo.cusConEquals(inputInfo)) {
                         tempIterator.remove();
                     }
                 }
-            } else {
-                System.out.println("warning: " + method.getName() + " input has more than one task!");
             }
             taskMmap.get(inputInfo).add(taskInfo);
         }

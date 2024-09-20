@@ -28,7 +28,7 @@ public class Functions extends IFunctions {
 
 
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
     }
 
@@ -215,6 +215,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
     @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键(InputInfo inputInfo) {
+
         t左键b = true;
         t左键.myResume();
         return new TaskResult(true);
