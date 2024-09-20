@@ -201,31 +201,11 @@ public class Functions extends IFunctions {
 //        }
 //    }
 
-
-    public static void f() {
-        try {
-            // 获取屏幕尺寸
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            Rectangle screenRect = new Rectangle(screenSize);
-
-            // 创建一个Robot对象
-            Robot robot = new Robot(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice());
-
-            // 截取屏幕
-            BufferedImage screenCapture = robot.createScreenCapture(screenRect);
-
-
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
-            String timestamp = now.format(formatter);
-
-            // 保存截图到文件
-            File file = new File(timestamp + "_screenshot.png");
-            ImageIO.write(screenCapture, "png", file);
-            System.out.println("截屏成功，保存为: " + file.getAbsolutePath());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    @ListenMouseKeyboard(key = "`",press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void      test() {
+        robot.keyPress(VK_1);
+        robot.keyRelease(VK_1);
     }
+
 
 }
