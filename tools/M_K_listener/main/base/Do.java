@@ -37,8 +37,9 @@ public class Do {
 
     public boolean doTask(TaskInfo taskInfo) {
         boolean result=false;
-//        System.out.println(taskInfo.inputInfo.customCondition);
-        if(taskInfo.inputInfo.customCondition.isEmpty()||CommonUtil.customConditionSet.containsAll(taskInfo.inputInfo.customCondition)) {
+        if(CommonUtil.customConditionSet.containsAll(taskInfo.inputInfo.customConditionReverse)){
+
+        }else if(taskInfo.inputInfo.customCondition.isEmpty()||CommonUtil.customConditionSet.containsAll(taskInfo.inputInfo.customCondition)) {
             if (Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis() > taskInfo.inputInfo.timeInterval) {
                 taskInfo.lastTime = LocalDateTime.now();
                 if (taskInfo.immediately == true) {

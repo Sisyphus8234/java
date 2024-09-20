@@ -16,6 +16,11 @@ public class InputInfo {
     public boolean extend;
 
     public Set<String> customCondition = new HashSet<>();
+    public Set<String> customConditionReverse = new HashSet<>();
+
+    public boolean cusConEquals(InputInfo inputInfo){
+        return customCondition.equals(inputInfo.customCondition)&&customConditionReverse.equals(inputInfo.customConditionReverse);
+    }
 
 
     public void resetProperty() {
@@ -54,18 +59,7 @@ public class InputInfo {
             }
         }
 
-        boolean step2 = true;
-//        if(CommonUtil.prepareState==true){
-//            if(!objNotParam.customCondition.equals(customCondition)){
-//                step2=false;
-//            }
-//        }else {
-//            if (!objNotParam.customCondition.isEmpty()) {
-//                step2 = customCondition.containsAll(objNotParam.customCondition);
-//            }
-//        }
-
-        return step0 && step1 && step2;
+        return step0 && step1;
     }
 
     @Override
