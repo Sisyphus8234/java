@@ -38,10 +38,8 @@ public class Do {
     public boolean doTask(TaskInfo taskInfo) {
         boolean result=false;
         if(!taskInfo.inputInfo.customConditionReverse.isEmpty()) {
-            for (String item : taskInfo.inputInfo.customConditionReverse) {
-                if (CommonUtil.customConditionSet.contains(item)) {
-                    return result;
-                }
+            if(taskInfo.inputInfo.customConditionReverse.stream().anyMatch(CommonUtil.customConditionSet::contains)){
+                return result;
             }
         }
         if(taskInfo.inputInfo.customCondition.isEmpty()||CommonUtil.customConditionSet.containsAll(taskInfo.inputInfo.customCondition)) {
