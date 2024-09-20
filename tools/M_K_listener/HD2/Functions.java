@@ -3,9 +3,7 @@ package custom;
 import base.*;
 import base.enty.TaskResult;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -97,72 +95,106 @@ public class Functions extends IFunctions {
 //        i1 = 0;
 //    }
 
-
+    public static List<Integer> 救人 = new ArrayList<>(Arrays.asList(VK_UP, VK_DOWN, VK_RIGHT,VK_LEFT,VK_UP));
+    public static List<Integer> 补给 = new ArrayList<>(Arrays.asList(VK_DOWN, VK_DOWN, VK_UP,VK_RIGHT));
     public static List<Integer> kg500 = new ArrayList<>(Arrays.asList(VK_UP, VK_RIGHT, VK_DOWN, VK_DOWN, VK_DOWN));
     public static List<Integer> 轨道炮攻击 = new ArrayList<>(Arrays.asList(VK_RIGHT, VK_UP, VK_DOWN, VK_DOWN, VK_RIGHT));
     public static List<Integer> 轨道加特林 = new ArrayList<>(Arrays.asList(VK_RIGHT, VK_DOWN, VK_LEFT, VK_UP, VK_UP));
     public static List<Integer> 飞鹰机枪 = new ArrayList<>(Arrays.asList(VK_UP, VK_RIGHT, VK_RIGHT));
-    public static List<Integer> l1 = kg500;
-    public static int i1 = 0;
+    public static List<Integer> 火箭哨戒炮 = new ArrayList<>(Arrays.asList(VK_DOWN,VK_UP, VK_RIGHT, VK_RIGHT,VK_LEFT));
+    public static List<Integer> 自动哨戒炮 = new ArrayList<>(Arrays.asList(VK_DOWN,VK_UP, VK_RIGHT,VK_UP,VK_LEFT,VK_UP));
 
-//    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 手动shift)
-//    @ListenMouseKeyboard(key = "2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void f1(InputInfo inputInfo) {
-//        if(getKeyStatus(VK_SPACE)==true) {
-//            手动 = false;
-//            switch (inputInfo.value) {
-//                case VK_1:
-//                    l1 = 轨道炮攻击;
-//                    break;
-//                case VK_2:
-//                    l1 = 轨道加特林;
-//                    break;
-//                case VK_3:
-//                    l1 = 飞鹰机枪;
-//                    break;
-//            }
-//        }
-//    }
-//
-//
-//    public static String 手动="手动";
-//    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static TaskResult fsxzy(InputInfo inputInfo) {
-//        if (手动 == false) {
-//            if (inputInfo.value != l1.get(i1)) {
-//                return (new TaskResult(true));
-//            } else {
-//                if (i1 <= l1.size() - 2) {
-//                    i1++;
-//                }
-//
-//                return (new TaskResult(false));
-//            }
-//        } else {
-//            return new TaskResult(false);
-//        }
-//
-//    }
 
 
     @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void space() {
         CommonUtil.customConditionSet.add("space");
+    }
+
+    @ListenMouseKeyboard(key = "`", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    public static void a() {
+        CommonUtil.customConditionSet.add("`");
+    }
+
+
+    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "`",timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "`",timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "`",timeInterval = 1000L)
+    @ListenMouseKeyboard(key = "4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "`",timeInterval = 1000L)
+    public static void a1(InputInfo inputInfo) {
+        switch (inputInfo.value){
+            case 49:
+                doList=自动哨戒炮;
+                break;
+            case 50:
+                doList=火箭哨戒炮;
+                break;
+            case 51:
+
+                break;
+            case 52:
+
+                break;
+        }
+
+        t1.myResume();
+        CommonUtil.customConditionSet.remove("`");
 
     }
 
-    @ListenMouseKeyboard(key = "space", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space1() {
-        CommonUtil.customConditionSet.remove("space");
+//    @ListenMouseKeyboard(key = "1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "space",timeInterval = 1000L)
+//    @ListenMouseKeyboard(key = "2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "space",timeInterval = 1000L)
+//    @ListenMouseKeyboard(key = "3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "space",timeInterval = 1000L)
+//    @ListenMouseKeyboard(key = "4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "space",timeInterval = 1000L)
+//    public static void a2(InputInfo inputInfo) {
+//        int temp=0;
+//        switch (inputInfo.value){
+//            case 49:
+//
+//                break;
+//            case 50:
+//                temp=1;
+//                break;
+//            case 51:
+//                temp=2;
+//                break;
+//            case 52:
+//                temp=3;
+//                break;
+//        }
+//
+//    }
+
+    public static List<Integer> doList = new ArrayList<>();
+    @ListenMouseKeyboard(key = "f1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void f1(InputInfo inputInfo) {
+        if(inputInfo.value==CommonUtil.keyCodeMap.get("f1")){
+            doList=救人;
+        }else if(inputInfo.value==CommonUtil.keyCodeMap.get("f2")){
+            doList=补给;
+        }
+        t1.myResume();
     }
 
-
-
-
+    public static MyThread t1 = new MyThread(MyThread.State.off) {
+        @Override
+        public void run() {
+            while (true) {
+                robot.keyPress(VK_SPACE);
+                pause(50L);
+                doList.stream().forEach(s -> {
+                    robot.keyPress(s);
+                    pause(50L);
+                    robot.keyRelease(s);
+                    pause(150L);
+                });
+                robot.keyRelease(VK_SPACE);
+                this.mySuspend();
+            }
+        }
+    };
 
 }
