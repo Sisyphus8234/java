@@ -35,18 +35,30 @@ public class Do {
     }
 
 
-    public void doTask(TaskInfo taskInfo) {
+    public boolean doTask(TaskInfo taskInfo) {
+        boolean result=false;
+//        System.out.println(taskInfo.inputInfo.customCondition);
+        if(taskInfo.inputInfo.customCondition.isEmpty()||CommonUtil.customConditionSet.containsAll(taskInfo.inputInfo.customCondition)) {
+            if (Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis() > taskInfo.inputInfo.timeInterval) {
+                taskInfo.lastTime = LocalDateTime.now();
+                if (taskInfo.immediately == true) {
+                    //立即执行功能
+                    this.invoke(taskInfo);
+                } else if (taskInfo.immediately == false) {
+                    //放入队列执行
+                    this.taskInfoList.add(taskInfo);
+                }
+            }
 
-        if (Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis() > taskInfo.inputInfo.timeInterval) {
-            taskInfo.lastTime = LocalDateTime.now();
-            if (taskInfo.immediately == true) {
-                //立即执行功能
-                this.invoke(taskInfo);
-            } else if (taskInfo.immediately == false) {
-                //放入队列执行
-                this.taskInfoList.add(taskInfo);
+            if (taskInfo.intercept == true) {
+                result= true;
+            }
+            if(taskInfo.taskResult!=null&&taskInfo.taskResult.intercept==true){
+                result= true;
             }
         }
+
+        return result;
     }
 
     private void invoke(TaskInfo taskInfo) {

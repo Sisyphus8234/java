@@ -7,6 +7,7 @@ import java.util.List;
 import static base.Controller.recorder;
 
 public class HookUtil {
+
     public static boolean isSwitch(int keyCode){
         if (Controller.switchMmap.containsKey(keyCode)) {
             if (Controller.switchMmap.get(keyCode).equals(ListenBar.OnOrOff.off)) {
@@ -34,6 +35,8 @@ public class HookUtil {
     }
 
     public static boolean task(InputInfo inputInfoActualTemp){
+        boolean result=false;
+
 
         if (recorder != null) {
             recorder.inputInfoActualTemp = inputInfoActualTemp;
@@ -45,23 +48,19 @@ public class HookUtil {
 
         inputInfoActualTemp.customCondition=CommonUtil.customConditionSet;
 
+
+
         if (Controller.taskMmap.containsKey(inputInfoActualTemp)) {
             List<TaskInfo> taskInfoList = Controller.taskMmap.get(inputInfoActualTemp);
             for (TaskInfo taskInfo : taskInfoList) {
                 taskInfo.inputInfoActualTemp = inputInfoActualTemp;
-                Controller.do1.doTask(taskInfo);
-            }
-            for (TaskInfo taskInfo : taskInfoList) {
-                if (taskInfo.intercept == true) {
-                    return true;
-                }
-                if(taskInfo.taskResult!=null&&taskInfo.taskResult.intercept==true){
-                    return true;
+                if(Controller.do1.doTask(taskInfo)==true){
+                    result=true;
                 }
             }
         }
 
-        return false;
+        return result;
 
     }
 

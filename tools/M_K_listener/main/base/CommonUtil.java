@@ -52,5 +52,5 @@ public class CommonUtil {
     }
 
     public static Set<String> customConditionSet=new HashSet<>();
-//    public static boolean prepareState=true;
+    public static boolean prepareState=true;
 }

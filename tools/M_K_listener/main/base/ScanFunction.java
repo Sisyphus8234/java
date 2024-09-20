@@ -60,18 +60,17 @@ public class ScanFunction {
             List tempList = new ArrayList<TaskInfo>();
             tempList.add(taskInfo);
             taskMmap.put(inputInfo, tempList);
-
         } else {
-            if (inputInfo.extend == false) {
-                Iterator<TaskInfo> tempIterator = taskMmap.get(inputInfo).iterator();
-                while (tempIterator.hasNext()) {
-                    TaskInfo tempTaskInfo = tempIterator.next();
-                    if (tempTaskInfo.inputInfo.extend == false) {
+            Iterator<TaskInfo> tempIterator = taskMmap.get(inputInfo).iterator();
+            while (tempIterator.hasNext()) {
+                TaskInfo tempTaskInfo = tempIterator.next();
+                if (tempTaskInfo.inputInfo.extend == false && inputInfo.extend == false) {
+                    if (tempTaskInfo.inputInfo.customCondition.isEmpty() && inputInfo.customCondition.isEmpty()) {
+                        tempIterator.remove();
+                    } else if (tempTaskInfo.inputInfo.customCondition.equals(inputInfo.customCondition)) {
                         tempIterator.remove();
                     }
                 }
-            } else {
-                System.out.println("warning: " + method.getName() + " input has more than one task!");
             }
             taskMmap.get(inputInfo).add(taskInfo);
         }
