@@ -23,7 +23,15 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void wasd(InputInfo inputInfo) {
         CommonUtil.customConditionSet.add(String.valueOf(inputInfo.value));
+
+        CommonUtil.customConditionSet.remove(开始循环shift);
+
     }
+
+//    @ListenMouseKeyboard(key = "w", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L,customCondition = "开始循环shift")
+//    public static void w999(InputInfo inputInfo) {
+//        CommonUtil.customConditionSet.add(String.valueOf(inputInfo.value));
+//    }
 
     @ListenMouseKeyboard(key = "w", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "a", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -33,9 +41,12 @@ public class Functions extends IFunctions {
         CommonUtil.customConditionSet.remove(String.valueOf(inputInfo.value));
     }
 
+    public static final String 开始循环shift="ksafkj";
     @ListenMouseKeyboard(key = "w", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 阻止w松开)
     public static TaskResult w1(InputInfo inputInfo) {
         CommonUtil.customConditionSet.remove(阻止w松开);
+        CommonUtil.customConditionSet.add(开始循环shift);
+        循环shiftB=true;
         return new TaskResult(true);
     }
 
@@ -44,23 +55,34 @@ public class Functions extends IFunctions {
 
     @ListenMouseKeyboard(key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult shift() {
-
         return new TaskResult(false);
     }
 
-    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+开始循环shift)
     public static TaskResult shift1() {
 
         return new TaskResult(false);
     }
 
 
-    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "87," + "!" + shift松开生效)
-    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "65," + "!" + shift松开生效)
-    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "83," + "!" + shift松开生效)
-    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "68," + "!" + shift松开生效)
+    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "87," + "!" + shift松开生效+",!"+开始循环shift)
+    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "65," + "!" + shift松开生效+",!"+开始循环shift)
+    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "83," + "!" + shift松开生效+",!"+开始循环shift)
+    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "68," + "!" + shift松开生效+",!"+开始循环shift)
     public static TaskResult shift2() {
         return new TaskResult(true);
+    }
+
+    public static boolean 循环shiftB=true;
+
+    @ListenMouseKeyboard(press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition =开始循环shift )
+    public static TaskResult shift3() {
+        循环shiftB=!循环shiftB;
+        if(循环shiftB==false) {
+            return new TaskResult(false);
+        }else {
+            return new TaskResult(true);
+        }
     }
 
 
@@ -104,6 +126,11 @@ public class Functions extends IFunctions {
     public static List<Integer> 火箭哨戒炮 = new ArrayList<>(Arrays.asList(VK_DOWN,VK_UP, VK_RIGHT, VK_RIGHT,VK_LEFT));
     public static List<Integer> 自动哨戒炮 = new ArrayList<>(Arrays.asList(VK_DOWN,VK_UP, VK_RIGHT,VK_UP,VK_LEFT,VK_UP));
 
+    public static List<Integer> 迫击炮 = new ArrayList<>(Arrays.asList(VK_DOWN,VK_UP, VK_RIGHT,VK_RIGHT,VK_DOWN));
+
+    public static List<Integer> 加特林哨戒炮 = new ArrayList<>(Arrays.asList(VK_DOWN,VK_UP, VK_RIGHT,VK_LEFT));
+    public static List<Integer> 突击兵 = new ArrayList<>(Arrays.asList(VK_DOWN,VK_LEFT,VK_UP, VK_DOWN,VK_RIGHT));
+
 
 
     @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
@@ -127,7 +154,7 @@ public class Functions extends IFunctions {
                 doList=自动哨戒炮;
                 break;
             case 50:
-                doList=火箭哨戒炮;
+                doList=加特林哨戒炮;
                 break;
             case 51:
 
@@ -175,6 +202,8 @@ public class Functions extends IFunctions {
             doList=救人;
         }else if(inputInfo.value==CommonUtil.keyCodeMap.get("f2")){
             doList=补给;
+        }else if(inputInfo.value==CommonUtil.keyCodeMap.get("f3")){
+            doList=突击兵;
         }
         t1.myResume();
     }
