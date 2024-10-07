@@ -51,7 +51,7 @@ if exist classfiles (
 )
 mkdir classfiles
 
-%MyJavaPath%\javac -d .\classfiles @java.txt -encoding UTF-8 -cp ".;.\lib\*"
+%MyJavaPath%javac -d .\classfiles @java.txt -encoding UTF-8 -cp ".;.\lib\*"
 
 
 
@@ -92,10 +92,10 @@ endlocal
 IF "%MyJavaPath%"=="" (
     jar cfm ..\run.jar ..\META-INF\MANIFEST.MF @class.txt
 ) ELSE (
-    ..\%MyJavaPath%\jar cfm ..\run.jar ..\META-INF\MANIFEST.MF @class.txt
+    ..\%MyJavaPath%jar cfm ..\run.jar ..\META-INF\MANIFEST.MF @class.txt
 )
 
 :: cd ..
-:: %MyJavaPath%\java -jar run.jar
+:: %MyJavaPath%java -jar run.jar
 
 :: pause
