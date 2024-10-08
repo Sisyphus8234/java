@@ -4,6 +4,7 @@ import base.*;
 import base.CommonUtil.Active;
 import base.enty.TaskResult;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.sun.jna.platform.win32.Sspi;
 
 
 import java.awt.*;
@@ -67,10 +68,11 @@ public class Functions extends IFunctions {
 
 //    public static ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
     public static boolean bRec=true;
-    @Recorder
+    @ListenMouseKeyboard()
     public static TaskResult rec(InputInfo inputInfo) {
 
         ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
+
 
         if (inputInfo.userInput == true && !tempList.contains(inputInfo.value)&&bRec==true) {
             alt_tab_右键次数 = 0;
