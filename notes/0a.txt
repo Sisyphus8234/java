@@ -1,0 +1,7 @@
+----------------
+Date转LocalDate
+reiApplyTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+----------------
+深拷贝
+BudgetInfo budgetInfo0 = SerializationUtils.clone(budgetInfoTemple);
+----------------
