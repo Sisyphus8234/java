@@ -5,3 +5,9 @@ reiApplyTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
 深拷贝
 BudgetInfo budgetInfo0 = SerializationUtils.clone(budgetInfoTemple);
 ----------------
+@GlobalTransactional
+a(){
+}
+a报错,a不确定
+貌似如果a是feign被调用,使用@GlobalTransactional就不确定
+----------------

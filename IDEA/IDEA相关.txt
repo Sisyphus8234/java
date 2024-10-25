@@ -15,6 +15,7 @@ java17报错,虚拟机选项
 
 
 插件
+grep console
 Free MyBatis Tool
 JRebel and XRebel
 POJO to JSON
