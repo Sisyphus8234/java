@@ -2,6 +2,7 @@ package base.jnativehook;
 
 
 import base.CommonUtil;
+import base.Controller;
 import base.InputInfo;
 import base.ListenMouseKeyboard;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
@@ -12,9 +13,9 @@ import static base.jnativehook.JnativehookUtil.tempF;
 public class JnativehookMouseListener implements NativeMouseInputListener {
     private InputInfo inputInfoActualTemp = new InputInfo();
     public void nativeMouseClicked(NativeMouseEvent e) {
-
-        System.out.println(e.getButton());
-
+        if(Controller.printKey==true) {
+            System.out.println(e.getButton());
+        }
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getButton();
         inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse;

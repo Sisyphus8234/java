@@ -192,7 +192,7 @@ public class Functions extends IFunctions {
         }
     };
 
-    public static int 滚轮方向 = 1;
+    public static int 滚轮方向 = 100;
     public static MyThread t3 = new MyThread() {
         @Override
         public void run() {
@@ -647,7 +647,7 @@ public class Functions extends IFunctions {
             Point point;
 
             while (true) {
-                b移动 = up || down || left || right;
+//                b移动 = up || down || left || right;
                 if (b移动 == true) {
                     point = MouseInfo.getPointerInfo().getLocation();
                     int 移动距离_倍率= (int) (移动距离*倍率);
@@ -664,8 +664,11 @@ public class Functions extends IFunctions {
                         point.x = point.x + 移动距离_倍率;
                     }
                     robot.mouseMove(point.x, point.y);
+                    b移动=false;
+                    up=right=left=down=false;
                     pause(50L);
                 } else {
+
                     this.mySuspend();
                 }
             }
@@ -678,41 +681,73 @@ public class Functions extends IFunctions {
     public static boolean left;
     public static boolean right;
 
-    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    public static TaskResult up(InputInfo inputInfo) {
+    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
+    @ListenMouseKeyboard(userInput = false,key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
+    public static TaskResult 滚轮(InputInfo inputInfo) {
+        int temp = -1;
 
-        if (inputInfo.value == keyCodeMap.get("up")) {
+        if (IFunctions.active == Active.jna) {
+            if (inputInfo.otherCondition.get("mouseData").equals("7864320")) {
+                temp = 0;
+            } else {
+                temp = 1;
+            }
+        }
+        if (IFunctions.active == Active.jnativehook) {
+            if (inputInfo.otherCondition.get("wheelRotation").equals("-1")) {
+                temp = 0;
+            } else {
+                temp = 1;
+            }
+        }
+
+        if (temp == 0) {
+            b移动 = true;
             up = true;
-        } else if (inputInfo.value == keyCodeMap.get("down")) {
-            down = true;
-        } else if (inputInfo.value == keyCodeMap.get("left")) {
             left = true;
-        } else if (inputInfo.value == keyCodeMap.get("right")) {
+        } else if (temp == 1) {
+            b移动 = true;
             right = true;
+            down = true;
         }
         移动.myResume();
         return new TaskResult(false);
     }
 
-    @ListenMouseKeyboard(press = false, key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    @ListenMouseKeyboard(press = false, key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    @ListenMouseKeyboard(press = false, key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    @ListenMouseKeyboard(press = false, key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
-    public static TaskResult up2(InputInfo inputInfo) {
-        if (inputInfo.value == keyCodeMap.get("up")) {
-            up = false;
-        } else if (inputInfo.value == keyCodeMap.get("down")) {
-            down = false;
-        } else if (inputInfo.value == keyCodeMap.get("left")) {
-            left = false;
-        } else if (inputInfo.value == keyCodeMap.get("right")) {
-            right = false;
-        }
-        return new TaskResult(true);
-    }
+//    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    public static TaskResult up(InputInfo inputInfo) {
+//        if (inputInfo.value == keyCodeMap.get("up")) {
+//            up = true;
+//        } else if (inputInfo.value == keyCodeMap.get("down")) {
+//            down = true;
+//        } else if (inputInfo.value == keyCodeMap.get("left")) {
+//            left = true;
+//        } else if (inputInfo.value == keyCodeMap.get("right")) {
+//            right = true;
+//        }
+//        移动.myResume();
+//        return new TaskResult(false);
+//    }
+//
+//    @ListenMouseKeyboard(press = false, key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    @ListenMouseKeyboard(press = false, key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    @ListenMouseKeyboard(press = false, key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    @ListenMouseKeyboard(press = false, key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!ctrl")
+//    public static TaskResult up2(InputInfo inputInfo) {
+//        if (inputInfo.value == keyCodeMap.get("up")) {
+//            up = false;
+//        } else if (inputInfo.value == keyCodeMap.get("down")) {
+//            down = false;
+//        } else if (inputInfo.value == keyCodeMap.get("left")) {
+//            left = false;
+//        } else if (inputInfo.value == keyCodeMap.get("right")) {
+//            right = false;
+//        }
+//        return new TaskResult(true);
+//    }
 
 
     @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)

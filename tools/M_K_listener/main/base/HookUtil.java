@@ -39,14 +39,9 @@ public class HookUtil {
 
         if (!recorder.isEmpty()) {
             for (TaskInfo rec : recorder) {
-                if(inputInfoActualTemp.userInput==rec.inputInfo.userInput
-                &&inputInfoActualTemp.keyboardOrMouse==rec.inputInfo.keyboardOrMouse
-                        &&inputInfoActualTemp.press==rec.inputInfo.press
-                ){
-                    rec.inputInfoActualTemp = inputInfoActualTemp;
-                    if(Controller.do1.doTask(rec)==true){
-                        result=true;
-                    }
+                rec.inputInfoActualTemp = inputInfoActualTemp;
+                if(Controller.do1.doTask(rec)==true){
+                    result=true;
                 }
             }
         }

@@ -1,6 +1,7 @@
 package base.jnativehook;
 
 import base.CommonUtil;
+import base.Controller;
 import base.InputInfo;
 import base.ListenMouseKeyboard;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
@@ -28,7 +29,9 @@ public class JnativehookKeyListener implements NativeKeyListener {
 //        System.out.println(e.getModifiers());
 //        System.out.println(e.getRawCode());
 //        System.out.println("==========================");
-
+        if(Controller.printKey==true) {
+            System.out.println(e.getRawCode());
+        }
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getRawCode();
         inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard;
