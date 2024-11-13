@@ -11,3 +11,6 @@ a(){
 a报错,a不确定
 貌似如果a是feign被调用,使用@GlobalTransactional就不确定
 ----------------
+数据库查出来的按id分组
+Map<Integer,List<ContractInvoiceBo>> contractInvoiceBoMap=contractInvoiceBoList.stream().collect(Collectors.groupingBy(ContractInvoiceBo::getSaleContractId));
+----------------                
