@@ -13,4 +13,6 @@ a报错,a不确定
 ----------------
 数据库查出来的按id分组
 Map<Integer,List<ContractInvoiceBo>> contractInvoiceBoMap=contractInvoiceBoList.stream().collect(Collectors.groupingBy(ContractInvoiceBo::getSaleContractId));
+或
+Map<Integer, MarketInfo> marketInfoMap = marketInfoList.stream().collect(Collectors.toMap(MarketInfo::getId,s -> s));
 ----------------                
