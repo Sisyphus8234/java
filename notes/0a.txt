@@ -11,4 +11,24 @@ Map<Integer,List<ContractInvoiceBo>> contractInvoiceBoMap=contractInvoiceBoList.
 Map<Integer, MarketInfo> marketInfoMap = marketInfoList.stream().collect(Collectors.toMap(MarketInfo::getId,s -> s));
 ----------------       
 list删除元素
-projectManageBoList.removeIf(s -> s.getMarketInfo().getInfoSource().equals(3));      
+projectManageBoList.removeIf(s -> s.getMarketInfo().getInfoSource().equals(3));
+----------------
+获取月份最后一天
+YearMonth yearMonth = YearMonth.of(year, month);
+int lastDay = yearMonth.lengthOfMonth();
+----------------
+获取分页参数
+PageDomain pageDomain = TableSupport.buildPageRequest();
+if (pageDomain.getOrderByColumn() != null) {
+    switch (pageDomain.getOrderByColumn()) {
+        case "formTime":
+            pageDomain.setOrderByColumn("application_form_time");
+            break;
+        case "documentNumber":
+            pageDomain.setOrderByColumn("application_document_number");
+            break;
+        default:
+    }
+}
+Integer pageNum = pageDomain.getPageNum();
+Integer pageSize = pageDomain.getPageSize();
