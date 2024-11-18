@@ -694,7 +694,7 @@ public class Functions extends IFunctions {
             }
         }
         if (IFunctions.active == Active.jnativehook) {
-            if (inputInfo.otherCondition.get("wheelRotation").equals("-1")) {
+            if (inputInfo.otherCondition.get("wheelRotation").equals("1")) {
                 temp = 0;
             } else {
                 temp = 1;
