@@ -1,9 +1,9 @@
 ----------------
 Date与LocalDate互转
-reiApplyTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+LocalDateTime begin=time.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+begin=begin.withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0);
 
-Date endTime = Date.from(endTime1.atZone(ZoneId.systemDefault()).toInstant());
-
+Date time = Date.from(localDate.atZone(ZoneId.systemDefault()).toInstant());
 ----------------
 深拷贝
 BudgetInfo budgetInfo0 = SerializationUtils.clone(budgetInfoTemple);
@@ -35,3 +35,6 @@ if (pageDomain.getOrderByColumn() != null) {
 }
 Integer pageNum = pageDomain.getPageNum();
 Integer pageSize = pageDomain.getPageSize();
+---------------
+List<List<Object>>排序
+invoiceList = invoiceList.stream().sorted(Comparator.comparing(o -> (LocalDate)o.get(0))).collect(Collectors.toList());
