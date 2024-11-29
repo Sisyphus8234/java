@@ -38,3 +38,5 @@ Integer pageSize = pageDomain.getPageSize();
 ---------------
 List<List<Object>>排序
 invoiceList = invoiceList.stream().sorted(Comparator.comparing(o -> (LocalDate)o.get(0))).collect(Collectors.toList());
+或
+list.sort(Comparator.comparing(Obj::getExecutionTime));
