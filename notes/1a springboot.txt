@@ -1,0 +1,11 @@
+//---------
+自定义序列化器
+public class BigDecimalScaleSerializer extends JsonSerializer<BigDecimal> {
+    @Override
+    public void serialize(BigDecimal value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+        gen.writeNumber(value.setScale(2, BigDecimal.ROUND_HALF_UP));
+    }
+}
+
+@JsonSerialize(using = BigDecimalScaleSerializer.class)
+//--------------------
