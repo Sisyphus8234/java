@@ -853,6 +853,8 @@ public class Functions extends IFunctions {
                 System.out.println(e.getMessage());
             }
 
+            pause(50L);
+
         }
     }
 
