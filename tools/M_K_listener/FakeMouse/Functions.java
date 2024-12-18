@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static base.CommonUtil.customConditionSet;
@@ -66,15 +67,16 @@ public class Functions extends IFunctions {
     }
 
 
-//    public static ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
-    public static boolean bRec=true;
+    //    public static ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
+    public static boolean bRec = true;
+
     @ListenMouseKeyboard()
     public static TaskResult rec(InputInfo inputInfo) {
 
         ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(keyCodeMap.get("`"), keyCodeMap.get("菜单键"), keyCodeMap.get("right"), keyCodeMap.get("alt左"), keyCodeMap.get("tab")));
 
 
-        if (inputInfo.userInput == true && !tempList.contains(inputInfo.value)&&bRec==true) {
+        if (inputInfo.userInput == true && !tempList.contains(inputInfo.value) && bRec == true) {
             alt_tab_右键次数 = 0;
         }
         return null;
@@ -373,14 +375,14 @@ public class Functions extends IFunctions {
     };
 
     @ListenMouseKeyboard(key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(userInput = false,key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(userInput = false, key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 大写锁() {
     }
 
     @ListenMouseKeyboard(key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(userInput = false,key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(press = false,key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(userInput = false, key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false, key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     @ListenMouseKeyboard(key = "侧键按下", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "侧键按下1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 大写锁1() {
@@ -438,7 +440,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
-    @ListenMouseKeyboard(userInput = false,key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(userInput = false, key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
 //    @ListenMouseKeyboard(key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
         波浪键按住 = true;
@@ -446,7 +448,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(key = "`", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(userInput = false,key = "`", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(userInput = false, key = "`", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(key = "菜单键", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键1() {
         波浪键按住 = false;
@@ -609,18 +611,18 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-    public static float 倍率=1;
+    public static float 倍率 = 1;
 
     @ListenMouseKeyboard(key = "a", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(press = false,key = "a", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false, key = "a", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(press = false,key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false, key = "s", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(press = false,key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(press = false, key = "d", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult a(InputInfo inputInfo) {
-        if(inputInfo.press==false) {
-            倍率=1;
-        }else {
+        if (inputInfo.press == false) {
+            倍率 = 1;
+        } else {
             if (inputInfo.value == keyCodeMap.get("a")) {
                 倍率 = 0.5F;
             } else if (inputInfo.value == keyCodeMap.get("s")) {
@@ -629,14 +631,13 @@ public class Functions extends IFunctions {
                 倍率 = 3;
             }
         }
-        if(b移动==true){
+        if (b移动 == true) {
             System.out.println(1111);
             return new TaskResult(true);
-        }else {
+        } else {
             return new TaskResult(false);
         }
     }
-
 
 
     public static boolean b移动;
@@ -650,7 +651,7 @@ public class Functions extends IFunctions {
 //                b移动 = up || down || left || right;
                 if (b移动 == true) {
                     point = MouseInfo.getPointerInfo().getLocation();
-                    int 移动距离_倍率= (int) (移动距离*倍率);
+                    int 移动距离_倍率 = (int) (移动距离 * 倍率);
                     if (up) {
                         point.y = point.y - 移动距离_倍率;
                     }
@@ -664,8 +665,8 @@ public class Functions extends IFunctions {
                         point.x = point.x + 移动距离_倍率;
                     }
                     robot.mouseMove(point.x, point.y);
-                    b移动=false;
-                    up=right=left=down=false;
+                    b移动 = false;
+                    up = right = left = down = false;
                     pause(50L);
                 } else {
 
@@ -682,7 +683,7 @@ public class Functions extends IFunctions {
     public static boolean right;
 
     @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
-    @ListenMouseKeyboard(userInput = false,key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
+    @ListenMouseKeyboard(userInput = false, key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
     public static TaskResult 滚轮(InputInfo inputInfo) {
         int temp = -1;
 
@@ -831,6 +832,33 @@ public class Functions extends IFunctions {
 //    public static void ctrl左2() {
 //        CommonUtil.customConditionSet.remove(String.valueOf("ctrl左"));
 //    }
+
+    @ListenMouseKeyboard(key = "prtsc",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void 释放所有() {
+        for (Map.Entry<String, Integer> entry : keyCodeMap.entrySet()) {
+
+            try {
+                robot.keyRelease(entry.getValue());
+            } catch (Exception e) {
+                //---
+                System.out.println("1111111111");
+                System.out.println(e.getMessage());
+            }
+
+            try {
+                robot.mouseRelease(entry.getValue());
+            } catch (Exception e) {
+                //---
+                System.out.println("1111111111");
+                System.out.println(e.getMessage());
+            }
+
+            pause(50L);
+
+        }
+    }
+
+
 
 
 }
