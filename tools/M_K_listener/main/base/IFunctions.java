@@ -11,6 +11,10 @@ import base.CommonUtil.Active;
 
 
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
 
 
 public class IFunctions {
@@ -161,6 +165,45 @@ public class IFunctions {
     public static void setKeyStatus(int key, boolean b) {
         keyStatusMap.put(key, b);
     }
+
+
+
+    public static void threadPressOrRelease(int key,boolean mouse,boolean press){
+        List<Integer> unit=new ArrayList<>();
+        unit.add(key);
+        unit.add(mouse==true?0:1);
+        unit.add(press==true?0:1);
+        queue.add(unit);
+    }
+
+    public static BlockingQueue<List<Integer>> queue = new LinkedBlockingQueue<>();
+    public static MyThread threadKey = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    // 阻塞式获取队列中的元素
+                    List<Integer> element = queue.take();
+                    if(element.get(1)==0){
+                        if(element.get(2)==0){
+                            myMousePress(element.get(0));
+                        }else {
+                            myMouseRelease(element.get(0));
+                        }
+                    }else if(element.get(1)==1){
+                        if(element.get(2)==0){
+                            myKeyPress(element.get(0));
+                        }else {
+                            myKeyRelease(element.get(0));
+                        }
+                    }
+
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+    };
 
 }
 
