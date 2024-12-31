@@ -176,7 +176,7 @@ public class IFunctions {
         queue.add(unit);
     }
 
-    public static BlockingQueue<List<Integer>> queue = new LinkedBlockingQueue<>();
+    private static BlockingQueue<List<Integer>> queue = new LinkedBlockingQueue<>();
     public static MyThread threadKey = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
