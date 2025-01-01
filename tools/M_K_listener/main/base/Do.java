@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Do {
 
 //    public long refreshtime;
-    public LinkedBlockingQueue<TaskInfo> taskInfoList = new LinkedBlockingQueue<TaskInfo>();
+    public static LinkedBlockingQueue<TaskInfo> taskInfoList = new LinkedBlockingQueue<TaskInfo>();
 
     public static Object object;
 
