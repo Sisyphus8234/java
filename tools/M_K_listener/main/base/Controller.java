@@ -26,9 +26,9 @@ public class Controller {
     @Deprecated
     public static Map<String, TaskInfo> mapJintellitype = new HashMap<>();
 
-    public static long refreshtime = 3000L;
+//    public static long refreshtime = 3000L;
 
-    public static Do do1 = new Do(refreshtime);
+    public static Do do1 = new Do();
 
 
 

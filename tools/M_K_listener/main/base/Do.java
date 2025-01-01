@@ -5,30 +5,30 @@ import base.enty.TaskResult;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class Do {
 
-    public long refreshtime;
-    public List<TaskInfo> taskInfoList = new ArrayList<>();
+//    public long refreshtime;
+    public LinkedBlockingQueue<TaskInfo> taskInfoList = new LinkedBlockingQueue<TaskInfo>();
 
     public static Object object;
 
 
-    public Do(long refreshtime) {
-        this.refreshtime = refreshtime;
+    public Do() {
+//        this.refreshtime = refreshtime;
 
         new Thread() {
             @Override
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(refreshtime);
+                        TaskInfo taskInfo=taskInfoList.take();
+                        invoke(taskInfo);
+                        Thread.sleep(taskInfo.occupyTime);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
-                    delay(taskInfoList);
                 }
             }
         }.start();
@@ -43,6 +43,9 @@ public class Do {
             }
         }
         if(taskInfo.inputInfo.customCondition.isEmpty()||CommonUtil.customConditionSet.containsAll(taskInfo.inputInfo.customCondition)) {
+
+
+
             if (Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis() > taskInfo.inputInfo.timeInterval) {
                 taskInfo.lastTime = LocalDateTime.now();
                 if (taskInfo.immediately == true) {
@@ -78,15 +81,15 @@ public class Do {
         }
     }
 
-    public void delay(List<TaskInfo> taskInfoList) {
-        if (taskInfoList.size() > 0) {
-            TaskInfo taskInfo = taskInfoList.get(0);
-
-            invoke(taskInfo);
-
-            taskInfoList.remove(0);
-        }
-    }
+//    public void delay(List<TaskInfo> taskInfoList) {
+//        if (taskInfoList.size() > 0) {
+//            TaskInfo taskInfo = taskInfoList.get(0);
+//
+//            invoke(taskInfo);
+//
+//            taskInfoList.remove(0);
+//        }
+//    }
 
 
 }

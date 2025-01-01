@@ -10,6 +10,7 @@ public class TaskInfo {
     public Method method;
     public boolean immediately = true;
     public boolean intercept = false;
+    public long occupyTime = 0L;
 
     public InputInfo inputInfo;
     public InputInfo inputInfoActualTemp;

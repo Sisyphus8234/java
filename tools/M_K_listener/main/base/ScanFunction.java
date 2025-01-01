@@ -25,6 +25,7 @@ public class ScanFunction {
         taskInfo.method = method;
         taskInfo.immediately = listenMouseKeyboard.immediately();
         taskInfo.intercept = listenMouseKeyboard.intercept();
+        taskInfo.occupyTime = listenMouseKeyboard.occupyTime();
         InputInfo inputInfo = new InputInfo();
 
         //判断是否是recorder
@@ -41,6 +42,7 @@ public class ScanFunction {
         inputInfo.keyboardOrMouse = listenMouseKeyboard.keyboardOrMouse();
         inputInfo.timeInterval = listenMouseKeyboard.timeInterval();
         inputInfo.extend = listenMouseKeyboard.extend();
+
 
         taskInfo.inputInfo = inputInfo;
 
@@ -89,6 +91,7 @@ public class ScanFunction {
                 }
             }
             taskMmap.get(inputInfo).add(taskInfo);
+
         }
     }
 
