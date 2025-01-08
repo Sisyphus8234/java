@@ -1,5 +1,6 @@
 package custom;
 
+import addition.HSB;
 import base.*;
 
 import java.awt.*;
@@ -161,8 +162,27 @@ public class Functions公共 extends IFunctions {
 	}
 
 
+	@ListenMouseKeyboard(key = "f7",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	@ListenMouseKeyboard(userInput = false,key = "f7",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	public static void 读取颜色0(InputInfo inputInfo) {
+		HSB.读取颜色(0);
+
+	}
+
+	@ListenMouseKeyboard(key = "f8",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	@ListenMouseKeyboard(userInput = false,key = "f8",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	public static void 读取颜色1(InputInfo inputInfo) {
+
+		HSB.读取颜色(1);
+	}
 
 
+	@ListenMouseKeyboard(key = "f9",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	@ListenMouseKeyboard(userInput = false,key = "f9",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	public static void 读取颜色2(InputInfo inputInfo) {
+
+		HSB.读取颜色1();
+	}
 
 
 }
