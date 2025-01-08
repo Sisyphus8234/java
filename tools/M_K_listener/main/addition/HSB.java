@@ -1,22 +1,17 @@
 package addition;
 
 import base.IFunctions;
-import base.InputInfo;
 import base.JsonUtil;
 import base.MyThread;
 
 import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.stream.Collectors;
-
-import static java.awt.event.KeyEvent.VK_F7;
-import static java.awt.event.KeyEvent.VK_F8;
 
 public class HSB {
 
@@ -32,18 +27,19 @@ public class HSB {
     }
 
 
-    public static String folderName = "record";
+    public static String prefix = "HSB_";
 
 
     static class Compare {
 
+        public ArrayList<ArrayList<Float>> minMax0=new ArrayList<>();
+        public ArrayList<ArrayList<Float>> minMax1=new ArrayList<>();
 
 
         public ArrayList<ArrayList<Float>> list0=new ArrayList<>();
         public ArrayList<ArrayList<Float>> list1=new ArrayList<>();
 
-        public ArrayList<ArrayList<Float>> minMax0=new ArrayList<>();
-        public ArrayList<ArrayList<Float>> minMax1=new ArrayList<>();
+
 
 
     }
@@ -52,7 +48,7 @@ public class HSB {
     public static Compare compare=new Compare();
 
     public static BlockingQueue<Integer> queue0 = new LinkedBlockingQueue<>();
-    public static MyThread thread0 = new MyThread(MyThread.State.off) {
+    public static MyThread thread0 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
@@ -69,6 +65,8 @@ public class HSB {
                     //---
                     e.printStackTrace();
                 }
+
+                IFunctions.pause(200L);
             }
         }
     };
@@ -76,6 +74,8 @@ public class HSB {
 
 
     public static void compareHSB(){
+
+        JsonUtil.writeJsonFile("test",compare);
 
         for(int i=0;i<=2;i++){
             final int index=i;
@@ -155,9 +155,11 @@ public class HSB {
     }
 
     public static void 读取颜色1() {
+        queue0.clear();
 
         if(HSBState==1){
-            JsonUtil.writeJsonFile("aaa",compare);
+            compareHSB();
+            JsonUtil.writeJsonFile(prefix +point.x+","+point.y+ "_"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss"))+".json",compare);
         }
 
 
