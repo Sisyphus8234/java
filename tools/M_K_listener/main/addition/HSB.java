@@ -32,20 +32,18 @@ public class HSB {
 
     static class Compare {
 
-        public ArrayList<float[]> minMax0=new ArrayList<>();
-        public ArrayList<float[]> minMax1=new ArrayList<>();
+        public ArrayList<float[]> minMax0 = new ArrayList<>();
+        public ArrayList<float[]> minMax1 = new ArrayList<>();
 
 
-        public ArrayList<float[]> list0=new ArrayList<>();
-        public ArrayList<float[]> list1=new ArrayList<>();
-
-
+        public ArrayList<float[]> list0 = new ArrayList<>();
+        public ArrayList<float[]> list1 = new ArrayList<>();
 
 
     }
 
 
-    public static Compare compare=new Compare();
+    public static Compare compare = new Compare();
 
     public static BlockingQueue<Integer> queue0 = new LinkedBlockingQueue<>();
     public static MyThread thread0 = new MyThread(MyThread.State.on) {
@@ -53,13 +51,13 @@ public class HSB {
         public void run() {
             while (true) {
                 try {
-                    Integer temp=queue0.take();
+                    Integer temp = queue0.take();
                     queue0.put(temp);
 
-                    if(HSBState==0){
-                        compare.list0.add(getPixelColorHSB(point));
-                    }else if(HSBState==1) {
-                        compare.list1.add(getPixelColorHSB(point));
+                    if (HSBState == 0) {
+                        compare.list0.add(getPixelColorHSB(point.x, point.y));
+                    } else if (HSBState == 1) {
+                        compare.list1.add(getPixelColorHSB(point.x, point.y));
                     }
                 } catch (InterruptedException e) {
                     //---
@@ -72,36 +70,27 @@ public class HSB {
     };
 
 
+    public static void compareHSB() {
 
-    public static void compareHSB(){
+        JsonUtil.writeJsonFile("test", compare);
 
-        JsonUtil.writeJsonFile("test",compare);
+        for (int i = 0; i <= 2; i++) {
+            final int index = i;
+            Optional<Float> min = compare.list0.stream().map(color -> color[index]).min(Float::compare);
 
-        for(int i=0;i<=2;i++){
-            final int index=i;
-            Optional<Float> min = compare.list0.stream()
-                    .map(color -> color[index])
-                    .min(Float::compare);
+            Optional<Float> max = compare.list0.stream().map(color -> color[index]).max(Float::compare);
 
-            Optional<Float> max = compare.list0.stream()
-                    .map(color -> color[index])
-                    .max(Float::compare);
-
-            float[] temp={min.get(),max.get()};
+            float[] temp = {min.get(), max.get()};
             compare.minMax0.add(temp);
         }
 
-        for(int i=0;i<=2;i++){
-            final int index=i;
-            Optional<Float> min = compare.list1.stream()
-                    .map(color -> color[index])
-                    .min(Float::compare);
+        for (int i = 0; i <= 2; i++) {
+            final int index = i;
+            Optional<Float> min = compare.list1.stream().map(color -> color[index]).min(Float::compare);
 
-            Optional<Float> max = compare.list1.stream()
-                    .map(color -> color[index])
-                    .max(Float::compare);
+            Optional<Float> max = compare.list1.stream().map(color -> color[index]).max(Float::compare);
 
-            float[] temp={min.get(),max.get()};
+            float[] temp = {min.get(), max.get()};
             compare.minMax1.add(temp);
         }
 
@@ -109,13 +98,10 @@ public class HSB {
     }
 
 
-    public static float[] getPixelColorHSB(Point point) {
+    public static float[] getPixelColorHSB(int pixelX, int pixelY) {
 
-        int pixelX= point.x;
-        int pixelY=point.y;
-
-        pixelX=(int)(pixelX/ IFunctions.screenScale);
-        pixelY=(int)(pixelY/ IFunctions.screenScale);
+        pixelX = (int) (pixelX / IFunctions.screenScale);
+        pixelY = (int) (pixelY / IFunctions.screenScale);
         Color pixelColor = robot.getPixelColor(pixelX, pixelY);
         float[] pixelColorHSB = Color.RGBtoHSB(pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue(), null);
 
@@ -123,10 +109,8 @@ public class HSB {
     }
 
 
-
-
-    public static Point point=new Point();
-    public static int HSBState=-1;
+    public static Point point = new Point();
+    public static int HSBState = -1;
 
     public static void 读取颜色(int state) {
         if (IFunctions.clipboardIsString()) {
@@ -135,11 +119,11 @@ public class HSB {
             point.x = Integer.parseInt(parts[0]);
             point.y = Integer.parseInt(parts[1]);
             IFunctions.writeClipboard(point.x + "," + point.y);
-            HSBState=state;
-            if(HSBState==0){
-                compare=new Compare();
-            }else if(HSBState==1){
-                compare.list1=new ArrayList<>();
+            HSBState = state;
+            if (HSBState == 0) {
+                compare = new Compare();
+            } else if (HSBState == 1) {
+                compare.list1 = new ArrayList<>();
             }
 
             try {
@@ -154,9 +138,9 @@ public class HSB {
     public static void 读取颜色1() {
         queue0.clear();
 
-        if(HSBState==1){
+        if (HSBState == 1) {
             compareHSB();
-            JsonUtil.writeJsonFile(prefix +point.x+","+point.y+ "_"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss"))+".json",compare);
+            JsonUtil.writeJsonFile(prefix + point.x + "," + point.y + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss")) + ".json", compare);
         }
 
 
