@@ -14,37 +14,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 import static java.awt.event.KeyEvent.*;
 
 
-public class Functions召唤 extends IFunctions {
-
-	@ListenBar(onOrOff = ListenBar.OnOrOff.on)
-	public static String on = "home";
-
-	@ListenBar(onOrOff = ListenBar.OnOrOff.off)
-	public static String off = "end";
+public class Functions召唤 extends Functions公共 {
 
 
-
-	public static final String run="run";
-	static {
-//		CommonUtil.customConditionSet.add(run);
-	}
-	@ListenMouseKeyboard(key = "v",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(key = "v", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	@ListenMouseKeyboard(intercept = true,key = "v",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	@ListenMouseKeyboard(intercept = true,key = "v", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 	public static void 开(InputInfo inputInfo) {
 		CommonUtil.customConditionSet.add(run);
-		threadPressOrRelease(VK_W,false,true);
+//		threadPressOrRelease(VK_W,false,true);
 	}
 
-	@ListenMouseKeyboard(key = "c",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(key = "c", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(key = "b",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(key = "b", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(key = "esc",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(key = "esc", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	public static void 关(InputInfo inputInfo) {
-		CommonUtil.customConditionSet.remove(run);
-		threadPressOrRelease(VK_W,false,false);
-	}
+
 
 
 
@@ -52,7 +32,7 @@ public class Functions召唤 extends IFunctions {
 		@Override
 		public void run() {
 			while (true) {
-				if(CommonUtil.customConditionSet.contains(run)&&!CommonUtil.customConditionSet.contains(gl)){
+				if(CommonUtil.customConditionSet.contains(run)&&!CommonUtil.customConditionSet.contains(滚轮)){
 					robot.mousePress(BUTTON1_DOWN_MASK);
 					robot.mouseRelease(BUTTON1_DOWN_MASK);
 					pause(200L);
@@ -64,7 +44,7 @@ public class Functions召唤 extends IFunctions {
 	};
 
 
-	public static final String 右键按下 ="b1up";
+
 
 
 	@ListenMouseKeyboard(key = "右键按下",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = "!"+ 右键按下 +","+run)
@@ -73,13 +53,10 @@ public class Functions召唤 extends IFunctions {
 	@ListenMouseKeyboard(userInput = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+ 右键按下 +","+run)
 	public static void 移动1(){
 		CommonUtil.customConditionSet.add(右键按下);
-//		threadPressOrRelease(VK_W,false,false);
-
-//		CommonUtil.customConditionSet.remove(gl);
-//		threadPressOrRelease(VK_0,false,false);
-
 		threadPressOrRelease(VK_1,false,true);
 		threadPressOrRelease(VK_1,false,false);
+		threadPressOrRelease(VK_2,false,true);
+		threadPressOrRelease(VK_2,false,false);
 	}
 
 
@@ -90,66 +67,49 @@ public class Functions召唤 extends IFunctions {
 	@ListenMouseKeyboard(press = false,userInput = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 右键按下 +","+run)
 	public static void 移动(){
 		CommonUtil.customConditionSet.remove(右键按下);
-//		threadPressOrRelease(VK_W,false,true);
 	}
 
-	public static String gl="gl";
 
-	@ListenMouseKeyboard(key = "滚轮",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = run,timeInterval = 800L)
-	@ListenMouseKeyboard(key = "滚轮", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = run,timeInterval = 800L)
+
+
+	@ListenMouseKeyboard(immediately = false,key = "滚轮",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = run,timeInterval = 600L)
+	@ListenMouseKeyboard(immediately = false,key = "滚轮", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = run,timeInterval = 600L)
 	public static void aaa(){
 
-//		robot.keyRelease(VK_0);
+		if (CommonUtil.customConditionSet.contains(滚轮)) {
+//			robot.keyRelease(VK_T);
+//			robot.keyPress(VK_0);
+//			pause(800L);
+//			robot.keyRelease(VK_0);
+//			robot.keyPress(VK_T);
 
-		queue1.clear();
-		if (CommonUtil.customConditionSet.contains(gl)) {
-			queue1.add(new ArrayList<>(Arrays.asList(VK_T, LocalDateTime.now().plus(Duration.ofMillis(1200L)))));
+			threadPressOrRelease(VK_T,false,true);
+			threadPressOrRelease(VK_0,false,false);
+			pause(1400L);
+			threadPressOrRelease(VK_0,false,true);
 		} else {
-			queue1.add(new ArrayList<>(Arrays.asList(VK_T, LocalDateTime.now().plus(Duration.ofMillis(600L)))));
-			queue1.add(new ArrayList<>(Arrays.asList(VK_0, null)));
+			threadPressOrRelease(VK_T,false,true);
+			pause(500L);
+			threadPressOrRelease(VK_0,false,true);
 		}
-
-		CommonUtil.customConditionSet.add(gl);
+		CommonUtil.customConditionSet.add(滚轮);
 
 	}
 
-	@ListenMouseKeyboard(key = "滚轮", intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = run)
-	@ListenMouseKeyboard(key = "滚轮", userInput = false,intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = run)
+
+	@ListenMouseKeyboard(key = "滚轮", intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = run,timeInterval = 1000L)
+	@ListenMouseKeyboard(key = "滚轮", userInput = false,intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = run,timeInterval = 1000L)
 	public static void 滚轮(InputInfo inputInfo) {
-		CommonUtil.customConditionSet.remove(gl);
-		queue1.clear();
-		threadPressOrRelease(VK_T,false,false);
-		threadPressOrRelease(VK_0,false,false);
-
-
+		if(!CommonUtil.customConditionSet.contains(滚轮)){
+			threadPressOrRelease(VK_Q,false,true);
+			threadPressOrRelease(VK_Q,false,false);
+		}else {
+			Do.taskInfoList.clear();
+			threadPressOrRelease(VK_T,false,false);
+			threadPressOrRelease(VK_0,false,false);
+		}
+		CommonUtil.customConditionSet.remove(滚轮);
 
 	}
-
-
-	public static BlockingQueue<List<Object>> queue1 = new LinkedBlockingQueue<>() {
-    };
-	public static MyThread t自动技能 = new MyThread(MyThread.State.on) {
-		@Override
-		public void run() {
-			while (true) {//---
-				try {
-					List<Object> temp = queue1.take();
-					robot.keyRelease((int)temp.get(0));
-					robot.keyPress((int)temp.get(0));
-					if(temp.get(1)!=null) {
-						while (LocalDateTime.now().compareTo((LocalDateTime) temp.get(1)) <= 0) {
-
-						}
-						robot.keyRelease((int) temp.get(0));
-					}
-				} catch (Exception e) {
-					throw new RuntimeException(e.getMessage());
-				}
-			}
-		}
-	};
-
-
-
 
 }
