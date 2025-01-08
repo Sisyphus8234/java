@@ -32,12 +32,12 @@ public class HSB {
 
     static class Compare {
 
-        public ArrayList<ArrayList<Float>> minMax0=new ArrayList<>();
-        public ArrayList<ArrayList<Float>> minMax1=new ArrayList<>();
+        public ArrayList<float[]> minMax0=new ArrayList<>();
+        public ArrayList<float[]> minMax1=new ArrayList<>();
 
 
-        public ArrayList<ArrayList<Float>> list0=new ArrayList<>();
-        public ArrayList<ArrayList<Float>> list1=new ArrayList<>();
+        public ArrayList<float[]> list0=new ArrayList<>();
+        public ArrayList<float[]> list1=new ArrayList<>();
 
 
 
@@ -80,34 +80,36 @@ public class HSB {
         for(int i=0;i<=2;i++){
             final int index=i;
             Optional<Float> min = compare.list0.stream()
-                    .map(color -> color.get(index))  // 提取 R 通道
+                    .map(color -> color[index])
                     .min(Float::compare);
 
             Optional<Float> max = compare.list0.stream()
-                    .map(color -> color.get(index))  // 提取 R 通道
+                    .map(color -> color[index])
                     .max(Float::compare);
 
-            compare.minMax0.add(new ArrayList<>(Arrays.asList(min.get(),max.get())));
+            float[] temp={min.get(),max.get()};
+            compare.minMax0.add(temp);
         }
 
         for(int i=0;i<=2;i++){
             final int index=i;
             Optional<Float> min = compare.list1.stream()
-                    .map(color -> color.get(index))  // 提取 R 通道
+                    .map(color -> color[index])
                     .min(Float::compare);
 
             Optional<Float> max = compare.list1.stream()
-                    .map(color -> color.get(index))  // 提取 R 通道
+                    .map(color -> color[index])
                     .max(Float::compare);
 
-            compare.minMax1.add(new ArrayList<>(Arrays.asList(min.get(),max.get())));
+            float[] temp={min.get(),max.get()};
+            compare.minMax1.add(temp);
         }
 
 
     }
 
 
-    public static ArrayList<Float> getPixelColorHSB(Point point) {
+    public static float[] getPixelColorHSB(Point point) {
 
         int pixelX= point.x;
         int pixelY=point.y;
@@ -117,12 +119,7 @@ public class HSB {
         Color pixelColor = robot.getPixelColor(pixelX, pixelY);
         float[] pixelColorHSB = Color.RGBtoHSB(pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue(), null);
 
-        ArrayList<Float> res=new ArrayList<>();
-        for(float enty:pixelColorHSB){
-            res.add(enty);
-        }
-
-        return res;
+        return pixelColorHSB;
     }
 
 
