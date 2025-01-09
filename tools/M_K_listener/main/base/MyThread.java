@@ -4,24 +4,27 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class MyThread extends Thread {
 
-    public LinkedBlockingQueue<Integer> queue=new LinkedBlockingQueue<>();
+    public LinkedBlockingQueue<Integer> myThreadLock =new LinkedBlockingQueue<>();
 
-    synchronized public void getBlock(){
+     public void getBlock(){
+         synchronized(myThreadLock){
+             try {
+                 myThreadLock.put(myThreadLock.take());
+             } catch (InterruptedException e) {
+                 e.printStackTrace();
+             }
+         }
+    }
+
+    public void nonBlock() {
         try {
-            queue.put(queue.take());
+            myThreadLock.put(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    synchronized public void nonBlock() {
-        try {
-            queue.put(0);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    synchronized public void block() {
-        queue.clear();
+    public void block() {
+        myThreadLock.clear();
     }
 
 

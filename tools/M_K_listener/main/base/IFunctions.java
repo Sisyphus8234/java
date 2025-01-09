@@ -14,8 +14,6 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
-
 
 public class IFunctions {
 
@@ -59,10 +57,11 @@ public class IFunctions {
     public static double scaleX = affineTransform.getScaleX();
     public static double scaleY = affineTransform.getScaleY();
     public static double screenScale;
+
     static {
-        if(scaleX==scaleY){
-            screenScale =scaleX;
-        }else {
+        if (scaleX == scaleY) {
+            screenScale = scaleX;
+        } else {
             throw new RuntimeException("屏幕缩放吧比例x与y不相等");
         }
         System.out.println(screenScale);
@@ -70,9 +69,10 @@ public class IFunctions {
 
     //屏幕尺寸
     public static Dimension screenSize = toolkit.getScreenSize();
-    public static int screenWidth = (int) (screenSize.getWidth()* screenScale);
-    public static int screenHeight = (int) (screenSize.getHeight()* screenScale);
-    static{
+    public static int screenWidth = (int) (screenSize.getWidth() * screenScale);
+    public static int screenHeight = (int) (screenSize.getHeight() * screenScale);
+
+    static {
         System.out.println(screenWidth);
         System.out.println(screenHeight);
 
@@ -125,15 +125,15 @@ public class IFunctions {
     }
 
     public static Point getPointFix() {
-        Point point=MouseInfo.getPointerInfo().getLocation();
-        point.x= (int) (point.x* screenScale);
-        point.y= (int) (point.y* screenScale);
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        point.x = (int) (point.x * screenScale);
+        point.y = (int) (point.y * screenScale);
         return point;
     }
 
     public static void myMouseMove(int x, int y) {
-        robot.mouseMove(-1,-1);
-        robot.mouseMove((int) (x/ screenScale), (int) (y/ screenScale));
+        robot.mouseMove(-1, -1);
+        robot.mouseMove((int) (x / screenScale), (int) (y / screenScale));
     }
 
     private static Map<Integer, Boolean> keyStatusMap = new HashMap<>();
@@ -167,12 +167,11 @@ public class IFunctions {
     }
 
 
-
-    public static void threadPressOrRelease(int key,boolean mouse,boolean press){
-        List<Integer> unit=new ArrayList<>();
+    public static void threadPressOrRelease(int key, boolean mouse, boolean press) {
+        List<Integer> unit = new ArrayList<>();
         unit.add(key);
-        unit.add(mouse==true?0:1);
-        unit.add(press==true?0:1);
+        unit.add(mouse == true ? 0 : 1);
+        unit.add(press == true ? 0 : 1);
         queue.add(unit);
     }
 
@@ -184,16 +183,16 @@ public class IFunctions {
                 try {
                     // 阻塞式获取队列中的元素
                     List<Integer> element = queue.take();
-                    if(element.get(1)==0){
-                        if(element.get(2)==0){
+                    if (element.get(1) == 0) {
+                        if (element.get(2) == 0) {
                             myMousePress(element.get(0));
-                        }else {
+                        } else {
                             myMouseRelease(element.get(0));
                         }
-                    }else if(element.get(1)==1){
-                        if(element.get(2)==0){
+                    } else if (element.get(1) == 1) {
+                        if (element.get(2) == 0) {
                             myKeyPress(element.get(0));
-                        }else {
+                        } else {
                             myKeyRelease(element.get(0));
                         }
                     }
