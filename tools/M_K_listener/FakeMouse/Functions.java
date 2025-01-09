@@ -324,7 +324,9 @@ public class Functions extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, active = Active.jna)
+    @ListenMouseKeyboard(key = "3",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard
+//            , active = Active.jna
+    )
     public static TaskResult 数字3() {
         customConditionSet.add(屏蔽);
 
