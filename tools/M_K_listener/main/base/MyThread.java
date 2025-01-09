@@ -1,6 +1,32 @@
 package base;
 
+import java.util.concurrent.LinkedBlockingQueue;
+
 public class MyThread extends Thread {
+
+    public LinkedBlockingQueue<Integer> queue=new LinkedBlockingQueue<>();
+
+    synchronized public void getBlock(){
+        try {
+            queue.put(queue.take());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    synchronized public void nonBlock() {
+        try {
+            queue.put(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    synchronized public void block() {
+        queue.clear();
+    }
+
+
+
+
 
     public static class State{
         public static final int on=1;
@@ -27,8 +53,6 @@ public class MyThread extends Thread {
     public void myStart(){
         state=State.on;
         start();
-
-
     }
 
 

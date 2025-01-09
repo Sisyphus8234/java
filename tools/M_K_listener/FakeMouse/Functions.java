@@ -161,12 +161,14 @@ public class Functions extends IFunctions {
     }
 
 
-    public static boolean t左键b = false;
+//    public static boolean t左键b = false;
     public static MyThread t左键 = new MyThread() {
         @Override
         public void run() {
-            pause(1000L);
+
             while (true) {
+                this.getBlock();
+
                 if (getKeyStatus(MouseEvent.BUTTON1_DOWN_MASK) == false) {
                     myMousePress(MouseEvent.BUTTON1_DOWN_MASK);
                 } else if (t左键b == false) {
@@ -216,12 +218,12 @@ public class Functions extends IFunctions {
 
 //    public static TaskResult result左键 = new TaskResult();
 
-    @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
-    @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static final String win="win";
+    public static final String 左键="左键";
+    @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+win+",!"+左键)
+    @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+左键)
     public static TaskResult 模拟左键(InputInfo inputInfo) {
-
-        t左键b = true;
-        t左键.myResume();
+        t左键.nonBlock();
         return new TaskResult(true);
     }
 
