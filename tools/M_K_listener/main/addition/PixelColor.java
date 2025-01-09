@@ -32,13 +32,8 @@ public class PixelColor {
     static class Compare {
 
         public ArrayList<float[]> minMax0 = new ArrayList<>();
-        public ArrayList<float[]> minMax1 = new ArrayList<>();
-
 
         public ArrayList<float[]> list0 = new ArrayList<>();
-        public ArrayList<float[]> list1 = new ArrayList<>();
-
-
     }
 
 
@@ -53,11 +48,8 @@ public class PixelColor {
                     Integer temp = queue0.take();
                     queue0.put(temp);
 
-                    if (HSBState == 0) {
-                        compare.list0.add(getPixelColorHSB(point.x, point.y));
-                    } else if (HSBState == 1) {
-                        compare.list1.add(getPixelColorHSB(point.x, point.y));
-                    }
+                    compare.list0.add(getPixelColorHSB(point.x, point.y));
+
                 } catch (InterruptedException e) {
                     //---
                     e.printStackTrace();
@@ -82,18 +74,6 @@ public class PixelColor {
             float[] temp = {min.get(), max.get()};
             compare.minMax0.add(temp);
         }
-
-        for (int i = 0; i <= 2; i++) {
-            final int index = i;
-            Optional<Float> min = compare.list1.stream().map(color -> color[index]).min(Float::compare);
-
-            Optional<Float> max = compare.list1.stream().map(color -> color[index]).max(Float::compare);
-
-            float[] temp = {min.get(), max.get()};
-            compare.minMax1.add(temp);
-        }
-
-
     }
 
 
@@ -111,19 +91,16 @@ public class PixelColor {
     public static Point point = new Point();
     public static int HSBState = -1;
 
-    public static void 读取颜色(int state) {
+    public static void 读取颜色() {
         if (IFunctions.clipboardIsString()) {
             String text = IFunctions.readClipboard().replaceAll(" ", "");
             String[] parts = text.split(",");
             point.x = Integer.parseInt(parts[0]);
             point.y = Integer.parseInt(parts[1]);
             IFunctions.writeClipboard(point.x + "," + point.y);
-            HSBState = state;
-            if (HSBState == 0) {
-                compare = new Compare();
-            } else if (HSBState == 1) {
-                compare.list1 = new ArrayList<>();
-            }
+
+            compare = new Compare();
+
 
             try {
                 queue0.put(1);
