@@ -114,11 +114,7 @@ public class PixelColor {
     public static void 读取颜色1() {
         queue0.clear();
 
-        if (HSBState == 1) {
-            compareHSB();
-            JsonUtil.writeJsonFile(prefix + point.x + "," + point.y + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss")) + ".json", compare);
-        }
-
-
+        compareHSB();
+        JsonUtil.writeJsonFile(prefix + point.x + "," + point.y + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss")) + ".json", compare);
     }
 }
