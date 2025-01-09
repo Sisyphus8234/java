@@ -327,7 +327,7 @@ public class Functions extends IFunctions {
     public static final String 反单引号期间做了什么="反单引号期间做了什么";
 
     @ListenMouseKeyboard(key = "1",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-    public static TaskResult 数字1() {
+    public static TaskResult esc() {
         customConditionSet.add(屏蔽);
 
         robot.keyPress(VK_ESCAPE);
@@ -340,7 +340,7 @@ public class Functions extends IFunctions {
     }
 
     @ListenMouseKeyboard(key = "2",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-    public static TaskResult 数字2() {
+    public static TaskResult altf4() {
         customConditionSet.add(屏蔽);
 
         robot.keyPress(VK_ALT);
