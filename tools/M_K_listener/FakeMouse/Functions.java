@@ -114,7 +114,7 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "esc", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!win")
+    @ListenMouseKeyboard(key = "esc", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+ 屏蔽)
     @ListenMouseKeyboard(key = "alt右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键1(InputInfo inputInfo) {
 
@@ -324,10 +324,23 @@ public class Functions extends IFunctions {
         }
     };
 
-    @ListenMouseKeyboard(key = "3",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard
-//            , active = Active.jna
-    )
-    public static TaskResult 数字3() {
+    public static final String 反单引号期间做了什么="反单引号期间做了什么";
+
+    @ListenMouseKeyboard(key = "1",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+    public static TaskResult 数字1() {
+        customConditionSet.add(屏蔽);
+
+        robot.keyPress(VK_ESCAPE);
+        robot.keyRelease(VK_ESCAPE);
+
+        customConditionSet.add(波浪键按住期间做了什么);
+        customConditionSet.remove(屏蔽);
+
+        return new TaskResult(true);
+    }
+
+    @ListenMouseKeyboard(key = "2",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+    public static TaskResult 数字2() {
         customConditionSet.add(屏蔽);
 
         robot.keyPress(VK_ALT);
@@ -340,48 +353,48 @@ public class Functions extends IFunctions {
         customConditionSet.remove(屏蔽);
 
         return new TaskResult(true);
-
-    }
-
-    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-    public static TaskResult 数字1() {
-        customConditionSet.add(波浪键按住期间做了什么);
-
-        滚轮方向 = 1;
-
-        t3.nonBlock();
-
-        return new TaskResult(true);
-
     }
 
 
-    @ListenMouseKeyboard(key = "1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-    public static TaskResult 数字1_1() {
-        customConditionSet.add(波浪键按住期间做了什么);
-        return new TaskResult(true);
-    }
 
-    @ListenMouseKeyboard(key = "2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-    public static TaskResult 数字2() {
-        customConditionSet.add(波浪键按住期间做了什么);
-
-        滚轮方向 = -1;
-
-        t3.nonBlock();
-        return new TaskResult(true);
-    }
-
-    public static final String 反单引号期间做了什么="反单引号期间做了什么";
-    @ListenMouseKeyboard(key = "2", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 反单引号)
-    public static TaskResult 数字2_1() {
-
-        customConditionSet.add(波浪键按住期间做了什么);
-
-        return new TaskResult(true);
-    }
-
-
+//    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+//    public static TaskResult 数字1() {
+//        customConditionSet.add(波浪键按住期间做了什么);
+//
+//        滚轮方向 = 1;
+//
+//        t3.nonBlock();
+//
+//        return new TaskResult(true);
+//
+//    }
+//
+//
+//    @ListenMouseKeyboard(key = "1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+//    public static TaskResult 数字1_1() {
+//        customConditionSet.add(波浪键按住期间做了什么);
+//        return new TaskResult(true);
+//    }
+//
+//    @ListenMouseKeyboard(key = "2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+//    public static TaskResult 数字2() {
+//        customConditionSet.add(波浪键按住期间做了什么);
+//
+//        滚轮方向 = -1;
+//
+//        t3.nonBlock();
+//        return new TaskResult(true);
+//    }
+//
+//    @ListenMouseKeyboard(key = "2", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 反单引号)
+//    public static TaskResult 数字2_1() {
+//
+//        customConditionSet.add(波浪键按住期间做了什么);
+//
+//        return new TaskResult(true);
+//    }
+//
+//
     public static int 移动距离 = Integer.parseInt(Config.read("移动距离"));
 
 
@@ -482,13 +495,13 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void win按下() {
         CommonUtil.customConditionSet.add(win);
-        CommonUtil.customConditionSet.add(屏蔽);
+
     }
 
     @ListenMouseKeyboard(key = "win", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void win按下1() {
         CommonUtil.customConditionSet.remove(win);
-        CommonUtil.customConditionSet.remove(屏蔽);
+
     }
 
 
