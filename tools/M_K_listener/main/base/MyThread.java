@@ -36,7 +36,7 @@ public class MyThread extends Thread {
 
         public static final int off=2;
     }
-    public int defaultState=State.off;
+    public int defaultState=State.on;
     public int state;
     public MyThread(){
         super();

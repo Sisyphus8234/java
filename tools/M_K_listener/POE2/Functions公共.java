@@ -1,13 +1,9 @@
 package custom;
 
-import addition.HSB;
+import addition.PixelColor;
 import base.*;
 
 import java.awt.*;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -165,7 +161,7 @@ public class Functions公共 extends IFunctions {
 	@ListenMouseKeyboard(key = "f7",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 	@ListenMouseKeyboard(userInput = false,key = "f7",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 	public static void 读取颜色0(InputInfo inputInfo) {
-		HSB.读取颜色(0);
+		PixelColor.读取颜色(0);
 
 	}
 
@@ -173,7 +169,7 @@ public class Functions公共 extends IFunctions {
 	@ListenMouseKeyboard(userInput = false,key = "f8",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 	public static void 读取颜色1(InputInfo inputInfo) {
 
-		HSB.读取颜色(1);
+		PixelColor.读取颜色(1);
 	}
 
 
@@ -181,7 +177,7 @@ public class Functions公共 extends IFunctions {
 	@ListenMouseKeyboard(userInput = false,key = "f9",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 	public static void 读取颜色2(InputInfo inputInfo) {
 
-		HSB.读取颜色1();
+		PixelColor.读取颜色1();
 	}
 
 
