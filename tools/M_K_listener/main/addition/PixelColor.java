@@ -89,7 +89,7 @@ public class PixelColor {
 
 
     public static Point point = new Point();
-    public static int HSBState = -1;
+
 
     public static void 读取颜色() {
         if (IFunctions.clipboardIsString()) {
