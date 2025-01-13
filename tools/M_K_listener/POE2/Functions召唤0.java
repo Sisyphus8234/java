@@ -1,5 +1,6 @@
 package custom;
 
+import addition.PixelColor;
 import base.*;
 
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.awt.*;
 import static base.CommonUtil.customConditionSet;
 import static java.awt.event.KeyEvent.*;
 
-public class Functions佣兵 extends Functions公共 {
+public class Functions召唤0 extends Functions公共 {
 
 	@ListenMouseKeyboard(intercept = true,key = "v",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 	@ListenMouseKeyboard(intercept = true,key = "v", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -17,6 +18,7 @@ public class Functions佣兵 extends Functions公共 {
 
 
 	public static Point basePoint =new Point(957,495);
+	public static Point 怒炎 =new Point(1773,1000);
 
 	public static boolean b =false;
 	public static MyThread t移动 = new MyThread(MyThread.State.on) {
@@ -69,11 +71,14 @@ public class Functions佣兵 extends Functions公共 {
 	@ListenMouseKeyboard(key = "滚轮", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = start,timeInterval = 800L)
 	public static void 滚轮下(){
 
-
-			threadPressOrRelease(VK_F, false, true);
-
-
 		wasd = 2;
+		if(PixelColor.getPixelColorHSB(怒炎.x, 怒炎.y)[2]<=0.21F){
+			threadPressOrRelease(VK_R, false, true);
+			threadPressOrReleaseWithDelay(VK_R, false, false,300);
+		}
+		threadPressOrRelease(VK_F, false, true);
+
+
 		customConditionSet.add(滚轮);
 	}
 
@@ -88,6 +93,7 @@ public class Functions佣兵 extends Functions公共 {
 				wasd = 1;
 			} else {
 				threadPressOrRelease(VK_F, false, false);
+				threadPressOrRelease(VK_R, false, false);
 				wasd = 0;
 			}
 		}else {
