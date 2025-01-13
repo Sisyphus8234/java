@@ -1,10 +1,10 @@
 package custom;
 
-import addition.HSB;
 import base.*;
 
 import java.awt.*;
 
+import static addition.PixelColor.*;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
@@ -18,12 +18,12 @@ public class Functions公共 extends IFunctions {
             while (true) {
                 if (CommonUtil.customConditionSet.contains(start)) {
 
-                    float[] temp=HSB.getPixelColorHSB(喝药point.x,喝药point.y);
+                    float[] temp=getPixelColorHSB(喝药point.x,喝药point.y);
                     if(temp[1]<=0.34&&temp[2]<=0.27){
 //                    if(HSB.getPixelColorHSB(喝药point1.x,喝药point1.y)[2]<=0.35){
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
-                        pause(800L);
+                        pause(300L);
                     }
 
                 }
@@ -184,27 +184,19 @@ public class Functions公共 extends IFunctions {
         }
     }
 
-
-//    @ListenMouseKeyboard(intercept = true, key = "f7", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(intercept = true, userInput = false, key = "f7", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void 读取颜色0(InputInfo inputInfo) {
-//        HSB.读取颜色(0);
-//
-//    }
-
     @ListenMouseKeyboard(intercept = true, key = "f8", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(intercept = true, userInput = false, key = "f8", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 读取颜色1(InputInfo inputInfo) {
+    public static void f8(InputInfo inputInfo) {
 
-        HSB.读取颜色();
+        读取颜色();
     }
 
 
     @ListenMouseKeyboard(intercept = true, key = "f9", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(intercept = true, userInput = false, key = "f9", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 读取颜色2(InputInfo inputInfo) {
+    public static void f9(InputInfo inputInfo) {
 
-        HSB.读取颜色1();
+        读取颜色1();
     }
 
 

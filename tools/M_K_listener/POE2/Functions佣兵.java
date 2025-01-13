@@ -4,25 +4,26 @@ import base.*;
 
 import java.awt.*;
 
+import static base.CommonUtil.customConditionSet;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions佣兵 extends Functions公共 {
 
-	@ListenMouseKeyboard(key = "v",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(key = "v", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	@ListenMouseKeyboard(intercept = true,key = "v",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+	@ListenMouseKeyboard(intercept = true,key = "v", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 	public static void 开(InputInfo inputInfo) {
-		CommonUtil.customConditionSet.add(start);
+		customConditionSet.add(start);
 	}
 
 
-	public static Point basePoint =new Point(960,473);
+	public static Point basePoint =new Point(957,495);
 
 	public static boolean b =false;
 	public static MyThread t移动 = new MyThread(MyThread.State.on) {
 		@Override
 		public void run() {
 			while (true) {
-				if(CommonUtil.customConditionSet.contains(start)){
+				if(customConditionSet.contains(start)){
 
 
 					Point temp=getPointFix();
@@ -44,7 +45,7 @@ public class Functions佣兵 extends Functions公共 {
 
 
 
-				if(CommonUtil.customConditionSet.contains(start)&&!CommonUtil.customConditionSet.contains(滚轮)){
+				if(customConditionSet.contains(start)&&!customConditionSet.contains(滚轮)){
 
 					robot.mousePress(BUTTON1_DOWN_MASK);
 					robot.mouseRelease(BUTTON1_DOWN_MASK);
@@ -53,7 +54,7 @@ public class Functions佣兵 extends Functions公共 {
 
 				}
 
-				pause(200L);
+				pause(150L);
 			}
 		}
 	};
@@ -73,7 +74,7 @@ public class Functions佣兵 extends Functions公共 {
 
 
 		wasd = 2;
-		CommonUtil.customConditionSet.add(滚轮);
+		customConditionSet.add(滚轮);
 	}
 
 
@@ -82,19 +83,25 @@ public class Functions佣兵 extends Functions公共 {
 	@ListenMouseKeyboard(key = "滚轮", intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = start,timeInterval = 800L)
 	@ListenMouseKeyboard(key = "滚轮", userInput = false,intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = start,timeInterval = 800L)
 	public static void 滚轮上(){
-		if(CommonUtil.customConditionSet.contains(滚轮)) {
-			if (CommonUtil.customConditionSet.contains(右键按下)) {
+		if(customConditionSet.contains(滚轮)) {
+			if (customConditionSet.contains(右键按下)) {
 				wasd = 1;
 			} else {
 				threadPressOrRelease(VK_F, false, false);
 				wasd = 0;
 			}
 		}else {
-			robot.keyPress(VK_BACK_QUOTE);
-			robot.keyRelease(VK_BACK_QUOTE);
+//			robot.keyPress(VK_BACK_QUOTE);
+//			robot.keyRelease(VK_BACK_QUOTE);
+//
+//			robot.keyPress(VK_SHIFT);
+//			robot.keyRelease(VK_SHIFT);
+
+			robot.keyPress(VK_R);
+			robot.keyRelease(VK_R);
 		}
 
-		CommonUtil.customConditionSet.remove(滚轮);
+		customConditionSet.remove(滚轮);
 	}
 
 //	@ListenMouseKeyboard(key = "滚轮", intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = start+",!"+滚轮,timeInterval = 800L)
@@ -113,7 +120,7 @@ public class Functions佣兵 extends Functions公共 {
 
 		threadPressOrRelease(VK_F,false,true);
 		wasd=1;
-		CommonUtil.customConditionSet.add(右键按下);
+		customConditionSet.add(右键按下);
 	}
 
 
@@ -123,14 +130,19 @@ public class Functions佣兵 extends Functions公共 {
 	public static void 滚轮(InputInfo inputInfo) {
 
 
-		CommonUtil.customConditionSet.remove(右键按下);
 
-		if(CommonUtil.customConditionSet.contains(滚轮)){
-			wasd=2;
-		}else {
-			threadPressOrRelease(VK_F,false,false);
-			wasd=0;
-		}
+
+
+
+			if (customConditionSet.contains(滚轮)) {
+				wasd = 2;
+			} else {
+				threadPressOrRelease(VK_F, false, false);
+				wasd = 0;
+			}
+
+
+		customConditionSet.remove(右键按下);
 
 	}
 
@@ -140,7 +152,7 @@ public class Functions佣兵 extends Functions公共 {
 	@ListenMouseKeyboard(key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+ 右键按下 +","+ start)
 	@ListenMouseKeyboard(userInput = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+ 右键按下 +","+ start)
 	public static void 右键(){
-		CommonUtil.customConditionSet.add(右键按下);
+		customConditionSet.add(右键按下);
 		threadPressOrRelease(VK_1,false,true);
 		threadPressOrRelease(VK_1,false,false);
 		threadPressOrRelease(VK_2,false,true);
@@ -156,7 +168,7 @@ public class Functions佣兵 extends Functions公共 {
 	@ListenMouseKeyboard(press = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 右键按下 +","+ start)
 	@ListenMouseKeyboard(press = false,userInput = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 右键按下 +","+ start)
 	public static void 右键1(){
-		CommonUtil.customConditionSet.remove(右键按下);
+		customConditionSet.remove(右键按下);
 	}
 
 
