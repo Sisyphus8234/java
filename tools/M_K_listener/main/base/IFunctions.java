@@ -166,13 +166,17 @@ public class IFunctions {
         keyStatusMap.put(key, b);
     }
 
-
-    public static void threadPressOrRelease(int key, boolean mouse, boolean press) {
+    public static void threadPressOrReleaseWithDelay(int key, boolean mouse, boolean press,int delay) {
         List<Integer> unit = new ArrayList<>();
         unit.add(key);
         unit.add(mouse == true ? 0 : 1);
         unit.add(press == true ? 0 : 1);
+        unit.add(delay);
         queue.add(unit);
+    }
+
+    public static void threadPressOrRelease(int key, boolean mouse, boolean press) {
+        threadPressOrReleaseWithDelay(key,mouse,press,-1);
     }
 
     private static BlockingQueue<List<Integer>> queue = new LinkedBlockingQueue<>();
@@ -195,6 +199,10 @@ public class IFunctions {
                         } else {
                             myKeyRelease(element.get(0));
                         }
+                    }
+
+                    if(element.get(3)!=-1){
+                        pause((long)element.get(3));
                     }
 
                 } catch (InterruptedException e) {
