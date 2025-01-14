@@ -51,12 +51,15 @@ public class Functions召唤0 extends Functions公共 {
 
 					robot.mousePress(BUTTON1_DOWN_MASK);
 					robot.mouseRelease(BUTTON1_DOWN_MASK);
-
-				}else {
-
+					pause(150L);
+				}
+				if(customConditionSet.contains(召唤特殊)){
+					robot.keyPress(VK_BACK_QUOTE);
+					robot.keyRelease(VK_BACK_QUOTE);
+					pause(1000L);
 				}
 
-				pause(150L);
+
 			}
 		}
 	};
@@ -72,18 +75,26 @@ public class Functions召唤0 extends Functions公共 {
 	public static void 滚轮下(){
 
 		wasd = 2;
+		threadPressOrRelease(BUTTON2_DOWN_MASK, true, true);
+		threadPressOrRelease(BUTTON2_DOWN_MASK, true, false);
+
 		if(PixelColor.getPixelColorHSB(怒炎.x, 怒炎.y)[2]<=0.21F){
 			threadPressOrRelease(VK_R, false, true);
 			threadPressOrReleaseWithDelay(VK_R, false, false,300);
 		}
+
+
+
 		threadPressOrRelease(VK_F, false, true);
 
 
 		customConditionSet.add(滚轮);
+
+		customConditionSet.remove(召唤特殊);
 	}
 
 
-
+	public static final String 召唤特殊="召唤特殊";
 
 	@ListenMouseKeyboard(key = "滚轮", intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = start,timeInterval = 800L)
 	@ListenMouseKeyboard(key = "滚轮", userInput = false,intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = start,timeInterval = 800L)
@@ -100,11 +111,12 @@ public class Functions召唤0 extends Functions公共 {
 //			robot.keyPress(VK_BACK_QUOTE);
 //			robot.keyRelease(VK_BACK_QUOTE);
 //
+			customConditionSet.add(召唤特殊);
 //			robot.keyPress(VK_SHIFT);
 //			robot.keyRelease(VK_SHIFT);
 
-			robot.keyPress(VK_R);
-			robot.keyRelease(VK_R);
+//			robot.keyPress(VK_R);
+//			robot.keyRelease(VK_R);
 		}
 
 		customConditionSet.remove(滚轮);
