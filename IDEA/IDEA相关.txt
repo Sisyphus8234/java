@@ -20,18 +20,9 @@ java17报错,虚拟机选项
 
 
 插件
+TreeInfotip
 grep console
 Free MyBatis Tool
 JRebel and XRebel
-POJO to JSON
 String Manipulation
-EasyCode
-
-CodeGeeX
-
-Key Promoter X
-
-CamelCase
-RoboPOJOGenerator
-SonarLint
-IDE Eval Reset
+MyBatisCodeHelperPro
