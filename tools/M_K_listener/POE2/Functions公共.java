@@ -9,7 +9,36 @@ import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
 
+    @ListenMouseKeyboard(key = "y", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "y", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void 丢东西(InputInfo inputInfo) {
+        Point temp=MouseInfo.getPointerInfo().getLocation();
+
+        robot.mousePress(BUTTON1_DOWN_MASK);
+        robot.mouseRelease(BUTTON1_DOWN_MASK);
+        pause(200L);
+
+        myMouseMove(988,90);
+
+        pause(200L);
+
+        robot.mousePress(BUTTON1_DOWN_MASK);
+        robot.mouseRelease(BUTTON1_DOWN_MASK);
+
+        pause(200L);
+        robot.keyPress(VK_ENTER);
+        robot.keyRelease(VK_ENTER);
+
+        pause(200L);
+        myMouseMove(temp.x  ,temp.y);
+
+
+
+    }
+
+
     public static Point 喝药point = new Point(123, 968);
+    public static Point 喝药point2 = new Point(123, 955);
     public static Point 喝药point1 = new Point(965, 361);
 
     public static MyThread 喝药 = new MyThread(MyThread.State.on) {
@@ -18,12 +47,17 @@ public class Functions公共 extends IFunctions {
             while (true) {
                 if (CommonUtil.customConditionSet.contains(start)) {
 
-                    float[] temp=getPixelColorHSB(喝药point.x,喝药point.y);
-                    if(temp[1]<=0.34&&temp[2]<=0.27){
+                    float[] temp=getPixelColorHSB(喝药point2.x,喝药point2.y);
+                    if(temp[1]<=0.33&&temp[2]<=0.24){
 //                    if(HSB.getPixelColorHSB(喝药point1.x,喝药point1.y)[2]<=0.35){
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
+
+                        robot.keyPress(VK_SPACE);
+                        robot.keyRelease(VK_SPACE);
                         pause(300L);
+
+
                     }
 
                 }

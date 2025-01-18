@@ -28,6 +28,16 @@ public class MyThread extends Thread {
     }
 
 
+    public boolean checkBlock(){
+        synchronized(myThreadLock){
+            if(myThreadLock.isEmpty()){
+                return false;
+            }else {
+                return true;
+            }
+        }
+    }
+
 
 
 
