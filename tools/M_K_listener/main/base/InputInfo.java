@@ -18,6 +18,9 @@ public class InputInfo {
     public Set<String> customCondition = new HashSet<>();
     public Set<String> customConditionReverse = new HashSet<>();
 
+
+    public Set<String> customConditionOfCommonUtil = new HashSet<>();
+
     public boolean cusConEquals(InputInfo inputInfo){
         return customCondition.equals(inputInfo.customCondition)&&customConditionReverse.equals(inputInfo.customConditionReverse);
     }
