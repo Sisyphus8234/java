@@ -40,11 +40,11 @@ public class Do {
         boolean result=false;
 
         if(!taskInfo.inputInfo.customConditionReverse.isEmpty()) {
-            if(taskInfo.inputInfo.customConditionReverse.stream().anyMatch(taskInfo.inputInfo.customConditionOfCommonUtil::contains)){
+            if(taskInfo.inputInfo.customConditionReverse.stream().anyMatch(taskInfo.inputInfoActualTemp.customConditionOfCommonUtil::contains)){
                 return result;
             }
         }
-        if(taskInfo.inputInfo.customCondition.isEmpty()||taskInfo.inputInfo.customConditionOfCommonUtil.containsAll(taskInfo.inputInfo.customCondition)) {
+        if(taskInfo.inputInfo.customCondition.isEmpty()||taskInfo.inputInfo.customConditionOfCommonUtil.containsAll(taskInfo.inputInfoActualTemp.customCondition)) {
             if (Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis() > taskInfo.inputInfo.timeInterval) {
                 taskInfo.lastTime = LocalDateTime.now();
                 if (taskInfo.immediately == true) {
