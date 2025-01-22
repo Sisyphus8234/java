@@ -5,12 +5,11 @@ import base.enty.TaskResult;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Do {
 
-//    public long refreshtime;
+    //    public long refreshtime;
     public static LinkedBlockingQueue<TaskInfo> taskInfoList = new LinkedBlockingQueue<TaskInfo>();
 
     public static Object object;
@@ -38,13 +37,15 @@ public class Do {
 
     public boolean doTask(TaskInfo taskInfo) {
         boolean result=false;
-
         if(!taskInfo.inputInfo.customConditionReverse.isEmpty()) {
             if(taskInfo.inputInfo.customConditionReverse.stream().anyMatch(taskInfo.inputInfoActualTemp.customConditionOfCommonUtil::contains)){
                 return result;
             }
         }
-        if(taskInfo.inputInfo.customCondition.isEmpty()||taskInfo.inputInfo.customConditionOfCommonUtil.containsAll(taskInfo.inputInfoActualTemp.customCondition)) {
+        if(taskInfo.inputInfo.customCondition.isEmpty()||taskInfo.inputInfoActualTemp.customConditionOfCommonUtil.containsAll(taskInfo.inputInfo.customCondition)) {
+
+
+
             if (Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis() > taskInfo.inputInfo.timeInterval) {
                 taskInfo.lastTime = LocalDateTime.now();
                 if (taskInfo.immediately == true) {
