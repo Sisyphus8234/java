@@ -14,7 +14,8 @@ public class JnativehookMouseWheelListener implements NativeMouseWheelListener {
 
         inputInfoActualTemp.resetProperty();
         inputInfoActualTemp.value = e.getButton();
-        inputInfoActualTemp.otherCondition.put("wheelRotation", String.valueOf(e.getWheelRotation()));
+//        inputInfoActualTemp.otherCondition.put("wheelRotation", String.valueOf(e.getWheelRotation()));
+        inputInfoActualTemp.otherCondition.add(String.valueOf(e.getWheelRotation()));
         if(Controller.printKey==true) {
             System.out.println(e.getButton());
             System.out.println(e.getWheelRotation());

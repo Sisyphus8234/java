@@ -64,7 +64,8 @@ public class JnaMouseHook {
                     inputInfoActualTemp.resetProperty();
                     inputInfoActualTemp.value = wParam.intValue();
                     inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse;
-                    inputInfoActualTemp.otherCondition.put("mouseData", String.valueOf(info.mouseData));
+//                    inputInfoActualTemp.otherCondition.put("mouseData", String.valueOf(info.mouseData));
+                    inputInfoActualTemp.otherCondition.add(String.valueOf(info.mouseData));
                     //wheelDown -7864320 -15728640
                     //wheelUp 7864320 15728640
 

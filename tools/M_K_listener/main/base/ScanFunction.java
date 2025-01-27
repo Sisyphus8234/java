@@ -57,9 +57,11 @@ public class ScanFunction {
         if (!listenMouseKeyboard.otherCondition().isEmpty()) {
             String[] otherCondition = listenMouseKeyboard.otherCondition().split(",");
             for (String item : otherCondition) {
-                String key = item.split("=")[0];
-                String value = item.split("=")[1];
-                inputInfo.otherCondition.put(key, value);
+//                String key = item.split("=")[0];
+//                String value = item.split("=")[1];
+//                inputInfo.otherCondition.put(key, value);
+
+                inputInfo.otherCondition.add(item);
             }
         }
 

@@ -10,7 +10,7 @@ public class InputInfo {
     public boolean userInput;
 
 
-    public Map<String, String> otherCondition = new HashMap();
+    public Set<String> otherCondition = new HashSet<>();
 
     public long timeInterval;
     public boolean extend;
@@ -31,7 +31,7 @@ public class InputInfo {
         this.value = 0;
         this.press = true;
         this.userInput = true;
-
+        this.otherCondition.clear();
     }
 
 
@@ -43,20 +43,15 @@ public class InputInfo {
         if (obj == null || getClass() != obj.getClass()) {
             return false; // 如果对象为null或者类型不同，则认为不相等
         }
-        InputInfo objNotParam = (InputInfo) obj; // 将obj强制转换为当前类的类型
+        InputInfo annotation = (InputInfo) obj; // 将obj强制转换为当前类的类型
         // 根据类的属性进行相等性比较
 
         boolean step0 = false;
-        step0 = value == objNotParam.value && press == objNotParam.press && userInput == objNotParam.userInput && keyboardOrMouse == objNotParam.keyboardOrMouse;
+        step0 = value == annotation.value && press == annotation.press && userInput == annotation.userInput && keyboardOrMouse == annotation.keyboardOrMouse;
 
 
         boolean step1 = true;
-        if (objNotParam.otherCondition != null && objNotParam.otherCondition.size() != 0) {
-
-            for (Map.Entry<String, String> item : objNotParam.otherCondition.entrySet()) {
-                if (!otherCondition.containsKey(item.getKey())) {
-                    throw new RuntimeException("otherCondition mistake");
-                }
+        if (annotation.otherCondition != null && annotation.otherCondition.size() != 0) {
 
                 step1 = step1 && Objects.equals(otherCondition.get(item.getKey()), item.getValue());
             }
