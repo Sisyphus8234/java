@@ -464,14 +464,14 @@ public class Functions extends IFunctions {
         int temp = -1;
 
         if (IFunctions.active == Active.jna) {
-            if (inputInfo.otherCondition.get("mouseData").equals("7864320")) {
+            if (inputInfo.otherCondition.contains("7864320")) {
                 temp = 0;
             } else {
                 temp = 1;
             }
         }
         if (IFunctions.active == Active.jnativehook) {
-            if (inputInfo.otherCondition.get("wheelRotation").equals("-1")) {
+            if (inputInfo.otherCondition.contains("-1")) {
                 temp = 0;
             } else {
                 temp = 1;

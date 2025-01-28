@@ -63,6 +63,8 @@ public class Functions召唤 extends Functions公共 {
 
 
 
+
+
 	@ListenMouseKeyboard(immediately = false,key = "滚轮",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = start,timeInterval = 600L)
 	@ListenMouseKeyboard(immediately = false,key = "滚轮", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = start,timeInterval = 600L)
 	public static void aaa(){

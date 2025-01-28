@@ -46,7 +46,7 @@ public class  Functions拍卖 extends IFunctions {
 
         int temp=Integer.parseInt(text);
 
-        if(inputInfo.otherCondition.get("mouseData").equals("7864320")){
+        if(inputInfo.otherCondition.contains("7864320")){
             temp++;
         }else {
             temp--;

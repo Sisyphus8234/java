@@ -53,8 +53,19 @@ public class InputInfo {
         boolean step1 = true;
         if (annotation.otherCondition != null && annotation.otherCondition.size() != 0) {
 
-                step1 = step1 && Objects.equals(otherCondition.get(item.getKey()), item.getValue());
-            }
+//            for (Map.Entry<String, String> item : annotation.otherCondition.entrySet()) {
+//                if (!otherCondition.containsKey(item.getKey())) {
+//                    throw new RuntimeException("otherCondition mistake");
+//                }
+//
+//                step1 = step1 && Objects.equals(otherCondition.get(item.getKey()), item.getValue());
+//            }
+            step1 = step1 && annotation.otherCondition.containsAll(otherCondition);
+
+            //---
+            System.out.println(111111111);
+            System.out.println(annotation.otherCondition);
+            System.out.println(otherCondition);
         }
 
         return step0 && step1;
