@@ -343,11 +343,8 @@ public class Functions extends IFunctions {
     public static TaskResult altf4() {
         customConditionSet.add(屏蔽);
 
-        robot.keyPress(VK_ALT);
-        robot.keyPress(VK_F4);
-        pause(100L);
-        robot.keyRelease(VK_F4);
-        robot.keyRelease(VK_ALT);
+        robot.keyPress(VK_F2);
+        robot.keyRelease(VK_F2);
 
         customConditionSet.add(波浪键按住期间做了什么);
         customConditionSet.remove(屏蔽);
@@ -355,6 +352,24 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
+    @ListenMouseKeyboard(key = "3",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+    public static TaskResult 反单引号和3() {
+        customConditionSet.add(屏蔽);
+
+
+
+        robot.keyPress(VK_ALT);
+        robot.keyPress(VK_F4);
+        pause(100L);
+        robot.keyRelease(VK_F4);
+        robot.keyRelease(VK_ALT);
+
+
+        customConditionSet.add(波浪键按住期间做了什么);
+        customConditionSet.remove(屏蔽);
+
+        return new TaskResult(true);
+    }
 
 
 //    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
