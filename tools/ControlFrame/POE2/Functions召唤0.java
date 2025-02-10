@@ -19,18 +19,26 @@ public class Functions召唤0 extends Functions公共 {
         初始化set.add(start);
     }
 
-    public static Point 回盾potin = new Point(171, 1064);
+    public static boolean 低盾(){
+        float[] temp = getPixelColorHSB(171,1064);
+        return  (temp[2] <= 0.18F);
+    }
+
+    public static boolean 低盾1(){
+        float[] temp = getPixelColorHSB(214,1018);
+        return  (temp[2] <= 0.42F);
+    }
+
     public static MyThread 回盾 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
                 if (CommonUtil.customConditionSet.contains(start)) {
 
-                    float[] temp = getPixelColorHSB(回盾potin.x, 回盾potin.y);
-                    if (temp[2] <= 0.18) {
+                    if (低盾1()) {
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
-                        pause(300L);
+                        pause(800);
                     }
                 }
                 pause(300L);
@@ -85,66 +93,25 @@ public class Functions召唤0 extends Functions公共 {
         @Override
         public void run() {
 
-//            LocalDateTime temp = LocalDateTime.now();
-//            int temp1 = VK_F;
-//            boolean temp2 = false;
             while (true) {
 
                 if (this.checkBlock() == false) {
                     myKeyRelease(VK_F);
                     myKeyRelease(VK_6);
-//                    temp2=true;
                 }
 
                 this.getBlock();
 
 
-//                if (LocalDateTime.now().compareTo(temp) > 0 && PixelColor.getPixelColorHSB(怒炎.x, 怒炎.y)[2] <= 0.21F) {
-//                    myKeyPress(VK_T);
-//                    myKeyRelease(VK_T);
-//                    temp = LocalDateTime.now().plus(Duration.ofMillis(1000L));
-//                }
-
-//				if (PixelColor.getPixelColorHSB(怒炎1.x, 怒炎1.y)[1] >= 0.62F) {
-//					myKeyPress(VK_6);
-//
-//
-//					myKeyRelease(VK_F);
-//
-//				}else {
-////					myKeyPress(VK_R);
-////					myKeyRelease(VK_R);
-//
-//					myKeyPress(VK_F);
-//
-//
-//					myKeyRelease(VK_6);
-//
-//
-//
-//				}
 
 
-//
-//                if(LocalDateTime.now().isAfter(temp)) {
-//                    pause(300L);
+//                if(basePoint.distance(getPointFix())<150){
 //                    myKeyPress(VK_6);
 //
 //                    myKeyRelease(VK_6);
-//
-//                    temp = LocalDateTime.now().plus(Duration.ofMillis(6500));
-//                }else {
-
-                if(basePoint.distance(getPointFix())<150){
-                    myKeyPress(VK_6);
-
-                    myKeyRelease(VK_6);
-                    pause(300L);
-                }else {
-
-                }
-                myKeyPress(VK_F);
+//                    pause(300L);
 //                }
+                myKeyPress(VK_F);
 
 
                 pause(300L);
@@ -153,6 +120,7 @@ public class Functions召唤0 extends Functions公共 {
     };
 
 
+    public static LocalDateTime tempTime=LocalDateTime.now();
     @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "-7864320,-15728640", customCondition = start, timeInterval = 800L)
     @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "-7864320,-15728640", customCondition = start, timeInterval = 800L)
     public static void 滚轮下() {
@@ -160,23 +128,16 @@ public class Functions召唤0 extends Functions公共 {
         wasd = 2;
 
         customConditionSet.add(滚轮);
+        if(LocalDateTime.now().isAfter(tempTime)){
+            robot.keyPress(VK_6);
+            robot.keyRelease(VK_6);
+            pause(500L);
+            tempTime=LocalDateTime.now().plus(Duration.ofMillis(7000));
+        }
 
         t滚轮.nonBlock();
 
 
-//		threadPressOrRelease(
-//
-//		_DOWN_MASK, true, true);
-//		threadPressOrRelease(BUTTON2_DOWN_MASK, true, false);
-//
-//		if(PixelColor.getPixelColorHSB(怒炎.x, 怒炎.y)[2]<=0.21F){
-//			threadPressOrRelease(VK_R, false, true);
-//			threadPressOrReleaseWithDelay(VK_R, false, false,300);
-//		}
-//
-//
-//
-//		threadPressOrRelease(VK_F, false, true);
 
 
     }
@@ -189,14 +150,20 @@ public class Functions召唤0 extends Functions公共 {
 
 
         if (!customConditionSet.contains(滚轮)) {
-            threadPressOrReleaseWithDelay(VK_0, false, true, 0);
-            threadPressOrReleaseWithDelay(VK_0, false, false, 200);
+//            threadPressOrReleaseWithDelay(VK_0, false, true, 0);
+//            threadPressOrReleaseWithDelay(VK_0, false, false, 200);
+//
+//            threadPressOrReleaseWithDelay(VK_SPACE, false, true, 0);
+//            threadPressOrReleaseWithDelay(VK_SPACE, false, false, 0);
+//
+//            threadPressOrReleaseWithDelay(VK_9, false, true, 0);
+//            threadPressOrReleaseWithDelay(VK_9, false, false, 0);
 
-            threadPressOrReleaseWithDelay(VK_SPACE, false, true, 0);
+            threadPressOrReleaseWithDelay(VK_T, false, true, 0);
+            threadPressOrReleaseWithDelay(VK_T, false, false, 1100);
+
+            threadPressOrReleaseWithDelay(VK_SPACE, false, true, 500);
             threadPressOrReleaseWithDelay(VK_SPACE, false, false, 0);
-
-            threadPressOrReleaseWithDelay(VK_9, false, true, 0);
-            threadPressOrReleaseWithDelay(VK_9, false, false, 0);
 
 
         } else {
