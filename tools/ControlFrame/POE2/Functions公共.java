@@ -63,6 +63,12 @@ public class Functions公共 extends IFunctions {
     public static Point 回蓝point = new Point(1783, 968);
     public static Point 回蓝point1= new Point(1785, 942);
     public static Point 回蓝point2= new Point(1790, 980);
+
+    public static boolean 低蓝(){
+        float[] temp = getPixelColorHSB(1790,980);
+        return  temp[1]<=0.22F;
+    }
+
     public static final String 回蓝开启="回蓝开启";
     public static MyThread 回蓝 = new MyThread(MyThread.State.on) {
         @Override
@@ -70,8 +76,7 @@ public class Functions公共 extends IFunctions {
             while (true) {
                 if (CommonUtil.customConditionSet.contains(start)&&customConditionSet.contains(回蓝开启)) {
 
-                    float[] temp=getPixelColorHSB(回蓝point2.x,回蓝point2.y);
-                    if(temp[1]<=0.22F){
+                    if(低蓝()){
 //                    if(HSB.getPixelColorHSB(喝药point1.x,喝药point1.y)[2]<=0.35){
                         robot.keyPress(VK_2);
                         robot.keyRelease(VK_2);
@@ -91,14 +96,18 @@ public class Functions公共 extends IFunctions {
     public static Point 喝药point2 = new Point(123, 955);
     public static Point 喝药point1 = new Point(965, 361);
 
+    public static boolean 低血(){
+        float[] temp = getPixelColorHSB(123,955);
+        return  temp[1]<=0.33&&temp[2]<=0.24;
+    }
+
     public static MyThread 喝药 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
                 if (CommonUtil.customConditionSet.contains(start)&&CommonUtil.customConditionSet.contains(回血开启)) {
 
-                    float[] temp=getPixelColorHSB(喝药point2.x,喝药point2.y);
-                    if(temp[1]<=0.33&&temp[2]<=0.24){
+                    if(低血()){
 //                    if(HSB.getPixelColorHSB(喝药point1.x,喝药point1.y)[2]<=0.35){
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);

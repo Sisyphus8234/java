@@ -61,11 +61,6 @@ public class InputInfo {
 //                step1 = step1 && Objects.equals(otherCondition.get(item.getKey()), item.getValue());
 //            }
             step1 = step1 && annotation.otherCondition.containsAll(otherCondition);
-
-            //---
-            System.out.println(111111111);
-            System.out.println(annotation.otherCondition);
-            System.out.println(otherCondition);
         }
 
         return step0 && step1;
