@@ -89,6 +89,7 @@ public class Functions召唤0 extends Functions公共 {
     };
 
 
+    public static boolean tempb=false;
     public static MyThread t滚轮 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
@@ -105,12 +106,25 @@ public class Functions召唤0 extends Functions公共 {
 
 
 
-//                if(basePoint.distance(getPointFix())<150){
+
+//                if(
+//                .distance(getPointFix())<150){
 //                    myKeyPress(VK_6);
+//
+
+
+//
 //
 //                    myKeyRelease(VK_6);
 //                    pause(300L);
 //                }
+
+                if(tempb==true){
+                    myKeyPress(VK_6);
+                    myKeyRelease(VK_6);
+                    pause(300L);
+                    tempb=false;
+                }
                 myKeyPress(VK_F);
 
 
@@ -129,10 +143,7 @@ public class Functions召唤0 extends Functions公共 {
 
         customConditionSet.add(滚轮);
         if(LocalDateTime.now().isAfter(tempTime)){
-            robot.keyPress(VK_6);
-            robot.keyRelease(VK_6);
-            pause(500L);
-            tempTime=LocalDateTime.now().plus(Duration.ofMillis(7000));
+            tempb=true;
         }
 
         t滚轮.nonBlock();
