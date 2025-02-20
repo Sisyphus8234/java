@@ -14,19 +14,18 @@ import static java.awt.event.KeyEvent.*;
 public class Functions公共 extends IFunctions {
     public static Set<String> 初始化set=new HashSet();
 
-    @ListenMouseKeyboard(key = "ctrl", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false,timeInterval = 200L)
-    @ListenMouseKeyboard(key = "ctrl", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false,timeInterval = 200L)
+    @ListenMouseKeyboard(key = "ctrl", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false,timeInterval = 50L)
+    @ListenMouseKeyboard(key = "ctrl", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false,timeInterval = 50L)
     public static void ctrl(InputInfo inputInfo) {
 
 
         threadPressOrRelease(BUTTON1_DOWN_MASK,true,true);
 //        pause(50L);
         threadPressOrRelease(BUTTON1_DOWN_MASK,true,false);
-
-
     }
-//    @ListenMouseKeyboard(intercept = true, key = "y", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
-//    @ListenMouseKeyboard(intercept = true, key = "y", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
+
+    @ListenMouseKeyboard(intercept = true, key = "u", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
+    @ListenMouseKeyboard(intercept = true, key = "u", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
     @ListenMouseKeyboard(intercept = true, key = "z", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
     @ListenMouseKeyboard(intercept = true, key = "z", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
     public static void 丢东西(InputInfo inputInfo) {
@@ -34,24 +33,24 @@ public class Functions公共 extends IFunctions {
 
         robot.mousePress(BUTTON1_DOWN_MASK);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
-        pause(300L);
+        pause(100L);
 
         myMouseMove(822,941);
 
-        pause(300L);
+        pause(100L);
 
         robot.mousePress(BUTTON1_DOWN_MASK);
         pause(50L);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
 
-        pause(300L);
-        robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
-
-        pause(50L);
-        robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
-        pause(300L);
+//        pause(300L);
+//        robot.keyPress(VK_ENTER);
+//        robot.keyRelease(VK_ENTER);
+//
+//        pause(50L);
+//        robot.keyPress(VK_ENTER);
+//        robot.keyRelease(VK_ENTER);
+//        pause(300L);
         myMouseMove(temp.x  ,temp.y);
 
 
@@ -142,6 +141,9 @@ public class Functions公共 extends IFunctions {
     @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = "!"+start)
 
     public static void 开() {
+        //---
+        System.out.println(111111111);
+        System.out.println();
 
         customConditionSet.addAll(初始化set);
 
@@ -185,8 +187,6 @@ public class Functions公共 extends IFunctions {
         public void run() {
             while (true) {
                 if (CommonUtil.customConditionSet.contains(start)) {
-
-
                     Point temp = getPointFix();
                     calculateAngle(basePoint, temp);
 
