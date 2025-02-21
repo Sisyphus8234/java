@@ -68,14 +68,13 @@ public class Functions召唤0 extends Functions公共 {
                         robot.keyPress(VK_Q);
                         robot.keyRelease(VK_Q);
                         pause(800L);
-                        robot.keyPress(VK_E);
-                        robot.keyRelease(VK_E);
-                        pause(800L);
+//                        robot.keyPress(VK_E);
+//                        robot.keyRelease(VK_E);
+//                        pause(800L);
 
                     }
 
-                    robot.keyRelease(VK_PAGE_DOWN);
-                    robot.keyPress(VK_PAGE_DOWN);
+
 
                     pause(150L);
                 }
@@ -124,6 +123,7 @@ public class Functions召唤0 extends Functions公共 {
         wasd = 2;
 
         customConditionSet.add(滚轮);
+
         if (LocalDateTime.now().isAfter(tempTime)) {
             tempb = true;
         }
@@ -132,6 +132,7 @@ public class Functions召唤0 extends Functions公共 {
 
 
     }
+
 
 
     @ListenMouseKeyboard(key = "滚轮", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "7864320,15728640", customCondition = start, timeInterval = 800L)
@@ -144,10 +145,12 @@ public class Functions召唤0 extends Functions公共 {
             threadPressOrReleaseWithDelay(VK_X, false, false, 400);
 
             threadPressOrReleaseWithDelay(VK_SPACE, false, true, 0);
-            threadPressOrReleaseWithDelay(VK_SPACE, false, false, 700);
+//            threadPressOrReleaseWithDelay(VK_SPACE, false, false, 700);
+            threadPressOrReleaseWithDelay(VK_SPACE, false, false, 0);
 
-            threadPressOrReleaseWithDelay(VK_X, false, true, 0);
-            threadPressOrReleaseWithDelay(VK_X, false, false, 0);
+            threadPressOrReleaseWithDelay(VK_0, false, true, 0);
+            threadPressOrReleaseWithDelay(VK_0, false, false, 0);
+
 
 //            threadPressOrReleaseWithDelay(VK_T, false, true, 0);
 //            threadPressOrReleaseWithDelay(VK_T, false, false, 1100);

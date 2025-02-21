@@ -141,9 +141,7 @@ public class Functions公共 extends IFunctions {
     @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = "!"+start)
 
     public static void 开() {
-        //---
-        System.out.println(111111111);
-        System.out.println();
+
 
         customConditionSet.addAll(初始化set);
 
