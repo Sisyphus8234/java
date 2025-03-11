@@ -3,6 +3,8 @@ package custom;
 import base.*;
 
 import java.awt.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,71 +14,82 @@ import static base.CommonUtil.customConditionSet;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
-    public static Set<String> 初始化set=new HashSet();
+    public static Set<String> 初始化set = new HashSet();
 
-    @ListenMouseKeyboard(key = "ctrl", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false,timeInterval = 200L)
-    @ListenMouseKeyboard(key = "ctrl", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false,timeInterval = 200L)
+    public static void start(){
+        t移动.nonBlock();
+    }
+
+    public static void stop(){
+        t移动.block();
+    }
+
+
+
+
+    @ListenMouseKeyboard(key = "v", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false, timeInterval = 50L, customCondition = "!" + start)
+    @ListenMouseKeyboard(key = "v", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false, timeInterval = 50L, customCondition = "!" + start)
     public static void ctrl(InputInfo inputInfo) {
 
 
-        threadPressOrRelease(BUTTON1_DOWN_MASK,true,true);
+        threadPressOrRelease(VK_CONTROL, false, true);
+        threadPressOrRelease(BUTTON1_DOWN_MASK, true, true);
 //        pause(50L);
-        threadPressOrRelease(BUTTON1_DOWN_MASK,true,false);
-
-
+        threadPressOrRelease(BUTTON1_DOWN_MASK, true, false);
+        threadPressOrRelease(VK_CONTROL, false, false);
     }
-//    @ListenMouseKeyboard(intercept = true, key = "y", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
-//    @ListenMouseKeyboard(intercept = true, key = "y", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
-    @ListenMouseKeyboard(intercept = true, key = "z", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
-    @ListenMouseKeyboard(intercept = true, key = "z", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
+
+    //    @ListenMouseKeyboard(intercept = true, key = "u", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
+//    @ListenMouseKeyboard(intercept = true, key = "u", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,immediately = false)
+    @ListenMouseKeyboard(intercept = true, key = "z", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false)
+    @ListenMouseKeyboard(intercept = true, key = "z", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false)
+
     public static void 丢东西(InputInfo inputInfo) {
-        Point temp=getPointFix();
+        Point temp = getPointFix();
 
         robot.mousePress(BUTTON1_DOWN_MASK);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
-        pause(300L);
+        pause(100L);
 
-        myMouseMove(822,941);
+        myMouseMove(822, 941);
 
-        pause(300L);
+        pause(100L);
 
         robot.mousePress(BUTTON1_DOWN_MASK);
         pause(50L);
         robot.mouseRelease(BUTTON1_DOWN_MASK);
 
-        pause(300L);
-        robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
-
-        pause(50L);
-        robot.keyPress(VK_ENTER);
-        robot.keyRelease(VK_ENTER);
-        pause(300L);
-        myMouseMove(temp.x  ,temp.y);
-
+//        pause(300L);
+//        robot.keyPress(VK_ENTER);
+//        robot.keyRelease(VK_ENTER);
+//
+//        pause(50L);
+//        robot.keyPress(VK_ENTER);
+//        robot.keyRelease(VK_ENTER);
+//        pause(300L);
+        myMouseMove(temp.x, temp.y);
 
 
     }
-
 
 
     public static Point 回蓝point = new Point(1783, 968);
-    public static Point 回蓝point1= new Point(1785, 942);
-    public static Point 回蓝point2= new Point(1790, 980);
+    public static Point 回蓝point1 = new Point(1785, 942);
+    public static Point 回蓝point2 = new Point(1790, 980);
 
-    public static boolean 低蓝(){
-        float[] temp = getPixelColorHSB(1790,980);
-        return  temp[1]<=0.22F;
+    public static boolean 低蓝() {
+        float[] temp = getPixelColorHSB(1790, 980);
+        return temp[0] <= 0.18F && temp[1] <= 0.19F && temp[2] <= 0.27F;
     }
 
-    public static final String 回蓝开启="回蓝开启";
+    public static final String 回蓝开启 = "回蓝开启";
     public static MyThread 回蓝 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if (CommonUtil.customConditionSet.contains(start)&&customConditionSet.contains(回蓝开启)) {
+                if (CommonUtil.customConditionSet.contains(start) && customConditionSet.contains(回蓝开启)) {
 
-                    if(低蓝()){
+                    if (低蓝()) {
 //                    if(HSB.getPixelColorHSB(喝药point1.x,喝药point1.y)[2]<=0.35){
                         robot.keyPress(VK_2);
                         robot.keyRelease(VK_2);
@@ -90,24 +103,23 @@ public class Functions公共 extends IFunctions {
 
 
 
-
-    public static final String 回血开启="回血开启";
+    public static final String 回血开启 = "回血开启";
     public static Point 喝药point = new Point(123, 968);
     public static Point 喝药point2 = new Point(123, 955);
     public static Point 喝药point1 = new Point(965, 361);
 
-    public static boolean 低血(){
-        float[] temp = getPixelColorHSB(123,955);
-        return  temp[1]<=0.33&&temp[2]<=0.24;
+    public static boolean 低血() {
+        float[] temp = getPixelColorHSB(123, 955);
+        return temp[1] <= 0.33 && temp[2] <= 0.24;
     }
 
     public static MyThread 喝药 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if (CommonUtil.customConditionSet.contains(start)&&CommonUtil.customConditionSet.contains(回血开启)) {
+                if (CommonUtil.customConditionSet.contains(start) && CommonUtil.customConditionSet.contains(回血开启)) {
 
-                    if(低血()){
+                    if (低血()) {
 //                    if(HSB.getPixelColorHSB(喝药point1.x,喝药point1.y)[2]<=0.35){
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
@@ -132,28 +144,30 @@ public class Functions公共 extends IFunctions {
 
 
     public static final String start = "start";
+    public static final String 移动 = "yd";
 
 
 
-
-    @ListenMouseKeyboard(intercept = true,key = "v",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(intercept = true,key = "v", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = "!"+start)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = "!"+start)
+    @ListenMouseKeyboard(intercept = true, key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(intercept = true, key = "win", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
+    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
 
     public static void 开() {
 
+
         customConditionSet.addAll(初始化set);
+//        start();
 
     }
 
     public static final String 滚轮 = "滚轮";
     public static final String 右键按下 = "右键";
 
-    @ListenMouseKeyboard(intercept = true, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
-    @ListenMouseKeyboard(intercept = true, key = "shift左", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = start)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = start)
+    @ListenMouseKeyboard(intercept = true, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = start)
+    @ListenMouseKeyboard(intercept = true, key = "shift左", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = start)
+    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
+    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
 //    @ListenMouseKeyboard(intercept = true, key = "x", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(intercept = true, key = "x", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -169,6 +183,7 @@ public class Functions公共 extends IFunctions {
     public static void 关(InputInfo inputInfo) {
 
         CommonUtil.customConditionSet.removeAll(初始化set);
+//        stop();
 
         robot.keyRelease(VK_A);
         robot.keyRelease(VK_W);
@@ -179,19 +194,23 @@ public class Functions公共 extends IFunctions {
 
     public static Point basePoint = new Point(960, 503);
 
-
     public static MyThread t移动 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
-                if (CommonUtil.customConditionSet.contains(start)) {
 
+
+                if(customConditionSet.contains(start)&&customConditionSet.contains(移动)) {
 
                     Point temp = getPointFix();
                     calculateAngle(basePoint, temp);
 
                 }
+
+
+
                 pause(100L);
+
 
             }
         }
