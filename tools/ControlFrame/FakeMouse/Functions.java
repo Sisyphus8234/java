@@ -78,8 +78,6 @@ public class Functions extends IFunctions {
     }
 
 
-
-
     public static int 滚轮方向 = 100;
     public static MyThread t3 = new MyThread(MyThread.State.on) {
         @Override
@@ -101,49 +99,50 @@ public class Functions extends IFunctions {
     //---基础功能
 
 
+    public static final String 屏蔽 = "屏蔽";
+    public static final String 左键 = "左键";
 
-    public static final String 屏蔽 ="屏蔽";
-    public static final String 左键="左键";
-    @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+ 屏蔽)
+    @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     @ListenMouseKeyboard(key = "alt右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键(InputInfo inputInfo) {
-        if(!customConditionSet.contains(左键)){
-            threadPressOrRelease(MouseEvent.BUTTON1_DOWN_MASK,true,true);
+        if (!customConditionSet.contains(左键)) {
+            threadPressOrRelease(MouseEvent.BUTTON1_DOWN_MASK, true, true);
             customConditionSet.add(左键);
         }
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "esc", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+ 屏蔽)
+    @ListenMouseKeyboard(key = "esc", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     @ListenMouseKeyboard(key = "alt右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult 模拟左键1(InputInfo inputInfo) {
 
         customConditionSet.remove(左键);
-        threadPressOrRelease(MouseEvent.BUTTON1_DOWN_MASK,true,false);
+        threadPressOrRelease(MouseEvent.BUTTON1_DOWN_MASK, true, false);
 
 
         return new TaskResult(true);
     }
 
-    public static final String 右键="右键";
-    @ListenMouseKeyboard(key = "f1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+ 屏蔽 +",!"+右键)
+    public static final String 右键 = "右键";
+
+    @ListenMouseKeyboard(key = "f1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f1键按下(InputInfo inputInfo) {
-        if(!customConditionSet.contains(右键)) {
+        if (!customConditionSet.contains(右键)) {
             customConditionSet.add(右键);
-            threadPressOrRelease(MouseEvent.BUTTON3_DOWN_MASK,true,true);
+            threadPressOrRelease(MouseEvent.BUTTON3_DOWN_MASK, true, true);
         }
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "f1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+屏蔽)
+    @ListenMouseKeyboard(key = "f1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f1键松开(InputInfo inputInfo) {
         customConditionSet.remove(右键);
-        threadPressOrRelease(MouseEvent.BUTTON3_DOWN_MASK,true,false);
+        threadPressOrRelease(MouseEvent.BUTTON3_DOWN_MASK, true, false);
         return new TaskResult(true);
     }
 
     //---
-    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+屏蔽)
+    @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f2键(InputInfo inputInfo) {
         robot.keyRelease(KeyEvent.VK_ENTER);
         robot.keyPress(KeyEvent.VK_ENTER);
@@ -152,7 +151,7 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "f3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+屏蔽)
+    @ListenMouseKeyboard(key = "f3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f3键(InputInfo inputInfo) {
 
         robot.keyRelease(KeyEvent.VK_BACK_SPACE);
@@ -161,7 +160,7 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "f4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+屏蔽)
+    @ListenMouseKeyboard(key = "f4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f4键(InputInfo inputInfo) {
 
         robot.keyRelease(KeyEvent.VK_DELETE);
@@ -171,9 +170,9 @@ public class Functions extends IFunctions {
 
     }
 
-    @ListenMouseKeyboard(key = "f2", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+屏蔽)
-    @ListenMouseKeyboard(key = "f3", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+屏蔽)
-    @ListenMouseKeyboard(key = "f4", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!"+屏蔽)
+    @ListenMouseKeyboard(key = "f2", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
+    @ListenMouseKeyboard(key = "f3", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
+    @ListenMouseKeyboard(key = "f4", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult 松开(InputInfo inputInfo) {
         return new TaskResult(true);
     }
@@ -232,11 +231,11 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true,customCondition = win)
-    @ListenMouseKeyboard(key = "2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true,customCondition = win)
-    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true,customCondition = win)
-    @ListenMouseKeyboard(key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true,customCondition = win)
-    @ListenMouseKeyboard(key = "5", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true,customCondition = win)
+    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true, customCondition = win)
+    @ListenMouseKeyboard(key = "2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true, customCondition = win)
+    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true, customCondition = win)
+    @ListenMouseKeyboard(key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true, customCondition = win)
+    @ListenMouseKeyboard(key = "5", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, extend = true, customCondition = win)
     public static void win3(InputInfo inputInfo) {
 
 
@@ -258,8 +257,9 @@ public class Functions extends IFunctions {
 
     //---波浪键相关
 
-    public static final String 反单引号="反单引号";
-    public static final String 波浪键按住期间做了什么="波浪键按住期间做了什么";
+    public static final String 反单引号 = "反单引号";
+    public static final String 波浪键按住期间做了什么 = "波浪键按住期间做了什么";
+
     @ListenMouseKeyboard(key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     @ListenMouseKeyboard(userInput = false, key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
@@ -272,7 +272,7 @@ public class Functions extends IFunctions {
     public static void 波浪键1() {
         customConditionSet.remove(反单引号);
 
-        if(!customConditionSet.contains(波浪键按住期间做了什么)){
+        if (!customConditionSet.contains(波浪键按住期间做了什么)) {
             t2.nonBlock();
         }
 
@@ -324,9 +324,9 @@ public class Functions extends IFunctions {
         }
     };
 
-    public static final String 反单引号期间做了什么="反单引号期间做了什么";
+    public static final String 反单引号期间做了什么 = "反单引号期间做了什么";
 
-    @ListenMouseKeyboard(key = "1",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+    @ListenMouseKeyboard(key = "1", extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 反单引号)
     public static TaskResult esc() {
         customConditionSet.add(屏蔽);
 
@@ -339,7 +339,7 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "2",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+    @ListenMouseKeyboard(key = "2", extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 反单引号)
     public static TaskResult altf4() {
         customConditionSet.add(屏蔽);
 
@@ -352,10 +352,9 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "3",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+    @ListenMouseKeyboard(key = "3", extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 反单引号)
     public static TaskResult 反单引号和3() {
         customConditionSet.add(屏蔽);
-
 
 
         robot.keyPress(VK_ALT);
@@ -372,7 +371,7 @@ public class Functions extends IFunctions {
     }
 
 
-//    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
+    //    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
 //    public static TaskResult 数字1() {
 //        customConditionSet.add(波浪键按住期间做了什么);
 //
@@ -429,7 +428,6 @@ public class Functions extends IFunctions {
     }
 
     public static float 倍率 = 1;
-
 
 
     public static MyThread 移动 = new MyThread(MyThread.State.on) {
@@ -506,7 +504,8 @@ public class Functions extends IFunctions {
         return new TaskResult(false);
     }
 
-    public static final String win="win";
+    public static final String win = "win";
+
     @ListenMouseKeyboard(key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void win按下() {
         CommonUtil.customConditionSet.add(win);
@@ -518,7 +517,6 @@ public class Functions extends IFunctions {
         CommonUtil.customConditionSet.remove(win);
 
     }
-
 
 
 //    @ListenMouseKeyboard(key = "prtsc",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -545,8 +543,6 @@ public class Functions extends IFunctions {
 //
 //        }
 //    }
-
-
 
 
 }
