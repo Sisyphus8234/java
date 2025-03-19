@@ -2,107 +2,235 @@ package custom;
 
 import base.*;
 
-import static java.awt.event.KeyEvent.*;
+import java.awt.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
+import static addition.PixelColor.getPixelColorHSB;
+import static base.CommonUtil.customConditionSet;
+import static java.awt.event.KeyEvent.*;
 
 public class Functions召唤 extends Functions公共 {
 
+    static {
+        初始化set.add(回蓝开启);
+//		初始化set.add(回血开启);
+        初始化set.add(start);
+        初始化set.add(移动);
+    }
 
-	@ListenMouseKeyboard(intercept = true,key = "v",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	@ListenMouseKeyboard(intercept = true,key = "v", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-	public static void 开(InputInfo inputInfo) {
-		CommonUtil.customConditionSet.add(start);
-//		threadPressOrRelease(VK_W,false,true);
-	}
+    public static boolean 低盾() {
+        float[] temp = getPixelColorHSB(171, 1064);
+        return (temp[2] <= 0.18F);
+    }
 
+    public static boolean 低盾1() {
+        float[] temp = getPixelColorHSB(214, 1018);
+        return (temp[2] <= 0.42F);
+    }
 
+    public static MyThread 回盾 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                if (CommonUtil.customConditionSet.contains(start)) {
 
+                    if (低盾1()) {
+                        robot.keyPress(VK_1);
+                        robot.keyRelease(VK_1);
+                        pause(600);
+                    }
+                }
+                pause(300L);
 
-
-	public static MyThread 自动 = new MyThread(MyThread.State.on) {
-		@Override
-		public void run() {
-			while (true) {
-				if(CommonUtil.customConditionSet.contains(start)&&!CommonUtil.customConditionSet.contains(滚轮)){
-					robot.mousePress(BUTTON1_DOWN_MASK);
-					robot.mouseRelease(BUTTON1_DOWN_MASK);
-					pause(200L);
-				}else {
-
-				}
-			}
-		}
-	};
-
-
-
-
-
-	@ListenMouseKeyboard(key = "右键按下",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = "!"+ 右键按下 +","+ start)
-	@ListenMouseKeyboard(userInput = false,key = "右键按下",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = "!"+ 右键按下 +","+ start)
-	@ListenMouseKeyboard(key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+ 右键按下 +","+ start)
-	@ListenMouseKeyboard(userInput = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+ 右键按下 +","+ start)
-	public static void 移动1(){
-		CommonUtil.customConditionSet.add(右键按下);
-		threadPressOrRelease(VK_1,false,true);
-		threadPressOrRelease(VK_1,false,false);
-		threadPressOrRelease(VK_2,false,true);
-		threadPressOrRelease(VK_2,false,false);
-	}
+            }
+        }
+    };
 
 
+    public static Point 怒炎 = new Point(1773, 1000);
+    public static Point 怒炎1 = new Point(1800, 940);
+
+
+    public static MyThread 自动左键 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+
+                if (customConditionSet.contains(start)) {
+
+                    if (!customConditionSet.contains(滚轮)) {
+                        robot.mousePress(BUTTON1_DOWN_MASK);
+                        robot.mouseRelease(BUTTON1_DOWN_MASK);
+                    }
+
+                    if (customConditionSet.contains(右键按下)) {
+                        robot.keyPress(VK_Q);
+                        robot.keyRelease(VK_Q);
+                        pause(800L);
+                    }
+
+
+
+                    pause(150L);
+                }
+
+            }
+        }
+    };
+
+
+    public static boolean b放奉献 = false;
+    public static boolean b火墙 = false;
+    public static MyThread t滚轮 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+
+            while (true) {
+
+                if (this.checkBlock() == false) {
+                    myKeyRelease(VK_F);
+                    myKeyRelease(VK_6);
+
+
+
+                }
+
+                this.getBlock();
+
+
+                if (b放奉献 == true) {
+                    myKeyPress(VK_6);
+                    myKeyRelease(VK_6);
+                    pause(300L);
+                    b放奉献 = false;
+                    tempTime=LocalDateTime.now().plus(Duration.ofMillis(9400));
+                }else{
+                    if(b火墙){
+                        robot.keyPress(VK_E);
+                        pause(500L);
+                        robot.keyRelease(VK_E);
+
+                        b火墙=false;
+                    }
+                }
+
+
+
+
+                myKeyPress(VK_F);
+
+
+                pause(300L);
+
+//                pause(400L);
+//                滚轮上(new InputInfo());
+            }
+        }
+    };
+
+
+    public static LocalDateTime tempTime = LocalDateTime.now();
+
+    @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "-7864320,-15728640", customCondition = start, timeInterval = 800L)
+    @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "-7864320,-15728640", customCondition = start, timeInterval = 800L)
+    public static void 滚轮下() {
+
+        wasd = 2;
+
+        customConditionSet.add(滚轮);
+
+        if (LocalDateTime.now().isAfter(tempTime)) {
+            b放奉献 = true;
+        }
+
+        b火墙=true;
+
+        t滚轮.nonBlock();
+
+
+    }
+
+
+
+    @ListenMouseKeyboard(key = "滚轮", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "7864320,15728640", customCondition = start, timeInterval = 800L)
+    @ListenMouseKeyboard(key = "滚轮", userInput = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "7864320,15728640", customCondition = start, timeInterval = 800L)
+    public static void 滚轮上(InputInfo inputInfo) {
+
+
+        if (!customConditionSet.contains(滚轮)) {
+            threadPressOrReleaseWithDelay(VK_X, false, true, 0);
+            threadPressOrReleaseWithDelay(VK_X, false, false, 400);
+
+            threadPressOrReleaseWithDelay(VK_SPACE, false, true, 0);
+
+
+            if(快闪现){
+                threadPressOrReleaseWithDelay(VK_SPACE, false, false, 700);
+
+                threadPressOrReleaseWithDelay(VK_X, false, true, 0);
+                threadPressOrReleaseWithDelay(VK_X, false, false, 0);
+            }else {
+                threadPressOrReleaseWithDelay(VK_SPACE, false, false, 0);
+
+                threadPressOrReleaseWithDelay(VK_0, false, true, 0);
+                threadPressOrReleaseWithDelay(VK_0, false, false, 0);
+            }
+
+        } else {
+            customConditionSet.remove(滚轮);
+            t滚轮.block();
+
+            if (customConditionSet.contains(右键按下)) {
+                wasd = 1;
+            } else {
+//				threadPressOrRelease(VK_F, false, false);
+//				threadPressOrRelease(VK_R, false, false);
+                wasd = 0;
+            }
+            threadPressOrRelease(VK_F, false, false);
+            threadPressOrRelease(VK_T, false, false);
+        }
+    }
+
+
+
+
+
+    @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + 右键按下 + "," + start)
+    @ListenMouseKeyboard(userInput = false, key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + 右键按下 + "," + start)
+    public static void 右键() {
+        customConditionSet.add(右键按下);
+    }
+
+
+    //
+    @ListenMouseKeyboard(key = "右键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = 右键按下 + "," + start)
+    @ListenMouseKeyboard(userInput = false, key = "右键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = 右键按下 + "," + start)
+    public static void 右键1() {
+        customConditionSet.remove(右键按下);
+    }
+
+
+    public static boolean 快闪现=true;
+    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
+    @ListenMouseKeyboard(userInput = false, key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
+    public static void 三() {
+
+        customConditionSet.remove(移动);
+        robot.keyRelease(VK_A);
+        robot.keyRelease(VK_W);
+        robot.keyRelease(VK_D);
+        robot.keyRelease(VK_S);
+
+    }
+
+//    @ListenMouseKeyboard(key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
+//    @ListenMouseKeyboard(userInput = false, key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
+//    public static void 四() {
+//        if(customConditionSet.contains(start)){
+//            customConditionSet.add(移动);
 //
-	@ListenMouseKeyboard(key = "右键松开",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = 右键按下 +","+ start)
-	@ListenMouseKeyboard(userInput = false,key = "右键松开",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,customCondition = 右键按下 +","+ start)
-	@ListenMouseKeyboard(press = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 右键按下 +","+ start)
-	@ListenMouseKeyboard(press = false,userInput = false,key = "e",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 右键按下 +","+ start)
-	public static void 移动(){
-		CommonUtil.customConditionSet.remove(右键按下);
-	}
-
-
-
-
-
-
-	@ListenMouseKeyboard(immediately = false,key = "滚轮",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = start,timeInterval = 600L)
-	@ListenMouseKeyboard(immediately = false,key = "滚轮", userInput = false,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=-7864320",customCondition = start,timeInterval = 600L)
-	public static void aaa(){
-
-		if (CommonUtil.customConditionSet.contains(滚轮)) {
-//			robot.keyRelease(VK_T);
-//			robot.keyPress(VK_0);
-//			pause(800L);
-//			robot.keyRelease(VK_0);
-//			robot.keyPress(VK_T);
-
-			threadPressOrRelease(VK_T,false,true);
-			threadPressOrRelease(VK_0,false,false);
-			pause(1400L);
-			threadPressOrRelease(VK_0,false,true);
-		} else {
-			threadPressOrRelease(VK_T,false,true);
-			pause(500L);
-			threadPressOrRelease(VK_0,false,true);
-		}
-		CommonUtil.customConditionSet.add(滚轮);
-
-	}
-
-
-	@ListenMouseKeyboard(key = "滚轮", intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = start,timeInterval = 1000L)
-	@ListenMouseKeyboard(key = "滚轮", userInput = false,intercept = true,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse,otherCondition = "mouseData=7864320",customCondition = start,timeInterval = 1000L)
-	public static void 滚轮(InputInfo inputInfo) {
-		if(!CommonUtil.customConditionSet.contains(滚轮)){
-			threadPressOrRelease(VK_Q,false,true);
-			threadPressOrRelease(VK_Q,false,false);
-		}else {
-			Do.taskInfoList.clear();
-			threadPressOrRelease(VK_T,false,false);
-			threadPressOrRelease(VK_0,false,false);
-		}
-		CommonUtil.customConditionSet.remove(滚轮);
-
-	}
-
+//        }
+//    }
 }

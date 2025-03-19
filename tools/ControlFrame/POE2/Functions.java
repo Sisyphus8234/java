@@ -4,7 +4,7 @@ import base.*;
 
 
 
-public class  Functions extends Functions召唤0 {
+public class  Functions extends Functions法师 {
 
 
 }
