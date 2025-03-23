@@ -183,6 +183,8 @@ public class Functions公共 extends IFunctions {
     public static void 关(InputInfo inputInfo) {
 
         CommonUtil.customConditionSet.removeAll(初始化set);
+//        customConditionSet.remove(移动);
+//        customConditionSet.remove(左键连点);
         robot.keyRelease(VK_A);
         robot.keyRelease(VK_W);
         robot.keyRelease(VK_D);
@@ -206,6 +208,7 @@ public class Functions公共 extends IFunctions {
 
 
             customConditionSet.remove(移动);
+            customConditionSet.remove(左键连点);
             robot.keyRelease(VK_A);
             robot.keyRelease(VK_W);
             robot.keyRelease(VK_D);

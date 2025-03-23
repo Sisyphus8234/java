@@ -17,6 +17,7 @@ public class Functions召唤 extends Functions公共 {
 //		初始化set.add(回血开启);
         初始化set.add(start);
         初始化set.add(移动);
+        初始化set.add(左键连点);
     }
 
     public static boolean 低盾() {
@@ -52,32 +53,27 @@ public class Functions召唤 extends Functions公共 {
     public static Point 怒炎1 = new Point(1800, 940);
 
 
-    public static MyThread 自动左键 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-
-                if (customConditionSet.contains(start)) {
-
-                    if (!customConditionSet.contains(滚轮)) {
-                        robot.mousePress(BUTTON1_DOWN_MASK);
-                        robot.mouseRelease(BUTTON1_DOWN_MASK);
-                    }
-
-                    if (customConditionSet.contains(右键按下)) {
-                        robot.keyPress(VK_Q);
-                        robot.keyRelease(VK_Q);
-                        pause(800L);
-                    }
-
-
-
-                    pause(150L);
-                }
-
-            }
-        }
-    };
+//    public static MyThread 自动左键 = new MyThread(MyThread.State.on) {
+//        @Override
+//        public void run() {
+//            while (true) {
+//
+//                if (customConditionSet.contains(start)) {
+//                    if (customConditionSet.contains(右键按下)) {
+//                        robot.keyPress(VK_Q);
+//                        robot.keyRelease(VK_Q);
+//                        pause(1000L);
+//
+//                        robot.keyPress(VK_6);
+//                        robot.keyRelease(VK_6);
+//                        pause(1000L);
+//                    }
+//                    pause(150L);
+//                }
+//
+//            }
+//        }
+//    };
 
 
     public static boolean b放奉献 = false;
@@ -86,34 +82,40 @@ public class Functions召唤 extends Functions公共 {
         @Override
         public void run() {
 
+            LocalDateTime 火墙时间=LocalDateTime.now();
+
             while (true) {
 
                 if (this.checkBlock() == false) {
                     myKeyRelease(VK_F);
                     myKeyRelease(VK_6);
-
-
-
                 }
 
                 this.getBlock();
 
 
-                if (b放奉献 == true) {
-                    myKeyPress(VK_6);
-                    myKeyRelease(VK_6);
-                    pause(300L);
-                    b放奉献 = false;
-                    tempTime=LocalDateTime.now().plus(Duration.ofMillis(9400));
-                }else{
-                    if(b火墙){
-                        robot.keyPress(VK_E);
+//                if (b放奉献 == true) {
+//                    myKeyPress(VK_6);
+//                    myKeyRelease(VK_6);
+//                    pause(300L);
+//                    b放奉献 = false;
+//                    tempTime=LocalDateTime.now().plus(Duration.ofMillis(9400));
+//                }else{
+                    if(LocalDateTime.now().isAfter(火墙时间)){
+                        火墙时间=LocalDateTime.now().plus(Duration.ofMillis(3000L));
+                        robot.keyPress(VK_T);
                         pause(500L);
-                        robot.keyRelease(VK_E);
+                        robot.keyRelease(VK_T);
+//                        b火墙=false;
 
-                        b火墙=false;
+//                        robot.keyPress(VK_R);
+//                        pause(600L);
+//                        robot.keyRelease(VK_R);
                     }
-                }
+
+
+
+//                }
 
 
 
@@ -135,14 +137,15 @@ public class Functions召唤 extends Functions公共 {
     @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "-7864320,-15728640", customCondition = start, timeInterval = 800L)
     @ListenMouseKeyboard(key = "滚轮", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "-7864320,-15728640", customCondition = start, timeInterval = 800L)
     public static void 滚轮下() {
+        customConditionSet.remove(左键连点);
 
         wasd = 2;
 
         customConditionSet.add(滚轮);
 
-        if (LocalDateTime.now().isAfter(tempTime)) {
-            b放奉献 = true;
-        }
+//        if (LocalDateTime.now().isAfter(tempTime)) {
+//            b放奉献 = true;
+//        }
 
         b火墙=true;
 
@@ -156,6 +159,7 @@ public class Functions召唤 extends Functions公共 {
     @ListenMouseKeyboard(key = "滚轮", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "7864320,15728640", customCondition = start, timeInterval = 800L)
     @ListenMouseKeyboard(key = "滚轮", userInput = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "7864320,15728640", customCondition = start, timeInterval = 800L)
     public static void 滚轮上(InputInfo inputInfo) {
+        customConditionSet.add(左键连点);
 
 
         if (!customConditionSet.contains(滚轮)) {
@@ -166,7 +170,8 @@ public class Functions召唤 extends Functions公共 {
 
 
             if(快闪现){
-                threadPressOrReleaseWithDelay(VK_SPACE, false, false, 700);
+
+                threadPressOrReleaseWithDelay(VK_SPACE, false, false, 800);
 
                 threadPressOrReleaseWithDelay(VK_X, false, true, 0);
                 threadPressOrReleaseWithDelay(VK_X, false, false, 0);
