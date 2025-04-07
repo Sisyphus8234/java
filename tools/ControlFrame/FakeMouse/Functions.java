@@ -120,7 +120,7 @@ public class Functions extends IFunctions {
         threadPressOrRelease(MouseEvent.BUTTON1_DOWN_MASK, true, false);
 
 
-        return new TaskResult(true);
+        return new TaskResult(false);
     }
 
     public static final String 右键 = "右键";
