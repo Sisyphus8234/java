@@ -30,15 +30,22 @@ public class Functions召唤 extends Functions公共 {
         return (temp[2] <= 0.42F);
     }
 
+    public static boolean 低盾2() {
+        float[] temp = getPixelColorHSB(224, 968);
+        return (temp[2] <= 0.9F);
+    }
+
     public static MyThread 回盾 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
                 if (CommonUtil.customConditionSet.contains(start)) {
 
-                    if (低盾1()) {
+                    if (低盾2()) {
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
+                        robot.keyPress(VK_SPACE);
+                        robot.keyRelease(VK_SPACE);
                         pause(600);
                     }
                 }
@@ -82,7 +89,7 @@ public class Functions召唤 extends Functions公共 {
         @Override
         public void run() {
 
-            LocalDateTime 火墙时间=LocalDateTime.now();
+            LocalDateTime 火墙时间 = LocalDateTime.now();
 
             while (true) {
 
@@ -101,23 +108,20 @@ public class Functions召唤 extends Functions公共 {
 //                    b放奉献 = false;
 //                    tempTime=LocalDateTime.now().plus(Duration.ofMillis(9400));
 //                }else{
-                    if(LocalDateTime.now().isAfter(火墙时间)){
-                        火墙时间=LocalDateTime.now().plus(Duration.ofMillis(3000L));
-                        robot.keyPress(VK_T);
-                        pause(500L);
-                        robot.keyRelease(VK_T);
+                if (LocalDateTime.now().isAfter(火墙时间)) {
+                    火墙时间 = LocalDateTime.now().plus(Duration.ofMillis(3000L));
+                    robot.keyPress(VK_T);
+                    pause(500L);
+                    robot.keyRelease(VK_T);
 //                        b火墙=false;
 
 //                        robot.keyPress(VK_R);
 //                        pause(600L);
 //                        robot.keyRelease(VK_R);
-                    }
-
+                }
 
 
 //                }
-
-
 
 
                 myKeyPress(VK_F);
@@ -147,13 +151,12 @@ public class Functions召唤 extends Functions公共 {
 //            b放奉献 = true;
 //        }
 
-        b火墙=true;
+        b火墙 = true;
 
         t滚轮.nonBlock();
 
 
     }
-
 
 
     @ListenMouseKeyboard(key = "滚轮", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, otherCondition = "7864320,15728640", customCondition = start, timeInterval = 800L)
@@ -169,18 +172,15 @@ public class Functions召唤 extends Functions公共 {
             threadPressOrReleaseWithDelay(VK_SPACE, false, true, 0);
 
 
-            if(快闪现){
+//            threadPressOrReleaseWithDelay(VK_SPACE, false, false, 800);
+//
+//            threadPressOrReleaseWithDelay(VK_X, false, true, 0);
+//            threadPressOrReleaseWithDelay(VK_X, false, false, 0);
 
-                threadPressOrReleaseWithDelay(VK_SPACE, false, false, 800);
-
-                threadPressOrReleaseWithDelay(VK_X, false, true, 0);
-                threadPressOrReleaseWithDelay(VK_X, false, false, 0);
-            }else {
-                threadPressOrReleaseWithDelay(VK_SPACE, false, false, 0);
-
+                threadPressOrReleaseWithDelay(VK_SPACE, false, false, 0);//
+//                threadPressOrReleaseWithDelay(VK_0, false, true, 200);
                 threadPressOrReleaseWithDelay(VK_0, false, true, 0);
                 threadPressOrReleaseWithDelay(VK_0, false, false, 0);
-            }
 
         } else {
             customConditionSet.remove(滚轮);
@@ -199,13 +199,12 @@ public class Functions召唤 extends Functions公共 {
     }
 
 
-
-
-
     @ListenMouseKeyboard(key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + 右键按下 + "," + start)
     @ListenMouseKeyboard(userInput = false, key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + 右键按下 + "," + start)
     public static void 右键() {
         customConditionSet.add(右键按下);
+//        customConditionSet.remove(左键连点);
+//        customConditionSet.remove(移动);
     }
 
 
@@ -214,21 +213,23 @@ public class Functions召唤 extends Functions公共 {
     @ListenMouseKeyboard(userInput = false, key = "右键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = 右键按下 + "," + start)
     public static void 右键1() {
         customConditionSet.remove(右键按下);
+//        customConditionSet.add(左键连点);
+//        customConditionSet.add(移动);
     }
 
 
-    public static boolean 快闪现=true;
-    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
-    @ListenMouseKeyboard(userInput = false, key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
-    public static void 三() {
-
-        customConditionSet.remove(移动);
-        robot.keyRelease(VK_A);
-        robot.keyRelease(VK_W);
-        robot.keyRelease(VK_D);
-        robot.keyRelease(VK_S);
-
-    }
+//    public static boolean 快闪现=true;
+//    @ListenMouseKeyboard(key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
+//    @ListenMouseKeyboard(userInput = false, key = "3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
+//    public static void 三() {
+//
+//        customConditionSet.remove(移动);
+//        robot.keyRelease(VK_A);
+//        robot.keyRelease(VK_W);
+//        robot.keyRelease(VK_D);
+//        robot.keyRelease(VK_S);
+//
+//    }
 
 //    @ListenMouseKeyboard(key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
 //    @ListenMouseKeyboard(userInput = false, key = "4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = start)
