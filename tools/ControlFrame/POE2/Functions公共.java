@@ -5,12 +5,12 @@ import base.*;
 import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import static addition.PixelColor.*;
 import static base.CommonUtil.customConditionSet;
+import static base.CommonUtil.keyCodeMap;
 import static java.awt.event.KeyEvent.*;
 
 public class Functions公共 extends IFunctions {
@@ -27,8 +27,8 @@ public class Functions公共 extends IFunctions {
 
 
 
-    @ListenMouseKeyboard(key = "v", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false, timeInterval = 50L, customCondition = "!" + start)
-    @ListenMouseKeyboard(key = "v", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false, timeInterval = 50L, customCondition = "!" + start)
+    @ListenMouseKeyboard(intercept = true, key = "v", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false, timeInterval = 50L, customCondition = "!" + start)
+    @ListenMouseKeyboard(intercept = true,key = "v", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, immediately = false, timeInterval = 50L, customCondition = "!" + start)
     public static void ctrl(InputInfo inputInfo) {
 
 
@@ -145,6 +145,7 @@ public class Functions公共 extends IFunctions {
 
     public static final String start = "start";
     public static final String 移动 = "yd";
+    public static final String 左键连点 = "zjld";
 
 
 
@@ -152,14 +153,13 @@ public class Functions公共 extends IFunctions {
     @ListenMouseKeyboard(intercept = true, key = "win", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
     @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
-
-    public static void 开() {
-
+    public static void 开(InputInfo inputInfo) {
 
         customConditionSet.addAll(初始化set);
-//        start();
-
     }
+
+
+
 
     public static final String 滚轮 = "滚轮";
     public static final String 右键按下 = "右键";
@@ -183,14 +183,57 @@ public class Functions公共 extends IFunctions {
     public static void 关(InputInfo inputInfo) {
 
         CommonUtil.customConditionSet.removeAll(初始化set);
-//        stop();
-
+//        customConditionSet.remove(移动);
+//        customConditionSet.remove(左键连点);
         robot.keyRelease(VK_A);
         robot.keyRelease(VK_W);
         robot.keyRelease(VK_D);
         robot.keyRelease(VK_S);
     }
 
+    public static final String win按下="winAX";
+    @ListenMouseKeyboard(extend = true,  key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+win按下)
+    @ListenMouseKeyboard(extend = true, key = "win", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+win按下)
+    public static void 长按(InputInfo inputInfo) {
+            customConditionSet.add(win按下);
+            winTime =LocalDateTime.now().plus(Duration.ofMillis(200));
+    }
+
+    @ListenMouseKeyboard(extend = true,  press = false, key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(extend = true,  press = false, key = "win", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void 长按1(InputInfo inputInfo) {
+        customConditionSet.remove(win按下);
+
+        if(LocalDateTime.now().compareTo(winTime)>=0){
+
+
+            customConditionSet.remove(移动);
+            customConditionSet.remove(左键连点);
+            robot.keyRelease(VK_A);
+            robot.keyRelease(VK_W);
+            robot.keyRelease(VK_D);
+            robot.keyRelease(VK_S);
+        }
+    }
+    public static LocalDateTime winTime = LocalDateTime.now();
+
+
+    public static MyThread 自动左键 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+
+                if (customConditionSet.contains(start)&&customConditionSet.contains(左键连点)) {
+
+                    robot.mousePress(BUTTON1_DOWN_MASK);
+                    robot.mouseRelease(BUTTON1_DOWN_MASK);
+
+                    pause(150L);
+                }
+
+            }
+        }
+    };
 
     public static Point basePoint = new Point(960, 503);
 
@@ -198,26 +241,22 @@ public class Functions公共 extends IFunctions {
         @Override
         public void run() {
             while (true) {
-
-
                 if(customConditionSet.contains(start)&&customConditionSet.contains(移动)) {
-
                     Point temp = getPointFix();
                     calculateAngle(basePoint, temp);
-
                 }
-
-
-
                 pause(100L);
-
-
             }
         }
     };
 
 
-    public static int wasd = 0;
+    public static int wasd = KeyWASD.前进;
+    static class KeyWASD {
+        static final int 前进=0;
+        static final int 不动=1;
+        static final int 后退=2;
+    }
 
     public static void calculateAngle(Point a, Point b) {
         // 计算向量 (a.x - b.x, a.y - b.y)
@@ -236,7 +275,7 @@ public class Functions公共 extends IFunctions {
         }
 
 
-        if (wasd == 1) {
+        if (wasd == KeyWASD.不动) {
             robot.keyRelease(VK_A);
             robot.keyRelease(VK_W);
             robot.keyRelease(VK_D);
@@ -244,7 +283,7 @@ public class Functions公共 extends IFunctions {
             return;
         }
 
-        if (wasd == 2) {
+        if (wasd == KeyWASD.后退) {
             angleInDegrees = angleInDegrees + 180;
             if (angleInDegrees > 360) {
                 angleInDegrees = angleInDegrees - 360;
