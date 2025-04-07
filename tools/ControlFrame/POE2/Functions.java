@@ -4,7 +4,7 @@ import base.*;
 
 
 
-public class  Functions extends Functions召唤 {
+public class  Functions extends Functions召唤temp {
 
 
 }

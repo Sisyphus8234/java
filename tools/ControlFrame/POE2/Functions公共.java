@@ -124,8 +124,10 @@ public class Functions公共 extends IFunctions {
                         robot.keyPress(VK_1);
                         robot.keyRelease(VK_1);
 
-//                        robot.keyPress(VK_SPACE);
-//                        robot.keyRelease(VK_SPACE);
+                        if(customConditionSet.contains(移动)) {
+                            robot.keyPress(VK_SPACE);
+                            robot.keyRelease(VK_SPACE);
+                        }
                         pause(300L);
                     }
                 }
@@ -151,8 +153,8 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(intercept = true, key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(intercept = true, key = "win", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
+//    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
+//    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!" + start)
     public static void 开(InputInfo inputInfo) {
 
         customConditionSet.addAll(初始化set);
@@ -166,8 +168,8 @@ public class Functions公共 extends IFunctions {
 
     @ListenMouseKeyboard(intercept = true, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = start)
     @ListenMouseKeyboard(intercept = true, key = "shift左", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = start)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
-    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
+//    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
+//    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
 //    @ListenMouseKeyboard(intercept = true, key = "x", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
 //    @ListenMouseKeyboard(intercept = true, key = "x", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "c", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -181,7 +183,6 @@ public class Functions公共 extends IFunctions {
     @ListenMouseKeyboard(key = "esc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "esc", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void 关(InputInfo inputInfo) {
-
         CommonUtil.customConditionSet.removeAll(初始化set);
 //        customConditionSet.remove(移动);
 //        customConditionSet.remove(左键连点);
@@ -190,6 +191,23 @@ public class Functions公共 extends IFunctions {
         robot.keyRelease(VK_D);
         robot.keyRelease(VK_S);
     }
+
+    @ListenMouseKeyboard(intercept = true, key = "侧键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
+    @ListenMouseKeyboard(intercept = true, key = "侧键按下", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition =start)
+    public static void 侧键(InputInfo inputInfo) {
+        customConditionSet.remove(左键连点);
+        customConditionSet.remove(移动);
+    }
+
+    @ListenMouseKeyboard(intercept = true, key = "侧键松开", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition =start)
+    @ListenMouseKeyboard(intercept = true, key = "侧键松开", userInput = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = start)
+    public static void 侧键1(InputInfo inputInfo) {
+        customConditionSet.add(左键连点);
+        customConditionSet.add(移动);
+    }
+
+
+
 
     public static final String win按下="winAX";
     @ListenMouseKeyboard(extend = true,  key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = "!"+win按下)
@@ -209,10 +227,10 @@ public class Functions公共 extends IFunctions {
 
             customConditionSet.remove(移动);
             customConditionSet.remove(左键连点);
-            robot.keyRelease(VK_A);
-            robot.keyRelease(VK_W);
-            robot.keyRelease(VK_D);
-            robot.keyRelease(VK_S);
+//            robot.keyRelease(VK_A);
+//            robot.keyRelease(VK_W);
+//            robot.keyRelease(VK_D);
+//            robot.keyRelease(VK_S);
         }
     }
     public static LocalDateTime winTime = LocalDateTime.now();
@@ -240,10 +258,23 @@ public class Functions公共 extends IFunctions {
     public static MyThread t移动 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
+            boolean b=false;
             while (true) {
-                if(customConditionSet.contains(start)&&customConditionSet.contains(移动)) {
-                    Point temp = getPointFix();
-                    calculateAngle(basePoint, temp);
+                if(customConditionSet.contains(start)) {
+                    if(customConditionSet.contains(移动)){
+                        Point temp = getPointFix();
+                        calculateAngle(basePoint, temp);
+                        b=true;
+                    }else {
+                        if(b==true) {
+                            robot.keyRelease(VK_A);
+                            robot.keyRelease(VK_W);
+                            robot.keyRelease(VK_D);
+                            robot.keyRelease(VK_S);
+                            b=false;
+                        }
+                    }
+
                 }
                 pause(100L);
             }
