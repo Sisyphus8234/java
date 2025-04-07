@@ -120,7 +120,7 @@ public class Functions extends IFunctions {
         threadPressOrRelease(MouseEvent.BUTTON1_DOWN_MASK, true, false);
 
 
-        return new TaskResult(false);
+        return new TaskResult(true);
     }
 
     public static final String 右键 = "右键";
@@ -177,9 +177,7 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
-
     //---大写锁
-
     public static MyThread tWin数字 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
