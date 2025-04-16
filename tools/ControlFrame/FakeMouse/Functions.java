@@ -355,23 +355,7 @@ public class Functions extends IFunctions {
     //region 滚轮带动移动
     public static int 移动距离 = Integer.parseInt(Config.read("移动距离"));
 
-    @ListenMouseKeyboard(key = "=", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "ctrl")
-    public static TaskResult 加(InputInfo inputInfo) {
-        移动距离 = 移动距离 + 2;
-        Config.write("移动距离", String.valueOf(移动距离));
-        return new TaskResult(true);
-    }
-
-    @ListenMouseKeyboard(key = "-", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "ctrl")
-    public static TaskResult 减去(InputInfo inputInfo) {
-        移动距离 = 移动距离 - 2;
-        Config.write("移动距离", String.valueOf(移动距离));
-
-        return new TaskResult(true);
-    }
-
     public static float 倍率 = 1;
-
 
     public static MyThread 移动 = new MyThread(MyThread.State.on) {
         @Override
@@ -398,17 +382,14 @@ public class Functions extends IFunctions {
                 }
                 robot.mouseMove(point.x, point.y);
 
-
                 up = right = left = down = false;
                 pause(50L);
 
                 this.block();
-
             }
         }
-
-
     };
+
     public static boolean up;
     public static boolean down;
     public static boolean left;
@@ -464,6 +445,4 @@ public class Functions extends IFunctions {
 
     }
     //endregion
-
-
 }
