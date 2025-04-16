@@ -29,6 +29,9 @@ public class Functions extends IFunctions {
         active = (Integer.parseInt(Config.read("active")));
     }
 
+
+    //region 录制
+
     @ListenMouseKeyboard(key = "pause", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "scrlk", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static TaskResult reOpen(InputInfo inputInfo) {
@@ -77,28 +80,9 @@ public class Functions extends IFunctions {
         return null;
     }
 
+    //endregion
 
-    public static int 滚轮方向 = 100;
-    public static MyThread t3 = new MyThread(MyThread.State.on) {
-        @Override
-        public void run() {
-            while (true) {
-                this.getBlock();
-
-
-                robot.mouseWheel(滚轮方向);
-                pause(50);
-
-                this.block();
-
-            }
-        }
-    };
-
-
-    //---基础功能
-
-
+    //region 左键等
     public static final String 屏蔽 = "屏蔽";
     public static final String 左键 = "左键";
 
@@ -176,8 +160,9 @@ public class Functions extends IFunctions {
     public static TaskResult 松开(InputInfo inputInfo) {
         return new TaskResult(true);
     }
+    //endregion
 
-    //---大写锁
+    //region 大写
     public static MyThread tWin数字 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
@@ -218,7 +203,6 @@ public class Functions extends IFunctions {
 
 
     //---win功能
-
     public static String winWithValueName = "custom/winWithValue.json";
     public static Integer winWithValue;
 
@@ -251,9 +235,9 @@ public class Functions extends IFunctions {
 
         JsonUtil.writeJsonFile(winWithValueName, winWithValue);
     }
+    //endregion
 
-
-    //---波浪键相关
+    //region 波浪键
 
     public static final String 反单引号 = "反单引号";
     public static final String 波浪键按住期间做了什么 = "波浪键按住期间做了什么";
@@ -279,7 +263,7 @@ public class Functions extends IFunctions {
     }
 
 
-    //---模拟alt+tab
+    //模拟alt+tab
     public static Integer alt_tab_右键次数 = 0;
     public static MyThread t2 = new MyThread(MyThread.State.on) {
         @Override
@@ -321,8 +305,6 @@ public class Functions extends IFunctions {
             }
         }
     };
-
-    public static final String 反单引号期间做了什么 = "反单引号期间做了什么";
 
     @ListenMouseKeyboard(key = "1", extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 反单引号)
     public static TaskResult esc() {
@@ -368,47 +350,10 @@ public class Functions extends IFunctions {
         return new TaskResult(true);
     }
 
+    //endregion
 
-    //    @ListenMouseKeyboard(key = "1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-//    public static TaskResult 数字1() {
-//        customConditionSet.add(波浪键按住期间做了什么);
-//
-//        滚轮方向 = 1;
-//
-//        t3.nonBlock();
-//
-//        return new TaskResult(true);
-//
-//    }
-//
-//
-//    @ListenMouseKeyboard(key = "1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-//    public static TaskResult 数字1_1() {
-//        customConditionSet.add(波浪键按住期间做了什么);
-//        return new TaskResult(true);
-//    }
-//
-//    @ListenMouseKeyboard(key = "2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = 反单引号)
-//    public static TaskResult 数字2() {
-//        customConditionSet.add(波浪键按住期间做了什么);
-//
-//        滚轮方向 = -1;
-//
-//        t3.nonBlock();
-//        return new TaskResult(true);
-//    }
-//
-//    @ListenMouseKeyboard(key = "2", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = 反单引号)
-//    public static TaskResult 数字2_1() {
-//
-//        customConditionSet.add(波浪键按住期间做了什么);
-//
-//        return new TaskResult(true);
-//    }
-//
-//
+    //region 滚轮带动移动
     public static int 移动距离 = Integer.parseInt(Config.read("移动距离"));
-
 
     @ListenMouseKeyboard(key = "=", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "ctrl")
     public static TaskResult 加(InputInfo inputInfo) {
@@ -502,6 +447,9 @@ public class Functions extends IFunctions {
         return new TaskResult(false);
     }
 
+    //endregion
+
+    //region 状态键
     public static final String win = "win";
 
     @ListenMouseKeyboard(key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -515,32 +463,7 @@ public class Functions extends IFunctions {
         CommonUtil.customConditionSet.remove(win);
 
     }
-
-
-//    @ListenMouseKeyboard(key = "prtsc",extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void 释放所有() {
-//        for (Map.Entry<String, Integer> entry : keyCodeMap.entrySet()) {
-//
-//            try {
-//                robot.keyRelease(entry.getValue());
-//            } catch (Exception e) {
-//                //---
-//                System.out.println("1111111111");
-//                System.out.println(e.getMessage());
-//            }
-//
-//            try {
-//                robot.mouseRelease(entry.getValue());
-//            } catch (Exception e) {
-//                //---
-//                System.out.println("1111111111");
-//                System.out.println(e.getMessage());
-//            }
-//
-//            pause(50L);
-//
-//        }
-//    }
+    //endregion
 
 
 }

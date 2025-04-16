@@ -10,6 +10,7 @@ Ctrl+F12 显示类结构
 Edit--Find--Find in Files
 Ctrl+H 层次结构
 Ctrl+Shift+F9 重新编译？
+ctrl -/ctrl + 折叠/展开代码块
 
 
 设置
