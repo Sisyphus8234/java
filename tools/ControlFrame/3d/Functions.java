@@ -37,52 +37,55 @@ public class Functions extends IFunctions {
         customConditionSet.add(zbrush);
     }
 
-    static final String left="left";
-    static final String down="down";
-    static final String right="right";
+    static final String 移动="yd";
+    static final String 旋转="xz";
+    static final String 缩放="sf";
     //endregion
 
     //region zbrush
-    @ListenMouseKeyboard(intercept = true, key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = left, extend = true)
-    public static void left() {
-        threadPressOrRelease(BUTTON3_DOWN_MASK,true,true);
-        customConditionSet.add(left);
+    @ListenMouseKeyboard(intercept = true, key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = 移动, extend = true)
+    public static void 移动() {
+        threadPressOrReleaseWithDelay(VK_ALT,false,true,50);
+        threadPressOrReleaseWithDelay(BUTTON3_DOWN_MASK,true,true,0);
+        customConditionSet.add(移动);
     }
 
     @ListenMouseKeyboard(intercept = true, key = "left", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,extend = true)
-    public static void left1() {
-        customConditionSet.remove(left);
-        threadPressOrRelease(BUTTON3_DOWN_MASK,true,false);
-    }
-
-    @ListenMouseKeyboard(intercept = true, key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = down,extend = true)
-    public static void down() {
-
-        threadPressOrReleaseWithDelay(VK_ALT,false,true,50);
-        threadPressOrReleaseWithDelay(BUTTON3_DOWN_MASK,true,true,0);
-
-        customConditionSet.add(down);
-    }
-
-    @ListenMouseKeyboard(intercept = true, key = "down", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,extend = true)
-    public static void down1() {
-        customConditionSet.remove(down);
+    public static void 移动1() {
+        customConditionSet.remove(移动);
         threadPressOrReleaseWithDelay(BUTTON3_DOWN_MASK,true,false,50);
         threadPressOrReleaseWithDelay(VK_ALT,false,false,0);
     }
 
-    @ListenMouseKeyboard(intercept = true, key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = right,extend = true)
+
+
+    @ListenMouseKeyboard(intercept = true, key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = 旋转,extend = true)
+    public static void 旋转() {
+        threadPressOrRelease(BUTTON3_DOWN_MASK,true,true);
+        customConditionSet.add(旋转);
+    }
+
+    @ListenMouseKeyboard(intercept = true, key = "down", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,extend = true)
+    public static void 旋转1() {
+        customConditionSet.remove(旋转);
+        threadPressOrRelease(BUTTON3_DOWN_MASK,true,false);
+    }
+
+
+
+
+    @ListenMouseKeyboard(intercept = true, key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = 缩放,extend = true)
     public static void right() {
 
         threadPressOrReleaseWithDelay(VK_CONTROL,false,true,50);
         threadPressOrReleaseWithDelay(BUTTON3_DOWN_MASK,true,true,0);
 
-        customConditionSet.add(right);
+        customConditionSet.add(缩放);
     }
 
     @ListenMouseKeyboard(intercept = true, key = "right", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,extend = true)
     public static void right1() {
-        customConditionSet.remove(right);
+        customConditionSet.remove(缩放);
 
         threadPressOrReleaseWithDelay(BUTTON3_DOWN_MASK,true,false,50);
         threadPressOrReleaseWithDelay(VK_CONTROL,false,false,0);
