@@ -23,6 +23,7 @@ class Run extends MainClass {
 
 public class Functions extends IFunctions {
 
+    //region base
     @ListenBar(onOrOff = ListenBar.OnOrOff.on)
     public static String on = "home";
 
@@ -39,6 +40,7 @@ public class Functions extends IFunctions {
     static final String left="left";
     static final String down="down";
     static final String right="right";
+    //endregion
 
     //region zbrush
     @ListenMouseKeyboard(intercept = true, key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = left, extend = true)

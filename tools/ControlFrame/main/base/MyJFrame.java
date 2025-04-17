@@ -17,7 +17,7 @@ public class MyJFrame {
         jframe.setResizable(false);
         jframe.setVisible(true);
 
-        JLabel jlabel = new JLabel("后台监听鼠标键盘已开启",JLabel.CENTER);
+        JLabel jlabel = new JLabel(Config.read("title"),JLabel.CENTER);
         jlabel.setSize(200,75);
         jlabel.setLocation((jframe.getContentPane().getSize().width - jlabel.getSize().width) / 2,0);
         jframe.add(jlabel);
