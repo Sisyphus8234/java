@@ -121,7 +121,16 @@ public class ScanFunction {
         classForTraverseMethod = myFunctionClass;
         Method[] methods = new Method[0];
         while (true) {
-            methods = mergeFields(methods, classForTraverseMethod.getDeclaredMethods());
+            methods = mergeFields(classForTraverseMethod.getDeclaredMethods(),methods);
+
+            // 获取所有实现的接口
+            Class<?>[] interfaces = classForTraverseMethod.getInterfaces();
+            for (Class<?> iface : interfaces) {
+                Method[] methodsInterface = iface.getDeclaredMethods();
+                methods = mergeFields(methodsInterface,methods);
+            }
+
+
             if (classForTraverseMethod.isInstance(baseFunctionClass)) {
                 break;
             }
@@ -196,7 +205,7 @@ public class ScanFunction {
         classForTraverseField = myFunctionClass;
         Field[] fields = new Field[0];
         while (true) {
-            fields = mergeFields(fields, classForTraverseField.getDeclaredFields());
+            fields = mergeFields(classForTraverseField.getDeclaredFields(),fields);
             if (classForTraverseField.isInstance(baseFunctionClass)) {
                 break;
             }
@@ -244,8 +253,11 @@ public class ScanFunction {
     public static <T> T[] mergeFields(T[] arr1, T[] arr2) {
         int length1 = arr1.length;
         int length2 = arr2.length;
-        T[] merged = Arrays.copyOf(arr2, length1 + length2);  // 创建一个新数组，长度为两个数组之和
-        System.arraycopy(arr1, 0, merged, length2, length1);  // 将 arr2 数组的元素复制到 merged 数组中
+
+        // arr1 在前 arr2 在后
+        T[] merged = Arrays.copyOf(arr1, length1 + length2);
+        System.arraycopy(arr2, 0, merged, length1, length2);
+
         return merged;
     }
 

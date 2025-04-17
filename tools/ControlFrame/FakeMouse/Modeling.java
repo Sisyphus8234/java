@@ -6,12 +6,9 @@ import base.*;
 import static base.CommonUtil.customConditionSet;
 import static java.awt.event.KeyEvent.*;
 
-class Run extends MainClass {
 
 
-}
-
-public class Functions extends IFunctions {
+public interface Modeling {
 
     //region base
     @ListenBar(onOrOff = ListenBar.OnOrOff.on)
