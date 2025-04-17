@@ -53,9 +53,6 @@ public class Functions extends IFunctions {
         threadPressOrRelease(BUTTON3_DOWN_MASK,true,false);
     }
 
-
-
-
     @ListenMouseKeyboard(intercept = true, key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customCondition = zbrush,customConditionReverse = down,extend = true)
     public static void down() {
 
