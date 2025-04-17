@@ -33,6 +33,7 @@ public @interface ListenMouseKeyboard {
 
     int active() default -1;
     String customCondition() default "";
+    String customConditionReverse() default "";
 
     long occupyTime() default 0L;
 }

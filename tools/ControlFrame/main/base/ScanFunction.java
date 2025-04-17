@@ -65,6 +65,7 @@ public class ScanFunction {
             }
         }
 
+        //customCondition
         if (!listenMouseKeyboard.customCondition().isEmpty()) {
             String[] customCondition = listenMouseKeyboard.customCondition().split(",");
             for (String item : customCondition) {
@@ -73,6 +74,12 @@ public class ScanFunction {
                 }else {
                     inputInfo.customCondition.add(item);
                 }
+            }
+        }
+        if (!listenMouseKeyboard.customConditionReverse().isEmpty()) {
+            String[] otherConditionReverse = listenMouseKeyboard.customConditionReverse().split(",");
+            for (String item : otherConditionReverse) {
+                inputInfo.customConditionReverse.add(item);
             }
         }
 
