@@ -44,8 +44,6 @@ public class Do {
         }
         if(taskInfo.inputInfo.customCondition.isEmpty()||taskInfo.inputInfoActualTemp.customConditionOfCommonUtil.containsAll(taskInfo.inputInfo.customCondition)) {
 
-
-
             if (Duration.between(taskInfo.lastTime, LocalDateTime.now()).toMillis() > taskInfo.inputInfo.timeInterval) {
                 taskInfo.lastTime = LocalDateTime.now();
                 if (taskInfo.immediately == true) {
@@ -57,13 +55,16 @@ public class Do {
                 }
             }
 
-            if (taskInfo.intercept == true) {
-                result= true;
-            }
             if(taskInfo.taskResult!=null&&taskInfo.taskResult.intercept==true){
                 result= true;
             }
         }
+
+
+        if (taskInfo.intercept == true) {
+            result= true;
+        }
+
 
         return result;
     }
