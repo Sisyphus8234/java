@@ -128,9 +128,9 @@ public class Functions extends IFunctions{
     //---
     @ListenMouseKeyboard(key = "f2", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f2键(InputInfo inputInfo) {
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.keyRelease(VK_ENTER);
+        robot.keyPress(VK_ENTER);
+        robot.keyRelease(VK_ENTER);
 
         return new TaskResult(true);
     }
@@ -138,18 +138,18 @@ public class Functions extends IFunctions{
     @ListenMouseKeyboard(key = "f3", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f3键(InputInfo inputInfo) {
 
-        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-        robot.keyPress(KeyEvent.VK_BACK_SPACE);
-        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        robot.keyRelease(VK_BACK_SPACE);
+        robot.keyPress(VK_BACK_SPACE);
+        robot.keyRelease(VK_BACK_SPACE);
         return new TaskResult(true);
     }
 
     @ListenMouseKeyboard(key = "f4", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = "!" + 屏蔽)
     public static TaskResult f4键(InputInfo inputInfo) {
 
-        robot.keyRelease(KeyEvent.VK_DELETE);
-        robot.keyPress(KeyEvent.VK_DELETE);
-        robot.keyRelease(KeyEvent.VK_DELETE);
+        robot.keyRelease(VK_DELETE);
+        robot.keyPress(VK_DELETE);
+        robot.keyRelease(VK_DELETE);
         return new TaskResult(true);
 
     }
@@ -172,11 +172,11 @@ public class Functions extends IFunctions{
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
                 myMouseMove(1, screenHeight - 1);
                 pause(100L);
-                robot.keyPress(KeyEvent.VK_WINDOWS);
+                robot.keyPress(VK_WINDOWS);
                 robot.keyPress(winWithValue);
                 pause(50L);
                 robot.keyRelease(winWithValue);
-                robot.keyRelease(KeyEvent.VK_WINDOWS);
+                robot.keyRelease(VK_WINDOWS);
                 pause(50L);
                 robot.mouseMove(tempPoint.x, tempPoint.y);
 
@@ -241,6 +241,8 @@ public class Functions extends IFunctions{
 
     public static final String 反单引号 = "反单引号";
     public static final String 波浪键按住期间做了什么 = "波浪键按住期间做了什么";
+    public static boolean 是否回左下角 = Boolean.parseBoolean(Config.read("alt_tab_from"));
+
 
     @ListenMouseKeyboard(key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     @ListenMouseKeyboard(userInput = false, key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
@@ -270,36 +272,45 @@ public class Functions extends IFunctions{
         public void run() {
             while (true) {
                 this.getBlock();
+                
+                Point tempPoint = null;
+                if(是否回左下角) {
+                    tempPoint = MouseInfo.getPointerInfo().getLocation();
+                    myMouseMove(1, screenHeight - 1);
+                }
 
                 if (alt_tab_右键次数 > 0) {
-                    robot.keyPress(KeyEvent.VK_ALT);
-                    robot.keyPress(KeyEvent.VK_TAB);
+                    robot.keyPress(VK_ALT);
+                    robot.keyPress(VK_TAB);
                     //重要延时
                     pause(50L);
-                    robot.keyRelease(KeyEvent.VK_TAB);
-                    robot.keyRelease(KeyEvent.VK_ALT);
+                    robot.keyRelease(VK_TAB);
+                    robot.keyRelease(VK_ALT);
                     pause(100L);
                 }
 
-                robot.keyPress(KeyEvent.VK_ALT);
-                robot.keyPress(KeyEvent.VK_TAB);
+                robot.keyPress(VK_ALT);
+                robot.keyPress(VK_TAB);
                 pause(50L);
-                robot.keyRelease(KeyEvent.VK_TAB);
+                robot.keyRelease(VK_TAB);
                 pause(50L);
 
 
                 for (int i = 0; i < alt_tab_右键次数; i++) {
 
-                    robot.keyPress(KeyEvent.VK_RIGHT);
-                    robot.keyRelease(KeyEvent.VK_RIGHT);
+                    robot.keyPress(VK_RIGHT);
+                    robot.keyRelease(VK_RIGHT);
                     pause(50L);
 
                 }
                 pause(50L);
-                robot.keyRelease(KeyEvent.VK_ALT);
+                robot.keyRelease(VK_ALT);
                 alt_tab_右键次数++;
 
-//                robot.mouseMove(tempPoint.x, tempPoint.y);
+
+                if(是否回左下角) {
+                    robot.mouseMove(tempPoint.x, tempPoint.y);
+                }
 
                 this.block();
             }
@@ -435,13 +446,13 @@ public class Functions extends IFunctions{
 
     @ListenMouseKeyboard(key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void win按下() {
-        CommonUtil.customConditionSet.add(win);
+        customConditionSet.add(win);
 
     }
 
     @ListenMouseKeyboard(key = "win", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void win按下1() {
-        CommonUtil.customConditionSet.remove(win);
+        customConditionSet.remove(win);
 
     }
 
@@ -449,13 +460,13 @@ public class Functions extends IFunctions{
 
     @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void alt() {
-        CommonUtil.customConditionSet.add(alt);
+        customConditionSet.add(alt);
 
     }
 
     @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void alt1() {
-        CommonUtil.customConditionSet.remove(alt);
+        customConditionSet.remove(alt);
 
     }
     //endregion
