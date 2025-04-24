@@ -306,7 +306,7 @@ public class Functions extends IFunctions{
                 pause(50L);
                 robot.keyRelease(VK_ALT);
                 alt_tab_右键次数++;
-
+//                pause(50L);
 
                 if(是否回左下角) {
                     robot.mouseMove(tempPoint.x, tempPoint.y);
