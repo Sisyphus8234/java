@@ -21,7 +21,7 @@ class Run extends MainClass {
 
 }
 
-public class Functions extends IFunctions {
+public class Functions extends IFunctions{
 
 
     static {
@@ -444,5 +444,36 @@ public class Functions extends IFunctions {
         CommonUtil.customConditionSet.remove(win);
 
     }
+
+    public static final String alt = "alt";
+
+    @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void alt() {
+        CommonUtil.customConditionSet.add(alt);
+
+    }
+
+    @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void alt1() {
+        CommonUtil.customConditionSet.remove(alt);
+
+    }
     //endregion
+
+    //region 清除
+    @ListenMouseKeyboard(immediately = false, key = "prtsc", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void prtsc() {
+        robot.keyPress(VK_PAGE_DOWN);
+        robot.keyRelease(VK_PAGE_DOWN);
+        pause(50L);
+        robot.keyPress(VK_ALT);
+        robot.keyRelease(VK_ALT);
+        pause(50L);
+        robot.keyPress(VK_PAGE_UP);
+        robot.keyRelease(VK_PAGE_UP);
+
+    }
+    //endregion
+
+
 }
