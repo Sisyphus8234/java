@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -160,6 +159,19 @@ public class Functions extends IFunctions{
     public static TaskResult 松开(InputInfo inputInfo) {
         return new TaskResult(true);
     }
+
+
+    @ListenMouseKeyboard(key = "ctrl左", extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customConditionReverse = 屏蔽,customCondition = alt左,timeInterval = 800L)
+    public static TaskResult ctrl左(InputInfo inputInfo) {
+        threadPressOrRelease(MouseEvent.BUTTON2_DOWN_MASK, true, true);
+        return new TaskResult(true);
+    }
+
+    @ListenMouseKeyboard(key = "ctrl左", press = false, extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customConditionReverse = 屏蔽,customCondition = alt左)
+    public static TaskResult ctrl左1(InputInfo inputInfo) {
+        threadPressOrRelease(MouseEvent.BUTTON2_DOWN_MASK, true, false);
+        return new TaskResult(true);
+    }
     //endregion
 
     //region 大写
@@ -188,13 +200,13 @@ public class Functions extends IFunctions{
 
     @ListenMouseKeyboard(key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(userInput = false, key = "大写", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+//    @ListenMouseKeyboard(key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 大写锁() {
     }
 
     @ListenMouseKeyboard(key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(userInput = false, key = "大写", press = false, intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(press = false, key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+//    @ListenMouseKeyboard(press = false, key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     @ListenMouseKeyboard(key = "侧键按下", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     @ListenMouseKeyboard(key = "侧键按下1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
     public static void 大写锁1() {
@@ -246,6 +258,7 @@ public class Functions extends IFunctions{
 
     @ListenMouseKeyboard(key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     @ListenMouseKeyboard(userInput = false, key = "`", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
+    @ListenMouseKeyboard(key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键0() {
         customConditionSet.add(反单引号);
     }
@@ -253,6 +266,7 @@ public class Functions extends IFunctions{
 
     @ListenMouseKeyboard(key = "`", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(userInput = false, key = "`", intercept = true, press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+        @ListenMouseKeyboard(press = false, key = "菜单键", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, timeInterval = 500L)
     public static void 波浪键1() {
         customConditionSet.remove(反单引号);
 
@@ -456,18 +470,30 @@ public class Functions extends IFunctions{
 
     }
 
-    public static final String alt = "alt";
+    public static final String alt左 = "alt左";
 
     @ListenMouseKeyboard(key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void alt() {
-        customConditionSet.add(alt);
+        customConditionSet.add(alt左);
 
     }
 
     @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void alt1() {
-        customConditionSet.remove(alt);
+        customConditionSet.remove(alt左);
+    }
 
+    public static final String ctrl左 = "ctrl左";
+
+    @ListenMouseKeyboard(key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void ctrl左() {
+        customConditionSet.add(ctrl左);
+
+    }
+
+    @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void ctrl左1() {
+        customConditionSet.remove(ctrl左);
     }
     //endregion
 
