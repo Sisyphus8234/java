@@ -161,14 +161,15 @@ public class Functions extends IFunctions{
     }
 
 
-    @ListenMouseKeyboard(key = "ctrl左", extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customConditionReverse = 屏蔽,customCondition = alt左,timeInterval = 800L)
-    public static TaskResult ctrl左(InputInfo inputInfo) {
+
+    @ListenMouseKeyboard(key = "x", extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customConditionReverse = 屏蔽,customCondition = alt左,timeInterval = 800L)
+    public static TaskResult x(InputInfo inputInfo) {
         threadPressOrRelease(MouseEvent.BUTTON2_DOWN_MASK, true, true);
         return new TaskResult(true);
     }
 
-    @ListenMouseKeyboard(key = "ctrl左", press = false, extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customConditionReverse = 屏蔽,customCondition = alt左)
-    public static TaskResult ctrl左1(InputInfo inputInfo) {
+    @ListenMouseKeyboard(key = "x", press = false, extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customConditionReverse = 屏蔽,customCondition = alt左)
+    public static TaskResult x1(InputInfo inputInfo) {
         threadPressOrRelease(MouseEvent.BUTTON2_DOWN_MASK, true, false);
         return new TaskResult(true);
     }
