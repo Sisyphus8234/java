@@ -492,7 +492,7 @@ public class Functions extends IFunctions{
 
     }
 
-    @ListenMouseKeyboard(key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "ctrl左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void ctrl左1() {
         customConditionSet.remove(ctrl左);
     }
