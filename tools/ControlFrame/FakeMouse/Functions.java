@@ -20,7 +20,7 @@ class Run extends MainClass {
 
 }
 
-public class Functions extends IFunctions{
+public class Functions extends IFunctions implements FakeMouse {
 
 
     static {
@@ -422,7 +422,7 @@ public class Functions extends IFunctions{
     public static boolean right;
 
     @ListenMouseKeyboard(key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
-    @ListenMouseKeyboard(userInput = false, key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
+//    @ListenMouseKeyboard(userInput = false, key = "滚轮", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customCondition = "!ctrl")
     public static TaskResult 滚轮(InputInfo inputInfo) {
         int temp = -1;
 
@@ -434,7 +434,7 @@ public class Functions extends IFunctions{
             }
         }
         if (IFunctions.active == Active.jnativehook) {
-            if (inputInfo.otherCondition.contains("-1")) {
+            if (inputInfo.otherCondition.contains("-1")||inputInfo.otherCondition.contains("-2")) {
                 temp = 0;
             } else {
                 temp = 1;
