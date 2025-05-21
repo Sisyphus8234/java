@@ -211,29 +211,22 @@ public interface FakeMouse {
     AtomicReference<LocalDateTime> time = new AtomicReference<>(LocalDateTime.now());
 
     @ListenMouseKeyboard(extend = true, key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customConditionReverse = alt左)
-    public static void space() {
+    public static void alt左() {
         customConditionSet.add(alt左);
-        time.set(LocalDateTime.now().plus(Duration.ofMillis(600)));
-        //---
-        System.out.println(time.get());
+
+        customConditionSet.remove(开关开);
+
     }
 
     @ListenMouseKeyboard(extend = true, key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space1() {
+    public static void alt左1() {
         customConditionSet.remove(alt左);
-        System.out.println(LocalDateTime.now());
-        if (LocalDateTime.now().isAfter(time.get())) {
+    }
 
-            customConditionSet.add(开关开);
-            //---
-            System.out.print("111111111,");
-            System.out.println();
-        } else {
-            customConditionSet.remove(开关开);
-            //---
-            System.out.print("222222222,");
-            System.out.println();
-        }
+    @ListenMouseKeyboard(extend = true, key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = alt左)
+    public static TaskResult space() {
+        customConditionSet.add(开关开);
+        return new TaskResult(true);
     }
     //endregion
 }
