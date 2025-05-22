@@ -24,7 +24,7 @@ public class Functions extends IFunctions implements Wheel {
 
 
     static {
-        Controller.printKey = true;
+//        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
     }
 
