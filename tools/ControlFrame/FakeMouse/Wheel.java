@@ -84,36 +84,31 @@ public interface Wheel {
 
     @ListenMouseKeyboard(extend = true, key = "右键按下", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customConditionReverse = wheel屏蔽)
     public static TaskResult 右键按下() {
-        if(tempI.get()==0){
-            tempI.set(1);
-            return new TaskResult(false);
-        }else {
-
-            ifExecute.set(false);
-            oldFlag.set(0);
-            nowFlag.set(0);
-            tempTime.set(LocalDateTime.now().plus(Duration.ofMillis(500)));
 
 
-            basePoint.set(getPointFix());
-            f1.nonBlock();
+        ifExecute.set(false);
+        oldFlag.set(0);
+        nowFlag.set(0);
+        tempTime.set(LocalDateTime.now().plus(Duration.ofMillis(500)));
 
-            return new TaskResult(true);
-        }
+
+        basePoint.set(getPointFix());
+        f1.nonBlock();
+
+        return new TaskResult(true);
+
     }
 
     @ListenMouseKeyboard(extend = true, key = "右键松开", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customConditionReverse = wheel屏蔽)
     public static TaskResult 右键松开() {
-        if(tempI.get()==1){
-            return new TaskResult(false);
-        }else {
-            f1.block();
-            oldFlag.set(0);
-            nowFlag.set(0);
+
+        f1.block();
+        oldFlag.set(0);
+        nowFlag.set(0);
 
 
-            return new TaskResult(true);
-        }
+        return new TaskResult(true);
+
     }
 
     @ListenMouseKeyboard(immediately = false, extend = true, key = "右键松开", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse, customConditionReverse = wheel屏蔽)
@@ -132,18 +127,22 @@ public interface Wheel {
     }
 
 
-//    String 左键按下="左键按下";
 
-    AtomicInteger tempI=new AtomicInteger(0);
-    @ListenMouseKeyboard(extend = true,key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void 左键按下() {
-        tempI.set(0);
+
+
+    @ListenMouseKeyboard(extend = true, key = "f1", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void f1() {
+        customConditionSet.add(wheel屏蔽);
     }
 
-//    @ListenMouseKeyboard(extend = true, key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    public static void 左键按下1() {
-//        customConditionSet.remove(wheel屏蔽);
-//    }
+    @ListenMouseKeyboard(extend = true, immediately = false, key = "f1", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void f1_1() {
+        pause(800L);
+        customConditionSet.remove(wheel屏蔽);
+    }
+
+
+
 
 
 }
