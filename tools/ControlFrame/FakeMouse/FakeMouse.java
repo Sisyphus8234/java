@@ -215,12 +215,25 @@ public interface FakeMouse {
     public static void alt左() {
         customConditionSet.add(alt左);
 
+<<<<<<< HEAD
+=======
+        customConditionSet.remove(开关开);
+>>>>>>> 9a7f284869f15e1b5ee242535c7885dc24cff7e1
 
     }
 
     @ListenMouseKeyboard(extend = true, key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void alt左1() {
         customConditionSet.remove(alt左);
+<<<<<<< HEAD
+=======
+    }
+
+    @ListenMouseKeyboard(extend = true, key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customCondition = alt左)
+    public static TaskResult space() {
+        customConditionSet.add(开关开);
+        return new TaskResult(true);
+>>>>>>> 9a7f284869f15e1b5ee242535c7885dc24cff7e1
     }
 
 

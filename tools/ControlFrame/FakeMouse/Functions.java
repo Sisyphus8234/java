@@ -20,7 +20,11 @@ class Run extends MainClass {
 
 }
 
+<<<<<<< HEAD
 public class Functions extends IFunctions implements Wheel {
+=======
+public class Functions extends IFunctions {
+>>>>>>> 9a7f284869f15e1b5ee242535c7885dc24cff7e1
 
 
     static {
