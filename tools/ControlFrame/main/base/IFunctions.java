@@ -131,7 +131,7 @@ public class IFunctions {
         return point;
     }
 
-    public static void myMouseMove(int x, int y) {
+    public static void mouseMoveFix(int x, int y) {
         robot.mouseMove(-1, -1);
         robot.mouseMove((int) (x / screenScale), (int) (y / screenScale));
     }

@@ -12,18 +12,20 @@ import static base.jnativehook.JnativehookUtil.tempF;
 
 public class JnativehookMouseListener implements NativeMouseInputListener {
     private InputInfo inputInfoActualTemp = new InputInfo();
-    public void nativeMouseClicked(NativeMouseEvent e) {
-        if(Controller.printKey==true) {
-            System.out.println(e.getButton());
-        }
-        inputInfoActualTemp.resetProperty();
-        inputInfoActualTemp.value = e.getButton();
-        inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse;
-        inputInfoActualTemp.userInput = true;
-        inputInfoActualTemp.press = true;
 
-        JnativehookUtil.tempF(inputInfoActualTemp, e);
-    }
+    //not use clicked
+//    public void nativeMouseClicked(NativeMouseEvent e) {
+//        if(Controller.printKey==true) {
+//            System.out.println(e.getButton());
+//        }
+//        inputInfoActualTemp.resetProperty();
+//        inputInfoActualTemp.value = e.getButton();
+//        inputInfoActualTemp.keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse;
+//        inputInfoActualTemp.userInput = true;
+//        inputInfoActualTemp.press = true;
+//
+//        JnativehookUtil.tempF(inputInfoActualTemp, e);
+//    }
 
     public void nativeMousePressed(NativeMouseEvent e) {
 

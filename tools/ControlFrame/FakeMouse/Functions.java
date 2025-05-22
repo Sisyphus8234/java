@@ -20,11 +20,11 @@ class Run extends MainClass {
 
 }
 
-public class Functions extends IFunctions implements FakeMouse {
+public class Functions extends IFunctions implements Wheel {
 
 
     static {
-//        Controller.printKey = true;
+        Controller.printKey = true;
         active = (Integer.parseInt(Config.read("active")));
     }
 
@@ -183,7 +183,7 @@ public class Functions extends IFunctions implements FakeMouse {
                 this.getBlock();
 
                 Point tempPoint = MouseInfo.getPointerInfo().getLocation();
-                myMouseMove(1, screenHeight - 1);
+                mouseMoveFix(1, screenHeight - 1);
                 pause(100L);
                 robot.keyPress(VK_WINDOWS);
                 robot.keyPress(winWithValue);
@@ -291,7 +291,7 @@ public class Functions extends IFunctions implements FakeMouse {
                 Point tempPoint = null;
                 if(是否回左下角) {
                     tempPoint = MouseInfo.getPointerInfo().getLocation();
-                    myMouseMove(1, screenHeight - 1);
+                    mouseMoveFix(1, screenHeight - 1);
                 }
 
                 if (alt_tab_右键次数 > 0) {

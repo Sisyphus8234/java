@@ -208,32 +208,33 @@ public interface FakeMouse {
     //region 开关
     public final static String 开关开 = "kgk";
     public final static String alt左 = "altl";
+    public final static String alt右 = "altr";
     AtomicReference<LocalDateTime> time = new AtomicReference<>(LocalDateTime.now());
 
     @ListenMouseKeyboard(extend = true, key = "alt左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customConditionReverse = alt左)
-    public static void space() {
+    public static void alt左() {
         customConditionSet.add(alt左);
-        time.set(LocalDateTime.now().plus(Duration.ofMillis(600)));
-        //---
-        System.out.println(time.get());
+
+
     }
 
     @ListenMouseKeyboard(extend = true, key = "alt左", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space1() {
+    public static void alt左1() {
         customConditionSet.remove(alt左);
-        System.out.println(LocalDateTime.now());
-        if (LocalDateTime.now().isAfter(time.get())) {
-
-            customConditionSet.add(开关开);
-            //---
-            System.out.print("111111111,");
-            System.out.println();
-        } else {
-            customConditionSet.remove(开关开);
-            //---
-            System.out.print("222222222,");
-            System.out.println();
-        }
     }
+
+
+    @ListenMouseKeyboard(extend = true, key = "alt右", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard, customConditionReverse = alt右)
+    public static void alt右() {
+        customConditionSet.add(alt左);
+
+
+    }
+
+    @ListenMouseKeyboard(extend = true, key = "alt右", press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void alt右1() {
+        customConditionSet.remove(alt左);
+    }
+
     //endregion
 }
