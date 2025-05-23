@@ -22,8 +22,8 @@ import static custom.Functions.ctrl左;
 public interface Wheel {
 
     //region 参数
-    int moveDistance = 60;
-    int wheelDistance = 2;
+    int moveDistance = 40;
+    int wheelDistance = 1;
     //endregion
 
 
