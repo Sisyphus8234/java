@@ -2,6 +2,7 @@ package custom;
 
 import base.*;
 import base.enty.TaskResult;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.*;
 
@@ -53,32 +54,38 @@ public class Functions extends IFunctions {
     public static List<Integer> 突击兵 = new ArrayList<>(Arrays.asList(VK_DOWN, VK_LEFT, VK_UP, VK_DOWN, VK_RIGHT));
     public static List<Integer> 补给背包 = new ArrayList<>(Arrays.asList(VK_DOWN, VK_LEFT, VK_DOWN, VK_UP, VK_UP, VK_DOWN));
 
-    public static List<Integer> tempList = new ArrayList<>();
+
 
 
     public static List<Integer> doList = new ArrayList<>();
 
-    @ListenMouseKeyboard(key = "f1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "f2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "f3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "f4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "f5", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-//    @ListenMouseKeyboard(key = "f6", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+
+
+
+    @ListenMouseKeyboard(key = "f1", intercept = true,customConditionReverse = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f2", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f3", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f4", intercept = true,customConditionReverse = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f5", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f6", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void f1(InputInfo inputInfo) {
         if (inputInfo.value == CommonUtil.keyCodeMap.get("f1")) {
             doList = 救人;
         } else if (inputInfo.value == CommonUtil.keyCodeMap.get("f2")) {
             doList = 补给;
-        } else if (inputInfo.value == CommonUtil.keyCodeMap.get("f3")) {
-            doList = 补给背包;
         }
-        t1.myResume();
+        else {
+            doList = tempMap.get(inputInfo.value);
+        }
+
+        t1.nonBlock();
     }
 
-    public static MyThread t1 = new MyThread(MyThread.State.off) {
+    public static MyThread t1 = new MyThread(MyThread.State.on) {
         @Override
         public void run() {
             while (true) {
+                this.getBlock();
                 robot.keyPress(VK_SPACE);
                 pause(50L);
                 doList.stream().forEach(s -> {
@@ -88,7 +95,7 @@ public class Functions extends IFunctions {
                     pause(150L);
                 });
                 robot.keyRelease(VK_SPACE);
-                this.mySuspend();
+                this.block();
             }
         }
     };
@@ -97,6 +104,15 @@ public class Functions extends IFunctions {
     //endregion
 
     //region 保存技能
+    public static final String path=".\\custom\\skill.json";
+    public static List<Integer> tempList = new ArrayList<>();
+    public static Map<Integer,List<Integer>> tempMap = new HashMap<>();
+    static{
+        tempMap=JsonUtil.readJsonFile(path, new TypeReference<Map<Integer,List<Integer>>>(){});
+    }
+
+
+
     @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -110,9 +126,14 @@ public class Functions extends IFunctions {
         tempList.clear();
     }
 
-    @ListenMouseKeyboard(press = false, key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void space4(InputInfo inputInfo) {
-        JsonUtil.writeJsonFile("skill",tempList);
+    @ListenMouseKeyboard(key = "f3", intercept = true, customCondition = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f4", intercept = true, customCondition = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f5", intercept = true,customCondition = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f6", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void f4(InputInfo inputInfo) {
+        tempMap.put(inputInfo.value, tempList);
+
+        JsonUtil.writeJsonFile(path,tempMap);
     }
 
     //endregion
