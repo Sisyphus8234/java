@@ -106,9 +106,10 @@ public class Functions extends IFunctions {
     //region 保存技能
     public static final String path=".\\custom\\skill.json";
     public static List<Integer> tempList = new ArrayList<>();
-    public static Map<Integer,List<Integer>> tempMap = new HashMap<>();
+    public static Map<Integer,List<Integer>> tempMap;
     static{
-        tempMap=JsonUtil.readJsonFile(path, new TypeReference<Map<Integer,List<Integer>>>(){});
+        tempMap=JsonUtil.readJsonFile(path, new TypeReference<>() {
+        });
     }
 
 
