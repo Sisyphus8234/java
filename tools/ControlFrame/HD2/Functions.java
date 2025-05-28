@@ -57,6 +57,8 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "f2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f5", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f6", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void f1(InputInfo inputInfo) {
         if (inputInfo.value == CommonUtil.keyCodeMap.get("f1")) {
             doList = 救人;
@@ -85,5 +87,18 @@ public class Functions extends IFunctions {
             }
         }
     };
+
+
+    public static final String space = "space";
+
+    @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space(InputInfo inputInfo) {
+        CommonUtil.customConditionSet.add(space);
+    }
+
+    @ListenMouseKeyboard(press = false, key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space1(InputInfo inputInfo) {
+        CommonUtil.customConditionSet.remove(space);
+    }
 
 }
