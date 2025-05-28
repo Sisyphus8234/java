@@ -19,6 +19,7 @@ public class Functions extends IFunctions {
 
 
     @ListenMouseKeyboard(intercept = true, key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void ctrl左(InputInfo inputInfo) {
         threadPressOrRelease(VK_SHIFT, false, false);
     }
@@ -35,6 +36,8 @@ public class Functions extends IFunctions {
     }
 
 
+    //region 搓技能
+
     public static List<Integer> 救人 = new ArrayList<>(Arrays.asList(VK_UP, VK_DOWN, VK_RIGHT, VK_LEFT, VK_UP));
     public static List<Integer> 补给 = new ArrayList<>(Arrays.asList(VK_DOWN, VK_DOWN, VK_UP, VK_RIGHT));
     public static List<Integer> kg500 = new ArrayList<>(Arrays.asList(VK_UP, VK_RIGHT, VK_DOWN, VK_DOWN, VK_DOWN));
@@ -50,15 +53,17 @@ public class Functions extends IFunctions {
     public static List<Integer> 突击兵 = new ArrayList<>(Arrays.asList(VK_DOWN, VK_LEFT, VK_UP, VK_DOWN, VK_RIGHT));
     public static List<Integer> 补给背包 = new ArrayList<>(Arrays.asList(VK_DOWN, VK_LEFT, VK_DOWN, VK_UP, VK_UP, VK_DOWN));
 
+    public static List<Integer> tempList = new ArrayList<>();
+
 
     public static List<Integer> doList = new ArrayList<>();
 
     @ListenMouseKeyboard(key = "f1", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f2", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f3", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "f4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "f5", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    @ListenMouseKeyboard(key = "f6", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "f4", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "f5", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+//    @ListenMouseKeyboard(key = "f6", intercept = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void f1(InputInfo inputInfo) {
         if (inputInfo.value == CommonUtil.keyCodeMap.get("f1")) {
             doList = 救人;
@@ -89,6 +94,31 @@ public class Functions extends IFunctions {
     };
 
 
+    //endregion
+
+    //region 保存技能
+    @ListenMouseKeyboard(key = "up", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "down", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "right", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "left", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void sxzy(InputInfo inputInfo) {
+        tempList.add(inputInfo.value);
+    }
+
+    @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space3(InputInfo inputInfo) {
+        tempList.clear();
+    }
+
+    @ListenMouseKeyboard(press = false, key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void space4(InputInfo inputInfo) {
+        JsonUtil.writeJsonFile("skill",tempList);
+    }
+
+    //endregion
+
+
+    //region 状态键
     public static final String space = "space";
 
     @ListenMouseKeyboard(key = "space", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -100,5 +130,6 @@ public class Functions extends IFunctions {
     public static void space1(InputInfo inputInfo) {
         CommonUtil.customConditionSet.remove(space);
     }
+    //endregion
 
 }

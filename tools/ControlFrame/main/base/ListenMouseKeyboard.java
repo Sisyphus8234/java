@@ -26,7 +26,7 @@ public @interface ListenMouseKeyboard {
 
     long timeInterval() default 0L;
 
-    boolean extend() default false;
+    boolean extend() default true;
 
 
     String otherCondition() default "";

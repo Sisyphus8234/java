@@ -88,14 +88,17 @@ public class ScanFunction {
             tempList.add(taskInfo);
             taskMmap.put(inputInfo, tempList);
         } else {
-            Iterator<TaskInfo> tempIterator = taskMmap.get(inputInfo).iterator();
-            while (tempIterator.hasNext()) {
-                TaskInfo tempTaskInfo = tempIterator.next();
-                if (tempTaskInfo.inputInfo.extend == false && inputInfo.extend == false) {
-                    if (tempTaskInfo.inputInfo.customCondition.isEmpty() && inputInfo.customCondition.isEmpty()) {
-                        tempIterator.remove();
-                    } else if (tempTaskInfo.inputInfo.cusConEquals(inputInfo)) {
-                        tempIterator.remove();
+            Iterator<TaskInfo> taskIterator = taskMmap.get(inputInfo).iterator();
+            while (taskIterator.hasNext()) {
+                TaskInfo task = taskIterator.next();
+                if (task.inputInfo.extend == false && inputInfo.extend == false) {
+//                    if (task.inputInfo.customCondition.isEmpty() && inputInfo.customCondition.isEmpty()) {
+//                        taskIterator.remove();
+//                    } else if (task.inputInfo.cusConEquals(inputInfo)) {
+//                        taskIterator.remove();
+//                    }
+                    if (task.inputInfo.cusConEquals(inputInfo)) {
+                        taskIterator.remove();
                     }
                 }
             }
