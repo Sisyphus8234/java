@@ -19,7 +19,37 @@ public class Functions extends IFunctions {
     }
 
 
-    @ListenMouseKeyboard(intercept = true, key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static final String leftClick= "leftClick";
+    static {
+        CommonUtil.customConditionSet.add(leftClick);
+    }
+
+    public static MyThread t2 = new MyThread(MyThread.State.on) {
+        @Override
+        public void run() {
+            while (true) {
+                this.getBlock();
+                robot.mousePress(BUTTON1_DOWN_MASK);
+                pause(50L);
+                robot.mouseRelease(BUTTON1_DOWN_MASK);
+                pause(300L);
+            }
+        }
+    };
+
+    @ListenMouseKeyboard(intercept = true, key = "左键按下",customCondition = leftClick, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static void 左键按下(InputInfo inputInfo) {
+            t2.nonBlock();
+    }
+
+    @ListenMouseKeyboard(intercept = true, key = "左键松开",customCondition = leftClick, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static void 左键按下1(InputInfo inputInfo) {
+        t2.block();
+    }
+
+
+    //region shift
+//    @ListenMouseKeyboard(intercept = true, key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void ctrl左(InputInfo inputInfo) {
         threadPressOrRelease(VK_SHIFT, false, false);
@@ -36,6 +66,8 @@ public class Functions extends IFunctions {
         threadPressOrRelease(VK_W, false, true);
     }
 
+
+    //endregion
 
     //region 搓技能
 
@@ -94,6 +126,7 @@ public class Functions extends IFunctions {
                     robot.keyRelease(s);
                     pause(150L);
                 });
+                pause(400L);
                 robot.keyRelease(VK_SPACE);
                 this.block();
             }
@@ -131,14 +164,15 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "f4", intercept = true, customCondition = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f5", intercept = true,customCondition = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f6", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f7", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f8", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void f4(InputInfo inputInfo) {
-        tempMap.put(inputInfo.value, tempList);
+        tempMap.put(inputInfo.value, new ArrayList<>(tempList));
 
         JsonUtil.writeJsonFile(path,tempMap);
     }
 
     //endregion
-
 
     //region 状态键
     public static final String space = "space";
