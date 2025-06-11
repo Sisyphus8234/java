@@ -171,7 +171,7 @@ public class Functions extends IFunctions{
     @ListenMouseKeyboard(key = "x", press = false, extend = true, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard,customConditionReverse = 屏蔽)
     public static TaskResult x1(InputInfo inputInfo) {
         threadPressOrRelease(MouseEvent.BUTTON2_DOWN_MASK, true, false);
-        return new TaskResult(true);
+        return new TaskResult(false);
     }
     //endregion
 
