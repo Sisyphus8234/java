@@ -20,6 +20,7 @@ public class Functions extends IFunctions {
 
 
     public static final String leftClick= "leftClick";
+    public static final String shift= "shift";
     static {
         CommonUtil.customConditionSet.add(leftClick);
     }
@@ -32,33 +33,54 @@ public class Functions extends IFunctions {
                 robot.mousePress(BUTTON1_DOWN_MASK);
                 pause(50L);
                 robot.mouseRelease(BUTTON1_DOWN_MASK);
-                pause(300L);
+                pause(150L);
             }
         }
     };
 
-    @ListenMouseKeyboard(intercept = true, key = "左键按下",customCondition = leftClick, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    public static void 左键按下(InputInfo inputInfo) {
+    @ListenMouseKeyboard(key = "左键按下",customCondition = leftClick, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static TaskResult 左键按下(InputInfo inputInfo) {
+
             t2.nonBlock();
+            return new TaskResult();
     }
 
-    @ListenMouseKeyboard(intercept = true, key = "左键松开",customCondition = leftClick, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
-    public static void 左键按下1(InputInfo inputInfo) {
+    @ListenMouseKeyboard(key = "左键松开",customCondition = leftClick, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Mouse)
+    public static TaskResult 左键按下1(InputInfo inputInfo) {
         t2.block();
+        return new TaskResult();
     }
+
+    @ListenMouseKeyboard(key = "shift",keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void shift3(InputInfo inputInfo) {
+        CommonUtil.customConditionSet.add(shift);
+        CommonUtil.customConditionSet.remove(leftClick);
+    }
+
+    @ListenMouseKeyboard(key = "shift",press = false, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void shift4(InputInfo inputInfo) {
+        CommonUtil.customConditionSet.remove(shift);
+        CommonUtil.customConditionSet.add(leftClick);
+    }
+
+
 
 
     //region shift
 //    @ListenMouseKeyboard(intercept = true, key = "ctrl左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "e", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void ctrl左(InputInfo inputInfo) {
-        threadPressOrRelease(VK_SHIFT, false, false);
+        threadPressOrRelease(VK_L, false, false);
+    }
+
+    @ListenMouseKeyboard(intercept = true, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    public static void shift左(InputInfo inputInfo) {
     }
 
     @ListenMouseKeyboard(intercept = true, press = false, key = "shift左", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
-    public static void shift左(InputInfo inputInfo) {
-        threadPressOrRelease(VK_SHIFT, false, false);
-        threadPressOrRelease(VK_SHIFT, false, true);
+    public static void shift左1(InputInfo inputInfo) {
+        threadPressOrRelease(VK_L, false, false);
+        threadPressOrRelease(VK_L, false, true);
     }
 
     @ListenMouseKeyboard(intercept = true, key = "win", keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
@@ -100,6 +122,9 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "f4", intercept = true,customConditionReverse = space, keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f5", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f6", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f7", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "f8", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "t", intercept = true, customConditionReverse = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void f1(InputInfo inputInfo) {
         if (inputInfo.value == CommonUtil.keyCodeMap.get("f1")) {
             doList = 救人;
@@ -166,6 +191,7 @@ public class Functions extends IFunctions {
     @ListenMouseKeyboard(key = "f6", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f7", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     @ListenMouseKeyboard(key = "f8", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
+    @ListenMouseKeyboard(key = "t", intercept = true, customCondition = space,keyboardOrMouse = CommonUtil.KeyboardOrMouse.Keyboard)
     public static void f4(InputInfo inputInfo) {
         tempMap.put(inputInfo.value, new ArrayList<>(tempList));
 
