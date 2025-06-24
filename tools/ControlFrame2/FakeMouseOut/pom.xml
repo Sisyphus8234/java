@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>run</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -55,7 +55,15 @@
             <artifactId>jnativehook</artifactId>
             <version>2.2.2</version> <!-- 可以使用最新版本 -->
         </dependency>
+
     </dependencies>
+
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>local-repo</id>-->
+<!--            <url>file://${basedir}/base/lib</url> &lt;!&ndash; 本地仓库 &ndash;&gt;-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
     <build>
         <plugins>
@@ -71,7 +79,7 @@
                         </manifest>
                     </archive>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                        <descriptorRef></descriptorRef>
                     </descriptorRefs>
                 </configuration>
                 <executions>
@@ -85,6 +93,10 @@
                 </executions>
             </plugin>
         </plugins>
+
+        <sourceDirectory>${basedir}</sourceDirectory>
+
     </build>
+
 
 </project>
