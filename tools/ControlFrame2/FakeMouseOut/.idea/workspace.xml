@@ -1,5 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="613434fd-6eda-4a2b-b0dc-ba8996191ba2" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addition/DisplayImageOnTop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addition/DisplayMarkOnTop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addition/PixelColor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/CommonUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/Config.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/Do.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/HookUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/IFunctions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/InputInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/JsonUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/ListenBar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/ListenMouseKeyboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/ListenMouseKeyboards.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/MyJFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/MyThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/ScanFunction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/common_key_code.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/enty/TaskInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/enty/TaskResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jna/JnaKeyboardHook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jna/JnaMouseHook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jna/jna_key_code.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jnativehook/JnativehookKeyListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jnativehook/JnativehookMouseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jnativehook/JnativehookMouseWheelListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jnativehook/JnativehookUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/jnativehook/jnativehook_key_code.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom/Config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom/FakeMouse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom/Functions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom/Wheel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom/winWithValue.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MainClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/base/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/base/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/base/common_key_code.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/base/jna/jna_key_code.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/base/jnativehook/jnativehook_key_code.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/custom/Config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/custom/winWithValue.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/target/run-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/target/run-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/untitled.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/打包.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/run-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/run-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/run-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/run-1.0-SNAPSHOT.jar" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2ywu8GQC5euvrxzI0gQFx9HAAy1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.MainClass.executor": "Debug"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="MainClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="custom.MainClass" />
@@ -19,5 +115,38 @@
         <item itemvalue="应用程序.MainClass" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="613434fd-6eda-4a2b-b0dc-ba8996191ba2" name="更改" comment="" />
+      <created>1750757795949</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750757795949</updated>
+      <workItem from="1750757797067" duration="140000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/base/Config.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
