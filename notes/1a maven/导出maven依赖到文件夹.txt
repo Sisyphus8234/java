@@ -1,0 +1,29 @@
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.6.0</version>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <!-- 输出目录（默认是 target/dependency） -->
+                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        <!-- 是否包含 scope 为 provided 的依赖（默认 false） -->
+                        <includeScope>runtime</includeScope>
+                        <!-- 是否排除传递性依赖（默认 false，即包含所有依赖） -->
+                        <excludeTransitive>false</excludeTransitive>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+
+mvn clean package
