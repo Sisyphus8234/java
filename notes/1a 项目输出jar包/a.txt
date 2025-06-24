@@ -1,0 +1,57 @@
+<build>
+        <plugins>
+            <!-- 打包带依赖的可执行 JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>sta.MainClass</mainClass> <!-- 替换为你的主类 -->
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+在项目根目录下运行：
+mvn clean package
+
+成功后会在 target 目录生成类似文件：
+yourproject-1.0-jar-with-dependencies.jar
+
+
+MyApp/
+├── jre/              ← 你复制的 JRE（比如来自本机 JDK 的 jre）
+├── app.jar           ← 你打包好的 JAR（含依赖）
+└── run.bat           ← 用来启动程序的脚本
+
+在你自己电脑的 JDK 或 JRE 安装目录中找到：
+C:\Program Files\Java\jdk-17\        ← 或类似路径
+
+
+复制整个 jre 子目录（或 bin 等文件夹结构），你可以只保留：
+MyApp/jre/bin/java.exe
+MyApp/jre/lib/
+
+
+@echo off
+setlocal
+rem 使用当前目录下的 jre 运行程序
+set "JAVA_HOME=%~dp0jre"
+"%JAVA_HOME%\bin\java.exe" -jar "%~dp0app.jar"
+pause
