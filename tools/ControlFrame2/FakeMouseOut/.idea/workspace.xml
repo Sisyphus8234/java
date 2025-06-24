@@ -4,97 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57ab28bc-49cf-4b36-a0b9-46662ea83ebc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/base/lib/JNativeHook-2.2.2.x86_64.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/lib/jackson-annotations-2.16.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/lib/jackson-core-2.16.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/lib/jackson-databind-2.16.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/lib/jintellitype-1.4.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/lib/jna-5.14.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/lib/jna-platform-5.14.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/lib/jnativehook-2.2.2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/addition/DisplayImageOnTop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/addition/DisplayMarkOnTop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/addition/PixelColor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/CommonUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/Do.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/HookUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/IFunctions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/InputInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/JsonUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/ListenBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/ListenMouseKeyboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/ListenMouseKeyboards.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/MyJFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/MyThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/ScanFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/common_key_code.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/enty/TaskInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/enty/TaskResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jna/JnaKeyboardHook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jna/JnaMouseHook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jna/jna_key_code.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jnativehook/JnativehookKeyListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jnativehook/JnativehookMouseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jnativehook/JnativehookMouseWheelListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jnativehook/JnativehookUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/jnativehook/jnativehook_key_code.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom/Config.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom/FakeMouse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom/Functions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom/MainClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom/Wheel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom/winWithValue.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/CommonUtil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/CommonUtil$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/CommonUtil$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/CommonUtil$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/CommonUtil$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/CommonUtil$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/CommonUtil$Active.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/CommonUtil$Active.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/CommonUtil$KeyboardOrMouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/CommonUtil$KeyboardOrMouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/CommonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/CommonUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/Controller$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/Controller$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/Controller$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/HookUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/HookUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/IFunctions$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/IFunctions$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/IFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/IFunctions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/InputInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/InputInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/ListenBar$OnOrOff.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/ListenBar$OnOrOff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/ScanFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/ScanFunction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/jna/JnaKeyboardHook$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/jna/JnaKeyboardHook$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/jna/JnaKeyboardHook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/jna/JnaKeyboardHook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/jna/JnaMouseHook$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/jna/JnaMouseHook$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/jna/JnaMouseHook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/jna/JnaMouseHook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/jnativehook/JnativehookKeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/jnativehook/JnativehookKeyListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/jnativehook/JnativehookMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/jnativehook/JnativehookMouseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/base/jnativehook/JnativehookUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/base/jnativehook/JnativehookUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/FakeMouse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/FakeMouse$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/FakeMouse$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/FakeMouse$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/FakeMouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/FakeMouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Functions$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Functions$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Functions$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Functions$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Functions$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Functions$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Functions$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Functions$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Functions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Functions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Wheel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Wheel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Wheel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Wheel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/custom/Wheel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/custom/Wheel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/run-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/run-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled.iml" beforeDir="false" />
-    </list>
+    <list default="true" id="57ab28bc-49cf-4b36-a0b9-46662ea83ebc" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,31 +22,31 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2yx1ePVnl6xZpBghLjaduVi4MAK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "F:/github/java/tools/ControlFrame2/FakeMouseOut/base/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.MainClass.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/github/java/tools/ControlFrame2/FakeMouseOut/base/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.MainClass.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\github\java\tools\ControlFrame2\FakeMouseOut\base\lib" />
@@ -178,6 +88,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750681618556</updated>
       <workItem from="1750761505512" duration="1252000" />
+      <workItem from="1750762913471" duration="24000" />
     </task>
     <servers />
   </component>
