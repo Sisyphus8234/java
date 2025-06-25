@@ -72,10 +72,30 @@
 
 <!--    <repositories>-->
 <!--        <repository>-->
-<!--            <id>local-repo</id>-->
-<!--            <url>file://${basedir}/my_lib</url> &lt;!&ndash; 本地仓库 &ndash;&gt;-->
+<!--            <id>local-lib-repo</id>-->
+<!--            <url>file://${project.basedir}/lib</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
 <!--        </repository>-->
 <!--    </repositories>-->
+
+<!--    <pluginRepositories>-->
+<!--        <pluginRepository>-->
+<!--            <id>local-lib-plugin-repo</id>-->
+<!--            <url>file://${project.basedir}/lib</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </pluginRepository>-->
+<!--    </pluginRepositories>-->
+
 
     <build>
         <plugins>

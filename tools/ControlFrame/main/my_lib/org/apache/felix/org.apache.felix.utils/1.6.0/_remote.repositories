@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Jun 25 16:17:54 CST 2025
+org.apache.felix.utils-1.6.0.pom>aliyun-maven=
+org.apache.felix.utils-1.6.0.jar>aliyun-maven=
