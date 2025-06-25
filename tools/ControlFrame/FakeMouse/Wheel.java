@@ -11,13 +11,10 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static base.CommonUtil.customConditionSet;
 import static base.IFunctions.*;
-import static custom.Functions.alt左;
-import static custom.Functions.ctrl左;
 
 public interface Wheel {
 

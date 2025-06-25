@@ -41,7 +41,7 @@ public class CommonUtil {
             }));
 
 
-        } else if (IFunctions.active == CommonUtil.Active.jnativehook) {
+        } else if (IFunctions.active == Active.jnativehook) {
             file = "base/jnativehook/jnativehook_key_code.json";
             CommonUtil.keyCodeMap.putAll(JsonUtil.readJsonFile(file, new TypeReference<HashMap<String, Integer>>() {
             }));

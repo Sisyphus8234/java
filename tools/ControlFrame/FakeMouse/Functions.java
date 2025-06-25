@@ -5,7 +5,6 @@ import base.CommonUtil.Active;
 import base.enty.TaskResult;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -15,10 +14,7 @@ import static base.CommonUtil.customConditionSet;
 import static base.CommonUtil.keyCodeMap;
 import static java.awt.event.KeyEvent.*;
 
-class Run extends MainClass {
 
-
-}
 
 public class Functions extends IFunctions{
 
