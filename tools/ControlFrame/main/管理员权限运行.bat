@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 
 
-set /p MyJavaPath=<MyJavaPath.txt
+set /p java_path=<java_path.txt
 
 
-start %MyJavaPath%javaw -jar run-1.0-jar-with-dependencies.jar
+start %java_path%javaw -jar run-1.0-jar-with-dependencies.jar
