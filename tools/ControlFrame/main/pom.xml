@@ -107,7 +107,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>custom.MainClass</mainClass> <!-- 替换为你的主类 -->
+                            <mainClass>custom.Main</mainClass> <!-- 替换为你的主类 -->
                         </manifest>
                     </archive>
                     <descriptorRefs>

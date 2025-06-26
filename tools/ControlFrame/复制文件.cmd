@@ -20,4 +20,4 @@ if exist "%OutDir%" (
 
 xcopy /e/y/i main %OutDir%\ /EXCLUDE:exclude.txt
 
-xcopy /y/e/i %input% %OutDir%\custom
+xcopy /y/e/i %input% %OutDir%
